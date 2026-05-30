@@ -8,6 +8,14 @@ background-color: #f5f7fa;
 color: #333;
 }
 
+.hero {
+text-align: center;
+padding: 15px;
+background: white;
+border-radius: 15px;
+margin-bottom: 20px;
+}
+
 h1 {
 color: #003366;
 font-size: 42px;
@@ -19,10 +27,6 @@ border-bottom: 2px solid #0056b3;
 padding-bottom: 5px;
 }
 
-ul {
-margin-left: 20px;
-}
-
 a {
 color: #0056b3;
 text-decoration: none;
@@ -30,12 +34,4 @@ text-decoration: none;
 
 a:hover {
 text-decoration: underline;
-}
-
-.hero {
-text-align: center;
-padding: 30px;
-background: white;
-border-radius: 10px;
-margin-bottom: 20px;
 }
