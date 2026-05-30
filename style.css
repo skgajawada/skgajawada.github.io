@@ -123,6 +123,8 @@ ul {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
+    margin-top: 20px;
+    justify-content: center;
 }
 
 .card {
@@ -131,4 +133,7 @@ ul {
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     font-weight: bold;
+    color: #003366;
+    min-width: 220px;
+    text-align: center;
 }
