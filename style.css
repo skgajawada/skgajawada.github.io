@@ -3,11 +3,16 @@ html{
 }
 <script>
 
-const mobileMenu = document.getElementById("mobile-menu");
-const navLinks = document.getElementById("nav-links");
+const mobileMenu =
+document.getElementById("mobile-menu");
+
+const navLinks =
+document.getElementById("nav-links");
 
 mobileMenu.addEventListener("click", () => {
+
     navLinks.classList.toggle("active");
+
 });
 
 </script>
@@ -27,8 +32,6 @@ html{
     scroll-behavior:smooth;
 }
 
-/* Navbar */
-
 .navbar{
     position:sticky;
     top:0;
@@ -36,39 +39,31 @@ html{
 
     background:#ffffff;
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
+    padding:15px;
 
-    padding:15px 25px;
-
-    border-radius:15px;
+    border-radius:12px;
 
     box-shadow:0 2px 10px rgba(0,0,0,0.08);
 
     margin-bottom:25px;
 }
 
-.logo a{
-    text-decoration:none;
-    color:#003366;
-    font-size:24px;
-    font-weight:700;
-}
+/* Menu */
 
 .nav-links{
+
     display:flex;
-    flex-wrap:wrap;      /* IMPORTANT */
-    justify-content:flex-end;
-    gap:15px;
+
+    flex-wrap:wrap;          /* allows second row */
+
+    justify-content:center;
+
+    gap:15px 25px;
 
     list-style:none;
 
-    margin:0;
     padding:0;
-
-    max-width:850px;
+    margin:0;
 }
 
 .nav-links li{
@@ -76,25 +71,38 @@ html{
 }
 
 .nav-links a{
+
     text-decoration:none;
+
     color:#333;
+
     font-weight:600;
-    padding:6px 10px;
+
+    padding:5px 10px;
+
     border-radius:5px;
 }
 
 .nav-links a:hover{
+
     background:#0056b3;
+
     color:white;
 }
 
 /* Hamburger */
 
 .menu-toggle{
+
     display:none;
+
     font-size:32px;
+
     cursor:pointer;
+
     color:#003366;
+
+    text-align:right;
 }
 
 /* Mobile */
@@ -108,8 +116,8 @@ html{
     .nav-links{
         display:none;
         flex-direction:column;
-        width:100%;
         margin-top:15px;
+        align-items:center;
     }
 
     .nav-links.active{
