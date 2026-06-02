@@ -126,7 +126,7 @@ With more than seven years of teaching and academic experience as an Assistant P
         </div>
 
         <div class="button-card"
-             onclick="toggleSection('em-ppts','em-group')">
+             onclick="toggleSubMenu('em-ppts','em-group')">
             PPTs
         </div>
 
@@ -187,12 +187,12 @@ With more than seven years of teaching and academic experience as an Assistant P
     <div class="button-grid">
 
         <div class="button-card"
-             onclick="toggleSection('eg-notes','eg-group')">
+             onclick="toggleSubMenu('eg-notes','eg-group')">
             Notes
         </div>
 
         <div class="button-card"
-             onclick="toggleSection('eg-ppts','eg-group')">
+             onclick="toggleSubMenu('eg-ppts','eg-group')">
             PPTs
         </div>
 
@@ -253,12 +253,12 @@ With more than seven years of teaching and academic experience as an Assistant P
     <div class="button-grid">
 
         <div class="button-card"
-             onclick="toggleSection('mos-notes','mos-group')">
+             onclick="toggleSubMenu('mos-notes','mos-group')">
             Notes
         </div>
 
         <div class="button-card"
-             onclick="toggleSection('mos-ppts','mos-group')">
+             onclick="toggleSubMenu('mos-ppts','mos-group')">
             PPTs
         </div>
 
@@ -319,12 +319,12 @@ With more than seven years of teaching and academic experience as an Assistant P
     <div class="button-grid">
 
         <div class="button-card"
-             onclick="toggleSection('fmhm-notes','fmhm-group')">
+             onclick="toggleSubMenu('fmhm-notes','fmhm-group')">
             Notes
         </div>
 
         <div class="button-card"
-             onclick="toggleSection('fmhm-ppts','fmhm-group')">
+             onclick="toggleSubMenu('fmhm-ppts','fmhm-group')">
             PPTs
         </div>
 
@@ -385,12 +385,12 @@ With more than seven years of teaching and academic experience as an Assistant P
     <div class="button-grid">
 
         <div class="button-card"
-             onclick="toggleSection('td-notes','td-group')">
+             onclick="toggleSubMenu('td-notes','td-group')">
             Notes
         </div>
 
         <div class="button-card"
-             onclick="toggleSection('td-ppts','td-group')">
+             onclick="toggleSubMenu('td-ppts','td-group')">
             PPTs
         </div>
 
@@ -451,12 +451,12 @@ With more than seven years of teaching and academic experience as an Assistant P
     <div class="button-grid">
 
         <div class="button-card"
-             onclick="toggleSection('kom-notes','kom-group')">
+             onclick="toggleSubMenu('kom-notes','kom-group')">
             Notes
         </div>
 
         <div class="button-card"
-             onclick="toggleSection('kom-ppts','kom-group')">
+             onclick="toggleSubMenu('kom-ppts','kom-group')">
             PPTs
         </div>
 
@@ -491,7 +491,7 @@ With more than seven years of teaching and academic experience as an Assistant P
     </div>
 
     <!-- PPTs -->
-    <div id="kom-ppts" class="hidden-section tom-group">
+    <div id="kom-ppts" class="hidden-section kom-group">
 
         <div class="button-grid">
 
@@ -517,12 +517,12 @@ With more than seven years of teaching and academic experience as an Assistant P
     <div class="button-grid">
 
         <div class="button-card"
-             onclick="toggleSection('ht-notes','ht-group')">
+             onclick="toggleSubMenu('ht-notes','ht-group')">
             Notes
         </div>
 
         <div class="button-card"
-             onclick="toggleSection('ht-ppts','ht-group')">
+             onclick="toggleSubMenu('ht-ppts','ht-group')">
             PPTs
         </div>
 
@@ -583,12 +583,12 @@ With more than seven years of teaching and academic experience as an Assistant P
     <div class="button-grid">
 
         <div class="button-card"
-             onclick="toggleSection('dme-notes',,'dme-group')">
+             onclick="toggleSubMenu('dme-notes','dme-group')">
             Notes
         </div>
 
         <div class="button-card"
-             onclick="toggleSection('dme-ppts','dme-group')">
+             onclick="toggleSubMenu('dme-ppts','dme-group')">
             PPTs
         </div>
 
@@ -650,12 +650,12 @@ With more than seven years of teaching and academic experience as an Assistant P
     <div class="button-grid">
 
         <div class="button-card"
-             onclick="toggleSection('or-notes','or-group')">
+             onclick="toggleSubMenu('or-notes','or-group')">
             Notes
         </div>
 
         <div class="button-card"
-             onclick="toggleSection('or-ppts','or-group')">
+             onclick="toggleSubMenu('or-ppts','or-group')">
             PPTs
         </div>
 
@@ -716,12 +716,12 @@ With more than seven years of teaching and academic experience as an Assistant P
     <div class="button-grid">
 
         <div class="button-card"
-             onclick="toggleSection('fem-notes','fem-group')">
+             onclick="toggleSubMenu('fem-notes','fem-group')">
             Notes
         </div>
 
         <div class="button-card"
-             onclick="toggleSection('fem-ppts','fem-group')">
+             onclick="toggleSubMenu('fem-ppts','fem-group')">
             PPTs
         </div>
 
@@ -996,7 +996,7 @@ mobileMenu.addEventListener('click',()=>navLinks.classList.toggle('active'));
 </script>
 <script>
 
-function toggleSection(id){
+function toggleSubMenu(id){
 
     let x=document.getElementById(id);
 
