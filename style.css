@@ -27,11 +27,13 @@ body {
 
 .profile-image {
     flex: 0 0 220px;
+    text-align: center;
 }
 
 .profile-image img {
     width: 220px;
-    height: auto;
+    height: 280px;
+    object-fit: cover;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
@@ -39,19 +41,6 @@ body {
 .profile-content {
     flex: 1;
     min-width: 300px;
-}
-
-.profile-content h1 {
-    color: #003366;
-    font-size: 48px;
-    margin-bottom: 10px;
-}
-
-.designation {
-    font-size: 22px;
-    color: #0056b3;
-    font-weight: bold;
-    margin-bottom: 10px;
 }
 
 /* Headings */
