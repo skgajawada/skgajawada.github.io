@@ -46,3 +46,41 @@ details a{
 details a:hover{
     text-decoration:underline;
 }
+.subject-grid{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.subject-card{
+    background:#ffffff;
+    border-radius:12px;
+    padding:20px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+
+.subject-card h3{
+    color:#003366;
+    margin-bottom:15px;
+}
+
+.button-grid{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.button-card{
+    display:inline-block;
+    background:#0056b3;
+    color:white;
+    text-decoration:none;
+    padding:10px 18px;
+    border-radius:8px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.button-card:hover{
+    background:#003366;
+}
