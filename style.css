@@ -148,24 +148,26 @@ h2{
 
 .subject-grid{
     display:flex;
-    flex-direction:column;
-    gap:15px;
+    flex-wrap:wrap;
+    gap:12px;
 }
 
 .subject-card{
-    background:#0056b3;
-    color:white;
-    padding:12px 20px;
+    background:#ffffff;
+    color:#0056b3;
+    border:1px solid #0056b3;
+    padding:10px 18px;
     border-radius:8px;
-    display:inline-block;
-    cursor:pointer;
     font-weight:600;
-    width:fit-content;
+    cursor:pointer;
+    width:auto;
+    display:inline-block;
     transition:.3s;
 }
 
 .subject-card:hover{
-    background:#003366;
+    background:#0056b3;
+    color:white;
 }
 
 /* ======================
