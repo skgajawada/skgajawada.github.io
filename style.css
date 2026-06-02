@@ -1,7 +1,16 @@
 html{
     scroll-behavior:smooth;
 }
+<script>
 
+const mobileMenu = document.getElementById("mobile-menu");
+const navLinks = document.getElementById("nav-links");
+
+mobileMenu.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+});
+
+</script>
 body{
     font-family:Arial, sans-serif;
     max-width:1200px;
@@ -14,36 +23,38 @@ body{
 
 /* Navigation */
 
+html{
+    scroll-behavior:smooth;
+}
+
 .navbar{
     position:sticky;
     top:0;
     z-index:1000;
 
-    background:white;
+    background:#ffffff;
 
     display:flex;
     justify-content:space-between;
     align-items:center;
 
-    padding:15px 30px;
+    padding:15px 25px;
 
-    border-radius:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
 
     margin-bottom:25px;
-
-    box-shadow:0 3px 10px rgba(0,0,0,0.08);
 }
 
 .logo a{
     text-decoration:none;
     color:#003366;
-    font-size:28px;
-    font-weight:bold;
+    font-size:22px;
+    font-weight:700;
 }
 
 .nav-links{
     display:flex;
-    gap:30px;
+    gap:22px;
     list-style:none;
     margin:0;
     padding:0;
@@ -59,6 +70,34 @@ body{
     color:#0056b3;
 }
 
+.menu-toggle{
+    display:none;
+    font-size:32px;
+    cursor:pointer;
+    color:#003366;
+}
+
+@media(max-width:900px){
+
+    .menu-toggle{
+        display:block;
+    }
+
+    .nav-links{
+        display:none;
+        flex-direction:column;
+        width:100%;
+        margin-top:15px;
+    }
+
+    .nav-links.active{
+        display:flex;
+    }
+
+    .navbar{
+        flex-wrap:wrap;
+    }
+}
 /* Hamburger */
 
 .menu-toggle{
