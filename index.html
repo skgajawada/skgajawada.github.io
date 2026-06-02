@@ -990,21 +990,47 @@ title="ResearchGate">
 
 </section>
 <script>
-const mobileMenu=document.getElementById('mobile-menu');
-const navLinks=document.getElementById('nav-links');
-mobileMenu.addEventListener('click',()=>navLinks.classList.toggle('active'));
-</script>
-<script>
 
-function toggleSubMenu(id){
+function toggleSubject(id){
 
-    let x=document.getElementById(id);
+    document.querySelectorAll('.subject-menu')
+    .forEach(function(menu){
 
-    if(x.style.display==="block"){
-        x.style.display="none";
+        if(menu.id!==id){
+            menu.style.display='none';
+        }
+
+    });
+
+    let current=document.getElementById(id);
+
+    if(current.style.display==='block'){
+        current.style.display='none';
     }
     else{
-        x.style.display="block";
+        current.style.display='block';
+    }
+
+}
+
+function toggleSubMenu(id,group){
+
+    document.querySelectorAll('.'+group)
+    .forEach(function(menu){
+
+        if(menu.id!==id){
+            menu.style.display='none';
+        }
+
+    });
+
+    let current=document.getElementById(id);
+
+    if(current.style.display==='block'){
+        current.style.display='none';
+    }
+    else{
+        current.style.display='block';
     }
 
 }
