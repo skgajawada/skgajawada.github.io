@@ -17,7 +17,7 @@ mobileMenu.addEventListener("click", () => {
 
 </script>
 body{
-    font-family:'Merriweather', serif;
+    font-family:'Lora', serif;
     max-width:1200px;
     margin:auto;
     padding:20px;
