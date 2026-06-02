@@ -54,7 +54,7 @@ html{
     display:flex;
     flex-wrap:wrap;
     justify-content:flex-start;
-    gap:12px;
+    gap:10px;
     width:100%;
     list-style:none;
     padding:0;
