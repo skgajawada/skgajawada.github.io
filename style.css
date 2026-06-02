@@ -14,3 +14,35 @@ h2{color:#0056b3;border-bottom:2px solid #0056b3;padding-bottom:8px}
 .grid{display:flex;flex-wrap:wrap;gap:15px}
 .card{background:#f8f9fb;padding:14px 18px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
 @media(max-width:900px){.menu-toggle{display:block}.nav-links{display:none;flex-direction:column}.nav-links.active{display:flex}.profile-container{flex-direction:column;text-align:center}h1{font-size:42px}}
+details{
+    margin:12px 0;
+    padding:12px;
+    background:#ffffff;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+
+summary{
+    cursor:pointer;
+    font-size:22px;
+    font-weight:600;
+    color:#003366;
+}
+
+details details{
+    margin-left:20px;
+    background:#f8f9fb;
+}
+
+details p{
+    margin-top:10px;
+}
+
+details a{
+    color:#0056b3;
+    text-decoration:none;
+}
+
+details a:hover{
+    text-decoration:underline;
+}
