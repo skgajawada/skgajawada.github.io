@@ -5,39 +5,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gajavada Sanjeevkumar</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- Navigation -->
-
 <nav class="navbar">
 
     <div class="logo">
-        <a href="#home">Gajavada Sanjeevkumar</a>
+        <a href="#home">GS</a>
     </div>
 
-    <ul class="nav-links">
+    <div class="menu-toggle" id="mobile-menu">
+        ☰
+    </div>
+
+    <ul class="nav-links" id="nav-links">
+
         <li><a href="#home">Home</a></li>
+
         <li><a href="#about">About</a></li>
+
         <li><a href="#education">Education</a></li>
+
         <li><a href="#experience">Experience</a></li>
+
         <li><a href="#research">Research</a></li>
+
         <li><a href="#projects">Projects</a></li>
+
         <li><a href="#contact">Contact</a></li>
+
     </ul>
 
 </nav>
 
-<!-- Home Section -->
 
 <section id="home" class="hero">
 
     <div class="profile-container">
 
         <div class="profile-image">
-            <img src="pp.jpeg" alt="Gajavada Sanjeevkumar">
+            <img src="pp.jpg" alt="Gajavada Sanjeevkumar">
         </div>
 
         <div class="profile-content">
@@ -61,9 +71,19 @@
             </p>
 
             <div class="buttons">
-                <a href="SANJEEV (3).pdf" target="_blank">Download CV</a>
-                <a href="#research">Research</a>
-                <a href="#contact">Contact</a>
+
+                <a href="SANJEEV (3).pdf" target="_blank">
+                    Download CV
+                </a>
+
+                <a href="#research">
+                    Research
+                </a>
+
+                <a href="#contact">
+                    Contact
+                </a>
+
             </div>
 
         </div>
@@ -72,7 +92,6 @@
 
 </section>
 
-<!-- About -->
 
 <section id="about">
 
@@ -81,26 +100,24 @@
     <p>
         PhD Scholar in Design Engineering at IIT (ISM) Dhanbad.
         My research focuses on Machine Learning, Computational Intelligence,
-        Engineering Design, Digital Twins and Data-Driven Engineering Systems.
+        Engineering Design, Digital Twins, and Data-Driven Engineering Systems.
     </p>
 
 </section>
 
-<!-- Education -->
 
 <section id="education">
 
     <h2>Education</h2>
 
     <ul>
-        <li>PhD in Design Engineering – IIT (ISM) Dhanbad</li>
+        <li>PhD (Pursuing) – IIT (ISM) Dhanbad</li>
         <li>M.Tech – Mechanical Engineering</li>
         <li>B.Tech – Mechanical Engineering</li>
     </ul>
 
 </section>
 
-<!-- Experience -->
 
 <section id="experience">
 
@@ -113,7 +130,6 @@
 
 </section>
 
-<!-- Research -->
 
 <section id="research">
 
@@ -141,19 +157,17 @@
 
 </section>
 
-<!-- Projects -->
 
 <section id="projects">
 
     <h2>Projects</h2>
 
     <p>
-        Add your academic and industrial projects here.
+        Add your research and academic projects here.
     </p>
 
 </section>
 
-<!-- Contact -->
 
 <section id="contact">
 
@@ -163,12 +177,24 @@
 
     <p>
         LinkedIn:
-        <a href="https://www.linkedin.com" target="_blank">
+        <a href="https://www.linkedin.com/in/skgajavada/" target="_blank">
             View Profile
         </a>
     </p>
 
 </section>
+
+
+<script>
+
+const mobileMenu = document.getElementById("mobile-menu");
+const navLinks = document.getElementById("nav-links");
+
+mobileMenu.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+});
+
+</script>
 
 </body>
 </html>
