@@ -22,12 +22,6 @@ body {
     display: flex;
     align-items: center;
     gap: 40px;
-    flex-wrap: wrap;
-}
-
-.profile-image {
-    flex: 0 0 220px;
-    text-align: center;
 }
 
 .profile-image img {
@@ -40,9 +34,41 @@ body {
 
 .profile-content {
     flex: 1;
-    min-width: 300px;
 }
 
+.profile-content h1 {
+    margin-top: 0;
+    color: #003366;
+    font-size: 48px;
+}
+
+.designation {
+    font-size: 22px;
+    font-weight: bold;
+    color: #0056b3;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+
+    .profile-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-content {
+        text-align: center;
+    }
+
+    .profile-content h1 {
+        font-size: 36px;
+    }
+
+    .profile-image img {
+        width: 180px;
+        height: 230px;
+    }
+}
 /* Headings */
 h2 {
     color: #0056b3;
