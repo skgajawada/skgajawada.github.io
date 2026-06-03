@@ -161,8 +161,7 @@ h2{
 }
 
 .subject-card{
-    display:block;
-    width:fit-content;
+    display:inline-block;
 
     background:#ffffff;
     color:#0056b3;
