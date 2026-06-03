@@ -162,7 +162,9 @@ h2{
 
 .subject-card{
     display:inline-block;
-
+    font-size:24px;
+    padding:12px 20px;
+    
     background:#ffffff;
     color:#0056b3;
 
