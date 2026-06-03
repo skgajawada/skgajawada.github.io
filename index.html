@@ -730,5 +730,52 @@ function toggleCert(id){
 }
 
 </script>
+    <script>
+
+function toggleProvider(id){
+
+    document
+    .querySelectorAll('.tree-children')
+    .forEach(function(item){
+
+        if(item.id !== id){
+            item.style.display='none';
+        }
+
+    });
+
+    let current =
+        document.getElementById(id);
+
+    current.style.display =
+        current.style.display==='block'
+        ? 'none'
+        : 'block';
+}
+
+function toggleCert(event,id){
+
+    event.stopPropagation();
+
+    document
+    .querySelectorAll('.cert-details')
+    .forEach(function(item){
+
+        if(item.id !== id){
+            item.style.display='none';
+        }
+
+    });
+
+    let current =
+        document.getElementById(id);
+
+    current.style.display =
+        current.style.display==='block'
+        ? 'none'
+        : 'block';
+}
+
+</script>
 </body>
 </html>
