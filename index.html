@@ -611,30 +611,7 @@ function toggleSubject(id){
 }
 
 </script>
-function toggleSubMenu(id,group){
 
-    document.querySelectorAll('.'+group)
-    .forEach(function(menu){
 
-        if(menu.id!==id){
-            menu.style.display='none';
-        }
 
-    });
-
-    let current=document.getElementById(id);
-
-    console.log(id);
-    console.log(current);
-
-    if(current.style.display==='block'){
-        current.style.display='none';
-    }
-    else{
-        current.style.display='block';
-    }
-
-}
-
-</script>
 </body></html>
