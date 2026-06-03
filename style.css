@@ -330,3 +330,9 @@ h2{
     flex-wrap:wrap;
     gap:10px;
 }
+.cert-content{
+    display:none;
+    margin-top:15px;
+    margin-left:25px;
+    margin-bottom:20px;
+}
