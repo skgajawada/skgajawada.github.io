@@ -534,7 +534,7 @@ title="ResearchGate">
 
 function toggleSubject(id){
 
-    console.log("Clicked:", id);
+    console.log("Clicked:",id);
 
     let current=document.getElementById(id);
 
@@ -549,15 +549,11 @@ function toggleSubject(id){
 
     });
 
-    if(current){
-
-        if(current.style.display==='block'){
-            current.style.display='none';
-        }
-        else{
-            current.style.display='block';
-        }
-
+    if(current.style.display==='block'){
+        current.style.display='none';
+    }
+    else{
+        current.style.display='block';
     }
 
 }
