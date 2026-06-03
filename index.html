@@ -594,28 +594,23 @@ title="ResearchGate">
 </section>
 <script>
 
+<script>
+
 function toggleSubject(id){
 
-    document.querySelectorAll('.subject-menu')
-    .forEach(function(menu){
-
-        if(menu.id!==id){
-            menu.style.display='none';
-        }
-
+    document
+    .querySelectorAll('.subject-content')
+    .forEach(function(section){
+        section.style.display='none';
     });
 
-    let current=document.getElementById(id);
-
-    if(current.style.display==='block'){
-        current.style.display='none';
-    }
-    else{
-        current.style.display='block';
-    }
+    document
+    .getElementById(id)
+    .style.display='block';
 
 }
 
+</script>
 function toggleSubMenu(id,group){
 
     document.querySelectorAll('.'+group)
