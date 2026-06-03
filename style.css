@@ -161,19 +161,27 @@ h2{
 }
 
 .subject-card{
+    display:block;
+    width:fit-content;
+
     background:#ffffff;
-    border:1px solid #0056b3;
     color:#0056b3;
-    padding:12px 18px;
+
+    border:1px solid #0056b3;
     border-radius:8px;
-    cursor:pointer;
+
+    padding:10px 18px;
+    margin-bottom:10px;
+
     font-weight:600;
-    transition:.3s;
+    cursor:pointer;
+
+    transition:all .3s ease;
 }
 
 .subject-card:hover{
     background:#0056b3;
-    color:white;
+    color:#ffffff;
 }
 
 .subject-content{
