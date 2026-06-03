@@ -532,37 +532,33 @@ title="ResearchGate">
 
 function toggleSubject(id){
 
-    let sections =
-        document.querySelectorAll('.subject-content');
+    console.log("Clicked:", id);
 
-    sections.forEach(function(section){
+    let current=document.getElementById(id);
 
-        if(section.id !== id){
-            section.style.display = 'none';
+    console.log(current);
+
+    document.querySelectorAll('.subject-content')
+    .forEach(function(section){
+
+        if(section.id!==id){
+            section.style.display='none';
         }
 
     });
 
-    let current =
-        document.getElementById(id);
+    if(current){
 
-    if(current.style.display === 'block'){
-        current.style.display = 'none';
+        if(current.style.display==='block'){
+            current.style.display='none';
+        }
+        else{
+            current.style.display='block';
+        }
+
     }
-    else{
-        current.style.display = 'block';
-    }
+
 }
-
-const mobileMenu =
-    document.getElementById('mobile-menu');
-
-const navLinks =
-    document.getElementById('nav-links');
-
-mobileMenu.addEventListener('click',function(){
-    navLinks.classList.toggle('active');
-});
 
 </script>
 
