@@ -109,272 +109,208 @@ With more than seven years of teaching and academic experience as an Assistant P
 
 <h2>Subjects Taught</h2>
 
-<div class="subject-grid">
+<div class="subject-list">
 
-    <div class="subject-card"
-         onclick="toggleSubject('em-content')">
-         Engineering Mechanics
-    </div>
+    <!-- Engineering Mechanics -->
+    <div class="subject-item">
 
-    <div class="subject-card"
-         onclick="toggleSubject('eg-content')">
-         Engineering Graphics
-    </div>
+        <div class="subject-card"
+             onclick="toggleSubject('em-content')">
 
-    <div class="subject-card"
-         onclick="toggleSubject('mos-content')">
-         Mechanics of Solids
-    </div>
+            Engineering Mechanics
 
-    <div class="subject-card"
-         onclick="toggleSubject('fmhm-content')">
-         Fluid Mechanics & Hydraulic Machines
-    </div>
+        </div>
 
-    <div class="subject-card"
-         onclick="toggleSubject('td-content')">
-         Thermodynamics
-    </div>
+        <div id="em-content"
+             class="subject-content">
 
-    <div class="subject-card"
-         onclick="toggleSubject('ht-content')">
-         Heat Transfer
-    </div>
+            <div class="button-grid">
 
-    <div class="subject-card"
-         onclick="toggleSubject('dme-content')">
-         Design of Machine Elements
-    </div>
+                <a href="notes/em.pdf"
+                   target="_blank"
+                   class="button-card">
+                   Notes
+                </a>
 
-    <div class="subject-card"
-         onclick="toggleSubject('kom-content')">
-         Kinematics of Machinery
-    </div>
+                <a href="ppts/em.pdf"
+                   target="_blank"
+                   class="button-card">
+                   PPTs
+                </a>
 
-    <div class="subject-card"
-         onclick="toggleSubject('or-content')">
-         Operations Research
-    </div>
+                <a href="questionbank/em.pdf"
+                   target="_blank"
+                   class="button-card">
+                   Question Bank
+                </a>
 
-    <div class="subject-card"
-         onclick="toggleSubject('fea-content')">
-         Finite Element Analysis
-    </div>
+                <a href="previous/em.pdf"
+                   target="_blank"
+                   class="button-card">
+                   Previous Year Papers
+                </a>
 
-</div>
+            </div>
 
-
-<!-- Engineering Mechanics -->
-<div id="em-content" class="subject-content">
-
-    <h3>Engineering Mechanics</h3>
-
-    <div class="button-grid">
-
-        <a href="notes/em.pdf"
-           target="_blank"
-           class="button-card">
-           Notes
-        </a>
-
-        <a href="ppts/em.pdf"
-           target="_blank"
-           class="button-card">
-           PPTs
-        </a>
-
-        <a href="questionbank/em.pdf"
-           target="_blank"
-           class="button-card">
-           Question Bank
-        </a>
-
-        <a href="previous/em.pdf"
-           target="_blank"
-           class="button-card">
-           Previous Year Papers
-        </a>
+        </div>
 
     </div>
 
-</div>
+    <!-- Engineering Graphics -->
+    <div class="subject-item">
 
+        <div class="subject-card"
+             onclick="toggleSubject('eg-content')">
 
-<!-- Engineering Graphics -->
-<div id="eg-content" class="subject-content">
+            Engineering Graphics
 
-    <h3>Engineering Graphics</h3>
+        </div>
 
-    <div class="button-grid">
+        <div id="eg-content"
+             class="subject-content">
 
-        <a href="notes/eg.pdf" target="_blank" class="button-card">Notes</a>
+            <div class="button-grid">
 
-        <a href="ppts/eg.pdf" target="_blank" class="button-card">PPTs</a>
+                <a href="notes/eg.pdf" target="_blank" class="button-card">Notes</a>
 
-        <a href="questionbank/eg.pdf" target="_blank" class="button-card">Question Bank</a>
+                <a href="ppts/eg.pdf" target="_blank" class="button-card">PPTs</a>
 
-        <a href="previous/eg.pdf" target="_blank" class="button-card">Previous Year Papers</a>
+                <a href="questionbank/eg.pdf" target="_blank" class="button-card">Question Bank</a>
 
-    </div>
+                <a href="previous/eg.pdf" target="_blank" class="button-card">Previous Year Papers</a>
 
-</div>
+            </div>
 
-
-<!-- Mechanics of Solids -->
-<div id="mos-content" class="subject-content">
-
-    <h3>Mechanics of Solids</h3>
-
-    <div class="button-grid">
-
-        <a href="notes/mos.pdf" target="_blank" class="button-card">Notes</a>
-
-        <a href="ppts/mos.pdf" target="_blank" class="button-card">PPTs</a>
-
-        <a href="questionbank/mos.pdf" target="_blank" class="button-card">Question Bank</a>
-
-        <a href="previous/mos.pdf" target="_blank" class="button-card">Previous Year Papers</a>
+        </div>
 
     </div>
 
-</div>
+    <!-- Mechanics of Solids -->
+    <div class="subject-item">
+        <div class="subject-card" onclick="toggleSubject('mos-content')">
+            Mechanics of Solids
+        </div>
 
-
-<!-- Fluid Mechanics -->
-<div id="fmhm-content" class="subject-content">
-
-    <h3>Fluid Mechanics & Hydraulic Machines</h3>
-
-    <div class="button-grid">
-
-        <a href="notes/fmhm.pdf" target="_blank" class="button-card">Notes</a>
-
-        <a href="ppts/fmhm.pdf" target="_blank" class="button-card">PPTs</a>
-
-        <a href="questionbank/fmhm.pdf" target="_blank" class="button-card">Question Bank</a>
-
-        <a href="previous/fmhm.pdf" target="_blank" class="button-card">Previous Year Papers</a>
-
+        <div id="mos-content" class="subject-content">
+            <div class="button-grid">
+                <a href="#" class="button-card">Notes</a>
+                <a href="#" class="button-card">PPTs</a>
+                <a href="#" class="button-card">Question Bank</a>
+                <a href="#" class="button-card">Previous Year Papers</a>
+            </div>
+        </div>
     </div>
 
-</div>
+    <!-- Fluid Mechanics -->
+    <div class="subject-item">
+        <div class="subject-card" onclick="toggleSubject('fmhm-content')">
+            Fluid Mechanics & Hydraulic Machines
+        </div>
 
-
-<!-- Thermodynamics -->
-<div id="td-content" class="subject-content">
-
-    <h3>Thermodynamics</h3>
-
-    <div class="button-grid">
-
-        <a href="notes/td.pdf" target="_blank" class="button-card">Notes</a>
-
-        <a href="ppts/td.pdf" target="_blank" class="button-card">PPTs</a>
-
-        <a href="questionbank/td.pdf" target="_blank" class="button-card">Question Bank</a>
-
-        <a href="previous/td.pdf" target="_blank" class="button-card">Previous Year Papers</a>
-
+        <div id="fmhm-content" class="subject-content">
+            <div class="button-grid">
+                <a href="#" class="button-card">Notes</a>
+                <a href="#" class="button-card">PPTs</a>
+                <a href="#" class="button-card">Question Bank</a>
+                <a href="#" class="button-card">Previous Year Papers</a>
+            </div>
+        </div>
     </div>
 
-</div>
+    <!-- Thermodynamics -->
+    <div class="subject-item">
+        <div class="subject-card" onclick="toggleSubject('td-content')">
+            Thermodynamics
+        </div>
 
-
-<!-- Heat Transfer -->
-<div id="ht-content" class="subject-content">
-
-    <h3>Heat Transfer</h3>
-
-    <div class="button-grid">
-
-        <a href="notes/ht.pdf" target="_blank" class="button-card">Notes</a>
-
-        <a href="ppts/ht.pdf" target="_blank" class="button-card">PPTs</a>
-
-        <a href="questionbank/ht.pdf" target="_blank" class="button-card">Question Bank</a>
-
-        <a href="previous/ht.pdf" target="_blank" class="button-card">Previous Year Papers</a>
-
+        <div id="td-content" class="subject-content">
+            <div class="button-grid">
+                <a href="#" class="button-card">Notes</a>
+                <a href="#" class="button-card">PPTs</a>
+                <a href="#" class="button-card">Question Bank</a>
+                <a href="#" class="button-card">Previous Year Papers</a>
+            </div>
+        </div>
     </div>
 
-</div>
+    <!-- Heat Transfer -->
+    <div class="subject-item">
+        <div class="subject-card" onclick="toggleSubject('ht-content')">
+            Heat Transfer
+        </div>
 
-
-<!-- Design of Machine Elements -->
-<div id="dme-content" class="subject-content">
-
-    <h3>Design of Machine Elements</h3>
-
-    <div class="button-grid">
-
-        <a href="notes/dme.pdf" target="_blank" class="button-card">Notes</a>
-
-        <a href="ppts/dme.pdf" target="_blank" class="button-card">PPTs</a>
-
-        <a href="questionbank/dme.pdf" target="_blank" class="button-card">Question Bank</a>
-
-        <a href="previous/dme.pdf" target="_blank" class="button-card">Previous Year Papers</a>
-
+        <div id="ht-content" class="subject-content">
+            <div class="button-grid">
+                <a href="#" class="button-card">Notes</a>
+                <a href="#" class="button-card">PPTs</a>
+                <a href="#" class="button-card">Question Bank</a>
+                <a href="#" class="button-card">Previous Year Papers</a>
+            </div>
+        </div>
     </div>
 
-</div>
+    <!-- Design of Machine Elements -->
+    <div class="subject-item">
+        <div class="subject-card" onclick="toggleSubject('dme-content')">
+            Design of Machine Elements
+        </div>
 
-
-<!-- Kinematics of Machinery -->
-<div id="kom-content" class="subject-content">
-
-    <h3>Kinematics of Machinery</h3>
-
-    <div class="button-grid">
-
-        <a href="notes/kom.pdf" target="_blank" class="button-card">Notes</a>
-
-        <a href="ppts/kom.pdf" target="_blank" class="button-card">PPTs</a>
-
-        <a href="questionbank/kom.pdf" target="_blank" class="button-card">Question Bank</a>
-
-        <a href="previous/kom.pdf" target="_blank" class="button-card">Previous Year Papers</a>
-
+        <div id="dme-content" class="subject-content">
+            <div class="button-grid">
+                <a href="#" class="button-card">Notes</a>
+                <a href="#" class="button-card">PPTs</a>
+                <a href="#" class="button-card">Question Bank</a>
+                <a href="#" class="button-card">Previous Year Papers</a>
+            </div>
+        </div>
     </div>
 
-</div>
+    <!-- Kinematics of Machinery -->
+    <div class="subject-item">
+        <div class="subject-card" onclick="toggleSubject('kom-content')">
+            Kinematics of Machinery
+        </div>
 
-
-<!-- Operations Research -->
-<div id="or-content" class="subject-content">
-
-    <h3>Operations Research</h3>
-
-    <div class="button-grid">
-
-        <a href="notes/or.pdf" target="_blank" class="button-card">Notes</a>
-
-        <a href="ppts/or.pdf" target="_blank" class="button-card">PPTs</a>
-
-        <a href="questionbank/or.pdf" target="_blank" class="button-card">Question Bank</a>
-
-        <a href="previous/or.pdf" target="_blank" class="button-card">Previous Year Papers</a>
-
+        <div id="kom-content" class="subject-content">
+            <div class="button-grid">
+                <a href="#" class="button-card">Notes</a>
+                <a href="#" class="button-card">PPTs</a>
+                <a href="#" class="button-card">Question Bank</a>
+                <a href="#" class="button-card">Previous Year Papers</a>
+            </div>
+        </div>
     </div>
 
-</div>
+    <!-- Operations Research -->
+    <div class="subject-item">
+        <div class="subject-card" onclick="toggleSubject('or-content')">
+            Operations Research
+        </div>
 
+        <div id="or-content" class="subject-content">
+            <div class="button-grid">
+                <a href="#" class="button-card">Notes</a>
+                <a href="#" class="button-card">PPTs</a>
+                <a href="#" class="button-card">Question Bank</a>
+                <a href="#" class="button-card">Previous Year Papers</a>
+            </div>
+        </div>
+    </div>
 
-<!-- Finite Element Analysis -->
-<div id="fea-content" class="subject-content">
+    <!-- FEA -->
+    <div class="subject-item">
+        <div class="subject-card" onclick="toggleSubject('fea-content')">
+            Finite Element Analysis
+        </div>
 
-    <h3>Finite Element Analysis</h3>
-
-    <div class="button-grid">
-
-        <a href="notes/fea.pdf" target="_blank" class="button-card">Notes</a>
-
-        <a href="ppts/fea.pdf" target="_blank" class="button-card">PPTs</a>
-
-        <a href="questionbank/fea.pdf" target="_blank" class="button-card">Question Bank</a>
-
-        <a href="previous/fea.pdf" target="_blank" class="button-card">Previous Year Papers</a>
-
+        <div id="fea-content" class="subject-content">
+            <div class="button-grid">
+                <a href="#" class="button-card">Notes</a>
+                <a href="#" class="button-card">PPTs</a>
+                <a href="#" class="button-card">Question Bank</a>
+                <a href="#" class="button-card">Previous Year Papers</a>
+            </div>
+        </div>
     </div>
 
 </div>
@@ -600,62 +536,22 @@ function toggleSubject(id){
 
     document
     .querySelectorAll('.subject-content')
-    .forEach(function(section){
-        section.style.display='none';
-    });
+    .forEach(function(content){
 
-    document
-    .getElementById(id)
-    .style.display='block';
-
-}
-
-</script>
-function toggleSubMenu(id,group){
-
-
-
-    document.querySelectorAll('.'+group)
-
-    .forEach(function(menu){
-
-
-
-        if(menu.id!==id){
-
-            menu.style.display='none';
-
+        if(content.id !== id){
+            content.style.display='none';
         }
 
-
-
     });
-
-
 
     let current=document.getElementById(id);
 
-
-
-    console.log(id);
-
-    console.log(current);
-
-
-
     if(current.style.display==='block'){
-
         current.style.display='none';
-
     }
-
     else{
-
         current.style.display='block';
-
     }
-
-
 
 }
 
