@@ -530,10 +530,6 @@ title="ResearchGate">
 </section>
 <script>
 
-<script>
-
-<script>
-
 function toggleSubject(id){
 
     const sections =
@@ -559,5 +555,19 @@ function toggleSubject(id){
 
 }
 
+const mobileMenu =
+    document.getElementById('mobile-menu');
+
+const navLinks =
+    document.getElementById('nav-links');
+
+mobileMenu.addEventListener('click',function(){
+
+    navLinks.classList.toggle('active');
+
+});
+
 </script>
-</body></html>
+
+</body>
+</html>
