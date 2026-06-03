@@ -287,23 +287,29 @@ Finite Element Analysis
 
 <h2>Certifications</h2>
 
-<!-- ==================== DATAIKU ==================== -->
+<div class="tree">
 
-<div class="subject-card"
-     onclick="toggleProvider('dataiku-provider')">
+<!-- ================= DATAIKU ================= -->
+
+<div class="tree-parent"
+     onclick="toggleProvider('dataiku-tree')">
+
     Dataiku
+
 </div>
 
-<div id="dataiku-provider"
-     class="subject-content">
+<div id="dataiku-tree"
+     class="tree-children">
 
-    <div class="button-card"
-         onclick="toggleCert('core-designer')">
-        Core Designer
+    <div class="tree-child"
+         onclick="toggleCert(event,'core-designer')">
+
+         Core Designer
+
     </div>
 
     <div id="core-designer"
-         class="cert-content">
+         class="cert-details">
 
         <p>
         Validated proficiency in Dataiku DSS fundamentals including
@@ -325,13 +331,15 @@ Finite Element Analysis
 
     </div>
 
-    <div class="button-card"
-         onclick="toggleCert('advanced-designer')">
-        Advanced Designer
+    <div class="tree-child"
+         onclick="toggleCert(event,'advanced-designer')">
+
+         Advanced Designer
+
     </div>
 
     <div id="advanced-designer"
-         class="cert-content">
+         class="cert-details">
 
         <p>
         Demonstrated advanced competency in feature engineering,
@@ -355,23 +363,27 @@ Finite Element Analysis
 
 </div>
 
-<!-- ==================== LINKEDIN ==================== -->
+<!-- ================= LINKEDIN ================= -->
 
-<div class="subject-card"
-     onclick="toggleProvider('linkedin-provider')">
+<div class="tree-parent"
+     onclick="toggleProvider('linkedin-tree')">
+
     LinkedIn Learning
+
 </div>
 
-<div id="linkedin-provider"
-     class="subject-content">
+<div id="linkedin-tree"
+     class="tree-children">
 
-    <div class="button-card"
-         onclick="toggleCert('python-training')">
-        Python Essential Training
+    <div class="tree-child"
+         onclick="toggleCert(event,'python-training')">
+
+         Python Essential Training
+
     </div>
 
     <div id="python-training"
-         class="cert-content">
+         class="cert-details">
 
         <p>
         Covered Python programming fundamentals including
@@ -395,27 +407,31 @@ Finite Element Analysis
 
 </div>
 
-<!-- ==================== COURSERA ==================== -->
+<!-- ================= COURSERA ================= -->
 
-<div class="subject-card"
-     onclick="toggleProvider('coursera-provider')">
+<div class="tree-parent"
+     onclick="toggleProvider('coursera-tree')">
+
     Coursera
+
 </div>
 
-<div id="coursera-provider"
-     class="subject-content">
+<div id="coursera-tree"
+     class="tree-children">
 
-    <div class="button-card"
-         onclick="toggleCert('excel-cert')">
-        Getting Started with Microsoft Excel
+    <div class="tree-child"
+         onclick="toggleCert(event,'excel-cert')">
+
+         Getting Started with Microsoft Excel
+
     </div>
 
     <div id="excel-cert"
-         class="cert-content">
+         class="cert-details">
 
         <p>
         Successfully completed foundational training covering
-        spreadsheet navigation, data entry, worksheet organization
+        spreadsheet navigation, data entry, worksheet organization,
         and the application of basic Excel formulas.
         </p>
 
@@ -433,13 +449,15 @@ Finite Element Analysis
 
     </div>
 
-    <div class="button-card"
-         onclick="toggleCert('analytics-cert')">
-        Business Analytics with Excel: Elementary to Advance
+    <div class="tree-child"
+         onclick="toggleCert(event,'analytics-cert')">
+
+         Business Analytics with Excel: Elementary to Advance
+
     </div>
 
     <div id="analytics-cert"
-         class="cert-content">
+         class="cert-details">
 
         <p>
         Successfully completed advanced analytics training from
@@ -462,13 +480,15 @@ Finite Element Analysis
 
     </div>
 
-    <div class="button-card"
-         onclick="toggleCert('powerbi-cert')">
-        From Excel to Power BI
+    <div class="tree-child"
+         onclick="toggleCert(event,'powerbi-cert')">
+
+         From Excel to Power BI
+
     </div>
 
     <div id="powerbi-cert"
-         class="cert-content">
+         class="cert-details">
 
         <p>
         Successfully completed training on migrating analytical
@@ -492,23 +512,27 @@ Finite Element Analysis
 
 </div>
 
-<!-- ==================== OTHERS ==================== -->
+<!-- ================= OTHERS ================= -->
 
-<div class="subject-card"
-     onclick="toggleProvider('others-provider')">
+<div class="tree-parent"
+     onclick="toggleProvider('others-tree')">
+
     Others
+
 </div>
 
-<div id="others-provider"
-     class="subject-content">
+<div id="others-tree"
+     class="tree-children">
 
-    <div class="button-card"
-         onclick="toggleCert('other-cert-1')">
-        Certificate Name
+    <div class="tree-child"
+         onclick="toggleCert(event,'other-cert')">
+
+         Certificate Name
+
     </div>
 
-    <div id="other-cert-1"
-         class="cert-content">
+    <div id="other-cert"
+         class="cert-details">
 
         <p>
         Add certificate description here.
@@ -528,8 +552,9 @@ Finite Element Analysis
 
 </div>
 
-</section>
+</div>
 
+</section>
 <section id="professional-development">
 
 <h2>Professional Development</h2>
