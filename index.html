@@ -532,7 +532,7 @@ title="ResearchGate">
 
 function toggleSubject(id){
 
-    const sections =
+    let sections =
         document.querySelectorAll('.subject-content');
 
     sections.forEach(function(section){
@@ -543,7 +543,7 @@ function toggleSubject(id){
 
     });
 
-    const current =
+    let current =
         document.getElementById(id);
 
     if(current.style.display === 'block'){
@@ -552,7 +552,6 @@ function toggleSubject(id){
     else{
         current.style.display = 'block';
     }
-
 }
 
 const mobileMenu =
@@ -562,9 +561,7 @@ const navLinks =
     document.getElementById('nav-links');
 
 mobileMenu.addEventListener('click',function(){
-
     navLinks.classList.toggle('active');
-
 });
 
 </script>
