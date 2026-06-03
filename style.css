@@ -185,9 +185,10 @@ h2{
 
 .subject-content{
     display:none;
-    padding:15px 0 5px 20px;
+    margin-left:30px;
+    margin-bottom:15px;
+    padding-top:8px;
 }
-
 .button-grid{
     display:flex;
     flex-wrap:wrap;
