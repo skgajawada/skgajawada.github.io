@@ -150,51 +150,50 @@ h2{
    SUBJECTS
 ====================== */
 
-.subject-grid{
+.subject-list{
     display:flex;
-    flex-wrap:wrap;
+    flex-direction:column;
     gap:12px;
-    margin-bottom:25px;
+}
+
+.subject-item{
+    width:100%;
+}
+
+.subject-card{
+    background:#ffffff;
+    border:1px solid #0056b3;
+    color:#0056b3;
+    padding:12px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.3s;
+}
+
+.subject-card:hover{
+    background:#0056b3;
+    color:white;
 }
 
 .subject-content{
     display:none;
-    margin-top:20px;
-    padding:20px;
-    border-top:2px solid #0056b3;
-}
-
-.subject-title{
-    color:#003366;
-    font-size:32px;
-    font-weight:600;
-    margin-bottom:15px;
-}
-/* ======================
-   SUB MENUS
-====================== */
-
-.hidden-section{
-    display:none;
-    margin-top:10px;
-    margin-left:20px;
+    padding:15px 0 5px 20px;
 }
 
 .button-grid{
     display:flex;
     flex-wrap:wrap;
     gap:12px;
-    margin-top:10px;
 }
 
 .button-card{
     background:#ffffff;
-    color:#0056b3;
     border:1px solid #0056b3;
+    color:#0056b3;
     padding:10px 18px;
     border-radius:8px;
     text-decoration:none;
-    cursor:pointer;
     font-weight:600;
     transition:.3s;
 }
