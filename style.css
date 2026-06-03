@@ -147,7 +147,7 @@ h2{
     line-height:2;
 }
 /* ======================
-   SUBJECTS
+   SUBJECTS TAUGHT
 ====================== */
 
 .subject-list{
@@ -162,35 +162,34 @@ h2{
 
 .subject-card{
     display:inline-block;
-    font-size:24px;
-    padding:12px 20px;
-    
-    background:#ffffff;
-    color:#0056b3;
+    background:#0056b3;
+    color:#ffffff;
 
-    border:1px solid #0056b3;
+    border:2px solid #0056b3;
     border-radius:8px;
 
-    padding:10px 18px;
+    padding:12px 20px;
     margin-bottom:10px;
 
+    font-size:22px;
     font-weight:600;
-    cursor:pointer;
 
-    transition:all .3s ease;
+    cursor:pointer;
+    transition:0.3s;
 }
 
 .subject-card:hover{
-    background:#0056b3;
-    color:#ffffff;
+    background:#003366;
+    border-color:#003366;
 }
 
 .subject-content{
     display:none;
-    margin-left:30px;
-    margin-bottom:15px;
-    padding-top:8px;
+    margin-left:25px;
+    margin-bottom:20px;
+    margin-top:5px;
 }
+
 .button-grid{
     display:flex;
     flex-wrap:wrap;
@@ -198,19 +197,25 @@ h2{
 }
 
 .button-card{
+    display:inline-block;
+
     background:#ffffff;
-    border:1px solid #0056b3;
     color:#0056b3;
-    padding:10px 18px;
+
+    border:1px solid #0056b3;
     border-radius:8px;
+
+    padding:10px 18px;
+
     text-decoration:none;
     font-weight:600;
-    transition:.3s;
+
+    transition:0.3s;
 }
 
 .button-card:hover{
     background:#0056b3;
-    color:white;
+    color:#ffffff;
 }
 
 /* ======================
