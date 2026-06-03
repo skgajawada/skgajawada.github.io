@@ -656,6 +656,54 @@ function toggleSubject(id){
 }
 
 </script>
+<script>
 
+function toggleProvider(id){
+
+    document
+    .querySelectorAll('#certifications .subject-content')
+    .forEach(function(section){
+
+        if(section.id!==id){
+            section.style.display='none';
+        }
+
+    });
+
+    let current=document.getElementById(id);
+
+    if(current.style.display==='block'){
+        current.style.display='none';
+    }
+    else{
+        current.style.display='block';
+    }
+
+}
+
+function toggleCert(id){
+
+    document
+    .querySelectorAll('.cert-content')
+    .forEach(function(section){
+
+        if(section.id!==id){
+            section.style.display='none';
+        }
+
+    });
+
+    let current=document.getElementById(id);
+
+    if(current.style.display==='block'){
+        current.style.display='none';
+    }
+    else{
+        current.style.display='block';
+    }
+
+}
+
+</script>
 </body>
 </html>
