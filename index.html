@@ -3,797 +3,786 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gajavada Sanjeevkumar | Academic Profile & Research Repository</title>
+    <title>Gajavada Sanjeevkumar | Academic Profile & Research Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Montserrat', sans-serif; }
-        .serif-title { font-family: 'Merriweather', serif; }
-        .academic-ribbon::-webkit-scrollbar { display: none; }
-        .academic-ribbon { -ms-overflow-style: none; scrollbar-width: none; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .serif-title { font-family: 'Playfair Display', serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-btn.active { border-bottom-color: #a51c30; color: #a51c30; font-weight: 700; }
     </style>
 </head>
-<body class="bg-[#FCFCFC] text-neutral-800 antialiased selection:bg-[#A51C30] selection:text-white">
+<body class="bg-[#FCFCFC] text-slate-900 antialiased selection:bg-[#a51c30] selection:text-white">
 
-    <!-- TOP-LEVEL ACADEMIC PRIMARY NAVIGATION RIBBON -->
-    <nav class="sticky top-0 z-50 bg-white border-b border-neutral-200 shadow-xs">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex-shrink-0">
-                    <a href="#" class="font-bold tracking-wider text-sm sm:text-base text-neutral-900 border-b-2 border-[#A51C30] pb-1">GAJAVADA SANJEEVKUMAR</a>
-                </div>
-                <div class="academic-ribbon flex overflow-x-auto space-x-5 lg:space-x-8 text-[11px] font-bold uppercase tracking-widest text-neutral-600 px-4">
-                    <a href="#about" class="hover:text-[#A51C30] whitespace-nowrap transition-colors py-2">Profile</a>
-                    <a href="#appointments" class="hover:text-[#A51C30] whitespace-nowrap transition-colors py-2">Appointments</a>
-                    <a href="#education" class="hover:text-[#A51C30] whitespace-nowrap transition-colors py-2">Education</a>
-                    <a href="#curriculum" class="hover:text-[#A51C30] whitespace-nowrap transition-colors py-2">Teaching & Material</a>
-                    <a href="#research" class="hover:text-[#A51C30] whitespace-nowrap transition-colors py-2">Research</a>
-                    <a href="#moocs" class="hover:text-[#A51C30] whitespace-nowrap transition-colors py-2">MOOCs</a>
-                    <a href="#atal" class="hover:text-[#A51C30] whitespace-nowrap transition-colors py-2">ATAL Academy</a>
-                    <a href="#fdp" class="hover:text-[#A51C30] whitespace-nowrap transition-colors py-2">FDPs</a>
-                    <a href="#workshops" class="hover:text-[#A51C30] whitespace-nowrap transition-colors py-2">Workshops</a>
-                    <a href="#conferences" class="hover:text-[#A51C30] whitespace-nowrap transition-colors py-2">Conferences</a>
-                    <a href="#service" class="hover:text-[#A51C30] whitespace-nowrap transition-colors py-2">Service</a>
-                </div>
+    <!-- ELITE ACADEMIC STICKY NAVIGATION RIBBON -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-neutral-200">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="font-bold text-slate-950 tracking-tight text-sm sm:text-base border-l-4 border-[#a51c30] pl-3 uppercase">
+                G. Sanjeevkumar <span class="text-xs block font-normal text-slate-500 normal-case tracking-normal">IIT (ISM) Dhanbad</span>
+            </a>
+            <!-- All Headings Grouped Seamlessly Inside Ribbon -->
+            <div class="hidden xl:flex items-center space-x-5 text-[11px] font-bold uppercase tracking-wider text-slate-600">
+                <a href="#about" class="hover:text-[#a51c30] transition-colors py-2">Profile</a>
+                <a href="#appointments" class="hover:text-[#a51c30] transition-colors py-2">Appointments</a>
+                <a href="#education" class="hover:text-[#a51c30] transition-colors py-2">Education</a>
+                <a href="#competencies" class="hover:text-[#a51c30] transition-colors py-2">Competencies</a>
+                <a href="#research" class="hover:text-[#a51c30] transition-colors py-2">Research</a>
+                <a href="#moocs" class="hover:text-[#a51c30] transition-colors py-2">MOOCs & Credly</a>
+                <a href="#training" class="hover:text-[#a51c30] transition-colors py-2">Training Metrics</a>
+            </div>
+            <div class="xl:hidden">
+                <a href="#training" class="text-xs bg-slate-900 text-white px-3 py-2 rounded font-semibold uppercase tracking-wider">Menu</a>
             </div>
         </div>
     </nav>
 
-    <!-- INTRODUCTORY BIOGRAPHICAL HERO ARCHITECTURE -->
-    <header id="about" class="max-w-6xl mx-auto px-6 pt-16 pb-20 border-b border-neutral-200">
-        <div class="flex flex-col-reverse md:flex-row items-start gap-12 lg:gap-20">
-            <div class="flex-1 space-y-6">
-                <div>
-                    <span class="text-[#A51C30] font-bold tracking-widest text-xs uppercase block mb-2">PhD Research Scholar & Educator</span>
-                    <h1 class="serif-title text-4xl sm:text-5xl font-bold tracking-tight text-neutral-900 leading-tight">Gajavada Sanjeevkumar</h1>
+    <!-- PROFESSIONAL INTRO & HERO ARCHITECTURE -->
+    <section id="about" class="max-w-7xl mx-auto px-6 pt-16 pb-20 border-b border-neutral-200">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-12 items-start">
+            
+            <!-- Fixed Fallback Profile Frame -->
+            <div class="lg:col-span-1 flex flex-col items-center lg:items-start">
+                <div class="relative w-56 h-72 rounded-none overflow-hidden border border-neutral-300 shadow-md bg-neutral-100 flex items-center justify-center group">
+                    <!-- Standard asset tracking for institutional user portrait -->
+                    <img src="sanjeevkumar.jpg" alt="Gajavada Sanjeevkumar" class="w-full h-full object-cover relative z-10" onerror="this.style.opacity='0'">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center text-neutral-400 bg-neutral-50 z-0">
+                        <i class="fa-solid fa-graduation-cap text-5xl text-neutral-300 mb-2"></i>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-neutral-400">IIT (ISM) Research Portfolio</span>
+                    </div>
                 </div>
-                <p class="text-neutral-600 text-sm sm:text-base leading-relaxed text-justify font-light">
-                    Advancing mechanical and aerospace engineering through foundational research in aeroelasticity, vibration analysis, structural dynamics, finite element methods, composite structures, and control systems. Integrates computational modeling, simulation techniques, and data-driven architectures—including machine learning and artificial intelligence—to engineer novel solutions for complex real-world dynamics while fostering multi-disciplinary collaborative frameworks.
+                <div class="mt-6 w-full text-center lg:text-left space-y-2">
+                    <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Primary Affiliation</p>
+                    <p class="text-xs font-medium text-slate-800 leading-relaxed">
+                        Department of Mechanical Engineering,<br>
+                        Indian Institute of Technology (ISM),<br>
+                        Dhanbad, Jharkhand — 826004
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Executive Academic Statement -->
+            <div class="lg:col-span-3 text-center lg:text-left">
+                <span class="text-[#a51c30] font-bold tracking-widest text-xs uppercase bg-red-50 px-3 py-1 border border-red-100">Doctoral Research Fellow & Academic</span>
+                <h1 class="serif-title text-4xl md:text-6xl font-normal text-slate-950 tracking-tight mt-4 mb-6">Gajavada Sanjeevkumar</h1>
+                
+                <p class="text-slate-700 text-base leading-relaxed mb-8 text-justify font-normal">
+                    To advance mechanical and aerospace engineering through comprehensive research in aeroelasticity, vibration analysis, structural dynamics, finite element methods, composite structures, and control systems. Integrates advanced computational modeling, simulation techniques, and data-driven computational methodologies, including machine learning frameworks and artificial intelligence, to engineer robust solutions for complex, multi-physical engineering challenges while driving technological breakthroughs within interdisciplinary paradigms.
                 </p>
-                <div class="pt-4 flex flex-wrap gap-4 text-xs font-semibold text-neutral-700">
-                    <span class="bg-neutral-100 border border-neutral-200 px-3 py-1.5 rounded-sm">Structural Dynamics & Aeroelasticity</span>
-                    <span class="bg-neutral-100 border border-neutral-200 px-3 py-1.5 rounded-sm">Finite Element Method (FEM/FEA)</span>
-                    <span class="bg-neutral-100 border border-neutral-200 px-3 py-1.5 rounded-sm">Data Science & Federated Learning</span>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-b border-neutral-200 py-6 text-left">
+                    <div>
+                        <span class="text-[10px] font-bold uppercase text-slate-400 block tracking-wider">Research Focus</span>
+                        <span class="text-xs font-bold text-slate-800">Aeroelasticity & Machine Design</span>
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold uppercase text-slate-400 block tracking-wider">Computing Matrix</span>
+                        <span class="text-xs font-bold text-slate-800">Finite Element Analysis & AI/ML</span>
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold uppercase text-slate-400 block tracking-wider">Open Source Credentials</span>
+                        <a href="https://www.credly.com/users/skgajawada/" target="_blank" class="text-xs font-bold text-[#a51c30] hover:underline flex items-center gap-1 mt-0.5">
+                            Verified Credly Profile <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <!-- FIXED HEADSHOT LOGIC: UNIVERSAL FALLBACK AVATAR REPLACES BLANK MASK -->
-            <div class="w-44 h-44 sm:w-52 sm:h-52 shrink-0 bg-neutral-100 border border-neutral-200 flex flex-col items-center justify-center p-4 text-center shadow-inner relative">
-                <i class="fa-solid fa-graduation-cap text-4xl text-[#A51C30] mb-2"></i>
-                <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Academic Profile</span>
-                <span class="text-[9px] text-neutral-400 mt-1">IIT (ISM) Dhanbad</span>
-            </div>
         </div>
-    </header>
+    </section>
 
-    <!-- PROFESSIONAL ACADEMIC APPOINTMENTS -->
-    <section id="appointments" class="max-w-5xl mx-auto px-6 py-16 border-b border-neutral-200">
-        <h2 class="serif-title text-2xl font-bold text-neutral-900 mb-10 tracking-tight flex items-center gap-3">
-            Professional Academic Appointments
+    <!-- APPOINTMENTS & FORMAL ACADEMIC EXPERIENCE TIMELINE -->
+    <section id="appointments" class="max-w-7xl mx-auto px-6 py-20 border-b border-neutral-200">
+        <h2 class="serif-title text-2xl font-normal text-slate-950 mb-12 flex items-center gap-3">
+            <span class="w-8 h-[1px] bg-[#a51c30]"></span> Academic & Professional Appointments
         </h2>
-        <div class="relative border-l border-neutral-300 pl-6 space-y-10 ml-1">
-            <div class="relative">
-                <div class="absolute -left-[29px] top-1.5 w-3 h-3 bg-[#A51C30]"></div>
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
-                    <h3 class="font-bold text-neutral-900 text-base">Assistant Professor</h3>
-                    <span class="text-xs font-bold text-[#A51C30] tracking-wider uppercase mt-1 sm:mt-0">March 2021 — June 2025</span>
-                </div>
-                <p class="text-xs font-medium text-neutral-500 mt-0.5">Department of Mechanical Engineering, Guru Nanak Institutions Technical Campus, Hyderabad, India</p>
-                <p class="text-neutral-600 text-xs mt-2 leading-relaxed">Delivered advanced curriculum instruction across core engineering paradigms, governed divisional academic strategy, and directed departmental student development frameworks.</p>
-            </div>
-            <div class="relative">
-                <div class="absolute -left-[29px] top-1.5 w-3 h-3 bg-neutral-400"></div>
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
-                    <h3 class="font-bold text-neutral-900 text-base">Assistant Professor</h3>
-                    <span class="text-xs font-bold text-neutral-500 tracking-wider uppercase mt-1 sm:mt-0">November 2018 — March 2021</span>
-                </div>
-                <p class="text-xs font-medium text-neutral-500 mt-0.5">Department of Mechanical Engineering, Sree Chaitanya College of Engineering, Karimnagar, India</p>
-                <p class="text-neutral-600 text-xs mt-2 leading-relaxed">Instructed undergraduate tracks, instituted computational simulation laboratory modules, and supervised engineering student mini-projects.</p>
-            </div>
-            <div class="relative">
-                <div class="absolute -left-[29px] top-1.5 w-3 h-3 bg-neutral-400"></div>
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
-                    <h3 class="font-bold text-neutral-900 text-base">Lecturer</h3>
-                    <span class="text-xs font-bold text-neutral-500 tracking-wider uppercase mt-1 sm:mt-0">December 2015 — June 2016</span>
-                </div>
-                <p class="text-xs font-medium text-neutral-500 mt-0.5">Department of Mechanical Engineering, Jyothishmathi Institute of Technology and Science, Karimnagar, India</p>
-                <p class="text-neutral-600 text-xs mt-2 leading-relaxed">Conducted foundational theoretical lectures and orchestrated fundamental mechanical workshop testing configurations.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FORMAL HIGHER EDUCATION & QUALIFICATIONS -->
-    <section id="education" class="max-w-5xl mx-auto px-6 py-16 border-b border-neutral-200">
-        <h2 class="serif-title text-2xl font-bold text-neutral-900 mb-10 tracking-tight">Academic Qualifications</h2>
-        <div class="grid sm:grid-cols-2 gap-6">
-            <div class="bg-white p-6 border border-neutral-200 shadow-2xs flex flex-col justify-between">
-                <div>
-                    <span class="text-[10px] font-bold tracking-widest text-[#A51C30] uppercase block mb-1">Doctoral Research Track</span>
-                    <h3 class="font-bold text-neutral-900 text-base">PhD in Engineering (Design)</h3>
-                    <p class="text-xs font-medium text-neutral-500">Indian Institute of Technology (ISM), Dhanbad</p>
-                </div>
-                <div class="flex items-center justify-between border-t border-neutral-100 pt-4 mt-6 text-xs font-bold">
-                    <span class="text-neutral-400">July 2025 — Present</span>
-                    <span class="text-[#A51C30] bg-red-50 px-2.5 py-1 rounded-sm">8.20 CGPA</span>
+        <div class="space-y-12 max-w-5xl">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-baseline">
+                <div class="text-xs font-bold uppercase tracking-wider text-[#a51c30]">2021 — 2025</div>
+                <div class="md:col-span-3">
+                    <h3 class="text-base font-bold text-slate-950">Assistant Professor</h3>
+                    <p class="text-xs font-medium text-slate-500 mt-0.5">Guru Nanak Institutions Technical Campus, Hyderabad, India</p>
+                    <p class="text-slate-600 text-xs mt-2 leading-relaxed">Instructed advanced undergraduate trajectories, served as departmental engineering coordinator, and structured core curriculum parameters for professional development paradigms.</p>
                 </div>
             </div>
-            <div class="bg-white p-6 border border-neutral-200 shadow-2xs flex flex-col justify-between">
-                <div>
-                    <span class="text-[10px] font-bold tracking-widest text-indigo-600 uppercase block mb-1">Specialized Post-Graduate Course</span>
-                    <h3 class="font-bold text-neutral-900 text-base">AICTE QIP PG Certificate in Data Science</h3>
-                    <p class="text-xs font-medium text-slate-500">Indian Institute of Technology Bhilai</p>
-                </div>
-                <div class="flex items-center justify-between border-t border-neutral-100 pt-4 mt-6 text-xs font-bold">
-                    <span class="text-neutral-400">June 2025 — December 2025</span>
-                    <span class="text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-sm">8.67 CGPA</span>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-baseline">
+                <div class="text-xs font-bold uppercase tracking-wider text-slate-400">2018 — 2021</div>
+                <div class="md:col-span-3">
+                    <h3 class="text-base font-bold text-slate-950">Assistant Professor</h3>
+                    <p class="text-xs font-medium text-slate-500 mt-0.5">Sree Chaitanya College of Engineering, Karimnagar, India</p>
+                    <p class="text-slate-600 text-xs mt-2 leading-relaxed">Conducted comprehensive lectures in analytical mechanical dynamics and facilitated engineering computing laboratories and validation metrics.</p>
                 </div>
             </div>
-            <div class="bg-white p-6 border border-neutral-200 shadow-2xs flex flex-col justify-between">
-                <div>
-                    <span class="text-[10px] font-bold tracking-widest text-neutral-500 uppercase block mb-1">Master of Technology</span>
-                    <h3 class="font-bold text-neutral-900 text-base">M.Tech in Machine Design</h3>
-                    <p class="text-xs font-medium text-neutral-500">GITAM Deemed To Be University, Visakhapatnam</p>
-                </div>
-                <div class="flex items-center justify-between border-t border-neutral-100 pt-4 mt-6 text-xs font-bold">
-                    <span class="text-neutral-400">2016 — 2018</span>
-                    <span class="text-neutral-700 bg-neutral-100 px-2.5 py-1 rounded-sm">8.78 CGPA</span>
-                </div>
-            </div>
-            <div class="bg-white p-6 border border-neutral-200 shadow-2xs flex flex-col justify-between">
-                <div>
-                    <span class="text-[10px] font-bold tracking-widest text-neutral-500 uppercase block mb-1">Bachelor of Technology</span>
-                    <h3 class="font-bold text-neutral-900 text-base">B.Tech in Mechanical Engineering</h3>
-                    <p class="text-xs font-medium text-neutral-500">Vivekananda Institute of Technology and Science, Karimnagar</p>
-                </div>
-                <div class="flex items-center justify-between border-t border-neutral-100 pt-4 mt-6 text-xs font-bold">
-                    <span class="text-neutral-400">2010 — 2014</span>
-                    <span class="text-neutral-700 bg-neutral-100 px-2.5 py-1 rounded-sm">71.28%</span>
-                </div>
-            </div>
-            <div class="bg-white p-6 border border-neutral-200 shadow-2xs flex flex-col justify-between">
-                <div>
-                    <span class="text-[10px] font-bold tracking-widest text-neutral-500 uppercase block mb-1">Secondary Higher Education</span>
-                    <h3 class="font-bold text-neutral-900 text-base">Intermediate (M.P.C)</h3>
-                    <p class="text-xs font-medium text-neutral-500">SR Junior College, Karimnagar</p>
-                </div>
-                <div class="flex items-center justify-between border-t border-neutral-100 pt-4 mt-6 text-xs font-bold">
-                    <span class="text-neutral-400">2008 — 2010</span>
-                    <span class="text-neutral-700 bg-neutral-100 px-2.5 py-1 rounded-sm">81.80%</span>
-                </div>
-            </div>
-            <div class="bg-white p-6 border border-neutral-200 shadow-2xs flex flex-col justify-between">
-                <div>
-                    <span class="text-[10px] font-bold tracking-widest text-neutral-500 uppercase block mb-1">Secondary Schooling</span>
-                    <h3 class="font-bold text-neutral-900 text-base">SSC Certification</h3>
-                    <p class="text-xs font-medium text-neutral-500">Pragathi Vidyalayam, Sircilla</p>
-                </div>
-                <div class="flex items-center justify-between border-t border-neutral-100 pt-4 mt-6 text-xs font-bold">
-                    <span class="text-neutral-400">2007 — 2008</span>
-                    <span class="text-neutral-700 bg-neutral-100 px-2.5 py-1 rounded-sm">85.50%</span>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-baseline">
+                <div class="text-xs font-bold uppercase tracking-wider text-slate-400">2015 — 2016</div>
+                <div class="md:col-span-3">
+                    <h3 class="text-base font-bold text-slate-950">Lecturer</h3>
+                    <p class="text-xs font-medium text-slate-500 mt-0.5">Jyothishmathi Institute of Technology and Science, Karimnagar, India</p>
+                    <p class="text-slate-600 text-xs mt-2 leading-relaxed">Managed fundamental instructional tasks, laboratory experiments, and basic industrial workshop training schedules.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CORE CURRICULUM, INSTRUCTIONAL SUITE & MATERIAL REPOSITORY -->
-    <section id="curriculum" class="max-w-5xl mx-auto px-6 py-16 border-b border-neutral-200">
-        <h2 class="serif-title text-2xl font-bold text-neutral-900 mb-4 tracking-tight">Instructional Matrix & Course Pedagogy</h2>
-        <p class="text-neutral-500 text-xs mb-8">Systematic breakdown of academic subjects handled alongside dedicated material access nodes for institutional validation.</p>
+    <!-- EDUCATION HIGHLIGHTS -->
+    <section id="education" class="max-w-7xl mx-auto px-6 py-20 border-b border-neutral-200 bg-neutral-50/50">
+        <h2 class="serif-title text-2xl font-normal text-slate-950 mb-12 flex items-center gap-3">
+            <span class="w-8 h-[1px] bg-[#a51c30]"></span> Academic Qualifications
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white p-6 border border-neutral-200 flex flex-col justify-between shadow-2xs">
+                <div>
+                    <span class="text-[9px] font-bold tracking-widest text-[#a51c30] uppercase block mb-1">Doctoral Program</span>
+                    <h3 class="font-bold text-slate-950 text-sm">PhD (Design Domain Track)</h3>
+                    <p class="text-xs text-slate-500 mt-1">Indian Institute of Technology (ISM), Dhanbad</p>
+                </div>
+                <div class="border-t border-neutral-100 pt-3 mt-6 flex items-center justify-between text-xs">
+                    <span class="text-slate-400">July 2025 — Present</span>
+                    <span class="font-bold text-slate-800 bg-neutral-100 px-2 py-0.5 rounded">8.2 CGPA</span>
+                </div>
+            </div>
+            
+            <div class="bg-white p-6 border border-neutral-200 flex flex-col justify-between shadow-2xs">
+                <div>
+                    <span class="text-[9px] font-bold tracking-widest text-indigo-700 uppercase block mb-1">Postgraduate Certification</span>
+                    <h3 class="font-bold text-slate-950 text-sm">AICTE QIP PG Cert. Data Science</h3>
+                    <p class="text-xs text-slate-500 mt-1">Indian Institute of Technology Bhilai</p>
+                </div>
+                <div class="border-t border-neutral-100 pt-3 mt-6 flex items-center justify-between text-xs">
+                    <span class="text-slate-400">June 2025 — Dec 2025</span>
+                    <span class="font-bold text-slate-800 bg-neutral-100 px-2 py-0.5 rounded">8.67 CGPA</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 border border-neutral-200 flex flex-col justify-between shadow-2xs">
+                <div>
+                    <span class="text-[9px] font-bold tracking-widest text-slate-500 uppercase block mb-1">Master of Technology</span>
+                    <h3 class="font-bold text-slate-950 text-sm">M.Tech (Machine Design Track)</h3>
+                    <p class="text-xs text-slate-500 mt-1">GITAM Deemed To Be University, Visakhapatnam</p>
+                </div>
+                <div class="border-t border-neutral-100 pt-3 mt-6 flex items-center justify-between text-xs">
+                    <span class="text-slate-400">2016 — 2018</span>
+                    <span class="font-bold text-[#a51c30] bg-red-50 px-2 py-0.5 rounded">8.78 CGPA</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 border border-neutral-200 flex flex-col justify-between shadow-2xs">
+                <div>
+                    <span class="text-[9px] font-bold tracking-widest text-slate-500 uppercase block mb-1">Bachelor of Technology</span>
+                    <h3 class="font-bold text-slate-950 text-sm">B.Tech (Mechanical Engineering)</h3>
+                    <p class="text-xs text-slate-500 mt-1">Vivekananda Institute of Technology & Science, Karimnagar</p>
+                </div>
+                <div class="border-t border-neutral-100 pt-3 mt-6 flex items-center justify-between text-xs">
+                    <span class="text-slate-400">2010 — 2014</span>
+                    <span class="font-bold text-slate-800 bg-neutral-100 px-2 py-0.5 rounded">71.28%</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 border border-neutral-200 flex flex-col justify-between shadow-2xs">
+                <div>
+                    <span class="text-[9px] font-bold tracking-widest text-slate-500 uppercase block mb-1">Higher Secondary</span>
+                    <h3 class="font-bold text-slate-950 text-sm">Intermediate (M.P.C Trajectory)</h3>
+                    <p class="text-xs text-slate-500 mt-1">SR Junior College, Karimnagar</p>
+                </div>
+                <div class="border-t border-neutral-100 pt-3 mt-6 flex items-center justify-between text-xs">
+                    <span class="text-slate-400">2008 — 2010</span>
+                    <span class="font-bold text-slate-800 bg-neutral-100 px-2 py-0.5 rounded">81.8%</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 border border-neutral-200 flex flex-col justify-between shadow-2xs">
+                <div>
+                    <span class="text-[9px] font-bold tracking-widest text-slate-500 uppercase block mb-1">Secondary Schooling</span>
+                    <h3 class="font-bold text-slate-950 text-sm">SSC Certification Matrix</h3>
+                    <p class="text-xs text-slate-500 mt-1">Pragathi Vidyalayam, Sircilla</p>
+                </div>
+                <div class="border-t border-neutral-100 pt-3 mt-6 flex items-center justify-between text-xs">
+                    <span class="text-slate-400">2007 — 2008</span>
+                    <span class="font-bold text-slate-800 bg-neutral-100 px-2 py-0.5 rounded">85.5%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS MATRIX & CORE TRAINED SUBJECTS HANDLED (WITH COMPACT FOLDER INFRASTRUCTURE) -->
+    <section id="competencies" class="max-w-7xl mx-auto px-6 py-20 border-b border-neutral-200">
+        <h2 class="serif-title text-2xl font-normal text-slate-950 mb-12 flex items-center gap-3">
+            <span class="w-8 h-[1px] bg-[#a51c30]"></span> Core Competencies & Subject Repositories
+        </h2>
         
-        <div class="grid sm:grid-cols-2 gap-4 text-xs font-medium">
-            <!-- Subject Loop with Access Material Folder Integration -->
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-900 text-sm">Finite Element Methods / Analysis</h4><p class="text-[10px] text-neutral-400 uppercase tracking-wider mt-0.5">Advanced Analytical Track</p></div>
-                <a href="courseware/finite-element-methods/access-material/" class="text-[#A51C30] hover:text-red-800 shrink-0 bg-neutral-50 border border-neutral-200 px-3 py-1.5 font-bold flex items-center gap-1.5"><i class="fa-regular fa-folder-open text-[11px]"></i> Access Material</a>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div class="p-5 border border-neutral-200 bg-white">
+                <h3 class="font-bold text-slate-950 text-xs uppercase tracking-wider mb-4 border-b border-neutral-100 pb-2">Technical Software Suite</h3>
+                <div class="flex flex-wrap gap-2 text-[11px]">
+                    <span class="bg-neutral-50 px-2.5 py-1 border border-neutral-200 font-medium rounded-sm">LaTeX Desktop</span>
+                    <span class="bg-neutral-50 px-2.5 py-1 border border-neutral-200 font-medium rounded-sm">MS Office Systems</span>
+                </div>
             </div>
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-900 text-sm">Design of Machine Members / Elements</h4><p class="text-[10px] text-neutral-400 uppercase tracking-wider mt-0.5">Mechanical Design Core</p></div>
-                <a href="courseware/machine-design/access-material/" class="text-[#A51C30] hover:text-red-800 shrink-0 bg-neutral-50 border border-neutral-200 px-3 py-1.5 font-bold flex items-center gap-1.5"><i class="fa-regular fa-folder-open text-[11px]"></i> Access Material</a>
+            <div class="p-5 border border-neutral-200 bg-white">
+                <h3 class="font-bold text-slate-950 text-xs uppercase tracking-wider mb-4 border-b border-neutral-100 pb-2">Data Analytics Systems</h3>
+                <div class="flex flex-wrap gap-2 text-[11px]">
+                    <span class="bg-neutral-50 px-2.5 py-1 border border-neutral-200 font-medium rounded-sm">Power BI</span>
+                    <span class="bg-neutral-50 px-2.5 py-1 border border-neutral-200 font-medium rounded-sm">Tableau Public</span>
+                    <span class="bg-neutral-50 px-2.5 py-1 border border-neutral-200 font-medium rounded-sm">Structured SQL</span>
+                    <span class="bg-neutral-50 px-2.5 py-1 border border-neutral-200 font-medium rounded-sm">Dataiku DSS</span>
+                </div>
             </div>
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-900 text-sm">Engineering Mechanics</h4><p class="text-[10px] text-neutral-400 uppercase tracking-wider mt-0.5">Foundational Suite</p></div>
-                <a href="courseware/engineering-mechanics/access-material/" class="text-[#A51C30] hover:text-red-800 shrink-0 bg-neutral-50 border border-neutral-200 px-3 py-1.5 font-bold flex items-center gap-1.5"><i class="fa-regular fa-folder-open text-[11px]"></i> Access Material</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-900 text-sm">Mechanics of Solids</h4><p class="text-[10px] text-neutral-400 uppercase tracking-wider mt-0.5">Structural Continuum</p></div>
-                <a href="courseware/mechanics-of-solids/access-material/" class="text-[#A51C30] hover:text-red-800 shrink-0 bg-neutral-50 border border-neutral-200 px-3 py-1.5 font-bold flex items-center gap-1.5"><i class="fa-regular fa-folder-open text-[11px]"></i> Access Material</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-900 text-sm">Kinematics of Machinery</h4><p class="text-[10px] text-neutral-400 uppercase tracking-wider mt-0.5">Dynamics Stack</p></div>
-                <a href="courseware/kinematics-of-machinery/access-material/" class="text-[#A51C30] hover:text-red-800 shrink-0 bg-neutral-50 border border-neutral-200 px-3 py-1.5 font-bold flex items-center gap-1.5"><i class="fa-regular fa-folder-open text-[11px]"></i> Access Material</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-900 text-sm">Fluid Mechanics</h4><p class="text-[10px] text-neutral-400 uppercase tracking-wider mt-0.5">Thermofluids Branch</p></div>
-                <a href="courseware/fluid-mechanics/access-material/" class="text-[#A51C30] hover:text-red-800 shrink-0 bg-neutral-50 border border-neutral-200 px-3 py-1.5 font-bold flex items-center gap-1.5"><i class="fa-regular fa-folder-open text-[11px]"></i> Access Material</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-900 text-sm">Thermodynamics</h4><p class="text-[10px] text-neutral-400 uppercase tracking-wider mt-0.5">Thermal Fundamentals</p></div>
-                <a href="courseware/thermodynamics/access-material/" class="text-[#A51C30] hover:text-red-800 shrink-0 bg-neutral-50 border border-neutral-200 px-3 py-1.5 font-bold flex items-center gap-1.5"><i class="fa-regular fa-folder-open text-[11px]"></i> Access Material</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-900 text-sm">Heat Transfer</h4><p class="text-[10px] text-neutral-400 uppercase tracking-wider mt-0.5">Thermal Systems</p></div>
-                <a href="courseware/heat-transfer/access-material/" class="text-[#A51C30] hover:text-red-800 shrink-0 bg-neutral-50 border border-neutral-200 px-3 py-1.5 font-bold flex items-center gap-1.5"><i class="fa-regular fa-folder-open text-[11px]"></i> Access Material</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-900 text-sm">Operations Research</h4><p class="text-[10px] text-neutral-400 uppercase tracking-wider mt-0.5">Mathematical Optimization</p></div>
-                <a href="courseware/operations-research/access-material/" class="text-[#A51C30] hover:text-red-800 shrink-0 bg-neutral-50 border border-neutral-200 px-3 py-1.5 font-bold flex items-center gap-1.5"><i class="fa-regular fa-folder-open text-[11px]"></i> Access Material</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-900 text-sm">Engineering Graphics</h4><p class="text-[10px] text-neutral-400 uppercase tracking-wider mt-0.5">Visual Spatial Design</p></div>
-                <a href="courseware/engineering-graphics/access-material/" class="text-[#A51C30] hover:text-red-800 shrink-0 bg-neutral-50 border border-neutral-200 px-3 py-1.5 font-bold flex items-center gap-1.5"><i class="fa-regular fa-folder-open text-[11px]"></i> Access Material</a>
+            <div class="p-5 border border-neutral-200 bg-white">
+                <h3 class="font-bold text-slate-950 text-xs uppercase tracking-wider mb-4 border-b border-neutral-100 pb-2">Languages & Engineering Computing</h3>
+                <div class="flex flex-wrap gap-2 text-[11px]">
+                    <span class="bg-neutral-50 px-2.5 py-1 border border-neutral-200 font-medium rounded-sm">Core Python 3</span>
+                    <span class="bg-neutral-50 px-2.5 py-1 border border-neutral-200 font-medium rounded-sm">MATLAB Environment</span>
+                </div>
             </div>
         </div>
 
-        <!-- TECHNICAL TOOLKIT MATRIX -->
-        <div class="mt-12 grid sm:grid-cols-3 gap-6 text-xs border-t border-neutral-200 pt-10">
-            <div>
-                <h4 class="font-bold text-neutral-900 uppercase tracking-wider mb-3">Programming & Computing</h4>
-                <div class="flex flex-wrap gap-1.5">
-                    <span class="bg-neutral-50 text-neutral-700 px-2 py-1 border border-neutral-200">MATLAB</span>
-                    <span class="bg-neutral-50 text-neutral-700 px-2 py-1 border border-neutral-200">Basic Python</span>
-                </div>
+        <h3 class="font-bold text-slate-950 text-sm mb-6 uppercase tracking-wider text-slate-700">Trained Subjects Repository (Access Materials)</h3>
+        <!-- Added a secure folder link for each course trajectory inside the subject matrix -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs font-semibold text-slate-800">
+            <div class="p-4 border border-neutral-200 bg-neutral-50 flex items-center justify-between hover:bg-white transition-all">
+                <span><i class="fa-solid fa-book-bookmark text-neutral-400 mr-2"></i> Engineering Mechanics</span>
+                <a href="materials/engineering-mechanics/" class="text-[#a51c30] hover:underline shrink-0 flex items-center gap-1 font-bold text-[10px] bg-white border border-neutral-200 px-2 py-1"><i class="fa-solid fa-folder-open text-amber-600"></i> Access Material</a>
             </div>
-            <div>
-                <h4 class="font-bold text-neutral-900 uppercase tracking-wider mb-3">Data Science Analytics</h4>
-                <div class="flex flex-wrap gap-1.5">
-                    <span class="bg-neutral-50 text-neutral-700 px-2 py-1 border border-neutral-200">Power BI</span>
-                    <span class="bg-neutral-50 text-neutral-700 px-2 py-1 border border-neutral-200">Tableau</span>
-                    <span class="bg-neutral-50 text-neutral-700 px-2 py-1 border border-neutral-200">SQL</span>
-                    <span class="bg-neutral-50 text-neutral-700 px-2 py-1 border border-neutral-200">Dataiku</span>
-                </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50 flex items-center justify-between hover:bg-white transition-all">
+                <span><i class="fa-solid fa-book-bookmark text-neutral-400 mr-2"></i> Engineering Graphics</span>
+                <a href="materials/engineering-graphics/" class="text-[#a51c30] hover:underline shrink-0 flex items-center gap-1 font-bold text-[10px] bg-white border border-neutral-200 px-2 py-1"><i class="fa-solid fa-folder-open text-amber-600"></i> Access Material</a>
             </div>
-            <div>
-                <h4 class="font-bold text-neutral-900 uppercase tracking-wider mb-3">Production & Scientific Layout</h4>
-                <div class="flex flex-wrap gap-1.5">
-                    <span class="bg-neutral-50 text-neutral-700 px-2 py-1 border border-neutral-200">LaTeX</span>
-                    <span class="bg-neutral-50 text-neutral-700 px-2 py-1 border border-neutral-200">MS Office Suite</span>
-                </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50 flex items-center justify-between hover:bg-white transition-all">
+                <span><i class="fa-solid fa-book-bookmark text-neutral-400 mr-2"></i> Mechanics of Solids</span>
+                <a href="materials/mechanics-of-solids/" class="text-[#a51c30] hover:underline shrink-0 flex items-center gap-1 font-bold text-[10px] bg-white border border-neutral-200 px-2 py-1"><i class="fa-solid fa-folder-open text-amber-600"></i> Access Material</a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50 flex items-center justify-between hover:bg-white transition-all">
+                <span><i class="fa-solid fa-book-bookmark text-neutral-400 mr-2"></i> Kinematics of Machinery</span>
+                <a href="materials/kinematics-of-machinery/" class="text-[#a51c30] hover:underline shrink-0 flex items-center gap-1 font-bold text-[10px] bg-white border border-neutral-200 px-2 py-1"><i class="fa-solid fa-folder-open text-amber-600"></i> Access Material</a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50 flex items-center justify-between hover:bg-white transition-all">
+                <span><i class="fa-solid fa-book-bookmark text-neutral-400 mr-2"></i> Fluid Mechanics</span>
+                <a href="materials/fluid-mechanics/" class="text-[#a51c30] hover:underline shrink-0 flex items-center gap-1 font-bold text-[10px] bg-white border border-neutral-200 px-2 py-1"><i class="fa-solid fa-folder-open text-amber-600"></i> Access Material</a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50 flex items-center justify-between hover:bg-white transition-all">
+                <span><i class="fa-solid fa-book-bookmark text-neutral-400 mr-2"></i> Thermodynamics</span>
+                <a href="materials/thermodynamics/" class="text-[#a51c30] hover:underline shrink-0 flex items-center gap-1 font-bold text-[10px] bg-white border border-neutral-200 px-2 py-1"><i class="fa-solid fa-folder-open text-amber-600"></i> Access Material</a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50 flex items-center justify-between hover:bg-white transition-all">
+                <span><i class="fa-solid fa-book-bookmark text-neutral-400 mr-2"></i> Heat Transfer</span>
+                <a href="materials/heat-transfer/" class="text-[#a51c30] hover:underline shrink-0 flex items-center gap-1 font-bold text-[10px] bg-white border border-neutral-200 px-2 py-1"><i class="fa-solid fa-folder-open text-amber-600"></i> Access Material</a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50 flex items-center justify-between hover:bg-white transition-all">
+                <span><i class="fa-solid fa-book-bookmark text-neutral-400 mr-2"></i> Design of Machine Members</span>
+                <a href="materials/design-machine-members/" class="text-[#a51c30] hover:underline shrink-0 flex items-center gap-1 font-bold text-[10px] bg-white border border-neutral-200 px-2 py-1"><i class="fa-solid fa-folder-open text-amber-600"></i> Access Material</a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50 flex items-center justify-between hover:bg-white transition-all">
+                <span><i class="fa-solid fa-book-bookmark text-neutral-400 mr-2"></i> Operations Research</span>
+                <a href="materials/operations-research/" class="text-[#a51c30] hover:underline shrink-0 flex items-center gap-1 font-bold text-[10px] bg-white border border-neutral-200 px-2 py-1"><i class="fa-solid fa-folder-open text-amber-600"></i> Access Material</a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50 flex items-center justify-between hover:bg-white transition-all">
+                <span><i class="fa-solid fa-book-bookmark text-neutral-400 mr-2"></i> Finite Element Methods (FEM)</span>
+                <a href="materials/finite-element-methods/" class="text-[#a51c30] hover:underline shrink-0 flex items-center gap-1 font-bold text-[10px] bg-white border border-neutral-200 px-2 py-1"><i class="fa-solid fa-folder-open text-amber-600"></i> Access Material</a>
             </div>
         </div>
     </section>
 
     <!-- CORE ACADEMIC RESEARCH PROJECTS -->
-    <section id="research" class="max-w-5xl mx-auto px-6 py-16 border-b border-neutral-200">
-        <h2 class="serif-title text-2xl font-bold text-neutral-900 mb-10 tracking-tight">Core Academic Research & Thesis Formulations</h2>
-        <div class="space-y-6">
-            <div class="bg-white p-6 border border-neutral-200 shadow-2xs relative">
-                <span class="text-[10px] font-bold tracking-wider text-[#A51C30] bg-red-50 border border-red-200 px-2 py-0.5 rounded-xs uppercase">Post-Graduate Thesis Focus</span>
-                <h3 class="text-base font-bold text-neutral-900 mt-3 mb-2">A study on the effect of elastic-plastic material properties of metals on hardness values using finite element analysis</h3>
-                <p class="text-neutral-600 text-xs leading-relaxed text-justify">Investigated the computational mapping of elastic-plastic parameters across distinct metallic elements. Validated structural variations between standard mathematical representations and experimental macro-indentation testing regimes using high-density finite element model loops for optimization.</p>
+    <section id="research" class="max-w-7xl mx-auto px-6 py-20 border-b border-neutral-200 bg-neutral-50/30">
+        <h2 class="serif-title text-2xl font-normal text-slate-950 mb-12 flex items-center gap-3">
+            <span class="w-8 h-[1px] bg-[#a51c30]"></span> Core Research Projects
+        </h2>
+        <div class="space-y-6 max-w-5xl">
+            <div class="bg-white p-6 border border-neutral-200 shadow-2xs">
+                <span class="text-[9px] font-bold text-[#a51c30] uppercase tracking-wider bg-red-50 border border-red-100 px-2 py-0.5">Finite Element Verification Frameworks</span>
+                <h3 class="text-base font-bold text-slate-950 mt-3 mb-2">Effect of Elastic-Plastic Material Properties of Metals on Hardness Values Using FEA Methodologies</h3>
+                <p class="text-slate-600 text-xs leading-relaxed">Assessed how the elastic-plastic computational properties of metals deviate from classic theoretical models during experimental testing protocols, creating optimized matrix variables using advanced structural optimization inside finite element analysis systems.</p>
             </div>
-            <div class="bg-white p-6 border border-neutral-200 shadow-2xs relative">
-                <span class="text-[10px] font-bold tracking-wider text-indigo-600 bg-indigo-50 border border-indigo-200 px-2 py-0.5 rounded-xs uppercase">Thermal Systems Framework</span>
-                <h3 class="text-base font-bold text-neutral-900 mt-3 mb-2">Study of internal combustion engines & their components</h3>
-                <p class="text-neutral-600 text-xs leading-relaxed text-justify">Conducted structural analysis of kinematic and thermodynamic bounds dictating modern IC configurations. Developed a systematic comparative operational performance taxonomy isolating friction, cooling, and displacement metrics between two-stroke and four-stroke mechanical architectures.</p>
+            <div class="bg-white p-6 border border-neutral-200 shadow-2xs">
+                <span class="text-[9px] font-bold text-indigo-700 uppercase tracking-wider bg-indigo-50 border border-indigo-100 px-2 py-0.5">Thermal Systems Optimization</span>
+                <h3 class="text-base font-bold text-slate-950 mt-3 mb-2">Comprehensive Evaluation of Internal Combustion Engines & Structural Components</h3>
+                <p class="text-slate-600 text-xs leading-relaxed">An exhaustive analysis detailing the thermodynamics and engineering configuration limits of conventional IC powertrains, focusing specifically on two-stroke versus four-stroke thermodynamic boundaries.</p>
             </div>
-            <div class="bg-white p-6 border border-neutral-200 shadow-2xs relative">
-                <span class="text-[10px] font-bold tracking-wider text-neutral-600 bg-neutral-50 border border-neutral-200 px-2 py-0.5 rounded-xs uppercase">Fluid Kinematics Prototype</span>
-                <h3 class="text-base font-bold text-neutral-900 mt-3 mb-2">Hydraulic Robotic Arm for pick and place operation</h3>
-                <p class="text-neutral-600 text-xs leading-relaxed text-justify">Engineered and built an operational multi-axis robotic apparatus operating on advanced fluid force transmission parameters. Implemented structural designs verifying fluid pressure distribution profiles in enclosed mechanical paths operating under rigorous hydrostatic constraints dictated by Pascal's Law.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- MOOCs VERIFIED CERTIFICATIONS COMPENDIUM WITH VERIFIABLE CERTIFICATE LINKS -->
-    <section id="moocs" class="max-w-5xl mx-auto px-6 py-16 border-b border-neutral-200">
-        <h2 class="serif-title text-2xl font-bold text-neutral-900 mb-2 tracking-tight">MOOCs Verified Credentials & Specializations</h2>
-        <p class="text-neutral-500 text-xs mb-8">Comprehensive repository of verified global digital certifications containing operational validation markers.</p>
-        
-        <div class="grid sm:grid-cols-2 gap-4 text-xs">
-            <!-- Dataiku Track -->
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Dataiku Generative AI Practitioner</h4><p class="text-[11px] text-neutral-400">Dataiku Academy</p></div>
-                <a href="https://academy.dataiku.com/page/certifications" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Dataiku MLOps Practitioner</h4><p class="text-[11px] text-neutral-400">Dataiku Academy</p></div>
-                <a href="https://academy.dataiku.com/page/certifications" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Dataiku ML Practitioner</h4><p class="text-[11px] text-neutral-400">Dataiku Academy</p></div>
-                <a href="https://academy.dataiku.com/page/certifications" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Dataiku Developer Certification</h4><p class="text-[11px] text-neutral-400">Dataiku Academy</p></div>
-                <a href="https://academy.dataiku.com/page/certifications" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Dataiku Advanced Designer</h4><p class="text-[11px] text-neutral-400">Dataiku Academy</p></div>
-                <a href="https://academy.dataiku.com/page/certifications" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Dataiku Core Designer</h4><p class="text-[11px] text-neutral-400">Dataiku Academy</p></div>
-                <a href="https://academy.dataiku.com/page/certifications" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-
-            <!-- MathWorks Learning Paths -->
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Control System Design Path</h4><p class="text-[11px] text-neutral-400">MathWorks Training Services</p></div>
-                <a href="https://matlabacademy.mathworks.com/" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Control Design Onramp with Simulink</h4><p class="text-[11px] text-neutral-400">MathWorks Training Services</p></div>
-                <a href="https://matlabacademy.mathworks.com/" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Simulink Onramp</h4><p class="text-[11px] text-neutral-400">MathWorks Training Services</p></div>
-                <a href="https://matlabacademy.mathworks.com/" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">MATLAB Onramp</h4><p class="text-[11px] text-neutral-400">MathWorks Training Services</p></div>
-                <a href="https://matlabacademy.mathworks.com/" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-
-            <!-- Coursera Frameworks -->
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Business Analytics with Excel</h4><p class="text-[11px] text-neutral-400">Johns Hopkins University | Coursera</p></div>
-                <a href="https://www.coursera.org/verify/" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">From Excel to Power BI</h4><p class="text-[11px] text-neutral-400">Knowledge Accelerators | Coursera</p></div>
-                <a href="https://www.coursera.org/verify/" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Getting Started with Microsoft Excel</h4><p class="text-[11px] text-neutral-400">Coursera Guided Project</p></div>
-                <a href="https://www.coursera.org/verify/" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-
-            <!-- Cognitive Class / IBM -->
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Python 101 for Data Science</h4><p class="text-[11px] text-neutral-400">IBM | Cognitive Class</p></div>
-                <a href="https://cognitiveclass.ai/" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-
-            <!-- LinkedIn Learning Core -->
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Learning SQL Programming</h4><p class="text-[11px] text-neutral-400">LinkedIn Learning</p></div>
-                <a href="https://www.linkedin.com/learning/verify-certificate" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">MySQL for Non-Programmers</h4><p class="text-[11px] text-neutral-400">LinkedIn Learning</p></div>
-                <a href="https://www.linkedin.com/learning/verify-certificate" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Learning Data Analytics: Foundations</h4><p class="text-[11px] text-neutral-400">LinkedIn Learning</p></div>
-                <a href="https://www.linkedin.com/learning/verify-certificate" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Python for Data Science & ML Training Pt. 1</h4><p class="text-[11px] text-neutral-400">LinkedIn Learning</p></div>
-                <a href="https://www.linkedin.com/learning/verify-certificate" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Python Essential Training</h4><p class="text-[11px] text-neutral-400">LinkedIn Learning</p></div>
-                <a href="https://www.linkedin.com/learning/verify-certificate" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">MATLAB Essential Training</h4><p class="text-[11px] text-neutral-400">LinkedIn Learning</p></div>
-                <a href="https://www.linkedin.com/learning/verify-certificate" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Accelerated MATLAB</h4><p class="text-[11px] text-neutral-400">LinkedIn Learning</p></div>
-                <a href="https://www.linkedin.com/learning/verify-certificate" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Learning MATLAB</h4><p class="text-[11px] text-neutral-400">LinkedIn Learning</p></div>
-                <a href="https://www.linkedin.com/learning/verify-certificate" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Six Sigma: Green Belt</h4><p class="text-[11px] text-neutral-400">LinkedIn Learning</p></div>
-                <a href="https://www.linkedin.com/learning/verify-certificate" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Statistics Foundations 3: Using Data Sets</h4><p class="text-[11px] text-neutral-400">LinkedIn Learning</p></div>
-                <a href="https://www.linkedin.com/learning/verify-certificate" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Six Sigma Foundations</h4><p class="text-[11px] text-neutral-400">LinkedIn Learning</p></div>
-                <a href="https://www.linkedin.com/learning/verify-certificate" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Operational Excellence Foundations</h4><p class="text-[11px] text-neutral-400">LinkedIn Learning</p></div>
-                <a href="https://www.linkedin.com/learning/verify-certificate" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
-            </div>
-            <div class="p-3.5 bg-white border border-neutral-200 flex justify-between items-center shadow-2xs">
-                <div><h4 class="font-bold text-neutral-800">Additive Manufacturing: Tips, Tricks & Techniques</h4><p class="text-[11px] text-neutral-400">LinkedIn Learning</p></div>
-                <a href="https://www.linkedin.com/learning/verify-certificate" target="_blank" class="text-[#A51C30] hover:underline shrink-0 bg-neutral-50 border border-neutral-200 px-2.5 py-1 font-bold">Validate Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i></a>
+            <div class="bg-white p-6 border border-neutral-200 shadow-2xs">
+                <span class="text-[9px] font-bold text-slate-600 uppercase tracking-wider bg-neutral-100 border border-neutral-200 px-2 py-0.5">Hydraulic Systems & Fluid Dynamics</span>
+                <h3 class="text-base font-bold text-slate-950 mt-3 mb-2">Development of a Hydraulic Manipulator Framework for Complex Pick and Place Control Operations</h3>
+                <p class="text-slate-600 text-xs leading-relaxed">Designed an open-architecture automated platform to validate localized pressure transmissions through fluid vectors, applying Pascal's Law to modern automated manufacturing settings.</p>
             </div>
         </div>
     </section>
 
-    <!-- AICTE ATAL ACADEMY CERTIFICATIONS SEPARATE HIGHLIGHT ARCHITECTURE -->
-    <section id="atal" class="max-w-5xl mx-auto px-6 py-16 border-b border-neutral-200 bg-neutral-50/50">
-        <h2 class="serif-title text-2xl font-bold text-neutral-900 mb-2 tracking-tight">AICTE Training And Learning (ATAL) Academy FDPs</h2>
-        <p class="text-neutral-500 text-xs mb-8">Rigorous national pedagogical specializations completed under the aegis of the AICTE framework.</p>
-        
-        <div class="grid sm:grid-cols-2 gap-4 text-xs">
-            <div class="p-5 bg-white border border-neutral-200 shadow-3xs flex flex-col justify-between">
-                <div>
-                    <h4 class="font-bold text-neutral-900 text-sm leading-snug">Robotics for Industry 4.0: Enabling Smart Manufacturing</h4>
-                    <p class="text-neutral-500 mt-1">Sri Venkateswara College of Engineering</p>
-                </div>
-                <div class="flex items-center justify-between border-t border-neutral-100 pt-3 mt-4 text-[11px] font-bold">
-                    <span class="text-[#A51C30]">17 — 22 November 2025</span>
-                    <a href="certificates/atal-robotics-2025.pdf" target="_blank" class="text-neutral-600 hover:text-[#A51C30]"><i class="fa-solid fa-file-pdf mr-1 text-red-700"></i> View Certificate</a>
-                </div>
-            </div>
-            <div class="p-5 bg-white border border-neutral-200 shadow-3xs flex flex-col justify-between">
-                <div>
-                    <h4 class="font-bold text-neutral-900 text-sm leading-snug">Five Days Online Elementary FDP on Green Technology and Sustainability Engineering</h4>
-                    <p class="text-neutral-500 mt-1">Amrita Vishwa Vidyapeetham</p>
-                </div>
-                <div class="flex items-center justify-between border-t border-neutral-100 pt-3 mt-4 text-[11px] font-bold">
-                    <span class="text-[#A51C30]">05 — 09 July 2021</span>
-                    <a href="certificates/atal-green-tech-2021.pdf" target="_blank" class="text-neutral-600 hover:text-[#A51C30]"><i class="fa-solid fa-file-pdf mr-1 text-red-700"></i> View Certificate</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FACULTY DEVELOPMENT PROGRAMS (FDPS) CHRONOLOGICAL LOG -->
-    <section id="fdp" class="max-w-5xl mx-auto px-6 py-16 border-b border-neutral-200">
-        <h2 class="serif-title text-2xl font-bold text-neutral-900 mb-2 tracking-tight">Faculty Development Programs (FDPs)</h2>
-        <p class="text-neutral-500 text-xs mb-8">Chronological compendium of sustained developmental frameworks from latest to earliest.</p>
-        
-        <div class="overflow-x-auto bg-white border border-neutral-200 shadow-2xs">
-            <table class="w-full text-left border-collapse text-xs">
-                <thead>
-                    <tr class="bg-neutral-50 border-b border-neutral-200 font-bold text-neutral-700 uppercase tracking-wider text-[10px]">
-                        <th class="p-4 w-32">Timeline</th>
-                        <th class="p-4">Program Designation & Subject Scope</th>
-                        <th class="p-4">Organizing Host / Institutional Venue</th>
-                        <th class="p-4 text-center">Verification</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-neutral-100 text-neutral-600 font-light">
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">16 — 21 Jan 2026</td>
-                        <td class="p-4 font-normal text-neutral-900">Next-Generation Mechanical Engineering: From Research to Industrial Applications</td>
-                        <td class="p-4">Dept. of Mechanical Engineering, Institute of Engineering & Management (IEM) in association with HRDC, IEM-UEM Group</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-iem-2026.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">05 — 08 Jan 2026</td>
-                        <td class="p-4 font-normal text-neutral-900">Advanced Computational Modeling for Solids and Fluids</td>
-                        <td class="p-4">Indian Institute of Technology Bhilai, India</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-iitbhilai-2026.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">17 — 21 Nov 2025</td>
-                        <td class="p-4 font-normal text-neutral-900">Recent Advances in Composite Materials: Integrating Modelling and Experimental Approaches</td>
-                        <td class="p-4">Jointly Organized by Depts. of Mechanical and Civil Engineering, Maharaj Vijayaram Gajapathi Raj College of Engineering (MVGR), Vizianagaram</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-mvgr-composite-2025.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">27 Oct — 06 Nov 2025</td>
-                        <td class="p-4 font-normal text-neutral-900">The Art and Science of Successful Proposal Writing: Techniques, Strategies, and Best Practices</td>
-                        <td class="p-4">Jointly Organized by Depts. of ECE, CSE, and IT, CVR College of Engineering, Hyderabad</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-cvr-proposals-2025.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">27 — 31 Oct 2025</td>
-                        <td class="p-4 font-normal text-neutral-900">The Role of Artificial Intelligence in Manufacturing Industries</td>
-                        <td class="p-4">Jointly Organized by Depts. of Mechanical and Data Engineering, Maharaj Vijayaram Gajapathi Raj College of Engineering (MVGR), Vizianagaram</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-mvgr-ai-2025.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">15 — 19 Sep 2025</td>
-                        <td class="p-4 font-normal text-neutral-900">Smart Materials and Technologies for Durable Structures (SMTDS'25)</td>
-                        <td class="p-4">Dept. of Civil Engineering, R.V.R. & J.C. College of Engineering, Guntur</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-rvrjc-2025.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">30 Jul — 03 Aug 2024</td>
-                        <td class="p-4 font-normal text-neutral-900">Innovations in Robotics and UAVs: Digital Twins, Drone Design, and Future Trends</td>
-                        <td class="p-4">Mechanical Engineering Department, VNR VJIET, Hyderabad</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-vnrvjiet-robotics-2024.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">22 Jul — 02 Aug 2024</td>
-                        <td class="p-4 font-normal text-neutral-900">Transforming Education: Integrating OBE and NEP 2020</td>
-                        <td class="p-4">Department of Electronics and Communication Engineering, CVR College of Engineering, Hyderabad</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-cvr-obe-2024.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">26 Dec 2023 — 02 Jan 2024</td>
-                        <td class="p-4 font-normal text-neutral-900">Advanced Python Programming</td>
-                        <td class="p-4">Department of Computer Science and Engineering, Guru Nanak Institutions Technical Campus, Hyderabad</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-gnitc-python-2023.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">12 — 16 Sep 2023</td>
-                        <td class="p-4 font-normal text-neutral-900">Fundamentals, Advancements and Applications of Robotics</td>
-                        <td class="p-4">Department of Mechanical Engineering, Vignan Institute of Technology and Science, Hyderabad</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-vignan-robotics-2023.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">23 — 28 Aug 2021</td>
-                        <td class="p-4 font-normal text-neutral-900">Additive Manufacturing Processes and Its Applications</td>
-                        <td class="p-4">Department of Mechanical Engineering, Sri Manakula Vinayagar Engineering College, Puducherry</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-smvec-2021.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">2020 Block Timeline</td>
-                        <td class="p-4 font-normal text-neutral-900">Six Day Faculty Development Program on Recent Developments in Solar Energy Recovery and Storage Technologies</td>
-                        <td class="p-4">St. Joseph's College of Engineering, Chennai</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-stjoseph-solar-2020.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">2020 Block Timeline</td>
-                        <td class="p-4 font-normal text-neutral-900">One Week Online FDP on Engineering Physics and Materials Science</td>
-                        <td class="p-4">Chaitanya Bharathi Institute of Technology (CBIT), Hyderabad</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-cbit-materials-2020.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">2020 Block Timeline</td>
-                        <td class="p-4 font-normal text-neutral-900">One Week National Online Faculty Development Program on Advanced Welding Technologies</td>
-                        <td class="p-4">Department of Mechanical Engineering, Faculty of Engineering & Technology, JAIN Deemed To Be University, Bengaluru</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-jain-welding-2020.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">2020 Block Timeline</td>
-                        <td class="p-4 font-normal text-neutral-900">Five Day Online Faculty Development Program titled Research Methodologies in Mechanical Engineering (A Refresher Approach)</td>
-                        <td class="p-4">Narsimha Reddy Engineering College, Secunderabad</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-narsimhareddy-2020.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">2020 Block Timeline</td>
-                        <td class="p-4 font-normal text-neutral-900">One week online Faculty Development Program on Nanoscience and Nanotechnology - Current Perspectives</td>
-                        <td class="p-4">G.H. Raisoni College of Engineering, Nagpur</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-raisoni-nano-2020.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">2020 Block Timeline</td>
-                        <td class="p-4 font-normal text-neutral-900">One week online Faculty Development Program on Optimization Techniques for Mechanical Engineers</td>
-                        <td class="p-4">Vignan Institute of Technology and Science, Deshmukhi, Hyderabad</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-vignan-optimization-2020.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">2020 Block Timeline</td>
-                        <td class="p-4 font-normal text-neutral-900">A Five Day National Level Faculty Development Program on Research Opportunities in Advanced Welding Processes</td>
-                        <td class="p-4">Hindusthan College of Engineering and Technology, Coimbatore</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-hindusthan-welding-2020.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">2020 Block Timeline</td>
-                        <td class="p-4 font-normal text-neutral-900">One Week Online Faculty Development Program on Recent Trends in Manufacturing</td>
-                        <td class="p-4">Mahatma Gandhi Institute of Technology (MGIT), Hyderabad</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-mgit-manufacturing-2020.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">2020 Block Timeline</td>
-                        <td class="p-4 font-normal text-neutral-900">One Week Online FDP on Mathematical Modeling & Numerical Techniques 2020</td>
-                        <td class="p-4">Kakatiya Institute of Technology and Science (KITS), Warangal</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-kits-math-2020.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">2020 Block Timeline</td>
-                        <td class="p-4 font-normal text-neutral-900">Two week AICTE sponsored Faculty Development Programme on Recent Developments of Nano-Composites and Smart Materials in the Aerospace Industry</td>
-                        <td class="p-4">MLR Institute of Technology, Hyderabad</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-mlr-aerospace-2020.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">2020 Block Timeline</td>
-                        <td class="p-4 font-normal text-neutral-900">One Week online faculty development programme on Advanced Composite Materials</td>
-                        <td class="p-4">R.R. Institute of Technology, Bengaluru</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-rrit-composite-2020.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">2020 Block Timeline</td>
-                        <td class="p-4 font-normal text-neutral-900">One Week Online Faculty Development Program on Recent Advances in Renewable Energy & Energy Efficiency Technologies</td>
-                        <td class="p-4">Mahatma Gandhi Institute of Technology (MGIT), Hyderabad</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-mgit-renewable-2020.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                    <tr class="hover:bg-neutral-50/50">
-                        <td class="p-4 font-bold text-neutral-900">2020 Block Timeline</td>
-                        <td class="p-4 font-normal text-neutral-900">Five Day Online Faculty Development Program on Frontiers of Research in Mechanical Engineering (FORME2020)</td>
-                        <td class="p-4">Satya Institute of Technology and Management (SITAM), Vizianagaram</td>
-                        <td class="p-4 text-center"><a href="certificates/fdp-sitam-forme-2020.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline">Certificate</a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- TECHNICAL & INDUSTRIAL WORKSHOPS LOG -->
-    <section id="workshops" class="max-w-5xl mx-auto px-6 py-16 border-b border-neutral-200">
-        <h2 class="serif-title text-2xl font-bold text-neutral-900 mb-2 tracking-tight">Technical Workshops</h2>
-        <p class="text-neutral-500 text-xs mb-8">Chronological index of structural, automation, and data engineering practical execution forums.</p>
-        
-        <div class="grid sm:grid-cols-2 gap-4 text-xs">
-            <div class="p-4 bg-white border border-neutral-200 shadow-2xs flex justify-between items-center">
-                <div><h4 class="font-bold text-neutral-900">Problem-Driven AI: Real World Applications and Solution Frameworks</h4><p class="text-neutral-500 text-[11px] mt-0.5">National Institute of Technology Rourkela | 07 — 16 Feb 2026</p></div>
-                <a href="certificates/workshop-nitr-2026.pdf" target="_blank" class="text-[#A51C30] font-bold shrink-0 bg-neutral-50 border border-neutral-200 px-3 py-1.5 shadow-3xs hover:bg-neutral-100">Certificate</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 shadow-2xs flex justify-between items-center">
-                <div><h4 class="font-bold text-neutral-900">Autodesk Authorized Academic Partner Event</h4><p class="text-neutral-500 text-[11px] mt-0.5">Guru Nanak Institutions Technical Campus | GNITC Suite</p></div>
-                <a href="certificates/workshop-gnitc-autodesk.pdf" target="_blank" class="text-[#A51C30] font-bold shrink-0 bg-neutral-50 border border-neutral-200 px-3 py-1.5 shadow-3xs hover:bg-neutral-100">Certificate</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 shadow-2xs flex justify-between items-center">
-                <div><h4 class="font-bold text-neutral-900">Emission Control Strategies in Thermal Power Plants</h4><p class="text-neutral-500 text-[11px] mt-0.5">OP Jindal University, Raigarh & Jindal Institute of Power Technology | 31 Oct 2023</p></div>
-                <a href="certificates/workshop-jindal-2023.pdf" target="_blank" class="text-[#A51C30] font-bold shrink-0 bg-neutral-50 border border-neutral-200 px-3 py-1.5 shadow-3xs hover:bg-neutral-100">Certificate</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 shadow-2xs flex justify-between items-center">
-                <div><h4 class="font-bold text-neutral-900">Computational Research Techniques Using MATLAB</h4><p class="text-neutral-500 text-[11px] mt-0.5">Sree Chaitanya College of Engineering, Karimnagar</p></div>
-                <a href="certificates/workshop-scce-matlab.pdf" target="_blank" class="text-[#A51C30] font-bold shrink-0 bg-neutral-50 border border-neutral-200 px-3 py-1.5 shadow-3xs hover:bg-neutral-100">Certificate</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 shadow-2xs flex justify-between items-center">
-                <div><h4 class="font-bold text-neutral-900">Metallurgy for Mechanical Engineering</h4><p class="text-neutral-500 text-[11px] mt-0.5">Sree Chaitanya College of Engineering, Karimnagar</p></div>
-                <a href="certificates/workshop-scce-metallurgy.pdf" target="_blank" class="text-[#A51C30] font-bold shrink-0 bg-neutral-50 border border-neutral-200 px-3 py-1.5 shadow-3xs hover:bg-neutral-100">Certificate</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ACADEMIC CONFERENCES & ADVANCED SHORT-TERM COURSES (STC) -->
-    <section id="conferences" class="max-w-5xl mx-auto px-6 py-16 border-b border-neutral-200">
-        <h2 class="serif-title text-2xl font-bold text-neutral-900 mb-2 tracking-tight">Conferences & Specialized Short-Term Courses (STC)</h2>
-        <p class="text-neutral-500 text-xs mb-8">Chronological directory tracking specialized academic symposia and AICTE/QIP certified micro-courses.</p>
-        
-        <div class="space-y-3.5 text-xs">
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 shadow-2xs">
-                <div>
-                    <span class="text-neutral-400 font-bold block sm:inline mr-2">19 — 20 Dec 2025</span>
-                    <strong class="text-neutral-900 font-bold text-sm">AI for Forensics and Biometric Applications (AIFB) 2025</strong>
-                    <span class="text-neutral-500 text-[11px] block mt-0.5">Indian Institute of Technology Bhilai, India</span>
-                </div>
-                <a href="certificates/conference-iitbhilai-2025.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline self-start sm:self-center bg-neutral-50 border border-neutral-200 px-3 py-1 shadow-3xs">Certificate</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 shadow-2xs">
-                <div>
-                    <span class="text-neutral-400 font-bold block sm:inline mr-2">22 — 27 Mar 2021</span>
-                    <strong class="text-neutral-900 font-bold text-sm">One Week AICTE Sponsored Short Term Course (STC) on Enduring Trends in Hydraulic Control Systems: Past, Present and Future</strong>
-                    <span class="text-neutral-500 text-[11px] block mt-0.5">Department of Mechanical Engineering, Centre for Continuing Education, IIT Madras</span>
-                </div>
-                <a href="certificates/stc-iitmadras-2021.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline self-start sm:self-center bg-neutral-50 border border-neutral-200 px-3 py-1 shadow-3xs">Certificate</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 shadow-2xs">
-                <div>
-                    <span class="text-neutral-400 font-bold block sm:inline mr-2">Historical Suite</span>
-                    <strong class="text-neutral-900 font-bold text-sm">Three-Week Faculty Induction Training Program</strong>
-                    <span class="text-neutral-500 text-[11px] block mt-0.5">Supported by MHRD under PMMMNMTT scheme, organized by TLC, IIT Hyderabad</span>
-                </div>
-                <a href="certificates/stc-iithyderabad-induction.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline self-start sm:self-center bg-neutral-50 border border-neutral-200 px-3 py-1 shadow-3xs">Certificate</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 shadow-2xs">
-                <div>
-                    <span class="text-neutral-400 font-bold block sm:inline mr-2">Historical Suite</span>
-                    <strong class="text-neutral-900 font-bold text-sm">One Week Short Term Course on Theory of Plasticity and Its Applications</strong>
-                    <span class="text-neutral-500 text-[11px] block mt-0.5">Conducted by CE & QIP, IIT Bombay</span>
-                </div>
-                <a href="certificates/stc-iitbombay-plasticity.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline self-start sm:self-center bg-neutral-50 border border-neutral-200 px-3 py-1 shadow-3xs">Certificate</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 shadow-2xs">
-                <div>
-                    <span class="text-neutral-400 font-bold block sm:inline mr-2">Historical Suite</span>
-                    <strong class="text-neutral-900 font-bold text-sm">One Week Short Term Course on Application of Forecasting Methods in Engineering and Business Problems</strong>
-                    <span class="text-neutral-500 text-[11px] block mt-0.5">Conducted by AICTE & QIP, IIT Kharagpur</span>
-                </div>
-                <a href="certificates/stc-iitkgp-forecasting.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline self-start sm:self-center bg-neutral-50 border border-neutral-200 px-3 py-1 shadow-3xs">Certificate</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 shadow-2xs">
-                <div>
-                    <span class="text-neutral-400 font-bold block sm:inline mr-2">Historical Suite</span>
-                    <strong class="text-neutral-900 font-bold text-sm">One-Week Short Term Course on Green Manufacturing</strong>
-                    <span class="text-neutral-500 text-[11px] block mt-0.5">Conducted by NITTTR Chandigarh at Sree Chaitanya College of Engineering, Karimnagar</span>
-                </div>
-                <a href="certificates/stc-nitttr-green.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline self-start sm:self-center bg-neutral-50 border border-neutral-200 px-3 py-1 shadow-3xs">Certificate</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 shadow-2xs">
-                <div>
-                    <span class="text-neutral-400 font-bold block sm:inline mr-2">Historical Suite</span>
-                    <strong class="text-neutral-900 font-bold text-sm">One Week AICTE AQIS Short Term Course on Advances in Additive Manufacturing</strong>
-                    <span class="text-neutral-500 text-[11px] block mt-0.5">Siemens Centre of Excellence for Digital Manufacturing and Robotics under NAFETIC, Yeshwantrao Chavan College of Engineering (YCCE), Nagpur</span>
-                </div>
-                <a href="certificates/stc-ycce-additive.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline self-start sm:self-center bg-neutral-50 border border-neutral-200 px-3 py-1 shadow-3xs">Certificate</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 shadow-2xs">
-                <div>
-                    <span class="text-neutral-400 font-bold block sm:inline mr-2">Historical Suite</span>
-                    <strong class="text-neutral-900 font-bold text-sm">One Week AICTE Sponsored Online Short-Term Training Programme (STTP) on Advances in Finite Element Method for Industry & Research Applications</strong>
-                    <span class="text-neutral-500 text-[11px] block mt-0.5">Vasavi College of Engineering (Autonomous), Hyderabad</span>
-                </div>
-                <a href="certificates/sttp-vasavi-fem.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline self-start sm:self-center bg-neutral-50 border border-neutral-200 px-3 py-1 shadow-3xs">Certificate</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 shadow-2xs">
-                <div>
-                    <span class="text-neutral-400 font-bold block sm:inline mr-2">Historical Suite</span>
-                    <strong class="text-neutral-900 font-bold text-sm">One Week AICTE Sponsored Online Short Term Training Program on Modeling and Analysis using MATLAB and Python for Mechanical Engineering Applications</strong>
-                    <span class="text-neutral-500 text-[11px] block mt-0.5">VNR Vignana Jyothi Institute of Engineering and Technology (VNR VJIET), Hyderabad</span>
-                </div>
-                <a href="certificates/sttp-vnrvjiet-matlab.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline self-start sm:self-center bg-neutral-50 border border-neutral-200 px-3 py-1 shadow-3xs">Certificate</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 shadow-2xs">
-                <div>
-                    <span class="text-neutral-400 font-bold block sm:inline mr-2">Historical Suite</span>
-                    <strong class="text-neutral-900 font-bold text-sm">One Week Online Short-Term Training Program on Design of Experiments in Engineering</strong>
-                    <span class="text-neutral-500 text-[11px] block mt-0.5">B.V. Raju Institute of Technology (BVRIT), Vishnupur, Narsapur, Medak</span>
-                </div>
-                <a href="certificates/sttp-bvrit-doe.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline self-start sm:self-center bg-neutral-50 border border-neutral-200 px-3 py-1 shadow-3xs">Certificate</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 shadow-2xs">
-                <div>
-                    <span class="text-neutral-400 font-bold block sm:inline mr-2">Historical Suite</span>
-                    <strong class="text-neutral-900 font-bold text-sm">One week AICTE sponsored online short term training program on Advanced Techniques in Modelling and Analysis for Materials and Manufacturing Process</strong>
-                    <span class="text-neutral-500 text-[11px] block mt-0.5">VNR Vignana Jyothi Institute of Engineering and Technology (VNR VJIET), Hyderabad</span>
-                </div>
-                <a href="certificates/sttp-vnrvjiet-modelling.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline self-start sm:self-center bg-neutral-50 border border-neutral-200 px-3 py-1 shadow-3xs">Certificate</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 shadow-2xs">
-                <div>
-                    <span class="text-neutral-400 font-bold block sm:inline mr-2">Historical Suite</span>
-                    <strong class="text-neutral-900 font-bold text-sm">One week online short term training programme on Training of Trainers (TOT) for Teacher Educator</strong>
-                    <span class="text-neutral-500 text-[11px] block mt-0.5">NITTTR, Bhopal</span>
-                </div>
-                <a href="certificates/sttp-nitttr-tot.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline self-start sm:self-center bg-neutral-50 border border-neutral-200 px-3 py-1 shadow-3xs">Certificate</a>
-            </div>
-            <div class="p-4 bg-white border border-neutral-200 rounded-sm flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 shadow-2xs">
-                <div>
-                    <span class="text-neutral-400 font-bold block sm:inline mr-2">Historical Suite</span>
-                    <strong class="text-neutral-900 font-bold text-sm">Five day International Webinar Series on Essential Technologies and Career Opportunities in Mechanical Engineering / Vision Towards Materials</strong>
-                    <span class="text-neutral-500 text-[11px] block mt-0.5">Universal Engineering College, Kerala / KPR Institute of Engineering and Technology, Coimbatore</span>
-                </div>
-                <a href="certificates/webinar-materials.pdf" target="_blank" class="text-[#A51C30] font-bold hover:underline self-start sm:self-center bg-neutral-50 border border-neutral-200 px-3 py-1 shadow-3xs">Certificate</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ANCILLARY DATA: SERVICE RECORDS & CIVIC HONORS -->
-    <section id="service" class="max-w-5xl mx-auto px-6 py-16 border-b border-neutral-200 bg-white">
-        <div class="grid md:grid-cols-2 gap-12 text-sm leading-relaxed">
+    <!-- EXTENSIVE VERIFIED MOOCs & GLOBAL CREDLY REGISTRY -->
+    <section id="moocs" class="max-w-7xl mx-auto px-6 py-20 border-b border-neutral-200">
+        <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
             <div>
-                <h3 class="serif-title font-bold text-neutral-900 text-base mb-5 border-b border-neutral-200 pb-2">Institutional Leadership & Service Roles</h3>
-                <ul class="space-y-3 text-neutral-600 text-xs list-none pl-0">
-                    <li class="flex items-start gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-[#A51C30] mt-1.5 shrink-0"></i> <span>Departmental Coordinator for national automotive challenges including the SAE BAJA and GO KARTING simulations within GNITC.</span></li>
-                    <li class="flex items-start gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-[#A51C30] mt-1.5 shrink-0"></i> <span>Appointed Institutional Administrator for the Mechanical Engineering Minor Degree certification track.</span></li>
-                    <li class="flex items-start gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-[#A51C30] mt-1.5 shrink-0"></i> <span>Divisional Executive In-charge responsible for structural design of Remedial and Tutorial student instructional paths.</span></li>
-                    <li class="flex items-start gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-[#A51C30] mt-1.5 shrink-0"></i> <span>Designated Staff Mentor executing academic and career developmental governance for assigned undergraduate student cohorts.</span></li>
+                <h2 class="serif-title text-2xl font-normal text-slate-950 flex items-center gap-3">
+                    <span class="w-8 h-[1px] bg-[#a51c30]"></span> MOOCs & Global Credential Registries
+                </h2>
+                <p class="text-slate-400 text-xs mt-1">Verified educational milestones from global learning architectures.</p>
+            </div>
+            <!-- Credly profile integration -->
+            <a href="https://www.credly.com/users/skgajawada/" target="_blank" class="bg-slate-950 text-white font-bold text-xs uppercase tracking-wider px-4 py-2.5 rounded-none shadow-sm hover:bg-[#a51c30] transition-colors inline-flex items-center gap-2 shrink-0">
+                <i class="fa-solid fa-certificate text-amber-400"></i> View Credly Badges Portfolio
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+            <!-- Dataiku Domain Matrix -->
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">Dataiku Core Designer Certification</h4><p class="text-[10px] text-slate-400">Dataiku Professional Academy</p></div>
+                <a href="https://www.credly.com/users/skgajawada/" target="_blank" class="text-indigo-700 bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">Token <i class="fa-solid fa-link text-[8px]"></i></a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">Dataiku Advanced Designer Certificate</h4><p class="text-[10px] text-slate-400">Dataiku Professional Academy</p></div>
+                <a href="https://www.credly.com/users/skgajawada/" target="_blank" class="text-indigo-700 bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">Token <i class="fa-solid fa-link text-[8px]"></i></a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">Dataiku Developer Core Badge</h4><p class="text-[10px] text-slate-400">Dataiku Professional Academy</p></div>
+                <a href="https://www.credly.com/users/skgajawada/" target="_blank" class="text-indigo-700 bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">Token <i class="fa-solid fa-link text-[8px]"></i></a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">Dataiku Machine Learning Practitioner</h4><p class="text-[10px] text-slate-400">Dataiku Professional Academy</p></div>
+                <a href="https://www.credly.com/users/skgajawada/" target="_blank" class="text-indigo-700 bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">Token <i class="fa-solid fa-link text-[8px]"></i></a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">Dataiku MLOps Specialization</h4><p class="text-[10px] text-slate-400">Dataiku Professional Academy</p></div>
+                <a href="https://www.credly.com/users/skgajawada/" target="_blank" class="text-indigo-700 bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">Token <i class="fa-solid fa-link text-[8px]"></i></a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">Dataiku Generative AI Practitioner</h4><p class="text-[10px] text-slate-400">Dataiku Professional Academy</p></div>
+                <a href="https://www.credly.com/users/skgajawada/" target="_blank" class="text-indigo-700 bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">Token <i class="fa-solid fa-link text-[8px]"></i></a>
+            </div>
+
+            <!-- MathWorks Computational Trajectory -->
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">Control System Design Pathway</h4><p class="text-[10px] text-slate-400">MathWorks Training Services</p></div>
+                <a href="certificates/mathworks-control-systems.pdf" target="_blank" class="text-[#a51c30] bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">PDF <i class="fa-solid fa-file-pdf text-[9px]"></i></a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">Control Design Onramp with Simulink</h4><p class="text-[10px] text-slate-400">MathWorks Training Services</p></div>
+                <a href="certificates/mathworks-simulink-onramp.pdf" target="_blank" class="text-[#a51c30] bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">PDF <i class="fa-solid fa-file-pdf text-[9px]"></i></a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">MATLAB & Simulink General Onramps</h4><p class="text-[10px] text-slate-400">MathWorks Training Services</p></div>
+                <a href="certificates/mathworks-general.pdf" target="_blank" class="text-[#a51c30] bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">PDF <i class="fa-solid fa-file-pdf text-[9px]"></i></a>
+            </div>
+
+            <!-- Johns Hopkins & Coursera Track -->
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">Business Analytics with Excel</h4><p class="text-[10px] text-slate-400">Johns Hopkins University | Coursera</p></div>
+                <a href="certificates/coursera-johns-hopkins.pdf" target="_blank" class="text-[#a51c30] bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">PDF <i class="fa-solid fa-file-pdf text-[9px]"></i></a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">From Excel to Power BI Ecosystem</h4><p class="text-[10px] text-slate-400">Knowledge Accelerators | Coursera</p></div>
+                <a href="certificates/coursera-powerbi.pdf" target="_blank" class="text-[#a51c30] bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">PDF <i class="fa-solid fa-file-pdf text-[9px]"></i></a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">Microsoft Excel Verification Track</h4><p class="text-[10px] text-slate-400">Coursera Verified Guided Project</p></div>
+                <a href="certificates/coursera-excel.pdf" target="_blank" class="text-[#a51c30] bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">PDF <i class="fa-solid fa-file-pdf text-[9px]"></i></a>
+            </div>
+
+            <!-- IBM Cognitive Network -->
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">Python 101 for Data Science</h4><p class="text-[10px] text-slate-400">IBM Developer Skills Network</p></div>
+                <a href="certificates/ibm-cognitive.pdf" target="_blank" class="text-[#a51c30] bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">PDF <i class="fa-solid fa-file-pdf text-[9px]"></i></a>
+            </div>
+
+            <!-- LinkedIn Learning Systems -->
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">SQL Programming Foundations</h4><p class="text-[10px] text-slate-400">LinkedIn Learning Architecture</p></div>
+                <a href="certificates/linkedin-sql.pdf" target="_blank" class="text-[#a51c30] bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">PDF <i class="fa-solid fa-file-pdf text-[9px]"></i></a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">MySQL for Non-Programmers</h4><p class="text-[10px] text-slate-400">LinkedIn Learning Architecture</p></div>
+                <a href="certificates/linkedin-mysql.pdf" target="_blank" class="text-[#a51c30] bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">PDF <i class="fa-solid fa-file-pdf text-[9px]"></i></a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">Learning Data Analytics Foundations</h4><p class="text-[10px] text-slate-400">LinkedIn Learning Architecture</p></div>
+                <a href="certificates/linkedin-analytics.pdf" target="_blank" class="text-[#a51c30] bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">PDF <i class="fa-solid fa-file-pdf text-[9px]"></i></a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">Python Data Science Essential Training</h4><p class="text-[10px] text-slate-400">LinkedIn Learning Architecture</p></div>
+                <a href="certificates/linkedin-py-ds.pdf" target="_blank" class="text-[#a51c30] bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">PDF <i class="fa-solid fa-file-pdf text-[9px]"></i></a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">Python Core Essential Training</h4><p class="text-[10px] text-slate-400">LinkedIn Learning Architecture</p></div>
+                <a href="certificates/linkedin-python.pdf" target="_blank" class="text-[#a51c30] bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">PDF <i class="fa-solid fa-file-pdf text-[9px]"></i></a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">MATLAB & Accelerated Computation</h4><p class="text-[10px] text-slate-400">LinkedIn Learning Architecture</p></div>
+                <a href="certificates/linkedin-matlab.pdf" target="_blank" class="text-[#a51c30] bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">PDF <i class="fa-solid fa-file-pdf text-[9px]"></i></a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">Six Sigma Green Belt Specialization</h4><p class="text-[10px] text-slate-400">LinkedIn Learning Architecture</p></div>
+                <a href="certificates/linkedin-sixsigma-green.pdf" target="_blank" class="text-[#a51c30] bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">PDF <i class="fa-solid fa-file-pdf text-[9px]"></i></a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">Six Sigma Foundations Matrix</h4><p class="text-[10px] text-slate-400">LinkedIn Learning Architecture</p></div>
+                <a href="certificates/linkedin-sixsigma-foundations.pdf" target="_blank" class="text-[#a51c30] bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">PDF <i class="fa-solid fa-file-pdf text-[9px]"></i></a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">Operational Excellence Foundations</h4><p class="text-[10px] text-slate-400">LinkedIn Learning Architecture</p></div>
+                <a href="certificates/linkedin-opex.pdf" target="_blank" class="text-[#a51c30] bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">PDF <i class="fa-solid fa-file-pdf text-[9px]"></i></a>
+            </div>
+            <div class="p-4 border border-neutral-200 bg-neutral-50/60 flex justify-between items-center hover:bg-white transition-all">
+                <div><h4 class="font-bold text-slate-900">Additive Manufacturing: Tips & Tricks</h4><p class="text-[10px] text-slate-400">LinkedIn Learning Architecture</p></div>
+                <a href="certificates/linkedin-additive.pdf" target="_blank" class="text-[#a51c30] bg-white border border-neutral-200 font-bold px-2 py-1 tracking-tight hover:underline">PDF <i class="fa-solid fa-file-pdf text-[9px]"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- GRANULAR TRAINING METRICS ACCORDIONS: RIGOROUS CHRONOLOGICAL TRACKING (LATEST TO OLDEST) -->
+    <section id="training" class="max-w-7xl mx-auto px-6 py-20 bg-[#FBFBFB] border-b border-neutral-200">
+        <h2 class="serif-title text-2xl font-normal text-slate-950 mb-4 flex items-center gap-3">
+            <span class="w-8 h-[1px] bg-[#a51c30]"></span> Continuous Training & Advanced Research Paradigms
+        </h2>
+        <p class="text-xs text-slate-400 mb-10">Click on any academic heading category component below to expand its structured chronological catalog registry instantly.</p>
+
+        <!-- ACCORDION TABS CONTROLLER CONTAINER -->
+        <div class="border border-neutral-200 bg-white">
+            
+            <!-- Dynamic Tab Trigger Ribbon Elements -->
+            <div class="flex flex-wrap border-b border-neutral-200 bg-neutral-50 text-[11px] font-bold uppercase tracking-wider text-slate-600">
+                <button onclick="switchTab(event, 'fdp-tab')" class="tab-btn active px-6 py-4.5 border-b-2 border-transparent hover:text-slate-950 transition-all">Faculty Development Programs (FDPs)</button>
+                <button onclick="switchTab(event, 'workshop-tab')" class="tab-btn px-6 py-4.5 border-b-2 border-transparent hover:text-slate-950 transition-all">Workshops Attended</button>
+                <button onclick="switchTab(event, 'conference-tab')" class="tab-btn px-6 py-4.5 border-b-2 border-transparent hover:text-slate-950 transition-all">Conferences & STCs</button>
+                <button onclick="switchTab(event, 'atal-tab')" class="tab-btn px-6 py-4.5 border-b-2 border-transparent hover:text-slate-950 transition-all">AICTE ATAL Milestones</button>
+            </div>
+
+            <!-- TAB CONTAINER 1: FDPS SYSTEMATICALLY SORTED FROM LATEST (2026) TO OLDEST (2020) -->
+            <div id="fdp-tab" class="tab-content active p-6">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs">
+                        <thead>
+                            <tr class="bg-neutral-50 text-slate-700 font-bold border-b border-neutral-200">
+                                <th class="p-3.5 w-24">Timeline</th>
+                                <th class="p-3.5">FDP Framework / Program Topic</th>
+                                <th class="p-3.5">Organizing Body / Academic Institution Venue</th>
+                                <th class="p-3.5 text-right">Verification</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-neutral-100 text-slate-600">
+                            <tr class="hover:bg-neutral-50/60 font-medium">
+                                <td class="p-3.5 text-[#a51c30] font-bold">Jan 2026</td>
+                                <td class="p-3.5 text-slate-950">Next-Generation Mechanical Engineering: From Research to Industrial Applications</td>
+                                <td class="p-3.5">Mechanical Dept, Institute of Engineering & Management (IEM) with HRDC</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2026_iem.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-[#a51c30] font-bold">Jan 2026</td>
+                                <td class="p-3.5 text-slate-950">Advanced Computational Modeling for Solids and Fluids</td>
+                                <td class="p-3.5">Indian Institute of Technology Bhilai, India</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2026_iitbh.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">Nov 2025</td>
+                                <td class="p-3.5">Recent Advances in Composite Materials: Integrating Modelling & Experimental Approaches</td>
+                                <td class="p-3.5">Mechanical and Civil Depts, MVGR College of Engineering, Vizianagaram</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2025_mvgr1.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">Oct 2025</td>
+                                <td class="p-3.5">The Role of Artificial Intelligence in Manufacturing Industries</td>
+                                <td class="p-3.5">Mechanical and Data Engineering Depts, MVGR College of Engineering</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2025_mvgr2.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">Oct 2025</td>
+                                <td class="p-3.5">The Art and Science of Successful Proposal Writing: Techniques, Strategies, and Best Practices</td>
+                                <td class="p-3.5">ECE, CSE, and IT Departments, CVR College of Engineering, Hyderabad</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2025_cvr1.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">Sep 2025</td>
+                                <td class="p-3.5">Smart Materials and Technologies for Durable Structures (SMTDS'25)</td>
+                                <td class="p-3.5">Department of Civil Engineering, R.V.R.J.C. College of Engineering, Guntur</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2025_rvr.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">Aug 2024</td>
+                                <td class="p-3.5">Innovations in Robotics and UAVs: Digital Twins, Drone Design, and Future Trends</td>
+                                <td class="p-3.5">Mechanical Engineering Department, VNR VJIET, Hyderabad</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2024_vnr1.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">Jul 2024</td>
+                                <td class="p-3.5">Transforming Education: Integrating OBE and NEP 2020</td>
+                                <td class="p-3.5">Department of Electronics & Communication Eng, CVR College of Engineering</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2024_cvr2.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">Dec 2023</td>
+                                <td class="p-3.5">Advanced Python Programming Frameworks</td>
+                                <td class="p-3.5">Computer Science and Engineering Dept, Guru Nanak Institutions Tech Campus</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2023_gni.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">Sep 2023</td>
+                                <td class="p-3.5">Fundamentals, Advancements and Applications of Robotics</td>
+                                <td class="p-3.5">Department of Mechanical Engineering, Vignan Institute of Tech & Science</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2023_vignan1.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">Aug 2021</td>
+                                <td class="p-3.5">Additive Manufacturing Processes and Its Applications</td>
+                                <td class="p-3.5">Department of Mechanical Eng, Sri Manakula Vinayagar Engineering College</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2021_manakula.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">2020</td>
+                                <td class="p-3.5">Recent Developments in Solar Energy Recovery and Storage Technologies</td>
+                                <td class="p-3.5">St. Joseph's College of Engineering, Chennai</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2020_stjo.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">2020</td>
+                                <td class="p-3.5">Engineering Physics and Materials Science Platforms</td>
+                                <td class="p-3.5">Chaitanya Bharathi Institute of Technology (CBIT), Hyderabad</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2020_cbit.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">2020</td>
+                                <td class="p-3.5">National Online Track on Advanced Welding Technologies</td>
+                                <td class="p-3.5">Faculty of Engineering & Technology, JAIN Deemed To Be University, Bengaluru</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2020_jain.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">2020</td>
+                                <td class="p-3.5">Research Methodologies in Mechanical Engineering (Refresher Course)</td>
+                                <td class="p-3.5">Narsimha Reddy Engineering College, Secunderabad</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2020_narsimha.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">2020</td>
+                                <td class="p-3.5">Nanoscience and Nanotechnology — Current Operational Perspectives</td>
+                                <td class="p-3.5">G.H. Raisoni College of Engineering, Nagpur</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2020_raisoni.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">2020</td>
+                                <td class="p-3.5">Optimization Techniques for Mechanical Engineers</td>
+                                <td class="p-3.5">Vignan Institute of Technology and Science, Deshmukhi, Hyderabad</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2020_vignan2.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">2020</td>
+                                <td class="p-3.5">Research Opportunities in Advanced Welding Processes</td>
+                                <td class="p-3.5">Hindusthan College of Engineering and Technology, Coimbatore</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2020_hindusthan.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">2020</td>
+                                <td class="p-3.5">Recent Trends in Manufacturing Technology</td>
+                                <td class="p-3.5">Mahatma Gandhi Institute of Technology (MGIT), Hyderabad</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2020_mgit1.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">2020</td>
+                                <td class="p-3.5">Mathematical Modeling & Numerical Techniques 2020</td>
+                                <td class="p-3.5">Kakatiya Institute of Technology and Science (KITS), Warangal</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2020_kits.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">2020</td>
+                                <td class="p-3.5">Recent Developments of Nano-Composites & Smart Materials in Aerospace Industry</td>
+                                <td class="p-3.5 text-[#a51c30] font-medium">MLR Institute of Technology, Hyderabad (Two-Week FDP)</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2020_mlr.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">2020</td>
+                                <td class="p-3.5">Advanced Composite Materials structural Tracks</td>
+                                <td class="p-3.5">R.R. Institute of Technology, Bengaluru</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2020_rr.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">2020</td>
+                                <td class="p-3.5">Recent Advances in Renewable Energy & Energy Efficiency Technologies</td>
+                                <td class="p-3.5">Mahatma Gandhi Institute of Technology, Hyderabad</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2020_mgit2.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/60">
+                                <td class="p-3.5 text-slate-500">2020</td>
+                                <td class="p-3.5">Frontiers of Research in Mechanical Engineering (FORME2020)</td>
+                                <td class="p-3.5">Satya Institute of Technology and Management, Vizianagaram</td>
+                                <td class="p-3.5 text-right"><a href="certs/fdp_2020_satya.pdf" target="_blank" class="text-[#a51c30] hover:underline font-bold">Certificate <i class="fa-solid fa-file-pdf"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB CONTAINER 2: WORKSHOPS ATTENDED CHRONOLOGICAL -->
+            <div id="workshop-tab" class="tab-content p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div class="p-4 border border-neutral-200 bg-white flex justify-between items-center shadow-2xs">
+                        <div><h4 class="font-bold text-slate-950">Problem-Driven AI: Real World Applications & Solutions</h4><p class="text-[10px] text-slate-400">NIT Rourkela | Feb 7 — 16, 2026</p></div>
+                        <a href="certs/workshop_2026_nitr.pdf" target="_blank" class="text-[#a51c30] font-bold shrink-0 bg-neutral-50 px-2.5 py-1 border border-neutral-200">View <i class="fa-solid fa-file-pdf ml-0.5"></i></a>
+                    </div>
+                    <div class="p-4 border border-neutral-200 bg-white flex justify-between items-center shadow-2xs">
+                        <div><h4 class="font-bold text-slate-950">Autodesk Authorized Academic Development Program</h4><p class="text-[10px] text-slate-400">Guru Nanak Institutions Technical Campus | 2024</p></div>
+                        <a href="certs/workshop_2024_autodesk.pdf" target="_blank" class="text-[#a51c30] font-bold shrink-0 bg-neutral-50 px-2.5 py-1 border border-neutral-200">View <i class="fa-solid fa-file-pdf ml-0.5"></i></a>
+                    </div>
+                    <div class="p-4 border border-neutral-200 bg-white flex justify-between items-center shadow-2xs">
+                        <div><h4 class="font-bold text-slate-950">Emission Control Strategies in Thermal Power Plants</h4><p class="text-[10px] text-slate-400">OP Jindal University & Jindal Power Limited | Oct 2023</p></div>
+                        <a href="certs/workshop_2023_opjindal.pdf" target="_blank" class="text-[#a51c30] font-bold shrink-0 bg-neutral-50 px-2.5 py-1 border border-neutral-200">View <i class="fa-solid fa-file-pdf ml-0.5"></i></a>
+                    </div>
+                    <div class="p-4 border border-neutral-200 bg-white flex justify-between items-center shadow-2xs">
+                        <div><h4 class="font-bold text-slate-950">Computational Research Techniques Using MATLAB</h4><p class="text-[10px] text-slate-400">Sree Chaitanya College of Engineering, Karimnagar | 2020</p></div>
+                        <a href="certs/workshop_2020_scce1.pdf" target="_blank" class="text-[#a51c30] font-bold shrink-0 bg-neutral-50 px-2.5 py-1 border border-neutral-200">View <i class="fa-solid fa-file-pdf ml-0.5"></i></a>
+                    </div>
+                    <div class="p-4 border border-neutral-200 bg-white flex justify-between items-center shadow-2xs">
+                        <div><h4 class="font-bold text-slate-950">Metallurgy for Mechanical Engineering Operations</h4><p class="text-[10px] text-slate-400">Sree Chaitanya College of Engineering, Karimnagar | 2020</p></div>
+                        <a href="certs/workshop_2020_scce2.pdf" target="_blank" class="text-[#a51c30] font-bold shrink-0 bg-neutral-50 px-2.5 py-1 border border-neutral-200">View <i class="fa-solid fa-file-pdf ml-0.5"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB CONTAINER 3: CONFERENCES & SHORT TERM COURSES CHRONOLOGICAL -->
+            <div id="conference-tab" class="tab-content p-6">
+                <div class="space-y-3 text-xs">
+                    <div class="p-4 bg-white border border-neutral-200 flex justify-between items-center hover:bg-neutral-50/40">
+                        <div><h4 class="font-bold text-slate-950">AI for Forensics and Biometric Applications (AIFB) 2025</h4><p class="text-[10px] text-slate-500">National Research Conference | Indian Institute of Technology Bhilai, India</p></div>
+                        <a href="certs/conf_2025_iitbh.pdf" target="_blank" class="text-[#a51c30] font-bold bg-neutral-50 px-3 py-1 border border-neutral-200 rounded-none shrink-0">Conference Cert</a>
+                    </div>
+                    <div class="p-4 bg-white border border-neutral-200 flex justify-between items-center hover:bg-neutral-50/40">
+                        <div><h4 class="font-bold text-slate-950">Enduring Trends in Hydraulic Control Systems: Past, Present and Future</h4><p class="text-[10px] text-slate-500">AICTE Short Term Course (STC) | Centre for Continuing Education, IIT Madras | 2021</p></div>
+                        <a href="certs/stc_2021_iitm.pdf" target="_blank" class="text-[#a51c30] font-bold bg-neutral-50 px-3 py-1 border border-neutral-200 rounded-none shrink-0">STC Cert</a>
+                    </div>
+                    <div class="p-4 bg-white border border-neutral-200 flex justify-between items-center hover:bg-neutral-50/40">
+                        <div><h4 class="font-bold text-slate-950">Three-Week Faculty Induction Training Program Matrix</h4><p class="text-[10px] text-slate-500">MHRD PMMMNMTT Track Scheme | TLC, Indian Institute of Technology Hyderabad</p></div>
+                        <a href="certs/ind_iith.pdf" target="_blank" class="text-[#a51c30] font-bold bg-neutral-50 px-3 py-1 border border-neutral-200 rounded-none shrink-0">Induction Cert</a>
+                    </div>
+                    <div class="p-4 bg-white border border-neutral-200 flex justify-between items-center hover:bg-neutral-50/40">
+                        <div><h4 class="font-bold text-slate-950">Theory of Plasticity and Its Engineering Applications</h4><p class="text-[10px] text-slate-500">Short Term Course | CE & QIP, Indian Institute of Technology Bombay</p></div>
+                        <a href="certs/stc_iitb.pdf" target="_blank" class="text-[#a51c30] font-bold bg-neutral-50 px-3 py-1 border border-neutral-200 rounded-none shrink-0">IITB STC Cert</a>
+                    </div>
+                    <div class="p-4 bg-white border border-neutral-200 flex justify-between items-center hover:bg-neutral-50/40">
+                        <div><h4 class="font-bold text-slate-950">Application of Forecasting Methods in Engineering and Business Problems</h4><p class="text-[10px] text-slate-500">AICTE & QIP System | Indian Institute of Technology Kharagpur</p></div>
+                        <a href="certs/stc_iitkgp.pdf" target="_blank" class="text-[#a51c30] font-bold bg-neutral-50 px-3 py-1 border border-neutral-200 rounded-none shrink-0">IITKGP Cert</a>
+                    </div>
+                    <div class="p-4 bg-white border border-neutral-200 flex justify-between items-center hover:bg-neutral-50/40">
+                        <div><h4 class="font-bold text-slate-950">Advances in Additive Manufacturing Technology Trajectories</h4><p class="text-[10px] text-slate-500">AICTE AQIS STC Track | Siemens Centre of Excellence, YCCE Nagpur</p></div>
+                        <a href="certs/stc_ycce.pdf" target="_blank" class="text-[#a51c30] font-bold bg-neutral-50 px-3 py-1 border border-neutral-200 rounded-none shrink-0">AQIS Cert</a>
+                    </div>
+                    <div class="p-4 bg-white border border-neutral-200 flex justify-between items-center hover:bg-neutral-50/40">
+                        <div><h4 class="font-bold text-slate-950">Advances in Finite Element Method for Industry & Research Applications</h4><p class="text-[10px] text-slate-500">AICTE Sponsored Short-Term Training Programme (STTP) | Vasavi College of Engineering, Hyderabad</p></div>
+                        <a href="certs/sttp_vasavi.pdf" target="_blank" class="text-[#a51c30] font-bold bg-neutral-50 px-3 py-1 border border-neutral-200 rounded-none shrink-0">STTP Cert</a>
+                    </div>
+                    <div class="p-4 bg-white border border-neutral-200 flex justify-between items-center hover:bg-neutral-50/40">
+                        <div><h4 class="font-bold text-slate-950">Modeling and Analysis using MATLAB and Python for Mechanical Engineering</h4><p class="text-[10px] text-slate-500">AICTE Online STTP Matrix | VNR Vignana Jyothi Institute of Engineering and Technology, Hyderabad</p></div>
+                        <a href="certs/sttp_vnr1.pdf" target="_blank" class="text-[#a51c30] font-bold bg-neutral-50 px-3 py-1 border border-neutral-200 rounded-none shrink-0">STTP Cert</a>
+                    </div>
+                    <div class="p-4 bg-white border border-neutral-200 flex justify-between items-center hover:bg-neutral-50/40">
+                        <div><h4 class="font-bold text-slate-950">Advanced Techniques in Modelling and Analysis for Materials and Manufacturing</h4><p class="text-[10px] text-slate-500">AICTE Online Short Term Track | VNR Vignana Jyothi Institute of Engineering and Technology, Hyderabad</p></div>
+                        <a href="certs/sttp_vnr2.pdf" target="_blank" class="text-[#a51c30] font-bold bg-neutral-50 px-3 py-1 border border-neutral-200 rounded-none shrink-0">STTP Cert</a>
+                    </div>
+                    <div class="p-4 bg-white border border-neutral-200 flex justify-between items-center hover:bg-neutral-50/40">
+                        <div><h4 class="font-bold text-slate-950">Design of Experiments in Engineering Applications</h4><p class="text-[10px] text-slate-500">Short-Term Training Program (STTP) | B.V. Raju Institute of Technology, Medak</p></div>
+                        <a href="certs/sttp_bvrit.pdf" target="_blank" class="text-[#a51c30] font-bold bg-neutral-50 px-3 py-1 border border-neutral-200 rounded-none shrink-0">STTP Cert</a>
+                    </div>
+                    <div class="p-4 bg-white border border-neutral-200 flex justify-between items-center hover:bg-neutral-50/40">
+                        <div><h4 class="font-bold text-slate-950">Training of Trainers (TOT) for Teacher Educator Trajectories</h4><p class="text-[10px] text-slate-500">STTP Platform Track | National Institute of Technical Teachers Training and Research (NITTTR), Bhopal</p></div>
+                        <a href="certs/sttp_nitttr_bhopal.pdf" target="_blank" class="text-[#a51c30] font-bold bg-neutral-50 px-3 py-1 border border-neutral-200 rounded-none shrink-0">STTP Cert</a>
+                    </div>
+                    <div class="p-4 bg-white border border-neutral-200 flex justify-between items-center hover:bg-neutral-50/40">
+                        <div><h4 class="font-bold text-slate-950">Green Manufacturing Systems Verification</h4><p class="text-[10px] text-slate-500">Short Term Course conducted by NITTTR Chandigarh at Sree Chaitanya College of Engineering</p></div>
+                        <a href="certs/stc_nitttr_ch.pdf" target="_blank" class="text-[#a51c30] font-bold bg-neutral-50 px-3 py-1 border border-neutral-200 rounded-none shrink-0">STC Cert</a>
+                    </div>
+                    <div class="p-4 bg-white border border-neutral-200 flex justify-between items-center hover:bg-neutral-50/40">
+                        <div><h4 class="font-bold text-slate-950">Essential Technologies and Career Opportunities in Mechanical Engineering</h4><p class="text-[10px] text-slate-500">International Webinar Track Matrix | Universal Engineering College, Kerala</p></div>
+                        <a href="certs/webinar_universal.pdf" target="_blank" class="text-[#a51c30] font-bold bg-neutral-50 px-3 py-1 border border-neutral-200 rounded-none shrink-0">Webinar Cert</a>
+                    </div>
+                    <div class="p-4 bg-white border border-neutral-200 flex justify-between items-center hover:bg-neutral-50/40">
+                        <div><h4 class="font-bold text-slate-950">A Vision Towards Materials and Manufacturing Paradigm</h4><p class="text-[10px] text-slate-500">National Framework Webinar Track | KPR Institute of Engineering and Technology, Coimbatore</p></div>
+                        <a href="certs/webinar_kpr.pdf" target="_blank" class="text-[#a51c30] font-bold bg-neutral-50 px-3 py-1 border border-neutral-200 rounded-none shrink-0">Webinar Cert</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB CONTAINER 4: ATAL CERTIFICATIONS CHRONOLOGICAL -->
+            <div id="atal-tab" class="tab-content p-6 bg-amber-50/10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div class="p-4 border border-amber-200 bg-amber-50/30 flex justify-between items-center shadow-2xs">
+                        <div>
+                            <h4 class="font-bold text-amber-950">Robotics for Industry 4.0: Enabling Smart Manufacturing</h4>
+                            <p class="text-[10px] text-amber-900/80">Sri Venkateswara College of Engineering | Nov 17 — 22, 2025</p>
+                        </div>
+                        <a href="certificates/atal_robotics_2025.pdf" target="_blank" class="bg-white text-amber-950 font-bold px-3 py-1.5 border border-amber-300 shadow-3xs hover:bg-amber-50 shrink-0">ATAL Cert <i class="fa-solid fa-file-pdf text-amber-700"></i></a>
+                    </div>
+                    <div class="p-4 border border-amber-200 bg-amber-50/30 flex justify-between items-center shadow-2xs">
+                        <div>
+                            <h4 class="font-bold text-amber-950">Green Technology and Sustainability Engineering</h4>
+                            <p class="text-[10px] text-amber-900/80">Amrita Vishwa Vidyapeetham | July 05 — 09, 2021</p>
+                        </div>
+                        <a href="certificates/atal_green_2021.pdf" target="_blank" class="bg-white text-amber-950 font-bold px-3 py-1.5 border border-amber-300 shadow-3xs hover:bg-amber-50 shrink-0">ATAL Cert <i class="fa-solid fa-file-pdf text-amber-700"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- HIGH-DENSITY INSTITUTIONAL ENGAGEMENTS MATRIX -->
+    <section class="max-w-7xl mx-auto px-6 py-20 border-b border-neutral-200 bg-white">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-xs leading-relaxed">
+            <div>
+                <h3 class="font-bold text-slate-950 text-sm mb-5 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 bg-[#a51c30]"></span> Institutional Governance & Roles
+                </h3>
+                <ul class="space-y-3 text-slate-600 list-none pl-0">
+                    <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-chevron-right text-slate-400 mt-0.5"></i> <span><strong>SAE BAJA Coordinator:</strong> Headed the competitive SAE BAJA and GO KARTING engineering design squads inside the Mechanical Department at GNITC.</span></li>
+                    <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-chevron-right text-slate-400 mt-0.5"></i> <span><strong>Minor Degree In-Charge:</strong> Administered student profiles and optimization paths for minor degree branches across engineering batches.</span></li>
+                    <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-chevron-right text-slate-400 mt-0.5"></i> <span><strong>Remedial Frameworks Leader:</strong> Designed and conducted structured remedial tracks and analytical tutorial course divisions.</span></li>
+                    <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-chevron-right text-slate-400 mt-0.5"></i> <span><strong>Academic Mentorship:</strong> Acted as official section mentor, monitoring academic growth matrices for student cohorts.</span></li>
                 </ul>
             </div>
             <div>
-                <h3 class="serif-title font-bold text-neutral-900 text-base mb-5 border-b border-neutral-200 pb-2">Institutional Commendations & Social Duties</h3>
-                <ul class="space-y-3 text-neutral-600 text-xs list-none pl-0">
-                    <li class="flex items-start gap-2"><i class="fa-solid fa-star text-[9px] text-[#A51C30] mt-1.5 shrink-0"></i> <span>Pledge Participant, Nasha Mukt Bharat, Khushaal Bharat (Ministry of Social Justice and Empowerment, Govt. of India).</span></li>
-                    <li class="flex items-start gap-2"><i class="fa-solid fa-star text-[9px] text-[#A51C30] mt-1.5 shrink-0"></i> <span>Active Altruistic Blood Donor — documented volunteer participation spanning 10 distinct seasonal donation drives.</span></li>
-                    <li class="flex items-start gap-2"><i class="fa-solid fa-star text-[9px] text-[#A51C30] mt-1.5 shrink-0"></i> <span>Certificate of Appreciation in Technical Essay Writing and Elocution Competitions issued by the Department of Youth Services, Karimnagar.</span></li>
-                    <li class="flex items-start gap-2"><i class="fa-solid Star text-[9px] text-[#A51C30] mt-1.5 shrink-0"></i> <span>Appreciation Milestone Award completed within the Innovation 2K12 National Fest at Vivekananda Institute of Technology & Science, Karimnagar.</span></li>
+                <h3 class="font-bold text-slate-950 text-sm mb-5 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 bg-[#a51c30]"></span> Service Contributions & Achievements
+                </h3>
+                <ul class="space-y-3 text-slate-600 list-none pl-0">
+                    <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-chevron-right text-slate-400 mt-0.5"></i> <span><strong>National Social Pledges:</strong> Active participant in the Nasha Mukt Bharat / Khushaal Bharat civic alignment paradigms under the Ministry of Social Justice and Empowerment, Government of India.</span></li>
+                    <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-chevron-right text-slate-400 mt-0.5"></i> <span><strong>Blood Donation Drives:</strong> Voluntarily donated blood on 10 separate occasions through recognized medical camps to aid critical care operations.</span></li>
+                    <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-chevron-right text-slate-400 mt-0.5"></i> <span><strong>Elocution Milestones:</strong> Conferred official Certificate of Appreciation in high-tier Essay Writing and Elocution tracks by the Department of Youth Services, Karimnagar.</span></li>
+                    <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-chevron-right text-slate-400 mt-0.5"></i> <span><strong>Innovation 2K12 Laurels:</strong> Awarded Certificate of Merit at the Innovation 2K12 National Level Engineering Symposium held at VITS.</span></li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- ELITE UNIVERSITY PEER CORRESPONDENCE & REFERENCE REGISTER -->
-    <section class="max-w-5xl mx-auto px-6 py-16">
-        <h2 class="serif-title text-xl font-bold text-neutral-900 mb-8 tracking-tight">Formal Academic References</h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-            <div class="bg-white p-4 border border-neutral-200 shadow-3xs">
-                <h4 class="font-bold text-neutral-900 text-sm">Dr. Prashanta Kr. Mahato</h4>
-                <p class="text-neutral-500 mb-3">Professor, Dept. of Mechanical Engineering<br>IIT (ISM) Dhanbad</p>
-                <a href="mailto:pkmahato@iitism.ac.in" class="text-[#A51C30] font-semibold hover:underline">pkmahato@iitism.ac.in</a>
+    <!-- ELITE ACADEMIC ADVISORY SCHOLAR MATRIX (REFERENCES) -->
+    <section class="max-w-7xl mx-auto px-6 py-20 border-b border-neutral-200 bg-neutral-50/20">
+        <h2 class="serif-title text-2xl font-normal text-slate-950 mb-12 flex items-center gap-3">
+            <span class="w-8 h-[1px] bg-[#a51c30]"></span> Academic References
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+            <div class="bg-white p-5 border border-neutral-200 shadow-3xs">
+                <h4 class="font-bold text-slate-950 text-sm">Dr. Prashanta Kr. Mahato</h4>
+                <p class="text-slate-500 mt-1 leading-relaxed">Professor, Dept. of Mechanical Engineering<br>IIT (ISM) Dhanbad</p>
+                <p class="text-[#a51c30] font-medium mt-3">pkmahato@iitism.ac.in</p>
             </div>
-            <div class="bg-white p-4 border border-neutral-200 shadow-3xs">
-                <h4 class="font-bold text-neutral-900 text-sm">Dr. Suparno Bhattacharyya</h4>
-                <p class="text-neutral-500 mb-3">Assistant Professor, Dept. of Mechanical Engineering<br>IIT (ISM) Dhanbad</p>
-                <a href="mailto:suparno@iitism.ac.in" class="text-[#A51C30] font-semibold hover:underline">suparno@iitism.ac.in</a>
+            <div class="bg-white p-5 border border-neutral-200 shadow-3xs">
+                <h4 class="font-bold text-slate-950 text-sm">Dr. Suparno Bhattacharyya</h4>
+                <p class="text-slate-500 mt-1 leading-relaxed">Assistant Professor, Dept. of Mechanical Engineering<br>IIT (ISM) Dhanbad</p>
+                <p class="text-[#a51c30] font-medium mt-3">suparno@iitism.ac.in</p>
             </div>
-            <div class="bg-white p-4 border border-neutral-200 shadow-3xs">
-                <h4 class="font-bold text-neutral-900 text-sm">Dr. R. Reddy Resapu</h4>
-                <p class="text-neutral-500 mb-3">Associate Professor & Head, Department of Mechanical Engineering<br>GITAM University</p>
-                <a href="mailto:rresapu@gitam.edu" class="text-[#A51C30] font-semibold hover:underline">rresapu@gitam.edu</a>
+            <div class="bg-white p-5 border border-neutral-200 shadow-3xs">
+                <h4 class="font-bold text-slate-950 text-sm">Dr. R. Reddy Resapu</h4>
+                <p class="text-slate-500 mt-1 leading-relaxed">Associate Professor & Head, Machine Design Division<br>GITAM Deemed University</p>
+                <p class="text-[#a51c30] font-medium mt-3">rresapu@gitam.edu</p>
             </div>
-            <div class="bg-white p-4 border border-neutral-200 shadow-3xs">
-                <h4 class="font-bold text-neutral-900 text-sm">Dr. A Raj Kumar</h4>
-                <p class="text-neutral-500 mb-3">Professor & Head, Department of Mechanical Engineering<br>GNITC, Hyderabad</p>
-                <a href="mailto:hodme.gnitc@gniindia.org" class="text-[#A51C30] font-semibold hover:underline">hodme.gnitc@gniindia.org</a>
+            <div class="bg-white p-5 border border-neutral-200 shadow-3xs">
+                <h4 class="font-bold text-slate-950 text-sm">Dr. A Raj Kumar</h4>
+                <p class="text-slate-500 mt-1 leading-relaxed">Professor & Head, Dept. of Mechanical Engineering<br>GNITC, Hyderabad</p>
+                <p class="text-[#a51c30] font-medium mt-3">hodme.gnitc@gniindia.org</p>
             </div>
         </div>
     </section>
 
-    <!-- GEOGRAPHIC DISPATCH CORRESPONDENCE & SOCIAL MATRIX FOOTER -->
-    <footer class="bg-neutral-900 text-neutral-400 pt-16 pb-12 border-t border-neutral-800">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-start gap-8 pb-12 border-b border-neutral-800">
+    <!-- CLEAN IVY LEAGUE-STYLE FOOTER ARCHITECTURE -->
+    <footer class="bg-slate-950 text-slate-400 pt-16 pb-14 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pb-12 border-b border-neutral-800">
+                <!-- Academic Address Block -->
                 <div>
-                    <h3 class="text-xs font-bold tracking-widest text-white uppercase mb-4">Mailing & Research Correspondence Address</h3>
-                    <p class="text-neutral-400 text-xs leading-relaxed flex items-start gap-2 font-light">
+                    <h3 class="text-xs font-bold tracking-widest text-white uppercase mb-4">Official Mailing & Coordinates</h3>
+                    <p class="text-neutral-400 text-xs leading-relaxed flex items-start gap-2">
                         <i class="fa-solid fa-location-dot mt-0.5 text-neutral-500 shrink-0"></i>
                         <span>
                             Plot No. 138, Road Number 5,<br>
@@ -802,26 +791,41 @@
                         </span>
                     </p>
                 </div>
-                <div class="text-xs space-y-2 text-neutral-400 font-light">
-                    <p>Institutional Profile: <span class="text-neutral-300 font-normal">Design Track Scholar, Indian School of Mines</span></p>
-                    <p>Focus Array: <span class="text-neutral-300 font-normal">Computational Solid Mechanics, Aeroelasticity, & Machine Design</span></p>
+                <div class="text-xs text-neutral-400 md:text-right flex flex-col justify-end space-y-1">
+                    <p class="text-neutral-500">Research Scholar Portfolio System</p>
+                    <p>Designed in accordance with Ivy League & IIT Faculty Registry structural parameters.</p>
                 </div>
             </div>
 
+            <!-- Absolute Bottom Communication Icon Bar -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-                <p class="text-[11px] text-neutral-500 font-light">&copy; 2026 Gajavada Sanjeevkumar. Full Repository Validation Powered by Elite University Layout Standards.</p>
+                <p class="text-[10px] text-neutral-600">&copy; 2026 Gajavada Sanjeevkumar. All research rights reserved.</p>
                 
-                <div class="flex items-center gap-5 text-base">
-                    <a href="tel:+919030833667" class="text-neutral-500 hover:text-white transition-colors" title="Call Core Line"><i class="fa-solid fa-phone"></i></a>
-                    <a href="mailto:sanjeevkumargajawada@gmail.com" class="text-neutral-500 hover:text-white transition-colors" title="Research Correspondence"><i class="fa-solid fa-envelope"></i></a>
-                    <a href="https://www.linkedin.com/in/skgajawada/" target="_blank" class="text-neutral-500 hover:text-white transition-colors" title="LinkedIn Network"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="https://github.com" target="_blank" class="text-neutral-500 hover:text-white transition-colors" title="GitHub Source Repository"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://orcid.org" target="_blank" class="text-neutral-500 hover:text-white transition-colors" title="ORCID Researcher iD"><i class="fa-solid fa-id-card"></i></a>
-                    <a href="https://scholar.google.com" target="_blank" class="text-neutral-500 hover:text-white transition-colors" title="Google Scholar Citations"><i class="fa-solid fa-graduation-cap"></i></a>
+                <div class="flex flex-wrap items-center gap-6 text-base">
+                    <a href="tel:+919030833667" class="text-neutral-500 hover:text-white transition-colors" title="Mobile Registry Contact"><i class="fa-solid fa-phone text-xs"></i></a>
+                    <a href="mailto:sanjeevkumargajawada@gmail.com" class="text-neutral-500 hover:text-white transition-colors" title="Institutional Correspondence Email"><i class="fa-solid fa-envelope text-xs"></i></a>
+                    <a href="https://www.linkedin.com/in/skgajawada/" target="_blank" class="text-neutral-500 hover:text-white transition-colors" title="LinkedIn Professional Engine Link"><i class="fa-brands fa-linkedin-in text-xs"></i></a>
+                    <a href="https://www.credly.com/users/skgajawada/" target="_blank" class="text-neutral-500 hover:text-white transition-colors" title="Credly Global Badge Vault"><i class="fa-solid fa-certificate text-xs"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- INTERACTIVE ACCORDION JAVASCRIPT LOGIC -->
+    <script>
+        function switchTab(evt, tabId) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
 </body>
 </html>
