@@ -55,7 +55,7 @@ body {
 }
 
 .navbar a:hover {
-    color: #a51c30; 
+    color: #a51c30; /* University Academic Crimson Hues */
 }
 
 /* ==========================================================================
@@ -148,7 +148,7 @@ body {
 }
 
 /* ==========================================================================
-   5. ACADEMIC CHRONOLOGY LAYOUT MATRIX
+   5. ACADEMIC HIGH-DENSITY CHRONOLOGY MATRIX
    ========================================================================== */
 .category-block {
     margin-bottom: 4.5rem;
@@ -225,7 +225,7 @@ body {
 }
 
 /* ==========================================================================
-   6. ACCORDION DOCK FOR COURSE MATERIAL & REPOSITORIES
+   6. ACCORDION DEPLOYMENTS
    ========================================================================== */
 .context-paragraph {
     font-size: 1.55rem;
@@ -289,13 +289,13 @@ body {
 }
 
 .download-list li {
-    margin-bottom: 1rem;
-    font-size: 1.45rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
 }
 
 .download-list a {
     color: #a51c30;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .download-list a:hover {
