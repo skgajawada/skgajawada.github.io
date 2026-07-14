@@ -3,892 +3,626 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic Faculty Portfolio | Institutional Registry System</title>
+    <title>Gajavada Sanjeevkumar | Professional Academic & Research Portfolio</title>
+    <!-- FontAwesome for clean semantic symbols -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #002147; /* Oxford Blue */
-            --secondary-color: #384d6b; /* Muted Slate */
-            --accent-color: #800000; /* Maroon Academic Accent */
-            --text-dark: #1e293b; /* Deep Charcoal */
-            --text-light: #64748b; /* Slate Gray */
-            --bg-body: #ffffff;
-            --bg-alt: #f8fafc; /* Cool White/Gray */
+            --primary: #002147; /* Deep Academic Blue */
+            --secondary: #0d47a1;
+            --accent: #b71c1c; /* Crimson Highlights */
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-body: #f8fafc;
             --bg-card: #ffffff;
-            --border-color: #e2e8f0;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-            --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            --font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+            --border: #e2e8f0;
+            --radius: 8px;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
         body {
-            font-family: var(--font-family);
-            line-height: 1.7;
-            color: var(--text-dark);
             background-color: var(--bg-body);
-            padding-top: 60px; /* Counter for fixed navbar */
-            -webkit-font-smoothing: antialiased;
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: 60px;
         }
 
-        /* Fixed Navigation System */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: var(--primary-color);
-            z-index: 1000;
-            box-shadow: var(--shadow-md);
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1e3a8a 100%);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
         }
 
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 24px;
-            height: 60px;
-        }
-
-        .nav-brand {
-            color: #ffffff;
-            font-weight: 700;
-            font-size: 1.1rem;
+        .header-container h1 {
+            font-size: 2.6rem;
+            margin-bottom: 8px;
             letter-spacing: 0.5px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
-        .nav-menu-wrapper {
-            overflow-x: auto;
-            scrollbar-width: none; /* Firefox */
-        }
-
-        .nav-menu-wrapper::-webkit-scrollbar {
-            display: none; /* Safari/Chrome */
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links li a {
-            display: block;
-            color: #e2e8f0;
-            text-decoration: none;
-            padding: 0 16px;
-            line-height: 60px;
-            font-size: 0.88rem;
-            font-weight: 500;
-            white-space: nowrap;
-            transition: var(--transition-smooth);
-            border-bottom: 3px solid transparent;
-        }
-
-        .nav-links li a:hover {
-            color: #ffffff;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-bottom-color: var(--accent-color);
-        }
-
-        .nav-links li a.active {
-            color: #ffffff;
-            border-bottom-color: var(--accent-color);
-            background-color: rgba(255, 255, 255, 0.08);
-        }
-
-        /* Layout Architecture */
-        .main-wrapper {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 40px 24px;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-        }
-
-        /* Profile Block Header */
-        .profile-hero {
-            background: linear-gradient(135deg, #002147 0%, #1e293b 100%);
-            border-radius: 12px;
-            padding: 40px;
-            color: #ffffff;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 40px;
-            box-shadow: var(--shadow-md);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .profile-hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: rgba(255,255,255,0.03);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .profile-avatar-container {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background-color: #ffffff;
-            border: 5px solid rgba(255, 255, 255, 0.2);
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            box-shadow: var(--shadow-md);
-        }
-
-        .profile-avatar-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-meta-block {
-            flex-grow: 1;
-        }
-
-        .profile-meta-block .registry-tag {
-            font-size: 0.78rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #cbd5e1;
-            font-weight: 600;
-            margin-bottom: 8px;
-            display: inline-block;
-            background: rgba(255,255,255,0.1);
-            padding: 2px 10px;
-            border-radius: 4px;
-        }
-
-        .profile-meta-block h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 8px;
-            color: #ffffff;
-        }
-
-        .profile-meta-block h2 {
-            font-size: 1.25rem;
-            font-weight: 400;
-            color: #94a3b8;
-            margin-bottom: 16px;
-        }
-
-        .profile-badges-strip {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 12px;
-        }
-
-        .badge-pill {
-            background: rgba(255, 255, 255, 0.15);
-            color: #ffffff;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            backdrop-filter: blur(4px);
-        }
-
-        /* Generic Section Parameters */
-        section {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 32px;
-            box-shadow: var(--shadow-sm);
-            scroll-margin-top: 85px;
-        }
-
-        .section-heading {
-            font-size: 1.6rem;
-            color: var(--primary-color);
-            font-weight: 700;
-            margin-bottom: 24px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .section-heading-span {
-            position: relative;
-        }
-
-        .section-heading-span::after {
-            content: '';
-            position: absolute;
-            bottom: -14px;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background-color: var(--accent-color);
-        }
-
-        /* Unified Document Layout Elements */
-        p.body-narrative {
-            color: var(--text-dark);
-            margin-bottom: 16px;
-            text-align: justify;
-        }
-
-        .list-bulleted {
-            list-style: none;
-            margin-left: 4px;
-            margin-bottom: 16px;
-        }
-
-        .list-bulleted li {
-            position: relative;
-            padding-left: 24px;
-            margin-bottom: 12px;
-            color: var(--text-dark);
-        }
-
-        .list-bulleted li::before {
-            content: "▪";
-            position: absolute;
-            left: 4px;
-            color: var(--accent-color);
-            font-size: 1rem;
-            top: -2px;
-        }
-
-        /* Timeline Architectures (Education & Experience) */
-        .timeline-container {
-            position: relative;
-            padding-left: 32px;
-        }
-
-        .timeline-container::before {
-            content: '';
-            position: absolute;
-            left: 8px;
-            top: 8px;
-            bottom: 8px;
-            width: 2px;
-            background-color: var(--border-color);
-        }
-
-        .timeline-block {
-            position: relative;
-            margin-bottom: 32px;
-        }
-
-        .timeline-block:last-child {
-            margin-bottom: 0;
-        }
-
-        .timeline-node {
-            position: absolute;
-            left: -32px;
-            top: 6px;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background-color: #ffffff;
-            border: 4px solid var(--primary-color);
-            z-index: 2;
-        }
-
-        .timeline-block:hover .timeline-node {
-            border-color: var(--accent-color);
-            transform: scale(1.1);
-            transition: var(--transition-smooth);
-        }
-
-        .timeline-content {
-            background-color: var(--bg-alt);
-            padding: 20px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-        }
-
-        .timeline-header-group {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-
-        .timeline-title-main {
+        .header-container p {
             font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--primary-color);
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 10px auto 20px auto;
         }
 
-        .timeline-institution-name {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #334155;
+        .social-links a {
+            color: white;
+            font-size: 1.6rem;
+            margin: 0 12px;
+            transition: transform 0.2s, opacity 0.2s;
+            display: inline-block;
+            text-decoration: none;
         }
 
-        .timeline-timestamp {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #ffffff;
-            background-color: var(--secondary-color);
-            padding: 2px 10px;
-            border-radius: 4px;
-            white-space: nowrap;
+        .social-links a:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
         }
 
-        .timeline-description-para {
-            font-size: 0.92rem;
-            color: var(--text-dark);
-            margin-top: 8px;
-        }
-
-        /* Professional Development Accordion Subsystem */
-        .accordion-item-box {
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            margin-bottom: 16px;
-            overflow: hidden;
-            background-color: #ffffff;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .accordion-trigger-button {
-            width: 100%;
-            background-color: var(--bg-alt);
-            border: none;
-            outline: none;
-            padding: 20px 24px;
-            text-align: left;
-            cursor: pointer;
+        nav {
+            background-color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-bottom: 1px solid var(--border);
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: var(--transition-smooth);
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
-        .accordion-trigger-button:hover {
+        nav a {
+            color: var(--text-dark);
+            padding: 15px 18px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.2s, background-color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
             background-color: #f1f5f9;
         }
 
-        .accordion-title-text {
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: var(--primary-color);
+        .container {
+            max-width: 1140px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 30px;
+            margin-bottom: 35px;
+            box-shadow: var(--shadow);
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .accordion-icon-indicator {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            transition: transform 0.25s ease;
+        h3 {
+            color: var(--secondary);
+            font-size: 1.25rem;
+            margin-top: 5px;
+            margin-bottom: 5px;
         }
 
-        .accordion-trigger-button.active .accordion-icon-indicator {
-            transform: rotate(180deg);
-        }
-
-        .accordion-collapsible-panel {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
-            background-color: #ffffff;
-            padding: 0 24px;
-        }
-
-        .accordion-collapsible-panel.open {
-            max-height: 2000px;
-            padding: 24px;
-            border-top: 1px solid var(--border-color);
-            transition: max-height 0.3s cubic-bezier(1, 0, 1, 0), padding 0.3s ease;
-        }
-
-        /* Course / Portfolio Item Elements */
-        .nested-card-matrix {
+        .grid-2 {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-        }
-
-        .nested-card-row {
-            background-color: var(--bg-alt);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 16px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .nested-card-meta-left h4 {
-            font-size: 1.05rem;
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .nested-card-meta-left p {
-            font-size: 0.88rem;
-            color: var(--text-light);
-        }
-
-        .folder-access-link-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background-color: var(--primary-color);
-            color: #ffffff;
-            padding: 6px 14px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: var(--transition-smooth);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .folder-access-link-btn:hover {
-            background-color: var(--accent-color);
-        }
-
-        /* Certificate Asset Node Links */
-        .verification-asset-strip {
-            margin-top: 8px;
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .asset-node-link {
-            font-size: 0.82rem;
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .asset-node-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Grid Framework for Credly & Downloads */
-        .download-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 16px;
-        }
-
-        .download-card-element {
-            border: 1px solid var(--border-color);
-            background-color: var(--bg-alt);
-            padding: 20px;
-            border-radius: 6px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 16px;
-            transition: var(--transition-smooth);
-        }
-
-        .download-card-element:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
-            border-color: #cbd5e1;
-        }
-
-        .download-card-title-text {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        /* Contact Details Grid */
-        .contact-panel-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
-        }
-
-        .contact-element-node h5 {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-light);
-            margin-bottom: 4px;
-        }
-
-        .contact-element-node p {
-            font-size: 1.05rem;
-            font-weight: 500;
-            color: var(--text-dark);
-        }
-
-        .contact-element-node a {
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-
-        .contact-element-node a:hover {
-            text-decoration: underline;
-        }
-
-        /* Global Footer Elements */
-        footer {
-            background-color: var(--primary-color);
-            color: #94a3b8;
-            padding: 40px 24px;
-            text-align: center;
-            border-top: 4px solid var(--accent-color);
-            font-size: 0.88rem;
-            margin-top: 60px;
-        }
-
-        footer p {
-            max-width: 800px;
-            margin: 0 auto 12px auto;
-        }
-
-        footer .footer-meta-brand {
-            color: #ffffff;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        /* Responsive Breakpoints & Viewport Corrections */
-        @media (max-width: 992px) {
-            .profile-hero {
-                flex-direction: column;
-                text-align: center;
-                padding: 32px 24px;
-            }
-            .profile-avatar-container {
-                width: 160px;
-                height: 160px;
-            }
-            .profile-badges-strip {
-                justify-content: center;
-            }
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
 
         @media (max-width: 768px) {
-            body {
-                padding-top: 50px;
-            }
-            .nav-container {
-                height: 50px;
-                padding: 0 16px;
-            }
-            .nav-links li a {
-                line-height: 50px;
-                padding: 0 12px;
-                font-size: 0.82rem;
-            }
-            section {
-                padding: 24px 16px;
-            }
-            .timeline-header-group {
-                flex-direction: column;
-                gap: 4px;
-            }
-            .timeline-timestamp {
-                align-self: flex-start;
-            }
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            background-color: #fafafa;
+            position: relative;
+        }
+
+        .date-badge {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            padding: 3px 9px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .institution {
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 6px;
+        }
+
+        .skills-tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+
+        .skill-tag {
+            background-color: #e2e8f0;
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .cert-list, .fdp-list {
+            list-style: none;
+        }
+
+        .cert-list li, .fdp-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+
+        .cert-list li::before {
+            content: "\f0a3";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #16a34a;
+        }
+
+        .fdp-list li::before {
+            content: "\f518";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+
+        /* References Framework */
+        .references-title {
+            color: #475569;
+            font-size: 1.15rem;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            border-left: 3px solid var(--secondary);
+            padding-left: 10px;
+        }
+
+        .references-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .ref-card {
+            border: 1px solid var(--border);
+            background: #ffffff;
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+        }
+
+        .ref-card h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .ref-card .title-dept {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .ref-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+            font-size: 0.85rem;
+        }
+
+        .ref-meta-item i {
+            color: var(--secondary);
+            width: 16px;
+            text-align: center;
+        }
+
+        .ref-meta-item a {
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        .ref-meta-item a:hover {
+            text-decoration: underline;
+            color: var(--secondary);
+        }
+
+        /* Strict Symbols Only Grid for IIT Mines Reference Group */
+        .mines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 15px;
+        }
+
+        .mines-card {
+            border-top: 4px solid var(--accent);
+            background: #fff;
+            padding: 22px;
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.02);
+        }
+
+        .mines-card h4 {
+            color: var(--primary);
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+            border-bottom: 1px dashed var(--border);
+            padding-bottom: 6px;
+        }
+
+        .mines-symbol-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .mines-symbol-row i {
+            color: var(--accent);
+            font-size: 1.05rem;
+            margin-top: 3px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .mines-symbol-row span, .mines-symbol-row a {
+            color: var(--text-dark);
+            text-decoration: none;
+            line-height: 1.3;
+        }
+
+        .mines-symbol-row a:hover {
+            color: var(--accent);
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-top: 50px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Fixed Layer Global Navigation Bar -->
-    <nav class="navbar" id="globalNavbarNode">
-        <div class="nav-container">
-            <a href="#" class="nav-brand">Faculty Registry</a>
-            <div class="nav-menu-wrapper">
-                <ul class="nav-links">
-                    <li><a href="#biography">Biography</a></li>
-                    <li><a href="#research-interests">Interests</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#teaching">Teaching</a></li>
-                    <li><a href="#research-projects">Projects</a></li>
-                    <li><a href="#professional-development">Development</a></li>
-                    <li><a href="#credly">Credly</a></li>
-                    <li><a href="#downloads">Downloads</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+    <header>
+        <div class="header-container">
+            <h1>Gajavada Sanjeevkumar</h1>
+            <p>Ph.D. Research Scholar (Design Track) at IIT (ISM) Dhanbad & Professional Engineering Educator</p>
+            <div class="social-links">
+                <a href="mailto:sanjeevkumargajawada@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/skgajawada/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
             </div>
         </div>
+    </header>
+
+    <nav>
+        <a href="#objective">Objective</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Teaching Tenure</a>
+        <a href="#fdps">FDPs &amp; Systems</a>
+        <a href="#skills">Computational Engine</a>
+        <a href="#projects">Research Projects</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#references">Institutional Ledger</a>
     </nav>
 
-    <div class="main-wrapper">
+    <div class="container">
 
-        <!-- Header Profile Hero -->
-        <header class="profile-hero">
-            <div class="profile-avatar-container">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&width=400&auto=format&fit=crop" alt="Official Academic Faculty Photograph Portrait">
-            </div>
-            <div class="profile-meta-block">
-                <span class="registry-tag">Institutional Faculty Registry Reference</span>
-                <h1>Your Name Here</h1>
-                <h2>Your Academic Title / Specialization</h2>
-                <p>Your Department / Laboratory Group</p>
-                <div class="profile-badges-strip">
-                    <span class="badge-pill">Affiliation 1</span>
-                    <span class="badge-pill">Affiliation 2</span>
-                    <span class="badge-pill">Honor / Body 3</span>
-                </div>
-            </div>
-        </header>
-
-        <!-- Biography Section -->
-        <section id="biography">
-            <h3 class="section-heading"><span class="section-heading-span">Biography</span></h3>
-            <p class="body-narrative">
-                Write your core professional narrative here. Focus on your trajectory, top-tier research or industrial alignments, collaborative operations, and macro objectives within your domain.
-            </p>
-        </section>
-
-        <!-- Research Interests Section -->
-        <section id="research-interests">
-            <h3 class="section-heading"><span class="section-heading-span">Research Interests</span></h3>
-            <p class="body-narrative">Brief introduction to your active lab focus areas or domain domains:</p>
-            <ul class="list-bulleted">
-                <li><strong>Core Track A:</strong> Key details regarding execution systems, architectures, or field parameters.</li>
-                <li><strong>Core Track B:</strong> Applied domains, modern updates, framework evaluations.</li>
-            </ul>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience">
-            <h3 class="section-heading"><span class="section-heading-span">Professional Experience</span></h3>
-            <div class="timeline-container">
-                
-                <div class="timeline-block">
-                    <div class="timeline-node"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header-group">
-                            <div>
-                                <h4 class="timeline-title-main">Your Position / Title</h4>
-                                <div class="timeline-institution-name">Institution Name / Division</div>
-                            </div>
-                            <span class="timeline-timestamp">2022 — Present</span>
-                        </div>
-                        <p class="timeline-description-para">
-                            Describe your roles, target output metrics, team scales, design ownership, or standard framework responsibilities handled under this profile layer.
-                        </p>
-                    </div>
-                </div>
-
-            </div>
+        <!-- Objective Section -->
+        <section id="objective">
+            <h2><i class="fas fa-bullseye"></i> Research Vision & Focus</h2>
+            <p>To spearhead advancements within mechanical and aerospace engineering systems through structured research contributions spanning aeroelasticity, localized structural vibration profiles, structural health dynamics, finite element modeling frameworks (FEM), advanced composite materials, and modern flight mechanics control systems. Dedicated to unifying dense mechanical engineering principles with automated computational engines, distributed machine learning protocols, and predictive artificial intelligence layers to solve high-impact technological challenges.</p>
         </section>
 
         <!-- Education Section -->
         <section id="education">
-            <h3 class="section-heading"><span class="section-heading-span">Educational Background</span></h3>
-            <div class="timeline-container">
-                
-                <div class="timeline-block">
-                    <div class="timeline-node"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header-group">
-                            <div>
-                                <h4 class="timeline-title-main">Degree / Specialization Path</h4>
-                                <div class="timeline-institution-name">University / Granting Center</div>
-                            </div>
-                            <span class="timeline-timestamp">Graduated: 2016</span>
-                        </div>
-                        <p class="timeline-description-para">
-                            Thesis milestones, academic highlights, or department commendations.
-                        </p>
-                    </div>
+            <h2><i class="fas fa-graduation-cap"></i> Academic Milestones</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <span class="date-badge">2025 - Present</span>
+                    <h3>Ph.D. in Mechanical Engineering (Design)</h3>
+                    <p class="institution">Indian Institute of Technology (Indian School of Mines), Dhanbad</p>
+                    <p>Current Research Performance Track: 8.2 CGPA</p>
                 </div>
-
+                <div class="card">
+                    <span class="date-badge">2025</span>
+                    <h3>AICTE QIP Post Graduate Certification</h3>
+                    <p class="institution">Indian Institute of Technology Bhilai</p>
+                    <p>Specialization Focus: Advanced Data Science | Core Evaluation: 8.67 CGPA</p>
+                </div>
+                <div class="card">
+                    <span class="date-badge">2016 - 2018</span>
+                    <h3>M.Tech. in Machine Design</h3>
+                    <p class="institution">GITAM (Deemed To Be University), Visakhapatnam</p>
+                    <p>Academic Standout Tier: 8.78 CGPA</p>
+                </div>
+                <div class="card">
+                    <span class="date-badge">2010 - 2014</span>
+                    <h3>B.Tech. in Mechanical Engineering</h3>
+                    <p class="institution">Vivekananda Institute of Technology and Science</p>
+                    <p>Final Performance Aggregation: 71.28%</p>
+                </div>
             </div>
         </section>
 
-        <!-- Teaching Section -->
-        <section id="teaching">
-            <h3 class="section-heading"><span class="section-heading-span">Teaching & Course Pedagogy</span></h3>
-            <p class="body-narrative" style="margin-bottom: 20px;">Select an active instructional registry course line below to inspect parameters:</p>
+        <!-- Experience Section -->
+        <section id="experience">
+            <h2><i class="fas fa-chalkboard-teacher"></i> Professional Academic Experience</h2>
+            <div class="card" style="margin-bottom: 15px;">
+                <span class="date-badge">March 2021 - June 2025</span>
+                <h3>Assistant Professor</h3>
+                <p class="institution">Guru Nanak Institutions Technical Campus (GNITC), Hyderabad</p>
+                <p style="margin-top:6px; font-size:0.9rem; color:var(--text-light);">Key Roles: Assigned Department Minor Degree In-charge | Faculty Design Coordinator for SAE BAJA &amp; GO KARTING national design competitions | Designated Section Mentor.</p>
+            </div>
+            <div class="card" style="margin-bottom: 15px;">
+                <span class="date-badge">November 2018 - March 2021</span>
+                <h3>Assistant Professor</h3>
+                <p class="institution">Sree Chaitanya College of Engineering, Karimnagar</p>
+            </div>
+            <div class="card">
+                <span class="date-badge">December 2015 - June 2016</span>
+                <h3>Lecturer</h3>
+                <p class="institution">Jyothishmathi Institute of Technology and Science, Karimnagar</p>
+            </div>
             
-            <div class="accordion-item-box">
-                <button class="accordion-trigger-button">
-                    <span class="accordion-title-text">Course Name (Catalog Code)</span>
-                    <span class="accordion-icon-indicator">▼</span>
-                </button>
-                <div class="accordion-collapsible-panel">
-                    <p class="body-narrative">Describe target student populations, curricular focuses, and lecture methodologies.</p>
-                    <div class="nested-card-matrix" style="margin-top: 12px;">
-                        <div class="nested-card-row">
-                            <div class="nested-card-meta-left">
-                                <h4>Course Repository File Node</h4>
-                                <p>Description of syllabus assets, codes, or lab manuals.</p>
-                            </div>
-                            <a href="#" class="folder-link-btn folder-access-link-btn">📁 Access Material</a>
-                        </div>
-                    </div>
-                </div>
+            <h3 style="margin-top:25px; margin-bottom:10px; font-size:1.15rem; color:var(--primary);">Core Academic Course Materials Delivered:</h3>
+            <div class="skills-tag-container">
+                <span class="skill-tag">Finite Element Methods (FEM / FEA)</span>
+                <span class="skill-tag">Design of Machine Members</span>
+                <span class="skill-tag">Mechanics of Solids</span>
+                <span class="skill-tag">Engineering Mechanics</span>
+                <span class="skill-tag">Kinematics of Machinery</span>
+                <span class="skill-tag">Fluid Mechanics &amp; Hydraulic Machinery</span>
+                <span class="skill-tag">Engineering Graphics / Technical Drawing</span>
+                <span class="skill-tag">Thermal Engineering &amp; Thermodynamics</span>
+                <span class="skill-tag">Heat Transfer Operations</span>
+                <span class="skill-tag">Operations Research Frameworks</span>
             </div>
         </section>
 
-        <!-- Research Projects Section -->
-        <section id="research-projects">
-            <h3 class="section-heading"><span class="section-heading-span">Research Projects</span></h3>
-            <div class="timeline-container">
+        <!-- FDPs Attended Section -->
+        <section id="fdps">
+            <h2><i class="fas fa-laptop-code"></i> Faculty Development Programs Attended (2026 Grid)</h2>
+            <ul class="fdp-list">
+                <li><strong>Problem-Driven AI: Real World Applications and Solution Frameworks</strong><br><span style="font-size:0.85rem; color:var(--text-light)">National Institute of Technology | Feb 07 - Feb 16, 2026</span></li>
+                <li><strong>Data-Driven Modelling for Mechanical Systems</strong><br><span style="font-size:0.85rem; color:var(--text-light)">Indian Institute of Technology (Indian School of Mines), Dhanbad | Jul 01 - Jul 05, 2026</span></li>
+                <li><strong>AI-Driven Business Analytics For Research, Teaching &amp; Industry Applications</strong><br><span style="font-size:0.85rem; color:var(--text-light)">Jodhpur Institute of Engineering &amp; Technology, Jodhpur | Jun 26 - Jun 30, 2026</span></li>
+                <li><strong>Research &amp; Development Excellence through Data Science Case Studies</strong><br><span style="font-size:0.85rem; color:var(--text-light)">Sphoorthy Engineering College | Jun 29 - Jul 03, 2026</span></li>
+                <li><strong>AI Powered Teaching Excellence</strong><br><span style="font-size:0.85rem; color:var(--text-light)">Walchand Institute of Technology, Solapur | Jun 22 - Jun 27, 2026</span></li>
+                <li><strong>Next-Generation Mechanical Engineering: From Research to Industrial Applications</strong><br><span style="font-size:0.85rem; color:var(--text-light)">IEM-UEM, Saltlake | Jan 16 - Jan 21, 2026</span></li>
+            </ul>
+        </section>
+
+        <!-- Technical Tools Section -->
+        <section id="skills">
+            <h2><i class="fas fa-microchip"></i> Computational Engine &amp; Data Analytics Architecture</h2>
+            <p><strong>Business Analytics &amp; Structured Visualization Pipelines:</strong></p>
+            <div class="skills-tag-container" style="margin-bottom: 15px;">
+                <span class="skill-tag"><i class="fas fa-chart-bar"></i> Microsoft Power BI Professional</span>
+                <span class="skill-tag"><i class="fas fa-chart-line"></i> Tableau Public Ecosystem</span>
+                <span class="skill-tag"><i class="fas fa-database"></i> Structured Query Language (SQL / MySQL)</span>
+                <span class="skill-tag"><i class="fas fa-layer-group"></i> Dataiku DSS Multi-Domain Studio</span>
+            </div>
+            <p><strong>Mathematical Simulation Languages &amp; Programmatic Frameworks:</strong></p>
+            <div class="skills-tag-container">
+                <span class="skill-tag"><i class="fab fa-python"></i> Python (Pandas, NumPy, Scikit-Learn)</span>
+                <span class="skill-tag"><i class="fas fa-calculator"></i> MATLAB Numerical Workspace</span>
+                <span class="skill-tag"><i class="fas fa-network-wired"></i> Simulink Dynamic Controls Matrix</span>
+                <span class="skill-tag"><i class="fas fa-file-code"></i> LaTeX Typesetting Standards</span>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2><i class="fas fa-flask"></i> Applied Engineering Research &amp; Projects</h2>
+            <div class="card" style="margin-bottom: 15px; border-left: 4px solid var(--secondary);">
+                <h3>Federated Learning Systems for Intelligent Transit Node Topologies</h3>
+                <p style="font-size:0.85rem; color:var(--text-light); margin-bottom: 6px;"><strong>Sabudh Foundation Collaborative Industry Project (Jan - June 2026)</strong></p>
+                <p>Architected privacy-preserving decentralized deep learning paradigms applied to transit streaming metadata matrix parameters. Engineered secure weight-averaging aggregation nodes. (Evaluated Core Grade Performance: <strong>B+</strong>).</p>
+            </div>
+            <div class="card" style="margin-bottom: 15px;">
+                <h3>Elastic-Plastic Behavior Evaluation of Engineering Metals via FEA Pipelines</h3>
+                <p>Constructed numerical finite element simulation steps mapping variable structural metal stress boundaries against classic hard-zone limits to trace failure points.</p>
+            </div>
+            <div class="card">
+                <h3>Multi-Axis Hydraulic Robotics Actuator</h3>
+                <p>Designed a mechanical proof-of-concept assembly executing coordinate position shifts relying strictly on closed fluid compression loops and Pascal's laws.</p>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications">
+            <h2><i class="fas fa-award"></i> Professional Enterprise Certifications (MOOC Architecture)</h2>
+            <p style="font-weight: 700; color: var(--primary); margin-bottom: 8px;"><i class="fas fa-certificate"></i> Dataiku Enterprise Designer Stack:</p>
+            <ul class="cert-list" style="margin-bottom: 18px;">
+                <li>Dataiku Core Designer Enterprise Certificate</li>
+                <li>Dataiku Advanced Designer &amp; Developer Track Badge</li>
+                <li>Dataiku Machine Learning (ML) Practitioner Architecture Specialist</li>
+                <li>Dataiku MLOps Lifecycle Practitioner Deployment Standard</li>
+                <li>Dataiku Generative AI Solution Practitioner System Certificate</li>
+            </ul>
+
+            <p style="font-weight: 700; color: var(--primary); margin-bottom: 8px;"><i class="fas fa-square-root-variable"></i> MathWorks Structural Controls Stack:</p>
+            <ul class="cert-list" style="margin-bottom: 18px;">
+                <li>Control System Design Workflows with MATLAB and Simulink</li>
+                <li>Control Design Onramp with Simulink Environments</li>
+                <li>Linearization of Nonlinear Systems Simulation Loops</li>
+            </ul>
+
+            <p style="font-weight: 700; color: var(--primary); margin-bottom: 8px;"><i class="fab fa-ibm"></i> IBM SkillsBuild Comprehensive Track (Completed June 2026):</p>
+            <ul class="cert-list">
+                <li>Data Literacy Advanced Credentialing Pathway</li>
+                <li>Sensemaking with Data Exploration Frameworks</li>
+                <li>Exploring Data Structural Core Competency</li>
+                <li>Data Fundamentals Enterprise Track</li>
+                <li>Your Future in Data: The Analytical Job Landscape Mapping</li>
+                <li>Overview of Data Tools and Native Programming Languages</li>
+                <li>Clean, Refine, and Visualize Data with IBM Watson Studio Pipelines</li>
+                <li>Data Science in Our World Applied System Implementations</li>
+                <li>Introduction to Structural Data Concepts Matrix</li>
+                <li>IBM SkillsBuild Core Platform Lifecycle Completion Ledger</li>
+            </ul>
+        </section>
+
+        <!-- Institutional Ledger Section: References structured explicitly. Non-Mines first, Mines grouped at the absolute bottom with symbols only -->
+        <section id="references">
+            <h2><i class="fas fa-shield-halved"></i> Institutional Research Verification Ledger</h2>
+            
+            <div class="references-title">Standard Panel References</div>
+            <div class="references-grid">
+                <!-- Reference: Dr. Rajeswara Reddy Resapu -->
+                <div class="ref-card">
+                    <h4>Dr. Rajeswara Reddy Resapu</h4>
+                    <div class="title-dept">
+                        Associate Professor &amp; Head<br>
+                        Dept. of Mechanical Engineering<br>
+                        GITAM (Deemed To Be University), Visakhapatnam
+                    </div>
+                    <div class="ref-meta-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:rresapu@gitam.edu">rresapu@gitam.edu</a>
+                    </div>
+                    <div class="ref-meta-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:r.resapu@gmail.com">r.resapu@gmail.com</a>
+                    </div>
+                    <div class="ref-meta-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+919502800524">(+91) 950 280 0524</a>
+                    </div>
+                </div>
+
+                <!-- Reference: Dr. A Raj Kumar -->
+                <div class="ref-card">
+                    <h4>Dr. A Raj Kumar</h4>
+                    <div class="title-dept">
+                        Professor &amp; Head<br>
+                        Dept. of Mechanical Engineering<br>
+                        Guru Nanak Institutions Technical Campus, Hyderabad
+                    </div>
+                    <div class="ref-meta-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:hodme.gnitc@gniindia.org">hodme.gnitc@gniindia.org</a>
+                    </div>
+                    <div class="ref-meta-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+918497900085">(+91) 849 790 0085</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Isolated IIT (Indian School of Mines) Section using SYMBOLS ONLY for structural metadata -->
+            <div class="references-title" style="margin-top: 30px;">IIT (Indian School of Mines), Dhanbad Verification Nodes</div>
+            <div class="mines-grid">
                 
-                <div class="timeline-block">
-                    <div class="timeline-node"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header-group">
-                            <div>
-                                <h4 class="timeline-title-main">Project Title Framework</h4>
-                                <div class="timeline-institution-name">Sponsoring Body / Consortium Agency</div>
-                            </div>
-                            <span class="timeline-timestamp">Active: 2024 — 2027</span>
-                        </div>
-                        <p class="timeline-description-para">
-                            Detail budget sizes, operational timelines, applied pipelines, and system deliverables.
-                        </p>
+                <!-- Mines Faculty: Dr. Prashanta Kr. Mahato -->
+                <div class="mines-card">
+                    <h4>Dr. Prashanta Kr. Mahato</h4>
+                    <div class="mines-symbol-row">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Professor</span>
+                    </div>
+                    <div class="mines-symbol-row">
+                        <i class="fas fa-gears"></i>
+                        <span>Dept. of Mechanical Engineering</span>
+                    </div>
+                    <div class="mines-symbol-row">
+                        <i class="fas fa-building-columns"></i>
+                        <span>Indian Institute of Technology (Indian School of Mines), Dhanbad</span>
+                    </div>
+                    <div class="mines-symbol-row">
+                        <i class="fas fa-envelope-open-text"></i>
+                        <a href="mailto:pkmahato@iitism.ac.in">pkmahato@iitism.ac.in</a>
+                    </div>
+                    <div class="mines-symbol-row">
+                        <i class="fas fa-phone-volume"></i>
+                        <a href="tel:+919431120024">(+91) 943 112 0024</a>
+                    </div>
+                </div>
+
+                <!-- Mines Faculty: Dr. Suparno Bhattacharyya -->
+                <div class="mines-card">
+                    <h4>Dr. Suparno Bhattacharyya</h4>
+                    <div class="mines-symbol-row">
+                        <i class="fas fa-user-tie"></i>
+                        <span>Assistant Professor</span>
+                    </div>
+                    <div class="mines-symbol-row">
+                        <i class="fas fa-gears"></i>
+                        <span>Dept. of Mechanical Engineering</span>
+                    </div>
+                    <div class="mines-symbol-row">
+                        <i class="fas fa-building-columns"></i>
+                        <span>Indian Institute of Technology (Indian School of Mines), Dhanbad</span>
+                    </div>
+                    <div class="mines-symbol-row">
+                        <i class="fas fa-envelope-open-text"></i>
+                        <a href="mailto:suparno@iitism.ac.in">suparno@iitism.ac.in</a>
+                    </div>
+                    <div class="mines-symbol-row">
+                        <i class="fas fa-phone-volume"></i>
+                        <a href="tel:+18143215868">(+1) 8143 215 868</a>
                     </div>
                 </div>
 
             </div>
         </section>
 
-        <!-- Professional Development Section -->
-        <section id="professional-development">
-            <h3 class="section-heading"><span class="section-heading-span">Professional Development & Certifications</span></h3>
-            <p class="body-narrative" style="margin-bottom: 20px;">Click to expand categories. Rigorously maintained chronologically:</p>
-
-            <div class="accordion-item-box">
-                <button class="accordion-trigger-button">
-                    <span class="accordion-title-text">Faculty Development Programmes (FDPs)</span>
-                    <span class="accordion-icon-indicator">▼</span>
-                </button>
-                <div class="accordion-collapsible-panel">
-                    <ul class="list-bulleted">
-                        <li><strong>2026:</strong> Program Title — Organizing Hub / Agency.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Credly Section -->
-        <section id="credly">
-            <h3 class="section-heading"><span class="section-heading-span">Verified Digital Badges (Credly)</span></h3>
-            <p class="body-narrative">Metadata paths for live credential tracking grids:</p>
-            <div class="nested-card-matrix" style="margin-top: 16px;">
-                <div class="nested-card-row" style="border-left: 4px solid var(--accent-color);">
-                    <div class="nested-card-meta-left">
-                        <h4>Official Digital Badge Profile Portfolio</h4>
-                        <p>Aggregated ledger items tracking authority systems.</p>
-                    </div>
-                    <a href="https://www.credly.com" target="_blank" class="folder-access-link-btn">🌐 View Credly Profile</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Downloads Section -->
-        <section id="downloads">
-            <h3 class="section-heading"><span class="section-heading-span">Academic Downloads</span></h3>
-            <div class="download-grid">
-                <div class="download-card-element">
-                    <div>
-                        <span style="font-size: 1.5rem; display:block; margin-bottom:8px;">📄</span>
-                        <h4 class="download-card-title-text">Curriculum Vitae (CV)</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-light); margin-top:4px;">Full record node [PDF]</p>
-                    </div>
-                    <a href="#" class="asset-node-link" style="align-self: flex-start;">Download Asset ↓</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact">
-            <h3 class="section-heading"><span class="section-heading-span">Contact Information</span></h3>
-            <div class="contact-panel-grid">
-                <div class="contact-element-node">
-                    <h5>Office Facility Coordinates</h5>
-                    <p>Your building location details</p>
-                </div>
-                <div class="contact-element-node">
-                    <h5>Official Scholarly Email</h5>
-                    <p><a href="mailto:your.email@institution.edu">your.email@institution.edu</a></p>
-                </div>
-            </div>
-        </section>
+        <footer>
+            <p>&copy; 2026 Gajavada Sanjeevkumar. All educational, training, and research validation nodes active and verified.</p>
+        </footer>
 
     </div>
 
-    <footer>
-        <p class="footer-meta-brand">Faculty Portfolio Registry System</p>
-        <p>&copy; 2026 Academic Faculty Registry System. All rights reserved.</p>
-    </footer>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Accordion Controller Logic
-            const accordionTriggers = document.querySelectorAll(".accordion-trigger-button");
-            accordionTriggers.forEach(trigger => {
-                trigger.addEventListener("click", function() {
-                    this.classList.toggle("active");
-                    const panel = this.nextElementSibling;
-                    if (panel) { panel.classList.toggle("open"); }
-                });
-            });
-
-            // Navbar Highlight Logic
-            const navbarLinks = document.querySelectorAll(".nav-links li a");
-            const structuralSections = document.querySelectorAll("section");
-            function highlightNavigationNode() {
-                let currentActiveSectionId = "";
-                structuralSections.forEach(section => {
-                    if (window.scrollY >= (section.offsetTop - 100)) {
-                        currentActiveSectionId = section.getAttribute("id");
-                    }
-                });
-                navbarLinks.forEach(link => {
-                    link.classList.remove("active");
-                    if (link.getAttribute("href") === `#${currentActiveSectionId}`) {
-                        link.classList.add("active");
-                    }
-                });
-            }
-            window.addEventListener("scroll", highlightNavigationNode);
-            highlightNavigationNode();
-        });
-    </script>
 </body>
 </html>
