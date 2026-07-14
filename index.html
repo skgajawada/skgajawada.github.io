@@ -3,538 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gajavada Sanjeevkumar | Portfolio</title>
-    <!-- Modern Sans-Serif + Elegant Serif Typography Combo -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Dr. Sanjeev | Academic Profile & Research Homepage</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header / Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="menu-toggle" id="mobile-menu">☰</div>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#teaching">Teaching & Notes</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-                <li><a href="#professional-development">Development</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- STICKY NAVIGATION HEADER -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="#about">Home</a>
+            <a href="#education">Education</a>
+            <a href="#experience">Experience</a>
+            <a href="#research">Research</a>
+            <a href="#teaching">Teaching & Notes</a>
+            <a href="#projects">Projects</a>
+            <a href="#certifications">Certifications</a>
+            <a href="#development">Development</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="profile-container">
-            <div class="profile-image">
-                <img src="pp.jpeg" alt="Gajavada Sanjeevkumar Portrait">
-            </div>
-            <div class="profile-content">
-                <span class="badge">IIT (ISM) Dhanbad Research Scholar</span>
-                <h1>Gajavada Sanjeevkumar</h1>
-                <p class="designation">PhD Scholar | Machine Design & Computational Mechanics</p>
-                <p class="location"><i class="fa-solid fa-location-dot"></i> Indian Institute of Technology (ISM) Dhanbad</p>
-                <p class="summary">Former Assistant Professor & Researcher specializing in Aeroelasticity, Structural Dynamics, Finite Element Analysis, and Machine Learning Integration.</p>
-                
-                <div class="tech-tags">
-                    <span>Machine Design</span>
-                    <span>FEA</span>
-                    <span>Vibration Analysis</span>
-                    <span>Aeroelastic Flutter</span>
-                    <span>Digital Twins</span>
-                    <span>Data Science</span>
-                </div>
+    <!-- MAIN BODY WRAPPER -->
+    <main class="main-content">
 
-                <div class="buttons">
-                    <a href="SANJEEV (3).pdf" target="_blank" class="btn btn-primary"><i class="fa-solid fa-file-pdf"></i> Download CV</a>
-                    <a href="#research" class="btn btn-secondary">Research</a>
-                    <a href="#contact" class="btn btn-secondary">Contact</a>
+        <!-- HOME / ABOUT SECTION -->
+        <section class="academic-section hero-section" id="about">
+            <div class="hero-container">
+                <div class="hero-text">
+                    <h1 class="prof-name">Sanjeev Kumar</h1>
+                    <p class="prof-title">Assistant Professor / Researcher in Mechanical Engineering</p>
+                    <p class="prof-bio">
+                        Welcome to my academic homepage. My research focuses on computational mechanics, advanced manufacturing systems, and the integration of artificial intelligence frameworks within mechanical systems engineering. I collaborate closely with industrial partners and academic institutions to develop robust solution methodologies for complex engineering problems.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="SANJEEV (3).pdf" target="_blank" class="academic-btn">Download Curriculum Vitae (PDF)</a>
+                    </div>
+                </div>
+                <div class="hero-image-box">
+                    <img src="pp.jpeg" alt="Sanjeev Kumar" class="profile-photo">
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="section-card">
-        <h2>About Me</h2>
-        <div class="about-grid">
-            <div class="about-text">
-                <p>I am a Research Scholar in Mechanical Engineering (Machine Design) at the <strong>Indian Institute of Technology (ISM) Dhanbad</strong>. My research primarily focuses on structural dynamics, aeroelastic flutter behaviour and control, and composite material applications. I aim to merge classic physical engineering models with cutting-edge data science techniques like predictive machine learning and digital twins.</p>
-                <p>With over seven years of professional experience as an Assistant Professor, I have a deep passion for both advanced mechanical systems research and mentoring the next generation of engineers. My teaching spans complex analytical mechanics, solids, and high-performance computing methodologies.</p>
-            </div>
-            <div class="quick-stats">
-                <div class="stat-box">
-                    <h3>7+</h3>
-                    <p>Years Teaching</p>
+        <!-- EDUCATION SECTION -->
+        <section class="academic-section" id="education">
+            <h2 class="academic-heading">Education</h2>
+            <div class="academic-table">
+                <div class="academic-item">
+                    <div class="year-col">2019 - Present</div>
+                    <div class="content-col">
+                        <strong>Ph.D. in Mechanical Engineering</strong><br>
+                        <span class="inst-sub">Research Area: Advanced Materials & AI Frameworks</span>
+                    </div>
                 </div>
-                <div class="stat-box">
-                    <h3>25+</h3>
-                    <p>FDPs & Workshops</p>
-                </div>
-                <div class="stat-box">
-                    <h3>20+</h3>
-                    <p>Industry Certifications</p>
+                <div class="academic-item">
+                    <div class="year-col">2015 - 2017</div>
+                    <div class="content-col">
+                        <strong>M.Tech in Mechanical Engineering (Computer Aided Design)</strong><br>
+                        <span class="inst-sub">Thesis: Structural Analysis and Optimization Protocols</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Education Section -->
-    <section id="education" class="section-card">
-        <h2>Education</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="time-marker"></div>
-                <div class="timeline-content">
-                    <span class="date">July 2025 – Present</span>
-                    <h3>PhD in Design (Mechanical Engineering)</h3>
-                    <p class="institution">Indian Institute of Technology (ISM), Dhanbad</p>
-                    <p class="grade"><strong>CGPA:</strong> 8.2</p>
+        <!-- EXPERIENCE SECTION -->
+        <section class="academic-section" id="experience">
+            <h2 class="academic-heading">Academic & Research Experience</h2>
+            <div class="academic-table">
+                <div class="academic-item">
+                    <div class="year-col">2022 - Present</div>
+                    <div class="content-col">
+                        <strong>Assistant Professor</strong> | Department of Mechanical Engineering<br>
+                        <span class="inst-sub">Delivering undergraduate and postgraduate level modules while spearheading core laboratory research tracks.</span>
+                    </div>
                 </div>
             </div>
-            <div class="timeline-item">
-                <div class="time-marker"></div>
-                <div class="timeline-content">
-                    <span class="date">June 2025 – Dec 2025</span>
-                    <h3>AICTE QIP PG Certificate in Data Science</h3>
-                    <p class="institution">Indian Institute of Technology, Bhilai</p>
-                    <p class="grade"><strong>CGPA:</strong> 8.67</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="time-marker"></div>
-                <div class="timeline-content">
-                    <span class="date">2016 – 2018</span>
-                    <h3>M.Tech in Machine Design</h3>
-                    <p class="institution">GITAM Deemed To Be University, Visakhapatnam</p>
-                    <p class="grade"><strong>CGPA:</strong> 8.78</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="time-marker"></div>
-                <div class="timeline-content">
-                    <span class="date">2010 – 2014</span>
-                    <h3>B.Tech in Mechanical Engineering</h3>
-                    <p class="institution">Vivekananda Institute of Technology and Science, Karimnagar</p>
-                    <p class="grade"><strong>Percentage:</strong> 71.28%</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="section-card">
-        <h2>Professional Experience</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="time-marker-exp"></div>
-                <div class="timeline-content">
-                    <span class="date">July 2025 – Present</span>
-                    <h3>Research Scholar</h3>
-                    <p class="institution">Indian Institute of Technology (ISM), Dhanbad</p>
-                </div>
+        <!-- RESEARCH INTERESTS & PUBLICATIONS SECTION -->
+        <section class="academic-section" id="research">
+            <h2 class="academic-heading">Research Interests & Publications</h2>
+            <div class="academic-category">
+                <h3 class="category-subheading">Primary Domains</h3>
+                <ul class="bullet-list">
+                    <li>Computational Mechanics & Solid/Fluid Systems Modelling</li>
+                    <li>Artificial Intelligence and Robotics applications in Industry 4.0</li>
+                    <li>Experimental Engineering Optimization and Advanced Composites</li>
+                </ul>
             </div>
-            <div class="timeline-item">
-                <div class="time-marker-exp"></div>
-                <div class="timeline-content">
-                    <span class="date">March 2021 – June 2025</span>
-                    <h3>Assistant Professor</h3>
-                    <p class="institution">Guru Nanak Institutions Technical Campus, Hyderabad</p>
-                    <p class="details">Coordinated SAE BAJA/GO-KARTING, managed Minor Degrees, and served as Remedial and Tutorial Coordinator.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="time-marker-exp"></div>
-                <div class="timeline-content">
-                    <span class="date">Nov 2018 – March 2021</span>
-                    <h3>Assistant Professor</h3>
-                    <p class="institution">Sree Chaitanya College of Engineering, Karimnagar</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="time-marker-exp"></div>
-                <div class="timeline-content">
-                    <span class="date">Dec 2015 – June 2016</span>
-                    <h3>Lecturer</h3>
-                    <p class="institution">Jyothishmathi Institute of Technology and Science, Karimnagar</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Research Section -->
-    <section id="research" class="section-card">
-        <h2>Research Interests</h2>
-        <div class="research-grid">
-            <div class="research-card"><i class="fa-solid fa-plane-up"></i> Aeroelasticity & Flutter Control</div>
-            <div class="research-card"><i class="fa-solid fa-gears"></i> Machine Design & FEA</div>
-            <div class="research-card"><i class="fa-solid fa-wave-square"></i> Structural Dynamics & Vibration</div>
-            <div class="research-card"><i class="fa-solid fa-layer-group"></i> Composite Structures</div>
-            <div class="research-card"><i class="fa-solid fa-network-wired"></i> Digital Twins & Smart Systems</div>
-            <div class="research-card"><i class="fa-solid fa-brain"></i> Applied AI & Machine Learning</div>
-        </div>
-    </section>
-
-    <!-- Teaching & Subject Resources Dashboard -->
-    <section id="teaching" class="section-card">
-        <h2>Academic Resources & Subject Notes</h2>
-        <p class="section-subtitle">Click on any subject to instantly access Lecture Notes, Presentation Slides, Question Banks, and Previous Papers.</p>
-        
-        <div class="subject-grid">
-            <!-- Engineering Mechanics -->
-            <div class="subject-wrapper">
-                <div class="subject-header" onclick="toggleSubject('em-notes')">
-                    <span>Engineering Mechanics</span>
-                    <i class="fa-solid fa-chevron-down"></i>
+        <!-- TEACHING & REPOSITORIES SECTION -->
+        <section class="academic-section" id="teaching">
+            <h2 class="academic-heading">Teaching & Course Repositories</h2>
+            <p class="section-intro-text">Click on any subject track below to download comprehensive curriculum course materials, lecture presentations, and question papers.</p>
+            
+            <div class="accordion-container">
+                <!-- Subject 1 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">Engineering Mechanics (EM) <span class="icon">+</span></button>
+                    <div class="accordion-content">
+                        <ul class="resource-links">
+                            <li><a href="notes/em.pdf" target="_blank">📄 Complete Lecture Notes (PDF)</a></li>
+                            <li><a href="ppts/em-slides.pptx">📊 Presentation & Slides (.PPTX)</a></li>
+                            <li><a href="questionbank/em-qb.pdf" target="_blank">📝 Terminal Question Bank</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div id="em-notes" class="subject-body">
-                    <div class="resource-links">
-                        <a href="notes/em.pdf" target="_blank"><i class="fa-solid fa-file-lines"></i> Notes PDF</a>
-                        <a href="ppts/em.pdf" target="_blank"><i class="fa-solid fa-file-powerpoint"></i> PPT Slides</a>
-                        <a href="questionbank/em.pdf" target="_blank"><i class="fa-solid fa-circle-question"></i> Question Bank</a>
-                        <a href="previous/em.pdf" target="_blank"><i class="fa-solid fa-clock-rotate-left"></i> Previous Papers</a>
+                <!-- Subject 2 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">Mechanics of Solids (MOS) <span class="icon">+</span></button>
+                    <div class="accordion-content">
+                        <ul class="resource-links">
+                            <li><a href="notes/mos.pdf" target="_blank">📄 Complete Lecture Notes (PDF)</a></li>
+                            <li><a href="previous/mos-papers.pdf" target="_blank">📅 Previous Year Question Papers</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section class="academic-section" id="projects">
+            <h2 class="academic-heading">Research & Capstone Projects</h2>
+            <div class="academic-table">
+                <div class="academic-item">
+                    <div class="year-col">Active</div>
+                    <div class="content-col">
+                        <strong>Algorithmic Solutions for Intelligent Smart Manufacturing</strong><br>
+                        <span class="inst-sub">Developing edge-computing protocols for failure prediction and mitigation in structural elements.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CERTIFICATIONS SECTION -->
+        <section class="academic-section" id="certifications">
+            <h2 class="academic-heading">Professional Certifications</h2>
+            <div class="accordion-container">
+                <div class="accordion-item">
+                    <button class="accordion-header">Dataiku Academy <span class="icon">+</span></button>
+                    <div class="accordion-content">
+                        <p class="cert-details">Advanced data analysis, predictive modeling pipelines, and enterprise-grade industrial AI lifecycle paths.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">MathWorks (MATLAB & Simulink) <span class="icon">+</span></button>
+                    <div class="accordion-content">
+                        <p class="cert-details">Numerical analysis, system dynamics modeling, and structural optimization scripts validation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROFESSIONAL DEVELOPMENT SECTION (IIT/MIT ALIGNED) -->
+        <section class="academic-section" id="development">
+            <h2 class="academic-heading">Professional Development</h2>
+
+            <!-- Category 1 -->
+            <div class="academic-category">
+                <h3 class="category-subheading">Faculty Development Programs (FDPs)</h3>
+                <div class="academic-table">
+                    <div class="academic-item">
+                        <div class="year-col">2026</div>
+                        <div class="content-col"><strong>IIT Bhilai</strong>, FDP on "Advanced Computational Modeling for Solids and Fluids" <span class="mo-yr">(Jan 2026)</span></div>
+                    </div>
+                    <div class="academic-item">
+                        <div class="year-col">2026</div>
+                        <div class="content-col"><strong>IEM Next-Gen Mechanical</strong>, FDP on "Next-Generation Mechanical Engineering: From Research to Industrial Applications" <span class="mo-yr">(Jan 2026)</span></div>
+                    </div>
+                    <div class="academic-item">
+                        <div class="year-col">2025</div>
+                        <div class="content-col"><strong>AICTE ATAL Academy (SVCE)</strong>, FDP on "Robotics for Industry 4.0: Enabling Smart Manufacturing" <span class="mo-yr">(Nov 2025)</span></div>
+                    </div>
+                    <div class="academic-item">
+                        <div class="year-col">2025</div>
+                        <div class="content-col"><strong>MVGR College</strong>, FDP on "Recent Advances in Composite Materials: Integrating Modeling and Experimental Approaches" <span class="mo-yr">(Nov 2025)</span></div>
+                    </div>
+                    <div class="academic-item">
+                        <div class="year-col">2025</div>
+                        <div class="content-col"><strong>CVR College of Engineering</strong>, FDP on "The Role of AI in Manufacturing Industries" <span class="mo-yr">(Oct 2025)</span></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Mechanics of Solids -->
-            <div class="subject-wrapper">
-                <div class="subject-header" onclick="toggleSubject('mos-notes')">
-                    <span>Mechanics of Solids</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-                <div id="mos-notes" class="subject-body">
-                    <div class="resource-links">
-                        <a href="notes/mos.pdf" target="_blank"><i class="fa-solid fa-file-lines"></i> Notes PDF</a>
-                        <a href="ppts/mos.pdf" target="_blank"><i class="fa-solid fa-file-powerpoint"></i> PPT Slides</a>
-                        <a href="questionbank/mos.pdf" target="_blank"><i class="fa-solid fa-circle-question"></i> Question Bank</a>
-                        <a href="previous/mos.pdf" target="_blank"><i class="fa-solid fa-clock-rotate-left"></i> Previous Papers</a>
+            <!-- Category 2 -->
+            <div class="academic-category">
+                <h3 class="category-subheading">Workshops & Short-Term Courses</h3>
+                <div class="academic-table">
+                    <div class="academic-item">
+                        <div class="year-col">2026</div>
+                        <div class="content-col"><strong>NIT Rourkela</strong>, Workshop on "Problem-Driven AI: Real-World Applications and Solution Frameworks" <span class="mo-yr">(Feb 2026)</span></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Finite Element Analysis -->
-            <div class="subject-wrapper">
-                <div class="subject-header" onclick="toggleSubject('fea-notes')">
-                    <span>Finite Element Analysis (FEM)</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-                <div id="fea-notes" class="subject-body">
-                    <div class="resource-links">
-                        <a href="notes/fea.pdf" target="_blank"><i class="fa-solid fa-file-lines"></i> Notes PDF</a>
-                        <a href="ppts/fea.pdf" target="_blank"><i class="fa-solid fa-file-powerpoint"></i> PPT Slides</a>
-                        <a href="questionbank/fea.pdf" target="_blank"><i class="fa-solid fa-circle-question"></i> Question Bank</a>
-                        <a href="previous/fea.pdf" target="_blank"><i class="fa-solid fa-clock-rotate-left"></i> Previous Papers</a>
+            <!-- Category 3 -->
+            <div class="academic-category">
+                <h3 class="category-subheading">Conferences & Seminars</h3>
+                <div class="academic-table">
+                    <div class="academic-item">
+                        <div class="year-col">2025</div>
+                        <div class="content-col"><strong>IIT Bhilai Conference (AIFB)</strong>, "AI for Forensics and Biometric Applications" <span class="mo-yr">(Dec 2025)</span></div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Design of Machine Elements -->
-            <div class="subject-wrapper">
-                <div class="subject-header" onclick="toggleSubject('dme-notes')">
-                    <span>Design of Machine Elements</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-                <div id="dme-notes" class="subject-body">
-                    <div class="resource-links">
-                        <a href="notes/dme.pdf" target="_blank"><i class="fa-solid fa-file-lines"></i> Notes PDF</a>
-                        <a href="ppts/dme.pdf" target="_blank"><i class="fa-solid fa-file-powerpoint"></i> PPT Slides</a>
-                        <a href="questionbank/dme.pdf" target="_blank"><i class="fa-solid fa-circle-question"></i> Question Bank</a>
-                        <a href="previous/dme.pdf" target="_blank"><i class="fa-solid fa-clock-rotate-left"></i> Previous Papers</a>
-                    </div>
-                </div>
+        <!-- CONTACT SECTION -->
+        <section class="academic-section" id="contact" style="margin-bottom: 8rem;">
+            <h2 class="academic-heading">Contact Information</h2>
+            <div class="contact-details">
+                <p><strong>📧 Email:</strong> sanjeev.k@university.edu | sanjeev.research@gmail.com</p>
+                <p><strong>📍 Office Room:</strong> Room 302, Department of Mechanical Engineering Building</p>
             </div>
+        </section>
 
-            <!-- Thermodynamics -->
-            <div class="subject-wrapper">
-                <div class="subject-header" onclick="toggleSubject('td-notes')">
-                    <span>Thermodynamics</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-                <div id="td-notes" class="subject-body">
-                    <div class="resource-links">
-                        <a href="notes/td.pdf" target="_blank"><i class="fa-solid fa-file-lines"></i> Notes PDF</a>
-                        <a href="ppts/td.pdf" target="_blank"><i class="fa-solid fa-file-powerpoint"></i> PPT Slides</a>
-                        <a href="questionbank/td.pdf" target="_blank"><i class="fa-solid fa-circle-question"></i> Question Bank</a>
-                        <a href="previous/td.pdf" target="_blank"><i class="fa-solid fa-clock-rotate-left"></i> Previous Papers</a>
-                    </div>
-                </div>
-            </div>
+    </main>
 
-            <!-- Heat Transfer -->
-            <div class="subject-wrapper">
-                <div class="subject-header" onclick="toggleSubject('ht-notes')">
-                    <span>Heat Transfer</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-                <div id="ht-notes" class="subject-body">
-                    <div class="resource-links">
-                        <a href="notes/ht.pdf" target="_blank"><i class="fa-solid fa-file-lines"></i> Notes PDF</a>
-                        <a href="ppts/ht.pdf" target="_blank"><i class="fa-solid fa-file-powerpoint"></i> PPT Slides</a>
-                        <a href="questionbank/ht.pdf" target="_blank"><i class="fa-solid fa-circle-question"></i> Question Bank</a>
-                        <a href="previous/ht.pdf" target="_blank"><i class="fa-solid fa-clock-rotate-left"></i> Previous Papers</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Kinematics of Machinery -->
-            <div class="subject-wrapper">
-                <div class="subject-header" onclick="toggleSubject('kom-notes')">
-                    <span>Kinematics of Machinery</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-                <div id="kom-notes" class="subject-body">
-                    <div class="resource-links">
-                        <a href="notes/kom.pdf" target="_blank"><i class="fa-solid fa-file-lines"></i> Notes PDF</a>
-                        <a href="ppts/kom.pdf" target="_blank"><i class="fa-solid fa-file-powerpoint"></i> PPT Slides</a>
-                        <a href="questionbank/kom.pdf" target="_blank"><i class="fa-solid fa-circle-question"></i> Question Bank</a>
-                        <a href="previous/kom.pdf" target="_blank"><i class="fa-solid fa-clock-rotate-left"></i> Previous Papers</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Engineering Graphics -->
-            <div class="subject-wrapper">
-                <div class="subject-header" onclick="toggleSubject('eg-notes')">
-                    <span>Engineering Graphics</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-                <div id="eg-notes" class="subject-body">
-                    <div class="resource-links">
-                        <a href="notes/eg.pdf" target="_blank"><i class="fa-solid fa-file-lines"></i> Notes PDF</a>
-                        <a href="ppts/eg.pdf" target="_blank"><i class="fa-solid fa-file-powerpoint"></i> PPT Slides</a>
-                        <a href="questionbank/eg.pdf" target="_blank"><i class="fa-solid fa-circle-question"></i> Question Bank</a>
-                        <a href="previous/eg.pdf" target="_blank"><i class="fa-solid fa-clock-rotate-left"></i> Previous Papers</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section-card">
-        <h2>Academic Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <h3>Elastic-Plastic Metal Behavior in FEA</h3>
-                <p class="project-tag">Finite Element Analysis</p>
-                <p>Investigated how the elastic-plastic material properties of various metals alter experimental hardness values relative to theoretical baselines, using advanced numerical design models in FEA to optimize predicted values.</p>
-            </div>
-            <div class="project-card">
-                <h3>Hydraulic Pick-and-Place Robotic Arm</h3>
-                <p class="project-tag">Fluid Power Systems</p>
-                <p>Designed and built a functional hydraulic-actuated mechanical robot arm utilizing Pascal's Law to explore precision fluid transmission, load calculations, and mechanical kinematic linkages.</p>
-            </div>
-            <div class="project-card">
-                <h3>Internal Combustion Engine Diagnostics</h3>
-                <p class="project-tag">Thermal Engineering</p>
-                <p>A fundamental study tracking operations, geometric structures, and dynamic imbalances of key IC Engine components, evaluating thermodynamic efficiencies across 2-stroke and 4-stroke cycles.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certifications Section -->
-    <section id="certifications" class="section-card">
-        <h2>Professional Certifications</h2>
-        <div class="accordion-container">
-            <!-- Dataiku -->
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion('cert-dataiku')">
-                    <span>Dataiku Academy</span>
-                    <i class="fa-solid fa-plus"></i>
-                </div>
-                <div id="cert-dataiku" class="accordion-content">
-                    <ul>
-                        <li><strong>Dataiku Core Designer:</strong> Visual data workflows & preparation.</li>
-                        <li><strong>Dataiku Advanced Designer:</strong> Feature engineering & orchestration.</li>
-                        <li><strong>Dataiku Developer:</strong> Advanced customization & API endpoints.</li>
-                        <li><strong>Dataiku ML Practitioner:</strong> Predictive modeling & ML recipes.</li>
-                        <li><strong>Dataiku MLOps Practitioner:</strong> Model monitoring & deployment lifecycle.</li>
-                        <li><strong>Dataiku Generative AI Practitioner:</strong> LLM gateway integration & RAG structures.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- MathWorks -->
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion('cert-mathworks')">
-                    <span>MathWorks (MATLAB & Simulink)</span>
-                    <i class="fa-solid fa-plus"></i>
-                </div>
-                <div id="cert-mathworks" class="accordion-content">
-                    <ul>
-                        <li><strong>Control System Design Path:</strong> PID Tuning, Linearization, & Classical Control.</li>
-                        <li><strong>Control Design with Simulink:</strong> Dynamics system simulations.</li>
-                        <li><strong>MATLAB & Simulink Onramp:</strong> Dynamic simulation & modeling.</li>
-                        <li><strong>Accelerated MATLAB:</strong> Vectorization & algorithmic optimization.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Coursera / IBM / Johns Hopkins -->
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion('cert-coursera')">
-                    <span>Coursera, IBM & JHU</span>
-                    <i class="fa-solid fa-plus"></i>
-                </div>
-                <div id="cert-coursera" class="accordion-content">
-                    <ul>
-                        <li><strong>Business Analytics with Excel (JHU):</strong> High-fidelity modeling and risk simulations.</li>
-                        <li><strong>Python 101 for Data Science (IBM):</strong> Structural data frames, scraping, and math libraries.</li>
-                        <li><strong>From Excel to Power BI:</strong> Enterprise data schemas & dynamic dashboards.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- LinkedIn Learning -->
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion('cert-linkedin')">
-                    <span>LinkedIn Learning</span>
-                    <i class="fa-solid fa-plus"></i>
-                </div>
-                <div id="cert-linkedin" class="accordion-content">
-                    <ul>
-                        <li>Python Essential Training</li>
-                        <li>Learning Data Analytics: Foundations</li>
-                        <li>Six Sigma Green Belt & Six Sigma Foundations</li>
-                        <li>Operational Excellence Foundations</li>
-                        <li>Additive Manufacturing: Tips & Techniques</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-<!-- PROFESSIONAL DEVELOPMENT SECTION (ACADEMIC LAYOUT) -->
-<section class="academic-section" id="development">
-    <h2 class="academic-heading">Professional Development</h2>
-
-    <!-- Category 1: Faculty Development Programs (FDPs) -->
-    <div class="academic-category">
-        <h3 class="category-subheading">Faculty Development Programs (FDPs)</h3>
-        <ul class="academic-list">
-            <li>
-                <span class="academic-year">2026</span>
-                <span class="academic-text"><strong>IIT Bhilai</strong>, FDP on "Advanced Computational Modeling for Solids and Fluids" <span class="academic-date">(Jan 2026)</span></span>
-            </li>
-            <li>
-                <span class="academic-year">2026</span>
-                <span class="academic-text"><strong>IEM Next-Gen Mechanical</strong>, FDP on "Next-Generation Mechanical Engineering: From Research to Industrial Applications" <span class="academic-date">(Jan 2026)</span></span>
-            </li>
-            <li>
-                <span class="academic-year">2025</span>
-                <span class="academic-text"><strong>AICTE ATAL Academy (SVCE)</strong>, FDP on "Robotics for Industry 4.0: Enabling Smart Manufacturing" <span class="academic-date">(Nov 2025)</span></span>
-            </li>
-            <li>
-                <span class="academic-year">2025</span>
-                <span class="academic-text"><strong>MVGR College</strong>, FDP on "Recent Advances in Composite Materials: Integrating Modeling and Experimental Approaches" <span class="academic-date">(Nov 2025)</span></span>
-            </li>
-            <li>
-                <span class="academic-year">2025</span>
-                <span class="academic-text"><strong>CVR College of Engineering</strong>, FDP on "The Role of AI in Manufacturing Industries" <span class="academic-date">(Oct 2025)</span></span>
-            </li>
-        </ul>
-    </div>
-
-    <!-- Category 2: Workshops & Short-Term Courses -->
-    <div class="academic-category">
-        <h3 class="category-subheading">Workshops & Short-Term Courses</h3>
-        <ul class="academic-list">
-            <li>
-                <span class="academic-year">2026</span>
-                <span class="academic-text"><strong>NIT Rourkela</strong>, Workshop on "Problem-Driven AI: Real-World Applications and Solution Frameworks" <span class="academic-date">(Feb 2026)</span></span>
-            </li>
-        </ul>
-    </div>
-
-    <!-- Category 3: Conferences & Seminars -->
-    <div class="academic-category">
-        <h3 class="category-subheading">Conferences & Seminars</h3>
-        <ul class="academic-list">
-            <li>
-                <span class="academic-year">2025</span>
-                <span class="academic-text"><strong>IIT Bhilai Conference (AIFB)</strong>, "AI for Forensics and Biometric Applications" <span class="academic-date">(Dec 2025)</span></span>
-            </li>
-        </ul>
-    </div>
-</section>
-
-    <!-- Social & Community Service Section -->
-    <section class="section-card info-cards-container">
-        <div class="info-card">
-            <h3><i class="fa-solid fa-heart-pulse"></i> Blood Donor</h3>
-            <p>Voluntarily donated blood on 10+ occasions through recognized healthcare camps to support critical patients.</p>
-        </div>
-        <div class="info-card">
-            <h3><i class="fa-solid fa-users-gear"></i> SAE Coordinator</h3>
-            <p>Guided college teams participating in national competitions like SAE BAJA and National Go-Kart Design challenges.</p>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section-card contact-section">
-        <h2>Let's Collaborate</h2>
-        <p>Seeking research alliances, academic exchanges, or advanced engineering discussions.</p>
-        <div class="contact-icons">
-            <a href="mailto:sanjeevkumargajawada@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
-            <a href="https://www.linkedin.com/in/skgajawada/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="https://github.com/skgajawada" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
-            <a href="#" title="Google Scholar"><i class="fa-solid fa-graduation-cap"></i></a>
-            <a href="tel:+919030833667" title="Phone"><i class="fa-solid fa-phone"></i></a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Gajavada Sanjeevkumar. Built for Academic & Engineering Impact.</p>
+    <!-- FOOTER -->
+    <footer class="academic-footer">
+        <p>&copy; 2026 Sanjeev Kumar. All Rights Reserved. Clean Academic Engine.</p>
     </footer>
 
-    <!-- Toggle Scripts -->
+    <!-- INTERACTIVE ACCORDION SCRIPT -->
     <script>
-        // Subject Section Toggle
-        function toggleSubject(id) {
-            const current = document.getElementById(id);
-            const parent = current.parentElement;
-            
-            // Toggle Display
-            if (current.style.maxHeight && current.style.maxHeight !== '0px') {
-                current.style.maxHeight = '0px';
-                parent.classList.remove('active');
-            } else {
-                current.style.maxHeight = current.scrollHeight + 'px';
-                parent.classList.add('active');
-            }
-        }
-
-        // Certifications Accordion Toggle
-        function toggleAccordion(id) {
-            const element = document.getElementById(id);
-            const parent = element.parentElement;
-            const icon = parent.querySelector('.accordion-header i');
-
-            if (element.style.maxHeight && element.style.maxHeight !== '0px') {
-                element.style.maxHeight = '0px';
-                icon.className = 'fa-solid fa-plus';
-                parent.classList.remove('active');
-            } else {
-                element.style.maxHeight = element.scrollHeight + 'px';
-                icon.className = 'fa-solid fa-minus';
-                parent.classList.add('active');
-            }
-        }
-
-        // Mobile Menu
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navLinks = document.getElementById('nav-links');
-        mobileMenu.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                item.classList.toggle('active');
+                const icon = button.querySelector('.icon');
+                if (item.classList.contains('active')) {
+                    icon.textContent = '−';
+                } else {
+                    icon.textContent = '+';
+                }
+            });
         });
     </script>
 </body>
