@@ -528,78 +528,65 @@ h2::after {
 }
 
 /* Professional Development Layout Fixes */
+/* Clean CV-Style Row Layout */
 .prof-dev-section {
-    padding: 5rem 9% 5rem;
+    padding: 6rem 9% 6rem;
+    background: #fff;
 }
 
-.timeline-container {
+.dev-list {
+    max-width: 1000px;
+    margin: 3rem auto 0;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
-    margin-top: 3rem;
 }
 
-.timeline-year-group {
+.dev-row {
     display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 2.5rem;
+    grid-template-columns: 80px 1fr;
+    padding: 1.8rem 0;
+    border-bottom: 1px solid #eaeaea;
+    align-items: baseline;
 }
 
-.timeline-year {
-    font-size: 2.8rem;
+.dev-row:last-child {
+    border-bottom: none;
+}
+
+.dev-year {
+    font-size: 1.6rem;
     font-weight: 700;
-    color: var(--main-color); /* Your theme accent color */
-    position: sticky;
-    top: 20px;
-    height: max-content;
+    color: #888;
 }
 
-.timeline-events {
+.dev-details {
     display: flex;
     flex-direction: column;
-    gap: 1.8rem;
-    border-left: 3px solid var(--main-color);
-    padding-left: 2.5rem;
+    gap: 0.4rem;
 }
 
-.timeline-card {
-    background: #fdfdfd;
-    padding: 2rem;
-    border-radius: 0.8rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-    border: 1px solid #f0f0f0;
-    transition: transform 0.3s ease;
-}
-
-.timeline-card:hover {
-    transform: translateX(5px);
-}
-
-.timeline-card h3 {
-    font-size: 1.8rem;
+.dev-institution {
+    font-size: 1.7rem;
+    font-weight: 600;
     color: #111;
-    margin-bottom: 0.5rem;
 }
 
-.timeline-card .event-sub {
-    font-size: 1.4rem;
+.dev-title {
+    font-size: 1.5rem;
     color: #555;
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .timeline-year-group {
+/* Mobile Friendly Adjustments */
+@media (max-width: 600px) {
+    .dev-row {
         grid-template-columns: 1fr;
-        gap: 1rem;
+        gap: 0.6rem;
+        padding: 1.5rem 0;
     }
-    .timeline-events {
-        padding-left: 1.5rem;
-    }
-    .timeline-year {
-        font-size: 2.4rem;
-        position: relative;
-        top: 0;
+    .dev-year {
+        font-size: 1.4rem;
+        color: var(--main-color);
     }
 }
 
