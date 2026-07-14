@@ -1,0 +1,549 @@
+/*==================== 1400px ====================*/
+@media(max-width:1400px){
+.container{
+width:min(95%,1200px);
+}
+.hero-container{
+gap:60px;
+}
+.hero-content h1{
+font-size:4rem;
+}
+.image-wrapper{
+width:380px;
+height:380px;
+}
+}
+
+/*==================== 1200px ====================*/
+@media(max-width:1200px){
+h1{
+font-size:3.8rem;
+}
+h2{
+font-size:2.6rem;
+}
+.hero-container{
+grid-template-columns:1fr;
+text-align:center;
+gap:70px;
+}
+.hero-content{
+max-width:100%;
+}
+.hero-content p{
+margin-left:auto;
+margin-right:auto;
+}
+.hero-tags{
+justify-content:center;
+}
+.hero-buttons{
+justify-content:center;
+}
+.hero-social{
+justify-content:center;
+}
+.about-grid{
+grid-template-columns:1fr;
+gap:50px;
+}
+.about-image{
+max-width:420px;
+margin:auto;
+}
+.stats-grid,
+.research-grid,
+.feature-grid,
+.project-grid,
+.news-grid,
+.quick-grid{
+grid-template-columns:repeat(2,1fr);
+}
+.contact-grid{
+grid-template-columns:repeat(2,1fr);
+}
+.social-grid{
+grid-template-columns:repeat(2,1fr);
+}
+.footer-grid{
+grid-template-columns:repeat(2,1fr);
+}
+}
+
+/*==================== 992px ====================*/
+@media(max-width:992px){
+section{
+padding:80px 0;
+}
+.nav-links{
+position:fixed;
+top:84px;
+left:-100%;
+width:300px;
+height:calc(100vh - 84px);
+background:#fff;
+flex-direction:column;
+align-items:flex-start;
+padding:30px;
+gap:0;
+box-shadow:var(--shadow-lg);
+transition:.35s;
+overflow-y:auto;
+}
+.nav-links.active{
+left:0;
+}
+.nav-links>li{
+width:100%;
+}
+.nav-links>li>a{
+height:auto;
+padding:16px 0;
+width:100%;
+justify-content:space-between;
+}
+.dropdown-menu{
+position:static;
+opacity:1;
+visibility:visible;
+transform:none;
+display:none;
+box-shadow:none;
+padding:0 0 0 20px;
+background:transparent;
+min-width:100%;
+}
+.dropdown:hover .dropdown-menu{
+display:block;
+}
+.mobile-menu{
+display:flex;
+}
+.theme-btn{
+margin-right:10px;
+}
+.download-btn{
+display:none;
+}
+.hero{
+padding:150px 0 80px;
+}
+.image-wrapper{
+width:330px;
+height:330px;
+}
+.experience-card{
+left:0;
+bottom:-15px;
+}
+.research-card-mini{
+right:0;
+top:-15px;
+width:220px;
+}
+.publication-item{
+grid-template-columns:1fr;
+}
+.publication-status{
+width:180px;
+}
+}
+
+/*==================== 768px ====================*/
+@media(max-width:768px){
+body{
+font-size:15px;
+}
+h1{
+font-size:3rem;
+}
+h2{
+font-size:2.2rem;
+}
+.hero-content h2{
+font-size:1.6rem;
+}
+.hero-content h3{
+font-size:1rem;
+}
+.hero-tags{
+gap:10px;
+}
+.hero-tags span{
+font-size:.8rem;
+padding:8px 14px;
+}
+.hero-buttons{
+flex-direction:column;
+}
+.btn-primary,
+.btn-secondary{
+width:100%;
+}
+.stats-grid,
+.research-grid,
+.feature-grid,
+.project-grid,
+.news-grid,
+.teaching-grid,
+.quick-grid,
+.contact-grid,
+.social-grid,
+.footer-grid{
+grid-template-columns:1fr;
+}
+.about-highlights{
+grid-template-columns:1fr;
+}
+.footer-bottom{
+flex-direction:column;
+text-align:center;
+}
+}
+
+/*==================== 576px ====================*/
+@media(max-width:576px){
+.container{
+width:92%;
+}
+section{
+padding:70px 0;
+}
+.hero{
+padding-top:130px;
+}
+.hero-content h1{
+font-size:2.4rem;
+}
+.hero-content p{
+font-size:.95rem;
+}
+.image-wrapper{
+width:270px;
+height:270px;
+}
+.experience-card{
+position:relative;
+left:auto;
+bottom:auto;
+margin-top:20px;
+}
+.research-card-mini{
+position:relative;
+right:auto;
+top:auto;
+margin-top:20px;
+width:100%;
+}
+.stat-card,
+.research-item,
+.project-card,
+.news-card,
+.teaching-card,
+.contact-card,
+.quick-card,
+.social-card{
+padding:28px 20px;
+}
+.footer{
+text-align:center;
+}
+.footer-social{
+justify-content:center;
+}
+}
+
+/*==================== 400px ====================*/
+@media(max-width:400px){
+h1{
+font-size:2rem;
+}
+h2{
+font-size:1.8rem;
+}
+.hero-content h2{
+font-size:1.3rem;
+}
+.hero-tags span{
+width:100%;
+text-align:center;
+}
+.hero-social{
+flex-wrap:wrap;
+}
+.image-wrapper{
+width:220px;
+height:220px;
+}
+.logo-text{
+display:none;
+}
+.nav-links{
+width:100%;
+}
+}
+/*==================== FADE ANIMATIONS ====================*/
+.fade-up{
+opacity:0;
+transform:translateY(50px);
+transition:opacity .8s ease,transform .8s ease;
+}
+.fade-up.show{
+opacity:1;
+transform:translateY(0);
+}
+.fade-down{
+opacity:0;
+transform:translateY(-50px);
+transition:opacity .8s ease,transform .8s ease;
+}
+.fade-down.show{
+opacity:1;
+transform:translateY(0);
+}
+.fade-left{
+opacity:0;
+transform:translateX(-60px);
+transition:opacity .8s ease,transform .8s ease;
+}
+.fade-left.show{
+opacity:1;
+transform:translateX(0);
+}
+.fade-right{
+opacity:0;
+transform:translateX(60px);
+transition:opacity .8s ease,transform .8s ease;
+}
+.fade-right.show{
+opacity:1;
+transform:translateX(0);
+}
+.zoom{
+opacity:0;
+transform:scale(.9);
+transition:opacity .8s ease,transform .8s ease;
+}
+.zoom.show{
+opacity:1;
+transform:scale(1);
+}
+
+/*==================== FLOAT ====================*/
+.float{
+animation:float 5s ease-in-out infinite;
+}
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-12px);}
+100%{transform:translateY(0);}
+}
+
+/*==================== ROTATE ====================*/
+.rotate{
+animation:rotate 18s linear infinite;
+}
+@keyframes rotate{
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
+}
+
+/*==================== BOUNCE ====================*/
+.bounce{
+animation:bounce 2s infinite;
+}
+@keyframes bounce{
+0%,20%,50%,80%,100%{
+transform:translateY(0);
+}
+40%{
+transform:translateY(-12px);
+}
+60%{
+transform:translateY(-6px);
+}
+}
+
+/*==================== PULSE ====================*/
+.pulse{
+animation:pulse 2.5s infinite;
+}
+@keyframes pulse{
+0%{
+transform:scale(1);
+}
+50%{
+transform:scale(1.05);
+}
+100%{
+transform:scale(1);
+}
+}
+
+/*==================== RIPPLE ====================*/
+.ripple{
+position:relative;
+overflow:hidden;
+}
+.ripple::after{
+content:"";
+position:absolute;
+left:50%;
+top:50%;
+width:0;
+height:0;
+border-radius:50%;
+background:rgba(255,255,255,.35);
+transform:translate(-50%,-50%);
+transition:.6s;
+}
+.ripple:hover::after{
+width:300px;
+height:300px;
+}
+
+/*==================== CARD HOVER ====================*/
+.hover-up{
+transition:.35s ease;
+}
+.hover-up:hover{
+transform:translateY(-10px);
+}
+.hover-scale{
+transition:.35s ease;
+}
+.hover-scale:hover{
+transform:scale(1.04);
+}
+.hover-shadow{
+transition:.35s ease;
+}
+.hover-shadow:hover{
+box-shadow:0 18px 40px rgba(0,0,0,.15);
+}
+
+/*==================== ICON ROTATE ====================*/
+.icon-spin i{
+transition:.35s ease;
+}
+.icon-spin:hover i{
+transform:rotate(360deg);
+}
+
+/*==================== BUTTON SHINE ====================*/
+.btn-shine{
+position:relative;
+overflow:hidden;
+}
+.btn-shine::before{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:60%;
+height:100%;
+background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);
+transform:skewX(-25deg);
+transition:.8s;
+}
+.btn-shine:hover::before{
+left:150%;
+}
+
+/*==================== IMAGE ZOOM ====================*/
+.image-zoom{
+overflow:hidden;
+}
+.image-zoom img{
+transition:.5s ease;
+}
+.image-zoom:hover img{
+transform:scale(1.08);
+}
+
+/*==================== UNDERLINE ====================*/
+.underline{
+position:relative;
+display:inline-block;
+}
+.underline::after{
+content:"";
+position:absolute;
+left:0;
+bottom:-4px;
+width:0;
+height:2px;
+background:currentColor;
+transition:.35s;
+}
+.underline:hover::after{
+width:100%;
+}
+
+/*==================== BLINK ====================*/
+.blink{
+animation:blink 1.5s infinite;
+}
+@keyframes blink{
+0%,100%{
+opacity:1;
+}
+50%{
+opacity:.35;
+}
+}
+
+/*==================== GRADIENT ====================*/
+.gradient-text{
+background:linear-gradient(90deg,#134074,#3F88C5,#0B2545);
+background-size:300%;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:gradientMove 8s linear infinite;
+}
+@keyframes gradientMove{
+0%{
+background-position:0%;
+}
+100%{
+background-position:300%;
+}
+}
+
+/*==================== LOADER ====================*/
+.loader-circle{
+animation:loaderSpin 1s linear infinite;
+}
+@keyframes loaderSpin{
+100%{
+transform:rotate(360deg);
+}
+}
+
+/*==================== SCROLL INDICATOR ====================*/
+.scroll-down{
+animation:scrollDown 2s infinite;
+}
+@keyframes scrollDown{
+0%{
+transform:translateY(0);
+opacity:1;
+}
+70%{
+transform:translateY(18px);
+opacity:.2;
+}
+100%{
+transform:translateY(0);
+opacity:1;
+}
+}
+
+/*==================== STAGGER ====================*/
+.delay-1{transition-delay:.1s;}
+.delay-2{transition-delay:.2s;}
+.delay-3{transition-delay:.3s;}
+.delay-4{transition-delay:.4s;}
+.delay-5{transition-delay:.5s;}
+.delay-6{transition-delay:.6s;}
