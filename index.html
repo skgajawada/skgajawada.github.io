@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faculty Research Portfolio</title>
+    <title>Sanjeev Kumar Gajavada | Faculty Portfolio</title>
     <!-- Google Fonts & FontAwesome for Premium Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -44,7 +44,7 @@
 
         /* Fixed Left Sidebar / Profile Panel */
         aside {
-            width: 320px;
+            width: 330px;
             height: 100vh;
             position: fixed;
             top: 0;
@@ -68,7 +68,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             box-shadow: 0 4px 12px rgba(0,0,0,0.03);
             border-radius: 4px;
             position: relative;
@@ -91,43 +91,50 @@
             padding: 0 1rem;
         }
 
-        /* Substitute img style if actual photo exists */
-        .profile-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: none; /* Change to block when src is valid */
-        }
-
         .affiliation-box {
             width: 100%;
             text-align: left;
             border-top: 1px solid var(--border);
-            padding-top: 1.5rem;
+            padding-top: 1.25rem;
             margin-top: 1rem;
         }
 
         .affiliation-box h4 {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             color: #64748B;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
 
         .affiliation-box p {
-            font-size: 0.87rem;
+            font-size: 0.85rem;
             color: var(--text-dark);
             font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .sidebar-meta-list {
+            width: 100%;
+            margin-top: 1rem;
+            list-style: none;
+            font-size: 0.8rem;
+            color: var(--text-main);
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+        }
+
+        .sidebar-meta-list li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         /* Main Workspace Wrapper */
         main {
-            margin-left: 320px;
-            width: calc(100% - 320px);
+            margin-left: 330px;
+            width: calc(100% - 330px);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -138,7 +145,7 @@
             position: fixed;
             top: 0;
             right: 0;
-            width: calc(100% - 320px);
+            width: calc(100% - 330px);
             height: 70px;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(8px);
@@ -152,14 +159,14 @@
 
         .nav-links {
             display: flex;
-            gap: 1.75rem;
+            gap: 1.5rem;
             list-style: none;
         }
 
         .nav-links a {
             text-decoration: none;
             color: #475569;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -182,15 +189,15 @@
         }
 
         section {
-            margin-bottom: 4.5rem;
+            margin-bottom: 4rem;
             scroll-margin-top: 100px;
         }
 
         .section-header {
             font-family: var(--font-serif);
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--text-dark);
-            margin-bottom: 2rem;
+            margin-bottom: 1.75rem;
             position: relative;
             display: flex;
             align-items: center;
@@ -231,7 +238,7 @@
         /* Generic Content Cards styling */
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
         }
 
@@ -252,7 +259,6 @@
             border-color: #CBD5E1;
         }
 
-        /* Typography Harmonization for Education & Cards */
         .card-tag {
             font-size: 0.72rem;
             text-transform: uppercase;
@@ -304,7 +310,7 @@
 
         .timeline-item {
             position: relative;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
 
         .timeline-item::before {
@@ -332,7 +338,7 @@
         }
 
         .timeline-role {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: var(--text-dark);
         }
@@ -346,7 +352,7 @@
 
         /* Interactive Accordions Section Formatting */
         .accordion-wrapper {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             border: 1px solid var(--border);
             border-radius: 6px;
             background: var(--card-bg);
@@ -355,7 +361,7 @@
 
         .accordion-trigger {
             width: 100%;
-            padding: 1.75rem 2rem; /* Enlarge structural space without shifting font-size */
+            padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -372,7 +378,7 @@
         }
 
         .accordion-title-text {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 600;
             color: var(--text-dark);
             display: flex;
@@ -393,12 +399,12 @@
         }
 
         .accordion-content.open {
-            max-height: 2000px; /* High limit boundary for transition scale */
+            max-height: 2500px;
             transition: max-height 0.5s cubic-bezier(1, 0, 1, 0);
         }
 
         .accordion-inner {
-            padding: 2rem;
+            padding: 1.5rem 2rem;
             border-top: 1px solid var(--border);
         }
 
@@ -407,7 +413,7 @@
             width: 100%;
             border-collapse: collapse;
             text-align: left;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
         }
 
         .data-table th {
@@ -419,7 +425,7 @@
         }
 
         .data-table td {
-            padding: 1rem;
+            padding: 0.85rem 1rem;
             border-bottom: 1px solid var(--border);
             vertical-align: middle;
         }
@@ -428,10 +434,9 @@
             border-bottom: none;
         }
 
-        /* Document/Link action items buttons */
         .action-btn-group {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.4rem;
             flex-wrap: wrap;
         }
 
@@ -439,9 +444,9 @@
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
-            padding: 0.35rem 0.75rem;
+            padding: 0.3rem 0.6rem;
             border-radius: 4px;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 500;
             text-decoration: none;
             transition: var(--transition);
@@ -470,7 +475,7 @@
         /* Folder access interface metrics */
         .folder-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.25rem;
         }
 
@@ -491,18 +496,17 @@
         }
 
         .folder-icon {
-            font-size: 2rem;
+            font-size: 1.75rem;
             color: #E2B842;
         }
 
-        /* Footer context styles */
         footer {
             margin-top: auto;
             background: var(--primary);
             color: #94A3B8;
-            padding: 3rem 4rem;
+            padding: 2.5rem 4rem;
             border-top: 1px solid var(--border);
-            font-size: 0.88rem;
+            font-size: 0.85rem;
         }
 
         .footer-container {
@@ -513,12 +517,8 @@
             align-items: center;
         }
 
-        .footer-credits text-transform: uppercase; {
-            letter-spacing: 0.05em;
-        }
-
         /* Responsive Layout Overrides */
-        @media (max-width: 1024px) {
+        @media (max-width: 1100px) {
             body {
                 flex-direction: column;
             }
@@ -552,7 +552,7 @@
 
         @media (max-width: 768px) {
             .nav-links {
-                display: none; /* Can be augmented via mobile hamburger menu logic */
+                display: none;
             }
             .card-grid {
                 grid-template-columns: 1fr;
@@ -562,115 +562,129 @@
 </head>
 <body>
 
-    <!-- Fixed Profile Aside Panel -->
+    <!-- Profile Sidebar Panel -->
     <aside>
         <div class="profile-frame">
-            <i class="fa-solid fa-graduation-cap"></i>
-            <span>Faculty Image Profile</span>
-            <!-- Explicitly switch hidden display parameter here when valid image asset pathway maps correctly -->
-            <img src="your-photo-path.jpg" alt="Faculty Photo" class="profile-img" onerror="this.style.display='none';">
+            <i class="fa-solid fa-user-tie"></i>
+            <span>Sanjeev Kumar Gajavada</span>
         </div>
         
-        <h2 style="font-family: var(--font-serif); font-size: 1.4rem; color: var(--text-dark); margin-bottom: 0.25rem; text-align: center;">Dr. Research Scholar</h2>
-        <p style="font-size: 0.85rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.5rem;">Assistant Professor</p>
+        <h2 style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--text-dark); margin-bottom: 0.25rem; text-align: center;">Sanjeev Kumar Gajavada</h2>
+        <p style="font-size: 0.8rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem;">Research Scholar / Assistant Professor</p>
 
         <div class="affiliation-box">
             <h4>Primary Affiliation</h4>
             <p>Department of Mechanical Engineering,<br>Indian Institute of Technology (ISM),<br>Dhanbad, Jharkhand — 826004</p>
         </div>
+
+        <ul class="sidebar-meta-list">
+            <li><i class="fa-solid fa-envelope" style="color:var(--accent);"></i> sanjeevkumargajawada@gmail.com</li>
+            <li><i class="fa-solid fa-phone" style="color:var(--accent);"></i> (+91) 90308 33667</li>
+            <li><i class="fa-brands fa-linkedin" style="color:#0077B5;"></i> <a href="https://www.linkedin.com/in/skgajawada/" target="_blank" style="color:inherit; text-decoration:none;">in/skgajawada</a></li>
+        </ul>
     </aside>
 
     <!-- Main Dynamic Interface Viewspace -->
     <main>
         <!-- Top Sticky System Navigation Bar -->
         <nav>
-            <div style="font-weight: 700; color: var(--text-dark); letter-spacing: -0.02em; font-size: 1.1rem;">FACULTY REGISTRY</div>
+            <div style="font-weight: 700; color: var(--text-dark); letter-spacing: -0.02em; font-size: 1rem;">IIT (ISM) FACULTY COHORT</div>
             <ul class="nav-links">
                 <li><a href="#biography" class="nav-item">Profile</a></li>
-                <li><a href="#experience" class="nav-item">Appointments</a></li>
+                <li><a href="#experience" class="nav-item">Experience</a></li>
                 <li><a href="#education" class="nav-item">Education</a></li>
-                <li><a href="#teaching" class="nav-item">Teaching</a></li>
-                <li><a href="#research" class="nav-item">Research</a></li>
+                <li><a href="#teaching" class="nav-item">Teaching Operations</a></li>
+                <li><a href="#projects" class="nav-item">Academic Projects</a></li>
                 <li><a href="#development" class="nav-item">Development</a></li>
                 <li><a href="#moocs" class="nav-item">Credentials</a></li>
-                <li><a href="#downloads" class="nav-item">Downloads</a></li>
+                <li><a href="#contact" class="nav-item">Contact & References</a></li>
             </ul>
         </nav>
 
         <div class="container">
             <!-- Global Registry Metadata Subtitle Block -->
             <div class="system-badge-container">
-                <h3>Research Scholar Portfolio System</h3>
-                <p>Designed in accordance with Ivy League & IIT Faculty Registry structural parameters.</p>
+                <h3>Research Scholar Portfolio Directory</h3>
+                <p>Formal tracking matrix covering aerospace structural dynamics, mechanical design, and data science integration methodologies.</p>
             </div>
 
             <!-- Profile & Biography Section -->
             <section id="biography">
-                <h2 class="section-header">Biography & Core Interests</h2>
-                <div style="background: var(--card-bg); border: 1px solid var(--border); padding: 2rem; border-radius: 6px; margin-bottom: 2rem;">
-                    <p style="margin-bottom: 1.5rem; color: var(--text-main);">Welcome to my academic homepage. As a dedicated researcher and educator within the engineering disciplines, my work focuses on bridging theoretical foundations in advanced mechanical tracks with high-impact computation models and scalable data paradigms.</p>
+                <h2 class="section-header">Career Objective & Core Interests</h2>
+                <div style="background: var(--card-bg); border: 1px solid var(--border); padding: 2rem; border-radius: 6px;">
+                    <p style="margin-bottom: 1.5rem; color: var(--text-main); font-size: 0.95rem; text-align: justify;">
+                        To advance mechanical and aerospace engineering through research in aeroelasticity, vibration analysis, structural dynamics, finite element methods, composite structures, and control systems. I aim to integrate computational modeling, simulation techniques, and data-driven approaches, including machine learning and artificial intelligence, to develop innovative engineering solutions for complex real-world challenges while fostering interdisciplinary research and technological innovation.
+                    </p>
                     
-                    <h3 style="font-size: 1.1rem; color: var(--text-dark); margin-bottom: 1rem; font-weight: 600;">Core Research Interests</h3>
-                    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-                        <span style="background: #F1F5F9; color: var(--text-dark); padding: 0.4rem 0.8rem; border-radius: 4rem; font-size: 0.85rem; font-weight: 500;">Advanced Machine Design</span>
-                        <span style="background: #F1F5F9; color: var(--text-dark); padding: 0.4rem 0.8rem; border-radius: 4rem; font-size: 0.85rem; font-weight: 500;">Computational Solid Mechanics</span>
-                        <span style="background: #F1F5F9; color: var(--text-dark); padding: 0.4rem 0.8rem; border-radius: 4rem; font-size: 0.85rem; font-weight: 500;">Data Science Integration</span>
-                        <span style="background: #F1F5F9; color: var(--text-dark); padding: 0.4rem 0.8rem; border-radius: 4rem; font-size: 0.85rem; font-weight: 500;">Applied AI in Manufacturing</span>
+                    <h3 style="font-size: 1rem; color: var(--text-dark); margin-bottom: 0.75rem; font-weight: 600;">Technical Strengths & Toolsets</h3>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+                        <span style="background: #F1F5F9; color: var(--text-dark); padding: 0.3rem 0.7rem; border-radius: 4rem; font-size: 0.8rem; font-weight: 500;">Basic Python</span>
+                        <span style="background: #F1F5F9; color: var(--text-dark); padding: 0.3rem 0.7rem; border-radius: 4rem; font-size: 0.8rem; font-weight: 500;">MATLAB</span>
+                        <span style="background: #F1F5F9; color: var(--text-dark); padding: 0.3rem 0.7rem; border-radius: 4rem; font-size: 0.8rem; font-weight: 500;">SQL</span>
+                        <span style="background: #F1F5F9; color: var(--text-dark); padding: 0.3rem 0.7rem; border-radius: 4rem; font-size: 0.8rem; font-weight: 500;">Dataiku</span>
+                        <span style="background: #F1F5F9; color: var(--text-dark); padding: 0.3rem 0.7rem; border-radius: 4rem; font-size: 0.8rem; font-weight: 500;">Power BI</span>
+                        <span style="background: #F1F5F9; color: var(--text-dark); padding: 0.3rem 0.7rem; border-radius: 4rem; font-size: 0.8rem; font-weight: 500;">Tableau</span>
+                        <span style="background: #F1F5F9; color: var(--text-dark); padding: 0.3rem 0.7rem; border-radius: 4rem; font-size: 0.8rem; font-weight: 500;">LaTeX</span>
                     </div>
+
+                    <h3 style="font-size: 1rem; color: var(--text-dark); margin-bottom: 0.5rem; font-weight: 600;">Social Commitments & Traits</h3>
+                    <ul style="padding-left: 1.25rem; font-size: 0.9rem; color: var(--text-main);">
+                        <li><strong>Blood Donation Volunteer:</strong> Donated blood on 10 separate occasions through recognized medical camps.</li>
+                        <li><strong>Pledge Participant:</strong> Nasha Mukt Bharat, Khushaal Bharat (Ministry of Social Justice and Empowerment, Govt. of India).</li>
+                    </ul>
                 </div>
             </section>
 
             <!-- Academic & Professional Experience -->
             <section id="experience">
-                <h2 class="section-header">Academic & Professional Appointments</h2>
+                <h2 class="section-header">Academic & Industry Experience</h2>
                 <div class="timeline-list">
                     <div class="timeline-item">
-                        <div class="timeline-time">2021 — 2025</div>
-                        <div class="timeline-role">Assistant Professor</div>
-                        <div class="timeline-org">Guru Nanak Institutions Technical Campus, Hyderabad, India</div>
-                        <p style="font-size: 0.9rem;">Instructed advanced undergraduate trajectories, served as departmental engineering coordinator, and structured core curriculum parameters for professional development paradigms.</p>
+                        <div class="timeline-time">Jan 2026 — June 2026</div>
+                        <div class="timeline-role">Data Science Industry Fellow / Intern</div>
+                        <div class="timeline-org">Sabudh Foundation (in collaboration with STPI), Mohali, India</div>
+                        <p style="font-size: 0.9rem; margin-top: 0.25rem;">Successfully completed industry training with a **B+ Grade** (Regd. No. SABUDH/16/FT/DS-07-2026-40). Contributed as a key developer on the industrial project: <strong>Federated Learning for Intelligent Transportation Systems</strong>.</p>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">2018 — 2021</div>
+                        <div class="timeline-time">March 2021 — June 2025</div>
+                        <div class="timeline-role">Assistant Professor</div>
+                        <div class="timeline-org">Guru Nanak Institutions Technical Campus (Autonomous), Hyderabad, India</div>
+                        <p style="font-size: 0.9rem; margin-top: 0.25rem;">Handled advanced engineering design coursework, served as the **Coordinator for SAE BAJA / GO KARTING**, managed the Department Minor Degree program, and acted as instructional section mentor.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Nov 2018 — March 2021</div>
                         <div class="timeline-role">Assistant Professor</div>
                         <div class="timeline-org">Sree Chaitanya College of Engineering, Karimnagar, India</div>
-                        <p style="font-size: 0.9rem;">Conducted comprehensive lectures in analytical mechanical dynamics and facilitated engineering computing laboratories and validation metrics.</p>
-                    </div>
-                    <!-- Restored Missing Sabudh Data Science Framework Track -->
-                    <div class="timeline-item">
-                        <div class="timeline-time">2018 (Interim Track)</div>
-                        <div class="timeline-role">Research Intern in Data Science</div>
-                        <div class="timeline-org">Sabudh Foundation, Mohali, India</div>
-                        <p style="font-size: 0.9rem;">Executed programmatic machine learning deployments, data modeling engineering, and predictive processing operations across targeted data streams.</p>
+                        <p style="font-size: 0.9rem; margin-top: 0.25rem;">Delivered baseline and specialized mechanical engineering curricula. Facilitated structural computational labs and acted as institutional workshop coordinator.</p>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">2015 — 2016</div>
+                        <div class="timeline-time">Dec 2015 — June 2016</div>
                         <div class="timeline-role">Lecturer</div>
                         <div class="timeline-org">Jyothishmathi Institute of Technology and Science, Karimnagar, India</div>
-                        <p style="font-size: 0.9rem;">Managed fundamental instructional tasks, laboratory experiments, and basic industrial workshop training schedules.</p>
+                        <p style="font-size: 0.9rem; margin-top: 0.25rem;">Instructed engineering graphics and baseline principles of mechanical laboratory methodologies for first and second-year classes.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Educational Track: Clean Unified Typographical Presentation -->
+            <!-- Educational Track: Harmonized Cards Hierarchy -->
             <section id="education">
                 <h2 class="section-header">Academic Qualifications</h2>
                 <div class="card-grid">
                     <div class="info-card">
                         <div>
                             <div class="card-tag">Doctoral Program</div>
-                            <div class="card-title">PhD (Design Domain Track)</div>
+                            <div class="card-title">PhD — Design Domain Track</div>
                             <div class="card-sub">Indian Institute of Technology (ISM), Dhanbad</div>
                         </div>
                         <div class="card-meta">
-                            <span>July 2025 — Present</span>
+                            <span>July 2025 — Till Date</span>
                             <span class="metric-badge">8.2 CGPA</span>
                         </div>
                     </div>
                     <div class="info-card">
                         <div>
                             <div class="card-tag">Postgraduate Certification</div>
-                            <div class="card-title">AICTE QIP PG Cert. Data Science</div>
+                            <div class="card-title">AICTE QIP Certificate — Data Science</div>
                             <div class="card-sub">Indian Institute of Technology, Bhilai</div>
                         </div>
                         <div class="card-meta">
@@ -681,7 +695,7 @@
                     <div class="info-card">
                         <div>
                             <div class="card-tag">Master of Technology</div>
-                            <div class="card-title">M.Tech (Machine Design Track)</div>
+                            <div class="card-title">M.Tech — Machine Design</div>
                             <div class="card-sub">GITAM Deemed To Be University, Visakhapatnam</div>
                         </div>
                         <div class="card-meta">
@@ -692,7 +706,7 @@
                     <div class="info-card">
                         <div>
                             <div class="card-tag">Bachelor of Technology</div>
-                            <div class="card-title">B.Tech (Mechanical Engineering)</div>
+                            <div class="card-title">B.Tech — Mechanical Engineering</div>
                             <div class="card-sub">Vivekananda Institute of Technology & Science, Karimnagar</div>
                         </div>
                         <div class="card-meta">
@@ -703,7 +717,7 @@
                     <div class="info-card">
                         <div>
                             <div class="card-tag">Higher Secondary</div>
-                            <div class="card-title">Intermediate (M.P.C Trajectory)</div>
+                            <div class="card-title">Intermediate (M.P.C Track)</div>
                             <div class="card-sub">SR Junior College, Karimnagar</div>
                         </div>
                         <div class="card-meta">
@@ -725,78 +739,73 @@
                 </div>
             </section>
 
-            <!-- Teaching and Materials Directories Section -->
+            <!-- Teaching Operations & Handled Subjects Section -->
             <section id="teaching">
-                <h2 class="section-header">Teaching Operations & Folders</h2>
-                <p style="margin-bottom: 1.5rem; font-size: 0.95rem;">Select active curriculum modules below to query explicit repositories containing study frameworks and materials.</p>
+                <h2 class="section-header">Subjects Handled & Materials Folders</h2>
+                <div style="background: var(--card-bg); border: 1px solid var(--border); padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem;">
+                    <h4 style="color:var(--text-dark); margin-bottom: 1rem; font-weight:600;">Core Curricula Competencies</h4>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <span style="border: 1px solid var(--border); background:#FAFBFD; padding: 0.4rem 0.8rem; font-size: 0.85rem; border-radius: 4px; font-weight:500; color:var(--text-dark);">Finite Element Methods / FEA</span>
+                        <span style="border: 1px solid var(--border); background:#FAFBFD; padding: 0.4rem 0.8rem; font-size: 0.85rem; border-radius: 4px; font-weight:500; color:var(--text-dark);">Design of Machine Members / Elements</span>
+                        <span style="border: 1px solid var(--border); background:#FAFBFD; padding: 0.4rem 0.8rem; font-size: 0.85rem; border-radius: 4px; font-weight:500; color:var(--text-dark);">Mechanics of Solids</span>
+                        <span style="border: 1px solid var(--border); background:#FAFBFD; padding: 0.4rem 0.8rem; font-size: 0.85rem; border-radius: 4px; font-weight:500; color:var(--text-dark);">Engineering Mechanics</span>
+                        <span style="border: 1px solid var(--border); background:#FAFBFD; padding: 0.4rem 0.8rem; font-size: 0.85rem; border-radius: 4px; font-weight:500; color:var(--text-dark);">Engineering Graphics</span>
+                        <span style="border: 1px solid var(--border); background:#FAFBFD; padding: 0.4rem 0.8rem; font-size: 0.85rem; border-radius: 4px; font-weight:500; color:var(--text-dark);">Kinematics of Machinery</span>
+                        <span style="border: 1px solid var(--border); background:#FAFBFD; padding: 0.4rem 0.8rem; font-size: 0.85rem; border-radius: 4px; font-weight:500; color:var(--text-dark);">Fluid Mechanics</span>
+                        <span style="border: 1px solid var(--border); background:#FAFBFD; padding: 0.4rem 0.8rem; font-size: 0.85rem; border-radius: 4px; font-weight:500; color:var(--text-dark);">Thermodynamics</span>
+                        <span style="border: 1px solid var(--border); background:#FAFBFD; padding: 0.4rem 0.8rem; font-size: 0.85rem; border-radius: 4px; font-weight:500; color:var(--text-dark);">Heat Transfer</span>
+                        <span style="border: 1px solid var(--border); background:#FAFBFD; padding: 0.4rem 0.8rem; font-size: 0.85rem; border-radius: 4px; font-weight:500; color:var(--text-dark);">Operations Research</span>
+                    </div>
+                </div>
+
                 <div class="folder-grid">
                     <div class="folder-card">
                         <i class="fa-solid fa-folder-open folder-icon"></i>
                         <div>
                             <h4 style="font-weight: 600; color: var(--text-dark); margin-bottom: 0.25rem; font-size: 0.95rem;">Finite Element Methods</h4>
-                            <p style="font-size: 0.8rem; color: #64748B; margin-bottom: 0.75rem;">Syllabus, Notes, Assignments</p>
-                            <a href="#" class="action-link primary-action"><i class="fa-solid fa-arrow-right-to-bracket"></i> Access Material</a>
+                            <p style="font-size: 0.8rem; color: #64748B; margin-bottom: 0.75rem;">Syllabus Framework & Numerical Notes</p>
+                            <a href="#" class="action-link primary-action"><i class="fa-solid fa-arrow-right-to-bracket"></i> Open Repository</a>
                         </div>
                     </div>
                     <div class="folder-card">
                         <i class="fa-solid fa-folder-open folder-icon"></i>
                         <div>
-                            <h4 style="font-weight: 600; color: var(--text-dark); margin-bottom: 0.25rem; font-size: 0.95rem;">Advanced Mechanics of Solids</h4>
-                            <p style="font-size: 0.8rem; color: #64748B; margin-bottom: 0.75rem;">Lab Handouts & Model Equations</p>
-                            <a href="#" class="action-link primary-action"><i class="fa-solid fa-arrow-right-to-bracket"></i> Access Material</a>
-                        </div>
-                    </div>
-                    <div class="folder-card">
-                        <i class="fa-solid fa-folder-open folder-icon"></i>
-                        <div>
-                            <h4 style="font-weight: 600; color: var(--text-dark); margin-bottom: 0.25rem; font-size: 0.95rem;">Computer Aided Design</h4>
-                            <p style="font-size: 0.8rem; color: #64748B; margin-bottom: 0.75rem;">Step-by-Step Practical Schematics</p>
-                            <a href="#" class="action-link primary-action"><i class="fa-solid fa-arrow-right-to-bracket"></i> Access Material</a>
+                            <i class="fa-solid fa-folder-open folder-icon" style="display:none;"></i>
+                            <h4 style="font-weight: 600; color: var(--text-dark); margin-bottom: 0.25rem; font-size: 0.95rem;">Machine Design Elements</h4>
+                            <p style="font-size: 0.8rem; color: #64748B; margin-bottom: 0.75rem;">Formula Sheets & Fatigue Analysis Cases</p>
+                            <a href="#" class="action-link primary-action"><i class="fa-solid fa-arrow-right-to-bracket"></i> Open Repository</a>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Research Projects Panel Layout -->
-            <section id="research">
-                <h2 class="section-header">Research Projects</h2>
-                <div style="background: var(--card-bg); border: 1px solid var(--border); padding: 2rem; border-radius: 6px;">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Project Framework Title</th>
-                                <th>Domain Area</th>
-                                <th>Role</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="font-weight: 600; color: var(--text-dark);">Computational Structural Analysis of Advanced Composite Matricies</td>
-                                <td>Solid Mechanics</td>
-                                <td>Principal Investigator</td>
-                                <td><span style="background: #E2F0D9; color: #385723; padding: 0.2rem 0.5rem; font-size: 0.75rem; font-weight: 700; border-radius: 4px;">Ongoing</span></td>
-                            </tr>
-                            <tr>
-                                <td style="font-weight: 600; color: var(--text-dark);">Machine Learning Topographies for Predictive Maintenance of Rotating Assemblies</td>
-                                <td>Data Science / Mechanical</td>
-                                <td>Co-Investigator</td>
-                                <td><span style="background: #FFF2CC; color: #7F6000; padding: 0.2rem 0.5rem; font-size: 0.75rem; font-weight: 700; border-radius: 4px;">Under Review</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <!-- Academic Projects Repository -->
+            <section id="projects">
+                <h2 class="section-header">Academic & Research Projects</h2>
+                <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+                    <div style="background:var(--card-bg); border:1px solid var(--border); padding: 1.5rem; border-radius:6px;">
+                        <h4 style="font-size: 1.05rem; color:var(--text-dark); font-weight:600; margin-bottom: 0.4rem;">Elastic-Plastic Material Properties of Metals on Hardness Values Using FEA</h4>
+                        <p style="font-size: 0.9rem; color:var(--text-main); text-align: justify;">Analyzed variance vectors separating experimental data configurations from analytical classic mathematical models. Optimized mechanical hardness parameters using targeted finite element boundary processing topologies.</p>
+                    </div>
+                    <div style="background:var(--card-bg); border:1px solid var(--border); padding: 1.5rem; border-radius:6px;">
+                        <h4 style="font-size: 1.05rem; color:var(--text-dark); font-weight:600; margin-bottom: 0.4rem;">Hydraulic Robotic Arm for Pick and Place Operations</h4>
+                        <p style="font-size: 0.9rem; color:var(--text-main); text-align: justify;">Constructed a custom hydraulic mechanical prototype framework applying Pascal's Law principles to manage precise fluid-driven loading and positioning control tracking.</p>
+                    </div>
+                    <div style="background:var(--card-bg); border:1px solid var(--border); padding: 1.5rem; border-radius:6px;">
+                        <h4 style="font-size: 1.05rem; color:var(--text-dark); font-weight:600; margin-bottom: 0.4rem;">Study of Internal Combustion Engines & Components</h4>
+                        <p style="font-size: 0.9rem; color:var(--text-main); text-align: justify;">Conducted detailed mechanical diagnostics mapping systemic differences separating two-stroke cycle engines from conventional four-stroke automotive power plants.</p>
+                    </div>
                 </div>
             </section>
 
-            <!-- Professional Development Program Accordions (Sorted Latest -> Oldest) -->
+            <!-- Professional Development Programs (With Accordions) -->
             <section id="development">
-                <h2 class="section-header">Professional Development Programs</h2>
-                <p style="margin-bottom: 1.5rem; font-size: 0.95rem;">Click programmatic headings below to check targeted chronological indexes containing verified operational events.</p>
-
-                <!-- FDPs Accordion Section -->
+                <h2 class="section-header">Professional Development Tracks</h2>
+                
+                <!-- ATAL Academy Accordion -->
                 <div class="accordion-wrapper">
                     <button class="accordion-trigger">
-                        <span class="accordion-title-text"><i class="fa-solid fa-chalkboard-user" style="color: var(--accent);"></i> Faculty Development Programs (FDPs)</span>
+                        <span class="accordion-title-text"><i class="fa-solid fa-award" style="color: var(--accent);"></i> AICTE ATAL Certification Milestones</span>
                         <i class="fa-solid fa-chevron-down accordion-icon"></i>
                     </button>
                     <div class="accordion-content">
@@ -805,294 +814,281 @@
                                 <thead>
                                     <tr>
                                         <th>Timeline</th>
-                                        <th>Program Topic / Framework</th>
-                                        <th>Organizing Body / Venue</th>
-                                        <th>Verification Assets</th>
+                                        <th>ATAL Specialization Focus</th>
+                                        <th>Host Institution / Center</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td style="color: var(--accent); font-weight: 600;">Jan 2026</td>
-                                        <td style="font-weight:500; color: var(--text-dark);">Next-Generation Mechanical Engineering: From Research to Industrial Applications</td>
-                                        <td>Mechanical Dept, Institute of Engineering & Management (IEM) with HRDC</td>
-                                        <td><a href="#" class="action-link"><i class="fa-solid fa-file-pdf" style="color: #C00;"></i> PDF</a></td>
+                                        <td style="color:var(--accent); font-weight:600;">Nov 17-22, 2025</td>
+                                        <td style="font-weight:600; color:var(--text-dark);">Robotics for Industry 4.0: Enabling Smart Manufacturing</td>
+                                        <td>Sri Venkateswara College of Engineering</td>
+                                        <td><span class="metric-badge" style="background:#E6F4EA; color:#137333;">Completed</span></td>
                                     </tr>
                                     <tr>
-                                        <td style="color: var(--accent); font-weight: 600;">Jan 2026</td>
-                                        <td style="font-weight:500; color: var(--text-dark);">Advanced Computational Modeling for Solids and Fluids</td>
+                                        <td style="color:var(--accent); font-weight:600;">July 05-09, 2021</td>
+                                        <td style="font-weight:600; color:var(--text-dark);">Green Technology and Sustainability Engineering</td>
+                                        <td>Amrita Vishwa Vidyapeetham (Online Elementary)</td>
+                                        <td><span class="metric-badge" style="background:#E6F4EA; color:#137333;">Completed</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FDPs, Conferences & Workshops Accordion -->
+                <div class="accordion-wrapper">
+                    <button class="accordion-trigger">
+                        <span class="accordion-title-text"><i class="fa-solid fa-chalkboard-user" style="color: var(--accent);"></i> Attended Conferences, FDPs & STCs (Recent)</span>
+                        <i class="fa-solid fa-chevron-down accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-inner">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Timeline</th>
+                                        <th>Program / Event Theme Specification</th>
+                                        <th>Organizing Host Structure</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="color:var(--accent); font-weight:600;">Feb 07-16, 2026</td>
+                                        <td>Online Workshop: Problem-Driven AI: Real World Applications & Solution Frameworks</td>
+                                        <td>Dept of Computer Science & Engineering, NIT Rourkela</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color:var(--accent); font-weight:600;">Jan 16-21, 2026</td>
+                                        <td>5-Day FDP: Next-Generation Mechanical Engineering: From Research to Industrial Apps</td>
+                                        <td>Dept of Mechanical Engineering, IEM in association with HRDC</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color:var(--accent); font-weight:600;">Jan 05-08, 2026</td>
+                                        <td>FDP: Advanced Computational Modeling for Solids and Fluids</td>
                                         <td>Indian Institute of Technology, Bhilai</td>
-                                        <td><a href="#" class="action-link"><i class="fa-solid fa-file-pdf" style="color: #C00;"></i> PDF</a></td>
                                     </tr>
                                     <tr>
-                                        <td>Nov 2025</td>
-                                        <td style="font-weight:500; color: var(--text-dark);">Recent Advances in Composite Materials: Integrating Modelling & Experimental Approaches</td>
-                                        <td>Mechanical & Civil Depts, MVGR College of Engineering, Vizianagaram</td>
-                                        <td><a href="#" class="action-link"><i class="fa-solid fa-file-pdf" style="color: #C00;"></i> PDF</a></td>
+                                        <td>Dec 19-20, 2025</td>
+                                        <td>Conference Track: AI for Forensics and Biometric Applications (AIFB 2025)</td>
+                                        <td>Indian Institute of Technology, Bhilai</td>
                                     </tr>
                                     <tr>
-                                        <td>Oct 2025</td>
-                                        <td style="font-weight:500; color: var(--text-dark);">The Role of Artificial Intelligence in Manufacturing Industries</td>
-                                        <td>Mechanical & Data Engineering Depts, MVGR College of Engineering</td>
-                                        <td><a href="#" class="action-link"><i class="fa-solid fa-file-pdf" style="color: #C00;"></i> PDF</a></td>
+                                        <td>Nov 17-21, 2025</td>
+                                        <td>5-Day FDP: Recent Advances in Composite Materials: Integrating Modelling & Experimental Approaches</td>
+                                        <td>Depts of Mechanical & Civil, MVGR College of Engineering, Vizianagaram</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Oct 27-31, 2025</td>
+                                        <td>5-Day FDP: The Role of Artificial Intelligence in Manufacturing Industries</td>
+                                        <td>Depts of Mechanical & Data Engineering, MVGR College of Engineering</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Oct 27-Nov 06, 2025</td>
+                                        <td>Two-Week FDP: The Art and Science of Successful Proposal Writing</td>
+                                        <td>Depts of ECE, CSE, and IT, CVR College of Engineering, Hyderabad</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sept 15-19, 2025</td>
+                                        <td>5-Day FDP: Smart Materials and Technologies for Durable Structures (SMTDS'25)</td>
+                                        <td>Dept of Civil Engineering, R.V.R.J.C. College of Engineering, Guntur</td>
+                                    </tr>
+                                    <tr>
+                                        <td>July 22-Aug 02, 2024</td>
+                                        <td>Two-Week FDP: Transforming Education: Integrating OBE and NEP 2020</td>
+                                        <td>Dept of Electronics & Communication Engineering, CVR College</td>
+                                    </tr>
+                                    <tr>
+                                        <td>July 30-Aug 03, 2024</td>
+                                        <td>One-Week FDP: Innovations in Robotics and UAVs: Digital Twins, Drone Design, and Future Trends</td>
+                                        <td>Mechanical Engineering Dept, VNR VJIET</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dec 26, 2023 — Jan 02, 2024</td>
+                                        <td>One-Week FDP: Advanced Python Programming</td>
+                                        <td>Dept of Computer Science & Engineering, GNITC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Oct 31, 2023</td>
+                                        <td>Engagement Workshop: Emission Control Strategies in Thermal Power Plants</td>
+                                        <td>OP Jindal University & Jindal Institute of Power Technology</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sept 12-16, 2023</td>
+                                        <td>5-Day FDP: Fundamentals, Advancements and Applications of Robotics</td>
+                                        <td>Dept of Mechanical Engineering, Vignan Institute of Tech & Science</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Aug 23-28, 2021</td>
+                                        <td>One-Week FDP: Additive Manufacturing Processes and Its Applications</td>
+                                        <td>Dept of Mechanical Engineering, Sri Manakula Vinayagar Eng. College</td>
+                                    </tr>
+                                    <tr>
+                                        <td>March 22-27, 2021</td>
+                                        <td>AICTE Sponsored Short Term Course (STC): Enduring Trends in Hydraulic Control Systems</td>
+                                        <td>Dept of Mechanical Engineering, Centre for Continuing Education, IIT Madras</td>
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Conferences Accordion Section -->
-                <div class="accordion-wrapper">
-                    <button class="accordion-trigger">
-                        <span class="accordion-title-text"><i class="fa-solid fa-users-viewfinder" style="color: var(--accent);"></i> International Conferences & STCs</span>
-                        <i class="fa-solid fa-chevron-down accordion-icon"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-inner">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Timeline</th>
-                                        <th>Conference Matrix Theme</th>
-                                        <th>Proceedings / Venue Location</th>
-                                        <th>Verification Assets</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="color: var(--accent); font-weight: 600;">Feb 2026</td>
-                                        <td style="font-weight:500; color: var(--text-dark);">International Conference on Advanced Materials Processing (ICAMP-2026)</td>
-                                        <td>Springer Proceedings / IIT Campus Registry</td>
-                                        <td><a href="#" class="action-link"><i class="fa-solid fa-file-pdf" style="color: #C00;"></i> PDF</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dec 2025</td>
-                                        <td style="font-weight:500; color: var(--text-dark);">Global Summit on Computational Solid Dynamics & Machine Interfaces</td>
-                                        <td>IEEE Exploration Track, New Delhi</td>
-                                        <td><a href="#" class="action-link"><i class="fa-solid fa-file-pdf" style="color: #C00;"></i> PDF</a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Workshops Accordion Section -->
-                <div class="accordion-wrapper">
-                    <button class="accordion-trigger">
-                        <span class="accordion-title-text"><i class="fa-solid fa-screwdriver-wrench" style="color: var(--accent);"></i> Workshops, STTPs & Summer Schools</span>
-                        <i class="fa-solid fa-chevron-down accordion-icon"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-inner">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Program Type</th>
-                                        <th>Framework Domain Focus</th>
-                                        <th>Organizing Operational Agency</th>
-                                        <th>Asset Links</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><strong>STTP</strong></td>
-                                        <td>Numerical Methods Optimization via Engineering Toolsets</td>
-                                        <td>National Institute of Technical Teachers Training & Research</td>
-                                        <td><a href="#" class="action-link"><i class="fa-solid fa-file-pdf" style="color: #C00;"></i> PDF</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Summer School</strong></td>
-                                        <td>Data Analytics and Structural Topology Processing Foundations</td>
-                                        <td>IIT Mechanical Research Registry Laboratory Matrix</td>
-                                        <td><a href="#" class="action-link"><i class="fa-solid fa-file-pdf" style="color: #C00;"></i> PDF</a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AICTE ATAL Accordion Section -->
-                <div class="accordion-wrapper">
-                    <button class="accordion-trigger">
-                        <span class="accordion-title-text"><i class="fa-solid fa-award" style="color: var(--accent);"></i> AICTE ATAL Milestones</span>
-                        <i class="fa-solid fa-chevron-down accordion-icon"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-inner">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Timeline Sector</th>
-                                        <th>ATAL Course Track Specification</th>
-                                        <th>Evaluation Authority Status</th>
-                                        <th>Verification Assets</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>2025 Track</td>
-                                        <td style="font-weight:500; color: var(--text-dark);">Advanced Manufacturing Systems and Automated Robotics Management Paradigms</td>
-                                        <td>AICTE Academy Operational Unit</td>
-                                        <td><a href="#" class="action-link"><i class="fa-solid fa-file-pdf" style="color: #C00;"></i> PDF</a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            
+                            <div style="margin-top: 1rem; padding: 1rem; border-left: 3px solid var(--accent); background:#F8FAFC; font-size:0.85rem;">
+                                <strong>Additional Core Institutional Tracking Events:</strong> Three-week Faculty Induction Training Program (TLC, IIT Hyderabad under PMMMNMTT framework); One-week QIP Short Term Course on Theory of Plasticity (IIT Bombay); One-week AICTE & QIP STC on Application of Forecasting Methods (IIT Kharagpur); Green Manufacturing Short Term Course (NITTTR Chandigarh); FEM Industry & Research Applications STTP (Vasavi College of Engineering).
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- MOOCs, Certifications & Credly Global Registries Section -->
+            <!-- MOOCs, Certifications & Credential Registries Section -->
             <section id="moocs">
-                <h2 class="section-header">MOOCs & Global Credential Registries</h2>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; background: #FFFFFF; padding: 1rem 1.5rem; border: 1px solid var(--border); border-radius: 6px;">
-                    <span style="font-size: 0.9rem; font-weight: 500; color: var(--text-dark);"><i class="fa-solid fa-shield-halved" style="color: #E2B842; margin-right: 0.5rem;"></i> Verified educational milestones from global learning architectures.</span>
-                    <a href="#" class="action-link primary-action" style="font-size: 0.8rem;"><i class="fa-solid fa-id-badge"></i> View Credly Badges Portfolio</a>
-                </div>
-
+                <h2 class="section-header">MOOCs & Specialized Academic Certifications</h2>
                 <table class="data-table" style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; overflow: hidden;">
                     <thead>
                         <tr>
-                            <th>Platform Tracker</th>
-                            <th>Certification / Micro-Credential Title</th>
-                            <th>Issuing Institution Authority</th>
-                            <th>Link Registry / Image Asset</th>
+                            <th>Platform Vector</th>
+                            <th>Certification Program Theme</th>
+                            <th>Issuing Hub / Institution</th>
+                            <th>Registry Validation</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- Dataiku Certificates Block -->
                         <tr>
-                            <td><span style="background: #E6F4EA; color: #137333; padding: 0.25rem 0.5rem; font-size: 0.75rem; font-weight: 700; border-radius: 4px;">Dataiku</span></td>
-                            <td style="font-weight: 600; color: var(--text-dark);">Core Designer Certification</td>
+                            <td><span style="background: #E6F4EA; color: #137333; padding: 0.2rem 0.5rem; font-size: 0.72rem; font-weight: 700; border-radius: 4px;">Dataiku</span></td>
+                            <td style="font-weight: 600; color: var(--text-dark);">Dataiku Suite Certifications (Core, Advanced, Developer, ML Practitioner, MLOps, Generative AI)</td>
                             <td>Dataiku Professional Academy</td>
-                            <td>
-                                <div class="action-btn-group">
-                                    <a href="#" class="action-link"><i class="fa-solid fa-link"></i> Token</a>
-                                    <a href="#" class="action-link"><i class="fa-solid fa-image"></i> Image</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><span style="background: #E6F4EA; color: #137333; padding: 0.25rem 0.5rem; font-size: 0.75rem; font-weight: 700; border-radius: 4px;">Dataiku</span></td>
-                            <td style="font-weight: 600; color: var(--text-dark);">Advanced Designer Certificate</td>
-                            <td>Dataiku Professional Academy</td>
-                            <td>
-                                <div class="action-btn-group">
-                                    <a href="#" class="action-link"><i class="fa-solid fa-link"></i> Token</a>
-                                    <a href="#" class="action-link"><i class="fa-solid fa-image"></i> Image</a>
-                                </div>
-                            </td>
+                            <td><a href="#" class="action-link"><i class="fa-solid fa-shield-halved"></i> Verify Track</a></td>
                         </tr>
                         <!-- MathWorks Certificates Block -->
                         <tr>
-                            <td><span style="background: #FEF3C7; color: #D97706; padding: 0.25rem 0.5rem; font-size: 0.75rem; font-weight: 700; border-radius: 4px;">MathWorks</span></td>
-                            <td style="font-weight: 600; color: var(--text-dark);">Control System Design Pathway</td>
+                            <td><span style="background: #FEF3C7; color: #D97706; padding: 0.2rem 0.5rem; font-size: 0.72rem; font-weight: 700; border-radius: 4px;">MathWorks</span></td>
+                            <td style="font-weight: 600; color: var(--text-dark);">Control System Design Learning Path (Modeling, Linearization, PID, Classical Design)</td>
                             <td>MathWorks Training Services</td>
-                            <td>
-                                <div class="action-btn-group">
-                                    <a href="#" class="action-link"><i class="fa-solid fa-link"></i> Verify</a>
-                                    <a href="#" class="action-link"><i class="fa-solid fa-file-pdf" style="color:#C00;"></i> PDF</a>
-                                </div>
-                            </td>
+                            <td><a href="#" class="action-link"><i class="fa-solid fa-square-poll-vertical"></i> View Pathway</a></td>
                         </tr>
                         <tr>
-                            <td><span style="background: #FEF3C7; color: #D97706; padding: 0.25rem 0.5rem; font-size: 0.75rem; font-weight: 700; border-radius: 4px;">MathWorks</span></td>
-                            <td style="font-weight: 600; color: var(--text-dark);">Control Design Onramp with Simulink</td>
+                            <td><span style="background: #FEF3C7; color: #D97706; padding: 0.2rem 0.5rem; font-size: 0.72rem; font-weight: 700; border-radius: 4px;">MathWorks</span></td>
+                            <td style="font-weight: 600; color: var(--text-dark);">MATLAB Onramp, Simulink Onramp & Control Design Onramp</td>
                             <td>MathWorks Training Services</td>
-                            <td>
-                                <div class="action-btn-group">
-                                    <a href="#" class="action-link"><i class="fa-solid fa-link"></i> Verify</a>
-                                    <a href="#" class="action-link"><i class="fa-solid fa-file-pdf" style="color:#C00;"></i> PDF</a>
-                                </div>
-                            </td>
+                            <td><a href="#" class="action-link"><i class="fa-solid fa-file-pdf"></i> PDF</a></td>
                         </tr>
                         <!-- Coursera Certificates Block -->
                         <tr>
-                            <td><span style="background: #E0F2FE; color: #0369A1; padding: 0.25rem 0.5rem; font-size: 0.75rem; font-weight: 700; border-radius: 4px;">Coursera</span></td>
-                            <td style="font-weight: 600; color: var(--text-dark);">Business Analytics with Excel Frameworks</td>
+                            <td><span style="background: #E0F2FE; color: #0369A1; padding: 0.2rem 0.5rem; font-size: 0.72rem; font-weight: 700; border-radius: 4px;">Coursera</span></td>
+                            <td style="font-weight: 600; color: var(--text-dark);">Business Analytics with Excel: Elementary to Advanced</td>
                             <td>Johns Hopkins University</td>
-                            <td>
-                                <div class="action-btn-group">
-                                    <a href="#" class="action-link"><i class="fa-solid fa-link"></i> Registry</a>
-                                    <a href="#" class="action-link"><i class="fa-solid fa-file-pdf" style="color:#C00;"></i> PDF</a>
-                                </div>
-                            </td>
+                            <td><a href="#" class="action-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> JHU License</a></td>
+                        </tr>
+                        <tr>
+                            <td><span style="background: #E0F2FE; color: #0369A1; padding: 0.2rem 0.5rem; font-size: 0.72rem; font-weight: 700; border-radius: 4px;">Coursera</span></td>
+                            <td style="font-weight: 600; color: var(--text-dark);">From Excel to Power BI & Getting Started with Excel</td>
+                            <td>Knowledge Accelerators / Guided Tracks</td>
+                            <td><a href="#" class="action-link"><i class="fa-solid fa-link"></i> License</a></td>
                         </tr>
                         <!-- IBM SkillBuild Certificates Block -->
                         <tr>
-                            <td><span style="background: #F3E8FF; color: #6B21A8; padding: 0.25rem 0.5rem; font-size: 0.75rem; font-weight: 700; border-radius: 4px;">IBM Skills</span></td>
-                            <td style="font-weight: 600; color: var(--text-dark);">Python 101 for Data Science Frameworks</td>
-                            <td>IBM Developer Skills Network</td>
-                            <td>
-                                <div class="action-btn-group">
-                                    <a href="#" class="action-link"><i class="fa-solid fa-link"></i> Verify</a>
-                                    <a href="#" class="action-link"><i class="fa-solid fa-image"></i> Image</a>
-                                </div>
-                            </td>
+                            <td><span style="background: #F3E8FF; color: #6B21A8; padding: 0.2rem 0.5rem; font-size: 0.72rem; font-weight: 700; border-radius: 4px;">IBM Skills</span></td>
+                            <td style="font-weight: 600; color: var(--text-dark);">Python 101 for Data Science (PY0101EN)</td>
+                            <td>IBM Developer Skills Network / Cognitive Class</td>
+                            <td><a href="#" class="action-link"><i class="fa-solid fa-certificate"></i> Credential</a></td>
                         </tr>
                         <!-- LinkedIn Learning Certificates Block -->
                         <tr>
-                            <td><span style="background: #F1F5F9; color: #334155; padding: 0.25rem 0.5rem; font-size: 0.75rem; font-weight: 700; border-radius: 4px;">LinkedIn</span></td>
-                            <td style="font-weight: 600; color: var(--text-dark);">SQL Programming Foundations Track</td>
-                            <td>LinkedIn Learning Architecture</td>
-                            <td>
-                                <div class="action-btn-group">
-                                    <a href="#" class="action-link"><i class="fa-solid fa-link"></i> Link</a>
-                                    <a href="#" class="action-link"><i class="fa-solid fa-file-pdf" style="color:#C00;"></i> PDF</a>
-                                </div>
-                            </td>
+                            <td><span style="background: #F1F5F9; color: #334155; padding: 0.2rem 0.5rem; font-size: 0.72rem; font-weight: 700; border-radius: 4px;">LinkedIn</span></td>
+                            <td style="font-weight: 600; color: var(--text-dark);">Data Stack & Coding Courses (SQL, MySQL for Non-Programmers, Data Analytics Foundations, Six Sigma Green Belt, Operational Excellence)</td>
+                            <td>LinkedIn Learning Systems Architecture</td>
+                            <td><a href="#" class="action-link"><i class="fa-solid fa-link"></i> Verify</a></td>
                         </tr>
                     </tbody>
                 </table>
             </section>
 
-            <!-- Formal Documents Downloads Section -->
-            <section id="downloads">
-                <h2 class="section-header">Academic Downloads Repository</h2>
-                <div style="background: var(--card-bg); border: 1px solid var(--border); padding: 2rem; border-radius: 6px; display: flex; gap: 1.5rem; flex-wrap: wrap;">
-                    <a href="#" class="action-link" style="padding: 1rem 1.5rem; font-size: 0.95rem; font-weight: 600;"><i class="fa-solid fa-file-pdf" style="color: #C00; font-size: 1.3rem; margin-right: 0.5rem;"></i> Download Complete Curriculum Vitae (CV)</a>
-                    <a href="#" class="action-link" style="padding: 1rem 1.5rem; font-size: 0.95rem; font-weight: 600;"><i class="fa-solid fa-file-shield" style="color: #137333; font-size: 1.3rem; margin-right: 0.5rem;"></i> Research Statement Portfolio Bundle</a>
-                </div>
-            </section>
-
-            <!-- Institutional Contact Block Layout -->
+            <!-- Replaced Downloads with Comprehensive Contacts & References Grid Section -->
             <section id="contact">
-                <h2 class="section-header">Institutional Contact</h2>
-                <div style="background: var(--card-bg); border: 1px solid var(--border); padding: 2rem; border-radius: 6px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                <h2 class="section-header">Institutional Contact & Registry References</h2>
+                
+                <div style="background: var(--card-bg); border: 1px solid var(--border); padding: 2rem; border-radius: 6px; margin-bottom: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
                     <div>
-                        <h4 style="font-weight: 600; color: var(--text-dark); margin-bottom: 0.5rem;"><i class="fa-solid fa-envelope" style="color: var(--accent); margin-right: 0.5rem;"></i> Electronic Mailing Address</h4>
-                        <p style="font-size: 0.95rem; padding-left: 1.5rem;">faculty.member@iitism.ac.in</p>
+                        <h4 style="font-weight: 700; color: var(--text-dark); margin-bottom: 0.5rem; font-size: 0.95rem;"><i class="fa-solid fa-envelope" style="color: var(--accent); margin-right: 0.5rem;"></i> Direct Communication Channels</h4>
+                        <p style="font-size: 0.9rem; margin-bottom: 0.25rem;">Primary: <strong>sanjeevkumargajawada@gmail.com</strong></p>
+                        <p style="font-size: 0.9rem;">Contact Phone: <strong>(+91) 90308 33667</strong></p>
                     </div>
                     <div>
-                        <h4 style="font-weight: 600; color: var(--text-dark); margin-bottom: 0.5rem;"><i class="fa-solid fa-building-columns" style="color: var(--accent); margin-right: 0.5rem;"></i> Office Location Coordinates</h4>
-                        <p style="font-size: 0.95rem; padding-left: 1.5rem;">Room 304, Department of Mechanical Engineering, IIT (ISM) Dhanbad.</p>
+                        <h4 style="font-weight: 700; color: var(--text-dark); margin-bottom: 0.5rem; font-size: 0.95rem;"><i class="fa-solid fa-location-dot" style="color: var(--accent); margin-right: 0.5rem;"></i> Residential Registry Coordinates</h4>
+                        <p style="font-size: 0.85rem; color:var(--text-main); line-height:1.4;">Plot No. 138, Road Number 5, Sri Ram Nagar colony, Turkayamjal, Ranga Reddy, Telangana — 501510</p>
+                    </div>
+                </div>
+
+                <h3 style="font-size: 1.25rem; font-family: var(--font-serif); color:var(--text-dark); margin-bottom: 1.25rem;">Academic & Professional Review References</h3>
+                <div class="card-grid">
+                    <div class="info-card" style="padding:1.25rem;">
+                        <div>
+                            <h4 style="font-weight:600; color:var(--text-dark); font-size:0.95rem;">Dr. Prashanta Kr. Mahato</h4>
+                            <p style="font-size:0.82rem; color:var(--accent); font-weight:600; margin-bottom:0.5rem;">Professor, Dept of Mechanical Engineering</p>
+                            <p style="font-size:0.85rem; color:var(--text-main);">IIT (ISM) Dhanbad</p>
+                        </div>
+                        <div style="margin-top:1rem; font-size:0.8rem; border-top:1px dashed var(--border); padding-top:0.5rem; color:#475569;">
+                            <i class="fa-solid fa-envelope"></i> pkmahato@iitism.ac.in
+                        </div>
+                    </div>
+
+                    <div class="info-card" style="padding:1.25rem;">
+                        <div>
+                            <h4 style="font-weight:600; color:var(--text-dark); font-size:0.95rem;">Dr. Suparno Bhattacharyya</h4>
+                            <p style="font-size:0.82rem; color:var(--accent); font-weight:600; margin-bottom:0.5rem;">Assistant Professor, Dept of Mechanical Engineering</p>
+                            <p style="font-size:0.85rem; color:var(--text-main);">IIT (ISM) Dhanbad</p>
+                        </div>
+                        <div style="margin-top:1rem; font-size:0.8rem; border-top:1px dashed var(--border); padding-top:0.5rem; color:#475569;">
+                            <i class="fa-solid fa-envelope"></i> suparno@iitism.ac.in
+                        </div>
+                    </div>
+
+                    <div class="info-card" style="padding:1.25rem;">
+                        <div>
+                            <h4 style="font-weight:600; color:var(--text-dark); font-size:0.95rem;">Dr. Rajeswara Reddy Resapu</h4>
+                            <p style="font-size:0.82rem; color:var(--accent); font-weight:600; margin-bottom:0.5rem;">Associate Professor & Head, Dept of ME</p>
+                            <p style="font-size:0.85rem; color:var(--text-main);">GITAM Deemed University, Visakhapatnam</p>
+                        </div>
+                        <div style="margin-top:1rem; font-size:0.8rem; border-top:1px dashed var(--border); padding-top:0.5rem; color:#475569;">
+                            <i class="fa-solid fa-envelope"></i> rresapu@gitam.edu
+                        </div>
+                    </div>
+
+                    <div class="info-card" style="padding:1.25rem;">
+                        <div>
+                            <h4 style="font-weight:600; color:var(--text-dark); font-size:0.95rem;">Dr. A Raj Kumar</h4>
+                            <p style="font-size:0.82rem; color:var(--accent); font-weight:600; margin-bottom:0.5rem;">Professor & Head, Dept of ME</p>
+                            <p style="font-size:0.85rem; color:var(--text-main);">Guru Nanak Institutions Technical Campus</p>
+                        </div>
+                        <div style="margin-top:1rem; font-size:0.8rem; border-top:1px dashed var(--border); padding-top:0.5rem; color:#475569;">
+                            <i class="fa-solid fa-envelope"></i> hodme.gnitc@gniindia.org
+                        </div>
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- Global Base System Footer -->
+        <!-- System Footer -->
         <footer>
             <div class="footer-container">
-                <div class="footer-credits">
-                    <p style="font-weight: 600; color: white; margin-bottom: 0.25rem;">Dr. Research Scholar Portfolio System</p>
-                    <p>© 2026 Faculty Registry Framework System Architecture. All Rights Reserved.</p>
+                <div>
+                    <p style="font-weight: 600; color: white; margin-bottom: 0.25rem;">Sanjeev Kumar Gajavada | Academic Directory</p>
+                    <p>© 2026 Faculty Cohort System Architecture. Verified Registry Operations.</p>
                 </div>
                 <div style="display: flex; gap: 1.5rem; font-size: 1.25rem;">
-                    <a href="#" style="color: #94A3B8; transition: var(--transition);"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#" style="color: #94A3B8; transition: var(--transition);"><i class="fa-brands fa-orcid"></i></a>
-                    <a href="#" style="color: #94A3B8; transition: var(--transition);"><i class="fa-brands fa-google-scholar"></i></a>
+                    <a href="https://www.linkedin.com/in/skgajawada/" target="_blank" style="color: #94A3B8; transition: var(--transition);"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" style="color: #94A3B8; transition: var(--transition);"><i class="fa-solid fa-graduation-cap"></i></a>
                 </div>
             </div>
         </footer>
     </main>
 
-    <!-- Optimized JavaScript Interactions Engine -->
+    <!-- UI Interaction Script Engine -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. Precise Clean Accordion Disclosures Functionality
+            // Interactive Disclosure Accordion Script
             const accordions = document.querySelectorAll('.accordion-trigger');
             
             accordions.forEach(trigger => {
@@ -1100,7 +1096,6 @@
                     const content = this.nextElementSibling;
                     const icon = this.querySelector('.accordion-icon');
                     
-                    // Toggle active status matrix state
                     if (content.classList.contains('open')) {
                         content.classList.remove('open');
                         icon.style.transform = 'rotate(0deg)';
@@ -1111,13 +1106,13 @@
                 });
             });
 
-            // 2. High Performance Intersection Tracker for Sticky Navigation Bar links Highlight
+            // Navigation Active Highlight Observer Track
             const sections = document.querySelectorAll('section');
             const navItems = document.querySelectorAll('.nav-item');
 
             const options = {
                 root: null,
-                threshold: 0.25,
+                threshold: 0.2,
                 rootMargin: "-70px 0px 0px 0px"
             };
 
