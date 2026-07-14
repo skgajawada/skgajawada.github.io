@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. EDITORIAL TEXT RESET & CONFIGURATION (HIGH-END PRINT TYPOGRAPHY)
+   1. EDITORIAL TYPOGRAPHY & LAYOUT CONFIGURATION
    ========================================================================== */
 * {
     margin: 0;
@@ -18,57 +18,59 @@ html {
 
 body {
     background: #ffffff;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Georgia, serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
     color: #1c1c1e;
-    line-height: 1.7;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
 }
 
 /* ==========================================================================
-   2. FIXED MAIN TOP HEADER (MINIMAL UNIVERSITY LAYOUT LINK ENGINE)
+   2. FIXED GLOBAL TOP BAR NAVIGATION
    ========================================================================== */
 .header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 2.2rem 8%;
-    background: rgba(255, 255, 255, 0.97);
+    padding: 2.2rem 6%;
+    background: rgba(255, 255, 255, 0.98);
     border-bottom: 1px solid #e5e5e7;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     z-index: 9999;
 }
 
 .navbar {
     display: flex;
-    gap: 3.2rem;
+    gap: 2.4rem;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .navbar a {
-    font-size: 1.4rem;
-    color: #636366;
+    font-size: 1.35rem;
+    color: #515154;
     font-weight: 500;
     letter-spacing: -0.1px;
     transition: color 0.2s ease;
 }
 
 .navbar a:hover {
-    color: #a51c30; /* University Academic Crimson Hues */
+    color: #a51c30;
 }
 
 /* ==========================================================================
-   3. STRUCTURAL WRAPPERS & DIVIDERS
+   3. STRUCTURAL CONTENT CONTAINERS
    ========================================================================== */
 .main-content {
-    padding-top: 8rem;
-    max-width: 1000px; 
+    padding-top: 9rem;
+    max-width: 1050px; 
     margin: 0 auto;
 }
 
 .academic-section {
-    padding: 6rem 4rem 4rem;
+    padding: 5.5rem 4rem 4rem;
     background: #ffffff;
 }
 
@@ -80,58 +82,68 @@ body {
 }
 
 .academic-heading {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
     color: #1c1c1e;
     font-weight: 700;
     margin-bottom: 3.5rem;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.3px;
     text-transform: uppercase;
-    font-family: -apple-system, sans-serif;
 }
 
 /* ==========================================================================
-   4. INTRO HERO ARCHITECTURE
+   4. PROFILE INTRO HERO LAYOUT
    ========================================================================== */
 .hero-layout {
     display: grid;
-    grid-template-columns: 1fr 220px;
-    gap: 6rem;
+    grid-template-columns: 1fr 200px;
+    gap: 5rem;
     align-items: flex-start;
 }
 
 .prof-name {
-    font-size: 4.4rem;
+    font-size: 4rem;
     color: #1c1c1e;
     font-weight: 800;
-    letter-spacing: -1.2px;
-    line-height: 1.1;
+    letter-spacing: -1px;
+    line-height: 1.15;
     margin-bottom: 0.8rem;
 }
 
 .prof-title {
-    font-size: 1.9rem;
+    font-size: 1.8rem;
     color: #a51c30;
     font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.prof-location {
+    font-size: 1.45rem;
+    color: #636366;
+    margin-bottom: 2.5rem;
+}
+
+.bio-quote-block {
+    background: #fafafa;
+    border-left: 3px solid #a51c30;
+    padding: 2rem;
     margin-bottom: 3rem;
 }
 
-.prof-bio {
-    font-size: 1.6rem;
+.bio-quote-block p {
+    font-size: 1.45rem;
     color: #3a3a3c;
-    line-height: 1.75;
-    margin-bottom: 3.5rem;
     text-align: justify;
+    line-height: 1.7;
 }
 
 .cv-link-btn {
     display: inline-block;
-    padding: 1rem 2rem;
+    padding: 0.9rem 2.2rem;
     border: 1px solid #1c1c1e;
     color: #1c1c1e;
-    font-size: 1.35rem;
+    font-size: 1.3rem;
     font-weight: 600;
-    background: transparent;
-    transition: all 0.25s ease;
+    transition: all 0.2s;
 }
 
 .cv-link-btn:hover {
@@ -140,27 +152,26 @@ body {
 }
 
 .profile-photo {
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
-    filter: grayscale(10%) contrast(105%);
     border: 1px solid #e5e5e7;
 }
 
 /* ==========================================================================
-   5. ACADEMIC HIGH-DENSITY CHRONOLOGY MATRIX
+   5. COMPACT ACADEMIC STRATIFICATION MATRIX
    ========================================================================== */
 .category-block {
-    margin-bottom: 4.5rem;
+    margin-bottom: 4rem;
 }
 
 .category-title {
-    font-size: 1.75rem;
+    font-size: 1.65rem;
     color: #1c1c1e;
-    margin-bottom: 2.2rem;
+    margin-bottom: 2rem;
     font-weight: 600;
-    border-left: 3px solid #a51c30;
-    padding-left: 1.2rem;
+    border-left: 3px solid #1c1c1e;
+    padding-left: 1rem;
 }
 
 .dense-table {
@@ -171,19 +182,18 @@ body {
 
 .dense-row {
     display: grid;
-    grid-template-columns: 120px 1fr;
+    grid-template-columns: 130px 1fr;
     align-items: baseline;
 }
 
 .time-cell {
-    font-size: 1.5rem;
-    font-weight: 500;
+    font-size: 1.45rem;
+    font-weight: 600;
     color: #8e8e93;
-    font-family: -apple-system, sans-serif;
 }
 
 .info-cell {
-    font-size: 1.55rem;
+    font-size: 1.5rem;
     color: #2c2c2e;
 }
 
@@ -198,59 +208,97 @@ body {
     display: block;
     font-size: 1.45rem;
     color: #48484a;
+    margin-top: 0.1rem;
+}
+
+.entry-metric {
+    display: block;
+    font-size: 1.4rem;
+    color: #a51c30;
     margin-top: 0.2rem;
 }
 
 .entry-desc {
-    font-size: 1.45rem;
+    font-size: 1.4rem;
     color: #636366;
-    margin-top: 0.6rem;
+    margin-top: 0.5rem;
 }
 
 .date-tag {
     color: #8e8e93;
-    font-size: 1.35rem;
-    margin-left: 0.4rem;
+    font-size: 1.3rem;
+    margin-left: 0.5rem;
 }
 
 .academic-bullets {
     padding-left: 2rem;
-    font-size: 1.55rem;
-    color: #2c2c2e;
+    font-size: 1.5rem;
+    color: #3a3a3c;
 }
 
 .academic-bullets li {
-    margin-bottom: 1.2rem;
-    line-height: 1.7;
+    margin-bottom: 1rem;
 }
 
 /* ==========================================================================
-   6. ACCORDION DEPLOYMENTS
+   6. GRID LAYOUT VARIANTS
+   ========================================================================== */
+.grid-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.grid-three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+}
+
+.project-block {
+    margin-bottom: 3rem;
+}
+
+.project-title {
+    font-size: 1.55rem;
+    color: #1c1c1e;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+}
+
+.project-desc {
+    font-size: 1.45rem;
+    color: #48484a;
+    text-align: justify;
+}
+
+/* ==========================================================================
+   7. ACCORDION DOCK FOR RESOURCES
    ========================================================================== */
 .context-paragraph {
-    font-size: 1.55rem;
+    font-size: 1.5rem;
     color: #48484a;
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
 }
 
 .accordion-group {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 1rem;
 }
 
 .accordion-block {
     border: 1px solid #e5e5e7;
     background: #ffffff;
-    transition: border-color 0.2s;
 }
 
 .accordion-trigger {
     width: 100%;
-    padding: 1.8rem 2.4rem;
+    padding: 1.6rem 2.2rem;
     text-align: left;
     background: transparent;
-    font-size: 1.55rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: #1c1c1e;
     cursor: pointer;
@@ -267,30 +315,33 @@ body {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.25s cubic-bezier(0, 1, 0, 1);
-    padding: 0 2.4rem;
+    padding: 0 2.2rem;
     background: #fafafa;
 }
 
 .accordion-block.is-open .accordion-body {
-    max-height: 1000px;
-    padding: 2.2rem 2.4rem;
+    max-height: 800px;
+    padding: 2rem 2.2rem;
     border-top: 1px solid #e5e5e7;
 }
 
 .state-indicator {
-    font-size: 1.8rem;
-    font-weight: 400;
+    font-size: 1.6rem;
     color: #8e8e93;
 }
 
 .download-list {
-    list-style: square;
-    padding-left: 2rem;
+    list-style: none;
 }
 
 .download-list li {
-    margin-bottom: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 1.45rem;
+    margin-bottom: 0.6rem;
+    color: #2c2c2e;
+}
+
+.download-list li:last-child {
+    margin-bottom: 0;
 }
 
 .download-list a {
@@ -302,75 +353,71 @@ body {
     text-decoration: underline;
 }
 
-.narrative-text {
-    font-size: 1.45rem;
-    color: #48484a;
-}
-
-.contact-card {
-    background: #fafafa;
-    border: 1px solid #e5e5e7;
-    padding: 2.5rem;
-}
-
-.contact-item {
-    font-size: 1.55rem;
-    margin-bottom: 1rem;
-    color: #2c2c2e;
+.sub-detail {
+    display: inline-block;
+    font-size: 1.3rem;
+    color: #636366;
+    margin-left: 1.8rem;
+    margin-top: 0.2rem;
 }
 
 /* ==========================================================================
-   7. FOOTER STRUCTURE
+   8. CARD ARCHITECTURE
+   ========================================================================== */
+.contact-card {
+    background: #fafafa;
+    padding: 2.2rem;
+}
+
+.border-card {
+    border: 1px solid #e5e5e7;
+}
+
+.border-card h5 {
+    font-size: 1.55rem;
+    font-weight: 600;
+    color: #1c1c1e;
+    margin-bottom: 0.5rem;
+}
+
+.ref-meta {
+    font-size: 1.35rem;
+    color: #48484a;
+    line-height: 1.4;
+}
+
+.ref-contact {
+    font-size: 1.35rem;
+    color: #a51c30;
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   9. FOOTER REGISTER
    ========================================================================== */
 .footer {
     text-align: center;
-    padding: 6rem 2rem;
+    padding: 5rem 2rem;
     background: #ffffff;
     border-top: 1px solid #e5e5e7;
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     color: #8e8e93;
 }
 
 /* ==========================================================================
-   8. MEDIA SCALING LOGIC FOR MOBILE READERS
+   10. MEDIA RESPONSE BREAKPOINTS
    ========================================================================== */
-@media (max-width: 900px) {
-    .header {
-        padding: 2rem 4%;
-    }
-    .navbar {
-        gap: 1.6rem;
-        flex-wrap: wrap;
-    }
-    .navbar a {
-        font-size: 1.3rem;
-    }
-    .hero-layout {
-        grid-template-columns: 1fr;
-        gap: 4rem;
-    }
-    .hero-image-pane {
-        order: -1;
-        display: flex;
-        justify-content: center;
-    }
-    .academic-section {
-        padding: 5rem 2.5rem;
-    }
-    .section-divider {
-        margin: 0 2.5rem;
-    }
+@media (max-width: 960px) {
+    .navbar { gap: 1.4rem; }
+    .hero-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-image-pane { order: -1; display: flex; justify-content: center; }
+    .grid-two-col, .grid-three-col { grid-template-columns: 1fr; gap: 2.5rem; }
 }
 
 @media (max-width: 640px) {
-    .dense-row {
-        grid-template-columns: 1fr;
-        gap: 0.4rem;
-        margin-bottom: 1rem;
-    }
-    .time-cell {
-        font-size: 1.35rem;
-        color: #a51c30;
-        font-weight: 600;
-    }
+    .academic-section { padding: 4rem 2rem; }
+    .section-divider { margin: 0 2rem; }
+    .dense-row { grid-template-columns: 1fr; gap: 0.2rem; }
+    .time-cell { color: #a51c30; }
 }
