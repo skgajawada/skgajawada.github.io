@@ -527,43 +527,80 @@ h2::after {
     color: var(--text-dark);
 }
 
-/* ==========================================================================
-   FDP Professional Development Timeline
-   ========================================================================== */
-.fdp-timeline {
+/* Professional Development Layout Fixes */
+.prof-dev-section {
+    padding: 5rem 9% 5rem;
+}
+
+.timeline-container {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 3rem;
+    margin-top: 3rem;
 }
 
-.fdp-group {
+.timeline-year-group {
     display: grid;
-    grid-template-columns: 100px 1fr;
-    gap: 20px;
+    grid-template-columns: 120px 1fr;
+    gap: 2.5rem;
 }
 
-.fdp-year {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
+.timeline-year {
+    font-size: 2.8rem;
     font-weight: 700;
-    color: var(--accent-color);
-    border-right: 2px solid #eef2f6;
-    padding-right: 15px;
+    color: var(--main-color); /* Your theme accent color */
+    position: sticky;
+    top: 20px;
+    height: max-content;
 }
 
-.fdp-item {
-    margin-bottom: 15px;
+.timeline-events {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    border-left: 3px solid var(--main-color);
+    padding-left: 2.5rem;
 }
 
-.fdp-item h4 {
-    margin: 0 0 3px 0;
-    font-size: 16px;
+.timeline-card {
+    background: #fdfdfd;
+    padding: 2rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    border: 1px solid #f0f0f0;
+    transition: transform 0.3s ease;
 }
 
-.fdp-item p {
-    margin: 0;
-    font-size: 14px;
-    color: var(--text-light);
+.timeline-card:hover {
+    transform: translateX(5px);
+}
+
+.timeline-card h3 {
+    font-size: 1.8rem;
+    color: #111;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-card .event-sub {
+    font-size: 1.4rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .timeline-year-group {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .timeline-events {
+        padding-left: 1.5rem;
+    }
+    .timeline-year {
+        font-size: 2.4rem;
+        position: relative;
+        top: 0;
+    }
 }
 
 /* ==========================================================================
