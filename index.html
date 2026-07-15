@@ -138,7 +138,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            padding-bottom: 90px; /* Buffer room offset for sticky baseline icons */
+            padding-bottom: 90px;
         }
 
         /* Top Persistent Ribbon */
@@ -252,7 +252,7 @@
         }
 
         .master-body-inner-frame {
-            padding: 32px 28px;
+            padding: 24px;
             border-top: 1px solid var(--border-line);
         }
 
@@ -262,7 +262,7 @@
         }
 
         .master-accordion-node.active .master-body-collapsible {
-            max-height: 25000px; /* Safe dynamic scroll layout allowance */
+            max-height: 35000px;
         }
 
         /* Nested Child Sub-Accordion Structural Blueprints */
@@ -331,7 +331,7 @@
         }
 
         .sub-accordion-node.active .sub-body-collapsible {
-            max-height: 10000px;
+            max-height: 15000px;
         }
 
         /* Carrier Strategic Vision Quote Box */
@@ -590,27 +590,12 @@
             border-bottom: none;
         }
 
-        /* Technical Category Indicators */
-        .platform-tag-pill {
-            display: inline-block;
-            padding: 2px 6px;
-            font-size: 0.68rem;
-            font-weight: 700;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-        .tag-dataiku { background-color: #e6f4ea; color: #137333; }
-        .tag-mathworks { background-color: #fef3c7; color: #d97706; }
-        .tag-coursera { background-color: #e0f2fe; color: #0369a1; }
-        .tag-ibm { background-color: #f3e8ff; color: #6b21a8; }
-        .tag-linkedin { background-color: #f1f5f9; color: #334155; }
-
         /* Action Links for Certificates */
         .asset-verification-btn {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 4px 10px;
+            gap: 4px;
+            padding: 4px 8px;
             border-radius: 4px;
             font-size: 0.75rem;
             font-weight: 600;
@@ -626,6 +611,13 @@
             border-color: var(--accent-burgundy);
             color: var(--accent-burgundy);
             background: #fff5f5;
+        }
+
+        .action-link-strip {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            justify-content: flex-end;
         }
 
         /* Fixed Footer Framework (Contact Links Only) */
@@ -1007,11 +999,9 @@
                                             <span class="course-module-label">Operations Research</span>
                                             <a href="#" class="folder-access-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Access Folder</a>
                                         </div>
-                                        <div class="course-modules-grid" style="grid-template-columns: 1fr;">
-                                            <div class="course-module-card">
-                                                <span class="course-module-label">Finite Element Methods</span>
-                                                <a href="#" class="folder-access-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Access Folder</a>
-                                            </div>
+                                        <div class="course-module-card">
+                                            <span class="course-module-label">Finite Element Methods</span>
+                                            <a href="#" class="folder-access-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Access Folder</a>
                                         </div>
                                     </div>
                                 </div>
@@ -1041,19 +1031,17 @@
                 </div>
             </div>
 
-            <!-- SECTION 4: MOOCs LEDGER (CLOSED ON BOOT) -->
-            <section class="accordion-wrapper-node" id="moocs">
-                <button class="accordion-header-trigger" onclick="toggleAccordion(this)">
-                    <span class="accordion-title-span"><i class="fa-solid fa-award"></i> Verified Credentials & Professional Certifications</span>
-                    <i class="fa-solid fa-chevron-down accordion-chevron-icon"></i>
+            <div class="master-accordion-node" id="credentials-master">
+                <button class="master-header-trigger" onclick="toggleMasterAccordion(this)">
+                    <span class="master-title-span"><i class="fa-solid fa-award"></i> Verified Credentials & Professional Certifications</span>
+                    <i class="fa-solid fa-chevron-down master-chevron-icon"></i>
                 </button>
-                <div class="accordion-body-collapsible">
-                    <div class="accordion-body-inner-frame">
+                <div class="master-body-collapsible">
+                    <div class="master-body-inner-frame">
                         <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 20px;">
                             Select an individual learning architecture below to view specific verified micro-credentials.
                         </p>
 
-                        <!-- SUBHEADING: COURSERA -->
                         <div class="sub-accordion-node">
                             <button class="sub-header-trigger" onclick="toggleSubAccordion(this)">
                                 <span class="sub-title-span"><i class="fa-solid fa-graduation-cap"></i> Coursera Certifications</span>
@@ -1071,15 +1059,30 @@
                                         <tbody>
                                             <tr>
                                                 <td>Business Analytics with Excel: Elementary to Advanced (Johns Hopkins University)</td>
-                                                <td style="text-align:right;"><a href="certificates/coursera/business-analytics-excel.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
+                                                <td style="text-align:right;">
+                                                    <div class="action-link-strip">
+                                                        <a href="certificates/coursera/business-analytics-excel.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a>
+                                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>From Excel to Power BI (Knowledge Accelerators)</td>
-                                                <td style="text-align:right;"><a href="certificates/coursera/From-Excel-to-Power-Bl.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
+                                                <td style="text-align:right;">
+                                                    <div class="action-link-strip">
+                                                        <a href="certificates/coursera/From-Excel-to-Power-Bl.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a>
+                                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>Getting Started with Microsoft Excel (Online Guided Project)</td>
-                                                <td style="text-align:right;"><a href="certificates/coursera/microsoft-excel.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
+                                                <td style="text-align:right;">
+                                                    <div class="action-link-strip">
+                                                        <a href="certificates/coursera/microsoft-excel.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a>
+                                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -1087,7 +1090,6 @@
                             </div>
                         </div>
 
-                        <!-- SUBHEADING: DATAIKU ACADEMY -->
                         <div class="sub-accordion-node">
                             <button class="sub-header-trigger" onclick="toggleSubAccordion(this)">
                                 <span class="sub-title-span"><i class="fa-solid fa-brain"></i> Dataiku Academy Professional Path</span>
@@ -1103,19 +1105,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr><td>Dataiku Certified Core Designer</td><td style="text-align:right;"><a href="certificates/Dataiku/Dataiku Certified Core Designer.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>Dataiku Certified Advanced Designer</td><td style="text-align:right;"><a href="certificates/Dataiku/Dataiku Certified Advanced Designer.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>Dataiku Certified Developer</td><td style="text-align:right;"><a href="certificates/Dataiku/Dataiku Certified Developer.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>Dataiku Certified ML Practitioner</td><td style="text-align:right;"><a href="certificates/Dataiku/Dataiku Certified ML Practitioner.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>Dataiku Certified MLOps Practitioner</td><td style="text-align:right;"><a href="certificates/Dataiku/Dataiku Certified MLOps Practitioner.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>Dataiku Certified Generative AI Practitioner</td><td style="text-align:right;"><a href="certificates/Dataiku/Dataiku Certified Generative AI Practitioner.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                            <tr><td>Dataiku Certified Core Designer</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/Dataiku/Dataiku Certified Core Designer.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>Dataiku Certified Advanced Designer</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/Dataiku/Dataiku Certified Advanced Designer.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>Dataiku Certified Developer</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/Dataiku/Dataiku Certified Developer.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>Dataiku Certified ML Practitioner</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/Dataiku/Dataiku Certified ML Practitioner.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>Dataiku Certified MLOps Practitioner</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/Dataiku/Dataiku Certified MLOps Practitioner.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>Dataiku Certified Generative AI Practitioner</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/Dataiku/Dataiku Certified Generative AI Practitioner.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- SUBHEADING: MATHWORKS TRAINING -->
                         <div class="sub-accordion-node">
                             <button class="sub-header-trigger" onclick="toggleSubAccordion(this)">
                                 <span class="sub-title-span"><i class="fa-solid fa-chart-line"></i> MathWorks Training Services</span>
@@ -1131,17 +1132,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr><td>Control System Design with MATLAB and Simulink (Professional Learning Path)</td><td style="text-align:right;"><a href="certificates/MathWorks/Control System Design Path.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>Control Design Onramp with Simulink (Self-Paced Training Course)</td><td style="text-align:right;"><a href="certificates/MathWorks/Control Design Onramp with Simulink.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>MATLAB Onramp (Self-Paced Training Course)</td><td style="text-align:right;"><a href="certificates/MathWorks/MATLAB Onramp.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>Simulink Onramp (Self-Paced Training Course)</td><td style="text-align:right;"><a href="certificates/MathWorks/Simulink Onramp.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                            <tr><td>Control System Design with MATLAB and Simulink (Professional Learning Path)</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/MathWorks/Control System Design Path.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>Control Design Onramp with Simulink (Self-Paced Training Course)</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/MathWorks/Control Design Onramp with Simulink.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>MATLAB Onramp (Self-Paced Training Course)</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/MathWorks/MATLAB Onramp.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>Simulink Onramp (Self-Paced Training Course)</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/MathWorks/Simulink Onramp.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- SUBHEADING: IBM & COGNITIVE AI -->
                         <div class="sub-accordion-node">
                             <button class="sub-header-trigger" onclick="toggleSubAccordion(this)">
                                 <span class="sub-title-span"><i class="fa-solid fa-cubes"></i> IBM & Cognitive AI Credentials</span>
@@ -1157,16 +1157,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr><td>Data Literacy (Earn Digital Credential - IBM SkillsBuild)</td><td style="text-align:right;"><a href="certificates/IBM/DataLiteracy.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>Data Fundamentals (Earn a Credential - IBM SkillsBuild)</td><td style="text-align:right;"><a href="certificates/IBM/Data Fundamentals.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>Python 101 for Data Science (Organized by IBM / Offered through Cognitive Class)</td><td style="text-align:right;"><a href="certificates/IBM/Python 101 for Data Science.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                            <tr><td>Data Literacy (Earn Digital Credential - IBM SkillsBuild)</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/IBM/DataLiteracy.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>Data Fundamentals (Earn a Credential - IBM SkillsBuild)</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/IBM/Data Fundamentals.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>Python 101 for Data Science (Organized by IBM / Offered through Cognitive Class)</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/IBM/Python 101 for Data Science.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- SUBHEADING: LINKEDIN LEARNING -->
                         <div class="sub-accordion-node">
                             <button class="sub-header-trigger" onclick="toggleSubAccordion(this)">
                                 <span class="sub-title-span"><i class="fa-brands fa-linkedin-in"></i> LinkedIn Learning Tracks</span>
@@ -1182,19 +1181,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr><td>Learning SQL Programming</td><td style="text-align:right;"><a href="certificates/LinkedIn/Learning SQL Programming.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>MySQL for Non-Programmers</td><td style="text-align:right;"><a href="certificates/LinkedIn/MySQL for NonProgrammers.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>Learning Data Analytics: Foundations</td><td style="text-align:right;"><a href="certificates/LinkedIn/Learning Data Analytics 1 Foundations.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>Python for Data Science and Machine Learning Essential Training Part 1</td><td style="text-align:right;"><a href="certificates/LinkedIn/Python for Data Science and Machine Learning Essential Training Part 1.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>Python Essential Training</td><td style="text-align:right;"><a href="certificates/LinkedIn/Python Essential Training.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>MATLAB Essential Training</td><td style="text-align:right;"><a href="certificates/LinkedIn/MATLAB Essential Training.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>Accelerated MATLAB</td><td style="text-align:right;"><a href="certificates/LinkedIn/Accelerated MATLAB.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>Learning MATLAB</td><td style="text-align:right;"><a href="certificates/LinkedIn/Learning MATLAB.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>Six Sigma Foundations</td><td style="text-align:right;"><a href="certificates/LinkedIn/Six Sigma Foundations.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>Six Sigma: Green Belt</td><td style="text-align:right;"><a href="certificates/LinkedIn/Six Sigma Green Belt.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>Statistics Foundations 3: Using Data Sets</td><td style="text-align:right;"><a href="certificates/LinkedIn/Statistics Foundations 3 Using Data Sets.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>Operational Excellence Foundations</td><td style="text-align:right;"><a href="certificates/LinkedIn/Operational Excellence Foundations.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
-                                            <tr><td>Additive Manufacturing: Tips, Tricks, and Techniques</td><td style="text-align:right;"><a href="certificates/LinkedIn/Additive Manufacturing Tips Tricks and Techniques.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                            <tr><td>Learning SQL Programming</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/LinkedIn/Learning SQL Programming.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>MySQL for Non-Programmers</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/LinkedIn/MySQL for NonProgrammers.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>Learning Data Analytics: Foundations</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/LinkedIn/Learning Data Analytics 1 Foundations.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>Python for Data Science and Machine Learning Essential Training Part 1</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/LinkedIn/Python for Data Science and Machine Learning Essential Training Part 1.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>Python Essential Training</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/LinkedIn/Python Essential Training.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>MATLAB Essential Training</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/LinkedIn/MATLAB Essential Training.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>Accelerated MATLAB</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/LinkedIn/Accelerated MATLAB.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>Learning MATLAB</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/LinkedIn/Learning MATLAB.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>Six Sigma Foundations</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/LinkedIn/Six Sigma Foundations.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>Six Sigma: Green Belt</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/LinkedIn/Six Sigma Green Belt.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>Statistics Foundations 3: Using Data Sets</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/LinkedIn/Statistics Foundations 3 Using Data Sets.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>Operational Excellence Foundations</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/LinkedIn/Operational Excellence Foundations.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
+                                            <tr><td>Additive Manufacturing: Tips, Tricks, and Techniques</td><td style="text-align:right;"><div class="action-link-strip"><a href="certificates/LinkedIn/Additive Manufacturing Tips Tricks and Techniques.pdf" target="_blank" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Verify Link</a></div></td></tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -1203,7 +1202,7 @@
 
                     </div>
                 </div>
-            </section>
+            </div>
 
             <div class="master-accordion-node" id="advancements-master">
                 <button class="master-header-trigger" onclick="toggleMasterAccordion(this)">
@@ -1294,7 +1293,7 @@
                                     <h4 class="content-block-subtitle">Academic Laurels & Civic Duty</h4>
                                     <ul class="timeline-element-bullets" style="margin-bottom: 24px;">
                                         <li>Appreciation Certificate in Innovation 2K12 National fest competition at Vivekananda Institute.</li>
-                                        <li>Certificate of Appreciation in Essay Writing and Elocution by Department of Youth Services, Karimnagar.</li>
+                                        <li>Certificate of Appreciation in Essay Writing and Elocution competitions by Department of Youth Services, Karimnagar.</li>
                                         <li>Pledge Participant, Nasha Mukt Bharat, Khushaal Bharat (Ministry of Social Justice, India).</li>
                                         <li>Blood Donation Volunteer – Donated blood on 10 separate occasions through recognized institutional camps.</li>
                                     </ul>
