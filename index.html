@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gajavada Sanjeevkumar | IIT (ISM) Dhanbad</title>
-    <!-- FontAwesome for Premium Minimalist Icons -->
+    <!-- Premium Academic Icon Font -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Modern Sans-Serif Typography -->
+    <!-- Premium Modern Typeface -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #800020; /* Deep Academic Burgundy */
-            --text-dark: #1a202c;
-            --text-muted: #4a5568;
-            --bg-light: #f7fafc;
+            --primary: #800020; /* Elite Crimson/Burgundy Academic Accent */
+            --text-dark: #1e293b;
+            --text-muted: #475569;
+            --bg-light: #f8fafc;
             --border-color: #e2e8f0;
             --white: #ffffff;
         }
@@ -32,11 +32,11 @@
             color: var(--text-dark);
             background-color: var(--white);
             line-height: 1.6;
-            padding-top: 70px; /* Offset for top ribbon */
-            padding-bottom: 100px; /* Offset for footer */
+            padding-top: 75px; /* Smooth top ribbon boundary offset */
+            padding-bottom: 90px; /* Footnote boundary offset */
         }
 
-        /* Top Navigation Ribbon */
+        /* Fixed Navigation Ribbon */
         .top-ribbon {
             position: fixed;
             top: 0;
@@ -45,7 +45,7 @@
             background-color: var(--white);
             border-bottom: 1px solid var(--border-color);
             z-index: 1000;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
         }
 
         .ribbon-container {
@@ -54,12 +54,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
+            padding: 16px 20px;
         }
 
         .ribbon-brand {
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: var(--primary);
             text-decoration: none;
             letter-spacing: -0.5px;
@@ -67,7 +67,7 @@
 
         .ribbon-nav {
             display: flex;
-            gap: 25px;
+            gap: 24px;
         }
 
         .ribbon-nav a {
@@ -82,35 +82,35 @@
             color: var(--primary);
         }
 
-        /* Main Content Container */
+        /* Page Frame */
         .main-container {
-            max-width: 850px;
+            max-width: 900px;
             margin: 40px auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
-        /* Hero Profile Section */
+        /* Profile Hero Banner */
         .profile-hero {
             display: flex;
             align-items: center;
             gap: 40px;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             padding-bottom: 40px;
             border-bottom: 1px solid var(--border-color);
         }
 
         .profile-avatar {
-            width: 130px;
-            height: 130px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), #b3002d);
+            background: linear-gradient(135deg, var(--primary), #a30029);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--white);
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 300;
-            box-shadow: 0 4px 12px rgba(128, 0, 32, 0.15);
+            box-shadow: 0 4px 14px rgba(128, 0, 32, 0.12);
         }
 
         .profile-info h1 {
@@ -133,36 +133,31 @@
             color: var(--text-muted);
         }
 
-        /* Strategic Vision Quote */
+        /* Objective block */
         .vision-statement {
             background-color: var(--bg-light);
             border-left: 4px solid var(--primary);
             padding: 20px;
-            border-radius: 0 8px 8px 0;
+            border-radius: 0 6px 6px 0;
             margin-bottom: 40px;
             font-style: italic;
             color: var(--text-muted);
-            font-size: 1.05rem;
+            font-size: 0.95rem;
         }
 
-        /* Interactive Accordion Styles */
+        /* Interactive Collapsible Accordions */
         .accordion-item {
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            margin-bottom: 16px;
+            border-radius: 6px;
+            margin-bottom: 14px;
             overflow: hidden;
             background-color: var(--white);
-            transition: box-shadow 0.2s ease;
-        }
-
-        .accordion-item:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
         }
 
         .accordion-header {
             width: 100%;
             background-color: var(--white);
-            padding: 18px 24px;
+            padding: 18px 22px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -178,7 +173,7 @@
         }
 
         .accordion-header h2 {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: var(--text-dark);
             display: flex;
@@ -188,60 +183,57 @@
 
         .accordion-header h2 i {
             color: var(--primary);
-            font-size: 1.0rem;
+            font-size: 1rem;
             width: 20px;
         }
 
         .accordion-icon {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s ease;
         }
 
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
             background-color: var(--white);
         }
 
         .accordion-content-inner {
-            padding: 24px;
+            padding: 22px;
             border-top: 1px solid var(--border-color);
         }
 
-        /* Active State Classes via Javascript */
+        /* Collapsible Display Dynamics */
         .accordion-item.active .accordion-icon {
             transform: rotate(180deg);
         }
 
         .accordion-item.active .accordion-content {
-            max-height: 2500px; /* High max height to hold multi-row technical segments */
+            max-height: 10000px; /* Secure high height limit to enclose full details smoothly */
         }
 
-        /* Professional Content Typography styling */
-        .section-p {
-            margin-bottom: 16px;
-            color: var(--text-muted);
-            font-size: 0.975rem;
-        }
-
+        /* Typography Subheadings */
         .sub-section-title {
             font-size: 1.05rem;
             font-weight: 600;
-            margin: 24px 0 12px 0;
+            margin: 28px 0 12px 0;
             color: var(--primary);
             border-bottom: 1px dashed var(--border-color);
             padding-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .sub-section-title:first-of-type {
             margin-top: 0;
         }
 
-        /* Timeline Card styling */
+        /* Timeline Structures */
         .timeline-card {
-            padding: 14px 0;
+            padding: 12px 0;
             border-bottom: 1px solid #f1f5f9;
         }
 
@@ -252,36 +244,36 @@
         .timeline-meta {
             display: flex;
             justify-content: space-between;
-            font-size: 0.9rem;
+            font-size: 0.925rem;
             font-weight: 600;
             color: var(--text-dark);
             margin-bottom: 4px;
         }
 
         .timeline-inst {
-            font-size: 0.925rem;
+            font-size: 0.9rem;
             color: var(--primary);
             font-weight: 500;
             margin-bottom: 6px;
         }
 
         .timeline-desc {
-            font-size: 0.925rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
             list-style-type: square;
-            margin-left: 18px;
+            margin-left: 16px;
         }
 
         .timeline-desc li {
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
 
-        /* Academic Tables */
+        /* Premium Minimalist Tables */
         .aesthetic-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 12px 0;
-            font-size: 0.925rem;
+            margin: 12px 0 20px 0;
+            font-size: 0.9rem;
         }
 
         .aesthetic-table th {
@@ -297,27 +289,31 @@
             padding: 10px 12px;
             border-bottom: 1px solid var(--border-color);
             color: var(--text-muted);
+            vertical-align: top;
         }
 
-        /* Subject Grid with Dropdown Material Folders */
+        /* Custom Document Folders Layout */
         .subject-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 14px;
+            gap: 12px;
+            margin-top: 8px;
         }
 
         .subject-item {
             background-color: var(--bg-light);
-            padding: 12px 16px;
-            border-radius: 6px;
+            padding: 12px 14px;
+            border-radius: 4px;
             border: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .subject-name {
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--text-dark);
-            margin-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -325,18 +321,18 @@
 
         .subject-name i {
             color: var(--primary);
+            font-size: 0.85rem;
         }
 
-        /* Mini Access Material Folder Element */
         .material-folder {
             display: inline-flex;
             align-items: center;
             gap: 6px;
             background-color: var(--white);
             border: 1px solid #cbd5e1;
-            padding: 4px 10px;
+            padding: 4px 8px;
             border-radius: 4px;
-            font-size: 0.8rem;
+            font-size: 0.775rem;
             color: var(--text-muted);
             text-decoration: none;
             font-weight: 500;
@@ -349,7 +345,7 @@
             background-color: #fff5f5;
         }
 
-        /* Smart URL Link styling */
+        /* Verified Badge & Dynamic URLs */
         .cert-link {
             display: inline-flex;
             align-items: center;
@@ -357,13 +353,14 @@
             color: var(--primary);
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.85rem;
         }
 
         .cert-link:hover {
             text-decoration: underline;
         }
 
-        /* Minimalist Sticky Footer (Icons Only) */
+        /* Footer Element Frame (Icons Only) */
         .minimal-footer {
             position: fixed;
             bottom: 0;
@@ -371,22 +368,22 @@
             width: 100%;
             background-color: var(--white);
             border-top: 1px solid var(--border-color);
-            padding: 20px 0;
+            padding: 22px 0;
             z-index: 1000;
-            box-shadow: 0 -1px 3px rgba(0,0,0,0.03);
+            box-shadow: 0 -1px 4px rgba(0,0,0,0.02);
         }
 
         .footer-icons {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 35px;
+            gap: 40px;
         }
 
         .footer-icons a {
             color: var(--text-muted);
-            font-size: 1.4rem;
-            transition: transform 0.2s ease, color 0.2s ease;
+            font-size: 1.35rem;
+            transition: color 0.2s ease, transform 0.2s ease;
         }
 
         .footer-icons a:hover {
@@ -398,10 +395,10 @@
             .profile-hero {
                 flex-direction: column;
                 text-align: center;
-                gap: 20px;
+                gap: 16px;
             }
             .ribbon-nav {
-                display: none; /* Can be expanded to a burger on mobile if needed */
+                display: none;
             }
             .subject-grid {
                 grid-template-columns: 1fr;
@@ -411,24 +408,24 @@
 </head>
 <body>
 
-    <!-- TOP RIBBON NAVIGATION -->
+    <!-- TOP NAVIGATION RIBBON -->
     <nav class="top-ribbon">
         <div class="ribbon-container">
             <a href="#" class="ribbon-brand">G. Sanjeevkumar</a>
             <div class="ribbon-nav">
                 <a href="#about" onclick="openAccordion('about-section')">About</a>
-                <a href="#research" onclick="openAccordion('research-section')">Research</a>
+                <a href="#experience" onclick="openAccordion('experience-section')">Experience & Projects</a>
                 <a href="#teaching" onclick="openAccordion('teaching-section')">Teaching</a>
-                <a href="#credentials" onclick="openAccordion('credentials-section')">Credentials</a>
-                <a href="#service" onclick="openAccordion('service-section')">Service & References</a>
+                <a href="#moocs" onclick="openAccordion('moocs-section')">Certifications & MOOCs</a>
+                <a href="#development" onclick="openAccordion('development-section')">Professional Development</a>
             </div>
         </div>
     </nav>
 
-    <!-- MAIN CANVAS -->
+    <!-- MAIN FRAME CONTAINER -->
     <main class="main-container">
         
-        <!-- HERO PROFILE HEADER -->
+        <!-- INITIAL PROFILE HEADER -->
         <section class="profile-hero">
             <div class="profile-avatar">GS</div>
             <div class="profile-info">
@@ -438,57 +435,49 @@
             </div>
         </section>
 
-        <!-- ACADEMIC VISION STATEMENT -->
+        <!-- CARRIER OBJECTIVE BLOCK -->
         <div class="vision-statement">
-            "To advance mechanical and aerospace engineering through research in aeroelasticity, vibration analysis, structural dynamics, finite element methods, composite structures, and control systems[cite: 1]. Integrating physics-based computational modeling with data-driven approaches (ML/AI) to deploy resilient solutions for complex structural engineering challenges[cite: 1]."
+            <strong>Carrier Objective:</strong> To advance mechanical and aerospace engineering through research in aeroelasticity, vibration analysis, structural dynamics, finite element methods, composite structures, and control systems[cite: 1]. I aim to integrate computational modeling, simulation techniques, and data-driven approaches, including machine learning and artificial intelligence, to develop innovative engineering solutions for complex real-world challenges while fostering interdisciplinary research and technological innovation[cite: 1].
         </div>
 
-        <!-- 1. BIOGRAPHY & EDUCATION ACCORDION -->
+        <!-- MODULE 1: ABOUT & EDUCATION -->
         <div class="accordion-item active" id="about-section">
             <button class="accordion-header" onclick="toggleAccordion(this)">
-                <h2><i class="fa-solid fa-user-academic"></i> 1. Biography & Academic Profile</h2>
+                <h2><i class="fa-solid fa-graduation-cap"></i> 1. Academic Trajectory & Education</h2>
                 <i class="fa-solid fa-chevron-down accordion-icon"></i>
             </button>
-            <div class="accordion-content" style="max-height: 2500px;">
+            <div class="accordion-content" style="max-height: 2000px;">
                 <div class="accordion-content-inner">
-                    <p class="section-p">
-                        I am a doctoral researcher in the Mechanical Design stream at the Indian Institute of Technology (ISM), Dhanbad[cite: 1]. My academic path unifies classical core mechanical systems engineering with state-of-the-art computational analytics data modeling frameworks[cite: 1]. Across my academic career, I have served for over 7 years in engineering instructional capacities as an Assistant Professor and Lecturer[cite: 1], leading critical department tracks, steering vehicle design configurations, and formulating computational algorithms for structural evaluation[cite: 1].
-                    </p>
-                    <p class="section-p">
-                        Leveraging deep capabilities built via an AICTE QIP Post-Graduate Certification in Data Science from IIT Bhilai[cite: 1] alongside core design methodologies, my research establishes robust analytics interfaces focused on identifying flutter boundaries, material structural health indices, and dynamic system variations[cite: 1].
-                    </p>
-
-                    <h3 class="sub-section-title">Education Track</h3>
                     <table class="aesthetic-table">
                         <thead>
                             <tr>
-                                <th>Degree/Program</th>
+                                <th>Program & Specialization</th>
                                 <th>Institution</th>
                                 <th>Timeline</th>
-                                <th>Performance Metric</th>
+                                <th>Marks / CGPA</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>PhD (Mechanical Design)</strong>[cite: 1]</td>
+                                <td><strong>PhD — Design</strong>[cite: 1]</td>
                                 <td>Indian Institute of Technology (ISM), Dhanbad[cite: 1]</td>
-                                <td>2025 – Till Date[cite: 1]</td>
+                                <td>July, 2025 – Till Date[cite: 1]</td>
                                 <td>8.2 CGPA[cite: 1]</td>
                             </tr>
                             <tr>
-                                <td><strong>AICTE QIP PG Certificate (Data Science)</strong>[cite: 1]</td>
+                                <td><strong>AICTE QIP PG Certificate Course Data Science</strong>[cite: 1]</td>
                                 <td>Indian Institute of Technology Bhilai[cite: 1]</td>
                                 <td>June 2025 – Dec 2025[cite: 1]</td>
                                 <td>8.67 CGPA[cite: 1]</td>
                             </tr>
                             <tr>
-                                <td><strong>M.Tech. (Machine Design)</strong>[cite: 1]</td>
+                                <td><strong>Master of Technology — Machine Design</strong>[cite: 1]</td>
                                 <td>GITAM Deemed To Be University, Visakhapatnam[cite: 1]</td>
                                 <td>2016 – 2018[cite: 1]</td>
                                 <td>8.78 CGPA[cite: 1]</td>
                             </tr>
                             <tr>
-                                <td><strong>B.Tech. (Mechanical Engineering)</strong>[cite: 1]</td>
+                                <td><strong>Bachelor of Technology — Mechanical Engineering</strong>[cite: 1]</td>
                                 <td>Vivekananda Institute of Technology and Science, Karimnagar[cite: 1]</td>
                                 <td>2010 – 2014[cite: 1]</td>
                                 <td>71.28%[cite: 1]</td>
@@ -507,78 +496,20 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
 
-        <!-- 2. RESEARCH & PROJECTS ACCORDION -->
-        <div class="accordion-item" id="research-section">
-            <button class="accordion-header" onclick="toggleAccordion(this)">
-                <h2><i class="fa-solid fa-microscope"></i> 2. Research Engagements & Technical Projects</h2>
-                <i class="fa-solid fa-chevron-down accordion-icon"></i>
-            </button>
-            <div class="accordion-content">
-                <div class="accordion-content-inner">
-                    
-                    <h3 class="sub-section-title">Research Experience</h3>
-                    <div class="timeline-card">
-                        <div class="timeline-meta">
-                            <span>Online Data Science Intern</span>
-                            <span>Jan 2026 – June 2026[cite: 1]</span>
-                        </div>
-                        <div class="timeline-inst">Sabudh Foundation (In collaboration with STPI), Mohali, India[cite: 1]</div>
-                        <ul class="timeline-desc">
-                            <li>Contributed to core algorithmic optimization for the project: <strong>"Federated Learning for Intelligent Transportation Systems."</strong>[cite: 1]</li>
-                        </ul>
-                    </div>
-
-                    <h3 class="sub-section-title">Core Research Framework & Sub-Projects</h3>
-                    <div class="timeline-card">
-                        <div class="timeline-meta">
-                            <span>Elastic-Plastic Hardness Variation Analysis</span>
-                            <span>Finite Element Optimization[cite: 1]</span>
-                        </div>
-                        <ul class="timeline-desc">
-                            <li>Studied the structural effect of elastic-plastic material boundaries of metals on targeted hardness outcomes[cite: 1].</li>
-                            <li>Mapped data variations between traditional analytical baseline equations and experimental empirical datasets using advanced Finite Element Analysis (FEA) framework structures[cite: 1].</li>
-                        </ul>
-                    </div>
-
-                    <div class="timeline-card">
-                        <div class="timeline-meta">
-                            <span>Hydraulic Robotic Arm Fabrication Study</span>
-                            <span>Fluid Mechanics Actuation[cite: 1]</span>
-                        </div>
-                        <ul class="timeline-desc">
-                            <li>Designed and executed a fluidic mechanical system for fast pick-and-place tracking[cite: 1].</li>
-                            <li>Implemented baseline hydrodynamic layouts applying Pascal's Law to verify systemic transmission load constraints under physical stress boundaries[cite: 1].</li>
-                        </ul>
-                    </div>
-
-                    <div class="timeline-card">
-                        <div class="timeline-meta">
-                            <span>Internal Combustion Engine Mechanics Analysis</span>
-                            <span>Structural & Thermodynamic Mapping[cite: 1]</span>
-                        </div>
-                        <ul class="timeline-desc">
-                            <li>Conducted structural blueprinting mapping components across distinct internal combustion operational types[cite: 1].</li>
-                            <li>Traced thermodynamic mechanical variations separating two-stroke and four-stroke high-temperature cycles[cite: 1].</li>
-                        </ul>
-                    </div>
-
-                    <h3 class="sub-section-title">Technical Competence Matrix</h3>
+                    <h3 class="sub-section-title"><i class="fa-solid fa-cubes"></i> Technical Strength Vector</h3>
                     <table class="aesthetic-table">
                         <tbody>
                             <tr>
-                                <td><strong>Engineering Design / Simulation:</strong></td>
-                                <td>LaTeX, MS Office (Advanced Word, Excel, PowerPoint)[cite: 1]</td>
+                                <td style="width: 25%;"><strong>Software & Tools:</strong></td>
+                                <td>MS Office Word, Excel, Power Point, LaTeX[cite: 1]</td>
                             </tr>
                             <tr>
-                                <td><strong>Data Analytics Platforms:</strong></td>
-                                <td>Power BI, Tableau, SQL, Dataiku Data Science Studio[cite: 1]</td>
+                                <td><strong>Data Analysis Tools:</strong></td>
+                                <td>Power BI, Tableau, SQL, Dataiku[cite: 1]</td>
                             </tr>
                             <tr>
-                                <td><strong>Programming Tongues:</strong></td>
+                                <td><strong>Languages:</strong></td>
                                 <td>Basic Python, MATLAB[cite: 1]</td>
                             </tr>
                         </tbody>
@@ -587,274 +518,346 @@
             </div>
         </div>
 
-        <!-- 3. TEACHING & PEDAGOGY ACCORDION -->
-        <div class="accordion-item" id="teaching-section">
+        <!-- MODULE 2: EXPERIENCE & RESEARCH PROJECTS -->
+        <div class="accordion-item" id="experience-section">
             <button class="accordion-header" onclick="toggleAccordion(this)">
-                <h2><i class="fa-solid fa-chalkboard-user"></i> 3. Teaching Portfolio & Institutional Service</h2>
+                <h2><i class="fa-solid fa-briefcase"></i> 2. Professional Experience & Research Projects</h2>
                 <i class="fa-solid fa-chevron-down accordion-icon"></i>
             </button>
             <div class="accordion-content">
                 <div class="accordion-content-inner">
                     
-                    <h3 class="sub-section-title">Faculty Appointments</h3>
+                    <h3 class="sub-section-title">Professional Engagements</h3>
+                    <div class="timeline-card">
+                        <div class="timeline-meta">
+                            <span>Online Data Science Intern</span>
+                            <span>08 Jan 2026 – 30 June 2026[cite: 1]</span>
+                        </div>
+                        <div class="timeline-inst">Sabudh Foundation (in collaboration with STPI), Mohali, India[cite: 1]</div>
+                        <ul class="timeline-desc">
+                            <li>Developed and contributed to the high-end project: <strong>"Federated Learning for Intelligent Transportation System."</strong>[cite: 1]</li>
+                        </ul>
+                    </div>
+
                     <div class="timeline-card">
                         <div class="timeline-meta">
                             <span>Assistant Professor</span>
-                            <span>March 2021 – June 2025[cite: 1]</span>
+                            <span>23 March 2021 – 30 June, 2025[cite: 1]</span>
                         </div>
                         <div class="timeline-inst">Guru Nanak Institutions Technical Campus, Hyderabad, India[cite: 1]</div>
                     </div>
+
                     <div class="timeline-card">
                         <div class="timeline-meta">
                             <span>Assistant Professor</span>
-                            <span>Nov 2018 – March 2021[cite: 1]</span>
+                            <span>26 November 2018 – 22 March 2021[cite: 1]</span>
                         </div>
                         <div class="timeline-inst">Sree Chaitanya College of Engineering, Karimnagar, India[cite: 1]</div>
                     </div>
+
                     <div class="timeline-card">
                         <div class="timeline-meta">
                             <span>Lecturer</span>
-                            <span>Dec 2015 – June 2016[cite: 1]</span>
+                            <span>07 December 2015 – 30 June 2016[cite: 1]</span>
                         </div>
                         <div class="timeline-inst">Jyothishmathi Institute of Technology and Science, Karimnagar, India[cite: 1]</div>
                     </div>
 
-                    <h3 class="sub-section-title">Subjects Handled & Dedicated Access Material Folders</h3>
-                    <p class="section-p" style="margin-bottom: 15px;">Click the active material folder link under any subject course module to check reference material repositories, custom scripts, notes, and lab layouts.</p>
+                    <h3 class="sub-section-title">Core Academic Projects</h3>
+                    <div class="timeline-card">
+                        <div class="timeline-meta">
+                            <span>Effect of elastic-plastic material properties of metals on hardness values using FEA</span>
+                            <span>Structural Analysis[cite: 1]</span>
+                        </div>
+                        <ul class="timeline-desc">
+                            <li>Evaluated variations from theoretical models to experimental outputs[cite: 1].</li>
+                            <li>Optimized metal hardness profiles using high-fidelity Finite Element Analysis environments[cite: 1].</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="timeline-meta">
+                            <span>Study of internal combustion engines & their components</span>
+                            <span>Thermal Frameworks[cite: 1]</span>
+                        </div>
+                        <ul class="timeline-desc">
+                            <li>Introduced core fundamentals of Internal Combustion Engines and targeted assembly components[cite: 1].</li>
+                            <li>Traced distinct mechanism transformations separating operational patterns between two-stroke and four-stroke variants[cite: 1].</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="timeline-meta">
+                            <span>Hydraulic Robotic Arm for pick and place operation</span>
+                            <span>Robotics & Control[cite: 1]</span>
+                        </div>
+                        <ul class="timeline-desc">
+                            <li>Formulated physical modeling setups verifying real-world fluid hydraulic functionality bounds[cite: 1].</li>
+                            <li>Applied force transmissions across isolated linkage points based strictly on **Pascal's Law** principles[cite: 1].</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE 3: TEACHING PORTFOLIO -->
+        <div class="accordion-item" id="teaching-section">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+                <h2><i class="fa-solid fa-chalkboard-user"></i> 3. Teaching Competence & Access Materials</h2>
+                <i class="fa-solid fa-chevron-down accordion-icon"></i>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-content-inner">
                     
+                    <h3 class="sub-section-title">Subjects Handled & Dedicated Repository Folders</h3>
                     <div class="subject-grid">
                         <div class="subject-item">
-                            <div class="subject-name"><i class="fa-solid fa-book-bookmark"></i> Finite Element Analysis / FEM[cite: 1]</div>
+                            <div class="subject-name"><i class="fa-solid fa-file-pdf"></i> Engineering Mechanics[cite: 1]</div>
                             <a href="#" class="material-folder"><i class="fa-regular fa-folder-open"></i> Access Materials</a>
                         </div>
                         <div class="subject-item">
-                            <div class="subject-name"><i class="fa-solid fa-book-bookmark"></i> Kinematics of Machinery[cite: 1]</div>
+                            <div class="subject-name"><i class="fa-solid fa-file-pdf"></i> Engineering Graphics[cite: 1]</div>
                             <a href="#" class="material-folder"><i class="fa-regular fa-folder-open"></i> Access Materials</a>
                         </div>
                         <div class="subject-item">
-                            <div class="subject-name"><i class="fa-solid fa-book-bookmark"></i> Mechanics of Solids[cite: 1]</div>
+                            <div class="subject-name"><i class="fa-solid fa-file-pdf"></i> Mechanics of Solids[cite: 1]</div>
                             <a href="#" class="material-folder"><i class="fa-regular fa-folder-open"></i> Access Materials</a>
                         </div>
                         <div class="subject-item">
-                            <div class="subject-name"><i class="fa-solid fa-book-bookmark"></i> Design of Machine Members[cite: 1]</div>
+                            <div class="subject-name"><i class="fa-solid fa-file-pdf"></i> Kinematics of Machinery[cite: 1]</div>
                             <a href="#" class="material-folder"><i class="fa-regular fa-folder-open"></i> Access Materials</a>
                         </div>
                         <div class="subject-item">
-                            <div class="subject-name"><i class="fa-solid fa-book-bookmark"></i> Fluid Mechanics[cite: 1]</div>
+                            <div class="subject-name"><i class="fa-solid fa-file-pdf"></i> Fluid Mechanics[cite: 1]</div>
                             <a href="#" class="material-folder"><i class="fa-regular fa-folder-open"></i> Access Materials</a>
                         </div>
                         <div class="subject-item">
-                            <div class="subject-name"><i class="fa-solid fa-book-bookmark"></i> Engineering Mechanics[cite: 1]</div>
+                            <div class="subject-name"><i class="fa-solid fa-file-pdf"></i> Thermodynamics[cite: 1]</div>
                             <a href="#" class="material-folder"><i class="fa-regular fa-folder-open"></i> Access Materials</a>
                         </div>
                         <div class="subject-item">
-                            <div class="subject-name"><i class="fa-solid fa-book-bookmark"></i> Thermodynamics[cite: 1]</div>
+                            <div class="subject-name"><i class="fa-solid fa-file-pdf"></i> Heat Transfer[cite: 1]</div>
                             <a href="#" class="material-folder"><i class="fa-regular fa-folder-open"></i> Access Materials</a>
                         </div>
                         <div class="subject-item">
-                            <div class="subject-name"><i class="fa-solid fa-book-bookmark"></i> Heat Transfer[cite: 1]</div>
+                            <div class="subject-name"><i class="fa-solid fa-file-pdf"></i> Operations Research[cite: 1]</div>
                             <a href="#" class="material-folder"><i class="fa-regular fa-folder-open"></i> Access Materials</a>
                         </div>
                         <div class="subject-item">
-                            <div class="subject-name"><i class="fa-solid fa-book-bookmark"></i> Operations Research[cite: 1]</div>
+                            <div class="subject-name"><i class="fa-solid fa-file-pdf"></i> Finite Element Methods / FEA[cite: 1]</div>
                             <a href="#" class="material-folder"><i class="fa-regular fa-folder-open"></i> Access Materials</a>
                         </div>
                         <div class="subject-item">
-                            <div class="subject-name"><i class="fa-solid fa-book-bookmark"></i> Engineering Graphics[cite: 1]</div>
+                            <div class="subject-name"><i class="fa-solid fa-file-pdf"></i> Design of Machine Members / Elements[cite: 1]</div>
                             <a href="#" class="material-folder"><i class="fa-regular fa-folder-open"></i> Access Materials</a>
                         </div>
                     </div>
 
-                    <h3 class="sub-section-title">Leadership & Administrative Coordinates</h3>
+                    <h3 class="sub-section-title">Roles & Core Administrative Responsibilities</h3>
                     <ul class="timeline-desc">
-                        <li><strong>Lab Coordinator:</strong> Controlled operations, calibration tasks, and structural configurations inside the Kinematics and Dynamics Laboratory[cite: 1].</li>
-                        <li><strong>Academic Coordinator:</strong> Managed Departmental Minor Degree implementations, student remedial tracks, and technical tutorials[cite: 1].</li>
-                        <li><strong>SAE BAJA & Go-Karting Advisor:</strong> Faculty lead coordinator guiding collaborative undergraduate engineering project teams through competitive national design challenges[cite: 1].</li>
-                        <li><strong>Event / Committee Management:</strong> Serving as core coordinator for institutional major platforms, including D2MMS Summer School configurations and annual corporate events[cite: 1].</li>
-                        <li><strong>Student Mentor:</strong> Academic advisor providing structural and professional direction to multiple batches of students[cite: 1].</li>
+                        <li><strong>Lab Coordinator:</strong> Managed operations, maintenance procedures, and mechanical equipment parameters for the Kinematics and Dynamics Laboratory[cite: 1].</li>
+                        <li><strong>Academic Coordinator:</strong> Supervised Departmental Minor Degrees allocation matrices, curated remedial sessions, and structured technical tutorials[cite: 1].</li>
+                        <li><strong>SAE BAJA & Go-Karting:</strong> Departmental Lead Coordinator guiding engineering student development squads through vehicle fabrication and national competitive tracks[cite: 1].</li>
+                        <li><strong>Event Coordinator:</strong> Organizing representative for the D2MMS Summer School pipeline; Faculty Head for Departmental Freshers and Farewell events[cite: 1].</li>
+                        <li><strong>Central Committee Member:</strong> Active organizer and execution manager for institutional major milestone platforms, including Annual Day events[cite: 1].</li>
+                        <li><strong>Student Mentor:</strong> Academic advisor and research counselor for targeted undergraduate cohorts[cite: 1].</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!-- 4. PROFESSIONAL DEVELOPMENT & MOOCs ACCORDION -->
-        <div class="accordion-item" id="credentials-section">
+        <!-- MODULE 4: MOOCs CERTIFICATIONS -->
+        <div class="accordion-item" id="moocs-section">
             <button class="accordion-header" onclick="toggleAccordion(this)">
-                <h2><i class="fa-solid fa-certificate"></i> 4. Professional Development & Verified MOOCs</h2>
+                <h2><i class="fa-solid fa-award"></i> 4. Verified MOOCs & Professional Certifications</h2>
                 <i class="fa-solid fa-chevron-down accordion-icon"></i>
             </button>
             <div class="accordion-content">
                 <div class="accordion-content-inner">
-                    
-                    <h3 class="sub-section-title">Elite Industrial Certifications</h3>
                     <table class="aesthetic-table">
                         <thead>
                             <tr>
-                                <th>Issuing Authority</th>
-                                <th>Course Title / Learning Track Completed</th>
-                                <th>Verification</th>
+                                <th>Platform / Authority</th>
+                                <th>Verified Course & Learning Credentials Completed</th>
+                                <th>Certificate Link</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Dataiku Academy -->
+                            <!-- Dataiku -->
                             <tr>
                                 <td><strong>Dataiku Academy</strong>[cite: 1]</td>
-                                <td>Dataiku Core Designer & Advanced Designer Tracks[cite: 1]</td>
-                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> View Link</a></td>
+                                <td>Professional Certifications: Core Designer & Advanced Designer[cite: 1]</td>
+                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Certificate URL</a></td>
                             </tr>
                             <tr>
                                 <td><strong>Dataiku Academy</strong>[cite: 1]</td>
-                                <td>Dataiku Developer Platform Certification[cite: 1]</td>
-                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> View Link</a></td>
+                                <td>Professional Certifications: Dataiku Developer & ML Practitioner[cite: 1]</td>
+                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Certificate URL</a></td>
                             </tr>
                             <tr>
                                 <td><strong>Dataiku Academy</strong>[cite: 1]</td>
-                                <td>Dataiku Machine Learning Practitioner[cite: 1]</td>
-                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> View Link</a></td>
+                                <td>Professional Certifications: MLOps Practitioner & Generative AI Practitioner[cite: 1]</td>
+                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Certificate URL</a></td>
                             </tr>
-                            <tr>
-                                <td><strong>Dataiku Academy</strong>[cite: 1]</td>
-                                <td>Dataiku MLOps Practitioner & Generative AI Practitioner[cite: 1]</td>
-                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> View Link</a></td>
-                            </tr>
-                            <!-- MathWorks Training -->
+                            <!-- MathWorks -->
                             <tr>
                                 <td><strong>MathWorks Services</strong>[cite: 1]</td>
-                                <td>Professional Learning Path: Control System Design with MATLAB & Simulink[cite: 1]</td>
-                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> View Link</a></td>
+                                <td>Professional Learning Path: Control System Design with MATLAB and Simulink (Covering: Essentials, Linearization, Analysis, PID, and Classical Design)[cite: 1]</td>
+                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Certificate URL</a></td>
                             </tr>
                             <tr>
                                 <td><strong>MathWorks Services</strong>[cite: 1]</td>
-                                <td>MATLAB Onramp, Simulink Onramp, & Control Design Onramp with Simulink[cite: 1]</td>
-                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> View Link</a></td>
+                                <td>Self-Paced Training Path: MATLAB Onramp, Simulink Onramp, & Control Design Onramp[cite: 1]</td>
+                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Certificate URL</a></td>
                             </tr>
                             <!-- Coursera -->
                             <tr>
                                 <td><strong>Johns Hopkins / Coursera</strong>[cite: 1]</td>
                                 <td>Business Analytics with Excel: Elementary to Advanced[cite: 1]</td>
-                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> View Link</a></td>
+                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Certificate URL</a></td>
                             </tr>
                             <tr>
-                                <td><strong>Knowledge Acc. / Coursera</strong>[cite: 1]</td>
+                                <td><strong>Coursera Guided Paths</strong>[cite: 1]</td>
                                 <td>From Excel to Power BI & Getting Started with Microsoft Excel[cite: 1]</td>
-                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> View Link</a></td>
+                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Certificate URL</a></td>
                             </tr>
-                            <!-- IBM SkillsBuild -->
+                            <!-- IBM -->
                             <tr>
                                 <td><strong>IBM SkillsBuild</strong>[cite: 1]</td>
                                 <td>Data Literacy, Data Fundamentals, & Sensemaking with Data Credentials[cite: 1]</td>
-                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> View Link</a></td>
+                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Certificate URL</a></td>
                             </tr>
                             <tr>
                                 <td><strong>IBM SkillsBuild</strong>[cite: 1]</td>
-                                <td>Exploring Data & Clean, Refine, and Visualize Data with IBM Watson Studio[cite: 1]</td>
-                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> View Link</a></td>
+                                <td>Exploring Data, Data Science in Our World, & Introduction to Data Concepts[cite: 1]</td>
+                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Certificate URL</a></td>
                             </tr>
                             <tr>
                                 <td><strong>IBM SkillsBuild</strong>[cite: 1]</td>
-                                <td>Data Science in Our World & Overview of Data Tools and Languages[cite: 1]</td>
-                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> View Link</a></td>
+                                <td>Clean, Refine, and Visualize Data with IBM Watson Studio & Your Future in Data[cite: 1]</td>
+                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Certificate URL</a></td>
                             </tr>
                             <tr>
                                 <td><strong>IBM / Cognitive Class</strong>[cite: 1]</td>
                                 <td>Python 101 for Data Science (PY0101EN)[cite: 1]</td>
-                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> View Link</a></td>
+                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Certificate URL</a></td>
                             </tr>
                             <!-- LinkedIn Learning -->
                             <tr>
                                 <td><strong>LinkedIn Learning</strong>[cite: 1]</td>
-                                <td>Learning SQL Programming & MySQL for Non-Programmers Tracks[cite: 1]</td>
-                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> View Link</a></td>
+                                <td>Learning SQL Programming & MySQL for Non-Programmers[cite: 1]</td>
+                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Certificate URL</a></td>
                             </tr>
                             <tr>
                                 <td><strong>LinkedIn Learning</strong>[cite: 1]</td>
-                                <td>Python for Data Science and Machine Learning Essential Training Part 1[cite: 1]</td>
-                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> View Link</a></td>
+                                <td>Python Essential Training & Python for Data Science and ML Essential Training Part 1[cite: 1]</td>
+                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Certificate URL</a></td>
                             </tr>
                             <tr>
                                 <td><strong>LinkedIn Learning</strong>[cite: 1]</td>
                                 <td>MATLAB Essential Training, Accelerated MATLAB, & Learning MATLAB[cite: 1]</td>
-                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> View Link</a></td>
+                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Certificate URL</a></td>
                             </tr>
                             <tr>
                                 <td><strong>LinkedIn Learning</strong>[cite: 1]</td>
-                                <td>Six Sigma Foundations, Green Belt Certification, & Operational Excellence[cite: 1]</td>
-                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> View Link</a></td>
+                                <td>Six Sigma Foundations, Six Sigma Green Belt, & Operational Excellence Foundations[cite: 1]</td>
+                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Certificate URL</a></td>
                             </tr>
                             <tr>
                                 <td><strong>LinkedIn Learning</strong>[cite: 1]</td>
-                                <td>Additive Manufacturing: Tips, Tricks, and Techniques & Stats Foundations 3[cite: 1]</td>
-                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> View Link</a></td>
+                                <td>Additive Manufacturing: Tips, Tricks, and Techniques & Statistics Foundations 3[cite: 1]</td>
+                                <td><a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Certificate URL</a></td>
                             </tr>
                         </tbody>
                     </table>
-
-                    <h3 class="sub-section-title">Faculty Development Programs (FDPs) & Summer Schools</h3>
-                    <ul class="timeline-desc">
-                        <li><strong>Summer School (D2MMS):</strong> Data-Driven Modelling for Mechanical Systems, Department of Mechanical Engineering, IIT (ISM) Dhanbad (July 2026)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Verification</a></li>
-                        <li><strong>Conference (AIFB 2025):</strong> AI for Forensics and Biometric Applications, IIT Bhilai (December 2025)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Verification</a></li>
-                        <li><strong>ATAL Academy FDP:</strong> Robotics for Industry 4.0: Enabling Smart Manufacturing at Sri Venkateswara College of Engineering (Nov 2025)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Verification</a></li>
-                        <li><strong>ATAL Academy FDP:</strong> Five Days FDP on Green Technology and Sustainability Engineering at Amrita Vishwa Vidyapeetham (July 2021)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Verification</a></li>
-                        <li><strong>IIT Bhilai FDP:</strong> Advanced Computational Modeling for Solids and Fluids (January 2026)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Verification</a></li>
-                        <li><strong>IIT Hyderabad Program:</strong> Three-Week Faculty Induction Training supported by MHRD under PMMMNMTT scheme[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Verification</a></li>
-                        <li><strong>IIT Madras Course:</strong> Enduring Trends in Hydraulic Control Systems: Past, Present and Future (March 2021)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Verification</a></li>
-                        <li><strong>IIT Bombay Course:</strong> Theory of Plasticity and Its Applications via CE & QIP[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Verification</a></li>
-                        <li><strong>IIT Kharagpur Course:</strong> Application of Forecasting Methods in Engineering and Business Problems via AICTE & QIP[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Verification</a></li>
-                        <li><strong>NIT Rourkela Workshop:</strong> Problem-Driven AI: Real World Applications and Solution Frameworks (Feb 2026)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Verification</a></li>
-                        <li><strong>MVGR FDP Tracks:</strong> Dual Certifications in Recent Advances in Composite Materials & The Role of AI in Manufacturing Industries (2025)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Verification</a></li>
-                        <li><strong>CVR FDP Track:</strong> The Art and Science of Successful Proposal Writing: Techniques, Strategies, and Best Practices (2025)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Verification</a></li>
-                        <li><strong>VNR VJIET Tracks:</strong> FDP on Innovations in Robotics/UAVs, STTP on Modelling/Analysis using MATLAB & STTP on Advanced Techniques in Modelling (2024-2026)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> Verification</a></li>
-                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- 5. HONORS, SERVICE & REFERENCES ACCORDION -->
-        <div class="accordion-item" id="service-section">
+        <!-- MODULE 5: PROFESSIONAL DEVELOPMENT -->
+        <div class="accordion-item" id="development-section">
             <button class="accordion-header" onclick="toggleAccordion(this)">
-                <h2><i class="fa-solid fa-award"></i> 5. Commendations, Social Service & References</h2>
+                <h2><i class="fa-solid fa-sliders"></i> 5. Professional Development & Academic Service</h2>
                 <i class="fa-solid fa-chevron-down accordion-icon"></i>
             </button>
             <div class="accordion-content">
                 <div class="accordion-content-inner">
                     
-                    <h3 class="sub-section-title">Academic Distinctions</h3>
+                    <h3 class="sub-section-title">AICTE ATAL & Summer Schools</h3>
                     <ul class="timeline-desc">
-                        <li><strong>Appreciation Certificate:</strong> Awarded at the *Innovation 2K12 National Fest Competition* held at Vivekananda Institute of Technology & Science[cite: 1].</li>
-                        <li><strong>Essay & Elocution Laurels:</strong> Awarded Certificate of Appreciation by the Department of Youth Services, Karimnagar[cite: 1].</li>
+                        <li><strong>ATAL FDP:</strong> Robotics for Industry 4.0: Smart Manufacturing at Sri Venkateswara College of Engineering (17-22 Nov 2025)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li><strong>ATAL FDP:</strong> Green Technology and Sustainability Engineering at Amrita Vishwa Vidyapeetham (5-9 July 2021)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li><strong>Summer School:</strong> Data-Driven Modelling for Mechanical Systems (D2MMS), IIT (ISM) Dhanbad (1-5 July 2026)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li><strong>Conferences:</strong> AI for Forensics and Biometric Applications (AIFB 2025) at IIT Bhilai (19-20 Dec 2025)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
                     </ul>
 
-                    <h3 class="sub-section-title">Social Responsibility Indicators</h3>
+                    <h3 class="sub-section-title">Faculty Development Programs (FDPs) Attended</h3>
                     <ul class="timeline-desc">
-                        <li><strong>Pledge Participant:</strong> *Nasha Mukt Bharat, Khushaal Bharat* program administered by the Ministry of Social Justice and Empowerment, Govt. of India[cite: 1].</li>
-                        <li><strong>Blood Donation Volunteer:</strong> Voluntarily donated blood on 10 distinct occasions via government-recognized hospital camps[cite: 1].</li>
+                        <li>FDP: Research & Development Excellence through Data Science Case Studies at Sphoorthy Engineering College (2026)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP: AI-Driven Business Analytics for Research, Teaching & Industry at JIET Jodhpur (2026)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP: AI Powered Teaching Excellence at Walchand Institute of Technology, Solapur (2026)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP: Next-Generation Mechanical Engineering: From Research to Industrial Applications at IEM (2026)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP: Advanced Computational Modeling for Solids and Fluids at IIT Bhilai (5-8 Jan 2026)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP: Recent Advances in Composite Materials: Integrating Modelling & Experimental Approaches at MVGR (2025)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP: The Role of Artificial Intelligence in Manufacturing Industries at MVGR (2025)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP: The Art and Science of Successful Proposal Writing at CVR College of Engineering (2025)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP: Smart Materials and Technologies for Durable Structures (SMTDS'25) at R.V.R.J.C. (2025)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP: Innovations in Robotics and UAVs: Digital Twins, Drone Design, and Future Trends at VNR VJIET (2024)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP: Transforming Education: Integrating OBE and NEP 2020 at CVR College of Engineering (2024)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP: Advanced Python Programming at Guru Nanak Institutions Technical Campus (2023-2024)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP: Fundamentals, Advancements and Applications of Robotics at Vignan Institute (2023)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP: Additive Manufacturing Processes and Its Applications at Sri Manakula Vinayagar Engineering College (2021)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP: Mathematical Modeling & Numerical Techniques 2020 at Kakatiya Institute of Technology and Science[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP: Frontiers of Research in Mechanical Engineering (FORME 2020) at Satya Institute of Technology[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>Three-Week Faculty Induction Training Program supported by MHRD (PMMMNMTT) at TLC, IIT Hyderabad[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP Tracks: Engineering Physics and Materials Science (CBIT) & Recent Trends in Manufacturing (MGIT)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP Tracks: Recent Advances in Renewable Energy (MGIT) & Advanced Welding Technologies (JAIN University)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP: Recent Developments in Solar Energy Recovery and Storage Technologies at St. Joseph's College[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP: Recent Developments of Nano-Composites and Smart Materials in the Aerospace Industry at MLR Institute[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP Tracks: Research Methodologies (Narsimha Reddy Eng.) & Nanoscience Current Perspectives (G.H. Raisoni)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP: Advanced Composite Materials (R.R. Institute) & Optimization Techniques for Mechanical Engineers (Vignan)[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
+                        <li>FDP: Research Opportunities in Advanced Welding Processes at Hindusthan College of Engineering[cite: 1]. <a href="#" class="cert-link"><i class="fa-solid fa-link"></i> URL</a></li>
                     </ul>
 
-                    <h3 class="sub-section-title">Formal Professional References</h3>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 10px;">
-                        <div style="background: var(--bg-light); padding: 15px; border-radius: 6px; border: 1px solid var(--border-color);">
-                            <strong style="color: var(--text-dark);">Dr. Prashanta Kr. Mahato</strong>[cite: 1]<br>
-                            <span style="font-size: 0.85rem; color: var(--text-muted);">Professor, Dept. of Mechanical Engineering</span><br>
-                            <span style="font-weight: 500; font-size: 0.85rem; color: var(--primary);">IIT (ISM), Dhanbad</span>[cite: 1]<br>
-                            <span style="font-size: 0.85rem;"><i class="fa-solid fa-envelope"></i> pkmahato@iitism.ac.in</span>[cite: 1]
+                    <h3 class="sub-section-title">Workshops & Short-Term Technical Programs (STTPs)</h3>
+                    <ul class="timeline-desc">
+                        <li>Workshop: Problem-Driven AI: Real World Applications at National Institute of Technology Rourkela (2026)[cite: 1].</li>
+                        <li>Workshop: Emission Control Strategies in Thermal Power Plants at OP Jindal University & JPL (2023)[cite: 1].</li>
+                        <li>Workshops: Autodesk Academic Event (GNITC) & Computational Research Techniques Using MATLAB (SCCE)[cite: 1].</li>
+                        <li>Short-Term Course: Enduring Trends in Hydraulic Control Systems at Continuing Education, IIT Madras (2021)[cite: 1].</li>
+                        <li>Short-Term Course: Theory of Plasticity and Its Applications via CE & QIP, IIT Bombay[cite: 1].</li>
+                        <li>Short-Term Course: Application of Forecasting Methods in Engineering and Business Problems via AICTE, IIT Kharagpur[cite: 1].</li>
+                        <li>STTP Tracks: Green Manufacturing (NITTTR Chandigarh) & Training of Trainers for Teacher Educator (NITTTR Bhopal)[cite: 1].</li>
+                        <li>STTP: Advances in Additive Manufacturing at Siemens Centre of Excellence, YCCE Nagpur[cite: 1].</li>
+                        <li>STTP Tracks: Advanced Techniques in Modelling for Materials & Analysis using MATLAB and Python at VNR VJIET[cite: 1].</li>
+                        <li>STTP Tracks: Advances in Finite Element Method (Vasavi) & Design of Experiments in Engineering (B.V. Raju Institute)[cite: 1].</li>
+                    </ul>
+
+                    <h3 class="sub-section-title">Academic Distinctions & Social Service</h3>
+                    <ul class="timeline-desc">
+                        <li><strong>Laurels:</strong> Appreciation Certificate in Innovation 2K12 National fest competition at Vivekananda Institute[cite: 1].</li>
+                        <li><strong>Laurels:</strong> Certificate of Appreciation in Essay Writing and Elocution by Dept. of Youth Services, Karimnagar[cite: 1].</li>
+                        <li><strong>Social Service:</strong> Pledge Participant, Nasha Mukt Bharat, Khushaal Bharat (Ministry of Social Justice, India)[cite: 1].</li>
+                        <li><strong>Social Service:</strong> Dedicated blood donor on 10 isolated occasions through recognized verification camps[cite: 1].</li>
+                    </ul>
+
+                    <h3 class="sub-section-title">Verified Institutional References</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 10px;">
+                        <div style="background: var(--bg-light); padding: 12px; border-radius: 4px; border: 1px solid var(--border-color); font-size: 0.85rem;">
+                            <strong>Dr. Prashanta Kr. Mahato</strong> (Professor)<br>[cite: 1]Dept. of Mechanical Engineering, IIT (ISM) Dhanbad[cite: 1]<br>
+                            Email: pkmahato@iitism.ac.in | Tel: (+91) 943 112 0024[cite: 1]
                         </div>
-                        <div style="background: var(--bg-light); padding: 15px; border-radius: 6px; border: 1px solid var(--border-color);">
-                            <strong style="color: var(--text-dark);">Dr. Suparno Bhattacharyya</strong>[cite: 1]<br>
-                            <span style="font-size: 0.85rem; color: var(--text-muted);">Assistant Professor, Dept. of Mechanical Engineering</span><br>
-                            <span style="font-weight: 500; font-size: 0.85rem; color: var(--primary);">IIT (ISM), Dhanbad</span>[cite: 1]<br>
-                            <span style="font-size: 0.85rem;"><i class="fa-solid fa-envelope"></i> suparno@iitism.ac.in</span>[cite: 1]
+                        <div style="background: var(--bg-light); padding: 12px; border-radius: 4px; border: 1px solid var(--border-color); font-size: 0.85rem;">
+                            <strong>Dr. Suparno Bhattacharyya</strong> (Assistant Professor)<br>[cite: 1]Dept. of Mechanical Engineering, IIT (ISM) Dhanbad[cite: 1]<br>
+                            Email: suparno@iitism.ac.in | Tel: (+1) 8143 215 868[cite: 1]
                         </div>
-                        <div style="background: var(--bg-light); padding: 15px; border-radius: 6px; border: 1px solid var(--border-color);">
-                            <strong style="color: var(--text-dark);">Dr. Rajeswara Reddy Resapu</strong>[cite: 1]<br>
-                            <span style="font-size: 0.85rem; color: var(--text-muted);">Associate Professor & Head, Dept. of Mechanical Eng.</span><br>
-                            <span style="font-weight: 500; font-size: 0.85rem; color: var(--primary);">GITAM University, Visakhapatnam</span>[cite: 1]<br>
-                            <span style="font-size: 0.85rem;"><i class="fa-solid fa-envelope"></i> rresapu@gitam.edu</span>[cite: 1]
+                        <div style="background: var(--bg-light); padding: 12px; border-radius: 4px; border: 1px solid var(--border-color); font-size: 0.85rem;">
+                            <strong>Dr. Rajeswara Reddy Resapu</strong> (Associate Professor & Head)<br>[cite: 1]Dept. of Mechanical Engineering, GITAM University, Visakhapatnam[cite: 1]<br>
+                            Email: rresapu@gitam.edu | Tel: (+91) 950 280 0524[cite: 1]
                         </div>
-                        <div style="background: var(--bg-light); padding: 15px; border-radius: 6px; border: 1px solid var(--border-color);">
-                            <strong style="color: var(--text-dark);">Dr. A Raj Kumar</strong>[cite: 1]<br>
-                            <span style="font-size: 0.85rem; color: var(--text-muted);">Professor & Head, Dept. of Mechanical Engineering</span><br>
-                            <span style="font-weight: 500; font-size: 0.85rem; color: var(--primary);">Guru Nanak Institutions Tech. Campus</span>[cite: 1]<br>
-                            <span style="font-size: 0.85rem;"><i class="fa-solid fa-envelope"></i> hodme.gnitc@gniindia.org</span>[cite: 1]
+                        <div style="background: var(--bg-light); padding: 12px; border-radius: 4px; border: 1px solid var(--border-color); font-size: 0.85rem;">
+                            <strong>Dr. A Raj Kumar</strong> (Professor & Head)<br>[cite: 1]Dept. of Mechanical Engineering, Guru Nanak Institutions Technical Campus[cite: 1]<br>
+                            Email: hodme.gnitc@gniindia.org | Tel: (+91) 849 790 0085[cite: 1]
                         </div>
                     </div>
 
@@ -864,23 +867,22 @@
 
     </main>
 
-    <!-- STICKY MINIMAL FOOTER — ONLY ICONS VISIBLE -->
+    <!-- STICKY FOOTER: CONTACT ICONS ONLY -->
     <footer class="minimal-footer">
         <div class="footer-icons">
-            <a href="mailto:sanjeevkumargajawada@gmail.com" title="Email Address"><i class="fa-solid fa-envelope"></i></a>
+            <a href="mailto:sanjeevkumargajawada@gmail.com" title="Email Reference"><i class="fa-solid fa-envelope"></i></a>
             <a href="https://www.linkedin.com/in/skgajawada/" target="_blank" title="LinkedIn Profile"><i class="fa-brands fa-linkedin"></i></a>
             <a href="tel:+919030833667" title="Call Contact"><i class="fa-solid fa-phone"></i></a>
-            <a href="https://scholar.google.com" target="_blank" title="Google Scholar"><i class="fa-solid fa-graduation-cap"></i></a>
+            <a href="https://scholar.google.com" target="_blank" title="Google Scholar Reference"><i class="fa-solid fa-graduation-cap"></i></a>
         </div>
     </footer>
 
-    <!-- INTERACTIVE ACCORDION SCRIPT -->
+    <!-- INTERACTIVE ENGINE CODES -->
     <script>
         function toggleAccordion(element) {
             const item = element.parentElement;
             const content = element.nextElementSibling;
             
-            // Toggle active status
             if (item.classList.contains('active')) {
                 item.classList.remove('active');
                 content.style.maxHeight = "0";
@@ -901,13 +903,12 @@
                     content.style.maxHeight = content.scrollHeight + "px";
                 }
                 
-                // Smooth scroll to element offset
                 setTimeout(() => {
                     window.scrollTo({
-                        top: targetItem.offsetTop - 90,
+                        top: targetItem.offsetTop - 85,
                         behavior: 'smooth'
                     });
-                }, 100);
+                }, 80);
             }
         }
     </script>
