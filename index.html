@@ -59,10 +59,6 @@
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
         }
-        
-        .numbers {
-            font-family: 'Space Grotesk', sans-serif;
-        }
 
         .container {
             max-width: 1200px;
@@ -71,7 +67,7 @@
             width: 100%;
         }
 
-        /* Nav Bar - Customized to remove "Gajavada S." and only use "Gajavada Sanjeevkumar" */
+        /* Nav Bar */
         nav {
             position: fixed;
             top: 0;
@@ -150,12 +146,12 @@
 
         /* Main Workspace Wrapper */
         main {
-            margin-top: 100px;
+            margin-top: 110px;
             flex-grow: 1;
             padding-bottom: 4rem;
         }
 
-        /* DASHBOARD LANDING CARD (Image Left, Matter Right with Hover Animation) */
+        /* LANDING CARD - Image Left, Matter Right with Mandatory Hover Animation */
         .landing-card {
             background: var(--bg-card-light);
             border: 1px solid var(--border-light);
@@ -174,26 +170,26 @@
             border-color: var(--border-dark);
         }
 
-        /* MANDATORY HOVER ANIMATION FOR THE MAIN PROFILE CARD */
+        /* Hover animation on landing card */
         .landing-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.12);
+            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.15);
             border-color: var(--accent);
         }
 
         .profile-img-col {
-            flex: 0 0 300px;
+            flex: 0 0 280px;
             display: flex;
             justify-content: center;
         }
 
         .profile-img-col img {
-            width: 280px;
-            height: 280px;
+            width: 260px;
+            height: 260px;
             object-fit: cover;
             border-radius: 50%;
             border: 6px solid var(--border-light);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.10);
             transition: var(--transition);
         }
 
@@ -201,16 +197,12 @@
             border-color: var(--border-dark);
         }
 
-        .profile-img-col img:hover {
-            transform: scale(1.05);
-        }
-
         .profile-info-col {
             flex: 1;
         }
 
         .profile-info-col h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             color: var(--primary-accent);
             margin-bottom: 0.5rem;
         }
@@ -220,10 +212,10 @@
         }
 
         .profile-info-col .title-sub {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 500;
             color: var(--text-dark);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         body.dark-theme .profile-info-col .title-sub {
@@ -231,7 +223,7 @@
         }
 
         .profile-info-col .dept-sub {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--text-muted);
             margin-bottom: 1.5rem;
             line-height: 1.6;
@@ -241,12 +233,12 @@
             color: var(--text-muted-dark);
         }
 
-        /* Clean Contact Grid including Call Icon */
+        /* Contact Box layout with call icon */
         .contact-pill-box {
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .contact-pill {
@@ -277,11 +269,7 @@
             transform: translateY(-2px);
         }
 
-        .contact-pill i {
-            font-size: 1rem;
-        }
-
-        /* Dashboard Interactive Hub Grid (Do not show detailed sections until these are clicked) */
+        /* Dashboard Hub Grid */
         .dashboard-hub {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -307,11 +295,10 @@
             border-color: var(--border-dark);
         }
 
-        /* Mandatory Hover Animations for Tiles */
         .hub-tile:hover {
             transform: translateY(-8px);
             border-color: var(--accent);
-            box-shadow: 0 12px 24px rgba(14, 165, 233, 0.1);
+            box-shadow: 0 12px 24px rgba(14, 165, 233, 0.12);
         }
 
         .hub-tile i {
@@ -343,14 +330,14 @@
             color: var(--text-muted-dark);
         }
 
-        /* Dynamic Detail Display Area - Starts Hidden */
+        /* Routed Views displaying in same tab */
         .dynamic-view-panel {
-            display: none; /* Controlled by JS router */
-            animation: fadeIn 0.4s ease forwards;
+            display: none;
+            animation: slideIn 0.4s ease forwards;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -368,7 +355,7 @@
         }
 
         .panel-header h2 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: var(--primary-accent);
         }
 
@@ -376,7 +363,7 @@
             color: var(--accent);
         }
 
-        /* Timelines & Item Layouts */
+        /* Timeline Items */
         .timeline {
             max-width: 900px;
             margin: 0 auto;
@@ -400,7 +387,7 @@
 
         .timeline-item {
             position: relative;
-            margin-bottom: 3.5rem;
+            margin-bottom: 3rem;
             background: var(--bg-card-light);
             border: 1px solid var(--border-light);
             padding: 2rem;
@@ -443,7 +430,7 @@
         }
 
         .timeline-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 0.5rem;
             color: var(--primary-accent);
         }
@@ -461,7 +448,7 @@
             color: var(--text-muted-dark);
         }
 
-        /* Compact Subject Cards Layout */
+        /* Subject Grids */
         .subject-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -495,7 +482,7 @@
         }
 
         .subject-card h4 {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             color: var(--primary-accent);
         }
 
@@ -503,7 +490,7 @@
             color: var(--text-light);
         }
 
-        /* Certifications Section Grid */
+        /* Certifications Grid layout */
         .filter-controls {
             display: flex;
             justify-content: center;
@@ -572,7 +559,7 @@
 
         .cert-card h4 {
             margin: 0.5rem 0;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: var(--primary-accent);
             font-weight: 600;
         }
@@ -621,7 +608,7 @@
         }
 
         .btn-pdf-view:hover {
-            color: #ef4444; /* Standard PDF Red accent */
+            color: #ef4444;
         }
 
         .btn-external-verify {
@@ -636,13 +623,13 @@
             opacity: 0.8;
         }
 
-        /* Professional Development Activities Subsection */
+        /* Professional Dev lists */
         .pd-subsection {
             margin-bottom: 3.5rem;
         }
 
         .pd-subsection h3 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--primary-accent);
             border-left: 4px solid var(--accent);
             padding-left: 1rem;
@@ -729,7 +716,7 @@
             color: var(--accent);
         }
 
-        /* Research Grid */
+        /* Research Fields */
         .research-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -762,7 +749,7 @@
         }
 
         .research-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: var(--primary-accent);
             margin-bottom: 1rem;
         }
@@ -780,7 +767,7 @@
             color: var(--text-muted-dark);
         }
 
-        /* Skills Dashboard */
+        /* Skills Progress Bars */
         .skills-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -788,7 +775,7 @@
         }
 
         .skills-cat h3 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             color: var(--primary-accent);
             margin-bottom: 2rem;
             border-bottom: 2px solid var(--border-light);
@@ -826,7 +813,7 @@
             height: 100%;
             background: var(--secondary);
             border-radius: 4px;
-            width: 0; /* Animated with JS */
+            width: 0;
             transition: width 1.5s cubic-bezier(0.1, 0.8, 0.3, 1);
         }
 
@@ -834,7 +821,7 @@
             background: var(--accent);
         }
 
-        /* Contact Panel */
+        /* Contact Details section */
         .contact-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -858,7 +845,7 @@
         }
 
         .contact-card h3 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--primary-accent);
             margin-bottom: 1.5rem;
         }
@@ -994,7 +981,6 @@
             color: rgba(255,255,255,0.7);
         }
 
-        /* Responsive Layout Handling */
         @media (max-width: 992px) {
             .landing-card {
                 flex-direction: column;
@@ -1017,16 +1003,14 @@
 </head>
 <body>
 
-    <!-- Persistent Top Navigation Interface -->
+    <!-- Nav Space -->
     <nav>
         <div class="container nav-container">
             <a href="#" class="logo" onclick="routeToDashboard(event)">Gajavada Sanjeevkumar</a>
             <div class="nav-controls">
-                <!-- Persistent Home Redirect Trigger -->
                 <button class="btn-home" onclick="routeToDashboard(event)">
                     <i class="fa-solid fa-house"></i> Home Dashboard
                 </button>
-                <!-- Color Architecture Toggle -->
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle Color Theme">
                     <i class="fa-solid fa-moon"></i>
                 </button>
@@ -1034,15 +1018,13 @@
         </div>
     </nav>
 
-    <!-- Content Workspace Area -->
     <main class="container">
         
-        <!-- INITIAL DEFAULT STATE: Landing Hub View (All Detailed Sections Hidden) -->
+        <!-- INITIAL DEFAULT STATE -->
         <div id="dashboardView">
-            <!-- Splash Card: Image Left, Content Right -->
             <div class="landing-card">
                 <div class="profile-img-col">
-                    <img src="pp.jpeg" alt="Gajavada Sanjeevkumar Portrait" onerror="this.src='https://via.placeholder.com/280?text=Sanjeevkumar'">
+                    <img src="pp.jpeg" alt="Gajavada Sanjeevkumar Portrait" onerror="this.src='https://via.placeholder.com/260?text=Gajavada+Sanjeevkumar'">
                 </div>
                 <div class="profile-info-col">
                     <h1>Gajavada Sanjeevkumar</h1>
@@ -1052,7 +1034,7 @@
                         <strong>Indian Institute of Technology (ISM), Dhanbad</strong>
                     </div>
                     
-                    <!-- Contact Matrix Row with Mandatory Call Icon -->
+                    <!-- Contact Matrix with Mandatory Call Icon -->
                     <div class="contact-pill-box">
                         <a href="tel:+919494964645" class="contact-pill">
                             <i class="fa-solid fa-phone"></i> +91 94949 64645
@@ -1066,59 +1048,59 @@
                     </div>
                     
                     <p style="line-height: 1.6; color: var(--text-muted);">
-                        Over 7 years of academic and research experience. Specializing in computational mechanical design, structural dynamics, aeroelasticity, and high-performance finite element modeling (FEM). Bridge classical engineering with deep mathematical modeling and modern data science pipelines.
+                        Over 7 years of academic teaching and computational research experience. Specializing in mechanical design, finite element modeling, fluid dynamics, and aeroelasticity while integrating deep mathematical modelling with predictive data analysis methodologies.
                     </p>
                 </div>
             </div>
 
-            <!-- Main Route Controller (Interactive Selection Matrix) -->
+            <!-- Route matrices -->
             <div class="dashboard-hub">
                 <div class="hub-tile" onclick="loadView('education')">
                     <i class="fa-solid fa-graduation-cap"></i>
                     <h3>Education</h3>
-                    <p>Academic path from PhD at IIT (ISM) Dhanbad to standard boards.</p>
+                    <p>PhD Research coursework, Masters in Machine Design, and foundational academic pathways.</p>
                 </div>
                 <div class="hub-tile" onclick="loadView('experience')">
                     <i class="fa-solid fa-briefcase"></i>
                     <h3>Work Experience</h3>
-                    <p>Chronological academic teaching tenures and advanced research internships.</p>
+                    <p>Academic faculty tenures, laboratory administrations, and industrial internships.</p>
                 </div>
                 <div class="hub-tile" onclick="loadView('research')">
                     <i class="fa-solid fa-atom"></i>
                     <h3>Research Thrusts</h3>
-                    <p>Core specialties in structural vibrations, fluid dynamics, and aeroelasticity.</p>
+                    <p>Core focus areas across Aeroelastic structural Dynamics, FEM calculations, and composites.</p>
                 </div>
                 <div class="hub-tile" onclick="loadView('teaching')">
                     <i class="fa-solid fa-chalkboard-user"></i>
                     <h3>Teaching Profile</h3>
-                    <p>Core mechanical subjects instructed as an assistant professor.</p>
+                    <p>Extensive curriculum portfolio of core undergraduate mechanical subjects instructed.</p>
                 </div>
                 <div class="hub-tile" onclick="loadView('certifications')">
                     <i class="fa-solid fa-certificate"></i>
                     <h3>Certifications</h3>
-                    <p>Professional credentials across MATLAB, Dataiku, IBM, and LinkedIn Learning.</p>
+                    <p>Professional credentials across MathWorks, Dataiku, IBM, and LinkedIn Learning.</p>
                 </div>
                 <div class="hub-tile" onclick="loadView('professional-dev')">
                     <i class="fa-solid fa-arrow-trend-up"></i>
                     <h3>Professional Development</h3>
-                    <p>FDPs, ATAL training courses, international summer schools, and academic seminars.</p>
+                    <p>Active participation in AICTE ATAL Academies, conferences, and advanced summer schools.</p>
                 </div>
                 <div class="hub-tile" onclick="loadView('skills')">
                     <i class="fa-solid fa-gears"></i>
                     <h3>Technical Skills</h3>
-                    <p>Toolchains across mechanical modeling, programming languages, and predictive frameworks.</p>
+                    <p>Computational tools, finite element solvers, programming frameworks, and data pipelines.</p>
                 </div>
                 <div class="hub-tile" onclick="loadView('contact')">
                     <i class="fa-solid fa-paper-plane"></i>
                     <h3>Connect / Query</h3>
-                    <p>Reach out directly, drop a research proposal query, or coordinate projects.</p>
+                    <p>Reach out directly, request academic collaborations, or send query proposals.</p>
                 </div>
             </div>
         </div>
 
-        <!-- ================= DYNAMIC ROUTED VIEW CHANNELS ================= -->
+        <!-- ================= DYNAMIC CHANNELS ================= -->
         
-        <!-- 1. Education Panel -->
+        <!-- 1. Education -->
         <div id="view-education" class="dynamic-view-panel">
             <div class="panel-header">
                 <h2>Education Details</h2>
@@ -1127,18 +1109,20 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-year">July 2025 – Present</div>
-                    <h3 class="timeline-title">PhD Scholar in Mechanical Design</h3>
+                    <h3 class="timeline-title">PhD Scholar in Mechanical Engineering (Machine Design)</h3>
                     <p class="timeline-desc">
                         <strong>Indian Institute of Technology (ISM), Dhanbad</strong><br>
-                        Coursework CGPA: 8.2 | Research focus on structural dynamics, aeroelasticity, and finite element optimization of high-speed structures.
+                        Research Domain: Aeroelasticity, structural dynamics, and computational solid mechanics.<br>
+                        Coursework CGPA: 8.2 / 10
                     </p>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-year">June 2025 – Dec 2025</div>
-                    <h3 class="timeline-title">AICTE QIP PG Certificate - Data Science</h3>
+                    <h3 class="timeline-title">AICTE QIP Post Graduate Certificate in Data Science</h3>
                     <p class="timeline-desc">
                         <strong>Indian Institute of Technology, Bhilai</strong><br>
-                        Graduated with CGPA: 8.67 | Core focus on predictive analytics, statistical learning paradigms, machine learning models, and complex analytics.
+                        Gained comprehensive specialization across analytical models, mathematical datasets, machine learning, and statistical analysis.<br>
+                        Graduated with CGPA: 8.67 / 10
                     </p>
                 </div>
                 <div class="timeline-item">
@@ -1146,7 +1130,8 @@
                     <h3 class="timeline-title">Master of Technology in Machine Design</h3>
                     <p class="timeline-desc">
                         <strong>GITAM Deemed To Be University, Visakhapatnam</strong><br>
-                        Graduated with CGPA: 8.78 | Investigated mathematical design parameters, CAD structures, dynamic stress, and modal parameters.
+                        In-depth coursework in dynamic stresses, modal configurations, CAD, vibrations, and design optimizations.<br>
+                        Graduated with CGPA: 8.78 / 10
                     </p>
                 </div>
                 <div class="timeline-item">
@@ -1154,7 +1139,8 @@
                     <h3 class="timeline-title">Bachelor of Technology in Mechanical Engineering</h3>
                     <p class="timeline-desc">
                         <strong>Vivekananda Institute of Technology and Science, Karimnagar</strong><br>
-                        Passed with 71.28% | Grounded in classical mechanical systems, thermodynamics, fluid machinery, and solid structures.
+                        Solid grounding in thermodynamics, fluid machinery, manufacturing technologies, and engineering mechanics.<br>
+                        Graduation Score: 71.28%
                     </p>
                 </div>
                 <div class="timeline-item">
@@ -1162,7 +1148,8 @@
                     <h3 class="timeline-title">Intermediate (M.P.C)</h3>
                     <p class="timeline-desc">
                         <strong>SR Junior College, Karimnagar</strong><br>
-                        Passed with 81.8% under Board of Intermediate Education (BIE), Telangana.
+                        Board of Intermediate Education (BIE), Andhra Pradesh.<br>
+                        Final Score: 81.8%
                     </p>
                 </div>
                 <div class="timeline-item">
@@ -1170,16 +1157,17 @@
                     <h3 class="timeline-title">Secondary School Certificate (SSC)</h3>
                     <p class="timeline-desc">
                         <strong>Pragathi Vidyalayam, Sircilla</strong><br>
-                        Passed with 85.5% under Board of Secondary Education (BSE), Telangana.
+                        Board of Secondary Education (BSE), Andhra Pradesh.<br>
+                        Final Score: 85.5%
                     </p>
                 </div>
             </div>
         </div>
 
-        <!-- 2. Work Experience Panel -->
+        <!-- 2. Experience -->
         <div id="view-experience" class="dynamic-view-panel">
             <div class="panel-header">
-                <h2>Professional Work Experience</h2>
+                <h2>Professional Experience</h2>
                 <button class="btn-home" onclick="routeToDashboard(event)"><i class="fa-solid fa-arrow-left"></i> Dashboard</button>
             </div>
             <div class="timeline">
@@ -1188,7 +1176,7 @@
                     <h3 class="timeline-title">PhD Research Scholar</h3>
                     <p class="timeline-desc">
                         <strong>Department of Mechanical Engineering, IIT (ISM) Dhanbad</strong><br>
-                        Leading research in aeroelastic mechanics, modal calculations, flutter boundary evaluation on composite layers, and deep data-driven structural approximations.
+                        Leading specialized investigations into high-speed fluid-structure integrations, finite element calculations of structural dampers, and vibration mitigation of thin orthotropic composite panels.
                     </p>
                 </div>
                 <div class="timeline-item">
@@ -1196,7 +1184,7 @@
                     <h3 class="timeline-title">Online Data Science Intern</h3>
                     <p class="timeline-desc">
                         <strong>Sabudh Foundation (in collaboration with STPI), Mohali</strong><br>
-                        Worked on automated pipeline data preparation for "Federated Learning systems for Intelligent Transportation Systems." Built robust data scaling modules and decentralized deep neural frameworks.
+                        Engineered automated modular preprocessing scripts for decentralized machine learning models ("Federated Learning Systems") in intelligent transportation architectures.
                     </p>
                 </div>
                 <div class="timeline-item">
@@ -1204,7 +1192,7 @@
                     <h3 class="timeline-title">Assistant Professor</h3>
                     <p class="timeline-desc">
                         <strong>Guru Nanak Institutions Technical Campus (Autonomous), Hyderabad</strong><br>
-                        Taught Advanced Machine Design, Kinematics, Dynamics, and Solids Mechanics. Handled student thesis groups and served as the department's Kinematics & Dynamics Lab Coordinator.
+                        Led classrooms for advanced mechanics, machine element design, and structural dynamics. Directed under-graduate capstone design challenges and served as the coordinator of the departmental Kinematics and Dynamics Lab.
                     </p>
                 </div>
                 <div class="timeline-item">
@@ -1212,7 +1200,7 @@
                     <h3 class="timeline-title">Assistant Professor</h3>
                     <p class="timeline-desc">
                         <strong>Sree Chaitanya College of Engineering, Karimnagar</strong><br>
-                        Delivered structural design lectures, organized student design hackathons, and managed CAD/CAE computing labs utilizing MATLAB, ANSYS, and SolidWorks.
+                        Delivered engineering lectures, organized student CAD hackathons, and administered computer laboratories hosting solid modeling simulations (ANSYS, SolidWorks, MATLAB).
                     </p>
                 </div>
                 <div class="timeline-item">
@@ -1220,50 +1208,50 @@
                     <h3 class="timeline-title">Lecturer</h3>
                     <p class="timeline-desc">
                         <strong>Jyothishmathi Institute of Technology and Science, Karimnagar</strong><br>
-                        Delivered curriculum modules on Engineering Mechanics, Fluid Mechanics, and Engineering Graphics to core undergraduate students.
+                        Instructed foundational classes on engineering mechanics, fluid operations, and graphic standards to early semester undergraduate arrays.
                     </p>
                 </div>
             </div>
         </div>
 
-        <!-- 3. Research thrusts Panel -->
+        <!-- 3. Research Area -->
         <div id="view-research" class="dynamic-view-panel">
             <div class="panel-header">
-                <h2>Research Areas & Interests</h2>
+                <h2>Research Thrusts</h2>
                 <button class="btn-home" onclick="routeToDashboard(event)"><i class="fa-solid fa-arrow-left"></i> Dashboard</button>
             </div>
             <div class="research-grid">
                 <div class="research-card">
                     <i class="fa-solid fa-wind"></i>
                     <h3>Aeroelasticity</h3>
-                    <p>Evaluating the mathematical interfaces of aerodynamic flows and elastic solid structures. Focuses on predicting critical divergence thresholds, flutter phenomena, and stabilization matrices under transonic velocity envelopes.</p>
+                    <p>Formulating structural boundaries to model instabilities (such as structural divergence and critical flutter speeds) on thin plates subjected to high-velocity aerodynamic regimes.</p>
                 </div>
                 <div class="research-card">
                     <i class="fa-solid fa-arrows-spin"></i>
                     <h3>Structural Dynamics</h3>
-                    <p>Solving complex multi-degree-of-freedom equations of motion. Modeling vibrational damping matrices, modal frequencies, dynamic load configurations, and designing robust isolators for mechanical assemblies.</p>
+                    <p>Solving complex multi-degree-of-freedom equations of motion, mathematical analysis of natural frequencies, vibrational modes, and isolating dynamic transient loadings.</p>
                 </div>
                 <div class="research-card">
                     <i class="fa-solid fa-layer-group"></i>
                     <h3>Composite Materials</h3>
-                    <p>Optimizing multi-layered orthotropic and anisotropic fiber-matrix systems. Investigating stress propagation profiles, matrix delaminations, and maximizing strength-to-weight ratios for aerospace applications.</p>
+                    <p>Optimizing stacking sequences of orthotropic fiber-reinforced plates to maximize stiffness parameters, load paths, and stability constraints in high-performance structures.</p>
                 </div>
                 <div class="research-card">
                     <i class="fa-solid fa-cube"></i>
                     <h3>Finite Element Methods (FEM)</h3>
-                    <p>Formulating customized stiffness matrix solvers, shape functions, dynamic modal extractions, structural meshing configurations, and transient heat dissipation grids across complex components.</p>
+                    <p>Writing custom solvers, building mesh-independent algorithms, and evaluating stress-strain fields across dynamic interfaces in solid structures.</p>
                 </div>
             </div>
         </div>
 
-        <!-- 4. Teaching Profile Panel -->
+        <!-- 4. Teaching profile -->
         <div id="view-teaching" class="dynamic-view-panel">
             <div class="panel-header">
                 <h2>Academic Subjects Handled</h2>
                 <button class="btn-home" onclick="routeToDashboard(event)"><i class="fa-solid fa-arrow-left"></i> Dashboard</button>
             </div>
-            <p style="margin-bottom: 2rem; color: var(--text-muted); font-size: 1.1rem; line-height: 1.6;">
-                Extensive instructional record spanning foundational mechanical concepts, mathematical computations, design-centric operations, and thermal/fluid frameworks.
+            <p style="margin-bottom: 2.5rem; color: var(--text-muted); font-size: 1.1rem; line-height: 1.6;">
+                Instruction portfolio containing core subjects handled across mechanical engineering curricula:
             </p>
             <div class="subject-grid">
                 <div class="subject-card">
@@ -1309,7 +1297,7 @@
             </div>
         </div>
 
-        <!-- 5. Certifications Panel (All Titles cleaned, no external subtitles) -->
+        <!-- 5. Certifications (Subtitles cleaned and dynamic PDF links included) -->
         <div id="view-certifications" class="dynamic-view-panel">
             <div class="panel-header">
                 <h2>Certifications</h2>
@@ -1326,15 +1314,15 @@
             </div>
 
             <div class="cert-grid">
-                <!-- MATLAB Series (1) -->
+                <!-- MATLAB -->
                 <div class="cert-card" data-cat="matlab">
                     <div>
                         <span class="cert-issuer">MathWorks</span>
                         <h4>MATLAB Onramp</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="MATLAB/MATLAB Onramp.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=98447788-27ba-43f7-a438-54a4c4b1df5a&" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="MATLAB/MATLAB Onramp.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=98447788-27ba-43f7-a438-54a4c4b1df5a&" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="matlab">
@@ -1343,8 +1331,8 @@
                         <h4>Simulink Onramp</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="MATLAB/Simulink Onramp.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=d6887cfb-feb5-49dd-a406-fbf7b5e4d1b8&" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="MATLAB/Simulink Onramp.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=d6887cfb-feb5-49dd-a406-fbf7b5e4d1b8&" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="matlab">
@@ -1353,8 +1341,8 @@
                         <h4>Control Design Onramp with Simulink</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="MATLAB/Control Design Onramp with Simulink.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=9cccfad1-7baf-4f8f-91a7-254111620c35&" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="MATLAB/Control Design Onramp with Simulink.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=9cccfad1-7baf-4f8f-91a7-254111620c35&" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="matlab">
@@ -1363,8 +1351,8 @@
                         <h4>Control System Modeling Essentials</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="MATLAB/Control System Modeling Essentials.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=e8d11305-c798-4b87-940e-8300139337ea&" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="MATLAB/Control System Modeling Essentials.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=e8d11305-c798-4b87-940e-8300139337ea&" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="matlab">
@@ -1373,8 +1361,8 @@
                         <h4>Linearization of Nonlinear Systems</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="MATLAB/Linearization of Nonlinear Systems.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=c17a101d-2a44-44e0-a914-ee7f78719c34&" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="MATLAB/Linearization of Nonlinear Systems.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=c17a101d-2a44-44e0-a914-ee7f78719c34&" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="matlab">
@@ -1383,8 +1371,8 @@
                         <h4>Control System Analysis Techniques</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="MATLAB/Control System Analysis Techniques.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=0d6e6247-8d07-481d-9aff-816283c9a363&" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="MATLAB/Control System Analysis Techniques.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=0d6e6247-8d07-481d-9aff-816283c9a363&" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="matlab">
@@ -1393,8 +1381,8 @@
                         <h4>PID Control Techniques</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="MATLAB/PID Control Techniques.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=26974935-40fb-4cbe-ac80-9e258664f207&" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="MATLAB/PID Control Techniques.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=26974935-40fb-4cbe-ac80-9e258664f207&" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="matlab">
@@ -1403,8 +1391,8 @@
                         <h4>Classical Controller Design Techniques</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="MATLAB/Classical Controller Design Techniques.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=3df3ce64-b72a-45fb-83c3-dc73f27434e6&" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="MATLAB/Classical Controller Design Techniques.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=3df3ce64-b72a-45fb-83c3-dc73f27434e6&" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="matlab">
@@ -1413,8 +1401,8 @@
                         <h4>Control System Design with MATLAB and Simulink</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="MATLAB/Control System Design with MATLAB and Simulink.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://matlabacademy.mathworks.com/progress/share/learningpath/certificate.html" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="MATLAB/Control System Design with MATLAB and Simulink.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://matlabacademy.mathworks.com/progress/share/learningpath/certificate.html" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="matlab">
@@ -1423,92 +1411,92 @@
                         <h4>MATLAB Desktop Tools & Troubleshooting</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="MATLAB/MATLAB Desktop Tools and Troubleshooting Scripts.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=fe00993d-b666-4320-9ff4-ba3eed1f1b66&" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="MATLAB/MATLAB Desktop Tools and Troubleshooting Scripts.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=fe00993d-b666-4320-9ff4-ba3eed1f1b66&" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
 
-                <!-- Dataiku Series (2) -->
+                <!-- Dataiku -->
                 <div class="cert-card" data-cat="dataiku">
                     <div>
                         <span class="cert-issuer">Dataiku</span>
-                        <h4>Core Designer Certificate</h4>
+                        <h4>Core Designer</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="Dataiku/Core Designer Certificate.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://verify.skilljar.com/c/bkwyituhoj6v" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="Dataiku/Core Designer Certificate.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://verify.skilljar.com/c/bkwyituhoj6v" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="dataiku">
                     <div>
                         <span class="cert-issuer">Dataiku</span>
-                        <h4>Advanced Designer Certificate</h4>
+                        <h4>Advanced Designer</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="Dataiku/Advanced Designer Certificate.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://verify.skilljar.com/c/7xkwmrk5fmpw" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="Dataiku/Advanced Designer Certificate.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://verify.skilljar.com/c/7xkwmrk5fmpw" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="dataiku">
                     <div>
                         <span class="cert-issuer">Dataiku</span>
-                        <h4>ML Practitioner Certificate</h4>
+                        <h4>ML Practitioner</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="Dataiku/ML Practitioner Certificate.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://verify.skilljar.com/c/vsmffgguetxw" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="Dataiku/ML Practitioner Certificate.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://verify.skilljar.com/c/vsmffgguetxw" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="dataiku">
                     <div>
                         <span class="cert-issuer">Dataiku</span>
-                        <h4>MLOps Practitioner Certificate</h4>
+                        <h4>MLOps Practitioner</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="Dataiku/MLOps Practitioner Certificate.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://verify.skilljar.com/c/du4fm2yw9yvp" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="Dataiku/MLOps Practitioner Certificate.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://verify.skilljar.com/c/du4fm2yw9yvp" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="dataiku">
                     <div>
                         <span class="cert-issuer">Dataiku</span>
-                        <h4>Developer Certificate</h4>
+                        <h4>Developer</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="Dataiku/Developer Certificate.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://verify.skilljar.com/c/qjka8bpmmvat" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="Dataiku/Developer Certificate.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://verify.skilljar.com/c/qjka8bpmmvat" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="dataiku">
                     <div>
                         <span class="cert-issuer">Dataiku</span>
-                        <h4>Generative AI Practitioner Certificate</h4>
+                        <h4>Generative AI Practitioner</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="Dataiku/Generative AI Practitioner Certificate.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://verify.skilljar.com/c/cxub5wdwadud" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="Dataiku/Generative AI Practitioner Certificate.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://verify.skilljar.com/c/cxub5wdwadud" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
 
-                <!-- IBM / Cognitive Class Series (3) -->
+                <!-- IBM / Cognitive Class -->
                 <div class="cert-card" data-cat="ibm">
                     <div>
                         <span class="cert-issuer">IBM</span>
-                        <h4>Data Literacy Badge</h4>
+                        <h4>Data Literacy</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="IBM/DataLiteracy.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://www.credly.com/badges/10ffb570-bdb3-43fa-b7c5-5a0c8e3226b4/public_url" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="IBM/DataLiteracy.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://www.credly.com/badges/10ffb570-bdb3-43fa-b7c5-5a0c8e3226b4/public_url" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="ibm">
                     <div>
                         <span class="cert-issuer">IBM</span>
-                        <h4>Data Fundamentals Badge</h4>
+                        <h4>Data Fundamentals</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="IBM/Data Fundamentals.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://www.credly.com/badges/9fa664e5-7bb0-43c8-b93d-5f85a9a10ee7/public_url" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="IBM/Data Fundamentals.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://www.credly.com/badges/9fa664e5-7bb0-43c8-b93d-5f85a9a10ee7/public_url" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="ibm">
@@ -1517,20 +1505,20 @@
                         <h4>Python 101 for Data Science</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="CognitiveAI/IBM PY0101EN Certificate _ Cognitive Class.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://courses.cognitiveclass.ai/certificates/0d19f10b76a34e86aa3565abb86d317b" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="CognitiveAI/IBM PY0101EN Certificate _ Cognitive Class.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://courses.cognitiveclass.ai/certificates/0d19f10b76a34e86aa3565abb86d317b" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
 
-                <!-- LinkedIn Series (4) -->
+                <!-- LinkedIn Learning -->
                 <div class="cert-card" data-cat="linkedin">
                     <div>
                         <span class="cert-issuer">LinkedIn Learning</span>
                         <h4>Learning Data Analytics: 1 Foundations</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="LinkedIn/Learning Data Analytics 1 Foundations.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/c722240aaf5d8f69a7cea04f45036ae283ef7a13f23b0da378ae92ee5ada0206?trk=share_certificate" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="LinkedIn/Learning Data Analytics 1 Foundations.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://www.linkedin.com/learning/certificates/c722240aaf5d8f69a7cea04f45036ae283ef7a13f23b0da378ae92ee5ada0206?trk=share_certificate" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="linkedin">
@@ -1539,8 +1527,8 @@
                         <h4>MySQL for Non-Programmers</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="LinkedIn/MySQL for NonProgrammers.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/16190e5fd82451db63fc9fb16831d52eecd35dcc6d3ea4f432fe5dca10d12c49?trk=share_certificate" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="LinkedIn/MySQL for NonProgrammers.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://www.linkedin.com/learning/certificates/16190e5fd82451db63fc9fb16831d52eecd35dcc6d3ea4f432fe5dca10d12c49?trk=share_certificate" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="linkedin">
@@ -1549,8 +1537,8 @@
                         <h4>Learning SQL Programming</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="LinkedIn/Learning SQL Programming.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/1c83f7f99d799579f0115cda9d0120df230372a6a248149c302b245c504fe0a0?trk=share_certificate" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="LinkedIn/Learning SQL Programming.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://www.linkedin.com/learning/certificates/1c83f7f99d799579f0115cda9d0120df230372a6a248149c302b245c504fe0a0?trk=share_certificate" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="linkedin">
@@ -1559,8 +1547,8 @@
                         <h4>Python for DS & ML Essential Training Pt 1</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="LinkedIn/Python for Data Science and Machine Learning Essential Training Part 1.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/d0a4940b9ada1be26c358dd29fba3c2b3a99a3811b38d31218e2dcb0b763b14f?trk=share_certificate" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="LinkedIn/Python for Data Science and Machine Learning Essential Training Part 1.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://www.linkedin.com/learning/certificates/d0a4940b9ada1be26c358dd29fba3c2b3a99a3811b38d31218e2dcb0b763b14f?trk=share_certificate" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="linkedin">
@@ -1569,8 +1557,8 @@
                         <h4>MATLAB Essential Training</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="LinkedIn/MATLAB Essential Training.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/d709fe8ed6ea0cecddee637f5817e3f6c6c24d5bc44102cc6ee809a98a12b6ee?trk=share_certificate" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="LinkedIn/MATLAB Essential Training.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://www.linkedin.com/learning/certificates/d709fe8ed6ea0cecddee637f5817e3f6c6c24d5bc44102cc6ee809a98a12b6ee?trk=share_certificate" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="linkedin">
@@ -1579,8 +1567,8 @@
                         <h4>Six Sigma Foundations</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="LinkedIn/Six Sigma Foundations.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/ac0993075d80ece8d4985e0d8956cffb8c3a6fd0cbd550a4a0eb27feff62ec75?trk=share_certificate" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="LinkedIn/Six Sigma Foundations.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://www.linkedin.com/learning/certificates/ac0993075d80ece8d4985e0d8956cffb8c3a6fd0cbd550a4a0eb27feff62ec75?trk=share_certificate" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="linkedin">
@@ -1589,8 +1577,8 @@
                         <h4>Statistics Foundations 3: Using Data Sets</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="LinkedIn/Statistics Foundations 3 Using Data Sets.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/1f26017e1ac6db7dd1ceee67e504713d51d897b94e74d4cd861205aa04e902e5?trk=share_certificate" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="LinkedIn/Statistics Foundations 3 Using Data Sets.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://www.linkedin.com/learning/certificates/1f26017e1ac6db7dd1ceee67e504713d51d897b94e74d4cd861205aa04e902e5?trk=share_certificate" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="linkedin">
@@ -1599,8 +1587,8 @@
                         <h4>Operational Excellence Foundations</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="LinkedIn/Operational Excellence Foundations.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/52d52362acda852e0bb9cd82f14c236347b5b25bfce957cad0081d2725b26408?trk=share_certificate" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="LinkedIn/Operational Excellence Foundations.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://www.linkedin.com/learning/certificates/52d52362acda852e0bb9cd82f14c236347b5b25bfce957cad0081d2725b26408?trk=share_certificate" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="linkedin">
@@ -1609,8 +1597,8 @@
                         <h4>Six Sigma: Green Belt</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="LinkedIn/Six Sigma Green Belt.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/29a40ae378a0f0dddc6f66aea714be8be75826348175b0aba9d91c530237fc05?trk=share_certificate" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="LinkedIn/Six Sigma Green Belt.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://www.linkedin.com/learning/certificates/29a40ae378a0f0dddc6f66aea714be8be75826348175b0aba9d91c530237fc05?trk=share_certificate" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="linkedin">
@@ -1619,8 +1607,8 @@
                         <h4>Additive Manufacturing Tips & Techniques</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="LinkedIn/Additive Manufacturing Tips Tricks and Techniques.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/44c37fa2479a143dae3cf23058bef10a9aa4d552f07eac1cb6e5b9a166ff73a0?trk=share_certificate" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="LinkedIn/Additive Manufacturing Tips Tricks and Techniques.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://www.linkedin.com/learning/certificates/44c37fa2479a143dae3cf23058bef10a9aa4d552f07eac1cb6e5b9a166ff73a0?trk=share_certificate" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="linkedin">
@@ -1629,8 +1617,8 @@
                         <h4>Accelerated MATLAB</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="LinkedIn/Accelerated MATLAB.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/688edcc956ef29c6da8c22fb42e3f52c6782dbc68f90e53af367d76f615f0f02?trk=share_certificate" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="LinkedIn/Accelerated MATLAB.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://www.linkedin.com/learning/certificates/688edcc956ef29c6da8c22fb42e3f52c6782dbc68f90e53af367d76f615f0f02?trk=share_certificate" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="linkedin">
@@ -1639,8 +1627,8 @@
                         <h4>Learning MATLAB</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="LinkedIn/Learning MATLAB.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/00827e7e19b6fa7e65f2d175caca08e91da5d4fb2b60b76e68b1dd3fdc03131f?trk=share_certificate" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="LinkedIn/Learning MATLAB.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://www.linkedin.com/learning/certificates/00827e7e19b6fa7e65f2d175caca08e91da5d4fb2b60b76e68b1dd3fdc03131f?trk=share_certificate" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="linkedin">
@@ -1649,20 +1637,20 @@
                         <h4>Python Essential Training</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="LinkedIn/Python Essential Training.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/b5920cb8058b6ce223edeafcccce74c1f44427f4cb9f6d0e2b248f8a613f5329?trk=share_certificate" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="LinkedIn/Python Essential Training.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://www.linkedin.com/learning/certificates/b5920cb8058b6ce223edeafcccce74c1f44427f4cb9f6d0e2b248f8a613f5329?trk=share_certificate" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
 
-                <!-- Coursera Series (5) -->
+                <!-- Coursera -->
                 <div class="cert-card" data-cat="coursera">
                     <div>
                         <span class="cert-issuer">Johns Hopkins University</span>
                         <h4>Business Analytics with Excel</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="coursera/business-analytics-excel.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://coursera.org/share/f82f7108b083f969f9c6a50671ed7d2a" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="coursera/business-analytics-excel.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://coursera.org/share/f82f7108b083f969f9c6a50671ed7d2a" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="coursera">
@@ -1671,8 +1659,8 @@
                         <h4>From Excel to Power BI</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="coursera/From-Excel-to-Power-BI.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://coursera.org/share/6cc187da98a920ba45d9dc31eb9433cf" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="coursera/From-Excel-to-Power-BI.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://coursera.org/share/6cc187da98a920ba45d9dc31eb9433cf" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
                 <div class="cert-card" data-cat="coursera">
@@ -1681,14 +1669,14 @@
                         <h4>Getting Started with MS Excel</h4>
                     </div>
                     <div class="cert-action-row">
-                        <a href="coursera/microsoft-excel.pdf" target="_self" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
-                        <a href="https://coursera.org/share/83e9392356f9aa97a222bfe62fbb039b" target="_self" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
+                        <a href="coursera/microsoft-excel.pdf" class="cert-btn btn-pdf-view"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="https://coursera.org/share/83e9392356f9aa97a222bfe62fbb039b" target="_blank" class="cert-btn btn-external-verify"><i class="fa-solid fa-circle-check"></i> Verify</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 6. Professional Development Panel -->
+        <!-- 6. Professional Development -->
         <div id="view-professional-dev" class="dynamic-view-panel">
             <div class="panel-header">
                 <h2>Professional Development</h2>
@@ -1764,7 +1752,7 @@
                 </ul>
             </div>
 
-            <!-- Standard FDPs -->
+            <!-- Faculty Development Programs -->
             <div class="pd-subsection">
                 <h3>Faculty Development Programs</h3>
                 <ul class="pd-list">
@@ -1796,14 +1784,14 @@
             </div>
         </div>
 
-        <!-- 7. Technical Skills Panel -->
+        <!-- 7. Technical Skills -->
         <div id="view-skills" class="dynamic-view-panel">
             <div class="panel-header">
                 <h2>Technical Skills</h2>
                 <button class="btn-home" onclick="routeToDashboard(event)"><i class="fa-solid fa-arrow-left"></i> Dashboard</button>
             </div>
             <div class="skills-container">
-                <!-- Computing & Logic -->
+                <!-- Programming Systems -->
                 <div class="skills-cat">
                     <h3>Programming & Systems</h3>
                     <div class="skill-item">
@@ -1819,7 +1807,7 @@
                         <div class="skill-track"><div class="skill-fill" data-width="85%"></div></div>
                     </div>
                 </div>
-                <!-- Mechanical & FEM Engineering -->
+                <!-- Mechanical Structures -->
                 <div class="skills-cat">
                     <h3>Mechanical & FEM Frameworks</h3>
                     <div class="skill-item">
@@ -1835,7 +1823,7 @@
                         <div class="skill-track"><div class="skill-fill" data-width="88%"></div></div>
                     </div>
                 </div>
-                <!-- Analytics & ML -->
+                <!-- DS Systems -->
                 <div class="skills-cat">
                     <h3>Data Science & ML</h3>
                     <div class="skill-item">
@@ -1843,18 +1831,18 @@
                         <div class="skill-track"><div class="skill-fill" data-width="92%"></div></div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name"><span>Generative AI Practitioner Tools</span></div>
+                        <div class="skill-name"><span>Generative AI Tools</span></div>
                         <div class="skill-track"><div class="skill-fill" data-width="85%"></div></div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name"><span>Power BI & MS Excel Analytics</span></div>
+                        <div class="skill-name"><span>Power BI & MS Excel</span></div>
                         <div class="skill-track"><div class="skill-fill" data-width="90%"></div></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 8. Contact / Query Panel -->
+        <!-- 8. Connect / Contact Panel with Call Icon -->
         <div id="view-contact" class="dynamic-view-panel">
             <div class="panel-header">
                 <h2>Connect & Query</h2>
@@ -1864,7 +1852,7 @@
                 <div class="contact-card">
                     <div>
                         <h3>Let's Collaborate</h3>
-                        <p>Feel free to reach out for research proposals, computational dynamic assessments, curriculum reviews, or academic consultations.</p>
+                        <p>Feel free to reach out for research questions, academic structures, engineering computational evaluations, or project proposals.</p>
                     </div>
                     <div class="contact-fields">
                         <a href="tel:+919494964645" class="contact-row">
@@ -1886,7 +1874,7 @@
                     </div>
                 </div>
 
-                <!-- Interactive Email Form -->
+                <!-- Input form -->
                 <form class="query-form" onsubmit="handleQueryForm(event)">
                     <div class="form-group">
                         <label class="form-label">Full Name</label>
@@ -1898,7 +1886,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Subject</label>
-                        <input type="text" class="form-input" required placeholder="Project / Query Topic">
+                        <input type="text" class="form-input" required placeholder="Topic">
                     </div>
                     <div class="form-group">
                         <label class="form-label">Message</label>
@@ -1911,16 +1899,15 @@
 
     </main>
 
-    <!-- Unified Footer -->
     <footer>
         <div class="container">
             <p>&copy; 2026 Gajavada Sanjeevkumar. Department of Mechanical Engineering, IIT (ISM) Dhanbad. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- JavaScript Navigation Router & Logic -->
+    <!-- Logic Engine -->
     <script>
-        // Color Theme Controller
+        // Themes
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = themeToggle.querySelector('i');
 
@@ -1933,25 +1920,21 @@
             }
         });
 
-        // Single Page App View Router Logic
+        // Router
         const dashboardView = document.getElementById('dashboardView');
         const allPanels = document.querySelectorAll('.dynamic-view-panel');
 
         function loadView(viewId) {
-            // Hide dashboard
             dashboardView.style.display = 'none';
-            // Hide all dynamic panels
             allPanels.forEach(panel => {
                 panel.style.display = 'none';
             });
 
-            // Show selected panel
             const targetPanel = document.getElementById('view-' + viewId);
             if (targetPanel) {
                 targetPanel.style.display = 'block';
                 window.scrollTo({ top: 0, behavior: 'smooth' });
 
-                // Trigger skill progress bar animations if the skills panel is active
                 if (viewId === 'skills') {
                     setTimeout(() => {
                         const progressFills = targetPanel.querySelectorAll('.skill-fill');
@@ -1966,31 +1949,26 @@
         function routeToDashboard(event) {
             if (event) event.preventDefault();
             
-            // Hide all dynamic panels
             allPanels.forEach(panel => {
                 panel.style.display = 'none';
-                // Reset skills widths if navigating away
                 const progressFills = panel.querySelectorAll('.skill-fill');
                 progressFills.forEach(fill => {
                     fill.style.width = '0';
                 });
             });
 
-            // Show base landing dashboard
             dashboardView.style.display = 'block';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Certification Category Filter
+        // Filters
         function filterCerts(category) {
             const certCards = document.querySelectorAll('.cert-card');
             const filterButtons = document.querySelectorAll('.filter-btn');
 
-            // Set active class on active button
             filterButtons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
 
-            // Apply filter rules
             certCards.forEach(card => {
                 if (category === 'all' || card.getAttribute('data-cat') === category) {
                     card.style.display = 'flex';
@@ -2000,10 +1978,9 @@
             });
         }
 
-        // Action feedback for Query submission
         function handleQueryForm(event) {
             event.preventDefault();
-            alert("Thank you for your message! Gajavada Sanjeevkumar will respond to your query shortly.");
+            alert("Thank you! Gajavada Sanjeevkumar will respond to your query shortly.");
             event.target.reset();
         }
     </script>
