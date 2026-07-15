@@ -82,6 +82,11 @@
             object-fit: cover;
         }
 
+        .fallback-avatar {
+            font-size: 3.5rem;
+            color: #cbd5e1;
+        }
+
         .aside-name {
             font-family: 'Playfair Display', Georgia, serif;
             font-size: 1.35rem;
@@ -483,11 +488,6 @@
             gap: 8px;
         }
 
-        .course-module-label i {
-            color: #e2b842; /* Clean gold accent icon */
-            font-size: 1.1rem;
-        }
-
         /* Access Materials Node Buttons */
         .folder-access-btn {
             display: inline-flex;
@@ -557,8 +557,8 @@
         .asset-verification-btn {
             display: inline-flex;
             align-items: center;
-            gap: 4px;
-            padding: 4px 8px;
+            gap: 6px;
+            padding: 4px 10px;
             border-radius: 4px;
             font-size: 0.78rem;
             font-weight: 600;
@@ -683,11 +683,12 @@
     <!-- LEFT SIDEBAR PROFILE CONTROLLER -->
     <aside>
         <div class="avatar-frame-wrapper">
-            <img src="pp.jpeg" alt="Gajavada Sanjeevkumar" onerror="this.parentElement.innerHTML='<i class=\"fa-solid fa-graduation-cap\" style=\"font-size:3.5rem;color:#cbd5e1;\"></i>';">
+            <img src="pp.jpeg" alt="Gajavada Sanjeevkumar" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="fallback-avatar" style="display:none;"><i class="fa-solid fa-user-graduate"></i></div>
         </div>
         
         <h2 class="aside-name">Gajavada Sanjeevkumar</h2>
-        <span class="aside-title-pill">PhD Scholar — Design Stream</span>
+        <span class="aside-title-pill">PhD Scholar — Machine Design Stream</span>
 
         <div class="affiliation-card-node">
             <h4>Primary Affiliation</h4>
@@ -702,10 +703,10 @@
         <nav class="top-navbar-strip">
             <ul class="nav-links-menu">
                 <li><a href="#about" class="nav-item-link">Profile</a></li>
-                <li><a href="#experience" class="nav-item-link">Experience</a></li>
-                <li><a href="#teaching" class="nav-item-link">Teaching</a></li>
-                <li><a href="#moocs" class="nav-item-link">MOOCs</a></li>
-                <li><a href="#development" class="nav-item-link">Training</a></li>
+                <li><a href="#experience" class="nav-item-link">Appointments</a></li>
+                <li><a href="#teaching" class="nav-item-link">Curriculum</a></li>
+                <li><a href="#moocs" class="nav-item-link">Credentials</a></li>
+                <li><a href="#development" class="nav-item-link">Advancements</a></li>
             </ul>
         </nav>
 
@@ -725,7 +726,7 @@
                     <div class="qualification-item-card">
                         <div>
                             <div class="qualification-card-tag">Doctoral Track</div>
-                            <div class="qualification-card-title">PhD — Design Program</div>
+                            <div class="qualification-card-title">PhD — Machine Design</div>
                             <div class="qualification-card-sub">Indian Institute of Technology (ISM), Dhanbad[cite: 1]</div>
                         </div>
                         <div class="qualification-card-foot-row">
@@ -826,7 +827,7 @@
                     <div class="timeline-element-node">
                         <div class="timeline-element-time">2021 — 2025[cite: 1]</div>
                         <div class="timeline-element-role">Assistant Professor[cite: 1]</div>
-                        <div class="timeline-element-org">Guru Nanank Institutions Technical Campus, Hyderabad, India[cite: 1]</div>
+                        <div class="timeline-element-org">Guru Nanak Institutions Technical Campus, Hyderabad, India[cite: 1]</div>
                     </div>
                     <div class="timeline-element-node">
                         <div class="timeline-element-time">2018 — 2021[cite: 1]</div>
@@ -884,46 +885,46 @@
 
             <!-- SECTION 3: TEACHING -->
             <section id="teaching">
-                <h2 class="section-headline">Course Pedagogy & Repositories</h2>
+                <h2 class="section-headline">Curriculum Pedagogy & Repositories</h2>
                 <div class="course-modules-grid">
                     <div class="course-module-card">
-                        <span class="course-module-label"><i class="fa-solid fa-folder"></i> Engineering Mechanics[cite: 1]</span>
+                        <span class="course-module-label">Engineering Mechanics[cite: 1]</span>
                         <a href="#" class="folder-access-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Access Folder</a>
                     </div>
                     <div class="course-module-card">
-                        <span class="course-module-label"><i class="fa-solid fa-folder"></i> Engineering Graphics[cite: 1]</span>
+                        <span class="course-module-label">Engineering Graphics[cite: 1]</span>
                         <a href="#" class="folder-access-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Access Folder</a>
                     </div>
                     <div class="course-module-card">
-                        <span class="course-module-label"><i class="fa-solid fa-folder"></i> Mechanics of Solids[cite: 1]</span>
+                        <span class="course-module-label">Mechanics of Solids[cite: 1]</span>
                         <a href="#" class="folder-access-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Access Folder</a>
                     </div>
                     <div class="course-module-card">
-                        <span class="course-module-label"><i class="fa-solid fa-folder"></i> Kinematics of Machinery[cite: 1]</span>
+                        <span class="course-module-label">Kinematics of Machinery[cite: 1]</span>
                         <a href="#" class="folder-access-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Access Folder</a>
                     </div>
                     <div class="course-module-card">
-                        <span class="course-module-label"><i class="fa-solid fa-folder"></i> Fluid Mechanics[cite: 1]</span>
+                        <span class="course-module-label">Fluid Mechanics[cite: 1]</span>
                         <a href="#" class="folder-access-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Access Folder</a>
                     </div>
                     <div class="course-module-card">
-                        <span class="course-module-label"><i class="fa-solid fa-folder"></i> Thermodynamics[cite: 1]</span>
+                        <span class="course-module-label">Thermodynamics[cite: 1]</span>
                         <a href="#" class="folder-access-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Access Folder</a>
                     </div>
                     <div class="course-module-card">
-                        <span class="course-module-label"><i class="fa-solid fa-folder"></i> Heat Transfer[cite: 1]</span>
+                        <span class="course-module-label">Heat Transfer[cite: 1]</span>
                         <a href="#" class="folder-access-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Access Folder</a>
                     </div>
                     <div class="course-module-card">
-                        <span class="course-module-label"><i class="fa-solid fa-folder"></i> Design of Machine Members[cite: 1]</span>
+                        <span class="course-module-label">Design of Machine Members[cite: 1]</span>
                         <a href="#" class="folder-access-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Access Folder</a>
                     </div>
                     <div class="course-module-card">
-                        <span class="course-module-label"><i class="fa-solid fa-folder"></i> Operations Research[cite: 1]</span>
+                        <span class="course-module-label">Operations Research[cite: 1]</span>
                         <a href="#" class="folder-access-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Access Folder</a>
                     </div>
                     <div class="course-module-card">
-                        <span class="course-module-label"><i class="fa-solid fa-folder"></i> Finite Element Methods[cite: 1]</span>
+                        <span class="course-module-label">Finite Element Methods[cite: 1]</span>
                         <a href="#" class="folder-access-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Access Folder</a>
                     </div>
                 </div>
@@ -931,7 +932,7 @@
                 <h3 class="content-block-subtitle">Departmental Service & Coordinates</h3>
                 <ul class="timeline-element-bullets">
                     <li><strong>Lab Coordinator:</strong> Controlled inventory adjustments, student scheduling metrics, and calibration tasks within the Kinematics and Dynamics Laboratory[cite: 1].</li>
-                    <li><strong>Academic Coordinator:</strong> Curated guidelines allocating Departmental Minor Degrees, scheduled remedial courses, and directed engineering tutorials[cite: 1].</li>
+                    <li><strong>Academic Coordinator:</strong> Managed Departmental Minor Degrees, scheduled remedial courses, and directed engineering tutorials[cite: 1].</li>
                     <li><strong>SAE BAJA / Go-Karting:</strong> Department Coordinator leading student vehicle frame design reviews, structural fabrications, and national competitions[cite: 1].</li>
                     <li><strong>Event Strategy Lead:</strong> Managed operations for the D2MMS Summer School setup; coordinated student Freshers and Farewell celebrations[cite: 1].</li>
                     <li><strong>Central Committee:</strong> Organized institutional milestones including core coordination tasks for Annual Convocation Days[cite: 1].</li>
@@ -941,185 +942,105 @@
 
             <!-- SECTION 4: MOOCs LEDGER -->
             <section id="moocs">
-                <h2 class="section-headline">Verified MOOCs & Professional Certifications</h2>
+                <h2 class="section-headline">Verified Credentials & Professional Certifications</h2>
                 <div style="background:var(--white); border:1px solid var(--border-line); border-radius:6px; overflow:hidden;">
                     <table class="registry-data-table">
                         <thead>
                             <tr>
                                 <th>Authority</th>
                                 <th>Learning Track / Professional Certification Title</th>
-                                <th style="text-align:right;">Verification Assets</th>
+                                <th style="text-align:right;">Verification Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td><span class="platform-tag-pill tag-dataiku">Dataiku</span></td>
                                 <td>Professional Certifications: Core Designer & Advanced Designer Path[cite: 1]</td>
-                                <td style="text-align:right;">
-                                    <div class="action-link-strip">
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Token</a>
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a>
-                                    </div>
-                                </td>
+                                <td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
                             </tr>
                             <tr>
                                 <td><span class="platform-tag-pill tag-dataiku">Dataiku</span></td>
                                 <td>Professional Certifications: Dataiku Developer & ML Practitioner[cite: 1]</td>
-                                <td style="text-align:right;">
-                                    <div class="action-link-strip">
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Token</a>
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a>
-                                    </div>
-                                </td>
+                                <td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
                             </tr>
                             <tr>
                                 <td><span class="platform-tag-pill tag-dataiku">Dataiku</span></td>
                                 <td>Professional Certifications: MLOps Practitioner & Generative AI Practitioner[cite: 1]</td>
-                                <td style="text-align:right;">
-                                    <div class="action-link-strip">
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Token</a>
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a>
-                                    </div>
-                                </td>
+                                <td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
                             </tr>
                             <tr>
                                 <td><span class="platform-tag-pill tag-mathworks">MathWorks</span></td>
                                 <td>Control System Design with MATLAB and Simulink Professional Path[cite: 1]</td>
-                                <td style="text-align:right;">
-                                    <div class="action-link-strip">
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a>
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a>
-                                    </div>
-                                </td>
+                                <td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
                             </tr>
                             <tr>
                                 <td><span class="platform-tag-pill tag-mathworks">MathWorks</span></td>
                                 <td>MATLAB Onramp, Simulink Onramp, & Control Design Onramp with Simulink[cite: 1]</td>
-                                <td style="text-align:right;">
-                                    <div class="action-link-strip">
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a>
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a>
-                                    </div>
-                                </td>
+                                <td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
                             </tr>
                             <tr>
                                 <td><span class="platform-tag-pill tag-coursera">Coursera</span></td>
                                 <td>Business Analytics with Excel: Elementary to Advanced (Johns Hopkins)[cite: 1]</td>
-                                <td style="text-align:right;">
-                                    <div class="action-link-strip">
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Registry</a>
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a>
-                                    </div>
-                                </td>
+                                <td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
                             </tr>
                             <tr>
                                 <td><span class="platform-tag-pill tag-coursera">Coursera</span></td>
                                 <td>From Excel to Power BI & Getting Started with Microsoft Excel Guided Projects[cite: 1]</td>
-                                <td style="text-align:right;">
-                                    <div class="action-link-strip">
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> Registry</a>
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a>
-                                    </div>
-                                </td>
+                                <td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
                             </tr>
                             <tr>
                                 <td><span class="platform-tag-pill tag-ibm">IBM Skills</span></td>
                                 <td>Data Literacy, Sensemaking with Data, & Exploring Data[cite: 1]</td>
-                                <td style="text-align:right;">
-                                    <div class="action-link-strip">
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-shield"></i> Badge</a>
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a>
-                                    </div>
-                                </td>
+                                <td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
                             </tr>
                             <tr>
                                 <td><span class="platform-tag-pill tag-ibm">IBM Skills</span></td>
                                 <td>Data Fundamentals, Your Future in Data, & Overview of Data Tools and Languages[cite: 1]</td>
-                                <td style="text-align:right;">
-                                    <div class="action-link-strip">
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-shield"></i> Badge</a>
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a>
-                                    </div>
-                                </td>
+                                <td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
                             </tr>
                             <tr>
                                 <td><span class="platform-tag-pill tag-ibm">IBM Skills</span></td>
                                 <td>Clean, Refine, and Visualize Data with IBM Watson Studio & Data Science In Our World[cite: 1]</td>
-                                <td style="text-align:right;">
-                                    <div class="action-link-strip">
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-shield"></i> Badge</a>
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a>
-                                    </div>
-                                </td>
+                                <td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
                             </tr>
                             <tr>
                                 <td><span class="platform-tag-pill tag-ibm">IBM Skills</span></td>
                                 <td>Introduction to Data Concepts & Python 101 for Data Science (Cognitive Class)[cite: 1]</td>
-                                <td style="text-align:right;">
-                                    <div class="action-link-strip">
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-shield"></i> Badge</a>
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a>
-                                    </div>
-                                </td>
+                                <td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
                             </tr>
                             <tr>
                                 <td><span class="platform-tag-pill tag-linkedin">LinkedIn</span></td>
                                 <td>Learning SQL Programming & MySQL for Non-Programmers Certification Paths[cite: 1]</td>
-                                <td style="text-align:right;">
-                                    <div class="action-link-strip">
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> URL</a>
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a>
-                                    </div>
-                                </td>
+                                <td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
                             </tr>
                             <tr>
                                 <td><span class="platform-tag-pill tag-linkedin">LinkedIn</span></td>
                                 <td>Python for Data Science and ML Essential Training & Python Essential Training[cite: 1]</td>
-                                <td style="text-align:right;">
-                                    <div class="action-link-strip">
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> URL</a>
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a>
-                                    </div>
-                                </td>
+                                <td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
                             </tr>
                             <tr>
                                 <td><span class="platform-tag-pill tag-linkedin">LinkedIn</span></td>
                                 <td>MATLAB Essential Training, Accelerated MATLAB, & Learning MATLAB Tracks[cite: 1]</td>
-                                <td style="text-align:right;">
-                                    <div class="action-link-strip">
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> URL</a>
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a>
-                                    </div>
-                                </td>
+                                <td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
                             </tr>
                             <tr>
                                 <td><span class="platform-tag-pill tag-linkedin">LinkedIn</span></td>
                                 <td>Six Sigma Foundations, Six Sigma: Green Belt, & Statistics Foundations 3[cite: 1]</td>
-                                <td style="text-align:right;">
-                                    <div class="action-link-strip">
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> URL</a>
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a>
-                                    </div>
-                                </td>
+                                <td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
                             </tr>
                             <tr>
                                 <td><span class="platform-tag-pill tag-linkedin">LinkedIn</span></td>
                                 <td>Operational Excellence Foundations & Additive Manufacturing: Tips and Techniques[cite: 1]</td>
-                                <td style="text-align:right;">
-                                    <div class="action-link-strip">
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-link"></i> URL</a>
-                                        <a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a>
-                                    </div>
-                                </td>
+                                <td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </section>
 
-            <!-- SECTION 5: DEVELOPMENT -->
+            <!-- SECTION 5: ADVANCEMENTS -->
             <section id="development">
-                <h2 class="section-headline">Professional Development & Continuous Accreditations</h2>
+                <h2 class="section-headline">Professional Advancements & Continuous Accreditations</h2>
                 
                 <div class="accordion-wrapper-node">
                     <button class="accordion-header-trigger" onclick="toggleAccordion(this)">
@@ -1132,45 +1053,25 @@
                                 <thead>
                                     <tr>
                                         <th>Program / Core Topic Sector</th>
-                                        <th style="text-align:right;">Verification Assets</th>
+                                        <th style="text-align:right;">Verification Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>ATAL FDP: <em>Robotics for Industry 4.0: Enabling Smart Manufacturing</em> at SVCE (Nov 2025)[cite: 1]</td>
-                                        <td style="text-align:right;">
-                                            <div class="action-link-strip" style="justify-content: flex-end;">
-                                                <a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a>
-                                                <a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a>
-                                            </div>
-                                        </td>
+                                        <td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
                                     </tr>
                                     <tr>
                                         <td>ATAL FDP: <em>Green Technology and Sustainability Engineering</em> at Amrita Vishwa Vidyapeetham (July 2021)[cite: 1]</td>
-                                        <td style="text-align:right;">
-                                            <div class="action-link-strip" style="justify-content: flex-end;">
-                                                <a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a>
-                                                <a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a>
-                                            </div>
-                                        </td>
+                                        <td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
                                     </tr>
                                     <tr>
                                         <td>Summer School: <em>Data-Driven Modelling for Mechanical Systems (D2MMS)</em> at IIT (ISM) Dhanbad (July 2026)[cite: 1]</td>
-                                        <td style="text-align:right;">
-                                            <div class="action-link-strip" style="justify-content: flex-end;">
-                                                <a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a>
-                                                <a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a>
-                                            </div>
-                                        </td>
+                                        <td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
                                     </tr>
                                     <tr>
                                         <td>Conference: <em>AI for Forensics and Biometric Applications (AIFB 2025)</em> at IIT Bhilai (Dec 2025)[cite: 1]</td>
-                                        <td style="text-align:right;">
-                                            <div class="action-link-strip" style="justify-content: flex-end;">
-                                                <a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a>
-                                                <a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a>
-                                            </div>
-                                        </td>
+                                        <td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1189,37 +1090,37 @@
                                 <thead>
                                     <tr>
                                         <th>Program Title & Hosting Operational Venue</th>
-                                        <th style="text-align:right;">Verification Assets</th>
+                                        <th style="text-align:right;">Verification Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr><td>Research & Development Excellence through Data Science Case Studies | Sphoorthy Eng College (2026)[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>AI-Driven Business Analytics For Research, Teaching & Industry Applications | JIET Jodhpur (2026)[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>AI Powered Teaching Excellence | Walchand Institute of Technology, Solapur (2026)[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Next-Generation Mechanical Engineering: From Research to Industrial Applications | IEM (2026)[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Advanced Computational Modeling for Solids and Fluids | IIT Bhilai (2026)[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Recent Advances in Composite Materials: Modelling & Experimental Approaches | MVGR (2025)[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>The Role of Artificial Intelligence in Manufacturing Industries | MVGR College of Engineering (2025)[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>The Art and Science of Successful Proposal Writing: Techniques, Strategies, and Best Practices | CVR (2025)[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Smart Materials and Technologies for Durable Structures (SMTDS'25) | R.V.R.J.C. (2025)[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Innovations in Robotics and UAVs: Digital Twins, Drone Design, and Future Trends | VNR VJIET (2024)[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Transforming Education: Integrating OBE and NEP 2020 | CVR College of Engineering (2024)[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Advanced Python Programming | Department of CSE, Guru Nanak Institutions (2023-2024)[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Fundamentals, Advancements and Applications of Robotics | Vignan Institute (2023)[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Additive Manufacturing Processes and Its Applications | Sri Manakula Vinayagar Eng College (2021)[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Mathematical Modeling & Numerical Techniques 2020 | KITS Warangal[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Frontiers of Research in Mechanical Engineering (FORME 2020) | SITAM Vizianagaram[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Three-Week Faculty Induction Training Program supported by MHRD under PMMMNMTT | IIT Hyderabad[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Engineering Physics and Materials Science | CBIT Hyderabad[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Recent Trends in Manufacturing | MGIT Hyderabad[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Recent Advances in Renewable Energy & Efficiency Technologies | MGIT Hyderabad[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Advanced Welding Technologies | JAIN Deemed-to-be University, Bengaluru[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Recent Developments in Solar Energy Recovery and Storage Technologies | St. Joseph's[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Recent Developments of Nano-Composites and Smart Materials in the Aerospace Industry | MLR Institute[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Research Methodologies in Mechanical Engineering | Narsimha Reddy Engineering College[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Nanoscience and Nanotechnology - Current Perspectives | G.H. Raisoni College of Engineering[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Advanced Composite Materials | R.R. Institute of Technology, Bengaluru[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Research Opportunities in Advanced Welding Processes | Hindusthan College of Engineering[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
+                                    <tr><td>Research & Development Excellence through Data Science Case Studies | Sphoorthy Eng College (2026)[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>AI-Driven Business Analytics For Research, Teaching & Industry Applications | JIET Jodhpur (2026)[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>AI Powered Teaching Excellence | Walchand Institute of Technology, Solapur (2026)[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Next-Generation Mechanical Engineering: From Research to Industrial Applications | IEM (2026)[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Advanced Computational Modeling for Solids and Fluids | IIT Bhilai (2026)[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Recent Advances in Composite Materials: Modelling & Experimental Approaches | MVGR (2025)[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>The Role of Artificial Intelligence in Manufacturing Industries | MVGR College of Engineering (2025)[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>The Art and Science of Successful Proposal Writing: Techniques, Strategies, and Best Practices | CVR (2025)[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Smart Materials and Technologies for Durable Structures (SMTDS'25) | R.V.R.J.C. (2025)[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Innovations in Robotics and UAVs: Digital Twins, Drone Design, and Future Trends | VNR VJIET (2024)[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Transforming Education: Integrating OBE and NEP 2020 | CVR College of Engineering (2024)[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Advanced Python Programming | Department of CSE, Guru Nanak Institutions (2023-2024)[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Fundamentals, Advancements and Applications of Robotics | Vignan Institute (2023)[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Additive Manufacturing Processes and Its Applications | Sri Manakula Vinayagar Eng College (2021)[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Mathematical Modeling & Numerical Techniques 2020 | KITS Warangal[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Frontiers of Research in Mechanical Engineering (FORME 2020) | SITAM Vizianagaram[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Three-Week Faculty Induction Training Program supported by MHRD under PMMMNMTT | IIT Hyderabad[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Engineering Physics and Materials Science | CBIT Hyderabad[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Recent Trends in Manufacturing | MGIT Hyderabad[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Recent Advances in Renewable Energy & Efficiency Technologies | MGIT Hyderabad[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Advanced Welding Technologies | JAIN Deemed-to-be University, Bengaluru[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Recent Developments in Solar Energy Recovery and Storage Technologies | St. Joseph's[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Recent Developments of Nano-Composites and Smart Materials in the Aerospace Industry | MLR Institute[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Research Methodologies in Mechanical Engineering | Narsimha Reddy Engineering College[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Nanoscience and Nanotechnology - Current Perspectives | G.H. Raisoni College of Engineering[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Advanced Composite Materials | R.R. Institute of Technology, Bengaluru[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Research Opportunities in Advanced Welding Processes | Hindusthan College of Engineering[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -1237,22 +1138,22 @@
                                 <thead>
                                     <tr>
                                         <th>Workshop / Training Framework Title</th>
-                                        <th style="text-align:right;">Verification Assets</th>
+                                        <th style="text-align:right;">Verification Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr><td>Problem-Driven AI: Real World Applications and Solution Frameworks | NIT Rourkela (2026)[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Emission Control Strategies in Thermal Power Plants | OP Jindal University & JIPT (2023)[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Autodesk Authorized Academic Event | Guru Nanak Institutions Technical Campus[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Computational Research Techniques Using MATLAB | Sree Chaitanya College of Engineering[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Metallurgy for Mechanical Engineering | Sree Chaitanya College of Engineering[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Enduring Trends in Hydraulic Control Systems: Past, Present and Future | CCE, IIT Madras (2021)[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Theory of Plasticity and Its Applications | CE & QIP, IIT Bombay[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Application of Forecasting Methods in Engineering and Business Problems | AICTE & QIP, IIT Kharagpur[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Green Manufacturing (NITTTR Chandigarh) & Training of Trainers (TOT) for Teacher Educator (NITTTR Bhopal)[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Advances in Additive Manufacturing | Siemens Centre of Excellence, YCCE Nagpur[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Advanced Techniques in Modelling for Materials & Analysis using MATLAB/Python | VNR VJIET[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
-                                    <tr><td>Advances in Finite Element Method for Industry & Design of Experiments (B.V. Raju Institute)[cite: 1]</td><td style="text-align:right;"><div class="action-link-strip" style="justify-content:flex-end;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a><a href="#" class="asset-verification-btn"><i class="fa-solid fa-image"></i> Image</a></div></td></tr>
+                                    <tr><td>Problem-Driven AI: Real World Applications and Solution Frameworks | NIT Rourkela (2026)[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Emission Control Strategies in Thermal Power Plants | OP Jindal University & JIPT (2023)[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Autodesk Authorized Academic Event | Guru Nanak Institutions Technical Campus[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Computational Research Techniques Using MATLAB | Sree Chaitanya College of Engineering[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Metallurgy for Mechanical Engineering | Sree Chaitanya College of Engineering[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Enduring Trends in Hydraulic Control Systems: Past, Present and Future | CCE, IIT Madras (2021)[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Theory of Plasticity and Its Applications | CE & QIP, IIT Bombay[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Application of Forecasting Methods in Engineering and Business Problems | AICTE & QIP, IIT Kharagpur[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Green Manufacturing (NITTTR Chandigarh) & Training of Trainers (TOT) for Teacher Educator (NITTTR Bhopal)[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Advances in Additive Manufacturing | Siemens Centre of Excellence, YCCE Nagpur[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Advanced Techniques in Modelling for Materials & Analysis using MATLAB/Python | VNR VJIET[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
+                                    <tr><td>Advances in Finite Element Method for Industry & Design of Experiments (B.V. Raju Institute)[cite: 1]</td><td style="text-align:right;"><a href="#" class="asset-verification-btn"><i class="fa-solid fa-certificate"></i> Certificate</a></td></tr>
                                 </tbody>
                             </table>
                         </div>
