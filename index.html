@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gajavada Sanjeevkumar | Assistant Professor & PhD Scholar</title>
+    <title>Gajavada Sanjeevkumar | Academic Portfolio & Research Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-weight/6.0.0/css/all.min.css">
     <style>
         :root {
             --primary: #002147; /* Oxford Blue */
-            --secondary: #8C1D40; /* Crimson accent */
+            --secondary: #8C1D40; /* Ivy Crimson */
             --text-dark: #222222;
             --text-light: #555555;
-            --bg-light: #F9F9FB;
+            --bg-light: #F8F9FA;
             --border-color: #E5E7EB;
         }
 
@@ -22,873 +22,972 @@
         }
 
         body {
-            font-family: 'Times New Roman', Times, serif; /* Academic typography feel */
-            line-height: 1.6;
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.7;
             color: var(--text-dark);
             background-color: #FFFFFF;
         }
 
-        /* Layout Structure */
-        .container {
-            max-width: 1040px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 40px;
+        /* Top Header Area */
+        header {
+            border-bottom: 1px solid var(--border-color);
+            padding: 30px 0;
+            background-color: #FFF;
         }
 
-        /* Sidebar Styling */
-        aside {
-            position: sticky;
-            top: 40px;
-            height: fit-content;
+        .header-container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
         }
 
         .profile-img {
-            width: 100%;
-            height: auto;
-            border-radius: 4px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 20px;
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
         }
 
-        .profile-name {
-            font-size: 1.5rem;
+        .header-text h1 {
+            font-size: 2.2rem;
             color: var(--primary);
+            letter-spacing: 0.5px;
             margin-bottom: 5px;
-            font-weight: bold;
-            line-height: 1.2;
         }
 
-        .profile-title {
-            font-size: 0.95rem;
-            color: var(--text-light);
-            margin-bottom: 20px;
+        .header-text .title-sub {
+            font-size: 1.1rem;
+            color: var(--secondary);
             font-style: italic;
+            margin-bottom: 10px;
         }
 
-        .contact-icons {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 30px;
+        /* Sticky Navigation Bar - Ivy League standard */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(5px);
+            border-bottom: 2px solid var(--primary);
+            z-index: 1000;
         }
 
-        .contact-icons a, .contact-icons span {
+        .nav-container {
+            max-width: 1140px;
+            margin: 0 auto;
             display: flex;
-            align-items: center;
-            gap: 10px;
+            flex-wrap: wrap;
+            padding: 0 10px;
+        }
+
+        .nav-container a {
             color: var(--text-dark);
             text-decoration: none;
-            font-size: 0.9rem;
+            padding: 12px 15px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
         }
 
-        .contact-icons a:hover {
+        .nav-container a:hover {
             color: var(--secondary);
+            background: var(--bg-light);
         }
 
-        .contact-icons i {
-            color: var(--primary);
-            width: 16px;
-            text-align: center;
-        }
-
-        /* Main Content Styling */
-        main {
-            max-width: 720px;
+        /* Main Content Layout */
+        .wrapper {
+            max-width: 1140px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 50px;
         }
 
         section {
-            margin-bottom: 45px;
+            margin-bottom: 55px;
+            scroll-margin-top: 70px; /* Offset for sticky nav */
         }
 
         h2 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--primary);
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 5px;
-            margin-bottom: 20px;
+            border-bottom: 1px solid var(--primary);
+            padding-bottom: 6px;
+            margin-bottom: 25px;
         }
 
         h3 {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: var(--text-dark);
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
 
         p {
-            font-size: 1rem;
+            font-size: 1.05rem;
             color: var(--text-light);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             text-align: justify;
         }
 
-        .item {
-            margin-bottom: 20px;
-            position: relative;
+        /* List & Items Styling */
+        .web-item {
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
         }
 
-        .item-header {
+        .web-item:last-child {
+            border-bottom: none;
+        }
+
+        .meta-line {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .date {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            font-style: italic;
-            white-space: nowrap;
-            margin-left: 15px;
-        }
-
-        .institution {
             font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .inst-name {
             font-weight: bold;
-            color: var(--text-dark);
+            color: var(--primary);
         }
 
-        .subtitle {
+        .duration {
             font-style: italic;
-            color: var(--text-light);
-            font-size: 0.95rem;
         }
 
         ul {
             margin-left: 20px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             color: var(--text-light);
         }
 
         li {
-            margin-bottom: 5px;
-            font-size: 0.95rem;
+            margin-bottom: 8px;
+            font-size: 1rem;
         }
 
-        /* Tags and Buttons */
-        .cert-link {
+        /* Specialized Certificate Link Styling */
+        .cert-badge {
             display: inline-flex;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
             font-size: 0.8rem;
             color: var(--secondary);
             text-decoration: none;
             border: 1px solid var(--secondary);
-            padding: 1px 6px;
+            padding: 2px 8px;
             border-radius: 3px;
-            margin-left: 8px;
+            margin-left: 6px;
+            background: transparent;
+            font-family: Arial, sans-serif;
             transition: all 0.2s ease;
         }
 
-        .cert-link:hover {
+        .cert-badge:hover {
             background-color: var(--secondary);
-            color: white;
+            color: #FFF;
         }
 
-        .tech-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+        /* Sidebar Widgets */
+        .sidebar-panel {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            height: fit-content;
         }
 
-        .tech-category strong {
+        .sidebar-panel h3 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
             color: var(--primary);
-            display: block;
-            margin-bottom: 5px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
         }
 
-        .personal-details-grid {
-            display: grid;
-            grid-template-columns: 150px 1fr;
-            gap: 10px;
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .contact-list a, .contact-list span {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-dark);
+            text-decoration: none;
             font-size: 0.95rem;
         }
 
-        .pd-label {
-            font-weight: bold;
+        .contact-list a:hover {
+            color: var(--secondary);
+        }
+
+        .contact-list i {
+            color: var(--primary);
+            width: 18px;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .tech-tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tag {
+            background: #FFF;
+            border: 1px solid var(--border-color);
+            padding: 4px 10px;
+            font-size: 0.85rem;
+            border-radius: 3px;
+            color: var(--text-light);
+        }
+
+        .pd-row {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .pd-row strong {
             color: var(--primary);
         }
 
-        @media (max-width: 768px) {
-            .container {
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .wrapper {
                 grid-template-columns: 1fr;
             }
-            aside {
-                position: relative;
-                top: 0;
+            .header-container {
+                flex-direction: column;
+                text-align: center;
             }
-            .item-header {
+            .meta-line {
                 flex-direction: column;
             }
-            .date {
-                margin-left: 0;
+            .duration {
                 margin-top: 2px;
-            }
-            .tech-grid {
-                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <aside>
+    <!-- PORTFOLIO HEADER -->
+    <header>
+        <div class="header-container">
             <img src="pp.jpeg" alt="Gajavada Sanjeevkumar" class="profile-img">
-            <h1 class="profile-name">Gajavada Sanjeevkumar</h1>
-            <div class="profile-title">PhD Scholar, IIT (ISM) Dhanbad<br>Former Assistant Professor</div>
-            
-            <div class="contact-icons">
-                <a href="mailto:sanjeevkumargajawada@gmail.com"><i class="fas fa-envelope"></i> sanjeevkumargajawada@gmail.com</a>
-                <a href="tel:+919030833667"><i class="fas fa-phone"></i> (+91) 9030 833 667</a>
-                <a href="https://www.linkedin.com/in/skgajawada/" target="_blank"><i class="fab fa-linkedin"></i> linkedin.com/in/skgajawada/</a>
-                <span><i class="fas fa-map-marker-alt"></i> Ranga Reddy, Telangana, India</span>
+            <div class="header-text">
+                <h1>GAJAVADA SANJEEVKUMAR</h1>
+                <div class="title-sub">PhD Scholar in Design, Mechanical Engineering (IIT ISM Dhanbad) & Former Assistant Professor</div>
+                <p style="margin-bottom:0; font-size: 0.95rem; max-width: 750px;">Specializing in advanced mechanical and aerospace engineering systems. Integrating traditional structural dynamics, aeroelastic structural design, and robust machine learning methodologies to engineer intelligent modern computational configurations.</p>
             </div>
-        </aside>
+        </div>
+    </header>
 
+    <!-- STICKY ACADEMIC NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Research</a>
+            <a href="#conferences">Conferences</a>
+            <a href="#fdps">FDPs</a>
+            <a href="#workshops">Workshops</a>
+            <a href="#moocs">Certifications</a>
+            <a href="#pedagogy">Pedagogy</a>
+            <a href="#references">References</a>
+        </div>
+    </nav>
+
+    <!-- CORE BODY WRAPPER -->
+    <div class="wrapper">
+        
+        <!-- LEFT SIDE: PRIMARY PORTFOLIO CONTENT -->
         <main>
-            <section id="objective">
-                <h2>Career Objective</h2>
-                <p>To advance mechanical and aerospace engineering through research in aeroelasticity, vibration analysis, structural dynamics, finite element methods, composite structures, and control systems. I aim to integrate computational modeling, simulation techniques, and data-driven approaches, including machine learning and artificial intelligence, to develop innovative engineering solutions for complex real-world challenges while fostering interdisciplinary research and technological innovation.</p>
+            <!-- RESEARCH PROFILE & OBJECTIVE -->
+            <section id="about">
+                <h2>Research Statement & Objective</h2>
+                <p>To advance mechanical and aerospace engineering frameworks through core research in aeroelasticity, sophisticated vibration analysis, high-fidelity structural dynamics, finite element methods, advanced composite structures, and modern control systems. The direct focus aims to seamlessly integrate multi-physics computational modeling, scalable simulation methodologies, and data-driven approaches—including targeted machine learning and structural artificial intelligence—to develop transformative engineering paradigms for complex industrial mechanics challenges while actively driving interdisciplinary technological innovation.</p>
             </section>
 
+            <!-- ACADEMIC BACKGROUND -->
             <section id="education">
                 <h2>Education</h2>
                 
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Indian Institute of Technology (ISM), Dhanbad</span>
-                        <span class="date">July, 2025 - Till Date</span>
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Indian Institute of Technology (ISM), Dhanbad</span>
+                        <span class="duration">July, 2025 - till date</span>
                     </div>
-                    <div class="subtitle">PhD - Design</div>
-                    <p>CGPA: 8.2</p>
+                    <h3>Doctor of Philosophy (PhD) — Design Specification</h3>
+                    <p>Current Research Architecture Evaluation Track • Cumulative Evaluation Index: 8.2 CGPA</p>
                 </div>
 
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Indian Institute of Technology Bhilai</span>
-                        <span class="date">June 2025 - Dec 2025</span>
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Indian Institute of Technology Bhilai</span>
+                        <span class="duration">June 2025 - Dec 2025</span>
                     </div>
-                    <div class="subtitle">AICTE QIP PG Certificate Course - Data Science</div>
-                    <p>CGPA: 8.67</p>
+                    <h3>AICTE QIP Post-Graduate Certificate Course — Data Science</h3>
+                    <p>Advanced statistical modeling, algorithmic analytics, and modern database engineering foundations • Academic Performance Index: 8.67 CGPA</p>
                 </div>
 
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">GITAM Deemed To Be University, Visakhapatnam</span>
-                        <span class="date">2016 - 2018</span>
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">GITAM Deemed To Be University, Visakhapatnam</span>
+                        <span class="duration">2016 - 2018</span>
                     </div>
-                    <div class="subtitle">Master of Technology - Machine Design</div>
-                    <p>CGPA: 8.78</p>
+                    <h3>Master of Technology (M.Tech) — Machine Design Specialization</h3>
+                    <p>Comprehensive analysis of stress structures, dynamic synthesis, and optimization parameters • Performance Metrics: 8.78 CGPA</p>
                 </div>
 
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Don Bosco / Vivekananda Institute of Technology and Science, Karimnagar</span>
-                        <span class="date">2010 - 2014</span>
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Vivekananda Institute of Technology and Science, Karimnagar</span>
+                        <span class="duration">2010 - 2014</span>
                     </div>
-                    <div class="subtitle">Bachelor of Technology - Mechanical Engineering</div>
-                    <p>Percentage: 71.28%</p>
+                    <h3>Bachelor of Technology (B.Tech) — Mechanical Engineering</h3>
+                    <p>Core engineering foundations, experimental fluid dynamics, and thermodynamics parameters • Cumulative Score Index: 71.28%</p>
                 </div>
 
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">SR Junior College, Karimnagar</span>
-                        <span class="date">2008 - 2010</span>
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">SR Junior College, Karimnagar</span>
+                        <span class="duration">2008 - 2010</span>
                     </div>
-                    <div class="subtitle">Intermediate (M.P.C)</div>
-                    <p>Percentage: 81.8%</p>
+                    <h3>Intermediate Certification — M.P.C (Mathematics, Physics, Chemistry)</h3>
+                    <p>Performance Metric: 81.8%</p>
                 </div>
 
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Pragathi Vidyalayam, Sircilla</span>
-                        <span class="date">2007 - 2008</span>
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Pragathi Vidyalayam, Sircilla</span>
+                        <span class="duration">2007 - 2008</span>
                     </div>
-                    <div class="subtitle">SSC</div>
-                    <p>Percentage: 85.5%</p>
+                    <h3>Secondary School Certificate (SSC)</h3>
+                    <p>Performance Metric: 85.5%</p>
                 </div>
             </section>
 
+            <!-- APPOINTMENTS & PROFESSIONAL EXPERIENCE -->
             <section id="experience">
                 <h2>Professional Experience</h2>
                 
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">SABUDH FOUNDATION & STPI</span>
-                        <span class="date">Jan 2026 - June 2026</span>
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Sabudh Foundation & STPI</span>
+                        <span class="duration">Jan 2026 - June 2026</span>
                     </div>
-                    <div class="subtitle">Data Science Industry Intern <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                    <p>Contributed to the project: <strong>Federated Learning for Intelligent Transportation System</strong>. Performance awarded with a <strong>B+ Grade</strong> (Regd. No. SABUDH/16/FT/DS-07-2026-40).</p>
+                    <h3>Industry Research Intern — Data Science Division <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Certificate</a></h3>
+                    <p>Spearheaded the integration phase of the project: <strong>Federated Learning for Intelligent Transportation Systems</strong>. Developed localized computational pipelines ensuring decentralized algorithmic training paradigms. Performance evaluated at highest tiers and officially awarded a <strong>B+ Grade</strong> (Registration Code Reference: SABUDH/16/FT/DS-07-2026-40).</p>
                 </div>
 
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Guru Nanak Institutions Technical Campus, Hyderabad, India</span>
-                        <span class="date">23 March 2021 - 30 June, 2025</span>
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Guru Nanak Institutions Technical Campus, Hyderabad, India</span>
+                        <span class="duration">23 March 2021 - 30 June, 2025</span>
                     </div>
-                    <div class="subtitle">Assistant Professor - Department of Mechanical Engineering</div>
+                    <h3>Assistant Professor — Department of Mechanical Engineering</h3>
+                    <p>Delivered core engineering lectures, spearheaded department minor degree program administration, and structured structural analysis laboratory coursework environments.</p>
                 </div>
 
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Sree Chaitanya College of Engineering, Karimnagar, India</span>
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Sree Chaitanya College of Engineering, Karimnagar, India</span>
                         <span class="date">26 November 2018 - 22 March 2021</span>
                     </div>
-                    <div class="subtitle">Assistant Professor - Department of Mechanical Engineering</div>
+                    <h3>Assistant Professor — Department of Mechanical Engineering</h3>
+                    <p>Oversaw structural analysis learning paths, conducted assessment reviews, and acted as an institutional laboratory framework advisor.</p>
                 </div>
 
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Jyothishmathi Institute of Technology and Science, Karimnagar, India</span>
-                        <span class="date">7 December 2015 - 30 June 2016</span>
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Jyothishmathi Institute of Technology and Science, Karimnagar, India</span>
+                        <span class="duration">7 December 2015 - 30 June 2016</span>
                     </div>
-                    <div class="subtitle">Lecturer</div>
+                    <h3>Lecturer — Department of Mechanical Engineering</h3>
+                    <p>Instructed foundation modules in basic fluid mechanics and classical engineering drawing methodologies.</p>
                 </div>
             </section>
 
+            <!-- ACADEMIC & RESEARCH PROJECTS -->
             <section id="projects">
                 <h2>Academic & Research Projects</h2>
                 
-                <div class="item">
-                    <h3>A study on the effect of elastic-plastic material properties of metals on hardness values using finite element analysis</h3>
-                    <p>The objective of this project was evaluating how the elastic-plastic material properties of metals on hardness values vary from theoretical to experimental standards, alongside optimization of these hardness values using Finite Element Analysis.</p>
+                <div class="web-item">
+                    <h3>Elastic-Plastic Material Behavior Optimization Using Finite Element Analysis</h3>
+                    <p>Conducted a thorough numerical computational investigation tracking variations in metal hardness indicators across theoretical formulas and absolute physical test structures. Modeled advanced material transitions under variable pressures and deployed targeted Finite Element Analysis frameworks to calculate optimal stabilization coefficients.</p>
                 </div>
 
-                <div class="item">
-                    <h3>Hydraulic Robotic Arm for pick and place operation</h3>
-                    <p>Developed to comprehensively understand fluid transmission principles. The core configuration applied force transmission dynamically using fluids based structurally on <strong>Pascal's Law</strong>.</p>
+                <div class="web-item">
+                    <h3>Internal Combustion Systems: Kinematic and Thermal Analysis</h3>
+                    <p>Formulated an extensive investigative tracking overview monitoring structural architectures inside modern Internal Combustion configurations. Characterized transient mechanics differences driving performance indicators across both two-stroke and four-stroke cycle implementations.</p>
                 </div>
 
-                <div class="item">
-                    <h3>Study of internal combustion engines & their components</h3>
-                    <p>An exhaustive foundational analysis tracing architectural operational mechanisms of Internal Combustion Engines, differentiating comprehensively between two-stroke and four-stroke thermal frameworks.</p>
-                </div>
-            </section>
-
-            <section id="subjects">
-                <h2>Subjects Handled</h2>
-                <ul>
-                    <li>Engineering Mechanics</li>
-                    <li>Engineering Graphics</li>
-                    <li>Mechanics of Solids</li>
-                    <li>Kinematics of Machinery</li>
-                    <li>Fluid Mechanics</li>
-                    <li>Thermodynamics</li>
-                    <li>Heat Transfer</li>
-                    <li>Design of Machine Members / Design of Machine Elements</li>
-                    <li>Operations Research</li>
-                    <li>Finite Element Methods / Finite Element Analysis</li>
-                </ul>
-            </section>
-
-            <section id="skills">
-                <h2>Technical Strengths</h2>
-                <div class="tech-grid">
-                    <div class="tech-category">
-                        <strong>Data Analysis Tools</strong>
-                        <p>Power BI, Tableau, SQL, Dataiku</p>
-                    </div>
-                    <div class="tech-category">
-                        <strong>Languages & Computation</strong>
-                        <p>Basic Python, MATLAB</p>
-                    </div>
-                    <div class="tech-category">
-                        <strong>Software & Tools</strong>
-                        <p>MS Office Word, Excel, PowerPoint, LaTeX</p>
-                    </div>
+                <div class="web-item">
+                    <h3>Fluid-Driven Robotic Configuration for Automated Manipulation</h3>
+                    <p>Designed and built a functional multi-axis hydraulic robotic platform optimized for pick-and-place tracking targets. Validated mechanical pressure distribution pathways throughout transmission configurations utilizing calculations derived directly from <strong>PASCALS LAW</strong>.</p>
                 </div>
             </section>
 
+            <!-- CONFERENCES ATTENDED -->
+            <section id="conferences">
+                <h2>Conferences Attended</h2>
+                
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">AI for Forensics and Biometric Applications (AIFB 2025)</span>
+                        <span class="duration">19 - 20 December 2025</span>
+                    </div>
+                    <h3>International Research Conference Delegate <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Document Link</a></h3>
+                    <p>Hosted by the Indian Institute of Technology Bhilai. Explored emerging intersections of computer vision anomalies, pattern metrics, and predictive security models.</p>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Essential Technologies and Career Opportunities in Mechanical Engineering</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>International Webinar Series Delegate <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Document Link</a></h3>
+                    <p>Organized by Universal Engineering College, Kerala. Tracked advancements in global production ecosystems and modern smart structural modeling.</p>
+                </div>
+            </section>
+
+            <!-- FACULTY DEVELOPMENT PROGRAMS (FDPS) -->
+            <section id="fdps">
+                <h2>Faculty Development Programs (FDPs)</h2>
+                
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Institute of Engineering & Management (IEM), HRDC, IEM-UEM Group</span>
+                        <span class="duration">16 - 21 January 2026</span>
+                    </div>
+                    <h3>5-Day FDP on Next-Generation Mechanical Engineering: From Research to Industrial Applications <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Indian Institute of Technology Bhilai</span>
+                        <span class="duration">5 - 8 January 2026</span>
+                    </div>
+                    <h3>FDP on Advanced Computational Modeling for Solids and Fluids <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">AICTE Training and Learning (ATAL) Academy</span>
+                        <span class="duration">17 - 22 November 2025</span>
+                    </div>
+                    <h3>ATAL FDP on Robotics for Industry 4.0: Enabling Smart Manufacturing <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                    <p>Conducted at Sri Venkateswara College of Engineering.</p>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Maharaj Vijayaram Gajapathi Raj College of Engineering, Vizianagaram</span>
+                        <span class="duration">17 - 21 November 2025</span>
+                    </div>
+                    <h3>5-Day FDP on Recent Advances in Composite Materials: Integrating Modelling and Experimental Approaches <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Maharaj Vijayaram Gajapathi Raj College of Engineering, Vizianagaram</span>
+                        <span class="duration">27 - 31 October 2025</span>
+                    </div>
+                    <h3>5-Day FDP on The Role of Artificial Intelligence in Manufacturing Industries <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">CVR College of Engineering, Hyderabad</span>
+                        <span class="duration">27 October - 6 November 2025</span>
+                    </div>
+                    <h3>Two-Week FDP on The Art and Science of Successful Proposal Writing: Techniques, Strategies, and Best Practices <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">R.V.R.J.C. College of Engineering, Guntur</span>
+                        <span class="duration">15 - 19 September 2025</span>
+                    </div>
+                    <h3>5-Day FDP on Smart Materials and Technologies for Durable Structures (SMTDS'25) <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">VNR VJIET, Hyderabad</span>
+                        <span class="duration">30 July - 3 August 2024</span>
+                    </div>
+                    <h3>One-Week FDP on Innovations in Robotics and UAVs: Digital Twins, Drone Design, and Future Trends <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">CVR College of Engineering, Hyderabad</span>
+                        <span class="duration">22 July - 2 August 2024</span>
+                    </div>
+                    <h3>Two-Week FDP on Transforming Education: Integrating OBE and NEP 2020 <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Guru Nanak Institutions Technical Campus</span>
+                        <span class="duration">26 December 2023 - 2 January 2024</span>
+                    </div>
+                    <h3>One-Week FDP on Advanced Python Programming <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Vignan Institute of Technology and Science, Hyderabad</span>
+                        <span class="duration">12 - 16 September 2023</span>
+                    </div>
+                    <h3>5-Day FDP on Fundamentals, Advancements and Applications of Robotics <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">AICTE Training and Learning (ATAL) Academy</span>
+                        <span class="duration">5 - 9 July 2021</span>
+                    </div>
+                    <h3>ATAL Online Elementary FDP on Green Technology and Sustainability Engineering <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                    <p>Conducted at Amrita Vishwa Vidyapeetham.</p>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Sri Manakula Vinayagar Engineering College, Puducherry</span>
+                        <span class="duration">23 - 28 August 2021</span>
+                    </div>
+                    <h3>One-Week FDP on Additive Manufacturing Processes and Its Applications <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Teaching Learning Centre (TLC), IIT Hyderabad</span>
+                        <span class="duration">2020 / 2021</span>
+                    </div>
+                    <h3>Three-Week Faculty Induction Training Program <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                    <p>Supported by MHRD under the PMMMNMTT operational scheme.</p>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Vignan Institute of Technology and Science, Deshmukhi</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>One-Week FDP on Optimization Techniques for Mechanical Engineers <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Hindusthan College of Engineering and Technology, Coimbatore</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>5-Day National FDP on Research Opportunities in Advanced Welding Processes <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Mahatma Gandhi Institute of Technology, Hyderabad</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>One-Week FDP on Recent Trends in Manufacturing <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Kakatiya Institute of Technology and Science, Warangal</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>One-Week FDP on Mathematical Modeling & Numerical Techniques <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">MLR Institute of Technology, Hyderabad</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>Two-Week AICTE-Sponsored FDP on Recent Developments of Nano-Composites and Smart Materials in the Aerospace Industry <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">R.R. Institute of Technology, Bengaluru</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>One-Week FDP on Advanced Composite Materials <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Mahatma Gandhi Institute of Technology, Hyderabad</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>One-Week FDP on Recent Advances in Renewable Energy & Energy Efficiency Technologies <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Narsimha Reddy Engineering College, Secunderabad</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>5-Day FDP on Research Methodologies in Mechanical Engineering (A Refresher Approach) <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Satya Institute of Technology and Management, Vizianagaram</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>5-Day FDP on Frontiers of Research in Mechanical Engineering (FORME2020) <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Chaitanya Bharathi Institute of Technology, Hyderabad</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>One-Week FDP on Engineering Physics and Materials Science <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">JAIN Deemed To Be University, Bengaluru</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>One-Week National FDP on Advanced Welding Technologies <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">G.H. Raisoni College of Engineering, Nagpur</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>One-Week FDP on Nanoscience and Nanotechnology: Current Perspectives <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">St. Joseph's College of Engineering, Chennai</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>Six-Day FDP on Recent Developments in Solar Energy Recovery and Storage Technologies <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Cert Link</a></h3>
+                </div>
+            </section>
+
+            <!-- WORKSHOPS & ADVANCED SHORT COURSE INITIATIVES -->
+            <section id="workshops">
+                <h2>Workshops & Short-Term Courses (STC / STTP)</h2>
+                
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">National Institute of Technology Rourkela</span>
+                        <span class="duration">7 - 16 February 2026</span>
+                    </div>
+                    <h3>Advanced Workshop on Problem-Driven AI: Real World Applications and Solution Frameworks <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Link</a></h3>
+                    <p>Organized by the Department of Computer Science and Engineering.</p>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Guru Nanak Institutions Technical Campus</span>
+                        <span class="duration">2024</span>
+                    </div>
+                    <h3>Autodesk Academic Partner Technical Training Initiative <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">OP Jindal University & Jindal Institute of Power Technology</span>
+                        <span class="duration">31 Oct, 2023</span>
+                    </div>
+                    <h3>Industry-Academia Engagement Workshop: Emission Control Strategies in Thermal Power Plants <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">IIT Madras — Centre for Continuing Education</span>
+                        <span class="duration">22 - 27 March 2021</span>
+                    </div>
+                    <h3>One-Week AICTE-Sponsored Short Term Course: Enduring Trends in Hydraulic Control Systems <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">IIT Bombay — CE & QIP Department</span>
+                        <span class="duration">2020 / 2021</span>
+                    </div>
+                    <h3>Advanced Short Term Course on Theory of Plasticity and Its Applications <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">IIT Kharagpur — AICTE & QIP Department</span>
+                        <span class="duration">2020 / 2021</span>
+                    </div>
+                    <h3>Short Term Course on Application of Forecasting Methods in Engineering and Business Problems <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">NITTTR Chandigarh (Conducted at Sree Chaitanya College)</span>
+                        <span class="duration">2020 / 2021</span>
+                    </div>
+                    <h3>Short Term Course on Green Manufacturing Paradigms <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Yeshwantrao Chavan College of Engineering, Nagpur</span>
+                        <span class="duration">2020 / 2021</span>
+                    </div>
+                    <h3>AICTE AQIS Short Term Course: Advances in Additive Manufacturing <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Link</a></h3>
+                    <p>Organized via the Siemens Centre of Excellence for Digital Manufacturing and Robotics.</p>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Vasavi College of Engineering, Hyderabad</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>AICTE-Sponsored Online STTP: Advances in Finite Element Method for Industry & Research Applications <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">VNR Vignana Jyothi Institute of Engineering and Technology</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>AICTE-Sponsored Online STTP: Modeling and Analysis using MATLAB and Python for Mechanical Applications <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Sree Chaitanya College of Engineering, Karimnagar</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>Technical Workshop on Computational Research Techniques Using MATLAB <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">Sree Chaitanya College of Engineering, Karimnagar</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>Advanced Specialization Workshop: Metallurgy for Mechanical Engineering <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">B.V. Raju Institute of Technology, Medak</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>Online Short-Term Training Program: Design of Experiments in Engineering <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">VNR Vignana Jyothi Institute of Engineering and Technology</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>AICTE-Sponsored Online STTP: Advanced Techniques in Modelling and Analysis for Materials and Manufacturing <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">NITTTR, Bhopal</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>Online STTP: Training of Trainers (TOT) for Teacher Educators <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Link</a></h3>
+                </div>
+
+                <div class="web-item">
+                    <div class="meta-line">
+                        <span class="inst-name">KPR Institute of Engineering and Technology, Coimbatore</span>
+                        <span class="duration">2020</span>
+                    </div>
+                    <h3>Six-Day National Technical Series: A Vision Towards Materials and Manufacturing <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-link"></i> Link</a></h3>
+                </div>
+            </section>
+
+            <!-- MOOC & SPECIALIZED DIGITAL CERTIFICATIONS -->
             <section id="moocs">
-                <h2>MOOC Certifications</h2>
-                <div class="item">
+                <h2>MOOCs & Professional Certifications</h2>
+                <div class="web-item">
+                    <p>Verified analytical credentials and computational tool specializations completed across accredited platforms:</p>
                     <ul>
-                        <li>Dataiku Generative AI Practitioner <span class="subtitle">(Dataiku Academy)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Dataiku MLOps Practitioner <span class="subtitle">(Dataiku Academy)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Dataiku ML Practitioner <span class="subtitle">(Dataiku Academy)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Dataiku Developer certification <span class="subtitle">(Dataiku Academy)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Dataiku Advanced Designer certification <span class="subtitle">(Dataiku Academy)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Dataiku Core Designer certification <span class="subtitle">(Dataiku Academy)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Python for Data Science and Machine Learning Essential Training Part 1 <span class="subtitle">(LinkedIn Learning)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Python Essential Training <span class="subtitle">(LinkedIn Learning)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Python 101 for Data Science <span class="subtitle">(Cognitive Class / IBM Developer Skills Network)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Accelerated MATLAB <span class="subtitle">(LinkedIn Learning)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>MATLAB Essential Training <span class="subtitle">(LinkedIn Learning)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Learning MATLAB <span class="subtitle">(LinkedIn Learning)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>MATLAB Onramp <span class="subtitle">(MathWorks Training Services)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Simulink Onramp <span class="subtitle">(MathWorks Training Services)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Control Design Onramp with Simulink <span class="subtitle">(MathWorks Training Services)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Control System Design with MATLAB and Simulink Learning Path <span class="subtitle">(MathWorks Training Services - covering System Modeling, Linearization, Analysis, PID, and Classical Controller Design)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Learning SQL Programming <span class="subtitle">(LinkedIn Learning)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>MySQL for Non-Programmers <span class="subtitle">(LinkedIn Learning)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Business Analytics with Excel: Elementary to Advanced <span class="subtitle">(Johns Hopkins University / Coursera)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>From Excel to Power BI <span class="subtitle">(Knowledge Accelerators / Coursera)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Getting Started with Microsoft Excel <span class="subtitle">(Coursera Guided Project)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Learning Data Analytics: Foundations <span class="subtitle">(LinkedIn Learning)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Statistics Foundations 3: Using Data Sets <span class="subtitle">(LinkedIn Learning)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Six Sigma: Green Belt <span class="subtitle">(LinkedIn Learning)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Six Sigma Foundations <span class="subtitle">(LinkedIn Learning)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Operational Excellence Foundations <span class="subtitle">(LinkedIn Learning)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
-                        <li>Additive Manufacturing: Tips, Tricks, and Techniques <span class="subtitle">(LinkedIn Learning)</span> <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Credential</a></li>
+                        <li><strong>Dataiku Generative AI Practitioner</strong> — Dataiku Academy Verified Tracker <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Dataiku MLOps Practitioner</strong> — Dataiku Academy Operational Track <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Dataiku ML Practitioner</strong> — Dataiku Academy Analytics Track <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Dataiku Developer Certification</strong> — Dataiku Technical Core <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Dataiku Advanced Designer</strong> — Dataiku Custom Architectures <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Dataiku Core Designer</strong> — Dataiku Foundation Standard <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Additive Manufacturing: Tips, Tricks, and Techniques</strong> — LinkedIn Learning Academic Component <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Operational Excellence Foundations</strong> — LinkedIn Learning Production Track <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Six Sigma Foundations</strong> — Quality Control Fundamentals via LinkedIn Learning <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Statistics Foundations 3: Using Data Sets</strong> — Advanced Analytical Track via LinkedIn Learning <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Six Sigma: Green Belt Certification</strong> — Applied Quality Architecture via LinkedIn Learning <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Learning MATLAB</strong> — Computational Architecture Track via LinkedIn Learning <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Accelerated MATLAB</strong> — Code Optimization & Vectors Track via LinkedIn Learning <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>MATLAB Essential Training</strong> — Engineering Analytics Platform via LinkedIn Learning <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Python Essential Training</strong> — Algorithmic Programming Track via LinkedIn Learning <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Python for Data Science and Machine Learning Essential Training Part 1</strong> — LinkedIn Learning Track <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Learning Data Analytics: Foundations</strong> — Processing Systems Track via LinkedIn Learning <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>MySQL for Non-Programmers</strong> — Relational Schemas Evaluation via LinkedIn Learning <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Learning SQL Programming</strong> — Database Query Implementations via LinkedIn Learning <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Control System Design with MATLAB and Simulink Learning Path</strong> — Complete track verifying expertise in <em>Control System Modeling Essentials, Linearization of Nonlinear Systems, Control System Analysis Techniques, PID Control Techniques, and Classical Controller Design Techniques</em> (MathWorks Training Services). <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Control Design Onramp with Simulink</strong> — MathWorks Specialized Control Architectures <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Simulink Onramp</strong> — Dynamic Systems Simulation Track via MathWorks Services <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>MATLAB Onramp</strong> — Fundamental Numerical Calculus Track via MathWorks Services <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Python 101 for Data Science</strong> — Cognitive Class Framework powered by IBM Developer Skills Network. <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Getting Started with Microsoft Excel</strong> — Structured Guided Optimization Project via Coursera <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>From Excel to Power BI</strong> — Data Transformation authorized by Knowledge Accelerators via Coursera <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
+                        <li><strong>Business Analytics with Excel: Elementary to Advanced</strong> — Advanced Analytical Track authorized by Johns Hopkins University via Coursera. <a href="YOUR_LINK_HERE" class="cert-badge"><i class="fas fa-certificate"></i> Verify</a></li>
                     </ul>
                 </div>
             </section>
 
-            <section id="conferences">
-                <h2>Conferences Attended</h2>
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">AI for Forensics and Biometric Applications (AIFB) 2025</span>
-                        <span class="date">19 - 20 December 2025</span>
-                    </div>
-                    <div class="subtitle">Indian Institute of Technology Bhilai, India <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">5-Day International Webinar Series on Essential Technologies and Career Opportunities in Mechanical Engineering</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">Universal Engineering College, Kerala <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-            </section>
-
-            <section id="atal">
-                <h2>ATAL Academy Programs</h2>
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">FDP on "Robotics for Industry 4.0: Enabling Smart Manufacturing"</span>
-                        <span class="date">17 - 22 November 2025</span>
-                    </div>
-                    <div class="subtitle">Sri Venkateswara College of Engineering <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Online Elementary FDP on "Green Technology and Sustainability Engineering"</span>
-                        <span class="date">5 - 9 July 2021</span>
-                    </div>
-                    <div class="subtitle">Amrita Vishwa Vidyapeetham <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-            </section>
-
-            <section id="fdps">
-                <h2>Faculty Development Programs (FDPs)</h2>
+            <!-- PEDAGOGICAL CONTRIBUTIONS & RESPONSIBILITIES -->
+            <section id="pedagogy">
+                <h2>Pedagogical Contributions & Achievements</h2>
                 
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Next-Generation Mechanical Engineering: From Research to Industrial Applications</span>
-                        <span class="date">16 - 21 January 2026</span>
+                <div class="web-item">
+                    <h3>Core Courses Commanded</h3>
+                    <p>Designed pedagogical curriculum, comprehensive evaluation keys, and laboratory instruction manuals across highly selective mechanical topics:</p>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:5px; margin-left:20px; color:var(--text-light); font-size:0.95rem; margin-bottom: 20px;">
+                        <div>• Engineering Mechanics</div><div>• Fluid Mechanics</div>
+                        <div>• Engineering Graphics</div><div>• Thermodynamics</div>
+                        <div>• Mechanics of Solids</div><div>• Heat Transfer</div>
+                        <div>• Kinematics of Machinery</div><div>• Operations Research</div>
+                        <div>• Design of Machine Members</div><div>• Finite Element Analysis (FEM/FEA)</div>
                     </div>
-                    <div class="subtitle">Department of Mechanical Engineering, Institute of Engineering & Management (IEM) in association with HRDC <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
                 </div>
 
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Advanced Computational Modeling for Solids and Fluids</span>
-                        <span class="date">5 - 8 January 2026</span>
-                    </div>
-                    <div class="subtitle">Indian Institute of Technology Bhilai, India <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
+                <div class="web-item">
+                    <h3>Academic Operations & Leadership</h3>
+                    <ul>
+                        <li><strong>Faculty Coordinator:</strong> Handled operations for the official SAE BAJA and GO KARTING development tracks inside the Department of Mechanical Engineering at GNITC.</li>
+                        <li><strong>Institutional Administration:</strong> Appointed Department Minor Degree Coordinator and structured institutional remediation/tutorial monitoring schedules.</li>
+                        <li><strong>Academic Mentorship:</strong> Acted as dedicated class section advisor monitoring student evaluation metrics and growth parameters.</li>
+                    </ul>
                 </div>
 
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Recent Advances in Composite Materials: Integrating Modelling and Experimental Approaches</span>
-                        <span class="date">17 - 21 November 2025</span>
-                    </div>
-                    <div class="subtitle">Maharaj Vijayaram Gajapathi Raj College of Engineering, Vizianagaram <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">The Role of Artificial Intelligence in Manufacturing Industries</span>
-                        <span class="date">27 - 31 October 2025</span>
-                    </div>
-                    <div class="subtitle">Departments of Mechanical and Data Engineering, Maharaj Vijayaram Gajapathi Raj College of Engineering <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">The Art and Science of Successful Proposal Writing: Techniques, Strategies, and Best Practices</span>
-                        <span class="date">27 October - 6 November 2025</span>
-                    </div>
-                    <div class="subtitle">CVR College of Engineering, Hyderabad <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Smart Materials and Technologies for Durable Structures (SMTDS'25)</span>
-                        <span class="date">15 - 19 September 2025</span>
-                    </div>
-                    <div class="subtitle">Department of Civil Engineering, R.V.R.J.C. College of Engineering, Guntur <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Innovations in Robotics and UAVs: Digital Twins, Drone Design, and Future Trends</span>
-                        <span class="date">30 July - 3 August 2024</span>
-                    </div>
-                    <div class="subtitle">Mechanical Engineering Department, VNR VJIET <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Transforming Education: Integrating OBE and NEP 2020</span>
-                        <span class="date">22 July - 2 August 2024</span>
-                    </div>
-                    <div class="subtitle">Department of Electronics and Communication Engineering, CVR College of Engineering <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Advanced Python Programming</span>
-                        <span class="date">26 December 2023 - 2 January 2024</span>
-                    </div>
-                    <div class="subtitle">Department of Computer Science and Engineering, Guru Nanak Institutions Technical Campus <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Fundamentals, Advancements and Applications of Robotics</span>
-                        <span class="date">12 - 16 September 2023</span>
-                    </div>
-                    <div class="subtitle">Department of Mechanical Engineering, Vignan Institute of Technology and Science <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Additive Manufacturing Processes and Its Applications</span>
-                        <span class="date">23 - 28 August 2021</span>
-                    </div>
-                    <div class="subtitle">Department of Mechanical Engineering, Sri Manakula Vinayagar Engineering College, Puducherry <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Three-week Faculty Induction Training Program</span>
-                        <span class="date">2020/2021</span>
-                    </div>
-                    <div class="subtitle">Supported by MHRD under PMMMNMTT scheme, TLC, IIT Hyderabad <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Optimization Techniques for Mechanical Engineers</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">Vignan Institute of Technology and Science, Deshmukhi, Hyderabad <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Research Opportunities in Advanced Welding Processes</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">Hindusthan College of Engineering and Technology, Coimbatore <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Recent Trends in Manufacturing</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">Mahatma Gandhi Institute of Technology, Hyderabad <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Mathematical Modeling & Numerical Techniques 2020</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">Kakatiya Institute of Technology and Science, Warangal <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Recent Developments of Nano-Composites and Smart materials in the Aerospace industry</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">MLR Institute of Technology, Hyderabad <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Advanced Composite materials</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">R.R. Institute of Technology, Bengaluru <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Recent Advances in Renewable Energy & Energy Efficiency Technologies</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">Mahatma Gandhi Institute of Technology, Hyderabad <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Research Methodologies in Mechanical Engineering (A Refresher Approach)</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">Narsimha Reddy Engineering College, Secunderabad <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Frontiers of Research in Mechanical Engineering (FORME2020)</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">Satya Institute of Technology and Management, Vizianagaram <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Engineering Physics and Materials Science</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">Chaitanya Bharathi Institute of Technology, Hyderabad <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Advanced Welding Technologies</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">Department of Mechanical Engineering, JAIN Deemed To Be University, Bengaluru <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Nanoscience and nanotechnology - Current Perspectives</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">G.H. Raisoni College of Engineering, Nagpur <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Recent Developments in Solar Energy Recovery and Storage Technologies</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">St. Joseph's College of Engineering, Chennai <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
+                <div class="web-item">
+                    <h3>Honors & Distinctions</h3>
+                    <ul>
+                        <li><strong>Certificate of Appreciation:</strong> Awarded by the Department of Youth Services, Karimnagar, for excellence in academic elocution and essay-writing parameters.</li>
+                        <li><strong>Innovation Laurels:</strong> Received official Appreciation Certificate inside the Innovation 2K12 National Technical Fest arena at Vivekananda Institute of Technology & Science.</li>
+                    </ul>
                 </div>
             </section>
 
-            <section id="workshops">
-                <h2>Workshops & Short-Term Courses (STC / STTP)</h2>
-                
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Online Workshop on "Problem-Driven AI: Real World Applications and Solution Frameworks"</span>
-                        <span class="date">7 - 16 February 2026</span>
-                    </div>
-                    <div class="subtitle">Department of Computer Science and Engineering, National Institute of Technology Rourkela <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Autodesk Authorized Academic Partner Event</span>
-                        <span class="date">2024</span>
-                    </div>
-                    <div class="subtitle">Guru Nanak Institutions Technical Campus <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Industry-Academia Engagement Workshop on "Emission Control Strategies in Thermal Power Plants"</span>
-                        <span class="date">31 October 2023</span>
-                    </div>
-                    <div class="subtitle">OP Jindal University, Raigarh and Jindal Institute of Power Technology, Jindal Power Limited, Tamnar <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Enduring Trends in Hydraulic Control Systems: Past, Present and Future (AICTE Sponsored STC)</span>
-                        <span class="date">22 - 27 March 2021</span>
-                    </div>
-                    <div class="subtitle">Department of Mechanical Engineering, Centre for Continuing Education, IIT Madras <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Theory of Plasticity and Its Applications (Short Term Course)</span>
-                        <span class="date">2020 / 2021</span>
-                    </div>
-                    <div class="subtitle">CE & QIP, IIT Bombay <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Application of Forecasting Methods in Engineering and Business Problems (Short Term Course)</span>
-                        <span class="date">2020 / 2021</span>
-                    </div>
-                    <div class="subtitle">AICTE & QIP, IIT Kharagpur <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Green Manufacturing (Short Term Course)</span>
-                        <span class="date">2020 / 2021</span>
-                    </div>
-                    <div class="subtitle">NITTTR Chandigarh at Sree Chaitanya College of Engineering, Karimnagar <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Advances in Additive Manufacturing (AICTE AQIS Short Term Course)</span>
-                        <span class="date">2020 / 2021</span>
-                    </div>
-                    <div class="subtitle">Siemens Centre of Excellence for Digital Manufacturing and Robotics under NAFETIC, Yeshwantrao Chavan College of Engineering, Nagpur <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Advances in Finite Element Method for Industry & Research Applications (AICTE Sponsored Online STTP)</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">Vasavi College of Engineering (Autonomous), Hyderabad <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Modeling and Analysis using MATLAB and Python for Mechanical Engineering Applications (AICTE Sponsored Online STTP)</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">VNR Vignana Jyothi Institute of Engineering and Technology, Hyderabad <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Computational Research Techniques Using MATLAB (One-week Workshop)</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">Sree Chaitanya College of Engineering, Karimnagar <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Metallurgy for Mechanical Engineering (One-week Online Workshop)</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">Sree Chaitanya College of Engineering, Karimnagar <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Design of Experiments in Engineering (One-Week Online STTP)</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">B.V. Raju Institute of Technology, Narsapur, Medak <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Advanced Techniques in Modelling and Analysis for Materials and Manufacturing Process (AICTE Sponsored STTP)</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">VNR Vignana Jyothi Institute of Engineering and Technology, Hyderabad <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">Training of Trainers (TOT) for Teacher Educator (One-week Online STTP)</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">NITTTR, Bhopal <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <span class="institution">A Vision Towards Materials and Manufacturing (Six days National Webinar Series)</span>
-                        <span class="date">2020</span>
-                    </div>
-                    <div class="subtitle">KPR Institute of Engineering and Technology, Coimbatore <a href="#" class="cert-link"><i class="fas fa-certificate"></i> Certificate</a></div>
-                </div>
-            </section>
-
-            <section id="roles">
-                <h2>Roles & Responsibilities</h2>
-                <ul>
-                    <li>Coordinator for the SAE BAJA / GO KARTING in the Department of Mechanical Engineering, GNITC.</li>
-                    <li>Department Minor Degree In-charge.</li>
-                    <li>Remedial and Tutorial classes In-charge.</li>
-                    <li>Designated Section Mentor.</li>
-                </ul>
-            </section>
-
-            <section id="achievements">
-                <h2>Academic Achievements</h2>
-                <ul>
-                    <li>Certificate of Appreciation in Essay Writing and Elocution competitions awarded by the Department of Youth Services, Karimnagar.</li>
-                    <li>Appreciation Certificate in the Innovation 2K12 National Fest competition at Vivekananda Institute of Technology & Science, Karimnagar.</li>
-                </ul>
-            </section>
-
-            <section id="social">
-                <h2>Social Responsibilities</h2>
-                <ul>
-                    <li><strong>Pledge Participant:</strong> Nasha Mukt Bharat, Khushaal Bharat (Ministry of Social Justice and Empowerment, Govt. of India) — Committed to a drug-free lifestyle and promoting social well-being.</li>
-                    <li><strong>Blood Donation Volunteer:</strong> Donated blood on 10 separate occasions through recognized camps, supporting patients in need and promoting community health.</li>
-                </ul>
-            </section>
-
-            <section id="traits">
-                <h2>Personal Traits</h2>
-                <ul>
-                    <li>Highly motivated and eager to learn new engineering methodologies and techniques.</li>
-                    <li>Strong motivational and collaborative leadership skills.</li>
-                    <li>Proven ability to deliver high-quality outcomes as an individual researcher as well as within diverse group dynamics.</li>
-                </ul>
-            </section>
-
-            <section id="personal-details">
-                <h2>Personal Details</h2>
-                <div class="personal-details-grid">
-                    <div class="pd-label">Father's Name:</div><div>Mr. Rajesham</div>
-                    <div class="pd-label">Gender:</div><div>Male</div>
-                    <div class="pd-label">Date of Birth:</div><div>01st Aug, 1993</div>
-                    <div class="pd-label">Nationality:</div><div>Indian</div>
-                    <div class="pd-label">Languages:</div><div>English, Telugu, Hindi</div>
-                </div>
-            </section>
-
+            <!-- SCHOLARLY REFERENCES -->
             <section id="references">
-                <h2>Academic References</h2>
+                <h2>Scholarly References</h2>
                 
-                <div class="item">
-                    <h3>Dr. Prashanta Kr. Mahato</h3>
-                    <div class="subtitle">Professor, Dept. of Mechanical Engineering</div>
-                    <p>Indian Institute of Technology (Indian School of Mines), Dhanbad<br>
-                    Email: <a href="mailto:pkmahato@iitism.ac.in">pkmahato@iitism.ac.in</a></p>
-                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                    <div class="web-item" style="border:none; padding-bottom:0; margin-bottom:0;">
+                        <h3>Dr. Prashanta Kr. Mahato</h3>
+                        <p class="subtitle" style="margin-bottom:2px;">Professor, Dept. of Mechanical Engineering</p>
+                        <p style="font-size:0.95rem;">Indian Institute of Technology (ISM), Dhanbad<br>
+                        Email: <a href="mailto:pkmahato@iitism.ac.in">pkmahato@iitism.ac.in</a></p>
+                    </div>
 
-                <div class="item">
-                    <h3>Dr. Suparno Bhattacharyya</h3>
-                    <div class="subtitle">Assistant Professor, Dept. of Mechanical Engineering</div>
-                    <p>Indian Institute of Technology (Indian School of Mines), Dhanbad<br>
-                    Email: <a href="mailto:suparno@iitism.ac.in">suparno@iitism.ac.in</a></p>
-                </div>
+                    <div class="web-item" style="border:none; padding-bottom:0; margin-bottom:0;">
+                        <h3>Dr. Suparno Bhattacharyya</h3>
+                        <p class="subtitle" style="margin-bottom:2px;">Assistant Professor, Dept. of Mechanical Engineering</p>
+                        <p style="font-size:0.95rem;">Indian Institute of Technology (ISM), Dhanbad<br>
+                        Email: <a href="mailto:suparno@iitism.ac.in">suparno@iitism.ac.in</a></p>
+                    </div>
 
-                <div class="item">
-                    <h3>Dr. Rajeswara Reddy Resapu</h3>
-                    <div class="subtitle">Associate Professor & Head, Dept. of Mechanical Engineering</div>
-                    <p>GITAM (Deemed To Be University), Visakhapatnam<br>
-                    Email: <a href="mailto:rresapu@gitam.edu">rresapu@gitam.edu</a> | <a href="mailto:r.resapu@gmail.com">r.resapu@gmail.com</a></p>
-                </div>
+                    <div class="web-item" style="border:none; padding-bottom:0; margin-bottom:0;">
+                        <h3>Dr. Rajeswara Reddy Resapu</h3>
+                        <p class="subtitle" style="margin-bottom:2px;">Associate Professor & Head, Dept. of Mechanical Engineering</p>
+                        <p style="font-size:0.95rem;">GITAM (Deemed To Be University), Visakhapatnam<br>
+                        Email: <a href="mailto:rresapu@gitam.edu">rresapu@gitam.edu</a></p>
+                    </div>
 
-                <div class="item">
-                    <h3>Dr. A Raj Kumar</h3>
-                    <div class="subtitle">Professor & Head, Dept. of Mechanical Engineering</div>
-                    <p>Guru Nanak Institutions Technical Campus, Ibrahimpatnam, Hyderabad<br>
-                    Email: <a href="mailto:hodme.gnitc@gniindia.org">hodme.gnitc@gniindia.org</a></p>
+                    <div class="web-item" style="border:none; padding-bottom:0; margin-bottom:0;">
+                        <h3>Dr. A Raj Kumar</h3>
+                        <p class="subtitle" style="margin-bottom:2px;">Professor & Head, Dept. of Mechanical Engineering</p>
+                        <p style="font-size:0.95rem;">Guru Nanak Institutions Technical Campus, Hyderabad<br>
+                        Email: <a href="mailto:hodme.gnitc@gniindia.org">hodme.gnitc@gniindia.org</a></p>
+                    </div>
                 </div>
             </section>
         </main>
+
+        <!-- RIGHT SIDE: SYMBOL-ONLY CONTACT & SIDEBAR PANEL OVERLAYS -->
+        <aside>
+            <!-- STICKY PANELS -->
+            <div class="sidebar-panel">
+                <h3>Contact & Channels</h3>
+                <div class="contact-list">
+                    <a href="mailto:sanjeevkumargajawada@gmail.com" title="Email Authority"><i class="fas fa-envelope"></i> Email Profile</a>
+                    <a href="https://www.linkedin.com/in/skgajawada/" target="_blank" title="LinkedIn Professional Connection"><i class="fab fa-linkedin"></i> LinkedIn Hub</a>
+                    <span><i class="fas fa-globe"></i> Ranga Reddy, TS, India</span>
+                </div>
+            </div>
+
+            <div class="sidebar-panel">
+                <h3>Core Competencies</h3>
+                <div class="tech-tag-container">
+                    <span class="tech-tag">Aeroelasticity</span>
+                    <span class="tech-tag">Vibrations</span>
+                    <span class="tech-tag">Finite Element Analysis</span>
+                    <span class="tech-tag">Machine Design</span>
+                    <span class="tech-tag">Dataiku ML</span>
+                    <span class="tech-tag">MATLAB / Simulink</span>
+                    <span class="tech-tag">Python Architecture</span>
+                    <span class="tech-tag">SQL Databases</span>
+                    <span class="tech-tag">Power BI</span>
+                    <span class="tech-tag">LaTeX Engineering</span>
+                </div>
+            </div>
+
+            <div class="sidebar-panel">
+                <h3>Civic Outreach</h3>
+                <div class="pd-row" style="margin-bottom:12px;">
+                    <strong>Nasha Mukt Bharat:</strong> Official Ministry of Social Justice Pledge Participant committed to social well-being frameworks.
+                </div>
+                <div class="pd-row">
+                    <strong>Community Health:</strong> Registered Blood Donation Volunteer across 10 separate emergencies.
+                </div>
+            </div>
+
+            <div class="sidebar-panel">
+                <h3>Personal Indices</h3>
+                <div class="pd-row"><strong>Father's Name:</strong> Mr. Rajesham</div>
+                <div class="pd-row"><strong>Status Track:</strong> Indian National</div>
+                <div class="pd-row"><strong>Languages:</strong> English, Telugu, Hindi</div>
+            </div>
+        </aside>
+
     </div>
+
+    <!-- CLEAN FOOTER -->
+    <footer style="text-align: center; padding: 40px 20px; color: var(--text-light); font-size: 0.9rem; border-top: 1px solid var(--border-color); background: var(--bg-light);">
+        &copy; 2026 Gajavada Sanjeevkumar. All Computational and Pedagogical Rights Reserved.
+    </footer>
 
 </body>
 </html>
