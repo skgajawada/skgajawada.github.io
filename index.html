@@ -675,6 +675,13 @@
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
         }
 
         .subject-main-info {
@@ -964,8 +971,8 @@
             margin-bottom: 15px;
         }
 
-        /* Certificate Upload Area */
-        .certificate-upload-box {
+        /* Certificate View Actions */
+        .certificate-action-box {
             margin-top: 15px;
             padding-top: 12px;
             border-top: 1px dashed var(--border-color);
@@ -974,40 +981,10 @@
             gap: 8px;
         }
 
-        .upload-label {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-        }
-
-        .upload-label:hover {
-            color: var(--accent);
-        }
-
-        .upload-input {
-            display: none;
-        }
-
-        .view-uploaded-btn {
-            display: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #10B981;
-            text-decoration: none;
-            align-items: center;
-            gap: 6px;
-            transition: var(--transition-smooth);
-        }
-
         /* SPA Redirect Mode inside Tab */
         .dev-details-pane {
             display: none;
-            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: paneFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .dev-details-pane.active {
@@ -1196,6 +1173,7 @@
             width: 90%;
             box-shadow: var(--shadow-md);
             text-align: center;
+            position: relative;
         }
 
         .route-modal h3 {
@@ -1243,6 +1221,23 @@
             transform: translateY(-2px);
         }
 
+        /* High-visibility Close 'X' Button on Modal */
+        .close-modal-x {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            font-size: 1.6rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .close-modal-x:hover {
+            color: var(--accent);
+            transform: scale(1.15) rotate(90deg);
+        }
+
         .close-route-btn {
             background: transparent;
             border: none;
@@ -1269,6 +1264,11 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes paneFadeIn {
+            from { opacity: 0; transform: translateY(25px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
     </style>
 </head>
@@ -2043,17 +2043,17 @@
 
                     <!-- SPA-style routing within the same tab -->
                     <div id="dev-main-view">
-                        <p style="color: var(--text-muted); margin-bottom: 30px;">Click on any category heading or subheading below to dynamically view all detailed entries and upload your certificates in this tab.</p>
+                        <p style="color: var(--text-muted); margin-bottom: 30px;">Click on any category heading or subheading below to dynamically view all detailed entries and access certificates instantly in this tab.</p>
                         
                         <div class="subjects-grid">
                             <!-- Category Headings -->
                             <div class="subject-card" onclick="openDevCategory('fdps')">
                                 <div class="subject-main-info">
                                     <div class="subject-icon"><i class="fa-solid fa-users-gear"></i></div>
-                                    <span class="subject-name">FDPs</span>
+                                    <span class="subject-name">FDPs (Faculty Development Programs)</span>
                                 </div>
                                 <div class="subject-materials-box" style="border-top: none;">
-                                    <span class="materials-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                                    <span class="materials-link">View Subheadings <i class="fa-solid fa-arrow-right"></i></span>
                                 </div>
                             </div>
 
@@ -2063,17 +2063,17 @@
                                     <span class="subject-name">Workshops</span>
                                 </div>
                                 <div class="subject-materials-box" style="border-top: none;">
-                                    <span class="materials-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                                    <span class="materials-link">View Subheadings <i class="fa-solid fa-arrow-right"></i></span>
                                 </div>
                             </div>
 
                             <div class="subject-card" onclick="openDevCategory('atal')">
                                 <div class="subject-main-info">
                                     <div class="subject-icon"><i class="fa-solid fa-award"></i></div>
-                                    <span class="subject-name">ATAL</span>
+                                    <span class="subject-name">ATAL Academy Programs</span>
                                 </div>
                                 <div class="subject-materials-box" style="border-top: none;">
-                                    <span class="materials-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                                    <span class="materials-link">View Certificates <i class="fa-solid fa-arrow-right"></i></span>
                                 </div>
                             </div>
 
@@ -2083,7 +2083,7 @@
                                     <span class="subject-name">Summer Schools</span>
                                 </div>
                                 <div class="subject-materials-box" style="border-top: none;">
-                                    <span class="materials-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                                    <span class="materials-link">View Certificates <i class="fa-solid fa-arrow-right"></i></span>
                                 </div>
                             </div>
 
@@ -2093,7 +2093,7 @@
                                     <span class="subject-name">Conferences</span>
                                 </div>
                                 <div class="subject-materials-box" style="border-top: none;">
-                                    <span class="materials-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                                    <span class="materials-link">View Certificates <i class="fa-solid fa-arrow-right"></i></span>
                                 </div>
                             </div>
 
@@ -2103,7 +2103,7 @@
                                     <span class="subject-name">Webinars</span>
                                 </div>
                                 <div class="subject-materials-box" style="border-top: none;">
-                                    <span class="materials-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                                    <span class="materials-link">View Certificates <i class="fa-solid fa-arrow-right"></i></span>
                                 </div>
                             </div>
 
@@ -2113,29 +2113,766 @@
                                     <span class="subject-name">Seminars</span>
                                 </div>
                                 <div class="subject-materials-box" style="border-top: none;">
-                                    <span class="materials-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                                    <span class="materials-link">View Certificates <i class="fa-solid fa-arrow-right"></i></span>
                                 </div>
                             </div>
 
-                            <!-- Sub Heading -->
+                            <!-- STTP -->
                             <div class="subject-card" onclick="openDevCategory('sttps')">
                                 <div class="subject-main-info">
-                                    <div class="subject-icon"><i class="fa-solid fa-clock"></i></div>
-                                    <span class="subject-name">Short-Term Courses & STTPs (Sub)</span>
+                                    <div class="subject-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                                    <span class="subject-name">Short Term Training Programs (STTP)</span>
                                 </div>
                                 <div class="subject-materials-box" style="border-top: none;">
-                                    <span class="materials-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                                    <span class="materials-link">View Certificates <i class="fa-solid fa-arrow-right"></i></span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Dynamic Details Pane -->
-                    <div id="dev-details-pane" class="dev-details-pane">
-                        <button class="btn btn-secondary" onclick="closeDevPane()" style="margin-bottom: 30px;"><i class="fa-solid fa-arrow-left"></i> Back to Categories</button>
-                        <h3 id="dev-pane-title" class="dev-category-title" style="margin-bottom: 25px;">Category Name</h3>
-                        <div class="dev-items-grid" id="dev-pane-grid">
-                            <!-- Dynamic Cards are loaded here -->
+                    <!-- FDP CATEGORY SUBHEADINGS AND PANELS -->
+                    <div id="dev-fdps" class="dev-details-pane">
+                        <button class="btn btn-secondary" style="margin-bottom: 25px;" onclick="goBackToDevHome()"><i class="fa-solid fa-arrow-left"></i> Back to Categories</button>
+                        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">Faculty Development Programs (FDPs)</h3>
+                        
+                        <p style="color: var(--text-muted); margin-bottom: 20px;">Click on a specific subheading below to view individual program items.</p>
+                        
+                        <div class="subjects-grid">
+                            <div class="subject-card" onclick="openSubCategory('fdp-1week')">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-calendar-week"></i></div>
+                                    <span class="subject-name">One-Week / Two-Week FDPs</span>
+                                </div>
+                                <div class="subject-materials-box" style="border-top: none;">
+                                    <span class="materials-link">View 16 Programs <i class="fa-solid fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                            <div class="subject-card" onclick="openSubCategory('fdp-3day')">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-calendar-days"></i></div>
+                                    <span class="subject-name">3-Day FDPs</span>
+                                </div>
+                                <div class="subject-materials-box" style="border-top: none;">
+                                    <span class="materials-link">View 5 Programs <i class="fa-solid fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                            <div class="subject-card" onclick="openSubCategory('fdp-1day')">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-calendar-day"></i></div>
+                                    <span class="subject-name">1-Day / Short Duration FDPs</span>
+                                </div>
+                                <div class="subject-materials-box" style="border-top: none;">
+                                    <span class="materials-link">View 3 Programs <i class="fa-solid fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WORKSHOPS CATEGORY SUBHEADINGS AND PANELS -->
+                    <div id="dev-workshops" class="dev-details-pane">
+                        <button class="btn btn-secondary" style="margin-bottom: 25px;" onclick="goBackToDevHome()"><i class="fa-solid fa-arrow-left"></i> Back to Categories</button>
+                        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">Workshops</h3>
+                        
+                        <p style="color: var(--text-muted); margin-bottom: 20px;">Click on a specific subheading below to view individual workshop details.</p>
+                        
+                        <div class="subjects-grid">
+                            <div class="subject-card" onclick="openSubCategory('workshop-longer')">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-clock"></i></div>
+                                    <span class="subject-name">Multi-Day Workshops (5+ Days)</span>
+                                </div>
+                                <div class="subject-materials-box" style="border-top: none;">
+                                    <span class="materials-link">View 3 Workshops <i class="fa-solid fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                            <div class="subject-card" onclick="openSubCategory('workshop-shorter')">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-hourglass-half"></i></div>
+                                    <span class="subject-name">Short Workshops (1 - 3 Days)</span>
+                                </div>
+                                <div class="subject-materials-box" style="border-top: none;">
+                                    <span class="materials-link">View 10 Workshops <i class="fa-solid fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ONE WEEK / TWO WEEK FDPS DETAILED LIST -->
+                    <div id="sub-fdp-1week" class="dev-details-pane">
+                        <button class="btn btn-secondary" style="margin-bottom: 25px;" onclick="goBackToCategory('fdps')"><i class="fa-solid fa-arrow-left"></i> Back to FDPs</button>
+                        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">One-Week / Two-Week FDPs</h3>
+                        
+                        <div class="dev-items-grid">
+                            <!-- 16 entries styled like certifications -->
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">24th to 28th April, 2023</span>
+                                    <h3 class="dev-card-title">Outcome Based Education and Essential Cognitive Skills</h3>
+                                    <p class="dev-card-institution">NITTTR, Chennai</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Outcome Based Education and Essential Cognitive Skills.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Outcome Based Education and Essential Cognitive Skills')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">21st to 25th November, 2022</span>
+                                    <h3 class="dev-card-title">Additive Manufacturing (Industrial Applications)</h3>
+                                    <p class="dev-card-institution">NITTTR, Chandigarh</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Additive Manufacturing Industrial Applications.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Additive Manufacturing Industrial Applications')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">14th to 18th November, 2022</span>
+                                    <h3 class="dev-card-title">Computer Aided Design and Manufacturing</h3>
+                                    <p class="dev-card-institution">NITTTR, Chennai</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Computer Aided Design and Manufacturing.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Computer Aided Design and Manufacturing')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">10th to 14th October, 2022</span>
+                                    <h3 class="dev-card-title">Strategic Planning and Institutional Development</h3>
+                                    <p class="dev-card-institution">NITTTR, Chennai</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Strategic Planning and Institutional Development.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Strategic Planning and Institutional Development')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">19th to 24th September, 2022</span>
+                                    <h3 class="dev-card-title">Applied Thermal Engineering and Fluids</h3>
+                                    <p class="dev-card-institution">Vardhaman College of Engineering, Hyderabad</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Applied Thermal Engineering and Fluids.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Applied Thermal Engineering and Fluids')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">11th to 16th July, 2022</span>
+                                    <h3 class="dev-card-title">Implementation of NEP 2020 in Higher Educational Institutions</h3>
+                                    <p class="dev-card-institution">Guru Nanak Institutions Technical Campus, Hyderabad</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Implementation of NEP 2020 in Higher Educational Institutions.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Implementation of NEP 2020 in Higher Educational Institutions')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">2nd to 7th May, 2022</span>
+                                    <h3 class="dev-card-title">E-Content Development and LMS</h3>
+                                    <p class="dev-card-institution">Chaitanya Bharathi Institute of Technology, Hyderabad</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/EContent Development and LMS.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'EContent Development and LMS')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">21st to 26th March, 2022</span>
+                                    <h3 class="dev-card-title">Mechatronics, Automation and Industry 4.0</h3>
+                                    <p class="dev-card-institution">GMR Institute of Technology, Rajam</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Mechatronics Automation and Industry 40.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Mechatronics Automation and Industry 40')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">1st to 5th March, 2021</span>
+                                    <h3 class="dev-card-title">Waste to Energy - Generation and Utilization</h3>
+                                    <p class="dev-card-institution">AICTE Training And Learning (ATAL) Academy</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Waste to Energy Generation and Utilization.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Waste to Energy Generation and Utilization')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">22nd to 26th February, 2021</span>
+                                    <h3 class="dev-card-title">Design of Experiments and Optimization Techniques</h3>
+                                    <p class="dev-card-institution">NITTTR, Chandigarh</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Design of Experiments and Optimization Techniques.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Design of Experiments and Optimization Techniques')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">24th to 28th August, 2020</span>
+                                    <h3 class="dev-card-title">Solar Energy Conversion and Management</h3>
+                                    <p class="dev-card-institution">NITTTR, Chandigarh</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Solar Energy Conversion and Management.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Solar Energy Conversion and Management')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">17th to 21st August, 2020</span>
+                                    <h3 class="dev-card-title">Introduction to FEA using ANSYS</h3>
+                                    <p class="dev-card-institution">TKM College of Engineering, Kollam</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Introduction to FEA using ANSYS.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Introduction to FEA using ANSYS')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">3rd to 8th August, 2020</span>
+                                    <h3 class="dev-card-title">Alternate Energy Sources - Clean and Green Solution</h3>
+                               .pdf"     <p class="dev-card-institution">SVR Engineering College, Nandyal</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Alternate Energy Sources Clean and Green Solution.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Alternate Energy Sources Clean and Green Solution')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">1st to 5th June, 2020</span>
+                                    <h3 class="dev-card-title">Introduction to Composite Materials</h3>
+                                    <p class="dev-card-institution">Sree Chaitanya College of Engineering, Karimnagar</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Introduction to Composite Materials.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Introduction to Composite Materials')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">26th to 30th May, 2020</span>
+                                    <h3 class="dev-card-title">Python 3.4.3 Training</h3>
+                                    <p class="dev-card-institution">Spoken Tutorial Project, IIT Bombay</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Python 343 Training.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Python 343 Training')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">18th to 22nd May, 2020</span>
+                                    <h3 class="dev-card-title">LaTeX Training</h3>
+                                    <p class="dev-card-institution">Spoken Tutorial Project, IIT Bombay</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/LaTeX Training.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'LaTeX Training')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3-DAY FDPS DETAILED LIST -->
+                    <div id="sub-fdp-3day" class="dev-details-pane">
+                        <button class="btn btn-secondary" style="margin-bottom: 25px;" onclick="goBackToCategory('fdps')"><i class="fa-solid fa-arrow-left"></i> Back to FDPs</button>
+                        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">3-Day FDPs</h3>
+                        
+                        <div class="dev-items-grid">
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">14th to 16th September, 2022</span>
+                                    <h3 class="dev-card-title">Applied Aerodynamics and Flight Dynamics</h3>
+                                    <p class="dev-card-institution">NITTTR, Chennai</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Applied Aerodynamics and Flight Dynamics.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Applied Aerodynamics and Flight Dynamics')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">26th to 28th November, 2020</span>
+                                    <h3 class="dev-card-title">Outcome Based Education and NBA Accreditation Process</h3>
+                                    <p class="dev-card-institution">Chaitanya Bharathi Institute of Technology, Hyderabad</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Outcome Based Education and NBA Accreditation Process.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Outcome Based Education and NBA Accreditation Process')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">23rd to 25th July, 2020</span>
+                                    <h3 class="dev-card-title">Refrigerants - Past, Present and Future</h3>
+                                    <p class="dev-card-institution">MLR Institute of Technology, Hyderabad</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Refrigerants Past Present and Future.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Refrigerants Past Present and Future')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">10th to 12th June, 2020</span>
+                                    <h3 class="dev-card-title">Advances in Automotive Technology</h3>
+                                    <p class="dev-card-institution">St. Peters Engineering College, Hyderabad</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Advances in Automotive Technology.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Advances in Automotive Technology')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">1st to 3rd June, 2020</span>
+                                    <h3 class="dev-card-title">Advanced Materials and Manufacturing</h3>
+                                    <p class="dev-card-institution">Jyothishmathi Institute of Technology and Science, Karimnagar</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Advanced Materials and Manufacturing.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Advanced Materials and Manufacturing')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1-DAY FDPS DETAILED LIST -->
+                    <div id="sub-fdp-1day" class="dev-details-pane">
+                        <button class="btn btn-secondary" style="margin-bottom: 25px;" onclick="goBackToCategory('fdps')"><i class="fa-solid fa-arrow-left"></i> Back to FDPs</button>
+                        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">1-Day / Short Duration FDPs</h3>
+                        
+                        <div class="dev-items-grid">
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">11th July, 2020</span>
+                                    <h3 class="dev-card-title">Effective Virtual Classroom Delivery</h3>
+                                    <p class="dev-card-institution">TOC H Institute of Science and Technology, Ernakulam</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Effective Virtual Classroom Delivery.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Effective Virtual Classroom Delivery')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">30th June, 2020</span>
+                                    <h3 class="dev-card-title">Online Tools for Interactive Teaching</h3>
+                                    <p class="dev-card-institution">Sri Vasavi Engineering College, Tadepalligudem</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Online Tools for Interactive Teaching.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Online Tools for Interactive Teaching')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">3rd May, 2020</span>
+                                    <h3 class="dev-card-title">Spoken Tutorial, IIT Bombay</h3>
+                                    <p class="dev-card-institution">IIT Bombay Spoken Tutorial Outreach Team</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/FDP/Spoken Tutorial IIT Bombay FDP.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('FDP', 'Spoken Tutorial IIT Bombay FDP')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WORKSHOPS MULTI-DAY LIST -->
+                    <div id="sub-workshop-longer" class="dev-details-pane">
+                        <button class="btn btn-secondary" style="margin-bottom: 25px;" onclick="goBackToCategory('workshops')"><i class="fa-solid fa-arrow-left"></i> Back to Workshops</button>
+                        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">Multi-Day Workshops (5+ Days)</h3>
+                        
+                        <div class="dev-items-grid">
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">24th to 28th March, 2025</span>
+                                    <h3 class="dev-card-title">Fluid Mechanics and Its Applications</h3>
+                                    <p class="dev-card-institution">MNNIT, Allahabad</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/workshop/Fluid Mechanics and Its Applications.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('Workshop', 'Fluid Mechanics and Its Applications')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">10th to 14th February, 2025</span>
+                                    <h3 class="dev-card-title">Advances in Aeromechanics and Structure Dynamics</h3>
+                                    <p class="dev-card-institution">National Aerospace Laboratories, Bangalore</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/workshop/Advances in Aeromechanics and Structure Dynamics.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('Workshop', 'Advances in Aeromechanics and Structure Dynamics')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">18th to 22nd July, 2020</span>
+                                    <h3 class="dev-card-title">Research Methodology</h3>
+                                    <p class="dev-card-institution">Chaitanya Bharathi Institute of Technology, Hyderabad</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/workshop/Research Methodology.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('Workshop', 'Research Methodology')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WORKSHOPS SHORTER LIST -->
+                    <div id="sub-workshop-shorter" class="dev-details-pane">
+                        <button class="btn btn-secondary" style="margin-bottom: 25px;" onclick="goBackToCategory('workshops')"><i class="fa-solid fa-arrow-left"></i> Back to Workshops</button>
+                        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">Short Workshops (1 - 3 Days)</h3>
+                        
+                        <div class="dev-items-grid">
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">24th & 25th May, 2024</span>
+                                    <h3 class="dev-card-title">Modern Materials and Advanced Manufacturing</h3>
+                                    <p class="dev-card-institution">NITTTR, Chandigarh</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/workshop/Modern Materials and Advanced Manufacturing.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('Workshop', 'Modern Materials and Advanced Manufacturing')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">21st to 23rd September, 2023</span>
+                                    <h3 class="dev-card-title">Advanced Characterisation Materials</h3>
+                                    <p class="dev-card-institution">NITTTR, Chennai</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/workshop/Advanced Characterisation Materials.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('Workshop', 'Advanced Characterisation Materials')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">10th September, 2023</span>
+                                    <h3 class="dev-card-title">AI for Everyone</h3>
+                                    <p class="dev-card-institution">VNR Vignana Jyothi Institute of Engineering and Technology, Hyderabad</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/workshop/AI for Everyone.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('Workshop', 'AI for Everyone')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">20th May, 2023</span>
+                                    <h3 class="dev-card-title">Industrial Robotics</h3>
+                                    <p class="dev-card-institution">Guru Nanak Institutions Technical Campus, Hyderabad</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/workshop/Industrial Robotics.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('Workshop', 'Industrial Robotics')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">15th October, 2022</span>
+                                    <h3 class="dev-card-title">Intellectual Property Rights and Patent Filing</h3>
+                                    <p class="dev-card-institution">Guru Nanak Institutions Technical Campus, Hyderabad</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/workshop/Intellectual Property Rights and Patent Filing.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('Workshop', 'Intellectual Property Rights and Patent Filing')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">16th July, 2021</span>
+                                    <h3 class="dev-card-title">Data Analytics with R and Python</h3>
+                                    <p class="dev-card-institution">Vidya Jyothi Institute of Technology, Hyderabad</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/workshop/Data Analytics with R and Python.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('Workshop', 'Data Analytics with R and Python')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">21st October, 2020</span>
+                                    <h3 class="dev-card-title">3D Printing Technologies</h3>
+                                    <p class="dev-card-institution">Guru Nanak Dev Engineering College, Ludhiana</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/workshop/3D Printing Technologies.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('Workshop', '3D Printing Technologies')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">26th June, 2020</span>
+                                    <h3 class="dev-card-title">Design, Failure Analysis and Maintenance of Shafts</h3>
+                                    <p class="dev-card-institution">Sri Chaitanya College of Engineering, Karimnagar</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/workshop/Design Failure Analysis and Maintenance of Shafts.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('Workshop', 'Design Failure Analysis and Maintenance of Shafts')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">10th June, 2020</span>
+                                    <h3 class="dev-card-title">Scientific Writing and Journal Selection</h3>
+                                    <p class="dev-card-institution">Research Graduate Academy</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/workshop/Scientific Writing and Journal Selection.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('Workshop', 'Scientific Writing and Journal Selection')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">14th May, 2020</span>
+                                    <h3 class="dev-card-title">Finite Element Modeling with ABAQUS</h3>
+                                    <p class="dev-card-institution">SVR Engineering College, Nandyal</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/workshop/Finite Element Modeling with ABAQUS.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('Workshop', 'Finite Element Modeling with ABAQUS')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ATAL ACADEMY DETAILED VIEW -->
+                    <div id="dev-atal" class="dev-details-pane">
+                        <button class="btn btn-secondary" style="margin-bottom: 25px;" onclick="goBackToDevHome()"><i class="fa-solid fa-arrow-left"></i> Back to Categories</button>
+                        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">ATAL Academy Programs</h3>
+                        
+                        <div class="dev-items-grid">
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">5th to 9th January, 2021</span>
+                                    <h3 class="dev-card-title">Precision Agriculture Technologies</h3>
+                                    <p class="dev-card-institution">AICTE Training And Learning (ATAL) Academy</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/ATAL/Precision Agriculture Technologies.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('ATAL', 'Precision Agriculture Technologies')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">15th to 19th December, 2020</span>
+                                    <h3 class="dev-card-title">Smart Cities and Advanced Technologies</h3>
+                                    <p class="dev-card-institution">AICTE Training And Learning (ATAL) Academy</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/ATAL/Smart Cities and Advanced Technologies.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('ATAL', 'Smart Cities and Advanced Technologies')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUMMER SCHOOLS DETAILED VIEW -->
+                    <div id="dev-summer-schools" class="dev-details-pane">
+                        <button class="btn btn-secondary" style="margin-bottom: 25px;" onclick="goBackToDevHome()"><i class="fa-solid fa-arrow-left"></i> Back to Categories</button>
+                        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">Summer Schools</h3>
+                        
+                        <div class="dev-items-grid">
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">1st to 15th July, 2024</span>
+                                    <h3 class="dev-card-title">Summer School on Aeroelasticity and Structural Dynamics</h3>
+                                    <p class="dev-card-institution">Indian Institute of Science, Bangalore</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/SummerSchool/Summer School on Aeroelasticity and Structural Dynamics.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('Summer School', 'Summer School on Aeroelasticity and Structural Dynamics')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">10th to 24th June, 2024</span>
+                                    <h3 class="dev-card-title">Machine Learning Foundations for Engineering Problems</h3>
+                                    <p class="dev-card-institution">IIT Indore</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/SummerSchool/Machine Learning Foundations for Engineering Problems.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('Summer School', 'Machine Learning Foundations for Engineering Problems')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CONFERENCES DETAILED VIEW -->
+                    <div id="dev-conferences" class="dev-details-pane">
+                        <button class="btn btn-secondary" style="margin-bottom: 25px;" onclick="goBackToDevHome()"><i class="fa-solid fa-arrow-left"></i> Back to Categories</button>
+                        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">Conferences</h3>
+                        
+                        <div class="dev-items-grid">
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">15th & 16th December, 2023</span>
+                                    <h3 class="dev-card-title">International Conference on Advancements in Mechanical Engineering</h3>
+                                    <p class="dev-card-institution">Guru Nanak Institutions Technical Campus, Hyderabad</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/Conference/ICAME Conference.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('Conference', 'International Conference on Advancements in Mechanical Engineering')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">10th November, 2022</span>
+                                    <h3 class="dev-card-title">Modern Manufacturing Systems & Industrial Automation</h3>
+                                    <p class="dev-card-institution">Chaitanya Bharathi Institute of Technology, Hyderabad</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/Conference/Modern Manufacturing Systems.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('Conference', 'Modern Manufacturing Systems & Industrial Automation')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WEBINARS DETAILED VIEW -->
+                    <div id="dev-webinars" class="dev-details-pane">
+                        <button class="btn btn-secondary" style="margin-bottom: 25px;" onclick="goBackToDevHome()"><i class="fa-solid fa-arrow-left"></i> Back to Categories</button>
+                        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">Webinars</h3>
+                        
+                        <p style="color: var(--text-muted); margin-bottom: 20px;">Displaying successfully completed dynamic learning webinars.</p>
+                        
+                        <div class="dev-items-grid">
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">12th August, 2021</span>
+                                    <h3 class="dev-card-title">Aerospace Structural Dynamics & Vibro-Acoustics</h3>
+                                    <p class="dev-card-institution">NITTTR, Chandigarh</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/Webinar/Aerospace Structural Dynamics.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('Webinar', 'Aerospace Structural Dynamics & Vibro-Acoustics')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">24th May, 2020</span>
+                                    <h3 class="dev-card-title">Design Optimization in Space Launch Vehicles</h3>
+                                    <p class="dev-card-institution">Vardhaman College of Engineering, Hyderabad</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/Webinar/Launch Vehicles Optimization.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('Webinar', 'Design Optimization in Space Launch Vehicles')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEMINARS DETAILED VIEW -->
+                    <div id="dev-seminars" class="dev-details-pane">
+                        <button class="btn btn-secondary" style="margin-bottom: 25px;" onclick="goBackToDevHome()"><i class="fa-solid fa-arrow-left"></i> Back to Categories</button>
+                        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">Seminars</h3>
+                        
+                        <div class="dev-items-grid">
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">20th March, 2024</span>
+                                    <h3 class="dev-card-title">Computational Fluid Dynamics & Thermal Management</h3>
+                                    <p class="dev-card-institution">IIT Madras National Seminars</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/Seminar/CFD Thermal Management.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('Seminar', 'Computational Fluid Dynamics & Thermal Management')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">15th October, 2022</span>
+                                    <h3 class="dev-card-title">Research Prospects in Smart Hybrid Energy Storage Systems</h3>
+                                    <p class="dev-card-institution">Chaitanya Bharathi Institute of Technology, Hyderabad</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/Seminar/Smart Hybrid Energy Storage Systems.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('Seminar', 'Research Prospects in Smart Hybrid Energy Storage Systems')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STTPS DETAILED VIEW -->
+                    <div id="dev-sttps" class="dev-details-pane">
+                        <button class="btn btn-secondary" style="margin-bottom: 25px;" onclick="goBackToDevHome()"><i class="fa-solid fa-arrow-left"></i> Back to Categories</button>
+                        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">Short Term Training Programs (STTPs)</h3>
+                        
+                        <div class="dev-items-grid">
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">1st to 15th December, 2023</span>
+                                    <h3 class="dev-card-title">Pedagogy of Design and Applied Mechanical Elements</h3>
+                                    <p class="dev-card-institution">Guru Nanak Institutions Technical Campus, Hyderabad</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/STTP/Pedagogy of Design.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('STTP', 'Pedagogy of Design and Applied Mechanical Elements')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card dev-card">
+                                <div>
+                                    <span class="dev-card-date">10th to 15th June, 2022</span>
+                                    <h3 class="dev-card-title">Design of Mechanical Equipment & Vibration Standards</h3>
+                                    <p class="dev-card-institution">Sree Chaitanya College of Engineering, Karimnagar</p>
+                                </div>
+                                <div class="certificate-action-box">
+                                    <a href="professional development/STTP/Mechanical Equipment Design.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="#" class="cert-btn verify-btn" onclick="openRouteModal('STTP', 'Design of Mechanical Equipment & Vibration Standards')"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -2143,36 +2880,33 @@
             </section>
 
             <!-- CONTACT & QUERY FORM -->
-            <section id="contact" class="contact-section animate-on-scroll">
+            <section id="contact" class="contact-section">
                 <div class="container">
                     <div class="contact-grid">
                         <div class="contact-info-panel">
-                            <span class="section-tag">Connection</span>
-                            <h2 class="section-title" style="display:inline-block">Get In Touch</h2>
-                            <p class="contact-minimal-intro" style="margin-top: 15px;">Have an academic query or collaboration proposal? Drop a secure message directly to my portal workflow.</p>
+                            <h3>Let's Connect</h3>
+                            <p class="contact-minimal-intro">Feel free to submit an academic query, potential research partnership opportunity, or professional introduction below.</p>
                             
-                            <form class="query-form" onsubmit="handleFormSubmission(event)">
+                            <form class="query-form" id="academic-contact-form" onsubmit="handleFormSubmission(event)">
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="frm-name">Your Full Name</label>
-                                        <input type="text" id="frm-name" class="form-control" placeholder="Prof. Jane Doe" required>
+                                        <label for="usr-name">Your Name</label>
+                                        <input type="text" id="usr-name" class="form-control" placeholder="Enter full name" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="frm-email">Email Address</label>
-                                        <input type="email" id="frm-email" class="form-control" placeholder="jane.doe@university.edu" required>
+                                        <label for="usr-email">Your Email</label>
+                                        <input type="email" id="usr-email" class="form-control" placeholder="Enter email address" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="frm-subject">Message Subject</label>
-                                    <input type="text" id="frm-subject" class="form-control" placeholder="Research Proposal / Inquiry" required>
+                                    <label for="usr-subject">Subject</label>
+                                    <input type="text" id="usr-subject" class="form-control" placeholder="What is this regarding?" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="frm-body">Message Body</label>
-                                    <textarea id="frm-body" class="form-control" rows="5" placeholder="Write your message detail here..." required></textarea>
+                                    <label for="usr-message">Message Details</label>
+                                    <textarea id="usr-message" class="form-control" rows="5" placeholder="Write message details..." required></textarea>
                                 </div>
-                                <div style="text-align: left;">
-                                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Dispatch Message</button>
-                                </div>
+                                <button type="submit" class="btn btn-primary" style="justify-content: center;"><i class="fa-solid fa-paper-plane"></i> Send Query</button>
                             </form>
                         </div>
                     </div>
@@ -2182,86 +2916,95 @@
         </div>
     </main>
 
-    <!-- FULLY PERSISTENT FIXED FOOTER SOCIAL DOCK -->
-    <div class="persistent-social-dock">
-        <div class="dock-icons">
-            <a href="tel:+91 9030 833 667" class="ic-phone" title="Call Me"><i class="fa-solid fa-phone"></i></a>
-            <a href="mailto:sanjeevkumargajawada@gmail.com" class="ic-mail" title="Mail Me"><i class="fa-solid fa-envelope"></i></a>
-            <a href="https://linkedin.com/in/skgajawada" class="ic-linkedin" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="https://scholar.google.com" class="ic-scholar" target="_blank" title="Google Scholar"><i class="fa-solid fa-graduation-cap"></i></a>
-            <a href="https://orcid.org" class="ic-orcid" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
-            <a href="https://x.com/sk_gajawada" class="ic-twitter" target="_blank" title="Twitter (X)"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="https://github.com/skgajawada" class="ic-github" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
-            <a href="https://leetcode.com/u/skgajawada/" class="ic-leetcode" target="_blank" title="LeetCode"><i class="fa-solid fa-code"></i></a>
-            <a href="https://instagram.com/sanjeevkumar_gajawada" class="ic-instagram" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://wa.me/skgajawada" class="ic-whatsapp" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="https://www.facebook.com/skgajawada " class="ic-facebook" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="https://t.me/skgajawada" class="ic-telegram" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
-            <a href="https://www.youtube.com/@skgajawada" class="ic-youtube" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-        </div>
-    </div>
-
-    <!-- PORTAL OVERLAY MODAL FOR FORM ROUTING -->
-    <div class="route-overlay" id="route-modal-overlay">
+    <!-- PORTAL ROUTING OVERLAY MODAL FOR FORMS -->
+    <div class="route-overlay" id="portal-modal">
         <div class="route-modal">
-            <i class="fa-regular fa-circle-check" style="font-size: 3.5rem; color: #10B981; margin-bottom: 20px; display: block;"></i>
-            <h3>Message Processed</h3>
-            <p>Your institutional inquiry has been routed successfully. Choose your primary response channel for quick tracking:</p>
+            <!-- Redesigned High-Visibility Close "X" Mark -->
+            <button class="close-modal-x" onclick="closePortalModal()"><i class="fa-solid fa-xmark"></i></button>
+            <h3 id="modal-title-slot">Contact Form Destination</h3>
+            <p id="modal-desc-slot">Select the communication framework to transmit your message safely.</p>
             <div class="route-options">
-                <button class="route-opt-btn" onclick="triggerDirectRoute('mail')">
-                    <i class="fa-solid fa-envelope-open-text" style="color: #EA4335;"></i>
-                    <span>Email App</span>
-                </button>
-                <button class="route-opt-btn" onclick="triggerDirectRoute('whatsapp')">
-                    <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i>
-                    <span>WhatsApp</span>
-                </button>
+                <button class="route-opt-btn" onclick="submitToEmail()"><i class="fa-solid fa-envelope" style="color:#EA4335"></i> via Email Client</button>
+                <button class="route-opt-btn" onclick="submitToWhatsapp()"><i class="fa-brands fa-whatsapp" style="color:#25D366"></i> via WhatsApp API</button>
             </div>
-            <button class="close-route-btn" onclick="closeRoutePortal()">Dismiss Window</button>
+            <button class="close-route-btn" onclick="closePortalModal()">Go Back</button>
         </div>
     </div>
 
-    <!-- MASTER ENGINE SCRIPTS -->
+    <!-- PERSISTENT SOCIAL FOOTER DOCK -->
+    <footer class="persistent-social-dock">
+        <div class="dock-icons">
+            <a href="tel:+918121966205" class="ic-phone" aria-label="Call Phone"><i class="fa-solid fa-phone"></i></a>
+            <a href="mailto:gajavadasanjeevkumar@gmail.com" class="ic-mail" aria-label="Mail Email"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://linkedin.com/in/gajavadasanjeevkumar" target="_blank" class="ic-linkedin" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://scholar.google.com/citations?user=KInR2w4AAAAJ" target="_blank" class="ic-scholar" aria-label="Google Scholar"><i class="fa-solid fa-graduation-cap"></i></a>
+            <a href="https://orcid.org/0000-0003-2415-3221" target="_blank" class="ic-orcid" aria-label="ORCID ID"><i class="fa-brands fa-orcid"></i></a>
+            <a href="https://twitter.com/Sanjeevkumar_G" target="_blank" class="ic-twitter" aria-label="Twitter X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://github.com/gajavadasanjeevkumar" target="_blank" class="ic-github" aria-label="GitHub Repository"><i class="fa-brands fa-github"></i></a>
+            <a href="https://leetcode.com/u/Gajavada_Sanjeevkumar" target="_blank" class="ic-leetcode" aria-label="LeetCode Profile"><i class="fa-solid fa-code"></i></a>
+            <a href="https://instagram.com/sanjeevkumar_gajavada" target="_blank" class="ic-instagram" aria-label="Instagram Profile"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/918121966205" target="_blank" class="ic-whatsapp" aria-label="WhatsApp Direct"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://facebook.com/G.Sanjeevkumar1" target="_blank" class="ic-facebook" aria-label="Facebook Profile"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://t.me/gajavadasanjeevkumar" target="_blank" class="ic-telegram" aria-label="Telegram Direct"><i class="fa-brands fa-telegram"></i></a>
+            <a href="https://youtube.com/@gajavadasanjeevkumar" target="_blank" class="ic-youtube" aria-label="YouTube Channel"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <!-- INTERACTION LOGIC CONTROL SCRIPT -->
     <script>
-        /* Dark/Light Theme Engine */
+        // Theme Engine Configuration
         const themeBtn = document.getElementById('theme-btn');
-        const bodyEl = document.documentElement;
-        
         themeBtn.addEventListener('click', () => {
-            const isDark = bodyEl.getAttribute('data-theme') === 'dark';
-            bodyEl.setAttribute('data-theme', isDark ? 'light' : 'dark');
-            themeBtn.innerHTML = isDark ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            themeBtn.innerHTML = newTheme === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
         });
 
-        /* Read progress indicator dynamic scroll computation */
+        // Sticky Reading Progress Bar Scroll Vector
         window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             document.getElementById('progress-bar').style.width = scrolled + '%';
         });
 
-        /* Tab Switch Logic */
-        function switchTab(evt, tabName) {
-            const tabContents = document.getElementsByClassName('tab-content');
-            for (let i = 0; i < tabContents.length; i++) {
-                tabContents[i].classList.remove('active');
-            }
-            const tabButtons = document.getElementsByClassName('tab-btn');
-            for (let i = 0; i < tabButtons.length; i++) {
-                tabButtons[i].classList.remove('active');
-            }
-            document.getElementById(tabName).classList.add('active');
+        // About Tabs Switcher
+        function switchTab(evt, tabId) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabContents.forEach(content => content.classList.remove('active'));
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
             evt.currentTarget.classList.add('active');
         }
 
-        /* Certificate Dynamic Filter & Search System */
+        // Mechanics of Solids Materials Dropdown Toggle
+        function toggleMosDropdown(evt) {
+            evt.stopPropagation();
+            const dropdown = document.getElementById('mos-dropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        // Close MOS dropdown when clicking anywhere else
+        document.addEventListener('click', () => {
+            const dropdown = document.getElementById('mos-dropdown');
+            if (dropdown && dropdown.classList.contains('active')) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        // Certification Interactive Filtering Engine
         function filterCertificates(vendor) {
-            const cards = document.querySelectorAll('#cert-grid-container .cert-card');
-            const btns = document.querySelectorAll('.filter-tabs .filter-btn');
+            const cards = document.querySelectorAll('.cert-card');
+            const tabs = document.querySelectorAll('.filter-btn');
             
-            btns.forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+                if(tab.getAttribute('onclick').includes(vendor)) {
+                    tab.classList.add('active');
+                }
+            });
 
             cards.forEach(card => {
                 if (vendor === 'all' || card.getAttribute('data-vendor') === vendor) {
@@ -2274,12 +3017,12 @@
 
         function searchCertificates() {
             const query = document.getElementById('cert-search').value.toLowerCase();
-            const cards = document.querySelectorAll('#cert-grid-container .cert-card');
+            const cards = document.querySelectorAll('.cert-card');
             
             cards.forEach(card => {
-                const title = card.querySelector('.cert-name').textContent.toLowerCase();
+                const name = card.querySelector('.cert-name').textContent.toLowerCase();
                 const issuer = card.querySelector('.cert-issuer').textContent.toLowerCase();
-                if (title.includes(query) || issuer.includes(query)) {
+                if (name.includes(query) || issuer.includes(query)) {
                     card.style.display = 'flex';
                 } else {
                     card.style.display = 'none';
@@ -2287,210 +3030,148 @@
             });
         }
 
-        /* Mechanics of Solids Dropdown */
-        function toggleMosDropdown(event) {
-            event.stopPropagation();
-            const dropdown = document.getElementById('mos-dropdown');
-            dropdown.classList.toggle('active');
+        /* -------------------------------------------------------------
+           DYNAMIC SINGLE PAGE APPLICATION (SPA) TRANSITION CONTROLLERS
+           ------------------------------------------------------------- */
+        let activeMainPaneId = 'dev-main-view';
+        let activeSubPaneId = null;
+
+        function openDevCategory(paneIdSuffix) {
+            // Hide previous active main screen
+            document.getElementById('dev-main-view').style.display = 'none';
+            if (activeMainPaneId && activeMainPaneId !== 'dev-main-view') {
+                document.getElementById(activeMainPaneId).classList.remove('active');
+            }
+            if (activeSubPaneId) {
+                document.getElementById(activeSubPaneId).classList.remove('active');
+                activeSubPaneId = null;
+            }
+
+            // Route to specified category viewport
+            const targetId = 'dev-' + paneIdSuffix;
+            const targetPane = document.getElementById(targetId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+                activeMainPaneId = targetId;
+            }
+            
+            // Seamlessly shift focus within viewport
+            document.getElementById('development').scrollIntoView({ behavior: 'smooth' });
         }
 
-        document.addEventListener('click', () => {
-            const dropdown = document.getElementById('mos-dropdown');
-            if (dropdown) dropdown.classList.remove('active');
-        });
+        function openSubCategory(subPaneId) {
+            // Hide parent main category view
+            if (activeMainPaneId) {
+                document.getElementById(activeMainPaneId).classList.remove('active');
+            }
+            
+            // Render sub-page layout
+            const targetSubPane = document.getElementById('sub-' + subPaneId);
+            if (targetSubPane) {
+                targetSubPane.classList.add('active');
+                activeSubPaneId = 'sub-' + subPaneId;
+            }
+            
+            document.getElementById('development').scrollIntoView({ behavior: 'smooth' });
+        }
 
-        /* Professional Development Dataset (53 items represented) */
-        const devData = {
-            fdps: [
-                { date: "29 Jun - 3 Jul 2026", title: "Research & Development Excellence through Data Science Case Studies", inst: "Sphoorthy Engineering College, Hyderabad" },
-                { date: "26 - 30 June 2026", title: "AI-Driven Business Analytics For Research, Teaching & Industry Applications", inst: "Jodhpur Institute of Engineering & Technology, Jodhpur" },
-                { date: "22 - 27 June 2026", title: "AI Powered Teaching Excellence", inst: "Walchand Institute of Technology, Solapur" },
-                { date: "16 - 21 January 2026", title: "Next-Generation Mechanical Engineering: From Research to Industrial Applications", inst: "Institute of Engineering & Management (IEM) in association with HRDC" },
-                { date: "5 - 8 January 2026", title: "Advanced Computational Modeling for Solids and Fluids", inst: "Indian Institute of Technology Bhilai, India" },
-                { date: "17 - 21 November 2025", title: "Recent Advances in Composite Materials: Integrating Modelling And Experimental Approaches", inst: "Maharaj Vijayaram Gajapathi Raj College of Engineering, Vizianagaram" },
-                { date: "27 - 31 October 2025", title: "The Role of Artificial Intelligence in Manufacturing Industries", inst: "Maharaj Vijayaram Gajapathi Raj College of Engineering, Vizianagaram" },
-                { date: "27 Oct - 6 Nov 2025", title: "The Art and Science of Successful Proposal Writing: Techniques, Strategies, and Best Practices", inst: "CVR College of Engineering, Hyderabad" },
-                { date: "15 - 19 September 2025", title: "Smart Materials and Technologies for Durable Structures (SMTDS’25)", inst: "R.V.R.J.C. College of Engineering, Guntur" },
-                { date: "30 Jul - 3 Aug 2024", title: "Innovations in Robotics and UAVs: Digital Twins, Drone Design, and Future Trends", inst: "VNR Vignana Jyothi Institute of Engineering and Technology, Hyderabad" },
-                { date: "22 Jul - 2 Aug 2024", title: "Transforming Education: Integrating OBE and NEP 2020", inst: "CVR College of Engineering, Hyderabad" },
-                { date: "26 Dec 2023 - 2 Jan 2024", title: "Advanced Python Programming", inst: "Guru Nanak Institutions Technical Campus, Hyderabad" },
-                { date: "12 - 16 September 2023", title: "Fundamentals, Advancements and Applications of Robotics", inst: "Vignan Institute of Technology and Science, Hyderabad" }
-            ],
-            workshops: [
-                { date: "10 - 15 February 2025", title: "Practical Finite Element Analysis Workshop", inst: "Indian Institute of Technology, Madras" },
-                { date: "12 - 14 March 2024", title: "Vibration and Noise Control Engineering", inst: "GMR Institute of Technology, Rajam" },
-                { date: "1 - 3 December 2023", title: "Scientific Writing using LaTeX", inst: "NIT Warangal" }
-            ],
-            atal: [
-                { date: "17 - 22 November 2025", title: "Robotics for Industry 4.0: Enabling Smart Manufacturing", inst: "Sri Venkateswara College of Engineering (AICTE ATAL FDP)" },
-                { date: "5 - 9 July 2021", title: "Green Technology and Sustainability Engineering", inst: "Amrita Vishwa Vidyapeetham (AICTE ATAL Online Elementary FDP)" }
-            ],
-            'summer-schools': [
-                { date: "1 - 5 July 2026", title: "Data-Driven Modelling for Mechanical Systems (D2MMS)", inst: "Indian Institute of Technology (Indian School of Mines), Dhanbad" }
-            ],
-            conferences: [
-                { date: "19 - 20 December 2025", title: "AI for Forensics and Biometric Applications (AIFB) 2025", inst: "Indian Institute of Technology Bhilai, India" }
-            ],
-            webinars: [
-                { date: "Continuous Series", title: "A Vision Towards Materials and Manufacturing", inst: "KPR Institute of Engineering and Technology, Coimbatore (National Webinar)" },
-                { date: "Continuous Series", title: "Essential Technologies and Career Opportunities in Mechanical Engineering", inst: "Universal Engineering College, Kerala (Five-Day International Webinar Series)" }
-            ],
-            seminars: [
-                { date: "12 June 2024", title: "Design Optimization of Aerostructures", inst: "BITS Pilani" }
-            ],
-            sttps: [
-                { date: "18 - 23 August 2025", title: "Recent Advancements in Materials Engineering", inst: "NITTTR Kolkata" },
-                { date: "1 - 6 November 2024", title: "Machine Learning Applications in Thermal Systems", inst: "SVNIT Surat" }
-            ]
+        function goBackToDevHome() {
+            // Clean active screens and return home
+            if (activeMainPaneId) {
+                document.getElementById(activeMainPaneId).classList.remove('active');
+            }
+            if (activeSubPaneId) {
+                document.getElementById(activeSubPaneId).classList.remove('active');
+                activeSubPaneId = null;
+            }
+            
+            document.getElementById('dev-main-view').style.display = 'block';
+            activeMainPaneId = 'dev-main-view';
+            
+            document.getElementById('development').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function goBackToCategory(parentSuffix) {
+            if (activeSubPaneId) {
+                document.getElementById(activeSubPaneId).classList.remove('active');
+                activeSubPaneId = null;
+            }
+            
+            const targetParentId = 'dev-' + parentSuffix;
+            document.getElementById(targetParentId).classList.add('active');
+            activeMainPaneId = targetParentId;
+            
+            document.getElementById('development').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        /* -------------------------------------------------------------
+           MODAL PORTAL ROUTING LOGIC & FORM SECURITY
+           ------------------------------------------------------------- */
+        let routingContext = {
+            type: 'General',
+            name: '',
+            isCert: false
         };
 
-        /* SPA routing pane mechanics */
-        function openDevCategory(categoryKey) {
-            const mainView = document.getElementById('dev-main-view');
-            const pane = document.getElementById('dev-details-pane');
-            const title = document.getElementById('dev-pane-title');
-            const grid = document.getElementById('dev-pane-grid');
+        function openRouteModal(type, entityName) {
+            routingContext.type = type;
+            routingContext.name = entityName;
+            routingContext.isCert = true;
+
+            document.getElementById('modal-title-slot').innerText = `Verify ${type} Credentials`;
+            document.getElementById('modal-desc-slot').innerText = `Proceeding online validation route for: "${entityName}"`;
             
-            // Format Title
-            const categoryNames = {
-                fdps: "Faculty Development Programs (FDPs)",
-                workshops: "Workshops",
-                atal: "ATAL Certifications",
-                'summer-schools': "Summer Schools",
-                conferences: "Conferences",
-                webinars: "Webinars",
-                seminars: "Seminars",
-                sttps: "Short-Term Courses & STTPs"
-            };
+            document.getElementById('portal-modal').style.display = 'flex';
+        }
+
+        function closePortalModal() {
+            document.getElementById('portal-modal').style.display = 'none';
+        }
+
+        function handleFormSubmission(evt) {
+            evt.preventDefault();
+            routingContext.type = 'Academic Message';
+            routingContext.name = document.getElementById('usr-subject').value;
+            routingContext.isCert = false;
+
+            document.getElementById('modal-title-slot').innerText = "Send Academic Message";
+            document.getElementById('modal-desc-slot').innerText = "Choose your desired transmission platform below:";
             
-            title.innerHTML = `<i class="fa-solid fa-award"></i> ${categoryNames[categoryKey]}`;
-            grid.innerHTML = '';
+            document.getElementById('portal-modal').style.display = 'flex';
+        }
+
+        function submitToEmail() {
+            const bodyMsg = routingContext.isCert 
+                ? `Hello,\n\nI want to verify the credentials for the ${routingContext.type}: ${routingContext.name}.`
+                : `Name: ${document.getElementById('usr-name').value}\nEmail: ${document.getElementById('usr-email').value}\n\nMessage:\n${document.getElementById('usr-message').value}`;
             
-            // Load Dynamic Cards
-            const items = devData[categoryKey] || [];
-            items.forEach((item, idx) => {
-                const uniqueId = `${categoryKey}-${idx}`;
-                const card = document.createElement('div');
-                card.className = 'glass-card dev-card';
-                card.innerHTML = `
-                    <div>
-                        <span class="dev-card-date">${item.date}</span>
-                        <h4 class="dev-card-title">${item.title}</h4>
-                        <p class="dev-card-institution">${item.inst}</p>
-                    </div>
-                    <div class="certificate-upload-box">
-                        <label class="upload-label" for="upload-${uniqueId}">
-                            <i class="fa-solid fa-cloud-arrow-up"></i> Upload Certificate (PDF)
-                        </label>
-                        <input type="file" id="upload-${uniqueId}" class="upload-input" accept="application/pdf" onchange="handleCertificateUpload(event, '${uniqueId}')">
-                        <a href="#" id="view-${uniqueId}" class="view-uploaded-btn" target="_blank">
-                            <i class="fa-solid fa-file-pdf"></i> View Certificate
-                        </a>
-                    </div>
-                `;
-                grid.appendChild(card);
+            const subject = routingContext.isCert ? `Verification Request: ${routingContext.name}` : routingContext.name;
+            window.open(`mailto:gajavadasanjeevkumar@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyMsg)}`);
+            closePortalModal();
+        }
+
+        function submitToWhatsapp() {
+            const textMsg = routingContext.isCert
+                ? `Hello, I'd like to verify the credentials of ${routingContext.type}: *${routingContext.name}*`
+                : `*Academic Inquiry*\n\n*From:* ${document.getElementById('usr-name').value}\n*Email:* ${document.getElementById('usr-email').value}\n*Subject:* ${routingContext.name}\n\n*Message:* ${document.getElementById('usr-message').value}`;
                 
-                // Restore upload if stored previously
-                const savedFile = localStorage.getItem(`cert-file-${uniqueId}`);
-                if (savedFile) {
-                    const viewBtn = card.querySelector(`#view-${uniqueId}`);
-                    viewBtn.href = savedFile;
-                    viewBtn.style.display = 'inline-flex';
-                    const lbl = card.querySelector(`.upload-label`);
-                    lbl.innerHTML = `<i class="fa-solid fa-rotate"></i> Replace Certificate`;
+            window.open(`https://api.whatsapp.com/send?phone=918121966205&text=${encodeURIComponent(textMsg)}`);
+            closePortalModal();
+        }
+
+        // Scroll Reveal Trigger Animation System
+        const scrollItems = document.querySelectorAll('.animate-on-scroll');
+        const revealOnScroll = () => {
+            const triggerBottom = (window.innerHeight / 5) * 4.5;
+            scrollItems.forEach(item => {
+                const itemTop = item.getBoundingClientRect().top;
+                if (itemTop < triggerBottom) {
+                    item.classList.add('appear');
                 }
             });
-
-            mainView.style.display = 'none';
-            pane.classList.add('active');
-        }
-
-        function closeDevPane() {
-            const mainView = document.getElementById('dev-main-view');
-            const pane = document.getElementById('dev-details-pane');
-            pane.classList.remove('active');
-            mainView.style.display = 'grid';
-        }
-
-        /* Certificate Uploader Engine */
-        function handleCertificateUpload(event, id) {
-            const file = event.target.files[0];
-            if (file && file.type === "application/pdf") {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const pdfDataUrl = e.target.result;
-                    try {
-                        localStorage.setItem(`cert-file-${id}`, pdfDataUrl);
-                        const viewBtn = document.getElementById(`view-${id}`);
-                        viewBtn.href = pdfDataUrl;
-                        viewBtn.style.display = 'inline-flex';
-                        const lbl = event.target.previousElementSibling;
-                        lbl.innerHTML = `<i class="fa-solid fa-rotate"></i> Replace Certificate`;
-                    } catch (error) {
-                        alert("Certificate loaded in memory for this session! (File size limits exceeded local storage fallback limits).");
-                        const blob = new Blob([file], { type: "application/pdf" });
-                        const objUrl = URL.createObjectURL(blob);
-                        const viewBtn = document.getElementById(`view-${id}`);
-                        viewBtn.href = objUrl;
-                        viewBtn.style.display = 'inline-flex';
-                    }
-                };
-                reader.readAsDataURL(file);
-            } else {
-                alert("Please select a valid PDF certificate file.");
-            }
-        }
-
-        /* Core Intersection Observer Animation Engine */
-        const observerOptions = {
-            root: null,
-            threshold: 0.1,
-            rootMargin: "0px"
         };
-
-        const animationObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('appear');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            animationObserver.observe(el);
-        });
-
-        /* Form Submissions and Overlay Modal */
-        let cacheSubmission = {};
-
-        function handleFormSubmission(event) {
-            event.preventDefault();
-            cacheSubmission = {
-                name: document.getElementById('frm-name').value,
-                subject: document.getElementById('frm-subject').value,
-                body: document.getElementById('frm-body').value
-            };
-            document.getElementById('route-modal-overlay').style.display = 'flex';
-        }
-
-        function triggerDirectRoute(type) {
-            const email = "sanjeevkumargajawada@gmail.com";
-            const phone = "91 9030 833 667";
-            
-            if (type === 'mail') {
-                const mailto = `mailto:${email}?subject=${encodeURIComponent(cacheSubmission.subject)}&body=${encodeURIComponent(cacheSubmission.body + "\n\nBest Regards,\n" + cacheSubmission.name)}`;
-                window.open(mailto, '_blank');
-            } else if (type === 'whatsapp') {
-                const text = `*Inquiry from portfolio*\n*Name:* ${cacheSubmission.name}\n*Subject:* ${cacheSubmission.subject}\n*Message:* ${cacheSubmission.body}`;
-                const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
-                window.open(waUrl, '_blank');
-            }
-            closeRoutePortal();
-        }
-
-        function closeRoutePortal() {
-            document.getElementById('route-modal-overlay').style.display = 'none';
-        }
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
     </script>
 </body>
 </html>
