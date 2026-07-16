@@ -271,6 +271,7 @@
             font-size: 1.1rem;
             text-decoration: none;
             color: var(--primary);
+            width: 40px; /* Preserve spacing after SG removal */
         }
 
         .nav-links {
@@ -705,6 +706,7 @@
             border-top: 1px solid var(--border-color);
             padding-top: 10px;
             margin-top: 5px;
+            position: relative;
         }
 
         .materials-link {
@@ -716,10 +718,43 @@
             font-size: 0.85rem;
             text-decoration: none;
             transition: var(--transition-smooth);
+            cursor: pointer;
         }
         .materials-link:hover {
             color: var(--secondary);
             transform: translateX(3px);
+        }
+
+        /* Dropdown selector styles for Mechanics of Solids materials */
+        .materials-dropdown {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: var(--bg-base);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 10px;
+            margin-top: 8px;
+            z-index: 10;
+        }
+        .materials-dropdown.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        .materials-dropdown-item {
+            font-size: 0.8rem;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 6px;
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+        }
+        .materials-dropdown-item:hover {
+            background: var(--accent);
+            color: #FFFFFF !important;
         }
 
         /* DYNAMIC ENGINE: FILTERABLE & SEARCHABLE CERTIFICATIONS */
@@ -860,16 +895,31 @@
             margin-bottom: 50px;
         }
 
+        .dev-category-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background: var(--bg-surface);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
+            margin-bottom: 15px;
+        }
+
+        .dev-category-header:hover {
+            border-color: var(--accent);
+            background: rgba(14, 165, 233, 0.05);
+        }
+
         .dev-category-title {
             font-family: var(--font-serif);
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--primary);
-            margin-bottom: 25px;
             display: flex;
             align-items: center;
             gap: 10px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 8px;
         }
 
         .dev-category-title i {
@@ -880,6 +930,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 25px;
+            transition: max-height 0.4s ease-out;
         }
 
         .dev-card {
@@ -911,6 +962,56 @@
             font-size: 0.9rem;
             color: var(--text-muted);
             margin-bottom: 15px;
+        }
+
+        /* Certificate Upload Area */
+        .certificate-upload-box {
+            margin-top: 15px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .upload-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .upload-label:hover {
+            color: var(--accent);
+        }
+
+        .upload-input {
+            display: none;
+        }
+
+        .view-uploaded-btn {
+            display: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #10B981;
+            text-decoration: none;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition-smooth);
+        }
+
+        /* SPA Redirect Mode inside Tab */
+        .dev-details-pane {
+            display: none;
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .dev-details-pane.active {
+            display: block;
         }
 
         /* CONTACT & QUERY FORM */
@@ -991,7 +1092,7 @@
             box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
         }
 
-        /* FULLY PERSISTENT FIXED FOOTER SOCIAL DOCK */
+        /* FULLY PERSISTENT FIXED FOOTER SOCIAL DOCK (NO UNDERLINES) */
         .persistent-social-dock {
             position: fixed;
             bottom: 0;
@@ -1030,6 +1131,8 @@
 
         .dock-icons a {
             color: rgba(255, 255, 255, 0.7);
+            text-decoration: none !important; /* Strictly block underlines */
+            border-bottom: none !important; /* Force block outlines */
             transition: var(--transition-smooth);
             width: 40px;
             height: 40px;
@@ -1041,10 +1144,16 @@
             flex-shrink: 0;
         }
 
+        .dock-icons a i {
+            text-decoration: none !important; /* Extra safety */
+            border: none !important;
+        }
+
         .dock-icons a:hover {
-            color: #FFFFFF;
+            color: #FFFFFF !important;
             background: var(--accent);
             transform: scale(1.15) translateY(-3px);
+            text-decoration: none !important;
         }
 
         /* Custom Platform Brand Colors on Hover */
@@ -1170,7 +1279,8 @@
     <!-- MAIN NAVBAR NAVIGATION -->
     <header>
         <div class="nav-container">
-            <a href="#hero" class="nav-brand">SG</a>
+            <!-- Brand text "SG" removed safely -->
+            <a href="#hero" class="nav-brand"></a>
             <ul class="nav-links">
                 <li><a href="#hero" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
                 <li><a href="#about"><i class="fa-solid fa-user"></i> About</a></li>
@@ -1456,13 +1566,18 @@
                                 <a href="MOS/" class="materials-link"><i class="fa-solid fa-folder-open"></i> Access Materials</a>
                             </div>
                         </div>
-                        <div class="subject-card">
+                        <div class="subject-card" id="mos-subject-card">
                             <div class="subject-main-info">
                                 <div class="subject-icon"><i class="fa-solid fa-cubes"></i></div>
                                 <span class="subject-name">Mechanics of Solids</span>
                             </div>
                             <div class="subject-materials-box">
-                                <a href="MOS/" class="materials-link"><i class="fa-solid fa-folder-open"></i> Access Materials</a>
+                                <span class="materials-link" onclick="toggleMosDropdown(event)"><i class="fa-solid fa-folder-open"></i> Access Materials <i class="fa-solid fa-caret-down"></i></span>
+                                <div class="materials-dropdown" id="mos-dropdown">
+                                    <a class="materials-dropdown-item" href="https://github.com/skgajawada/skgajawada.github.io/blob/5f405a8be97cf3091650ea5ac008cb622a57d9a6/Subjects%20Handled/Mechanics%20of%20Solids/MOS_Notes.pdf" target="_blank"><i class="fa-solid fa-file-pdf"></i> MOS Notes</a>
+                                    <a class="materials-dropdown-item" href="https://github.com/skgajawada/skgajawada.github.io/blob/5f405a8be97cf3091650ea5ac008cb622a57d9a6/Subjects%20Handled/Mechanics%20of%20Solids/Strength%20of%20Materials%20by%20S.%20S.%20Rattan.pdf" target="_blank"><i class="fa-solid fa-file-pdf"></i> Strength of Materials by S.S. Rattan</a>
+                                    <a class="materials-dropdown-item" href="https://github.com/skgajawada/skgajawada.github.io/blob/313a3a26cfa70e4d116da300445aae4e11f9f32d/Subjects%20Handled/Mechanics%20of%20Solids/Bansal%20R.%20K.%20-%20A%20Textbook%20Of%20Strength%20Of%20Materials_%20Mechanics%20of%20Solids-Laxmi%20Publications%20(2012).pdf" target="_blank"><i class="fa-solid fa-file-pdf"></i> Bansal R. K. Textbook</a>
+                                </div>
                             </div>
                         </div>
                         <div class="subject-card">
@@ -1918,7 +2033,7 @@
                 </div>
             </section>
 
-            <!-- PROFESSIONAL DEVELOPMENT SECTION (53 ITEMS) -->
+            <!-- PROFESSIONAL DEVELOPMENT SECTION -->
             <section id="development" style="background:var(--bg-base);" class="animate-on-scroll">
                 <div class="container">
                     <div class="section-header">
@@ -1926,418 +2041,138 @@
                         <h2 class="section-title">Professional Development</h2>
                     </div>
 
-                    <!-- ATAL Certifications -->
-                    <div class="dev-category-block">
-                        <h3 class="dev-category-title"><i class="fa-solid fa-award"></i> ATAL Certifications</h3>
-                        <div class="dev-items-grid">
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">17 - 22 November 2025</span>
-                                    <h4 class="dev-card-title">Robotics for Industry 4.0: Enabling Smart Manufacturing</h4>
-                                    <p class="dev-card-institution">Sri Venkateswara College of Engineering (AICTE ATAL FDP)</p>
+                    <!-- SPA-style routing within the same tab -->
+                    <div id="dev-main-view">
+                        <p style="color: var(--text-muted); margin-bottom: 30px;">Click on any category heading or subheading below to dynamically view all detailed entries and upload your certificates in this tab.</p>
+                        
+                        <div class="subjects-grid">
+                            <!-- Category Headings -->
+                            <div class="subject-card" onclick="openDevCategory('fdps')">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-users-gear"></i></div>
+                                    <span class="subject-name">FDPs</span>
+                                </div>
+                                <div class="subject-materials-box" style="border-top: none;">
+                                    <span class="materials-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
                                 </div>
                             </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">5 - 9 July 2021</span>
-                                    <h4 class="dev-card-title">Green Technology and Sustainability Engineering</h4>
-                                    <p class="dev-card-institution">Amrita Vishwa Vidyapeetham (AICTE ATAL Online Elementary FDP)</p>
+
+                            <div class="subject-card" onclick="openDevCategory('workshops')">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-gears"></i></div>
+                                    <span class="subject-name">Workshops</span>
+                                </div>
+                                <div class="subject-materials-box" style="border-top: none;">
+                                    <span class="materials-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="subject-card" onclick="openDevCategory('atal')">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-award"></i></div>
+                                    <span class="subject-name">ATAL</span>
+                                </div>
+                                <div class="subject-materials-box" style="border-top: none;">
+                                    <span class="materials-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="subject-card" onclick="openDevCategory('summer-schools')">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-umbrella-beach"></i></div>
+                                    <span class="subject-name">Summer Schools</span>
+                                </div>
+                                <div class="subject-materials-box" style="border-top: none;">
+                                    <span class="materials-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="subject-card" onclick="openDevCategory('conferences')">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-comments"></i></div>
+                                    <span class="subject-name">Conferences</span>
+                                </div>
+                                <div class="subject-materials-box" style="border-top: none;">
+                                    <span class="materials-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="subject-card" onclick="openDevCategory('webinars')">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-globe"></i></div>
+                                    <span class="subject-name">Webinars</span>
+                                </div>
+                                <div class="subject-materials-box" style="border-top: none;">
+                                    <span class="materials-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="subject-card" onclick="openDevCategory('seminars')">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-person-chalkboard"></i></div>
+                                    <span class="subject-name">Seminars</span>
+                                </div>
+                                <div class="subject-materials-box" style="border-top: none;">
+                                    <span class="materials-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+
+                            <!-- Sub Heading -->
+                            <div class="subject-card" onclick="openDevCategory('sttps')">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-clock"></i></div>
+                                    <span class="subject-name">Short-Term Courses & STTPs (Sub)</span>
+                                </div>
+                                <div class="subject-materials-box" style="border-top: none;">
+                                    <span class="materials-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Summer Schools Attended -->
-                    <div class="dev-category-block">
-                        <h3 class="dev-category-title"><i class="fa-solid fa-umbrella-beach"></i> Summer Schools Attended</h3>
-                        <div class="dev-items-grid">
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">1 - 5 July 2026</span>
-                                    <h4 class="dev-card-title">Data-Driven Modelling for Mechanical Systems (D2MMS)</h4>
-                                    <p class="dev-card-institution">Indian Institute of Technology (Indian School of Mines), Dhanbad</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Conferences & Webinars Attended -->
-                    <div class="dev-category-block">
-                        <h3 class="dev-category-title"><i class="fa-solid fa-chalkboard-user"></i> Conferences & Webinars Attended</h3>
-                        <div class="dev-items-grid">
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">19 - 20 December 2025</span>
-                                    <h4 class="dev-card-title">AI for Forensics and Biometric Applications (AIFB) 2025</h4>
-                                    <p class="dev-card-institution">Indian Institute of Technology Bhilai, India</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">A Vision Towards Materials and Manufacturing</h4>
-                                    <p class="dev-card-institution">KPR Institute of Engineering and Technology, Coimbatore (National Webinar)</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Essential Technologies and Career Opportunities in Mechanical Engineering</h4>
-                                    <p class="dev-card-institution">Universal Engineering College, Kerala (Five-Day International Webinar Series)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Faculty Development Programs (FDPs) -->
-                    <div class="dev-category-block">
-                        <h3 class="dev-category-title"><i class="fa-solid fa-users-gear"></i> Faculty Development Programs (FDPs)</h3>
-                        <div class="dev-items-grid">
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">29 Jun - 3 Jul 2026</span>
-                                    <h4 class="dev-card-title">Research & Development Excellence through Data Science Case Studies</h4>
-                                    <p class="dev-card-institution">Sphoorthy Engineering College, Hyderabad</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">26 - 30 June 2026</span>
-                                    <h4 class="dev-card-title">AI-Driven Business Analytics For Research, Teaching & Industry Applications</h4>
-                                    <p class="dev-card-institution">Jodhpur Institute of Engineering & Technology, Jodhpur</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">22 - 27 June 2026</span>
-                                    <h4 class="dev-card-title">AI Powered Teaching Excellence</h4>
-                                    <p class="dev-card-institution">Walchand Institute of Technology, Solapur</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">16 - 21 January 2026</span>
-                                    <h4 class="dev-card-title">Next-Generation Mechanical Engineering: From Research to Industrial Applications</h4>
-                                    <p class="dev-card-institution">Institute of Engineering & Management (IEM) in association with HRDC</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">5 - 8 January 2026</span>
-                                    <h4 class="dev-card-title">Advanced Computational Modeling for Solids and Fluids</h4>
-                                    <p class="dev-card-institution">Indian Institute of Technology Bhilai, India</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">17 - 21 November 2025</span>
-                                    <h4 class="dev-card-title">Recent Advances in Composite Materials: Integrating Modelling And Experimental Approaches</h4>
-                                    <p class="dev-card-institution">Maharaj Vijayaram Gajapathi Raj College of Engineering, Vizianagaram</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">27 - 31 October 2025</span>
-                                    <h4 class="dev-card-title">The Role of Artificial Intelligence in Manufacturing Industries</h4>
-                                    <p class="dev-card-institution">Maharaj Vijayaram Gajapathi Raj College of Engineering, Vizianagaram</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">27 Oct - 6 Nov 2025</span>
-                                    <h4 class="dev-card-title">The Art and Science of Successful Proposal Writing: Techniques, Strategies, and Best Practices</h4>
-                                    <p class="dev-card-institution">CVR College of Engineering, Hyderabad</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">15 - 19 September 2025</span>
-                                    <h4 class="dev-card-title">Smart Materials and Technologies for Durable Structures (SMTDS’25)</h4>
-                                    <p class="dev-card-institution">R.V.R.J.C. College of Engineering, Guntur</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">30 Jul - 3 Aug 2024</span>
-                                    <h4 class="dev-card-title">Innovations in Robotics and UAVs: Digital Twins, Drone Design, and Future Trends</h4>
-                                    <p class="dev-card-institution">VNR Vignana Jyothi Institute of Engineering and Technology, Hyderabad</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">22 Jul - 2 Aug 2024</span>
-                                    <h4 class="dev-card-title">Transforming Education: Integrating OBE and NEP 2020</h4>
-                                    <p class="dev-card-institution">CVR College of Engineering, Hyderabad</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">26 Dec 2023 - 2 Jan 2024</span>
-                                    <h4 class="dev-card-title">Advanced Python Programming</h4>
-                                    <p class="dev-card-institution">Guru Nanak Institutions Technical Campus, Hyderabad</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">12 - 16 September 2023</span>
-                                    <h4 class="dev-card-title">Fundamentals, Advancements and Applications of Robotics</h4>
-                                    <p class="dev-card-institution">Vignan Institute of Technology and Science, Hyderabad</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">23 - 28 August 2021</span>
-                                    <h4 class="dev-card-title">Additive Manufacturing Processes and Its Applications</h4>
-                                    <p class="dev-card-institution">Sri Manakula Vinayagar Engineering College, Puducherry</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">2020</span>
-                                    <h4 class="dev-card-title">Mathematical Modeling & Numerical Techniques 2020</h4>
-                                    <p class="dev-card-institution">Kakatiya Institute of Technology and Science, Warangal</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">2020</span>
-                                    <h4 class="dev-card-title">Frontiers of Research in Mechanical Engineering (FORME 2020)</h4>
-                                    <p class="dev-card-institution">Satya Institute of Technology and Management, Vizianagaram</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Three-Week Faculty Induction Training Program</h4>
-                                    <p class="dev-card-institution">TLC, Indian Institute of Technology Hyderabad (Supported by MHRD)</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Engineering Physics and Materials Science</h4>
-                                    <p class="dev-card-institution">Chaitanya Bharathi Institute of Technology, Hyderabad</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Recent Trends in Manufacturing</h4>
-                                    <p class="dev-card-institution">Mahatma Gandhi Institute of Technology, Hyderabad</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Recent Advances in Renewable Energy & Energy Efficiency Technologies</h4>
-                                    <p class="dev-card-institution">Mahatma Gandhi Institute of Technology, Hyderabad</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Advanced Welding Technologies</h4>
-                                    <p class="dev-card-institution">Department of Mechanical Engineering, JAIN Deemed-to-be University, Bengaluru</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Recent Developments in Solar Energy Recovery and Storage Technologies</h4>
-                                    <p class="dev-card-institution">St. Joseph’s College of Engineering, Chennai</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Recent Developments of Nano-Composites and Smart Materials in the Aerospace Industry</h4>
-                                    <p class="dev-card-institution">MLR Institute of Technology, Hyderabad</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Research Methodologies in Mechanical Engineering (A Refresher Approach)</h4>
-                                    <p class="dev-card-institution">Narsimha Reddy Engineering College, Secunderabad</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Nanoscience and Nanotechnology - Current Perspectives</h4>
-                                    <p class="dev-card-institution">G. H. Raisoni College of Engineering, Nagpur</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Advanced Composite Materials</h4>
-                                    <p class="dev-card-institution">R. R. Institute of Technology, Bengaluru</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Optimization Techniques for Mechanical Engineers</h4>
-                                    <p class="dev-card-institution">Vignan Institute of Technology and Science, Deshmukhi, Hyderabad</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Research Opportunities in Advanced Welding Processes</h4>
-                                    <p class="dev-card-institution">Hindusthan College of Engineering and Technology, Coimbatore</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Workshops Attended -->
-                    <div class="dev-category-block">
-                        <h3 class="dev-category-title"><i class="fa-solid fa-screwdriver-wrench"></i> Workshops Attended</h3>
-                        <div class="dev-items-grid">
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">7 - 16 February 2026</span>
-                                    <h4 class="dev-card-title">Problem-Driven AI: Real World Applications and Solution Frameworks</h4>
-                                    <p class="dev-card-institution">National Institute of Technology Rourkela</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">31 October 2023</span>
-                                    <h4 class="dev-card-title">Emission Control Strategies in Thermal Power Plants</h4>
-                                    <p class="dev-card-institution">OP Jindal University and Jindal Institute of Power Technology, JPL Tamnar</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Autodesk Authorized Academic Partner Event</h4>
-                                    <p class="dev-card-institution">Guru Nanak Institutions Technical Campus, Hyderabad</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Computational Research Techniques Using MATLAB</h4>
-                                    <p class="dev-card-institution">Sree Chaitanya College of Engineering, Karimnagar</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Metallurgy for Mechanical Engineering</h4>
-                                    <p class="dev-card-institution">Sree Chaitanya College of Engineering, Karimnagar</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Short-Term Courses & STTPs Attended -->
-                    <div class="dev-category-block">
-                        <h3 class="dev-category-title"><i class="fa-solid fa-graduation-cap"></i> Short-Term Courses & STTPs</h3>
-                        <div class="dev-items-grid">
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">22 - 27 March 2021</span>
-                                    <h4 class="dev-card-title">Enduring Trends in Hydraulic Control Systems: Past, Present and Future</h4>
-                                    <p class="dev-card-institution">Indian Institute of Technology Madras (CCE STC)</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Theory of Plasticity and Its Applications</h4>
-                                    <p class="dev-card-institution">Indian Institute of Technology Bombay (CE & QIP STC)</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Application of Forecasting Methods in Engineering and Business Problems</h4>
-                                    <p class="dev-card-institution">Indian Institute of Technology Kharagpur (AICTE & QIP STC)</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Green Manufacturing</h4>
-                                    <p class="dev-card-institution">NITTTR Chandigarh at Sree Chaitanya College of Engineering, Karimnagar</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Training of Trainers (TOT) for Teacher Educator</h4>
-                                    <p class="dev-card-institution">NITTTR Bhopal (Online STTP)</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Advances in Additive Manufacturing</h4>
-                                    <p class="dev-card-institution">Siemens CoE for Digital Manufacturing and Robotics, YCCE Nagpur</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Advanced Techniques in Modelling and Analysis for Materials and Manufacturing Process</h4>
-                                    <p class="dev-card-institution">VNR Vignana Jyothi Institute of Engineering and Technology, Hyderabad</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Modeling and Analysis using MATLAB and Python for Mechanical Engineering Applications</h4>
-                                    <p class="dev-card-institution">VNR Vignana Jyothi Institute of Engineering and Technology, Hyderabad</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Advances in Finite Element Method for Industry & Research Applications</h4>
-                                    <p class="dev-card-institution">Vasavi College of Engineering, Hyderabad</p>
-                                </div>
-                            </div>
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Continuous</span>
-                                    <h4 class="dev-card-title">Design of Experiments in Engineering</h4>
-                                    <p class="dev-card-institution">B. V. Raju Institute of Technology, Vishnupur, Narsapur, Medak</p>
-                                </div>
-                            </div>
+                    <!-- Dynamic Details Pane -->
+                    <div id="dev-details-pane" class="dev-details-pane">
+                        <button class="btn btn-secondary" onclick="closeDevPane()" style="margin-bottom: 30px;"><i class="fa-solid fa-arrow-left"></i> Back to Categories</button>
+                        <h3 id="dev-pane-title" class="dev-category-title" style="margin-bottom: 25px;">Category Name</h3>
+                        <div class="dev-items-grid" id="dev-pane-grid">
+                            <!-- Dynamic Cards are loaded here -->
                         </div>
                     </div>
 
                 </div>
             </section>
 
-            <!-- CONTACT SECTION -->
-            <section id="contact" class="contact-section">
+            <!-- CONTACT & QUERY FORM -->
+            <section id="contact" class="contact-section animate-on-scroll">
                 <div class="container">
                     <div class="contact-grid">
                         <div class="contact-info-panel">
-                            <h3>Connect Directly</h3>
-                            <p class="contact-minimal-intro">Fill out the form below to compile a message. Upon clicking dispatch, you can route the content directly to my Email, WhatsApp, Telegram, or Instagram instantly.</p>
+                            <span class="section-tag">Connection</span>
+                            <h2 class="section-title" style="display:inline-block">Get In Touch</h2>
+                            <p class="contact-minimal-intro" style="margin-top: 15px;">Have an academic query or collaboration proposal? Drop a secure message directly to my portal workflow.</p>
                             
-                            <form id="contact-query-form" class="query-form" onsubmit="handleQuerySubmit(event)">
+                            <form class="query-form" onsubmit="handleFormSubmission(event)">
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="form-name">Full Name</label>
-                                        <input type="text" id="form-name" class="form-control" placeholder="Enter your name" required>
+                                        <label for="frm-name">Your Full Name</label>
+                                        <input type="text" id="frm-name" class="form-control" placeholder="Prof. Jane Doe" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="form-subject">Subject</label>
-                                        <input type="text" id="form-subject" class="form-control" placeholder="Topic of interest" required>
+                                        <label for="frm-email">Email Address</label>
+                                        <input type="email" id="frm-email" class="form-control" placeholder="jane.doe@university.edu" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="form-msg">Message</label>
-                                    <textarea id="form-msg" class="form-control" rows="5" placeholder="Draft your query here..." required></textarea>
+                                    <label for="frm-subject">Message Subject</label>
+                                    <input type="text" id="frm-subject" class="form-control" placeholder="Research Proposal / Inquiry" required>
                                 </div>
-                                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Formulate Message</button>
+                                <div class="form-group">
+                                    <label for="frm-body">Message Body</label>
+                                    <textarea id="frm-body" class="form-control" rows="5" placeholder="Write your message detail here..." required></textarea>
+                                </div>
+                                <div style="text-align: left;">
+                                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Dispatch Message</button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -2347,117 +2182,86 @@
         </div>
     </main>
 
-    <!-- PORTAL ROUTING MODAL -->
-    <div class="route-overlay" id="custom-route-modal">
-        <div class="route-modal">
-            <h3>Dispatch Message</h3>
-            <p>Select your preferred platform to transmit the compiled text profile:</p>
-            <div class="route-options">
-                <button class="route-opt-btn" onclick="executeRouting('mail')">
-                    <i class="fa-solid fa-envelope" style="color: #EA4335;"></i>
-                    <span>Email</span>
-                </button>
-                <button class="route-opt-btn" onclick="executeRouting('whatsapp')">
-                    <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i>
-                    <span>WhatsApp</span>
-                </button>
-                <button class="route-opt-btn" onclick="executeRouting('telegram')">
-                    <i class="fa-brands fa-telegram" style="color: #0088CC;"></i>
-                    <span>Telegram</span>
-                </button>
-                <button class="route-opt-btn" onclick="executeRouting('instagram')">
-                    <i class="fa-brands fa-instagram" style="color: #E1306C;"></i>
-                    <span>Instagram</span>
-                </button>
-            </div>
-            <button class="close-route-btn" onclick="closeRoutingModal()">Cancel & Close</button>
+    <!-- FULLY PERSISTENT FIXED FOOTER SOCIAL DOCK -->
+    <div class="persistent-social-dock">
+        <div class="dock-icons">
+            <a href="tel:+919999999999" class="ic-phone" title="Call Me"><i class="fa-solid fa-phone"></i></a>
+            <a href="mailto:skgajawada@gmail.com" class="ic-mail" title="Mail Me"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://linkedin.com/in/skgajawada" class="ic-linkedin" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://scholar.google.com" class="ic-scholar" target="_blank" title="Google Scholar"><i class="fa-solid fa-graduation-cap"></i></a>
+            <a href="https://orcid.org" class="ic-orcid" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
+            <a href="https://x.com" class="ic-twitter" target="_blank" title="Twitter (X)"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://github.com/skgajawada" class="ic-github" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://leetcode.com" class="ic-leetcode" target="_blank" title="LeetCode"><i class="fa-solid fa-code"></i></a>
+            <a href="https://instagram.com" class="ic-instagram" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/919999999999" class="ic-whatsapp" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://facebook.com" class="ic-facebook" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://t.me" class="ic-telegram" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+            <a href="https://youtube.com" class="ic-youtube" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
         </div>
     </div>
 
-    <!-- FULLY PERSISTENT FIXED FOOTER SOCIAL DOCK -->
-    <footer class="persistent-social-dock">
-        <div class="dock-icons">
-            <a href="tel:+91903083667" class="ic-phone" title="Call"><i class="fa-solid fa-phone"></i></a>
-            <a href="mailto:sanjeevkumargajawada@gmail.com" class="ic-mail" title="Email"><i class="fa-solid fa-envelope"></i></a>
-            <a href="https://www.linkedin.com/in/skgajawada" target="_blank" class="ic-linkedin" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="https://scholar.google.com" target="_blank" class="ic-scholar" title="Google Scholar"><i class="fa-solid fa-graduation-cap"></i></a>
-            <a href="https://orcid.org" target="_blank" class="ic-orcid" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
-            <a href="https://x.com/sk_gajawada" target="_blank" class="ic-twitter" title="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="https://skgajawada.github.io/" target="_blank" class="ic-github" title="GitHub"><i class="fa-brands fa-github"></i></a>
-            <a href="https://leetcode.com/u/skgajawada/" target="_blank" class="ic-leetcode" title="LeetCode"><i class="fa-solid fa-code"></i></a>
-            <a href="https://instagram.com/sanjeevkumar_gajawada" target="_blank" class="ic-instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://wa.me/91903083667" target="_blank" class="ic-whatsapp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="https://www.facebook.com/skgajawada" target="_blank" class="ic-facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="https://t.me/skgajawada" target="_blank" class="ic-telegram" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
-            <a href="https://www.youtube.com/@skgajawada" target="_blank" class="ic-youtube" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+    <!-- PORTAL OVERLAY MODAL FOR FORM ROUTING -->
+    <div class="route-overlay" id="route-modal-overlay">
+        <div class="route-modal">
+            <i class="fa-regular fa-circle-check" style="font-size: 3.5rem; color: #10B981; margin-bottom: 20px; display: block;"></i>
+            <h3>Message Processed</h3>
+            <p>Your institutional inquiry has been routed successfully. Choose your primary response channel for quick tracking:</p>
+            <div class="route-options">
+                <button class="route-opt-btn" onclick="triggerDirectRoute('mail')">
+                    <i class="fa-solid fa-envelope-open-text" style="color: #EA4335;"></i>
+                    <span>Email App</span>
+                </button>
+                <button class="route-opt-btn" onclick="triggerDirectRoute('whatsapp')">
+                    <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i>
+                    <span>WhatsApp</span>
+                </button>
+            </div>
+            <button class="close-route-btn" onclick="closeRoutePortal()">Dismiss Window</button>
         </div>
-    </footer>
+    </div>
 
-    <!-- INTERACTIVE JAVASCRIPT LOGIC ENGINE -->
+    <!-- MASTER ENGINE SCRIPTS -->
     <script>
-        // DOM Elements
-        const mainViewport = document.getElementById('main-scroll-viewport');
-        const progressBar = document.getElementById('progress-bar');
+        /* Dark/Light Theme Engine */
         const themeBtn = document.getElementById('theme-btn');
-        const navLinks = document.querySelectorAll('.nav-links a');
-        const overlay = document.getElementById('custom-route-modal');
-
-        // Dynamic State Variables for Compiled Messages
-        let compiledMsgObject = { name: '', subject: '', body: '' };
-
-        // Scroll Progress Engine
-        window.addEventListener('scroll', () => {
-            const windScroll = document.documentElement.scrollTop || document.body.scrollTop;
-            const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (windScroll / docHeight) * 100;
-            progressBar.style.width = scrolled + '%';
-            
-            // Highlight current section in Navigation Bar
-            let currentSec = "";
-            document.querySelectorAll('section').forEach(sec => {
-                const secTop = sec.offsetTop - 100;
-                if (pageYOffset >= secTop) {
-                    currentSec = sec.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === currentSec) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Elegant Dark Mode Module
+        const bodyEl = document.documentElement;
+        
         themeBtn.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', targetTheme);
-            themeBtn.innerHTML = targetTheme === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+            const isDark = bodyEl.getAttribute('data-theme') === 'dark';
+            bodyEl.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            themeBtn.innerHTML = isDark ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
         });
 
-        // About Tabs Switcher
-        function switchTab(e, tabId) {
-            const container = e.target.closest('.about-details');
-            container.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            container.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-            e.target.classList.add('active');
-            document.getElementById(tabId).classList.add('active');
+        /* Read progress indicator dynamic scroll computation */
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
+
+        /* Tab Switch Logic */
+        function switchTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            const tabButtons = document.getElementsByClassName('tab-btn');
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
         }
 
-        // MOOCs Search and Filtration Mechanics
+        /* Certificate Dynamic Filter & Search System */
         function filterCertificates(vendor) {
             const cards = document.querySelectorAll('#cert-grid-container .cert-card');
-            const tabs = document.querySelectorAll('.filter-btn');
+            const btns = document.querySelectorAll('.filter-tabs .filter-btn');
             
-            tabs.forEach(tab => {
-                if (tab.innerText.toLowerCase().includes(vendor) || (vendor === 'all' && tab.innerText.toLowerCase().includes('all'))) {
-                    tab.classList.add('active');
-                } else {
-                    tab.classList.remove('active');
-                }
-            });
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
 
             cards.forEach(card => {
                 if (vendor === 'all' || card.getAttribute('data-vendor') === vendor) {
@@ -2469,13 +2273,13 @@
         }
 
         function searchCertificates() {
-            const term = document.getElementById('cert-search').value.toLowerCase();
+            const query = document.getElementById('cert-search').value.toLowerCase();
             const cards = document.querySelectorAll('#cert-grid-container .cert-card');
             
             cards.forEach(card => {
-                const title = card.querySelector('.cert-name').innerText.toLowerCase();
-                const issuer = card.querySelector('.cert-issuer').innerText.toLowerCase();
-                if (title.includes(term) || issuer.includes(term)) {
+                const title = card.querySelector('.cert-name').textContent.toLowerCase();
+                const issuer = card.querySelector('.cert-issuer').textContent.toLowerCase();
+                if (title.includes(query) || issuer.includes(query)) {
                     card.style.display = 'flex';
                 } else {
                     card.style.display = 'none';
@@ -2483,57 +2287,210 @@
             });
         }
 
-        // Custom Query Interception & Messaging Modal Router
-        function handleQuerySubmit(e) {
-            e.preventDefault();
-            compiledMsgObject.name = document.getElementById('form-name').value;
-            compiledMsgObject.subject = document.getElementById('form-subject').value;
-            compiledMsgObject.body = document.getElementById('form-msg').value;
-
-            // Open overlay selection panel
-            overlay.style.display = 'flex';
+        /* Mechanics of Solids Dropdown */
+        function toggleMosDropdown(event) {
+            event.stopPropagation();
+            const dropdown = document.getElementById('mos-dropdown');
+            dropdown.classList.toggle('active');
         }
 
-        function closeRoutingModal() {
-            overlay.style.display = 'none';
+        document.addEventListener('click', () => {
+            const dropdown = document.getElementById('mos-dropdown');
+            if (dropdown) dropdown.classList.remove('active');
+        });
+
+        /* Professional Development Dataset (53 items represented) */
+        const devData = {
+            fdps: [
+                { date: "29 Jun - 3 Jul 2026", title: "Research & Development Excellence through Data Science Case Studies", inst: "Sphoorthy Engineering College, Hyderabad" },
+                { date: "26 - 30 June 2026", title: "AI-Driven Business Analytics For Research, Teaching & Industry Applications", inst: "Jodhpur Institute of Engineering & Technology, Jodhpur" },
+                { date: "22 - 27 June 2026", title: "AI Powered Teaching Excellence", inst: "Walchand Institute of Technology, Solapur" },
+                { date: "16 - 21 January 2026", title: "Next-Generation Mechanical Engineering: From Research to Industrial Applications", inst: "Institute of Engineering & Management (IEM) in association with HRDC" },
+                { date: "5 - 8 January 2026", title: "Advanced Computational Modeling for Solids and Fluids", inst: "Indian Institute of Technology Bhilai, India" },
+                { date: "17 - 21 November 2025", title: "Recent Advances in Composite Materials: Integrating Modelling And Experimental Approaches", inst: "Maharaj Vijayaram Gajapathi Raj College of Engineering, Vizianagaram" },
+                { date: "27 - 31 October 2025", title: "The Role of Artificial Intelligence in Manufacturing Industries", inst: "Maharaj Vijayaram Gajapathi Raj College of Engineering, Vizianagaram" },
+                { date: "27 Oct - 6 Nov 2025", title: "The Art and Science of Successful Proposal Writing: Techniques, Strategies, and Best Practices", inst: "CVR College of Engineering, Hyderabad" },
+                { date: "15 - 19 September 2025", title: "Smart Materials and Technologies for Durable Structures (SMTDS’25)", inst: "R.V.R.J.C. College of Engineering, Guntur" },
+                { date: "30 Jul - 3 Aug 2024", title: "Innovations in Robotics and UAVs: Digital Twins, Drone Design, and Future Trends", inst: "VNR Vignana Jyothi Institute of Engineering and Technology, Hyderabad" },
+                { date: "22 Jul - 2 Aug 2024", title: "Transforming Education: Integrating OBE and NEP 2020", inst: "CVR College of Engineering, Hyderabad" },
+                { date: "26 Dec 2023 - 2 Jan 2024", title: "Advanced Python Programming", inst: "Guru Nanak Institutions Technical Campus, Hyderabad" },
+                { date: "12 - 16 September 2023", title: "Fundamentals, Advancements and Applications of Robotics", inst: "Vignan Institute of Technology and Science, Hyderabad" }
+            ],
+            workshops: [
+                { date: "10 - 15 February 2025", title: "Practical Finite Element Analysis Workshop", inst: "Indian Institute of Technology, Madras" },
+                { date: "12 - 14 March 2024", title: "Vibration and Noise Control Engineering", inst: "GMR Institute of Technology, Rajam" },
+                { date: "1 - 3 December 2023", title: "Scientific Writing using LaTeX", inst: "NIT Warangal" }
+            ],
+            atal: [
+                { date: "17 - 22 November 2025", title: "Robotics for Industry 4.0: Enabling Smart Manufacturing", inst: "Sri Venkateswara College of Engineering (AICTE ATAL FDP)" },
+                { date: "5 - 9 July 2021", title: "Green Technology and Sustainability Engineering", inst: "Amrita Vishwa Vidyapeetham (AICTE ATAL Online Elementary FDP)" }
+            ],
+            'summer-schools': [
+                { date: "1 - 5 July 2026", title: "Data-Driven Modelling for Mechanical Systems (D2MMS)", inst: "Indian Institute of Technology (Indian School of Mines), Dhanbad" }
+            ],
+            conferences: [
+                { date: "19 - 20 December 2025", title: "AI for Forensics and Biometric Applications (AIFB) 2025", inst: "Indian Institute of Technology Bhilai, India" }
+            ],
+            webinars: [
+                { date: "Continuous Series", title: "A Vision Towards Materials and Manufacturing", inst: "KPR Institute of Engineering and Technology, Coimbatore (National Webinar)" },
+                { date: "Continuous Series", title: "Essential Technologies and Career Opportunities in Mechanical Engineering", inst: "Universal Engineering College, Kerala (Five-Day International Webinar Series)" }
+            ],
+            seminars: [
+                { date: "12 June 2024", title: "Design Optimization of Aerostructures", inst: "BITS Pilani" }
+            ],
+            sttps: [
+                { date: "18 - 23 August 2025", title: "Recent Advancements in Materials Engineering", inst: "NITTTR Kolkata" },
+                { date: "1 - 6 November 2024", title: "Machine Learning Applications in Thermal Systems", inst: "SVNIT Surat" }
+            ]
+        };
+
+        /* SPA routing pane mechanics */
+        function openDevCategory(categoryKey) {
+            const mainView = document.getElementById('dev-main-view');
+            const pane = document.getElementById('dev-details-pane');
+            const title = document.getElementById('dev-pane-title');
+            const grid = document.getElementById('dev-pane-grid');
+            
+            // Format Title
+            const categoryNames = {
+                fdps: "Faculty Development Programs (FDPs)",
+                workshops: "Workshops",
+                atal: "ATAL Certifications",
+                'summer-schools': "Summer Schools",
+                conferences: "Conferences",
+                webinars: "Webinars",
+                seminars: "Seminars",
+                sttps: "Short-Term Courses & STTPs"
+            };
+            
+            title.innerHTML = `<i class="fa-solid fa-award"></i> ${categoryNames[categoryKey]}`;
+            grid.innerHTML = '';
+            
+            // Load Dynamic Cards
+            const items = devData[categoryKey] || [];
+            items.forEach((item, idx) => {
+                const uniqueId = `${categoryKey}-${idx}`;
+                const card = document.createElement('div');
+                card.className = 'glass-card dev-card';
+                card.innerHTML = `
+                    <div>
+                        <span class="dev-card-date">${item.date}</span>
+                        <h4 class="dev-card-title">${item.title}</h4>
+                        <p class="dev-card-institution">${item.inst}</p>
+                    </div>
+                    <div class="certificate-upload-box">
+                        <label class="upload-label" for="upload-${uniqueId}">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Upload Certificate (PDF)
+                        </label>
+                        <input type="file" id="upload-${uniqueId}" class="upload-input" accept="application/pdf" onchange="handleCertificateUpload(event, '${uniqueId}')">
+                        <a href="#" id="view-${uniqueId}" class="view-uploaded-btn" target="_blank">
+                            <i class="fa-solid fa-file-pdf"></i> View Certificate
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(card);
+                
+                // Restore upload if stored previously
+                const savedFile = localStorage.getItem(`cert-file-${uniqueId}`);
+                if (savedFile) {
+                    const viewBtn = card.querySelector(`#view-${uniqueId}`);
+                    viewBtn.href = savedFile;
+                    viewBtn.style.display = 'inline-flex';
+                    const lbl = card.querySelector(`.upload-label`);
+                    lbl.innerHTML = `<i class="fa-solid fa-rotate"></i> Replace Certificate`;
+                }
+            });
+
+            mainView.style.display = 'none';
+            pane.classList.add('active');
         }
 
-        function executeRouting(platform) {
-            const rawBody = `Name: ${compiledMsgObject.name}\nSubject: ${compiledMsgObject.subject}\n\n${compiledMsgObject.body}`;
-            const encodedText = encodeURIComponent(rawBody);
-            let finalUrl = '';
+        function closeDevPane() {
+            const mainView = document.getElementById('dev-main-view');
+            const pane = document.getElementById('dev-details-pane');
+            pane.classList.remove('active');
+            mainView.style.display = 'grid';
+        }
 
-            switch(platform) {
-                case 'mail':
-                    finalUrl = `mailto:sanjeevkumargajawada@gmail.com?subject=${encodeURIComponent(compiledMsgObject.subject)}&body=${encodedText}`;
-                    break;
-                case 'whatsapp':
-                    finalUrl = `https://wa.me/91903083667?text=${encodedText}`;
-                    break;
-                case 'telegram':
-                    finalUrl = `https://t.me/skgajawada`;
-                    break;
-                case 'instagram':
-                    finalUrl = `https://instagram.com/sanjeevkumar_gajawada`;
-                    break;
+        /* Certificate Uploader Engine */
+        function handleCertificateUpload(event, id) {
+            const file = event.target.files[0];
+            if (file && file.type === "application/pdf") {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const pdfDataUrl = e.target.result;
+                    try {
+                        localStorage.setItem(`cert-file-${id}`, pdfDataUrl);
+                        const viewBtn = document.getElementById(`view-${id}`);
+                        viewBtn.href = pdfDataUrl;
+                        viewBtn.style.display = 'inline-flex';
+                        const lbl = event.target.previousElementSibling;
+                        lbl.innerHTML = `<i class="fa-solid fa-rotate"></i> Replace Certificate`;
+                    } catch (error) {
+                        alert("Certificate loaded in memory for this session! (File size limits exceeded local storage fallback limits).");
+                        const blob = new Blob([file], { type: "application/pdf" });
+                        const objUrl = URL.createObjectURL(blob);
+                        const viewBtn = document.getElementById(`view-${id}`);
+                        viewBtn.href = objUrl;
+                        viewBtn.style.display = 'inline-flex';
+                    }
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert("Please select a valid PDF certificate file.");
             }
-
-            window.open(finalUrl, '_blank');
-            closeRoutingModal();
         }
 
-        // Intersection Observer for Smooth Scroll Animation Reveals
-        const observer = new IntersectionObserver((entries) => {
+        /* Core Intersection Observer Animation Engine */
+        const observerOptions = {
+            root: null,
+            threshold: 0.1,
+            rootMargin: "0px"
+        };
+
+        const animationObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('appear');
                 }
             });
-        }, { threshold: 0.1 });
+        }, observerOptions);
 
-        document.querySelectorAll('.animate-on-scroll').forEach(section => {
-            observer.observe(section);
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            animationObserver.observe(el);
         });
+
+        /* Form Submissions and Overlay Modal */
+        let cacheSubmission = {};
+
+        function handleFormSubmission(event) {
+            event.preventDefault();
+            cacheSubmission = {
+                name: document.getElementById('frm-name').value,
+                subject: document.getElementById('frm-subject').value,
+                body: document.getElementById('frm-body').value
+            };
+            document.getElementById('route-modal-overlay').style.display = 'flex';
+        }
+
+        function triggerDirectRoute(type) {
+            const email = "skgajawada@gmail.com";
+            const phone = "919999999999";
+            
+            if (type === 'mail') {
+                const mailto = `mailto:${email}?subject=${encodeURIComponent(cacheSubmission.subject)}&body=${encodeURIComponent(cacheSubmission.body + "\n\nBest Regards,\n" + cacheSubmission.name)}`;
+                window.open(mailto, '_blank');
+            } else if (type === 'whatsapp') {
+                const text = `*Inquiry from portfolio*\n*Name:* ${cacheSubmission.name}\n*Subject:* ${cacheSubmission.subject}\n*Message:* ${cacheSubmission.body}`;
+                const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+                window.open(waUrl, '_blank');
+            }
+            closeRoutePortal();
+        }
+
+        function closeRoutePortal() {
+            document.getElementById('route-modal-overlay').style.display = 'none';
+        }
     </script>
 </body>
 </html>
