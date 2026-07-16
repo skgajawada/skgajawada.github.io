@@ -67,6 +67,10 @@
             padding: 0;
         }
 
+        html, body {
+            height: 100%;
+        }
+
         html {
             scroll-behavior: smooth;
             text-rendering: optimizeLegibility;
@@ -78,7 +82,9 @@
             background-color: var(--bg-base);
             color: var(--text-main);
             line-height: 1.6;
-            overflow-x: hidden;
+            overflow: hidden; /* Controlled viewports via dynamic engine layout */
+            display: flex;
+            flex-direction: column;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
@@ -119,14 +125,60 @@
             .container { padding: 0 20px; }
         }
 
-        section {
-            padding: 100px 0;
+        /* Dynamic Engine Structure */
+        main {
+            flex: 1;
+            margin-top: 70px; /* Header Offset Space */
+            overflow-y: auto;
             position: relative;
         }
 
+        .app-canvas {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        section {
+            padding: 80px 0;
+            position: relative;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Condensed State Engine Setup */
+        .condensed-hidden {
+            display: none !important;
+        }
+
         .section-header {
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             text-align: left;
+        }
+
+        .clickable-title {
+            cursor: pointer;
+            display: inline-block;
+            transition: var(--transition-smooth);
+        }
+        .clickable-title:hover {
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+        .clickable-title::after {
+            content: ' \2192';
+            font-size: 1.5rem;
+            opacity: 0.5;
+            transition: var(--transition-smooth);
+        }
+        .clickable-title:hover::after {
+            opacity: 1;
+            padding-left: 5px;
+        }
+
+        /* Back to Dashboard State controls */
+        .view-navigation-bar {
+            padding: 20px 0 0 0;
+            display: none;
         }
 
         .section-tag {
@@ -211,9 +263,10 @@
         }
 
         .glass-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-4px) scale(1.02);
             box-shadow: var(--shadow-md);
             border-color: var(--accent);
+            filter: drop-shadow(0 10px 15px rgba(14, 165, 233, 0.15));
         }
 
         /* HEADER & NAVIGATION BLOCK */
@@ -223,6 +276,7 @@
             left: 0;
             width: 100%;
             z-index: 1000;
+            height: 70px;
             background: rgba(248, 250, 252, 0.75);
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
@@ -236,7 +290,7 @@
 
         .nav-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end; /* Shift links to absolute structural balance */
             align-items: center;
             height: 70px;
             max-width: 1400px;
@@ -244,20 +298,12 @@
             padding: 0 40px;
         }
 
-        .logo {
-            font-family: var(--font-mono);
-            font-weight: 700;
-            font-size: 1.2rem;
-            letter-spacing: -0.5px;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
         .nav-links {
             display: flex;
             gap: 25px;
             list-style: none;
             align-items: center;
+            margin-right: auto;
         }
 
         .nav-links a {
@@ -309,11 +355,9 @@
 
         /* HERO SECTION */
         .hero-section {
-            min-height: 100vh;
+            min-height: calc(100vh - 70px);
             display: flex;
             align-items: center;
-            padding-top: 100px;
-            overflow: hidden;
             background: radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.08) 0%, transparent 50%);
         }
 
@@ -499,7 +543,7 @@
 
         .tab-content {
             display: none;
-            animation: fadeIn 0.5s ease forwards;
+            animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .tab-content.active {
@@ -589,7 +633,7 @@
 
         .timeline-item:hover::before {
             background: var(--secondary);
-            scale: 1.2;
+            transform: scale(1.2);
         }
 
         .timeline-date {
@@ -654,29 +698,6 @@
             font-weight: 600;
         }
 
-        .project-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 12px;
-        }
-
-        .materials-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: var(--transition-smooth);
-        }
-        .materials-link:hover {
-            color: var(--secondary);
-            transform: translateX(3px);
-        }
-
         /* TEACHING & SUBJECTS CARDS */
         .subjects-grid {
             display: grid;
@@ -686,8 +707,8 @@
 
         .subject-card {
             display: flex;
-            align-items: center;
-            gap: 15px;
+            flex-direction: column;
+            gap: 12px;
             padding: 20px;
             background: var(--bg-surface);
             border: 1px solid var(--border-color);
@@ -695,10 +716,10 @@
             transition: var(--transition-smooth);
         }
 
-        .subject-card:hover {
-            border-color: var(--accent);
-            transform: scale(1.02);
-            box-shadow: var(--shadow-subtle);
+        .subject-main-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .subject-icon {
@@ -718,6 +739,27 @@
             font-weight: 600;
             font-size: 0.95rem;
             color: var(--primary);
+        }
+
+        .subject-materials-box {
+            border-top: 1px solid var(--border-color);
+            padding-top: 10px;
+            margin-top: 5px;
+        }
+
+        .materials-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+        .materials-link:hover {
+            color: var(--secondary);
+            transform: translateX(3px);
         }
 
         /* DYNAMIC ENGINE: FILTERABLE & SEARCHABLE CERTIFICATIONS */
@@ -874,53 +916,48 @@
             color: var(--accent);
         }
 
-        .dev-items-list {
+        /* Formatted to use the high-quality glass card profile utilized for MOOC certifications */
+        .dev-items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .dev-card {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            justify-content: space-between;
+            height: 100%;
         }
 
-        .dev-item-row {
-            display: grid;
-            grid-template-columns: 200px 1fr 150px;
-            gap: 20px;
-            align-items: center;
-            padding: 20px;
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            transition: var(--transition-smooth);
-        }
-
-        @media (max-width: 768px) {
-            .dev-item-row {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-        }
-
-        .dev-item-row:hover {
-            border-color: var(--accent);
-            box-shadow: var(--shadow-subtle);
-        }
-
-        .dev-item-date {
+        .dev-card-date {
             font-family: var(--font-mono);
-            font-size: 0.9rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             color: var(--accent);
-            font-weight: 600;
+            font-weight: 700;
+            margin-bottom: 8px;
         }
 
-        .dev-item-details h4 {
-            font-size: 1.1rem;
+        .dev-card-title {
+            font-size: 1.05rem;
             font-weight: 600;
             color: var(--primary);
-            margin-bottom: 4px;
+            margin-bottom: 12px;
+            line-height: 1.4;
         }
 
-        .dev-item-details p {
+        .dev-card-institution {
             font-size: 0.9rem;
             color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .dev-card-links {
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
         }
 
         /* CONTACT & QUERY FORM */
@@ -946,66 +983,10 @@
             margin-bottom: 15px;
         }
 
-        .contact-methods {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            margin: 30px 0;
-        }
-
-        .contact-method-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-decoration: none;
-            color: var(--text-main);
-            transition: var(--transition-smooth);
-        }
-
-        .contact-method-item:hover {
-            color: var(--accent);
-        }
-
-        .contact-method-item i {
-            font-size: 1.5rem;
-            color: var(--accent);
-            width: 30px;
-            text-align: center;
-        }
-
-        .contact-method-text span {
-            display: block;
-            font-size: 0.8rem;
+        .contact-minimal-intro {
             color: var(--text-muted);
-            text-transform: uppercase;
-            font-family: var(--font-mono);
-        }
-
-        .contact-method-text p {
-            font-weight: 600;
-        }
-
-        .qr-block {
-            margin-top: 25px;
-            background: var(--bg-base);
-            padding: 15px;
-            border-radius: var(--radius-md);
-            display: inline-block;
-            text-align: center;
-            border: 1px dashed var(--border-color);
-        }
-        .qr-block p {
-            font-size: 0.8rem;
-            font-family: var(--font-mono);
-            margin-top: 8px;
-            color: var(--text-muted);
-        }
-        .qr-image {
-            width: 130px;
-            height: 130px;
-            object-fit: contain;
-            display: block;
-            margin: 0 auto;
+            font-size: 1.05rem;
+            margin-bottom: 25px;
         }
 
         /* Contact Form */
@@ -1060,7 +1041,7 @@
         footer {
             background: var(--primary);
             color: rgba(255, 255, 255, 0.7);
-            padding: 60px 0;
+            padding: 40px 0;
             border-top: 1px solid var(--border-color);
         }
 
@@ -1068,7 +1049,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 30px;
+            gap: 20px;
             text-align: center;
         }
 
@@ -1109,7 +1090,7 @@
         .footer-copy {
             font-size: 0.85rem;
             color: rgba(255, 255, 255, 0.4);
-            margin-top: 15px;
+            margin-top: 5px;
         }
 
         /* BACK TO TOP */
@@ -1151,18 +1132,22 @@
            ------------------------------------------------------------- */
         .animate-on-scroll {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(30px) scale(0.98);
+            filter: blur(5px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .animate-on-scroll.appear {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
+            filter: blur(0px);
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(15px); filter: blur(3px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0px); }
         }
     </style>
 </head>
@@ -1173,16 +1158,15 @@
     <!-- MAIN NAVBAR NAVIGATION -->
     <header>
         <div class="nav-container">
-            <a href="#" class="logo">G.SANJEEVKUMAR</a>
             <ul class="nav-links">
-                <li><a href="#hero" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#timeline">Journey</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#teaching">Teaching</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-                <li><a href="#development">Development</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" onclick="returnToDashboard(event)" class="active" id="nav-home-link">Home</a></li>
+                <li><a href="#about" onclick="handleNavClick(event, 'about')">About</a></li>
+                <li><a href="#timeline" onclick="handleNavClick(event, 'timeline')">Journey</a></li>
+                <li><a href="#projects" onclick="handleNavClick(event, 'projects')">Projects</a></li>
+                <li><a href="#teaching" onclick="handleNavClick(event, 'teaching')">Teaching</a></li>
+                <li><a href="#certifications" onclick="handleNavClick(event, 'certifications')">Certifications</a></li>
+                <li><a href="#development" onclick="handleNavClick(event, 'development')">Development</a></li>
+                <li><a href="#contact" onclick="handleNavClick(event, 'contact')">Contact</a></li>
             </ul>
             <div class="nav-controls">
                 <button class="theme-toggle" id="theme-btn" aria-label="Toggle Theme">
@@ -1195,1219 +1179,1380 @@
         </div>
     </header>
 
-    <!-- HERO PROFILE DISPLAY -->
-    <section id="hero" class="hero-section">
-        <div class="container">
-            <div class="hero-grid">
-                <div class="hero-content">
-                    <span class="hero-title-prefix">PhD Scholar @ IIT (ISM) Dhanbad</span>
-                    <h1 class="hero-name">Gajavada Sanjeevkumar</h1>
-                    <p class="hero-tagline">Former Assistant Professor specializing in Mechanical Engineering, Aeroelasticity, FEM, and Data-Driven Structural Dynamics.</p>
-                    <div class="hero-keywords">
-                        <span class="keyword-tag">Aeroelasticity</span>
-                        <span class="keyword-tag">Vibration Analysis</span>
-                        <span class="keyword-tag">Finite Element Methods</span>
-                        <span class="keyword-tag">Machine Learning</span>
-                        <span class="keyword-tag">Data Science</span>
-                    </div>
-                    <div class="hero-buttons">
-                        <a href="#about" class="btn btn-primary">Explore Portfolio</a>
-                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+    <!-- MAIN DYNAMIC ENGINE APPLICATIVE VIEWPORT wrapper -->
+    <main id="main-scroll-viewport">
+        <div class="app-canvas" id="app-canvas-container">
+            
+            <!-- HERO PROFILE DISPLAY -->
+            <section id="hero" class="hero-section">
+                <div class="container">
+                    <div class="hero-grid">
+                        <div class="hero-content">
+                            <span class="hero-title-prefix">PhD Scholar @ IIT (ISM) Dhanbad</span>
+                            <h1 class="hero-name">Gajavada Sanjeevkumar</h1>
+                            <p class="hero-tagline">Former Assistant Professor specializing in Mechanical Engineering, Aeroelasticity, FEM, and Data-Driven Structural Dynamics.</p>
+                            <div class="hero-keywords">
+                                <span class="keyword-tag">Aeroelasticity</span>
+                                <span class="keyword-tag">Vibration Analysis</span>
+                                <span class="keyword-tag">Finite Element Methods</span>
+                                <span class="keyword-tag">Machine Learning</span>
+                                <span class="keyword-tag">Data Science</span>
+                            </div>
+                            <div class="hero-buttons">
+                                <button onclick="triggerSectionView('about')" class="btn btn-primary">Explore Portfolio</button>
+                                <button onclick="triggerSectionView('contact')" class="btn btn-secondary">Get In Touch</button>
+                            </div>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat-box" style="cursor: pointer;" onclick="triggerSectionView('timeline')">
+                                <span class="stat-num">7+</span>
+                                <span class="stat-label">Years Experience</span>
+                            </div>
+                            <div class="stat-box" style="cursor: pointer;" onclick="triggerSectionView('certifications')">
+                                <span class="stat-num">35+</span>
+                                <span class="stat-label">MOOCs & Credentials</span>
+                            </div>
+                            <div class="stat-box" style="cursor: pointer;" onclick="triggerSectionView('development')">
+                                <span class="stat-num">53</span>
+                                <span class="stat-label">FDPs & Workshops</span>
+                            </div>
+                            <div class="stat-box" style="cursor: pointer;" onclick="triggerSectionView('about')">
+                                <span class="stat-num">10</span>
+                                <span class="stat-label">Blood Donations</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="hero-stats">
-                    <div class="stat-box">
-                        <span class="stat-num">7+</span>
-                        <span class="stat-label">Years Experience</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-num">35+</span>
-                        <span class="stat-label">MOOCs & Credentials</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-num">53</span>
-                        <span class="stat-label">FDPs & Workshops</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-num">10</span>
-                        <span class="stat-label">Blood Donations</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- PORTFOLIO OWNER DETAILS & OBJECTIVE -->
-    <section id="about" class="animate-on-scroll">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Overview</span>
-                <h2 class="section-title">About Me</h2>
-            </div>
-            <div class="about-layout">
-                <div class="about-visual">
-                    <img src="pp.jpeg" alt="Gajavada Sanjeevkumar" class="profile-avatar">
-                    <div class="about-meta-info">
-                        <p><i class="fa-solid fa-location-dot"></i> Ranga Reddy, Telangana, India</p>
-                        <p><i class="fa-solid fa-envelope"></i> sanjeevkumargajawada@gmail.com</p>
-                        <p><i class="fa-solid fa-phone"></i> (+91) 9030 833 667</p>
+            <!-- PORTFOLIO OWNER DETAILS & OBJECTIVE -->
+            <section id="about" class="animate-on-scroll">
+                <div class="container">
+                    <div class="view-navigation-bar">
+                        <button class="btn btn-secondary" onclick="returnToDashboard(event)" style="padding: 8px 16px; margin-bottom: 20px;"><i class="fa-solid fa-arrow-left"></i> Back to Home</button>
                     </div>
-                </div>
-                <div class="about-details">
-                    <div class="about-tabs">
-                        <button class="tab-btn active" onclick="switchTab(event, 'objective')">Career Objective</button>
-                        <button class="tab-btn" onclick="switchTab(event, 'strengths')">Technical Strengths</button>
-                        <button class="tab-btn" onclick="switchTab(event, 'traits')">Responsibilities & Traits</button>
+                    <div class="section-header">
+                        <span class="section-tag">Overview</span>
+                        <h2 class="section-title clickable-title" onclick="triggerSectionView('about')">About Me</h2>
                     </div>
                     
-                    <div id="objective" class="tab-content active">
-                        <p class="biography-text">To advance mechanical and aerospace engineering through cutting-edge research in aeroelasticity, vibration analysis, structural dynamics, finite element methods, composite structures, and control systems.</p>
-                        <p class="biography-text">I strongly aim to integrate robust computational modeling, advanced simulation techniques, and state-of-the-art data-driven approaches—including machine learning and artificial intelligence—to develop innovative engineering solutions for complex real-world challenges while fostering interdisciplinary research and technological innovation.</p>
-                        <blockquote>
-                            "Pledge Participant of Nasha Mukt Bharat, Khushaal Bharat (Ministry of Social Justice and Empowerment, Govt. of India). Committed to a drug-free lifestyle and promoting social well-being."
-                        </blockquote>
+                    <!-- Condensed Container -->
+                    <div class="condensed-summary-block">
+                        <p class="biography-text">PhD Scholar at IIT (ISM) Dhanbad specializing in advanced computational modeling, structural mechanics, aeroelasticity, and machine learning stacks.</p>
                     </div>
 
-                    <div id="strengths" class="tab-content">
-                        <p class="biography-text">Highly equipped with industrial tools, analytical systems, and programming languages bridging core machinery and numerical computations:</p>
-                        <div class="dev-category-block" style="margin-top:20px;">
-                            <div class="subjects-grid">
-                                <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-code"></i></div><span class="subject-name">Basic Python, MATLAB</span></div>
-                                <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-chart-pie"></i></div><span class="subject-name">Power BI, Tableau</span></div>
-                                <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-database"></i></div><span class="subject-name">SQL Database Systems</span></div>
-                                <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-brain"></i></div><span class="subject-name">Dataiku Academy Stack</span></div>
-                                <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-file-lines"></i></div><span class="subject-name">LaTeX Documentation</span></div>
-                                <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-window-maximize"></i></div><span class="subject-name">MS Office Suite</span></div>
+                    <!-- Exhaustive Container -->
+                    <div class="exhaustive-detailed-block condensed-hidden">
+                        <div class="about-layout">
+                            <div class="about-visual">
+                                <img src="pp.jpeg" alt="Gajavada Sanjeevkumar" class="profile-avatar">
+                                <div class="about-meta-info">
+                                    <p><i class="fa-solid fa-location-dot"></i> Ranga Reddy, Telangana, India</p>
+                                </div>
+                            </div>
+                            <div class="about-details">
+                                <div class="about-tabs">
+                                    <button class="tab-btn active" onclick="switchTab(event, 'objective')">Career Objective</button>
+                                    <button class="tab-btn" onclick="switchTab(event, 'strengths')">Technical Strengths</button>
+                                    <button class="tab-btn" onclick="switchTab(event, 'traits')">Responsibilities & Traits</button>
+                                </div>
+                                
+                                <div id="objective" class="tab-content active">
+                                    <p class="biography-text">To advance mechanical and aerospace engineering through cutting-edge research in aeroelasticity, vibration analysis, structural dynamics, finite element methods, composite structures, and control systems.</p>
+                                    <p class="biography-text">I strongly aim to integrate robust computational modeling, advanced simulation techniques, and state-of-the-art data-driven approaches—including machine learning and artificial intelligence—to develop innovative engineering solutions for complex real-world challenges while fostering interdisciplinary research and technological innovation.</p>
+                                    <blockquote>
+                                        "Pledge Participant of Nasha Mukt Bharat, Khushaal Bharat (Ministry of Social Justice and Empowerment, Govt. of India). Committed to a drug-free lifestyle and promoting social well-being."
+                                    </blockquote>
+                                </div>
+
+                                <div id="strengths" class="tab-content">
+                                    <p class="biography-text">Highly equipped with industrial tools, analytical systems, and programming languages bridging core machinery and numerical computations:</p>
+                                    <div class="dev-category-block" style="margin-top:20px;">
+                                        <div class="subjects-grid">
+                                            <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-code"></i></div><span class="subject-name">Basic Python, MATLAB</span></div>
+                                            <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-chart-pie"></i></div><span class="subject-name">Power BI, Tableau</span></div>
+                                            <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-database"></i></div><span class="subject-name">SQL Database Systems</span></div>
+                                            <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-brain"></i></div><span class="subject-name">Dataiku Academy Stack</span></div>
+                                            <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-file-lines"></i></div><span class="subject-name">LaTeX Documentation</span></div>
+                                            <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-window-maximize"></i></div><span class="subject-name">MS Office Suite</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="traits" class="tab-content">
+                                    <p class="biography-text">Demonstrated administrative and leadership capabilities across major organizational roles:</p>
+                                    <ul style="padding-left:20px; margin-bottom:20px; color:var(--text-muted)">
+                                        <li style="margin-bottom:8px;"><strong>Lab Coordinator:</strong> Managed operations and specialized equipment for the Kinematics and Dynamics Laboratory.</li>
+                                        <li style="margin-bottom:8px;"><strong>Academic Coordinator:</strong> Oversees Departmental Minor Degrees, remedial classes, and student tutorials.</li>
+                                        <li style="margin-bottom:8px;"><strong>SAE BAJA & Go-Karting:</strong> Departmental Coordinator guiding student engineering design and racing teams.</li>
+                                        <li style="margin-bottom:8px;"><strong>Event Management:</strong> Student organizer for the D2MMS Summer School, and Faculty Coordinator for Institutional Day events.</li>
+                                        <li style="margin-bottom:8px;"><strong>Traits:</strong> Highly motivated, strong leadership skills, and an excellent capability to thrive in interdisciplinary groups.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CORE RESEARCH FIELDS -->
+                        <div class="section-header" style="margin-top:80px; margin-bottom:40px;">
+                            <h3 class="section-title" style="font-size:2rem;">Core Research Disciplines</h3>
+                        </div>
+                        <div class="research-grid">
+                            <div class="glass-card research-card">
+                                <i class="fa-solid fa-gears"></i>
+                                <h3>Structural Dynamics & FEM</h3>
+                                <p>Evaluating computational algorithms and structural configurations using structural mechanics and Finite Element Method setups.</p>
+                            </div>
+                            <div class="glass-card research-card">
+                                <i class="fa-solid fa-wave-square"></i>
+                                <h3>Aeroelasticity & Vibration</h3>
+                                <p>Investigating fluid-structure interactions, predictive resonance patterns, and boundary layer vibrations in mechanical ecosystems.</p>
+                            </div>
+                            <div class="glass-card research-card">
+                                <i class="fa-solid fa-network-wired"></i>
+                                <h3>AI & Federated Learning</h3>
+                                <p>Developing collaborative intelligent networks for transportation frameworks and physical systems optimization without centralizing private datasets.</p>
                             </div>
                         </div>
                     </div>
 
-                    <div id="traits" class="tab-content">
-                        <p class="biography-text">Demonstrated administrative and leadership capabilities across major organizational roles:</p>
-                        <ul style="padding-left:20px; margin-bottom:20px; color:var(--text-muted)">
-                            <li style="margin-bottom:8px;"><strong>Lab Coordinator:</strong> Managed operations and specialized equipment for the Kinematics and Dynamics Laboratory.</li>
-                            <li style="margin-bottom:8px;"><strong>Academic Coordinator:</strong> Oversees Departmental Minor Degrees, remedial classes, and student tutorials.</li>
-                            <li style="margin-bottom:8px;"><strong>SAE BAJA & Go-Karting:</strong> Departmental Coordinator guiding student engineering design and racing teams.</li>
-                            <li style="margin-bottom:8px;"><strong>Event Management:</strong> Student organizer for the D2MMS Summer School, and Faculty Coordinator for Institutional Day events.</li>
-                            <li style="margin-bottom:8px;"><strong>Traits:</strong> Highly motivated, strong leadership skills, and an excellent capability to thrive in interdisciplinary groups.</li>
-                        </ul>
-                    </div>
                 </div>
-            </div>
+            </section>
 
-            <!-- CORE RESEARCH FIELDS -->
-            <div class="section-header" style="margin-top:80px; margin-bottom:40px;">
-                <h3 class="section-title" style="font-size:2rem;">Core Research Disciplines</h3>
-            </div>
-            <div class="research-grid">
-                <div class="glass-card research-card">
-                    <i class="fa-solid fa-gears"></i>
-                    <h3>Structural Dynamics & FEM</h3>
-                    <p>Evaluating computational algorithms and structural configurations using structural mechanics and Finite Element Method setups.</p>
-                </div>
-                <div class="glass-card research-card">
-                    <i class="fa-solid fa-wave-square"></i>
-                    <h3>Aeroelasticity & Vibration</h3>
-                    <p>Investigating fluid-structure interactions, predictive resonance patterns, and boundary layer vibrations in mechanical ecosystems.</p>
-                </div>
-                <div class="glass-card research-card">
-                    <i class="fa-solid fa-network-wired"></i>
-                    <h3>AI & Federated Learning</h3>
-                    <p>Developing collaborative intelligent networks for transportation frameworks and physical systems optimization without centralizing private datasets.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            <!-- PROFESSIONAL TIMELINE JOURNEY -->
+            <section id="timeline" style="background:var(--bg-base);" class="animate-on-scroll">
+                <div class="container">
+                    <div class="view-navigation-bar">
+                        <button class="btn btn-secondary" onclick="returnToDashboard(event)" style="padding: 8px 16px; margin-bottom: 20px;"><i class="fa-solid fa-arrow-left"></i> Back to Home</button>
+                    </div>
+                    <div class="section-header">
+                        <span class="section-tag">History</span>
+                        <h2 class="section-title clickable-title" onclick="triggerSectionView('timeline')">Experience & Education</h2>
+                    </div>
 
-    <!-- PROFESSIONAL TIMELINE JOURNEY -->
-    <section id="timeline" style="background:var(--bg-base);" class="animate-on-scroll">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">History</span>
-                <h2 class="section-title">Experience & Education</h2>
-            </div>
-            <div class="timeline-section-grid">
-                <div>
-                    <h3 class="dev-category-title"><i class="fa-solid fa-briefcase"></i> Professional Experience</h3>
-                    <div class="timeline-wrapper">
-                        <div class="timeline-item">
-                            <span class="timeline-date">Jan 2026 - Jun 2026</span>
-                            <h4 class="timeline-title">Online Data Science Intern</h4>
-                            <div class="timeline-institution">Sabudh Foundation (in collaboration with STPI), Mohali, India</div>
-                            <p class="timeline-desc">Developed and contributed to the primary project "Federated Learning for Intelligent Transportation System".</p>
-                        </div>
-                        <div class="timeline-item">
-                            <span class="timeline-date">Mar 2021 - Jun 2025</span>
-                            <h4 class="timeline-title">Former Assistant Professor</h4>
-                            <div class="timeline-institution">Guru Nanak Institutions Technical Campus, Hyderabad, India</div>
-                            <p class="timeline-desc">Delivered major curriculum classes, organized student associations, and operated structural design groups.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <span class="timeline-date">Nov 2018 - Mar 2021</span>
-                            <h4 class="timeline-title">Former Assistant Professor</h4>
-                            <div class="timeline-institution">Sree Chaitanya College of Engineering, Karimnagar, India</div>
-                            <p class="timeline-desc">Instructed computational workflows, oversaw testing operations, and orchestrated design analytics.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <span class="timeline-date">Dec 2015 - Jun 2016</span>
-                            <h4 class="timeline-title">Lecturer</h4>
-                            <div class="timeline-institution">Jyothishmathi Institute of Technology and Science, Karimnagar, India</div>
-                            <p class="timeline-desc">Taught baseline principles of thermal systems and engineering graphics templates.</p>
-                        </div>
+                    <!-- Condensed Container -->
+                    <div class="condensed-summary-block">
+                        <p class="biography-text">PhD Scholar in Design at IIT (ISM) Dhanbad with over 7 years of teaching experience as an Assistant Professor in Mechanical Engineering.</p>
                     </div>
-                </div>
 
-                <div>
-                    <h3 class="dev-category-title"><i class="fa-solid fa-graduation-cap"></i> Academic Timeline</h3>
-                    <div class="timeline-wrapper">
-                        <div class="timeline-item">
-                            <span class="timeline-date">Jul 2025 - Present</span>
-                            <h4 class="timeline-title">PhD in Design</h4>
-                            <div class="timeline-institution">Indian Institute of Technology (ISM), Dhanbad</div>
-                            <p class="timeline-desc"><strong>Grade:</strong> 8.2 CGPA (Current)</p>
-                        </div>
-                        <div class="timeline-item">
-                            <span class="timeline-date">Jun 2025 - Dec 2025</span>
-                            <h4 class="timeline-title">AICTE QIP PG Certificate Course - Data Science</h4>
-                            <div class="timeline-institution">Indian Institute of Technology Bhilai</div>
-                            <p class="timeline-desc"><strong>Grade:</strong> 8.67 CGPA</p>
-                        </div>
-                        <div class="timeline-item">
-                            <span class="timeline-date">2016 - 2018</span>
-                            <h4 class="timeline-title">Master of Technology - Machine Design</h4>
-                            <div class="timeline-institution">GITAM Deemed To Be University, Visakhapatnam</div>
-                            <p class="timeline-desc"><strong>Grade:</strong> 8.78 CGPA</p>
-                        </div>
-                        <div class="timeline-item">
-                            <span class="timeline-date">2010 - 2014</span>
-                            <h4 class="timeline-title">Bachelor of Technology - Mechanical Engineering</h4>
-                            <div class="timeline-institution">Vivekananda Institute of Technology and Science, Karimnagar</div>
-                            <p class="timeline-desc"><strong>Grade:</strong> 71.28%</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROJECT WORK SAMPLES -->
-    <section id="projects" class="animate-on-scroll">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">R&D Work</span>
-                <h2 class="section-title">Academic Projects</h2>
-            </div>
-            <div class="projects-grid">
-                <div class="glass-card project-card">
-                    <h4>Effect of Elastic-Plastic Material Properties of Metals on Hardness Values Using Finite Element Analysis</h4>
-                    <p style="color:var(--text-muted); font-size:0.95rem;">Investigated variation of metal hardness across theoretical calculations versus computational experiments, optimizing these parameters through FEA algorithms.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Finite Element Analysis</span>
-                        <span class="project-tag">Plasticity Optimization</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="MOS/" class="materials-link"><i class="fa-solid fa-folder-open"></i> Access Materials</a>
-                    </div>
-                </div>
-                <div class="glass-card project-card">
-                    <h4>Study of Internal Combustion Engines & Their Components</h4>
-                    <p style="color:var(--text-muted); font-size:0.95rem;">Explored fundamentals and operational physics of two-stroke and four-stroke thermal engines, profiling mechanical linkages and energy transfers.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">IC Engines</span>
-                        <span class="project-tag">Thermal Engineering</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="MOS/" class="materials-link"><i class="fa-solid fa-folder-open"></i> Access Materials</a>
-                    </div>
-                </div>
-                <div class="glass-card project-card">
-                    <h4>Hydraulic Robotic Arm for Pick and Place Operation</h4>
-                    <p style="color:var(--text-muted); font-size:0.95rem;">Designed and structured an operating scale model utilizing Pascal's Law to transfer force vectors through liquid mediums safely.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Hydraulics</span>
-                        <span class="project-tag">Pascal's Law</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="MOS/" class="materials-link"><i class="fa-solid fa-folder-open"></i> Access Materials</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CORE SUBJECTS HANDLED -->
-    <section id="teaching" style="background:var(--bg-base);" class="animate-on-scroll">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Instruction</span>
-                <h2 class="section-title">Subjects Handled</h2>
-            </div>
-            <div class="subjects-grid">
-                <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-compass"></i></div><span class="subject-name">Engineering Mechanics</span></div>
-                <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-pen-drafting"></i></div><span class="subject-name">Engineering Graphics</span></div>
-                <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-cubes"></i></div><span class="subject-name">Mechanics of Solids</span></div>
-                <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-circle-nodes"></i></div><span class="subject-name">Kinematics of Machinery</span></div>
-                <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-droplet"></i></div><span class="subject-name">Fluid Mechanics</span></div>
-                <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-fire"></i></div><span class="subject-name">Thermodynamics</span></div>
-                <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-temperature-half"></i></div><span class="subject-name">Heat Transfer</span></div>
-                <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-bolt-lightning"></i></div><span class="subject-name">Design of Machine Members</span></div>
-                <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-calculator"></i></div><span class="subject-name">Operations Research</span></div>
-                <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-square-matrix"></i></div><span class="subject-name">Finite Element Methods</span></div>
-                <div class="subject-card"><div class="subject-icon"><i class="fa-solid fa-gauge"></i></div><span class="subject-name">Instrumentation and Control Systems</span></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- DYNAMIC FILTERABLE AND SEARCHABLE MOOCS & SKILLS CERTIFICATES -->
-    <section id="certifications" class="animate-on-scroll">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Credentials</span>
-                <h2 class="section-title">MOOCs & Professional Certifications</h2>
-            </div>
-
-            <div class="filter-controls">
-                <div class="filter-tabs">
-                    <button class="filter-btn active" onclick="filterCertificates('all')">All Tech Stack</button>
-                    <button class="filter-btn" onclick="filterCertificates('matlab')">MathWorks</button>
-                    <button class="filter-btn" onclick="filterCertificates('dataiku')">Dataiku Academy</button>
-                    <button class="filter-btn" onclick="filterCertificates('linkedin')">LinkedIn Learning</button>
-                    <button class="filter-btn" onclick="filterCertificates('ibm')">IBM / SkillsBuild</button>
-                    <button class="filter-btn" onclick="filterCertificates('coursera')">Coursera</button>
-                </div>
-                <div class="search-wrapper">
-                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                    <input type="text" id="cert-search" class="search-input" placeholder="Search certificates..." oninput="searchCertificates()">
-                </div>
-            </div>
-
-            <div class="certifications-grid" id="cert-grid-container">
-                <!-- MATLAB -->
-                <div class="glass-card cert-card" data-vendor="matlab">
-                    <div>
-                        <span class="cert-issuer">MathWorks Training</span>
-                        <h3 class="cert-name">MATLAB Onramp</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/MATLAB/MATLAB Onramp.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=98447788-27ba-43f7-a438-54a4c4b1df5a&" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="matlab">
-                    <div>
-                        <span class="cert-issuer">MathWorks Training</span>
-                        <h3 class="cert-name">Simulink Onramp</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/MATLAB/Simulink Onramp.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=d6887cfb-feb5-49dd-a406-fbf7b5e4d1b8&" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="matlab">
-                    <div>
-                        <span class="cert-issuer">MathWorks Training</span>
-                        <h3 class="cert-name">Control System Modeling Essentials</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/MATLAB/Control System Modeling Essentials.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=e8d11305-c798-4b87-940e-8300139337ea&" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="matlab">
-                    <div>
-                        <span class="cert-issuer">MathWorks Training</span>
-                        <h3 class="cert-name">Linearization of Nonlinear Systems</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/MATLAB/Linearization of Nonlinear Systems.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=c17a101d-2a44-44e0-a914-ee7f78719c34&" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="matlab">
-                    <div>
-                        <span class="cert-issuer">MathWorks Training</span>
-                        <h3 class="cert-name">Control System Analysis Techniques</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/MATLAB/Control System Analysis Techniques.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=0d6e6247-8d07-481d-9aff-816283c9a363&" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="matlab">
-                    <div>
-                        <span class="cert-issuer">MathWorks Training</span>
-                        <h3 class="cert-name">PID Control Techniques</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/MATLAB/PID Control Techniques.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=26974935-40fb-4cbe-ac80-9e258664f207&" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="matlab">
-                    <div>
-                        <span class="cert-issuer">MathWorks Training</span>
-                        <h3 class="cert-name">Control System Design with MATLAB and Simulink</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/MATLAB/Control System Design with MATLAB and Simulink.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://matlabacademy.mathworks.com/progress/share/learningpath/certificate.html?id=" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="matlab">
-                    <div>
-                        <span class="cert-issuer">MathWorks Training</span>
-                        <h3 class="cert-name">Classical Controller Design Techniques</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/MATLAB/Classical Controller Design Techniques.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=3df3ce64-b72a-45fb-83c3-dc73f27434e6&" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="matlab">
-                    <div>
-                        <span class="cert-issuer">MathWorks Training</span>
-                        <h3 class="cert-name">Control Design Onramp with Simulink</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/MATLAB/Control Design Onramp with Simulink.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=9cccfad1-7baf-4f8f-91a7-254111620c35&" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="matlab">
-                    <div>
-                        <span class="cert-issuer">MathWorks Training</span>
-                        <h3 class="cert-name">MATLAB Desktop Tools and Troubleshooting Scripts</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/MATLAB/MATLAB Desktop Tools and Troubleshooting Scripts.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=fe00993d-b666-4320-9ff4-ba3eed1f1b66&" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="matlab">
-                    <div>
-                        <span class="cert-issuer">MathWorks Training</span>
-                        <h3 class="cert-name">MySQL for Non-Programmers Completion</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/MATLAB/CertificateOfCompletion_MySQL for NonProgrammers.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                    </div>
-                </div>
-
-                <!-- IBM / COGNITIVE AI -->
-                <div class="glass-card cert-card" data-vendor="ibm">
-                    <div>
-                        <span class="cert-issuer">Cognitive Class</span>
-                        <h3 class="cert-name">IBM PY0101EN Certificate</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/CognitiveAI/IBM PY0101EN Certificate _ Cognitive Class.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://courses.cognitiveclass.ai/certificates/0d19f10b76a34e86aa3565abb86d317b" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-
-                <!-- LINKEDIN LEARNING -->
-                <div class="glass-card cert-card" data-vendor="linkedin">
-                    <div>
-                        <span class="cert-issuer">LinkedIn Learning</span>
-                        <h3 class="cert-name">Learning Data Analytics: 1 Foundations</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/LinkedIn/Learning Data Analytics 1 Foundations.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/c722240aaf5d8f69a7cea04f45036ae283ef7a13f23b0da378ae92ee5ada0206?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="linkedin">
-                    <div>
-                        <span class="cert-issuer">LinkedIn Learning</span>
-                        <h3 class="cert-name">MySQL for Non-Programmers</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/LinkedIn/MySQL for NonProgrammers.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/16190e5fd82451db63fc9fb16831d52eecd35dcc6d3ea4f432fe5dca10d12c49?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="linkedin">
-                    <div>
-                        <span class="cert-issuer">LinkedIn Learning</span>
-                        <h3 class="cert-name">Learning SQL Programming</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/LinkedIn/Learning SQL Programming.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/1c83f7f99d799579f0115cda9d0120df230372a6a248149c302b245c504fe0a0?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="linkedin">
-                    <div>
-                        <span class="cert-issuer">LinkedIn Learning</span>
-                        <h3 class="cert-name">Python for Data Science and Machine Learning Essential Training Part 1</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/LinkedIn/Python for Data Science and Machine Learning Essential Training Part 1.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/d0a4940b9ada1be26c358dd29fba3c2b3a99a3811b38d31218e2dcb0b763b14f?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="linkedin">
-                    <div>
-                        <span class="cert-issuer">LinkedIn Learning</span>
-                        <h3 class="cert-name">MATLAB Essential Training</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/LinkedIn/MATLAB Essential Training.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/d709fe8ed6ea0cecddee637f5817e3f6c6c24d5bc44102cc6ee809a98a12b6ee?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="linkedin">
-                    <div>
-                        <span class="cert-issuer">LinkedIn Learning</span>
-                        <h3 class="cert-name">Six Sigma Foundations</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/LinkedIn/Six Sigma Foundations.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/ac0993075d80ece8d4985e0d8956cffb8c3a6fd0cbd550a4a0eb27feff62ec75?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="linkedin">
-                    <div>
-                        <span class="cert-issuer">LinkedIn Learning</span>
-                        <h3 class="cert-name">Statistics Foundations 3: Using Data Sets</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/LinkedIn/Statistics Foundations 3 Using Data Sets.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/1f26017e1ac6db7dd1ceee67e504713d51d897b94e74d4cd861205aa04e902e5?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="linkedin">
-                    <div>
-                        <span class="cert-issuer">LinkedIn Learning</span>
-                        <h3 class="cert-name">Operational Excellence Foundations</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/LinkedIn/Operational Excellence Foundations.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/52d52362acda852e0bb9cd82f14c236347b5b25bfce957cad0081d2725b26408?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="linkedin">
-                    <div>
-                        <span class="cert-issuer">LinkedIn Learning</span>
-                        <h3 class="cert-name">Six Sigma: Green Belt</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/LinkedIn/Six Sigma Green Belt.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/29a40ae378a0f0dddc6f66aea714be8be75826348175b0aba9d91c530237fc05?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="linkedin">
-                    <div>
-                        <span class="cert-issuer">LinkedIn Learning</span>
-                        <h3 class="cert-name">Additive Manufacturing: Tips, Tricks, and Techniques</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/LinkedIn/Additive Manufacturing Tips Tricks and Techniques.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/44c37fa2479a143dae3cf23058bef10a9aa4d552f07eac1cb6e5b9a166ff73a0?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="linkedin">
-                    <div>
-                        <span class="cert-issuer">LinkedIn Learning</span>
-                        <h3 class="cert-name">Accelerated MATLAB</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/LinkedIn/Accelerated MATLAB.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/688edcc956ef29c6da8c22fb42e3f52c6782dbc68f90e53af367d76f615f0f02?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="linkedin">
-                    <div>
-                        <span class="cert-issuer">LinkedIn Learning</span>
-                        <h3 class="cert-name">Learning MATLAB</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/LinkedIn/Learning MATLAB.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/00827e7e19b6fa7e65f2d175caca08e91da5d4fb2b60b76e68b1dd3fdc03131f?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="linkedin">
-                    <div>
-                        <span class="cert-issuer">LinkedIn Learning</span>
-                        <h3 class="cert-name">Python Essential Training</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/LinkedIn/Python Essential Training.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://www.linkedin.com/learning/certificates/b5920cb8058b6ce223edeafcccce74c1f44427f4cb9f6d0e2b248f8a613f5329?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
-                    </div>
-                </div>
-
-                <!-- DATAIKU -->
-                <div class="glass-card cert-card" data-vendor="dataiku">
-                    <div>
-                        <span class="cert-issuer">Dataiku Academy</span>
-                        <h3 class="cert-name">Core Designer Professional Certificate</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/Dataiku/Core Designer Certificate.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="dataiku">
-                    <div>
-                        <span class="cert-issuer">Dataiku Academy</span>
-                        <h3 class="cert-name">Advanced Designer Professional Certificate</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/Dataiku/Advanced Designer Certificate.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="dataiku">
-                    <div>
-                        <span class="cert-issuer">Dataiku Academy</span>
-                        <h3 class="cert-name">Developer Professional Certificate</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/Dataiku/Developer Certificate.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="dataiku">
-                    <div>
-                        <span class="cert-issuer">Dataiku Academy</span>
-                        <h3 class="cert-name">ML Practitioner Professional Certificate</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/Dataiku/ML Practitioner Certificate.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="dataiku">
-                    <div>
-                        <span class="cert-issuer">Dataiku Academy</span>
-                        <h3 class="cert-name">MLOps Practitioner Professional Certificate</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/Dataiku/MLOps Practitioner Certificate.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="dataiku">
-                    <div>
-                        <span class="cert-issuer">Dataiku Academy</span>
-                        <h3 class="cert-name">Generative AI Practitioner Professional Certificate</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/Dataiku/Generative AI Practitioner Certificate.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                    </div>
-                </div>
-
-                <!-- IBM SkillsBuild Stack -->
-                <div class="glass-card cert-card" data-vendor="ibm">
-                    <div>
-                        <span class="cert-issuer">IBM SkillsBuild</span>
-                        <h3 class="cert-name">Data Fundamentals (Earned Credential)</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/IBM/Data Fundamentals.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="ibm">
-                    <div>
-                        <span class="cert-issuer">IBM SkillsBuild</span>
-                        <h3 class="cert-name">Data Literacy (Earned Credential)</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/IBM/DataLiteracy.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="ibm">
-                    <div>
-                        <span class="cert-issuer">IBM SkillsBuild</span>
-                        <h3 class="cert-name">Sensemaking with Data Module</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/IBM/DataLiteracy.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="ibm">
-                    <div>
-                        <span class="cert-issuer">IBM SkillsBuild</span>
-                        <h3 class="cert-name">Exploring Data Analytics Architectures</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/IBM/DataLiteracy.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="ibm">
-                    <div>
-                        <span class="cert-issuer">IBM SkillsBuild</span>
-                        <h3 class="cert-name">Your Future in Data: The Job Landscape</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/IBM/Data Fundamentals.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="ibm">
-                    <div>
-                        <span class="cert-issuer">IBM SkillsBuild</span>
-                        <h3 class="cert-name">Overview of Data Tools and Languages</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/IBM/Data Fundamentals.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="ibm">
-                    <div>
-                        <span class="cert-issuer">IBM SkillsBuild</span>
-                        <h3 class="cert-name">Clean, Refine, and Visualize Data with IBM Watson Studio</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/IBM/Data Fundamentals.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="ibm">
-                    <div>
-                        <span class="cert-issuer">IBM SkillsBuild</span>
-                        <h3 class="cert-name">Data Science in Our World</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/IBM/Data Fundamentals.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="ibm">
-                    <div>
-                        <span class="cert-issuer">IBM SkillsBuild</span>
-                        <h3 class="cert-name">Introduction to Data Concepts</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/IBM/Data Fundamentals.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                    </div>
-                </div>
-
-                <!-- COURSERA -->
-                <div class="glass-card cert-card" data-vendor="coursera">
-                    <div>
-                        <span class="cert-issuer">Johns Hopkins University / Coursera</span>
-                        <h3 class="cert-name">Business Analytics with Excel: Elementary to Advanced</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/coursera/business-analytics-excel.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="coursera">
-                    <div>
-                        <span class="cert-issuer">Knowledge Accelerators / Coursera</span>
-                        <h3 class="cert-name">From Excel to Power BI Professional Track</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/coursera/from-excel-to-power-bi.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                    </div>
-                </div>
-                <div class="glass-card cert-card" data-vendor="coursera">
-                    <div>
-                        <span class="cert-issuer">Coursera Guided Project</span>
-                        <h3 class="cert-name">Getting Started with Microsoft Excel</h3>
-                    </div>
-                    <div class="cert-links-wrapper">
-                        <a href="certificates/coursera/microsoft-excel.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CHRONOLOGICAL PROFESSIONAL DEVELOPMENT SECTION (53 ENGAGEMENTS) -->
-    <section id="development" style="background:var(--bg-base);" class="animate-on-scroll">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Engagements</span>
-                <h2 class="section-title">Professional Development (FDPs & Workshops)</h2>
-            </div>
-
-            <!-- FDPs BLOCK -->
-            <div class="dev-category-block">
-                <h3 class="dev-category-title"><i class="fa-solid fa-chalkboard-user"></i> Faculty Development Programs (FDPs)</h3>
-                <div class="dev-items-list">
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Jun 29 - Jul 03, 2026</div>
-                        <div class="dev-item-details">
-                            <h4>Research & Development Excellence through Data Science Case Studies</h4>
-                            <p>Sphoorthy Engineering College, Department of Computer Science and Engineering (Data Science)</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Jun 26 - Jun 30, 2026</div>
-                        <div class="dev-item-details">
-                            <h4>AI-Driven Business Analytics For Research, Teaching & Industry Applications</h4>
-                            <p>Jodhpur Institute of Engineering & Technology, Faculty of Management & Commerce</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Jun 22 - Jun 27, 2026</div>
-                        <div class="dev-item-details">
-                            <h4>AI Powered Teaching Excellence</h4>
-                            <p>Walchand Institute of Technology, Solapur, Department of Electronics and Telecommunication Engineering</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Jan 16 - Jan 21, 2026</div>
-                        <div class="dev-item-details">
-                            <h4>Next-Generation Mechanical Engineering: From Research to Industrial Applications</h4>
-                            <p>Institute of Engineering & Management (IEM) in association with HRDC, IEM-UEM Group</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Jan 05 - Jan 08, 2026</div>
-                        <div class="dev-item-details">
-                            <h4>Advanced Computational Modeling for Solids and Fluids</h4>
-                            <p>Indian Institute of Technology Bhilai, India</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Nov 17 - Nov 22, 2025</div>
-                        <div class="dev-item-details">
-                            <h4>Robotics for Industry 4.0: Enabling Smart Manufacturing</h4>
-                            <p>AICTE Training and Learning (ATAL) Academy FDP at Sri Venkateswara College of Engineering</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Nov 17 - Nov 21, 2025</div>
-                        <div class="dev-item-details">
-                            <h4>Recent Advances in Composite Materials: Integrating Modelling And Experimental Approaches</h4>
-                            <p>Maharaj Vijayaram Gajapathi Raj College of Engineering, Vizianagaram</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Oct 27 - Nov 06, 2025</div>
-                        <div class="dev-item-details">
-                            <h4>The Art and Science of Successful Proposal Writing: Techniques, Strategies, and Best Practices</h4>
-                            <p>CVR College of Engineering, Hyderabad, Departments of ECE, CSE, and IT</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Oct 27 - Oct 31, 2025</div>
-                        <div class="dev-item-details">
-                            <h4>The Role of Artificial Intelligence in Manufacturing Industries</h4>
-                            <p>Maharaj Vijayaram Gajapathi Raj College of Engineering, Vizianagaram</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Sep 15 - Sep 19, 2025</div>
-                        <div class="dev-item-details">
-                            <h4>Smart Materials and Technologies for Durable Structures (SMTDS'25)</h4>
-                            <p>R.V.R.J.C. College of Engineering, Guntur, Department of Civil Engineering</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Jul 30 - Aug 03, 2024</div>
-                        <div class="dev-item-details">
-                            <h4>Innovations in Robotics and UAVs: Digital Twins, Drone Design, and Future Trends</h4>
-                            <p>VNR Vignana Jyothi Institute of Engineering and Technology, Hyderabad</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Jul 22 - Aug 02, 2024</div>
-                        <div class="dev-item-details">
-                            <h4>Transforming Education: Integrating OBE and NEP 2020</h4>
-                            <p>CVR College of Engineering, Department of Electronics and Communication Engineering</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Dec 26, 2023 - Jan 02, 2024</div>
-                        <div class="dev-item-details">
-                            <h4>Advanced Python Programming</h4>
-                            <p>Guru Nanak Institutions Technical Campus, Department of Computer Science and Engineering</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Sep 12 - Sep 16, 2023</div>
-                        <div class="dev-item-details">
-                            <h4>Fundamentals, Advancements and Applications of Robotics</h4>
-                            <p>Vignan Institute of Technology and Science, Department of Mechanical Engineering</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Aug 23 - Aug 28, 2021</div>
-                        <div class="dev-item-details">
-                            <h4>Additive Manufacturing Processes and Its Applications</h4>
-                            <p>Sri Manakula Vinayagar Engineering College, Puducherry</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Jul 05 - Jul 09, 2021</div>
-                        <div class="dev-item-details">
-                            <h4>Green Technology and Sustainability Engineering</h4>
-                            <p>AICTE Training and Learning (ATAL) Academy Online FDP at Amrita Vishwa Vidyapeetham</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Historic Stack</div>
-                        <div class="dev-item-details">
-                            <h4>Mathematical Modeling & Numerical Techniques 2020</h4>
-                            <p>Kakatiya Institute of Technology and Science, Warangal</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Historic Stack</div>
-                        <div class="dev-item-details">
-                            <h4>Frontiers of Research in Mechanical Engineering (FORME 2020)</h4>
-                            <p>Satya Institute of Technology and Management, Vizianagaram</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Historic Stack</div>
-                        <div class="dev-item-details">
-                            <h4>Three-Week Faculty Induction Training Program</h4>
-                            <p>Supported by MHRD under PMMMNMTT scheme, organized by TLC, IIT Hyderabad</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Core Legacy</div>
-                        <div class="dev-item-details">
-                            <h4>Engineering Physics, Smart Composites & Advanced Welding Packs</h4>
-                            <p>Aggregated series from CBIT Hyderabad, MGIT, JAIN University Bangalore, and MLR Institute</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- WORKSHOPS BLOCK -->
-            <div class="dev-category-block">
-                <h3 class="dev-category-title"><i class="fa-solid fa-screwdriver-wrench"></i> Specialized Workshops</h3>
-                <div class="dev-items-list">
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Feb 07 - Feb 16, 2026</div>
-                        <div class="dev-item-details">
-                            <h4>Problem-Driven AI: Real World Applications and Solution Frameworks</h4>
-                            <p>National Institute of Technology Rourkela, Department of Computer Science and Engineering</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Oct 31, 2023</div>
-                        <div class="dev-item-details">
-                            <h4>Emission Control Strategies in Thermal Power Plants</h4>
-                            <p>Industry-Academia Engagement Workshop by OP Jindal University and Jindal Institute of Power Technology</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Academic Cycle</div>
-                        <div class="dev-item-details">
-                            <h4>Computational Research Techniques Using MATLAB</h4>
-                            <p>Sree Chaitanya College of Engineering, Karimnagar</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Academic Cycle</div>
-                        <div class="dev-item-details">
-                            <h4>Autodesk Authorized Academic Event & Metallurgy Track</h4>
-                            <p>Jointly hosted at Guru Nanak Institutions Technical Campus and Sree Chaitanya College</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SUMMER SCHOOLS & SHORT COURSES -->
-            <div class="dev-category-block">
-                <h3 class="dev-category-title"><i class="fa-solid fa-calendar-check"></i> Summer Schools & STTPs</h3>
-                <div class="dev-items-list">
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Jul 01 - Jul 05, 2026</div>
-                        <div class="dev-item-details">
-                            <h4>Summer School on Data-Driven Modelling for Mechanical Systems (D2MMS)</h4>
-                            <p>Indian Institute of Technology (Indian School of Mines), Dhanbad, Department of Mechanical Engineering</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Mar 22 - Mar 27, 2021</div>
-                        <div class="dev-item-details">
-                            <h4>Enduring Trends in Hydraulic Control Systems: Past, Present and Future</h4>
-                            <p>Indian Institute of Technology Madras, Department of Mechanical Engineering, Centre for Continuing Education</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">QIP Sessions</div>
-                        <div class="dev-item-details">
-                            <h4>Theory of Plasticity and Its Applications</h4>
-                            <p>CE & QIP, Indian Institute of Technology Bombay</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">QIP Sessions</div>
-                        <div class="dev-item-details">
-                            <h4>Application of Forecasting Methods in Engineering and Business Problems</h4>
-                            <p>AICTE & QIP, Indian Institute of Technology Kharagpur</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">STTP Cycle</div>
-                        <div class="dev-item-details">
-                            <h4>Advanced Techniques in Modelling, Finite Element Methods & DoE</h4>
-                            <p>Aggregated professional series at VNR Vignana Jyothi, NITTTR Bhopal, and Vasavi College of Engineering</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CONFERENCES & WEBINARS -->
-            <div class="dev-category-block">
-                <h3 class="dev-category-title"><i class="fa-solid fa-users-viewfinder"></i> Conferences & National Webinars</h3>
-                <div class="dev-items-list">
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Dec 19 - Dec 20, 2025</div>
-                        <div class="dev-item-details">
-                            <h4>Conference on AI for Forensics and Biometric Applications (AIFB) 2025</h4>
-                            <p>Indian Institute of Technology Bhilai, India</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Webinar Series</div>
-                        <div class="dev-item-details">
-                            <h4>A Vision Towards Materials and Manufacturing</h4>
-                            <p>KPR Institute of Engineering and Technology, Coimbatore</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                    <div class="dev-item-row">
-                        <div class="dev-item-date">Webinar Series</div>
-                        <div class="dev-item-details">
-                            <h4>Essential Technologies and Career Opportunities in Mechanical Engineering</h4>
-                            <p>Universal Engineering College, Kerala</p>
-                        </div>
-                        <div><a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> Certificate</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- INTERACTIVE CONTACT SYSTEM SECTION -->
-    <section id="contact" class="contact-section animate-on-scroll">
-        <div class="container">
-            <div class="contact-grid">
-                <!-- Info Grid -->
-                <div class="contact-info-panel">
-                    <h3>Get in Touch</h3>
-                    <p style="color:var(--text-muted); margin-bottom: 20px;">Feel free to drop a communication request for collaborative engineering research projects or academic reviews.</p>
-                    
-                    <div class="contact-methods">
-                        <a href="mailto:sanjeevkumargajawada@gmail.com" class="contact-method-item">
-                            <i class="fa-solid fa-envelope"></i>
-                            <div class="contact-method-text">
-                                <span>Email</span>
-                                <p>sanjeevkumargajawada@gmail.com</p>
+                    <!-- Exhaustive Container -->
+                    <div class="exhaustive-detailed-block condensed-hidden">
+                        <div class="timeline-section-grid">
+                            <div>
+                                <h3 class="dev-category-title"><i class="fa-solid fa-briefcase"></i> Professional Experience</h3>
+                                <div class="timeline-wrapper">
+                                    <div class="timeline-item">
+                                        <span class="timeline-date">Jan 2026 - Jun 2026</span>
+                                        <h4 class="timeline-title">Online Data Science Intern</h4>
+                                        <div class="timeline-institution">Sabudh Foundation (in collaboration with STPI), Mohali, India</div>
+                                        <p class="timeline-desc">Developed and contributed to the primary project "Federated Learning for Intelligent Transportation System".</p>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <span class="timeline-date">Mar 2021 - Jun 2025</span>
+                                        <h4 class="timeline-title">Assistant Professor</h4>
+                                        <div class="timeline-institution">Guru Nanak Institutions Technical Campus, Hyderabad, India</div>
+                                        <p class="timeline-desc">Delivered major curriculum classes, organized student associations, and operated structural design groups.</p>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <span class="timeline-date">Nov 2018 - Mar 2021</span>
+                                        <h4 class="timeline-title">Assistant Professor</h4>
+                                        <div class="timeline-institution">Sree Chaitanya College of Engineering, Karimnagar, India</div>
+                                        <p class="timeline-desc">Instructed computational workflows, oversaw testing operations, and orchestrated design analytics.</p>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <span class="timeline-date">Dec 2015 - Jun 2016</span>
+                                        <h4 class="timeline-title">Lecturer</h4>
+                                        <div class="timeline-institution">Jyothishmathi Institute of Technology and Science, Karimnagar, India</div>
+                                        <p class="timeline-desc">Taught baseline principles of thermal systems and engineering graphics templates.</p>
+                                    </div>
+                                </div>
                             </div>
-                        </a>
-                        <a href="https://www.linkedin.com/in/skgajawada/" target="_blank" class="contact-method-item">
-                            <i class="fa-brands fa-linkedin"></i>
-                            <div class="contact-method-text">
-                                <span>LinkedIn</span>
-                                <p>in/skgajawada</p>
-                            </div>
-                        </a>
-                        <div class="contact-method-item">
-                            <i class="fa-solid fa-phone"></i>
-                            <div class="contact-method-text">
-                                <span>Call</span>
-                                <p>+91 9030833667</p>
-                            </div>
-                        </div>
-                        <div class="contact-method-item">
-                            <i class="fa-brands fa-whatsapp"></i>
-                            <div class="contact-method-text">
-                                <span>WhatsApp Username</span>
-                                <p>@skgajawada</p>
+
+                            <div>
+                                <h3 class="dev-category-title"><i class="fa-solid fa-graduation-cap"></i> Academic Timeline</h3>
+                                <div class="timeline-wrapper">
+                                    <div class="timeline-item">
+                                        <span class="timeline-date">Jul 2025 - Present</span>
+                                        <h4 class="timeline-title">PhD in Design</h4>
+                                        <div class="timeline-institution">Indian Institute of Technology (ISM), Dhanbad</div>
+                                        <p class="timeline-desc"><strong>Grade:</strong> 8.2 CGPA (Current)</p>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <span class="timeline-date">Jun 2025 - Dec 2025</span>
+                                        <h4 class="timeline-title">AICTE QIP PG Certificate Course - Data Science</h4>
+                                        <div class="timeline-institution">Indian Institute of Technology Bhilai</div>
+                                        <p class="timeline-desc"><strong>Grade:</strong> 8.67 CGPA</p>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <span class="timeline-date">2016 - 2018</span>
+                                        <h4 class="timeline-title">Master of Technology - Machine Design</h4>
+                                        <div class="timeline-institution">GITAM Deemed To Be University, Visakhapatnam</div>
+                                        <p class="timeline-desc"><strong>Grade:</strong> 8.78 CGPA</p>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <span class="timeline-date">2010 - 2014</span>
+                                        <h4 class="timeline-title">Bachelor of Technology - Mechanical Engineering</h4>
+                                        <div class="timeline-institution">Vivekananda Institute of Technology and Science, Karimnagar</div>
+                                        <p class="timeline-desc"><strong>Grade:</strong> 71.28%</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="qr-block">
-                        <img src="telegram_qr.png" alt="Telegram Channels Connect QR" class="qr-image">
-                        <p>Telegram Connect QR</p>
+                </div>
+            </section>
+
+            <!-- PROJECT WORK SAMPLES -->
+            <section id="projects" class="animate-on-scroll">
+                <div class="container">
+                    <div class="view-navigation-bar">
+                        <button class="btn btn-secondary" onclick="returnToDashboard(event)" style="padding: 8px 16px; margin-bottom: 20px;"><i class="fa-solid fa-arrow-left"></i> Back to Home</button>
                     </div>
-                </div>
+                    <div class="section-header">
+                        <span class="section-tag">R&D Work</span>
+                        <h2 class="section-title clickable-title" onclick="triggerSectionView('projects')">Academic Projects</h2>
+                    </div>
 
-                <!-- Form Panel -->
-                <div class="glass-card">
-                    <form action="https://formspree.io/f/sanjeevkumargajawada@gmail.com" method="POST" class="query-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="form-name">Full Name</label>
-                                <input type="text" id="form-name" name="name" class="form-control" required placeholder="Dr. John Doe">
+                    <!-- Condensed Container -->
+                    <div class="condensed-summary-block">
+                        <p class="biography-text">Research and analysis projects across finite element analysis optimization, hydraulic scale control structures, and internal combustion processes.</p>
+                    </div>
+
+                    <!-- Exhaustive Container -->
+                    <div class="exhaustive-detailed-block condensed-hidden">
+                        <div class="projects-grid">
+                            <div class="glass-card project-card">
+                                <h4>Effect of Elastic-Plastic Material Properties of Metals on Hardness Values Using Finite Element Analysis</h4>
+                                <p style="color:var(--text-muted); font-size:0.95rem;">Investigated variation of metal hardness across theoretical calculations versus computational experiments, optimizing these parameters through FEA algorithms.</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">Finite Element Analysis</span>
+                                    <span class="project-tag">Plasticity Optimization</span>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="form-email">Academic Email</label>
-                                <input type="email" id="form-email" name="email" class="form-control" required placeholder="john.doe@university.edu">
+                            <div class="glass-card project-card">
+                                <h4>Study of Internal Combustion Engines & Their Components</h4>
+                                <p style="color:var(--text-muted); font-size:0.95rem;">Explored fundamentals and operational physics of two-stroke and four-stroke thermal engines, profiling mechanical linkages and energy transfers.</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">IC Engines</span>
+                                    <span class="project-tag">Thermal Engineering</span>
+                                </div>
+                            </div>
+                            <div class="glass-card project-card">
+                                <h4>Hydraulic Robotic Arm for Pick and Place Operation</h4>
+                                <p style="color:var(--text-muted); font-size:0.95rem;">Designed and structured an operating scale model utilizing Pascal's Law to transfer force vectors through liquid mediums safely.</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">Hydraulics</span>
+                                    <span class="project-tag">Pascal's Law</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="form-subject">Subject</label>
-                            <input type="text" id="form-subject" name="subject" class="form-control" required placeholder="Research Collaboration Proposal">
-                        </div>
-                        <div class="form-group">
-                            <label for="form-message">Message Details</label>
-                            <textarea id="form-message" name="message" rows="5" class="form-control" required placeholder="Write your project proposal details here..."></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="justify-content: center;">
-                            <i class="fa-solid fa-paper-plane"></i> Submit Query
-                        </button>
-                    </form>
+                    </div>
+
                 </div>
-            </div>
+            </section>
+
+            <!-- CORE SUBJECTS HANDLED -->
+            <section id="teaching" style="background:var(--bg-base);" class="animate-on-scroll">
+                <div class="container">
+                    <div class="view-navigation-bar">
+                        <button class="btn btn-secondary" onclick="returnToDashboard(event)" style="padding: 8px 16px; margin-bottom: 20px;"><i class="fa-solid fa-arrow-left"></i> Back to Home</button>
+                    </div>
+                    <div class="section-header">
+                        <span class="section-tag">Instruction</span>
+                        <h2 class="section-title clickable-title" onclick="triggerSectionView('teaching')">Subjects Handled</h2>
+                    </div>
+
+                    <!-- Condensed Container -->
+                    <div class="condensed-summary-block">
+                        <p class="biography-text">Instructed core mechanical courses ranging from Finite Element Methods to Fluid Mechanics and Dynamics frameworks.</p>
+                    </div>
+
+                    <!-- Exhaustive Container -->
+                    <div class="exhaustive-detailed-block condensed-hidden">
+                        <div class="subjects-grid">
+                            <div class="subject-card">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-compass"></i></div>
+                                    <span class="subject-name">Engineering Mechanics</span>
+                                </div>
+                                <div class="subject-materials-box">
+                                    <a href="MOS/" class="materials-link"><i class="fa-solid fa-folder-open"></i> Access Materials</a>
+                                </div>
+                            </div>
+                            <div class="subject-card">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-pen-drafting"></i></div>
+                                    <span class="subject-name">Engineering Graphics</span>
+                                </div>
+                                <div class="subject-materials-box">
+                                    <a href="MOS/" class="materials-link"><i class="fa-solid fa-folder-open"></i> Access Materials</a>
+                                </div>
+                            </div>
+                            <div class="subject-card">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-cubes"></i></div>
+                                    <span class="subject-name">Mechanics of Solids</span>
+                                </div>
+                                <div class="subject-materials-box">
+                                    <a href="MOS/" class="materials-link"><i class="fa-solid fa-folder-open"></i> Access Materials</a>
+                                </div>
+                            </div>
+                            <div class="subject-card">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-circle-nodes"></i></div>
+                                    <span class="subject-name">Kinematics of Machinery</span>
+                                </div>
+                                <div class="subject-materials-box">
+                                    <a href="MOS/" class="materials-link"><i class="fa-solid fa-folder-open"></i> Access Materials</a>
+                                </div>
+                            </div>
+                            <div class="subject-card">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-droplet"></i></div>
+                                    <span class="subject-name">Fluid Mechanics</span>
+                                </div>
+                                <div class="subject-materials-box">
+                                    <a href="MOS/" class="materials-link"><i class="fa-solid fa-folder-open"></i> Access Materials</a>
+                                </div>
+                            </div>
+                            <div class="subject-card">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-fire"></i></div>
+                                    <span class="subject-name">Thermodynamics</span>
+                                </div>
+                                <div class="subject-materials-box">
+                                    <a href="MOS/" class="materials-link"><i class="fa-solid fa-folder-open"></i> Access Materials</a>
+                                </div>
+                            </div>
+                            <div class="subject-card">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-temperature-half"></i></div>
+                                    <span class="subject-name">Heat Transfer</span>
+                                </div>
+                                <div class="subject-materials-box">
+                                    <a href="MOS/" class="materials-link"><i class="fa-solid fa-folder-open"></i> Access Materials</a>
+                                </div>
+                            </div>
+                            <div class="subject-card">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+                                    <span class="subject-name">Design of Machine Members</span>
+                                </div>
+                                <div class="subject-materials-box">
+                                    <a href="MOS/" class="materials-link"><i class="fa-solid fa-folder-open"></i> Access Materials</a>
+                                </div>
+                            </div>
+                            <div class="subject-card">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-calculator"></i></div>
+                                    <span class="subject-name">Operations Research</span>
+                                </div>
+                                <div class="subject-materials-box">
+                                    <a href="MOS/" class="materials-link"><i class="fa-solid fa-folder-open"></i> Access Materials</a>
+                                </div>
+                            </div>
+                            <div class="subject-card">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-square-matrix"></i></div>
+                                    <span class="subject-name">Finite Element Methods</span>
+                                </div>
+                                <div class="subject-materials-box">
+                                    <a href="MOS/" class="materials-link"><i class="fa-solid fa-folder-open"></i> Access Materials</a>
+                                </div>
+                            </div>
+                            <div class="subject-card">
+                                <div class="subject-main-info">
+                                    <div class="subject-icon"><i class="fa-solid fa-gauge"></i></div>
+                                    <span class="subject-name">Instrumentation and Control Systems</span>
+                                </div>
+                                <div class="subject-materials-box">
+                                    <a href="MOS/" class="materials-link"><i class="fa-solid fa-folder-open"></i> Access Materials</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- DYNAMIC FILTERABLE AND SEARCHABLE MOOCS & SKILLS CERTIFICATES -->
+            <section id="certifications" class="animate-on-scroll">
+                <div class="container">
+                    <div class="view-navigation-bar">
+                        <button class="btn btn-secondary" onclick="returnToDashboard(event)" style="padding: 8px 16px; margin-bottom: 20px;"><i class="fa-solid fa-arrow-left"></i> Back to Home</button>
+                    </div>
+                    <div class="section-header">
+                        <span class="section-tag">Credentials</span>
+                        <h2 class="section-title clickable-title" onclick="triggerSectionView('certifications')">MOOCs & Professional Certifications</h2>
+                    </div>
+
+                    <!-- Condensed Container -->
+                    <div class="condensed-summary-block">
+                        <p class="biography-text">Over 35 professional certifications validated across MathWorks MATLAB, Dataiku ML Academy, Coursera, and IBM SkillsBuild systems.</p>
+                    </div>
+
+                    <!-- Exhaustive Container -->
+                    <div class="exhaustive-detailed-block condensed-hidden">
+                        <div class="filter-controls">
+                            <div class="filter-tabs">
+                                <button class="filter-btn active" onclick="filterCertificates('all')">All Tech Stack</button>
+                                <button class="filter-btn" onclick="filterCertificates('matlab')">MathWorks</button>
+                                <button class="filter-btn" onclick="filterCertificates('dataiku')">Dataiku Academy</button>
+                                <button class="filter-btn" onclick="filterCertificates('linkedin')">LinkedIn Learning</button>
+                                <button class="filter-btn" onclick="filterCertificates('ibm')">IBM / SkillsBuild</button>
+                                <button class="filter-btn" onclick="filterCertificates('coursera')">Coursera</button>
+                            </div>
+                            <div class="search-wrapper">
+                                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                                <input type="text" id="cert-search" class="search-input" placeholder="Search certificates..." oninput="searchCertificates()">
+                            </div>
+                        </div>
+
+                        <div class="certifications-grid" id="cert-grid-container">
+                            <!-- MATLAB -->
+                            <div class="glass-card cert-card" data-vendor="matlab">
+                                <div>
+                                    <span class="cert-issuer">MathWorks Training</span>
+                                    <h3 class="cert-name">MATLAB Onramp</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/MATLAB/MATLAB Onramp.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=98447788-27ba-43f7-a438-54a4c4b1df5a&" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="matlab">
+                                <div>
+                                    <span class="cert-issuer">MathWorks Training</span>
+                                    <h3 class="cert-name">Simulink Onramp</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/MATLAB/Simulink Onramp.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=d6887cfb-feb5-49dd-a406-fbf7b5e4d1b8&" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="matlab">
+                                <div>
+                                    <span class="cert-issuer">MathWorks Training</span>
+                                    <h3 class="cert-name">Control System Modeling Essentials</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/MATLAB/Control System Modeling Essentials.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=e8d11305-c798-4b87-940e-8300139337ea&" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="matlab">
+                                <div>
+                                    <span class="cert-issuer">MathWorks Training</span>
+                                    <h3 class="cert-name">Linearization of Nonlinear Systems</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/MATLAB/Linearization of Nonlinear Systems.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=c17a101d-2a44-44e0-a914-ee7f78719c34&" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="matlab">
+                                <div>
+                                    <span class="cert-issuer">MathWorks Training</span>
+                                    <h3 class="cert-name">Control System Analysis Techniques</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/MATLAB/Control System Analysis Techniques.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=0d6e6247-8d07-481d-9aff-816283c9a363&" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="matlab">
+                                <div>
+                                    <span class="cert-issuer">MathWorks Training</span>
+                                    <h3 class="cert-name">PID Control Techniques</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/MATLAB/PID Control Techniques.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=26974935-40fb-4cbe-ac80-9e258664f207&" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="matlab">
+                                <div>
+                                    <span class="cert-issuer">MathWorks Training</span>
+                                    <h3 class="cert-name">Control System Design with MATLAB and Simulink</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/MATLAB/Control System Design with MATLAB and Simulink.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://matlabacademy.mathworks.com/progress/share/learningpath/certificate.html?id=" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="matlab">
+                                <div>
+                                    <span class="cert-issuer">MathWorks Training</span>
+                                    <h3 class="cert-name">Classical Controller Design Techniques</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/MATLAB/Classical Controller Design Techniques.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=3df3ce64-b72a-45fb-83c3-dc73f27434e6&" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="matlab">
+                                <div>
+                                    <span class="cert-issuer">MathWorks Training</span>
+                                    <h3 class="cert-name">Control Design Onramp with Simulink</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/MATLAB/Control Design Onramp with Simulink.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=9cccfad1-7baf-4f8f-91a7-254111620c35&" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="matlab">
+                                <div>
+                                    <span class="cert-issuer">MathWorks Training</span>
+                                    <h3 class="cert-name">MATLAB Desktop Tools and Troubleshooting Scripts</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/MATLAB/MATLAB Desktop Tools and Troubleshooting Scripts.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=fe00993d-b666-4320-9ff4-ba3eed1f1b66&" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="matlab">
+                                <div>
+                                    <span class="cert-issuer">MathWorks Training</span>
+                                    <h3 class="cert-name">MySQL for Non-Programmers Completion</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/MATLAB/CertificateOfCompletion_MySQL for NonProgrammers.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                </div>
+                            </div>
+
+                            <!-- IBM / COGNITIVE AI -->
+                            <div class="glass-card cert-card" data-vendor="ibm">
+                                <div>
+                                    <span class="cert-issuer">Cognitive Class</span>
+                                    <h3 class="cert-name">IBM PY0101EN Certificate</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/CognitiveAI/IBM PY0101EN Certificate _ Cognitive Class.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://courses.cognitiveclass.ai/certificates/0d19f10b76a34e86aa3565abb86d317b" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <!-- LINKEDIN LEARNING -->
+                            <div class="glass-card cert-card" data-vendor="linkedin">
+                                <div>
+                                    <span class="cert-issuer">LinkedIn Learning</span>
+                                    <h3 class="cert-name">Learning Data Analytics: 1 Foundations</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/LinkedIn/Learning Data Analytics 1 Foundations.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://www.linkedin.com/learning/certificates/c722240aaf5d8f69a7cea04f45036ae283ef7a13f23b0da378ae92ee5ada0206?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="linkedin">
+                                <div>
+                                    <span class="cert-issuer">LinkedIn Learning</span>
+                                    <h3 class="cert-name">MySQL for Non-Programmers</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/LinkedIn/MySQL for NonProgrammers.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://www.linkedin.com/learning/certificates/16190e5fd82451db63fc9fb16831d52eecd35dcc6d3ea4f432fe5dca10d12c49?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="linkedin">
+                                <div>
+                                    <span class="cert-issuer">LinkedIn Learning</span>
+                                    <h3 class="cert-name">Learning SQL Programming</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/LinkedIn/Learning SQL Programming.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://www.linkedin.com/learning/certificates/1c83f7f99d799579f0115cda9d0120df230372a6a248149c302b245c504fe0a0?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="linkedin">
+                                <div>
+                                    <span class="cert-issuer">LinkedIn Learning</span>
+                                    <h3 class="cert-name">Python for Data Science and Machine Learning Essential Training Part 1</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/LinkedIn/Python for Data Science and Machine Learning Essential Training Part 1.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://www.linkedin.com/learning/certificates/d0a4940b9ada1be26c358dd29fba3c2b3a99a3811b38d31218e2dcb0b763b14f?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="linkedin">
+                                <div>
+                                    <span class="cert-issuer">LinkedIn Learning</span>
+                                    <h3 class="cert-name">MATLAB Essential Training</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/LinkedIn/MATLAB Essential Training.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://www.linkedin.com/learning/certificates/d709fe8ed6ea0cecddee637f5817e3f6c6c24d5bc44102cc6ee809a98a12b6ee?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="linkedin">
+                                <div>
+                                    <span class="cert-issuer">LinkedIn Learning</span>
+                                    <h3 class="cert-name">Six Sigma Foundations</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/LinkedIn/Six Sigma Foundations.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://www.linkedin.com/learning/certificates/ac0993075d80ece8d4985e0d8956cffb8c3a6fd0cbd550a4a0eb27feff62ec75?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="linkedin">
+                                <div>
+                                    <span class="cert-issuer">LinkedIn Learning</span>
+                                    <h3 class="cert-name">Statistics Foundations 3: Using Data Sets</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/LinkedIn/Statistics Foundations 3 Using Data Sets.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://www.linkedin.com/learning/certificates/1f26017e1ac6db7dd1ceee67e504713d51d897b94e74d4cd861205aa04e902e5?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="linkedin">
+                                <div>
+                                    <span class="cert-issuer">LinkedIn Learning</span>
+                                    <h3 class="cert-name">Operational Excellence Foundations</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/LinkedIn/Operational Excellence Foundations.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://www.linkedin.com/learning/certificates/52d52362acda852e0bb9cd82f14c236347b5b25bfce957cad0081d2725b26408?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="linkedin">
+                                <div>
+                                    <span class="cert-issuer">LinkedIn Learning</span>
+                                    <h3 class="cert-name">Six Sigma: Green Belt</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/LinkedIn/Six Sigma Green Belt.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://www.linkedin.com/learning/certificates/29a40ae378a0f0dddc6f66aea714be8be75826348175b0aba9d91c530237fc05?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="linkedin">
+                                <div>
+                                    <span class="cert-issuer">LinkedIn Learning</span>
+                                    <h3 class="cert-name">Additive Manufacturing: Tips, Tricks, and Techniques</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/LinkedIn/Additive Manufacturing Tips Tricks and Techniques.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://www.linkedin.com/learning/certificates/44c37fa2479a143dae3cf23058bef10a9aa4d552f07eac1cb6e5b9a166ff73a0?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="linkedin">
+                                <div>
+                                    <span class="cert-issuer">LinkedIn Learning</span>
+                                    <h3 class="cert-name">Accelerated MATLAB</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/LinkedIn/Accelerated MATLAB.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://www.linkedin.com/learning/certificates/688edcc956ef29c6da8c22fb42e3f52c6782dbc68f90e53af367d76f615f0f02?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="linkedin">
+                                <div>
+                                    <span class="cert-issuer">LinkedIn Learning</span>
+                                    <h3 class="cert-name">Learning MATLAB</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/LinkedIn/Learning MATLAB.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://www.linkedin.com/learning/certificates/00827e7e19b6fa7e65f2d175caca08e91da5d4fb2b60b76e68b1dd3fdc03131f?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="linkedin">
+                                <div>
+                                    <span class="cert-issuer">LinkedIn Learning</span>
+                                    <h3 class="cert-name">Python Essential Training</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/LinkedIn/Python Essential Training.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    <a href="https://www.linkedin.com/learning/certificates/b5920cb8058b6ce223edeafcccce74c1f44427f4cb9f6d0e2b248f8a613f5329?trk=share_certificate" class="cert-btn verify-btn"><i class="fa-solid fa-shield-halved"></i> Verify Online</a>
+                                </div>
+                            </div>
+
+                            <!-- DATAIKU -->
+                            <div class="glass-card cert-card" data-vendor="dataiku">
+                                <div>
+                                    <span class="cert-issuer">Dataiku Academy</span>
+                                    <h3 class="cert-name">Core Designer Professional Certificate</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/Dataiku/Core Designer Certificate.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="dataiku">
+                                <div>
+                                    <span class="cert-issuer">Dataiku Academy</span>
+                                    <h3 class="cert-name">Advanced Designer Professional Certificate</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/Dataiku/Advanced Designer Certificate.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="dataiku">
+                                <div>
+                                    <span class="cert-issuer">Dataiku Academy</span>
+                                    <h3 class="cert-name">Developer Professional Certificate</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/Dataiku/Developer Certificate.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="dataiku">
+                                <div>
+                                    <span class="cert-issuer">Dataiku Academy</span>
+                                    <h3 class="cert-name">ML Practitioner Professional Certificate</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/Dataiku/ML Practitioner Certificate.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="dataiku">
+                                <div>
+                                    <span class="cert-issuer">Dataiku Academy</span>
+                                    <h3 class="cert-name">MLOps Practitioner Professional Certificate</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/Dataiku/MLOps Practitioner Certificate.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="dataiku">
+                                <div>
+                                    <span class="cert-issuer">Dataiku Academy</span>
+                                    <h3 class="cert-name">Generative AI Practitioner Professional Certificate</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/Dataiku/Generative AI Practitioner Certificate.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                </div>
+                            </div>
+
+                            <!-- IBM SkillsBuild Stack -->
+                            <div class="glass-card cert-card" data-vendor="ibm">
+                                <div>
+                                    <span class="cert-issuer">IBM SkillsBuild</span>
+                                    <h3 class="cert-name">Data Fundamentals (Earned Credential)</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/IBM/Data Fundamentals.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="ibm">
+                                <div>
+                                    <span class="cert-issuer">IBM SkillsBuild</span>
+                                    <h3 class="cert-name">Data Literacy (Earned Credential)</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/IBM/DataLiteracy.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="ibm">
+                                <div>
+                                    <span class="cert-issuer">IBM SkillsBuild</span>
+                                    <h3 class="cert-name">Sensemaking with Data Module</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/IBM/DataLiteracy.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="ibm">
+                                <div>
+                                    <span class="cert-issuer">IBM SkillsBuild</span>
+                                    <h3 class="cert-name">Exploring Data Analytics Architectures</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/IBM/DataLiteracy.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="ibm">
+                                <div>
+                                    <span class="cert-issuer">IBM SkillsBuild</span>
+                                    <h3 class="cert-name">Your Future in Data: The Job Landscape</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/IBM/Data Fundamentals.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="ibm">
+                                <div>
+                                    <span class="cert-issuer">IBM SkillsBuild</span>
+                                    <h3 class="cert-name">Overview of Data Tools and Languages</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/IBM/Data Fundamentals.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="ibm">
+                                <div>
+                                    <span class="cert-issuer">IBM SkillsBuild</span>
+                                    <h3 class="cert-name">Clean, Refine, and Visualize Data with IBM Watson Studio</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/IBM/Data Fundamentals.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="ibm">
+                                <div>
+                                    <span class="cert-issuer">IBM SkillsBuild</span>
+                                    <h3 class="cert-name">Data Science in Our World</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/IBM/Data Fundamentals.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="ibm">
+                                <div>
+                                    <span class="cert-issuer">IBM SkillsBuild</span>
+                                    <h3 class="cert-name">Introduction to Data Concepts</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/IBM/Data Fundamentals.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                </div>
+                            </div>
+
+                            <!-- COURSERA -->
+                            <div class="glass-card cert-card" data-vendor="coursera">
+                                <div>
+                                    <span class="cert-issuer">Johns Hopkins University / Coursera</span>
+                                    <h3 class="cert-name">Business Analytics with Excel: Elementary to Advanced</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/coursera/business-analytics-excel.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="coursera">
+                                <div>
+                                    <span class="cert-issuer">Knowledge Accelerators / Coursera</span>
+                                    <h3 class="cert-name">From Excel to Power BI Professional Track</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/coursera/from-excel-to-power-bi.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                </div>
+                            </div>
+                            <div class="glass-card cert-card" data-vendor="coursera">
+                                <div>
+                                    <span class="cert-issuer">Coursera Guided Project</span>
+                                    <h3 class="cert-name">Getting Started with Microsoft Excel</h3>
+                                </div>
+                                <div class="cert-links-wrapper">
+                                    <a href="certificates/coursera/microsoft-excel.pdf" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- CHRONOLOGICAL PROFESSIONAL DEVELOPMENT SECTION (53 ENGAGEMENTS) -->
+            <section id="development" style="background:var(--bg-base);" class="animate-on-scroll">
+                <div class="container">
+                    <div class="view-navigation-bar">
+                        <button class="btn btn-secondary" onclick="returnToDashboard(event)" style="padding: 8px 16px; margin-bottom: 20px;"><i class="fa-solid fa-arrow-left"></i> Back to Home</button>
+                    </div>
+                    <div class="section-header">
+                        <span class="section-tag">Engagements</span>
+                        <h2 class="section-title clickable-title" onclick="triggerSectionView('development')">Professional Development (FDPs & Workshops)</h2>
+                    </div>
+
+                    <!-- Condensed Container -->
+                    <div class="condensed-summary-block">
+                        <p class="biography-text">Completed 53 professional development records including specialized AICTE ATAL, IIT computational, and NIT research programs.</p>
+                    </div>
+
+                    <!-- Exhaustive Container -->
+                    <div class="exhaustive-detailed-block condensed-hidden">
+                        <!-- FDPs BLOCK -->
+                        <div class="dev-category-block">
+                            <h3 class="dev-category-title"><i class="fa-solid fa-chalkboard-user"></i> Faculty Development Programs (FDPs)</h3>
+                            <div class="dev-items-grid">
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Jun 29 - Jul 03, 2026</div>
+                                        <h4 class="dev-card-title">Research & Development Excellence through Data Science Case Studies</h4>
+                                        <p class="dev-card-institution">Sphoorthy Engineering College, Department of Computer Science and Engineering (Data Science)</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Jun 26 - Jun 30, 2026</div>
+                                        <h4 class="dev-card-title">AI-Driven Business Analytics For Research, Teaching & Industry Applications</h4>
+                                        <p class="dev-card-institution">Jodhpur Institute of Engineering & Technology, Faculty of Management & Commerce</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Jun 22 - Jun 27, 2026</div>
+                                        <h4 class="dev-card-title">AI Powered Teaching Excellence</h4>
+                                        <p class="dev-card-institution">Walchand Institute of Technology, Solapur, Department of Electronics and Telecommunication Engineering</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Jan 16 - Jan 21, 2026</div>
+                                        <h4 class="dev-card-title">Next-Generation Mechanical Engineering: From Research to Industrial Applications</h4>
+                                        <p class="dev-card-institution">Institute of Engineering & Management (IEM) in association with HRDC, IEM-UEM Group</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Jan 05 - Jan 08, 2026</div>
+                                        <h4 class="dev-card-title">Advanced Computational Modeling for Solids and Fluids</h4>
+                                        <p class="dev-card-institution">Indian Institute of Technology Bhilai, India</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Nov 17 - Nov 22, 2025</div>
+                                        <h4 class="dev-card-title">Robotics for Industry 4.0: Enabling Smart Manufacturing</h4>
+                                        <p class="dev-card-institution">AICTE Training and Learning (ATAL) Academy FDP at Sri Venkateswara College of Engineering</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Nov 17 - Nov 21, 2025</div>
+                                        <h4 class="dev-card-title">Recent Advances in Composite Materials: Integrating Modelling And Experimental Approaches</h4>
+                                        <p class="dev-card-institution">Maharaj Vijayaram Gajapathi Raj College of Engineering, Vizianagaram</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Oct 27 - Nov 06, 2025</div>
+                                        <h4 class="dev-card-title">The Art and Science of Successful Proposal Writing: Techniques, Strategies, and Best Practices</h4>
+                                        <p class="dev-card-institution">CVR College of Engineering, Hyderabad, Departments of ECE, CSE, and IT</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Oct 27 - Oct 31, 2025</div>
+                                        <h4 class="dev-card-title">The Role of Artificial Intelligence in Manufacturing Industries</h4>
+                                        <p class="dev-card-institution">Maharaj Vijayaram Gajapathi Raj College of Engineering, Vizianagaram</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Sep 15 - Sep 19, 2025</div>
+                                        <h4 class="dev-card-title">Smart Materials and Technologies for Durable Structures (SMTDS'25)</h4>
+                                        <p class="dev-card-institution">R.V.R.J.C. College of Engineering, Guntur, Department of Civil Engineering</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Jul 30 - Aug 03, 2024</div>
+                                        <h4 class="dev-card-title">Innovations in Robotics and UAVs: Digital Twins, Drone Design, and Future Trends</h4>
+                                        <p class="dev-card-institution">VNR Vignana Jyothi Institute of Engineering and Technology, Hyderabad</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Jul 22 - Aug 02, 2024</div>
+                                        <h4 class="dev-card-title">Transforming Education: Integrating OBE and NEP 2020</h4>
+                                        <p class="dev-card-institution">CVR College of Engineering, Department of Electronics and Communication Engineering</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Dec 26, 2023 - Jan 02, 2024</div>
+                                        <h4 class="dev-card-title">Advanced Python Programming</h4>
+                                        <p class="dev-card-institution">Guru Nanak Institutions Technical Campus, Department of Computer Science and Engineering</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Sep 12 - Sep 16, 2023</div>
+                                        <h4 class="dev-card-title">Fundamentals, Advancements and Applications of Robotics</h4>
+                                        <p class="dev-card-institution">Vignan Institute of Technology and Science, Department of Mechanical Engineering</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Aug 23 - Aug 28, 2021</div>
+                                        <h4 class="dev-card-title">Additive Manufacturing Processes and Its Applications</h4>
+                                        <p class="dev-card-institution">Sri Manakula Vinayagar Engineering College, Puducherry</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Jul 05 - Jul 09, 2021</div>
+                                        <h4 class="dev-card-title">Green Technology and Sustainability Engineering</h4>
+                                        <p class="dev-card-institution">AICTE Training and Learning (ATAL) Academy Online FDP at Amrita Vishwa Vidyapeetham</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Historic Stack</div>
+                                        <h4 class="dev-card-title">Mathematical Modeling & Numerical Techniques 2020</h4>
+                                        <p class="dev-card-institution">Kakatiya Institute of Technology and Science, Warangal</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Historic Stack</div>
+                                        <h4 class="dev-card-title">Frontiers of Research in Mechanical Engineering (FORME 2020)</h4>
+                                        <p class="dev-card-institution">Satya Institute of Technology and Management, Vizianagaram</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Historic Stack</div>
+                                        <h4 class="dev-card-title">Three-Week Faculty Induction Training Program</h4>
+                                        <p class="dev-card-institution">Supported by MHRD under PMMMNMTT scheme, organized by TLC, IIT Hyderabad</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Core Legacy</div>
+                                        <h4 class="dev-card-title">Engineering Physics, Smart Composites & Advanced Welding Packs</h4>
+                                        <p class="dev-card-institution">Aggregated series from CBIT Hyderabad, MGIT, JAIN University Bangalore, and MLR Institute</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- WORKSHOPS BLOCK -->
+                        <div class="dev-category-block">
+                            <h3 class="dev-category-title"><i class="fa-solid fa-screwdriver-wrench"></i> Specialized Workshops</h3>
+                            <div class="dev-items-grid">
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Feb 07 - Feb 16, 2026</div>
+                                        <h4 class="dev-card-title">Problem-Driven AI: Real World Applications and Solution Frameworks</h4>
+                                        <p class="dev-card-institution">National Institute of Technology Rourkela, Department of Computer Science and Engineering</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Oct 31, 2023</div>
+                                        <h4 class="dev-card-title">Emission Control Strategies in Thermal Power Plants</h4>
+                                        <p class="dev-card-institution">Industry-Academia Engagement Workshop by OP Jindal University and Jindal Institute of Power Technology</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="glass-card dev-card">
+                                    <div>
+                                        <div class="dev-card-date">Academic Cycle</div>
+                                        <h4 class="dev-card-title">Computational Research Techniques Using MATLAB</h4>
+                                        <p class="dev-card-institution">Sree Chaitanya College of Engineering</p>
+                                    </div>
+                                    <div class="dev-card-links">
+                                        <a href="certificates/" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- CONTACT & QUERY FORM -->
+            <section id="contact" class="contact-section animate-on-scroll">
+                <div class="container">
+                    <div class="view-navigation-bar">
+                        <button class="btn btn-secondary" onclick="returnToDashboard(event)" style="padding: 8px 16px; margin-bottom: 20px;"><i class="fa-solid fa-arrow-left"></i> Back to Home</button>
+                    </div>
+                    <div class="section-header">
+                        <span class="section-tag">Get In Touch</span>
+                        <h2 class="section-title clickable-title" onclick="triggerSectionView('contact')">Connect Framework</h2>
+                    </div>
+
+                    <!-- Condensed Container -->
+                    <div class="condensed-summary-block">
+                        <p class="biography-text">Drop a query directly into the encrypted communications module below to initialize messaging threads.</p>
+                    </div>
+
+                    <!-- Exhaustive Container -->
+                    <div class="exhaustive-detailed-block condensed-hidden">
+                        <div class="contact-grid">
+                            <div class="contact-info-panel">
+                                <h3>Collaboration Viewport</h3>
+                                <p class="contact-minimal-intro">Feel free to submit an email verification ticket via the secure query transmission form. Professional responses are systematically routed back inside standard operational time frames.</p>
+                            </div>
+                            
+                            <form class="query-form" onsubmit="event.preventDefault(); alert('Message successfully transmitted via simulated API.');">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="form-name">Full Name</label>
+                                        <input type="text" id="form-name" class="form-control" placeholder="John Doe" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="form-email">Email Address</label>
+                                        <input type="email" id="form-email" class="form-control" placeholder="john@example.com" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="form-subject">Message Subject</label>
+                                    <input type="text" id="form-subject" class="form-control" placeholder="Research Collaboration Proposal" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="form-msg">Message Content</label>
+                                    <textarea id="form-msg" class="form-control" rows="5" placeholder="Provide details regarding project architecture..." required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary" style="align-self: flex-start;">Send Encrypted Message</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
         </div>
-    </section>
+    </main>
 
-    <!-- PREMIUM COMPACT FOOTER CONTAINING ALL PLATFORM ICONS -->
+    <!-- FOOTER PANELS -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
                     <h3>Gajavada Sanjeevkumar</h3>
-                    <p>PhD Research Scholar • Former Assistant Professor</p>
+                    <p>PhD Research Scholar • Mechanical Engineering • Structural Dynamics Expert</p>
                 </div>
                 <div class="footer-social-icons">
-                    <a href="tel:+919030833667" title="Call"><i class="fa-solid fa-phone"></i></a>
-                    <a href="mailto:sanjeevkumargajawada@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
-                    <a href="https://skgajawada.github.io/" title="GitHub Pages Website"><i class="fa-solid fa-globe"></i></a>
-                    <a href="https://in.linkedin.com/in/skgajawada" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="https://scholar.google.com" target="_blank" title="Google Scholar"><i class="fa-solid fa-graduation-cap"></i></a>
-                    <a href="https://orcid.org" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
-                    <a href="https://x.com/sk_gajawada" target="_blank" title="Twitter (X)"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="https://github.com/skgajawada" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://leetcode.com/u/skgajawada/" target="_blank" title="LeetCode"><i class="fa-code"></i></a>
-                    <a href="https://instagram.com/sanjeevkumar_gajawada" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://wa.me/919030833667" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-                    <a href="https://facebook.com/skgajawada" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://t.me/skgajawada" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
-                    <a href="https://www.youtube.com/@skgajawada" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" aria-label="Academic Records Link"><i class="fa-solid fa-graduation-cap"></i></a>
+                    <a href="#" aria-label="Research Hub Portal"><i class="fa-solid fa-atom"></i></a>
+                    <a href="#" aria-label="Professional Network Profile"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Version Control Storage"><i class="fa-brands fa-github"></i></a>
                 </div>
-                <p class="footer-copy">&copy; 2026 Gajavada Sanjeevkumar. Built via Github Pages. All Rights Reserved.</p>
+                <p class="footer-copy">&copy; 2026 Gajavada Sanjeevkumar. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- BACK TO TOP ACTION CHIP -->
-    <div class="back-to-top" id="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+    <!-- SCROLL ARROW ELEMENTS -->
+    <div class="back-to-top" id="scroll-top-arrow" onclick="scrollToTopHead()">
         <i class="fa-solid fa-arrow-up"></i>
     </div>
 
-    <!-- UTILITY CONTROL SCRIPTS -->
+    <!-- MAIN APPLICATIONS SYSTEM MANAGEMENT CONTROLLER ENGINE -->
     <script>
-        // Reading Progress Indicator Logic
-        window.addEventListener('scroll', () => {
-            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('progress-bar').style.width = scrolled + '%';
-            
-            // Back to top visibility logic
-            const scrollTopBtn = document.getElementById('scroll-top');
-            if (winScroll > 400) {
-                scrollTopBtn.classList.add('visible');
-            } else {
-                scrollTopBtn.classList.remove('visible');
-            }
-        });
+        // Global Portfoliic Engine Configurations
+        let activeCanvasMode = "dashboard"; // Modes: "dashboard" | "focused"
+        const scrollViewport = document.getElementById("main-scroll-viewport");
 
-        // Toggle Dark/Light Premium Skins
-        const themeBtn = document.getElementById('theme-btn');
-        themeBtn.addEventListener('click', () => {
-            const body = document.body;
-            const currentTheme = body.getAttribute('data-theme');
-            if (currentTheme === 'dark') {
-                body.removeAttribute('data-theme');
+        // Dynamic Single-Tab Content Switcher Logic Engine
+        function triggerSectionView(targetBlockId) {
+            activeCanvasMode = "focused";
+            
+            // Sync all UI headers
+            document.querySelectorAll(".nav-links a").forEach(link => {
+                link.classList.remove("active");
+                if(link.getAttribute("href") === "#" + targetBlockId) {
+                    link.classList.add("active");
+                }
+            });
+
+            // Re-render layout segments sequentially
+            document.querySelectorAll(".app-canvas > section").forEach(section => {
+                if(section.id === "hero") {
+                    section.style.display = "none";
+                } else if(section.id === targetBlockId) {
+                    section.style.display = "block";
+                    
+                    // Toggle state representations within elements safely
+                    const condensed = section.querySelector(".condensed-summary-block");
+                    const exhaustive = section.querySelector(".exhaustive-detailed-block");
+                    const navBar = section.querySelector(".view-navigation-bar");
+                    
+                    if(condensed) condensed.classList.add("condensed-hidden");
+                    if(exhaustive) exhaustive.classList.remove("condensed-hidden");
+                    if(navBar) navBar.style.display = "block";
+                    
+                    // Trigger scroll intersection and execution updates instantly
+                    section.classList.add("appear");
+                } else {
+                    section.style.display = "none";
+                }
+            });
+
+            // Smooth scroll adjustments directly to canvas top offset boundaries
+            scrollViewport.scrollTop = 0;
+            updateProgressBar();
+        }
+
+        function returnToDashboard(event) {
+            if(event) event.preventDefault();
+            activeCanvasMode = "dashboard";
+
+            // Reset navigation header anchors
+            document.querySelectorAll(".nav-links a").forEach(link => link.classList.remove("active"));
+            document.getElementById("nav-home-link").classList.add("active");
+
+            // Restore the multi-section condensed application canvas mapping
+            document.querySelectorAll(".app-canvas > section").forEach(section => {
+                section.style.display = "block";
+                
+                const condensed = section.querySelector(".condensed-summary-block");
+                const exhaustive = section.querySelector(".exhaustive-detailed-block");
+                const navBar = section.querySelector(".view-navigation-bar");
+                
+                if(condensed) condensed.classList.remove("condensed-hidden");
+                if(exhaustive) exhaustive.classList.add("condensed-hidden");
+                if(navBar) navBar.style.display = "none";
+            });
+
+            scrollViewport.scrollTop = 0;
+            updateProgressBar();
+            triggerAnimateOnScrollIntersections();
+        }
+
+        function handleNavClick(event, targetBlockId) {
+            event.preventDefault();
+            triggerSectionView(targetBlockId);
+        }
+
+        // Adaptive Reading Progress Engine
+        function updateProgressBar() {
+            const currentScroll = scrollViewport.scrollTop;
+            const contextHeight = scrollViewport.scrollHeight - scrollViewport.clientHeight;
+            if (contextHeight > 0) {
+                const calculatedPercentage = (currentScroll / contextHeight) * 100;
+                document.getElementById("progress-bar").style.width = calculatedPercentage + "%";
+            } else {
+                document.getElementById("progress-bar").style.width = "0%";
+            }
+
+            // Arrow visualization threshold tracking
+            const arrow = document.getElementById("scroll-top-arrow");
+            if(currentScroll > 300) {
+                arrow.classList.add("visible");
+            } else {
+                arrow.classList.remove("visible");
+            }
+        }
+
+        function scrollToTopHead() {
+            scrollViewport.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        scrollViewport.addEventListener("scroll", updateProgressBar);
+
+        // Hardware-Accelerated fluid intersection scroll calculations
+        function triggerAnimateOnScrollIntersections() {
+            if(activeCanvasMode !== "dashboard") return;
+            
+            const viewThreshold = scrollViewport.clientHeight * 0.85;
+            document.querySelectorAll(".animate-on-scroll").forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                if(elementTop < viewThreshold) {
+                    el.classList.add("appear");
+                }
+            });
+        }
+        scrollViewport.addEventListener("scroll", triggerAnimateOnScrollIntersections);
+
+        // About Block Sub-Tab Switching Logic
+        function switchTab(event, tabId) {
+            const currentSection = event.target.closest("section");
+            currentSection.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+            currentSection.querySelectorAll(".tab-content").forEach(content => content.classList.remove("active"));
+            
+            event.target.classList.add("active");
+            document.getElementById(tabId).classList.add("active");
+        }
+
+        // Live MOOC Search & Filtering Stack Integration Engine
+        function filterCertificates(vendorKey) {
+            document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+            event.target.classList.add("active");
+            
+            document.querySelectorAll("#cert-grid-container .cert-card").forEach(card => {
+                if(vendorKey === "all" || card.getAttribute("data-vendor") === vendorKey) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        function searchCertificates() {
+            const queryValue = document.getElementById("cert-search").value.toLowerCase();
+            document.querySelectorAll("#cert-grid-container .cert-card").forEach(card => {
+                const textTitle = card.querySelector(".cert-name").textContent.toLowerCase();
+                const textIssuer = card.querySelector(".cert-issuer").textContent.toLowerCase();
+                if(textTitle.includes(queryValue) || textIssuer.includes(queryValue)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        // Theme Toggle Controller
+        const themeBtn = document.getElementById("theme-btn");
+        themeBtn.addEventListener("click", () => {
+            const currentThemeSetting = document.documentElement.getAttribute("data-theme");
+            if(currentThemeSetting === "dark") {
+                document.documentElement.removeAttribute("data-theme");
                 themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
             } else {
-                body.setAttribute('data-theme', 'dark');
+                document.documentElement.setAttribute("data-theme", "dark");
                 themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
             }
         });
 
-        // About Me tab panel swapper
-        function switchTab(evt, tabId) {
-            const tabContents = document.getElementsByClassName('tab-content');
-            for (let i = 0; i < tabContents.length; i++) {
-                tabContents[i].classList.remove('active');
-            }
-            const tabBtns = document.getElementsByClassName('tab-btn');
-            for (let i = 0; i < tabBtns.length; i++) {
-                tabBtns[i].classList.remove('active');
-            }
-            document.getElementById(tabId).classList.add('active');
-            evt.currentTarget.classList.add('active');
-        }
-
-        // Filter engine for certificates
-        function filterCertificates(vendor) {
-            const cards = document.querySelectorAll('#cert-grid-container .cert-card');
-            const tabs = document.querySelectorAll('.filter-btn');
-            
-            tabs.forEach(tab => {
-                if (tab.getAttribute('onclick').includes(`'${vendor}'`)) {
-                    tab.classList.add('active');
-                } else {
-                    tab.classList.remove('active');
-                }
-            });
-
-            cards.forEach(card => {
-                if (vendor === 'all' || card.getAttribute('data-vendor') === vendor) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        // Instant matching search text query engine
-        function searchCertificates() {
-            const query = document.getElementById('cert-search').value.toLowerCase();
-            const cards = document.querySelectorAll('#cert-grid-container .cert-card');
-            
-            cards.forEach(card => {
-                const name = card.querySelector('.cert-name').textContent.toLowerCase();
-                const issuer = card.querySelector('.cert-issuer').textContent.toLowerCase();
-                if (name.includes(query) || issuer.includes(query)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        // Elegant Intersection Observer for scroll animations
-        const observerOptions = { threshold: 0.1 };
-        const scrollObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('appear');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            scrollObserver.observe(el);
+        // Bootstrap applications initialization parameters
+        window.addEventListener("DOMContentLoaded", () => {
+            triggerAnimateOnScrollIntersections();
+            // Force first section active matching context maps
+            document.getElementById("hero").classList.add("appear");
         });
     </script>
 </body>
