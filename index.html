@@ -1,1690 +1,431 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gajavada Sanjeevkumar | Premium Academic Portfolio & Research Registry</title>
+    <title>Gajavada Sanjeevkumar | PhD Scholar - IIT (ISM) Dhanbad</title>
+    <meta name="description" content="Academic Portfolio of Gajavada Sanjeevkumar, PhD Scholar at IIT (ISM) Dhanbad. Specializing in Aeroelasticity, FEM, Structural Dynamics, Composite Materials, and Machine Learning.">
     
-    <!-- Fonts & Icons -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Animation Libraries -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    
-    <style>
-        /* CSS Variables - Soft Professional Palette */
-        :root {
-            --primary: #1e3a8a;       /* Slate-Blue Primary */
-            --accent: #0ea5e9;        /* Sky-Blue Accent */
-            --secondary: #2563eb;     /* Professional Blue */
-            --bg-light: #f8fafc;      /* Soft Canvas Light Gray */
-            --card-light: #ffffff;    /* Card Background */
-            --text-light: #0f172a;    /* Dark Slate Text */
-            --text-muted-light: #475569;
-            --border-line: #e2e8f0;
-            
-            --bg-dark: #020617;
-            --card-dark: #0f172a;
-            --text-dark: #f8fafc;
-            --text-muted-dark: #94a3b8;
-            
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --font-headings: 'Playfair Display', serif;
-            --font-body: 'Inter', sans-serif;
-            --font-numbers: 'Space Grotesk', sans-serif;
-        }
-
-        /* Base Theme Styling */
-        body {
-            background-color: var(--bg-light);
-            color: var(--text-light);
-            font-family: var(--font-body);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            overflow-x: hidden;
-            transition: var(--transition);
-        }
-
-        body.dark-mode {
-            background-color: var(--bg-dark);
-            color: var(--text-dark);
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Page Loader */
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #020617;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease;
-        }
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(14, 165, 233, 0.1);
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Header Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(248, 250, 252, 0.85);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(30, 58, 138, 0.08);
-            transition: var(--transition);
-        }
-        body.dark-mode header {
-            background: rgba(2, 6, 23, 0.85);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .nav-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 70px;
-            padding: 0 2rem;
-            position: relative;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-muted-light);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: var(--transition);
-        }
-        body.dark-mode .nav-links a {
-            color: var(--text-muted-dark);
-        }
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-        .theme-toggle {
-            position: absolute;
-            right: 2rem;
-            background: none;
-            border: none;
-            color: var(--text-light);
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: var(--transition);
-        }
-        body.dark-mode .theme-toggle {
-            color: var(--text-dark);
-        }
-
-        /* Hero Section */
-        #home {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: radial-gradient(circle at center, rgba(30, 58, 138, 0.05) 0%, transparent 70%);
-            overflow: hidden;
-        }
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-            padding: 0 1rem;
-        }
-        .hero-name {
-            font-family: var(--font-headings);
-            font-size: 4.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
-        }
-        body.dark-mode .hero-name {
-            background: linear-gradient(135deg, #ffffff, var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .hero-title {
-            font-size: 1.8rem;
-            font-weight: 500;
-            color: var(--text-light);
-            margin-bottom: 0.5rem;
-        }
-        body.dark-mode .hero-title {
-            color: var(--text-dark);
-        }
-        .hero-dept {
-            font-size: 1.2rem;
-            color: var(--text-muted-light);
-            margin-bottom: 2rem;
-        }
-        body.dark-mode .hero-dept {
-            color: var(--text-muted-dark);
-        }
-        .hero-tags {
-            font-family: var(--font-numbers);
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            color: var(--accent);
-            text-transform: uppercase;
-            margin-bottom: 2.5rem;
-        }
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-        .btn {
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: 1px solid transparent;
-        }
-        .btn-primary {
-            background: var(--primary);
-            color: #ffffff;
-        }
-        .btn-primary:hover {
-            background: var(--secondary);
-            transform: translateY(-2px);
-        }
-        .btn-outline {
-            border: 1px solid rgba(30, 58, 138, 0.2);
-            color: var(--text-light);
-        }
-        body.dark-mode .btn-outline {
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--text-dark);
-        }
-        .btn-outline:hover {
-            background: rgba(30, 58, 138, 0.05);
-            transform: translateY(-2px);
-        }
-
-        /* Global Section Typo */
-        section {
-            padding: 110px 0;
-            border-bottom: 1px solid rgba(30, 58, 138, 0.05);
-        }
-        body.dark-mode section {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-        }
-        .section-title {
-            font-family: var(--font-headings);
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3.5rem;
-            color: var(--text-light);
-        }
-        body.dark-mode .section-title {
-            color: var(--text-dark);
-        }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--accent);
-            margin: 0.75rem auto 0;
-            border-radius: 2px;
-        }
-
-        /* About Me Section */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        .profile-img-container {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border: 1px solid var(--border-line);
-        }
-        body.dark-mode .profile-img-container {
-            border-color: rgba(255, 255, 255, 0.05);
-        }
-        .profile-img {
-            width: 100%;
-            display: block;
-            transition: var(--transition);
-            object-fit: cover;
-            aspect-ratio: 1/1.15;
-        }
-        .profile-img-container:hover .profile-img {
-            transform: scale(1.03);
-        }
-        .about-text {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        .about-subtitle {
-            font-family: var(--font-headings);
-            font-size: 1.6rem;
-            color: var(--primary);
-            margin: 0;
-        }
-        body.dark-mode .about-subtitle {
-            color: var(--accent);
-        }
-        .about-p {
-            color: var(--text-muted-light);
-            margin: 0;
-            font-size: 1.05rem;
-            text-align: justify;
-        }
-        body.dark-mode .about-p {
-            color: var(--text-muted-dark);
-        }
-
-        /* Research Areas Section */
-        .grid-3x2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-        .research-card {
-            background: var(--card-light);
-            border-radius: 16px;
-            padding: 2.5rem 2rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.01);
-            border: 1px solid rgba(30, 58, 138, 0.05);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        body.dark-mode .research-card {
-            background: var(--card-dark);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-        }
-        .research-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(14, 165, 233, 0.08);
-        }
-        .research-icon {
-            font-size: 2.5rem;
-            color: var(--accent);
-        }
-        .research-title {
-            font-family: var(--font-headings);
-            font-size: 1.4rem;
-            margin: 0;
-            color: var(--text-light);
-        }
-        body.dark-mode .research-title {
-            color: var(--text-dark);
-        }
-        .research-desc {
-            font-size: 0.98rem;
-            color: var(--text-muted-light);
-            margin: 0;
-            flex-grow: 1;
-        }
-        body.dark-mode .research-desc {
-            color: var(--text-muted-dark);
-        }
-
-        /* Unified Dynamic Timeline (Experience & Education) */
-        .timeline {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-            padding-left: 2.5rem;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 5px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: rgba(30, 58, 138, 0.1);
-        }
-        body.dark-mode .timeline::before {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3.5rem;
-        }
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
-        .timeline-marker {
-            position: absolute;
-            left: -2.75rem;
-            top: 0.25rem;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: var(--accent);
-            border: 4px solid var(--bg-light);
-            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.15);
-            transition: var(--transition);
-        }
-        body.dark-mode .timeline-marker {
-            border-color: var(--bg-dark);
-        }
-        .timeline-item:hover .timeline-marker {
-            transform: scale(1.2);
-            background: var(--primary);
-        }
-        .timeline-date {
-            font-family: var(--font-numbers);
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 0.4rem;
-            font-size: 0.95rem;
-        }
-        .timeline-title {
-            font-family: var(--font-headings);
-            font-size: 1.4rem;
-            margin: 0 0 0.25rem;
-            color: var(--text-light);
-        }
-        body.dark-mode .timeline-title {
-            color: var(--text-dark);
-        }
-        .timeline-subtitle {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 0.75rem;
-        }
-        body.dark-mode .timeline-subtitle {
-            color: var(--accent);
-        }
-        .timeline-content {
-            color: var(--text-muted-light);
-            font-size: 1rem;
-            margin: 0;
-        }
-        body.dark-mode .timeline-content {
-            color: var(--text-muted-dark);
-        }
-
-        /* Subjects Grid */
-        .subjects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-        .subject-card {
-            position: relative;
-            border-radius: 16px;
-            padding: 4rem 2rem 2.5rem;
-            overflow: hidden;
-            background-size: cover;
-            background-position: center;
-            color: #ffffff;
-            min-height: 220px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            transition: var(--transition);
-        }
-        .subject-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.45) 100%);
-            z-index: 1;
-        }
-        .subject-card-content {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-        .subject-card-content h3 {
-            font-family: var(--font-headings);
-            font-size: 1.4rem;
-            margin: 0;
-        }
-        .subject-card-content p {
-            font-size: 0.95rem;
-            opacity: 0.9;
-            margin: 0;
-        }
-        .access-folder-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-            transition: var(--transition);
-        }
-        .access-folder-link:hover {
-            color: #ffffff;
-        }
-
-        /* Credentials Section */
-        .certifications-control {
-            display: flex;
-            justify-content: center;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            margin-bottom: 2.5rem;
-        }
-        .filter-btn {
-            background: rgba(30, 58, 138, 0.05);
-            border: none;
-            padding: 0.6rem 1.4rem;
-            border-radius: 50px;
-            cursor: pointer;
-            color: var(--text-light);
-            font-weight: 500;
-            font-size: 0.88rem;
-            transition: var(--transition);
-        }
-        body.dark-mode .filter-btn {
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--text-dark);
-        }
-        .filter-btn:hover, .filter-btn.active {
-            background: var(--accent);
-            color: #ffffff;
-        }
-        .certifications-search {
-            max-width: 450px;
-            margin: 0 auto 3.5rem;
-            position: relative;
-        }
-        .certifications-search input {
-            width: 100%;
-            padding: 0.85rem 1rem 0.85rem 2.8rem;
-            border-radius: 50px;
-            border: 1px solid rgba(30, 58, 138, 0.15);
-            background: var(--card-light);
-            color: var(--text-light);
-            font-family: inherit;
-            outline: none;
-            transition: var(--transition);
-            font-size: 0.95rem;
-        }
-        body.dark-mode .certifications-search input {
-            border-color: rgba(255, 255, 255, 0.08);
-            background: var(--card-dark);
-            color: var(--text-dark);
-        }
-        .certifications-search input:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
-        }
-        .certifications-search i {
-            position: absolute;
-            left: 1.2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted-light);
-        }
-        body.dark-mode .certifications-search i {
-            color: var(--text-muted-dark);
-        }
-        .certifications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-        .cert-card {
-            background: var(--card-light);
-            border-radius: 12px;
-            padding: 1.75rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.01);
-            border: 1px solid rgba(30, 58, 138, 0.05);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 160px;
-        }
-        body.dark-mode .cert-card {
-            background: var(--card-dark);
-            border-color: rgba(255, 255, 255, 0.03);
-        }
-        .cert-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.04);
-        }
-        .cert-provider {
-            font-family: var(--font-numbers);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent);
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-        .cert-title {
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin: 0 0 1rem;
-            line-height: 1.4;
-            color: var(--text-light);
-        }
-        body.dark-mode .cert-title {
-            color: var(--text-dark);
-        }
-        .cert-link {
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--primary);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-            transition: var(--transition);
-        }
-        body.dark-mode .cert-link {
-            color: var(--accent);
-        }
-
-        /* Technical Proficiency Progress Bars */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-        }
-        .skill-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        .skill-header {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 600;
-            font-size: 0.98rem;
-        }
-        .skill-progress-bg {
-            background: rgba(30, 58, 138, 0.08);
-            height: 8px;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        body.dark-mode .skill-progress-bg {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        .skill-progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 10px;
-            width: 0%;
-            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Achievements & Responsibilities Split Grid */
-        .split-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3.5rem;
-        }
-        .achievement-card {
-            background: var(--card-light);
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.01);
-            border: 1px solid rgba(30, 58, 138, 0.05);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-            transition: var(--transition);
-        }
-        body.dark-mode .achievement-card {
-            background: var(--card-dark);
-            border-color: rgba(255, 255, 255, 0.03);
-        }
-        .achievement-card i {
-            font-size: 1.8rem;
-            color: var(--accent);
-            background: rgba(14, 165, 233, 0.08);
-            padding: 1rem;
-            border-radius: 12px;
-            flex-shrink: 0;
-        }
-        .achievement-content h4 {
-            margin: 0 0 0.5rem 0;
-            font-size: 1.2rem;
-            font-family: var(--font-headings);
-            color: var(--text-light);
-        }
-        body.dark-mode .achievement-content h4 {
-            color: var(--text-dark);
-        }
-        .achievement-content p {
-            margin: 0;
-            color: var(--text-muted-light);
-            font-size: 0.98rem;
-        }
-        body.dark-mode .achievement-content p {
-            color: var(--text-muted-dark);
-        }
-
-        /* Gallery Grid Layout */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-        .gallery-item {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.02);
-            transition: var(--transition);
-            border: 1px solid rgba(30, 58, 138, 0.05);
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 260px;
-            object-fit: cover;
-            display: block;
-            transition: var(--transition);
-        }
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.85);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: var(--transition);
-            color: #ffffff;
-            padding: 2rem;
-            text-align: center;
-        }
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-        .gallery-overlay h3 {
-            font-family: var(--font-headings);
-            font-size: 1.4rem;
-            margin: 0 0 0.5rem 0;
-        }
-        .gallery-overlay p {
-            font-size: 0.95rem;
-            opacity: 0.85;
-            margin: 0;
-        }
-
-        /* Contact Section */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 4rem;
-        }
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-        .contact-card {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-        .contact-icon {
-            font-size: 1.4rem;
-            color: var(--accent);
-            background: rgba(14, 165, 233, 0.08);
-            padding: 1rem;
-            border-radius: 50%;
-            width: 52px;
-            height: 52px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .contact-detail h4 {
-            margin: 0 0 0.25rem;
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: var(--text-light);
-        }
-        body.dark-mode .contact-detail h4 {
-            color: var(--text-dark);
-        }
-        .contact-detail p {
-            margin: 0;
-            color: var(--text-muted-light);
-            font-size: 1rem;
-        }
-        body.dark-mode .contact-detail p {
-            color: var(--text-muted-dark);
-        }
-        .query-form {
-            background: var(--card-light);
-            padding: 3rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.01);
-            border: 1px solid rgba(30, 58, 138, 0.05);
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        body.dark-mode .query-form {
-            background: var(--card-dark);
-            border-color: rgba(255, 255, 255, 0.03);
-        }
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        .form-group label {
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-        .form-control {
-            padding: 0.85rem 1rem;
-            border-radius: 8px;
-            border: 1px solid rgba(30, 58, 138, 0.15);
-            background: transparent;
-            color: var(--text-light);
-            font-family: inherit;
-            transition: var(--transition);
-            font-size: 0.95rem;
-        }
-        body.dark-mode .form-control {
-            border-color: rgba(255, 255, 255, 0.08);
-            color: var(--text-dark);
-        }
-        .form-control:focus {
-            border-color: var(--accent);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
-        }
-
-        /* Footer Element */
-        footer {
-            background: #0f172a;
-            color: #94a3b8;
-            padding: 4.5rem 0;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .footer-socials {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        .footer-socials a {
-            color: #94a3b8;
-            font-size: 1.6rem;
-            transition: var(--transition);
-        }
-        .footer-socials a:hover {
-            color: var(--accent);
-            transform: translateY(-3px);
-        }
-        .footer-counter {
-            margin-top: 1.75rem;
-            font-size: 0.88rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-        .counter-badge {
-            background: #1e293b;
-            color: var(--accent);
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-family: var(--font-numbers);
-            font-weight: 700;
-        }
-
-        /* Responsive Layout Breakpoints */
-        @media (max-width: 968px) {
-            .about-grid, .contact-grid, .split-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            .profile-img-container {
-                max-width: 320px;
-                margin: 0 auto;
-            }
-            .hero-name {
-                font-size: 3.2rem;
-            }
-            .nav-links {
-                display: none; /* Auto hides dense links on mobile views */
-            }
-        }
-    </style>
+    <!-- Stylesheet Link -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Dynamic Overlay Page Loader -->
-    <div id="loader">
-        <div class="spinner"></div>
+    <!-- Page Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-spinner"></div>
     </div>
 
-    <!-- Main Navigation Header Bar -->
-    <header>
+    <!-- Reading Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Global Navigation -->
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#teaching">Teaching</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-                <li><a href="#development">Development</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <a href="#home" class="nav-logo">GS<span>.</span></a>
+            <div class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#research" class="nav-link">Research</a></li>
+                <li><a href="#timeline" class="nav-link">Timeline</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#teaching" class="nav-link">Teaching</a></li>
+                <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                <li><a href="#development" class="nav-link">Development</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
             </ul>
-            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
-                <i class="fas fa-moon" id="theme-icon"></i>
-            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero-section">
+        <div id="particles-js" class="hero-bg"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="badge fade-in">Welcome to my Academic Space</div>
+                <h1 class="hero-title fade-in">Gajavada Sanjeevkumar</h1>
+                <div class="hero-subtitle fade-in">
+                    <span class="typed-text"></span><span class="cursor">&nbsp;</span>
+                </div>
+                <p class="hero-institution fade-in"><i class="fas fa-university"></i> Department of Mechanical Engineering, IIT (ISM) Dhanbad</p>
+                
+                <div class="hero-tags fade-in">
+                    <span>Aeroelasticity</span>
+                    <span>FEM</span>
+                    <span>Structural Dynamics</span>
+                    <span>Composite Materials</span>
+                    <span>Machine Learning</span>
+                    <span>MATLAB & Simulink</span>
+                </div>
+                
+                <div class="hero-buttons fade-in">
+                    <a href="#contact" class="btn btn-primary ripple"><i class="fas fa-paper-plane"></i> Contact Me</a>
+                    <a href="#about" class="btn btn-secondary ripple"><i class="fas fa-user"></i> Explore Portfolio</a>
+                </div>
+
+                <div class="hero-socials fade-in">
+                    <a href="https://www.linkedin.com/in/skgajawada/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                    <a href="#" target="_blank" title="ORCID"><i class="fab fa-orcid"></i></a>
+                    <a href="mailto:sanjeevkumargajawada@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            
+            <div class="hero-stats fade-in">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="7">0</div>
+                    <div class="stat-label">Years Higher Ed Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="38">0</div>
+                    <div class="stat-label">Validated MOOC Certifications</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="10">0</div>
+                    <div class="stat-label">Blood Donations Delivered</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="32">0</div>
+                    <div class="stat-label">FDPs & Advanced Trainings</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <a href="#about"><i class="fas fa-chevron-down animate-bounce"></i></a>
         </div>
     </header>
 
-    <!-- Animated Home Landing Canvas Section -->
-    <section id="home">
-        <div id="particles-js"></div>
-        <div class="hero-content" data-aos="fade-up">
-            <h1 class="hero-name">Gajavada Sanjeevkumar</h1>
-            <div class="hero-title">PhD Scholar & Former Assistant Professor</div>
-            <div class="hero-dept">Department of Mechanical Engineering, IIT (ISM) Dhanbad</div>
-            <div class="hero-tags">
-                Aeroelasticity &bull; FEM &bull; Structural Dynamics &bull; Composite Materials &bull; Machine Learning &bull; MATLAB
+    <!-- About Me Section -->
+    <section id="about" class="about-section section-padding scroll-reveal">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="sub-heading">Biography</span>
+                <h2 class="main-heading">About Me</h2>
+                <div class="heading-line"></div>
             </div>
-            <div class="hero-buttons">
-                <a href="#" class="btn btn-primary"><i class="fas fa-file-download"></i> Download CV</a>
-                <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i> Get In Touch</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Biographic Profile Section -->
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
+            
             <div class="about-grid">
-                <div class="profile-img-container" data-aos="fade-right">
-                    <img src="pp.jpeg" alt="Gajavada Sanjeevkumar" class="profile-img" onerror="this.src='https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=400'">
+                <div class="about-image-wrapper">
+                    <div class="about-image-frame">
+                        <div class="placeholder-avatar">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                    </div>
+                    <div class="about-quick-info">
+                        <h3>G. Sanjeevkumar</h3>
+                        <p>PhD Scholar | IIT (ISM) Dhanbad</p>
+                        <p class="email-text"><i class="fas fa-envelope"></i> sanjeevkumargajawada@gmail.com</p>
+                        <p class="phone-text"><i class="fas fa-phone-alt"></i> +91 9030 833 667</p>
+                    </div>
                 </div>
-                <div class="about-text" data-aos="fade-left">
-                    <h3 class="about-subtitle">Biography & Research Vision</h3>
-                    <p class="about-p">
-                        I am currently a PhD scholar in the Design stream within the Department of Mechanical Engineering at IIT (ISM) Dhanbad. Before dedicating myself back to full-time rigorous academic inquiry, I accumulated years of valuable educational experience working as an Assistant Professor and Lecturer, helping modern engineering students frame robust foundational concepts.
+                
+                <div class="about-text-content">
+                    <h3>Career Objective & Vision</h3>
+                    <p class="bio-para">
+                        To advance mechanical and aerospace engineering systems through continuous cutting-edge research in <strong>aeroelasticity, structural dynamics, finite element methods, composite structures, and control mechanics</strong>. I aim to merge rigorous analytical and computational formulation models with modern data-driven computational pathways, including Machine Learning (ML) and Artificial Intelligence (AI), to solve highly non-linear, multi-physics structural challenges.
                     </p>
-                    <p class="about-p">
-                        My primary technical objective is to advance structural safety and isolation mechanics across both aerospace and general mechanical engineering industries. By leveraging hybrid methodologies that merge experimental principles with precision modeling, my research aids in addressing critical modern operational failure dynamics.
-                    </p>
-                    <h3 class="about-subtitle">Current Focus</h3>
-                    <p class="about-p">
-                        Broadly encompassing mathematical modeling, finite element calculations, aerodynamic interactions, and deep model analysis, I work on integrating machine learning computational toolsets alongside classic control loop designs within MATLAB & Simulink to build scalable, optimized engineering components.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+                    
+                    <div class="about-tabs">
+                        <button class="about-tab-btn active" onclick="switchAboutTab(event, 'vision')">Research Vision</button>
+                        <button class="about-tab-btn" onclick="switchAboutTab(event, 'current')">Current Endeavors</button>
+                        <button class="about-tab-btn" onclick="switchAboutTab(event, 'social')">Social Commitment</button>
+                    </div>
+                    
+                    <div id="vision" class="about-tab-content active">
+                        <p>Driving innovations across advanced aerospace engineering ecosystems. Designing reliable, lightweight flight profiles and complex structures capable of managing unstable aeroelastic fluctuations and severe dynamic loads using advanced composite layers and hybrid algorithms.</p>
+                    </div>
+                    
+                    <div id="current" class="about-tab-content">
+                        <p>Currently deep into doctoral exploration at the Department of Mechanical Engineering, IIT (ISM) Dhanbad. Concurrently combining predictive intelligence models alongside active structural systems using analytical software environments such as MATLAB, Simulink, and high-fidelity FEA platforms.</p>
+                    </div>
+                    
+                    <div id="social" class="about-tab-content">
+                        <p>Believer in social balance and dynamic community impact. Recognized as a dedicated multi-time blood donor volunteer (10+ donation campaigns achieved) and an active pledge participant within the national initiative <em>"Nasha Mukt Bharat, Khushaal Bharat"</em> framework managed by the Ministry of Social Justice and Empowerment.</p>
+                    </div>
 
-    <!-- Interactive Technical Research Verticals Grid -->
-    <section id="research">
-        <div class="container">
-            <h2 class="section-title">Research Areas</h2>
-            <div class="grid-3x2">
-                <div class="research-card" data-aos="zoom-in">
-                    <i class="fas fa-wind research-icon"></i>
-                    <h3 class="research-title">Aeroelasticity</h3>
-                    <p class="research-desc">Investigating severe interactions between aerodynamic lifting surfaces, structural mass distributions, and linear/nonlinear elastic boundary transformations.</p>
-                </div>
-                <div class="research-card" data-aos="zoom-in" data-aos-delay="100">
-                    <i class="fas fa-wave-square research-icon"></i>
-                    <h3 class="research-title">Structural Dynamics</h3>
-                    <p class="research-desc">Analyzing natural frequencies, vibration responses under variable load spectra, phase transitions, and active computational dampener loops.</p>
-                </div>
-                <div class="research-card" data-aos="zoom-in" data-aos-delay="200">
-                    <i class="fas fa-layer-group research-icon"></i>
-                    <h3 class="research-title">Composite Structures</h3>
-                    <p class="research-desc">Developing numerical calculation layer arrays and optimization schemes for variable multi-layer configurations under dynamic loading contexts.</p>
-                </div>
-                <div class="research-card" data-aos="zoom-in" data-aos-delay="300">
-                    <i class="fas fa-border-all research-icon"></i>
-                    <h3 class="research-title">Finite Element Analysis</h3>
-                    <p class="research-desc">Simulating intricate components under high-stress fields, plastic-deformation limits, multi-axial mechanical strain, and transient thermal grids.</p>
-                </div>
-                <div class="research-card" data-aos="zoom-in" data-aos-delay="400">
-                    <i class="fas fa-brain research-icon"></i>
-                    <h3 class="research-title">Machine Learning</h3>
-                    <p class="research-desc">Deploying robust regression models, predictive analytics pipelines, and neural networks to accurately forecast material degradation profiles.</p>
-                </div>
-                <div class="research-card" data-aos="zoom-in" data-aos-delay="500">
-                    <i class="fas fa-laptop-code research-icon"></i>
-                    <h3 class="research-title">MATLAB & Simulink</h3>
-                    <p class="research-desc">Writing custom mathematical scripts, executing block control parameters, and simulating continuous dynamics behavior blocks.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Professional Experience Timeline Registry -->
-    <section id="experience">
-        <div class="container">
-            <h2 class="section-title">Professional Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Jan 2026 – Jun 2026</div>
-                    <h3 class="timeline-title">Data Science Intern</h3>
-                    <div class="timeline-subtitle">Sabudh Foundation (in collab with STPI) - Mohali, India</div>
-                    <p class="timeline-content">Researched and built secure decentralized processing structures, federated learning nodes, and data frameworks optimizing edge-intelligence nodes for modern transportation systems.</p>
-                </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Jul 2025 – Present</div>
-                    <h3 class="timeline-title">PhD Scholar</h3>
-                    <div class="timeline-subtitle">Indian Institute of Technology (ISM), Dhanbad</div>
-                    <p class="timeline-content">Engaged in advanced doctoral engineering design tracks, structural stability investigations, numerical calculation workflows, and aeroelastic simulation pipelines.</p>
-                </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Mar 2021 – Jun 2025</div>
-                    <h3 class="timeline-title">Former Assistant Professor</h3>
-                    <div class="timeline-subtitle">Guru Nanak Institutions Technical Campus - Hyderabad, India</div>
-                    <p class="timeline-content">Taught core mechanical courses, supervised under-graduate structural simulation projects, coordinated laboratory operations, and formulated curriculum parameters.</p>
-                </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Nov 2018 – Mar 2021</div>
-                    <h3 class="timeline-title">Former Assistant Professor</h3>
-                    <div class="timeline-subtitle">Sree Chaitanya College of Engineering - Karimnagar, India</div>
-                    <p class="timeline-content">Instructed fluid dynamics and machine design layers, mentored academic groups, established validation tests, and led laboratory training modules.</p>
-                </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Dec 2015 – Jun 2016</div>
-                    <h3 class="timeline-title">Lecturer</h3>
-                    <div class="timeline-subtitle">Jyothishmathi Institute of Technology and Science - Karimnagar, India</div>
-                    <p class="timeline-content">Formulated student tutorials focusing on fundamental engine mechanics, engineering drafting standards, graphics basics, and spatial projections.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Educational Qualification Chronological Track -->
-    <section id="education">
-        <div class="container">
-            <h2 class="section-title">Education</h2>
-            <div class="timeline">
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">2025 – Present</div>
-                    <h3 class="timeline-title">PhD in Mechanical Design</h3>
-                    <div class="timeline-subtitle">IIT (ISM), Dhanbad</div>
-                    <p class="timeline-content">Ongoing design track research. Current Cumulative GPA: 8.20 / 10</p>
-                </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">2025</div>
-                    <h3 class="timeline-title">AICTE QIP PG Certificate Course</h3>
-                    <div class="timeline-subtitle">IIT Bhilai</div>
-                    <p class="timeline-content">Specialized Certification track in Data Science fundamentals. Final Cumulative GPA: 8.67 / 10</p>
-                </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">2016 – 2018</div>
-                    <h3 class="timeline-title">Master of Technology (M.Tech) in Machine Design</h3>
-                    <div class="timeline-subtitle">GITAM Deemed To Be University, Visakhapatnam</div>
-                    <p class="timeline-content">Focused on dynamic mechanical vibrations and structural element metrics. Final Cumulative GPA: 8.78 / 10</p>
-                </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">2010 – 2014</div>
-                    <h3 class="timeline-title">Bachelor of Technology (B.Tech) in Mechanical Engineering</h3>
-                    <div class="timeline-subtitle">Vivekananda Institute of Technology and Science, Karimnagar</div>
-                    <p class="timeline-content">Completed core under-graduate mechanical engineering track with an aggregate score of 71.28%.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Comprehensive Academic Teaching Portfolio -->
-    <section id="teaching">
-        <div class="container">
-            <h2 class="section-title">Teaching Portfolio</h2>
-            <div class="subjects-grid">
-                <!-- Card 1 -->
-                <div class="subject-card" style="background-image: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=600')" data-aos="fade-up">
-                    <div class="subject-card-content">
-                        <h3>Engineering Mechanics</h3>
-                        <p>Statics, dynamics, vector kinematics, and force balance configurations.</p>
-                        <a href="https://drive.google.com/" target="_blank" class="access-folder-link"><i class="fas fa-folder-open"></i> Access Material</a>
-                    </div>
-                </div>
-                <!-- Card 2 -->
-                <div class="subject-card" style="background-image: url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=600')" data-aos="fade-up" data-aos-delay="50">
-                    <div class="subject-card-content">
-                        <h3>Engineering Graphics</h3>
-                        <p>Technical projections, complex geometric layouts, and orthographic spatial rendering.</p>
-                        <a href="https://drive.google.com/" target="_blank" class="access-folder-link"><i class="fas fa-folder-open"></i> Access Material</a>
-                    </div>
-                </div>
-                <!-- Card 3 -->
-                <div class="subject-card" style="background-image: url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=600')" data-aos="fade-up" data-aos-delay="100">
-                    <div class="subject-card-content">
-                        <h3>Mechanics of Solids</h3>
-                        <p>Stress-strain formulations, bending moments, and structural column buckling profiles.</p>
-                        <a href="https://drive.google.com/" target="_blank" class="access-folder-link"><i class="fas fa-folder-open"></i> Access Material</a>
-                    </div>
-                </div>
-                <!-- Card 4 -->
-                <div class="subject-card" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600')" data-aos="fade-up" data-aos-delay="150">
-                    <div class="subject-card-content">
-                        <h3>Kinematics of Machinery</h3>
-                        <p>Linkages, dynamic gear train systems, profile analysis, and relative velocity transitions.</p>
-                        <a href="https://drive.google.com/" target="_blank" class="access-folder-link"><i class="fas fa-folder-open"></i> Access Material</a>
-                    </div>
-                </div>
-                <!-- Card 5 -->
-                <div class="subject-card" style="background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80&w=600')" data-aos="fade-up" data-aos-delay="200">
-                    <div class="subject-card-content">
-                        <h3>Finite Element Methods</h3>
-                        <p>Structural discretization loops, element stiffness equations, and computing formulations.</p>
-                        <a href="https://drive.google.com/" target="_blank" class="access-folder-link"><i class="fas fa-folder-open"></i> Access Material</a>
-                    </div>
-                </div>
-                <!-- Card 6 -->
-                <div class="subject-card" style="background-image: url('https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&q=80&w=600')" data-aos="fade-up" data-aos-delay="250">
-                    <div class="subject-card-content">
-                        <h3>Fluid Mechanics</h3>
-                        <p>Flow field boundaries, viscous pipeline losses, control volumes, and conservation physics.</p>
-                        <a href="https://drive.google.com/" target="_blank" class="access-folder-link"><i class="fas fa-folder-open"></i> Access Material</a>
-                    </div>
-                </div>
-                <!-- Card 7 -->
-                <div class="subject-card" style="background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=600')" data-aos="fade-up" data-aos-delay="300">
-                    <div class="subject-card-content">
-                        <h3>Thermodynamics</h3>
-                        <p>Closed and open energy cycles, entropy balance assertions, and pure substance transformations.</p>
-                        <a href="https://drive.google.com/" target="_blank" class="access-folder-link"><i class="fas fa-folder-open"></i> Access Material</a>
-                    </div>
-                </div>
-                <!-- Card 8 -->
-                <div class="subject-card" style="background-image: url('https://images.unsplash.com/photo-1534224039826-c7a0eda0e6b3?auto=format&fit=crop&q=80&w=600')" data-aos="fade-up" data-aos-delay="350">
-                    <div class="subject-card-content">
-                        <h3>Heat Transfer</h3>
-                        <p>Multi-dimensional conduction models, convection coefficient variables, and thermal radiation exchange grids.</p>
-                        <a href="https://drive.google.com/" target="_blank" class="access-folder-link"><i class="fas fa-folder-open"></i> Access Material</a>
-                    </div>
-                </div>
-                <!-- Card 9 -->
-                <div class="subject-card" style="background-image: url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=600')" data-aos="fade-up" data-aos-delay="400">
-                    <div class="subject-card-content">
-                        <h3>Design of Machine Members</h3>
-                        <p>Fatigue calculations, stress concentrations, shaft configurations, and structural joints calculation rules.</p>
-                        <a href="https://drive.google.com/" target="_blank" class="access-folder-link"><i class="fas fa-folder-open"></i> Access Material</a>
-                    </div>
-                </div>
-                <!-- Card 10 -->
-                <div class="subject-card" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=600')" data-aos="fade-up" data-aos-delay="450">
-                    <div class="subject-card-content">
-                        <h3>Operations Research</h3>
-                        <p>Mathematical optimization parameters, linear simplex calculations, network pathways, and queuing modules.</p>
-                        <a href="https://drive.google.com/" target="_blank" class="access-folder-link"><i class="fas fa-folder-open"></i> Access Material</a>
+                    <div class="skills-summary">
+                        <h3>Core Competencies</h3>
+                        <div class="skills-bars-container">
+                            <div class="skill-bar-wrapper">
+                                <div class="skill-bar-info"><span>MATLAB & Control System Design</span><span>95%</span></div>
+                                <div class="skill-bar-outer"><div class="skill-bar-inner" style="width: 95%"></div></div>
+                            </div>
+                            <div class="skill-bar-wrapper">
+                                <div class="skill-bar-info"><span>Finite Element Analysis (FEA / FEM)</span><span>90%</span></div>
+                                <div class="skill-bar-outer"><div class="skill-bar-inner" style="width: 90%"></div></div>
+                            </div>
+                            <div class="skill-bar-wrapper">
+                                <div class="skill-bar-info"><span>Python & Data Science Frameworks</span><span>80%</span></div>
+                                <div class="skill-bar-outer"><div class="skill-bar-inner" style="width: 80%"></div></div>
+                            </div>
+                            <div class="skill-bar-wrapper">
+                                <div class="skill-bar-info"><span>Structural & Continuum Dynamics</span><span>88%</span></div>
+                                <div class="skill-bar-outer"><div class="skill-bar-inner" style="width: 88%"></div></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Interactive Credentials & Verifiable Records Section -->
-    <section id="certifications">
-        <div class="container">
-            <h2 class="section-title">Verify Credentials</h2>
-            <div class="certifications-control">
-                <button class="filter-btn active" onclick="filterCerts('all')">All</button>
-                <button class="filter-btn" onclick="filterCerts('MATLAB')">MATLAB</button>
-                <button class="filter-btn" onclick="filterCerts('Dataiku')">Dataiku</button>
-                <button class="filter-btn" onclick="filterCerts('Coursera')">Coursera</button>
-                <button class="filter-btn" onclick="filterCerts('IBM')">IBM</button>
-                <button class="filter-btn" onclick="filterCerts('LinkedIn')">LinkedIn</button>
+    <!-- Research Areas Section -->
+    <section id="research" class="research-section section-padding bg-light scroll-reveal">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="sub-heading">Domains of Expertise</span>
+                <h2 class="main-heading">Research Domains</h2>
+                <div class="heading-line"></div>
             </div>
             
-            <div class="certifications-search">
-                <i class="fas fa-search"></i>
-                <input type="text" id="certSearch" placeholder="Search certifications..." onkeyup="searchCerts()">
-            </div>
+            <div class="research-grid">
+                <div class="research-card glass-card">
+                    <div class="card-icon"><i class="fas fa-wind"></i></div>
+                    <h3>Aeroelasticity</h3>
+                    <p>Analyzing structural responses under heavy aerodynamic loading forces. Modeling dynamic lifting instabilities, flutter properties, divergence thresholds, and fluid-structure interaction profiles using computational strategies.</p>
+                </div>
 
-            <div class="certifications-grid" id="cert-grid">
-                <!-- MATLAB Onramp -->
-                <div class="cert-card" data-category="MATLAB" data-title="matlab onramp">
-                    <div>
-                        <span class="cert-provider">MathWorks</span>
-                        <h4 class="cert-title">MATLAB Onramp</h4>
-                    </div>
-                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=98447788-27ba-43f7-a438-54a4c4b1df5a" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
+                <div class="research-card glass-card">
+                    <div class="card-icon"><i class="fas fa-cubes"></i></div>
+                    <h3>Structural Dynamics</h3>
+                    <p>Investigating continuous vibrating characteristics across complex structural bodies. Engineering robust mechanisms for dynamic suppression, active damping loops, harmonic vibration responses, and transient phenomena mitigation.</p>
                 </div>
-                <!-- Simulink Onramp -->
-                <div class="cert-card" data-category="MATLAB" data-title="simulink onramp">
-                    <div>
-                        <span class="cert-provider">MathWorks</span>
-                        <h4 class="cert-title">Simulink Onramp</h4>
-                    </div>
-                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=d6887cfb-feb5-49dd-a406-fbf7b5e4d1b8" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
+
+                <div class="research-card glass-card">
+                    <div class="card-icon"><i class="fas fa-layer-group"></i></div>
+                    <h3>Composite Structures</h3>
+                    <p>Evaluating multi-layered anisotropic composite shell topologies. Optimizing specialized configuration matrices for lightweight structures subjected to directional loading conditions and extreme environmental variants.</p>
                 </div>
-                <!-- Control System Modeling -->
-                <div class="cert-card" data-category="MATLAB" data-title="control system modeling essentials">
-                    <div>
-                        <span class="cert-provider">MathWorks</span>
-                        <h4 class="cert-title">Control System Modeling Essentials</h4>
-                    </div>
-                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=e8d11305-c798-4b87-940e-8300139337ea" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
+
+                <div class="research-card glass-card">
+                    <div class="card-icon"><i class="fas fa-project-diagram"></i></div>
+                    <h3>Finite Element Methods</h3>
+                    <p>Formulating extensive spatial approximations across structural systems. Developing non-linear elastic-plastic mesh models, boundary condition analyses, and rigorous convergence profiles using modern solvers.</p>
                 </div>
-                <!-- Linearization of Nonlinear Systems -->
-                <div class="cert-card" data-category="MATLAB" data-title="linearization of nonlinear systems">
-                    <div>
-                        <span class="cert-provider">MathWorks</span>
-                        <h4 class="cert-title">Linearization of Nonlinear Systems</h4>
-                    </div>
-                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=c17a101d-2a44-44e0-a914-ee7f78719c34" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
+
+                <div class="research-card glass-card">
+                    <div class="card-icon"><i class="fas fa-brain"></i></div>
+                    <h3>Machine Learning / AI</h3>
+                    <p>Applying data-driven neural network frameworks, surrogate parameter analytics, and automated feature selection pipelines to discover advanced materials and track health indicators across physical mechanical components.</p>
                 </div>
-                <!-- Control System Analysis Techniques -->
-                <div class="cert-card" data-category="MATLAB" data-title="control system analysis techniques">
-                    <div>
-                        <span class="cert-provider">MathWorks</span>
-                        <h4 class="cert-title">Control System Analysis Techniques</h4>
-                    </div>
-                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=0d6e6247-8d07-481d-9aff-816283c9a363" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
-                </div>
-                <!-- PID Control Techniques -->
-                <div class="cert-card" data-category="MATLAB" data-title="pid control techniques">
-                    <div>
-                        <span class="cert-provider">MathWorks</span>
-                        <h4 class="cert-title">PID Control Techniques</h4>
-                    </div>
-                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=26974935-40fb-4cbe-ac80-9e258664f207" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
-                </div>
-                <!-- Classical Controller Design -->
-                <div class="cert-card" data-category="MATLAB" data-title="classical controller design techniques">
-                    <div>
-                        <span class="cert-provider">MathWorks</span>
-                        <h4 class="cert-title">Classical Controller Design Techniques</h4>
-                    </div>
-                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=3df3ce64-b72a-45fb-83c3-dc73f27434e6" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
-                </div>
-                <!-- Control Design Onramp with Simulink -->
-                <div class="cert-card" data-category="MATLAB" data-title="control design onramp with simulink">
-                    <div>
-                        <span class="cert-provider">MathWorks</span>
-                        <h4 class="cert-title">Control Design Onramp with Simulink</h4>
-                    </div>
-                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=9cccfad1-7baf-4f8f-91a7-254111620c35" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
-                </div>
-                <!-- MATLAB Desktop Tools -->
-                <div class="cert-card" data-category="MATLAB" data-title="matlab desktop tools and troubleshooting scripts">
-                    <div>
-                        <span class="cert-provider">MathWorks</span>
-                        <h4 class="cert-title">Desktop Tools & Troubleshooting Scripts</h4>
-                    </div>
-                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=fe00993d-b666-4320-9ff4-ba3eed1f1b66" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
-                </div>
-                <!-- Dataiku Core -->
-                <div class="cert-card" data-category="Dataiku" data-title="dataiku core designer">
-                    <div>
-                        <span class="cert-provider">Dataiku Academy</span>
-                        <h4 class="cert-title">Core Designer Certificate</h4>
-                    </div>
-                    <a href="https://verify.skilljar.com/c/bkwyituhoj6v" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
-                </div>
-                <!-- Dataiku Advanced -->
-                <div class="cert-card" data-category="Dataiku" data-title="dataiku advanced designer">
-                    <div>
-                        <span class="cert-provider">Dataiku Academy</span>
-                        <h4 class="cert-title">Advanced Designer Certificate</h4>
-                    </div>
-                    <a href="https://verify.skilljar.com/c/7xkwmrk5fmpw" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
-                </div>
-                <!-- Dataiku ML Practitioner -->
-                <div class="cert-card" data-category="Dataiku" data-title="dataiku ml practitioner">
-                    <div>
-                        <span class="cert-provider">Dataiku Academy</span>
-                        <h4 class="cert-title">ML Practitioner Certificate</h4>
-                    </div>
-                    <a href="https://verify.skilljar.com/c/vsmffgguetxw" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
-                </div>
-                <!-- Dataiku Developer -->
-                <div class="cert-card" data-category="Dataiku" data-title="dataiku developer">
-                    <div>
-                        <span class="cert-provider">Dataiku Academy</span>
-                        <h4 class="cert-title">Developer Certificate</h4>
-                    </div>
-                    <a href="https://verify.skilljar.com/c/qjka8bpmmvat" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
-                </div>
-                <!-- Dataiku MLOps -->
-                <div class="cert-card" data-category="Dataiku" data-title="dataiku mlops practitioner">
-                    <div>
-                        <span class="cert-provider">Dataiku Academy</span>
-                        <h4 class="cert-title">MLOps Practitioner Certificate</h4>
-                    </div>
-                    <a href="https://verify.skilljar.com/c/du4fm2yw9yvp" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
-                </div>
-                <!-- Dataiku Generative AI -->
-                <div class="cert-card" data-category="Dataiku" data-title="dataiku generative ai practitioner">
-                    <div>
-                        <span class="cert-provider">Dataiku Academy</span>
-                        <h4 class="cert-title">Generative AI Practitioner</h4>
-                    </div>
-                    <a href="https://verify.skilljar.com/c/cxub5wdwadud" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
-                </div>
-                <!-- IBM Python -->
-                <div class="cert-card" data-category="IBM" data-title="python 101 for data science py0101en">
-                    <div>
-                        <span class="cert-provider">IBM Cognitive Class</span>
-                        <h4 class="cert-title">Python 101 for Data Science</h4>
-                    </div>
-                    <a href="https://courses.cognitiveclass.ai/certificates/0d19f10b76a34e86aa3565abb86d317b" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
-                </div>
-                <!-- IBM Data Literacy -->
-                <div class="cert-card" data-category="IBM" data-title="data literacy">
-                    <div>
-                        <span class="cert-provider">IBM SkillsBuild</span>
-                        <h4 class="cert-title">Data Literacy Certification</h4>
-                    </div>
-                    <a href="https://www.credly.com/badges/10ffb570-bdb3-43fa-b7c5-5a0c8e3226b4" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
-                </div>
-                <!-- IBM Data Fundamentals -->
-                <div class="cert-card" data-category="IBM" data-title="data fundamentals">
-                    <div>
-                        <span class="cert-provider">IBM SkillsBuild</span>
-                        <h4 class="cert-title">Data Fundamentals Badge</h4>
-                    </div>
-                    <a href="https://www.credly.com/badges/9fa664e5-7bb0-43c8-b93d-5f85a9a10ee7" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
-                </div>
-                <!-- Coursera MS Excel -->
-                <div class="cert-card" data-category="Coursera" data-title="getting started with microsoft excel">
-                    <div>
-                        <span class="cert-provider">Coursera Project Network</span>
-                        <h4 class="cert-title">Getting Started with MS Excel</h4>
-                    </div>
-                    <a href="https://coursera.org/share/83e9392356f9aa97a222bfe62fbb039b" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
-                </div>
-                <!-- Coursera Business Analytics -->
-                <div class="cert-card" data-category="Coursera" data-title="business analytics with excel elementary to advanced">
-                    <div>
-                        <span class="cert-provider">Johns Hopkins University</span>
-                        <h4 class="cert-title">Business Analytics with Excel</h4>
-                    </div>
-                    <a href="https://coursera.org/share/f82f7108b083f969f9c6a50671ed7d2a" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
-                </div>
-                <!-- Coursera Excel to Power BI -->
-                <div class="cert-card" data-category="Coursera" data-title="from excel to power bi">
-                    <div>
-                        <span class="cert-provider">Knowledge Accelerators</span>
-                        <h4 class="cert-title">From Excel to Power BI</h4>
-                    </div>
-                    <a href="https://coursera.org/share/6cc187da98a920ba45d9dc31eb9433cf" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
-                </div>
-                <!-- LinkedIn SQL -->
-                <div class="cert-card" data-category="LinkedIn" data-title="learning sql programming">
-                    <div>
-                        <span class="cert-provider">LinkedIn Learning</span>
-                        <h4 class="cert-title">Learning SQL Programming</h4>
-                    </div>
-                    <a href="https://www.linkedin.com/learning/certificates/1c83f7f99d799579f0115cda9d0120df230372a6a248149c302b245c504fe0a0" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
-                </div>
-                <!-- LinkedIn MySQL Non-Programmers -->
-                <div class="cert-card" data-category="LinkedIn" data-title="mysql for non-programmers">
-                    <div>
-                        <span class="cert-provider">LinkedIn Learning</span>
-                        <h4 class="cert-title">MySQL for Non-Programmers</h4>
-                    </div>
-                    <a href="https://www.linkedin.com/learning/certificates/16190e5fd82451db63fc9fb16831d52eecd35dcc6d3ea4f432fe5dca10d12c49" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
-                </div>
-                <!-- LinkedIn Data Analytics -->
-                <div class="cert-card" data-category="LinkedIn" data-title="learning data analytics 1 foundations">
-                    <div>
-                        <span class="cert-provider">LinkedIn Learning</span>
-                        <h4 class="cert-title">Data Analytics Foundations</h4>
-                    </div>
-                    <a href="https://www.linkedin.com/learning/certificates/c722240aaf5d8f69a7cea04f45036ae283ef7a13f23b0da378ae92ee5ada0206" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i> Verify
-                    </a>
+
+                <div class="research-card glass-card">
+                    <div class="card-icon"><i class="fas fa-code"></i></div>
+                    <h3>MATLAB & Control Systems</h3>
+                    <p>Designing sophisticated physical feedback mechanisms, PID tuning operations, classical root-locus architectures, state-space representations, and non-linear system linearization scripts via Simulink environments.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Professional Development Section (Strictly Latest to Oldest Ordering) -->
-    <section id="development">
-        <div class="container">
-            <h2 class="section-title">Professional Development</h2>
-            <div class="timeline">
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Jul 1 – 5, 2026</div>
-                    <h3 class="timeline-title">Summer School Participant</h3>
-                    <div class="timeline-subtitle">D2MMS Summer School &bull; IIT (ISM) Dhanbad</div>
-                    <p class="timeline-content">Participated in the Summer School on "Data-Driven Modelling for Mechanical Systems" hosted directly by the home institution at IIT (ISM) Dhanbad.</p>
+    <!-- Dual Timeline Section (Education & Experience) -->
+    <section id="timeline" class="timeline-section section-padding scroll-reveal">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="sub-heading">Professional Journey</span>
+                <h2 class="main-heading">Education & Experience</h2>
+                <div class="heading-line"></div>
+            </div>
+            
+            <div class="timeline-toggle-container">
+                <button class="timeline-toggle-btn active" id="btn-edu" onclick="toggleTimeline('edu')"><i class="fas fa-graduation-cap"></i> Education</button>
+                <button class="timeline-toggle-btn" id="btn-exp" onclick="toggleTimeline('exp')"><i class="fas fa-briefcase"></i> Experience</button>
+            </div>
+            
+            <!-- Education Timeline Container -->
+            <div class="timeline-wrapper active" id="timeline-education">
+                <div class="timeline-track"></div>
+                
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-date">July 2025 – Till Date</span>
+                        <h3>PhD Scholar (Design Engineering Domain)</h3>
+                        <h4>Indian Institute of Technology (ISM), Dhanbad</h4>
+                        <p class="timeline-grade">Academic Performance: <strong>8.20 CGPA</strong></p>
+                        <p>Immersed in comprehensive computational mechanics, active structural analytics, and advanced engineering modeling frameworks inside the Department of Mechanical Engineering.</p>
+                    </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Jun 29 – Jul 3, 2026</div>
-                    <h3 class="timeline-title">Faculty Development Program Participant</h3>
-                    <div class="timeline-subtitle">Sphoorthy Engineering College</div>
-                    <p class="timeline-content">Completed specialized computational workshop tracking "Research & Development Excellence through Data Science Case Studies."</p>
+
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-date">June 2025 – Dec 2025</span>
+                        <h3>AICTE QIP Postgraduate Certificate Course</h3>
+                        <h4>Indian Institute of Technology, Bhilai</h4>
+                        <p class="timeline-grade">Academic Performance: <strong>8.67 CGPA</strong></p>
+                        <p>Specialized advanced concentration path within modern Data Science, high-performance algorithms, data modeling methods, and computing techniques.</p>
+                    </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Jun 26 – 30, 2026</div>
-                    <h3 class="timeline-title">Faculty Development Program Participant</h3>
-                    <div class="timeline-subtitle">Jodhpur Institute of Engineering & Technology</div>
-                    <p class="timeline-content">Engaged in curriculum training tracks focusing on "AI-Driven Business Analytics For Research, Teaching & Industry Applications."</p>
+
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-date">2016 – 2018</span>
+                        <h3>Master of Technology (M.Tech) in Machine Design</h3>
+                        <h4>GITAM Deemed To Be University, Visakhapatnam</h4>
+                        <p class="timeline-grade">Academic Performance: <strong>8.78 CGPA</strong></p>
+                        <p>Advanced study focus spanning structural modeling, kinematic configurations, fatigue profiles, elasticity parameters, and experimental mechanical research methodologies.</p>
+                    </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Jun 22 – 27, 2026</div>
-                    <h3 class="timeline-title">Faculty Development Program Participant</h3>
-                    <div class="timeline-subtitle">Walchand Institute of Technology, Solapur</div>
-                    <p class="timeline-content">Participated in comprehensive pedagogical learning models focusing on "AI Powered Teaching Excellence."</p>
+
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-date">2010 – 2014</span>
+                        <h3>Bachelor of Technology (B.Tech) in Mechanical Engineering</h3>
+                        <h4>Vivekananda Institute of Technology and Science, Karimnagar</h4>
+                        <p class="timeline-grade">Academic Performance: <strong>71.28%</strong></p>
+                        <p>Acquired strong structural engineering principles, thermodynamic configurations, materials testing skills, and computational mechanical logic paths.</p>
+                    </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Feb 7 – 16, 2026</div>
-                    <h3 class="timeline-title">AI Problem Solving Workshop Participant</h3>
-                    <div class="timeline-subtitle">National Institute of Technology, Rourkela</div>
-                    <p class="timeline-content">Completed the specialized research workshop "Problem-Driven AI: Real World Applications and Solution Frameworks."</p>
+
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-date">2008 – 2010</span>
+                        <h3>Intermediate (M.P.C Framework)</h3>
+                        <h4>SR Junior College, Karimnagar</h4>
+                        <p class="timeline-grade">Academic Performance: <strong>81.80%</strong></p>
+                        <p>Rigorous preparatory base building solid mathematical knowledge, physical principles, and structural tracking metrics.</p>
+                    </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Jan 16 – 21, 2026</div>
-                    <h3 class="timeline-title">Faculty Development Program Participant</h3>
-                    <div class="timeline-subtitle">Institute of Engineering & Management (IEM)</div>
-                    <p class="timeline-content">Attended mechanical training tracks covering "Next-Generation Mechanical Engineering: From Research to Industrial Applications."</p>
+
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-date">2007 – 2008</span>
+                        <h3>Secondary School Certificate (SSC)</h3>
+                        <h4>Pragathi Vidyalayam, Sircilla</h4>
+                        <p class="timeline-grade">Academic Performance: <strong>85.50%</strong></p>
+                        <p>Initial foundational education with distinctive marks across mathematical and early physical sciences.</p>
+                    </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Jan 5 – 8, 2026</div>
-                    <h3 class="timeline-title">Computational Solids & Fluids FDP Participant</h3>
-                    <div class="timeline-subtitle">IIT Bhilai, India</div>
-                    <p class="timeline-content">Completed high-intensity numerical modeling module titled "Advanced Computational Modeling for Solids and Fluids."</p>
+            </div>
+            
+            <!-- Experience Timeline Container -->
+            <div class="timeline-wrapper" id="timeline-experience">
+                <div class="timeline-track"></div>
+                
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-date">Jan 8, 2026 – June 30, 2026</span>
+                        <h3>Online Data Science Intern</h3>
+                        <h4>Sabudh Foundation (In Collaboration with STPI), Mohali</h4>
+                        <p>Developed core architectures for the engineering project <strong>"Federated Learning for Intelligent Transportation Systems."</strong> Managed localized client-side training workflows across decentralized frameworks, protecting individual privacy while building global models.</p>
+                    </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Dec 19 – 20, 2025</div>
-                    <h3 class="timeline-title">AI Conference Attendee</h3>
-                    <div class="timeline-subtitle">IIT Bhilai, India</div>
-                    <p class="timeline-content">Attended primary sessions during the thematic Conference on "AI for Forensics and Biometric Applications (AIFB) 2025."</p>
+
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-date">March 23, 2021 – June 30, 2025</span>
+                        <h3>Assistant Professor (Mechanical Engineering Department)</h3>
+                        <h4>Guru Nanak Institutions Technical Campus, Hyderabad</h4>
+                        <p>Lectured multi-disciplinary mechanical courses, mentored undergraduate research engineering panels, coordinated localized NAAC/NBA certification records, and managed the Kinematics and Dynamics Laboratory facilities.</p>
+                    </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Nov 17 – 22, 2025</div>
-                    <h3 class="timeline-title">AICTE ATAL FDP Participant</h3>
-                    <div class="timeline-subtitle">Sri Venkateswara College of Engineering</div>
-                    <p class="timeline-content">Successfully completed national AICTE Training and Learning (ATAL) academy course on "Robotics for Industry 4.0: Enabling Smart Manufacturing."</p>
+
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-date">Nov 26, 2018 – March 22, 2021</span>
+                        <h3>Assistant Professor</h3>
+                        <h4>Sree Chaitanya College of Engineering, Karimnagar</h4>
+                        <p>Taught mechanical topics including Finite Element Analysis, Graphics, and Strength of Materials. Managed undergraduate project reviews and introduced engineering computational tool practices.</p>
+                    </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Nov 17 – 21, 2025</div>
-                    <h3 class="timeline-title">FDP on Composite Materials</h3>
-                    <div class="timeline-subtitle">MVGR College of Engineering, Vizianagaram</div>
-                    <p class="timeline-content">Participated in specialized mechanical design workflow "Recent Advances in Composite Materials: Integrating Modelling And Experimental Approaches."</p>
-                </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Oct 27 – 31, 2025</div>
-                    <h3 class="timeline-title">FDP on AI in Manufacturing</h3>
-                    <div class="timeline-subtitle">MVGR College of Engineering, Vizianagaram</div>
-                    <p class="timeline-content">Engaged in advanced optimization tracks covering "The Role of Artificial Intelligence in Manufacturing Industries."</p>
-                </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Oct 27 – Nov 6, 2025</div>
-                    <h3 class="timeline-title">FDP on Proposal Writing</h3>
-                    <div class="timeline-subtitle">CVR College of Engineering, Hyderabad</div>
-                    <p class="timeline-content">Completed an intensive two-week institutional training schedule targeting "The Art and Science of Successful Proposal Writing."</p>
-                </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Sep 15 – 19, 2025</div>
-                    <h3 class="timeline-title">FDP on Smart Materials</h3>
-                    <div class="timeline-subtitle">R.V.R.J.C. College of Engineering, Guntur</div>
-                    <p class="timeline-content">Completed five-day advanced materials course tracking "Smart Materials and Technologies for Durable Structures."</p>
-                </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Jul 30 – Aug 3, 2024</div>
-                    <h3 class="timeline-title">FDP on Robotics & UAVs</h3>
-                    <div class="timeline-subtitle">VNR Vignana Jyothi Institute, Hyderabad</div>
-                    <p class="timeline-content">Participated in industrial twinning and automation systems tracks covering "Innovations in Robotics and UAVs: Digital Twins, Drone Design, and Future Trends."</p>
-                </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Jul 22 – Aug 2, 2024</div>
-                    <h3 class="timeline-title">FDP on OBE & NEP</h3>
-                    <div class="timeline-subtitle">CVR College of Engineering, Hyderabad</div>
-                    <p class="timeline-content">Successfully completed two-week structural training framework covering "Transforming Education: Integrating OBE and NEP 2020."</p>
-                </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Dec 26, 2023 – Jan 2, 2024</div>
-                    <h3 class="timeline-title">Python FDP Participant</h3>
-                    <div class="timeline-subtitle">Guru Nanak Institutions Technical Campus</div>
-                    <p class="timeline-content">Participated in deep script structure workflows within the institutional "Advanced Python Programming" Faculty Development Program.</p>
-                </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Sep 12 – 16, 2023</div>
-                    <h3 class="timeline-title">FDP on Robotics</h3>
-                    <div class="timeline-subtitle">Vignan Institute of Technology & Science</div>
-                    <p class="timeline-content">Completed fundamentals framework track on "Fundamentals, Advancements and Applications of Robotics."</p>
-                </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Mar 22 – 27, 2021</div>
-                    <h3 class="timeline-title">Short Term Course Attendee</h3>
-                    <div class="timeline-subtitle">Indian Institute of Technology, Madras</div>
-                    <p class="timeline-content">Completed advanced mechanics QIP Short Term Course tracking "Enduring Trends in Hydraulic Control Systems: Past, Present and Future."</p>
-                </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Jul 5 – 9, 2021</div>
-                    <h3 class="timeline-title">AICTE ATAL Online FDP</h3>
-                    <div class="timeline-subtitle">Amrita Vishwa Vidyapeetham</div>
-                    <p class="timeline-content">Completed national AICTE training curriculum module covering "Green Technology and Sustainability Engineering."</p>
-                </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">Aug 23 – 28, 2021</div>
-                    <h3 class="timeline-title">FDP on Additive Manufacturing</h3>
-                    <div class="timeline-subtitle">Sri Manakula Vinayagar Engineering College, Puducherry</div>
-                    <p class="timeline-content">Completed dynamic structural manufacturing workshop tracking "Additive Manufacturing Processes and Its Applications."</p>
+
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-date">Dec 7, 2015 – June 30, 2016</span>
+                        <h3>Lecturer</h3>
+                        <h4>Jyothishmathi Institute of Technology and Science, Karimnagar</h4>
+                        <p>Delivered foundational instructional sessions across basic workshop environments, introductory thermodynamics, and structural mechanics design configurations.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Technical Skills Progress Dashboard Section -->
-    <section id="skills">
-        <div class="container">
-            <h2 class="section-title">Technical Proficiency</h2>
-            <div class="skills-grid">
-                <div class="skill-item">
-                    <div class="skill-header"><span>MATLAB</span><span>95%</span></div>
-                    <div class="skill-progress-bg"><div class="skill-progress-bar" style="width: 95%;"></div></div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-header"><span>Python</span><span>80%</span></div>
-                    <div class="skill-progress-bg"><div class="skill-progress-bar" style="width: 80%;"></div></div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-header"><span>LaTeX</span><span>90%</span></div>
-                    <div class="skill-progress-bg"><div class="skill-progress-bar" style="width: 90%;"></div></div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-header"><span>Power BI / Tableau</span><span>75%</span></div>
-                    <div class="skill-progress-bg"><div class="skill-progress-bar" style="width: 75%;"></div></div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-header"><span>SQL</span><span>85%</span></div>
-                    <div class="skill-progress-bg"><div class="skill-progress-bar" style="width: 85%;"></div></div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-header"><span>Dataiku DSS</span><span>85%</span></div>
-                    <div class="skill-progress-bg"><div class="skill-progress-bar" style="width: 85%;"></div></div>
-                </div>
+    <!-- Research Projects Section -->
+    <section id="projects" class="projects-section section-padding bg-light scroll-reveal">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="sub-heading">Engineering Portfolios</span>
+                <h2 class="main-heading">Academic Projects</h2>
+                <div class="heading-line"></div>
             </div>
-        </div>
-    </section>
-
-    <!-- Balanced Dual Columns for Awards and Community Operations -->
-    <section id="achievements">
-        <div class="container">
-            <h2 class="section-title">Achievements & Responsibilities</h2>
-            <div class="split-grid">
-                <div>
-                    <h3 class="about-subtitle" style="margin-bottom: 2rem;">Academic Honors</h3>
-                    <div class="achievement-card" data-aos="fade-right">
-                        <i class="fas fa-award"></i>
-                        <div class="achievement-content">
-                            <h4>Essay Writing Appreciation</h4>
-                            <p>Awarded by the Department of Youth Services, Karimnagar for excellence in technical elocution and research essay compilations.</p>
-                        </div>
+            
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card glass-card">
+                    <div class="project-img-placeholder">
+                        <i class="fas fa-microscope"></i>
                     </div>
-                    <div class="achievement-card" data-aos="fade-right">
-                        <i class="fas fa-trophy"></i>
-                        <div class="achievement-content">
-                            <h4>Innovation 2K12 Fest</h4>
-                            <p>Received official appreciation certificate in the national-level innovation model construction arena hosted at VITS, Karimnagar.</p>
+                    <div class="project-info">
+                        <span class="project-category">Finite Element Analysis / Materials</span>
+                        <h3>Effect of Elastic-Plastic Material Properties of Metals on Hardness Values Using FEA</h3>
+                        <p>Investigated non-linear elastic-plastic displacement profiles of metallic structures during indentation cycles. Mapped variations between classical mechanics formulas and finite element simulations to optimize parameter definitions across diverse material models.</p>
+                        <div class="project-tech-tags">
+                            <span>FEA Solvers</span>
+                            <span>Non-Linear Plasticity</span>
+                            <span>Optimization</span>
                         </div>
                     </div>
                 </div>
-                <div>
-                    <h3 class="about-subtitle" style="margin-bottom: 2rem;">Social Contributions</h3>
-                    <div class="achievement-card" data-aos="fade-left">
-                        <i class="fas fa-heart"></i>
-                        <div class="achievement-content">
-                            <h4>Active Blood Donor</h4>
-                            <p>Volunteered and successfully completed blood donation protocols on 10 separate occasions through local blood drive networks.</p>
+
+                <!-- Project 2 -->
+                <div class="project-card glass-card">
+                    <div class="project-img-placeholder">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Thermal Systems</span>
+                        <h3>Comprehensive Study of Internal Combustion Engines & Components</h3>
+                        <p>Conducted an extensive mechanical audit analyzing structural behavior, performance efficiencies, and thermal limits of continuous operations. Modeled kinematic sequences across two-stroke and four-stroke mechanical systems.</p>
+                        <div class="project-tech-tags">
+                            <span>IC Engines</span>
+                            <span>Kinematics</span>
+                            <span>Thermodynamics</span>
                         </div>
                     </div>
-                    <div class="achievement-card" data-aos="fade-left">
-                        <i class="fas fa-hand-holding-heart"></i>
-                        <div class="achievement-content">
-                            <h4>Nasha Mukt Bharat Pledge</h4>
-                            <p>Active committed participant in localized pledge initiatives run under the Ministry of Social Justice and Empowerment, India.</p>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card glass-card">
+                    <div class="project-img-placeholder">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Robotics & Fluid Power</span>
+                        <h3>Hydraulic Robotic Arm for Pick and Place Operations</h3>
+                        <p>Engineered and assembled a functional multi-axis manipulator based on Pascal's Law. Optimized fluid control configurations to achieve steady pick-and-place trajectories, evaluating pressure transitions under varying payloads.</p>
+                        <div class="project-tech-tags">
+                            <span>Pascal's Law</span>
+                            <span>Fluid Mechanics</span>
+                            <span>Robotics</span>
                         </div>
                     </div>
                 </div>
@@ -1692,212 +433,617 @@
         </div>
     </section>
 
-    <!-- Media Gallery Section -->
-    <section id="gallery">
-        <div class="container">
-            <h2 class="section-title">Gallery</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item" data-aos="zoom-in">
-                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=600" alt="Conferences">
-                    <div class="gallery-overlay">
-                        <h3>Scientific Conferences</h3>
-                        <p>Academic discussions and collaborations during international engineering symposiums.</p>
+    <!-- Teaching Profile Section -->
+    <section id="teaching" class="teaching-section section-padding scroll-reveal">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="sub-heading">Pedagogical Experience</span>
+                <h2 class="main-heading">Subjects Handled</h2>
+                <div class="heading-line"></div>
+            </div>
+            
+            <div class="teaching-grid">
+                <div class="course-badge-card"><i class="fas fa-compass"></i> <span>Engineering Mechanics</span></div>
+                <div class="course-badge-card"><i class="fas fa-drafting-compass"></i> <span>Engineering Graphics</span></div>
+                <div class="course-badge-card"><i class="fas fa-cubes"></i> <span>Mechanics of Solids</span></div>
+                <div class="course-badge-card"><i class="fas fa-recycle"></i> <span>Kinematics of Machinery</span></div>
+                <div class="course-badge-card"><i class="fas fa-tint"></i> <span>Fluid Mechanics</span></div>
+                <div class="course-badge-card"><i class="fas fa-fire"></i> <span>Thermodynamics</span></div>
+                <div class="course-badge-card"><i class="fas fa-thermometer-half"></i> <span>Heat Transfer</span></div>
+                <div class="course-badge-card"><i class="fas fa-bolt"></i> <span>Design of Machine Members</span></div>
+                <div class="course-badge-card"><i class="fas fa-chart-line"></i> <span>Operations Research</span></div>
+                <div class="course-badge-card"><i class="fas fa-network-wired"></i> <span>Finite Element Methods (FEM/FEA)</span></div>
+            </div>
+
+            <div class="responsibilities-block glass-card">
+                <h3><i class="fas fa-tasks"></i> Institutional Roles & Administrative Leadership</h3>
+                <div class="resp-grid">
+                    <div class="resp-item">
+                        <i class="fas fa-flask"></i>
+                        <div>
+                            <h4>Lab Coordinator</h4>
+                            <p>Managed operational calibration matrices and physical tooling configurations for the Kinematics and Dynamics Laboratory.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=600" alt="Laboratory">
-                    <div class="gallery-overlay">
-                        <h3>Dynamics Laboratory</h3>
-                        <p>Kinematics experimental setups and instrument measurements.</p>
+                    <div class="resp-item">
+                        <i class="fas fa-user-shield"></i>
+                        <div>
+                            <h4>Academic Coordinator</h4>
+                            <p>Oversees Departmental Minor Degrees, schedules comprehensive remedial structures, and structures active student tutorial setups.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1507668077129-56e32842fceb?auto=format&fit=crop&q=80&w=600" alt="Research">
-                    <div class="gallery-overlay">
-                        <h3>Research Endeavors</h3>
-                        <p>Computational modeling, engineering mechanics simulations, and modeling layouts.</p>
+                    <div class="resp-item">
+                        <i class="fas fa-car"></i>
+                        <div>
+                            <h4>SAE BAJA & Go-Karting Guide</h4>
+                            <p>Served as Departmental Coordinator advising teams on frame construction, aerodynamic structures, and structural safety guidelines.</p>
+                        </div>
+                    </div>
+                    <div class="resp-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <div>
+                            <h4>Event Organizer & Central Committee</h4>
+                            <p>Student helper during the D2MMS Summer School, coordinator for major institute panels, and point-of-contact for institutional conferences.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Communication Hub & Query Submission Panel -->
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-title">Contact & Queries</h2>
+    <!-- Professional Certifications Section (Massive Search/Filter Grid) -->
+    <section id="certifications" class="certifications-section section-padding bg-light scroll-reveal">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="sub-heading">Validated Credentials</span>
+                <h2 class="main-heading">Professional Certifications</h2>
+                <div class="heading-line"></div>
+            </div>
+            
+            <div class="filter-controls">
+                <div class="search-box-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="certSearch" placeholder="Search across 35+ certifications (e.g., Python, Control, Dataiku)..." onkeyup="filterCertifications()">
+                </div>
+                
+                <div class="filter-buttons-group">
+                    <button class="filter-btn active" onclick="filterCategory('all', event)">All Certs</button>
+                    <button class="filter-btn" onclick="filterCategory('mathworks', event)">MathWorks</button>
+                    <button class="filter-btn" onclick="filterCategory('dataiku', event)">Dataiku</button>
+                    <button class="filter-btn" onclick="filterCategory('linkedin', event)">LinkedIn Learning</button>
+                    <button class="filter-btn" onclick="filterCategory('ibm', event)">IBM Skills</button>
+                    <button class="filter-btn" onclick="filterCategory('coursera', event)">Coursera</button>
+                </div>
+            </div>
+
+            <div class="cert-grid" id="certGrid">
+                <!-- MathWorks -->
+                <div class="cert-card glass-card" data-cat="mathworks">
+                    <span class="cert-vendor vendor-mathworks">MathWorks</span>
+                    <h3>MATLAB Onramp</h3>
+                    <p>Core algorithmic execution structures and matrix manipulation layers.</p>
+                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=98447788-27ba-43f7-a438-54a4c4b1df5a&" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="mathworks">
+                    <span class="cert-vendor vendor-mathworks">MathWorks</span>
+                    <h3>Simulink Onramp</h3>
+                    <p>Dynamic physical modeling paradigms using visual block diagrams.</p>
+                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=d6887cfb-feb5-49dd-a406-fbf7b5e4d1b8&" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="mathworks">
+                    <span class="cert-vendor vendor-mathworks">MathWorks</span>
+                    <h3>Control System Modeling Essentials</h3>
+                    <p>Mathematical definitions of dynamic physical transfer variables.</p>
+                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=e8d11305-c798-4b87-940e-8300139337ea&" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="mathworks">
+                    <span class="cert-vendor vendor-mathworks">MathWorks</span>
+                    <h3>Linearization of Nonlinear Systems</h3>
+                    <p>Operating point approximations and small-signal Jacobian analysis.</p>
+                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=c17a101d-2a44-44e0-a914-ee7f78719c34&" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="mathworks">
+                    <span class="cert-vendor vendor-mathworks">MathWorks</span>
+                    <h3>Control System Analysis Techniques</h3>
+                    <p>Bode plotting, stability metrics, and frequency evaluation bounds.</p>
+                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=0d6e6247-8d07-481d-9aff-816283c9a363&" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="mathworks">
+                    <span class="cert-vendor vendor-mathworks">MathWorks</span>
+                    <h3>PID Control Techniques</h3>
+                    <p>Proportional-Integral-Derivative coefficient loops and active anti-windup balancing.</p>
+                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=26974935-40fb-4cbe-ac80-9e258664f207&" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="mathworks">
+                    <span class="cert-vendor vendor-mathworks">MathWorks</span>
+                    <h3>Control System Design with MATLAB & Simulink</h3>
+                    <p>Comprehensive learning path linking multi-loop systems and modeling.</p>
+                    <a href="https://matlabacademy.mathworks.com/progress/share/learningpath/certificate.html?id=&" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="mathworks">
+                    <span class="cert-vendor vendor-mathworks">MathWorks</span>
+                    <h3>Classical Controller Design Techniques</h3>
+                    <p>Lead-lag compensator designs and root locus parameter tracking loops.</p>
+                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=3df3ce64-b72a-45fb-83c3-dc73f27434e6&" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="mathworks">
+                    <span class="cert-vendor vendor-mathworks">MathWorks</span>
+                    <h3>Control Design Onramp with Simulink</h3>
+                    <p>Closed-loop operational systems feedback configurations.</p>
+                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=9cccfad1-7baf-4f8f-91a7-254111620c35&" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="mathworks">
+                    <span class="cert-vendor vendor-mathworks">MathWorks</span>
+                    <h3>MATLAB Desktop Tools and Troubleshooting Scripts</h3>
+                    <p>Debugging practices, profiling tools, and structural efficiency checks.</p>
+                    <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=fe00993d-b666-4320-9ff4-ba3eed1f1b66&" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+
+                <!-- Dataiku -->
+                <div class="cert-card glass-card" data-cat="dataiku">
+                    <span class="cert-vendor vendor-dataiku">Dataiku Academy</span>
+                    <h3>Core Designer Certificate</h3>
+                    <p>Core visual workflows, data cleaning operations, and recipe preparation pipelines.</p>
+                    <a href="https://verify.skilljar.com/c/bkwyituhoj6v" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="dataiku">
+                    <span class="cert-vendor vendor-dataiku">Dataiku Academy</span>
+                    <h3>Advanced Designer Certificate</h3>
+                    <p>Advanced feature extraction patterns, variables management, and partitioning pipelines.</p>
+                    <a href="https://verify.skilljar.com/c/7xkwmrk5fmpw" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="dataiku">
+                    <span class="cert-vendor vendor-dataiku">Dataiku Academy</span>
+                    <h3>ML Practitioner Certificate</h3>
+                    <p>Supervised model deployments, hyperparameter search matrices, and validation scores.</p>
+                    <a href="https://verify.skilljar.com/c/vsmffgguetxw" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="dataiku">
+                    <span class="cert-vendor vendor-dataiku">Dataiku Academy</span>
+                    <h3>Generative AI Practitioner Certificate</h3>
+                    <p>Large Language Model prompt configurations, orchestration components, and vector settings.</p>
+                    <a href="https://verify.skilljar.com/c/cxub5wdwadud" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="dataiku">
+                    <span class="cert-vendor vendor-dataiku">Dataiku Academy</span>
+                    <h3>Developer Certificate</h3>
+                    <p>Integrating custom Python code recipes, API endpoints, and webapp templates.</p>
+                    <a href="https://verify.skilljar.com/c/qjka8bpmmvat" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="dataiku">
+                    <span class="cert-vendor vendor-dataiku">Dataiku Academy</span>
+                    <h3>MLOps Practitioner Certificate</h3>
+                    <p>Model tracking updates, drift evaluations, production shifts, and automation scenarios.</p>
+                    <a href="https://verify.skilljar.com/c/du4fm2yw9yvp" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+
+                <!-- LinkedIn Learning -->
+                <div class="cert-card glass-card" data-cat="linkedin">
+                    <span class="cert-vendor vendor-linkedin">LinkedIn Learning</span>
+                    <h3>Learning Data Analytics: 1 Foundations</h3>
+                    <a href="https://www.linkedin.com/learning/certificates/c722240aaf5d8f69a7cea04f45036ae283ef7a13f23b0da378ae92ee5ada0206" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="linkedin">
+                    <span class="cert-vendor vendor-linkedin">LinkedIn Learning</span>
+                    <h3>MySQL for Non-Programmers</h3>
+                    <a href="https://www.linkedin.com/learning/certificates/16190e5fd82451db63fc9fb16831d52eecd35dcc6d3ea4f432fe5dca10d12c49" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="linkedin">
+                    <span class="cert-vendor vendor-linkedin">LinkedIn Learning</span>
+                    <h3>Learning SQL Programming</h3>
+                    <a href="https://www.linkedin.com/learning/certificates/1c83f7f99d799579f0115cda9d0120df230372a6a248149c302b245c504fe0a0" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="linkedin">
+                    <span class="cert-vendor vendor-linkedin">LinkedIn Learning</span>
+                    <h3>Python for Data Science & ML Essential Training Part 1</h3>
+                    <a href="https://www.linkedin.com/learning/certificates/d0a4940b9ada1be26c358dd29fba3c2b3a99a3811b38d31218e2dcb0b763b14f" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="linkedin">
+                    <span class="cert-vendor vendor-linkedin">LinkedIn Learning</span>
+                    <h3>MATLAB Essential Training</h3>
+                    <a href="https://www.linkedin.com/learning/certificates/d709fe8ed6ea0cecddee637f5817e3f6c6c24d5bc44102cc6ee809a98a12b6ee" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="linkedin">
+                    <span class="cert-vendor vendor-linkedin">LinkedIn Learning</span>
+                    <h3>Six Sigma Foundations</h3>
+                    <a href="https://www.linkedin.com/learning/certificates/ac0993075d80ece8d4985e0d8956cffb8c3a6fd0cbd550a4a0eb27feff62ec75" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="linkedin">
+                    <span class="cert-vendor vendor-linkedin">LinkedIn Learning</span>
+                    <h3>Statistics Foundations 3: Using Data Sets</h3>
+                    <a href="https://www.linkedin.com/learning/certificates/1f26017e1ac6db7dd1ceee67e504713d51d897b94e74d4cd861205aa04e902e5" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="linkedin">
+                    <span class="cert-vendor vendor-linkedin">LinkedIn Learning</span>
+                    <h3>Operational Excellence Foundations</h3>
+                    <a href="https://www.linkedin.com/learning/certificates/52d52362acda852e0bb9cd82f14c236347b5b25bfce957cad0081d2725b26408" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="linkedin">
+                    <span class="cert-vendor vendor-linkedin">LinkedIn Learning</span>
+                    <h3>Six Sigma: Green Belt</h3>
+                    <a href="https://www.linkedin.com/learning/certificates/29a40ae378a0f0dddc6f66aea714be8be75826348175b0aba9d91c530237fc05" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="linkedin">
+                    <span class="cert-vendor vendor-linkedin">LinkedIn Learning</span>
+                    <h3>Additive Manufacturing: Tips, Tricks, and Techniques</h3>
+                    <a href="https://www.linkedin.com/learning/certificates/44c37fa2479a143dae3cf23058bef10a9aa4d552f07eac1cb6e5b9a166ff73a0" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="linkedin">
+                    <span class="cert-vendor vendor-linkedin">LinkedIn Learning</span>
+                    <h3>Accelerated MATLAB</h3>
+                    <a href="https://www.linkedin.com/learning/certificates/688edcc956ef29c6da8c22fb42e3f52c6782dbc68f90e53af367d76f615f0f02" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="linkedin">
+                    <span class="cert-vendor vendor-linkedin">LinkedIn Learning</span>
+                    <h3>Learning MATLAB</h3>
+                    <a href="https://www.linkedin.com/learning/certificates/00827e7e19b6fa7e65f2d175caca08e91da5d4fb2b60b76e68b1dd3fdc03131f" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="linkedin">
+                    <span class="cert-vendor vendor-linkedin">LinkedIn Learning</span>
+                    <h3>Python Essential Training</h3>
+                    <a href="https://www.linkedin.com/learning/certificates/b5920cb8058b6ce223edeafcccce74c1f44427f4cb9f6d0e2b248f8a613f5329" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+
+                <!-- IBM / Cognitive Class -->
+                <div class="cert-card glass-card" data-cat="ibm">
+                    <span class="cert-vendor vendor-ibm">IBM / Credly</span>
+                    <h3>Data Literacy</h3>
+                    <p>Earned digital credential tracking foundations of statistical assessment.</p>
+                    <a href="https://www.credly.com/badges/10ffb570-bdb3-43fa-b7c5-5a0c8e3226b4/public_url" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="ibm">
+                    <span class="cert-vendor vendor-ibm">IBM / Credly</span>
+                    <h3>Data Fundamentals</h3>
+                    <p>Earned digital credential mapping large storage formats and analysis algorithms.</p>
+                    <a href="https://www.credly.com/badges/9fa664e5-7bb0-43c8-b93d-5f85a9a10ee7/public_url" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="ibm">
+                    <span class="cert-vendor vendor-ibm">IBM SkillsBuild</span>
+                    <h3>Sensemaking with Data</h3>
+                    <p>Completed online validation June 28, 2026.</p>
+                </div>
+                <div class="cert-card glass-card" data-cat="ibm">
+                    <span class="cert-vendor vendor-ibm">IBM SkillsBuild</span>
+                    <h3>Exploring Data</h3>
+                    <p>Completed online validation June 28, 2026.</p>
+                </div>
+                <div class="cert-card glass-card" data-cat="ibm">
+                    <span class="cert-vendor vendor-ibm">IBM SkillsBuild</span>
+                    <h3>Your Future in Data: The Job Landscape</h3>
+                    <p>Completed online validation June 27, 2026.</p>
+                </div>
+                <div class="cert-card glass-card" data-cat="ibm">
+                    <span class="cert-vendor vendor-ibm">IBM SkillsBuild</span>
+                    <h3>Overview of Data Tools and Languages</h3>
+                    <p>Completed online validation June 27, 2026.</p>
+                </div>
+                <div class="cert-card glass-card" data-cat="ibm">
+                    <span class="cert-vendor vendor-ibm">IBM SkillsBuild</span>
+                    <h3>Clean, Refine, and Visualize Data with Watson Studio</h3>
+                    <p>Completed online validation June 27, 2026.</p>
+                </div>
+                <div class="cert-card glass-card" data-cat="ibm">
+                    <span class="cert-vendor vendor-ibm">IBM SkillsBuild</span>
+                    <h3>Data Science in Our World</h3>
+                    <p>Completed online validation June 27, 2026.</p>
+                </div>
+                <div class="cert-card glass-card" data-cat="ibm">
+                    <span class="cert-vendor vendor-ibm">IBM SkillsBuild</span>
+                    <h3>Introduction to Data Concepts</h3>
+                    <p>Completed online validation June 27, 2026.</p>
+                </div>
+                <div class="cert-card glass-card" data-cat="ibm">
+                    <span class="cert-vendor vendor-ibm">IBM / Cognitive Class</span>
+                    <h3>Python 101 for Data Science (PY0101EN)</h3>
+                    <p>Fundamental programming structures, list mutations, and basic library implementations.</p>
+                    <a href="https://courses.cognitiveclass.ai/certificates/0d19f10b76a34e86aa3565abb86d317b" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+
+                <!-- Coursera -->
+                <div class="cert-card glass-card" data-cat="coursera">
+                    <span class="cert-vendor vendor-coursera">Coursera</span>
+                    <h3>Business Analytics with Excel: Elementary to Advanced</h3>
+                    <p>Authorized by Johns Hopkins University. Statistical modeling and pivoting structures.</p>
+                    <a href="https://coursera.org/share/f82f7108b083f969f9c6a50671ed7d2a" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="coursera">
+                    <span class="cert-vendor vendor-coursera">Coursera</span>
+                    <h3>From Excel to Power BI</h3>
+                    <p>Authorized by Knowledge Accelerators. Dynamic dashboard design and ETL parameters.</p>
+                    <a href="https://coursera.org/share/6cc187da98a920ba45d9dc31eb9433cf" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+                <div class="cert-card glass-card" data-cat="coursera">
+                    <span class="cert-vendor vendor-coursera">Coursera</span>
+                    <h3>Getting Started with Microsoft Excel</h3>
+                    <p>Guided hands-on project mapping computational equations.</p>
+                    <a href="https://coursera.org/share/83e9392356f9aa97a222bfe62fbb039b" target="_blank" class="cert-link"><i class="fas fa-certificate"></i> Verify Credentials</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Development Section -->
+    <section id="development" class="development-section section-padding scroll-reveal">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="sub-heading">Advanced Continuous Training</span>
+                <h2 class="main-heading">Professional Development</h2>
+                <div class="heading-line"></div>
+            </div>
+
+            <div class="dev-tabs">
+                <button class="dev-tab-btn active" onclick="switchDevTab(event, 'dev-fdp')">FDPs (22)</button>
+                <button class="dev-tab-btn" onclick="switchDevTab(event, 'dev-atal')">ATAL & Summer Schools</button>
+                <button class="dev-tab-btn" onclick="switchDevTab(event, 'dev-workshops')">Workshops & STCs</button>
+            </div>
+
+            <!-- FDP Content Block -->
+            <div id="dev-fdp" class="dev-tab-content active">
+                <div class="dev-list">
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">2026</span>
+                        <h4>Research & Development Excellence through Data Science Case Studies</h4>
+                        <p>Sphoorthy Engineering College (June 29 – July 3, 2026)</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">2026</span>
+                        <h4>AI-Driven Business Analytics for Research, Teaching & Industry</h4>
+                        <p>Jodhpur Institute of Engineering & Technology (June 26 – 30, 2026)</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">2026</span>
+                        <h4>AI Powered Teaching Excellence</h4>
+                        <p>Walchand Institute of Technology, Solapur (June 22 – 27, 2026)</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">2026</span>
+                        <h4>Next-Generation Mechanical Engineering: From Research to Industrial Applications</h4>
+                        <p>Institute of Engineering & Management (IEM) (Jan 16 – 21, 2026)</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">2026</span>
+                        <h4>Advanced Computational Modeling for Solids and Fluids</h4>
+                        <p>Indian Institute of Technology, Bhilai (Jan 5 – 8, 2026)</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">2025</span>
+                        <h4>Recent Advances in Composite Materials: Integrating Modeling & Experimental Approaches</h4>
+                        <p>Maharaj Vijayaram Gajapathi Raj College of Engineering (Nov 17 – 21, 2025)</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">2025</span>
+                        <h4>The Role of Artificial Intelligence in Manufacturing Industries</h4>
+                        <p>Maharaj Vijayaram Gajapathi Raj College of Engineering (Oct 27 – 31, 2025)</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">2025</span>
+                        <h4>The Art & Science of Successful Proposal Writing: Techniques and Strategies</h4>
+                        <p>CVR College of Engineering, Hyderabad (Oct 27 – Nov 6, 2025)</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">2025</span>
+                        <h4>Smart Materials and Technologies for Durable Structures (SMTDS'25)</h4>
+                        <p>R.V.R.J.C. College of Engineering, Guntur (Sept 15 – 19, 2025)</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">2024</span>
+                        <h4>Innovations in Robotics and UAVs: Digital Twins, Drone Design, and Future Trends</h4>
+                        <p>VNR Vignana Jyothi Institute of Engineering & Tech (July 30 – Aug 3, 2024)</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">2024</span>
+                        <h4>Transforming Education: Integrating OBE and NEP 2020</h4>
+                        <p>CVR College of Engineering, Hyderabad (July 22 – Aug 2, 2024)</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">2023-24</span>
+                        <h4>Advanced Python Programming</h4>
+                        <p>Guru Nanak Institutions Technical Campus (Dec 26, 2023 – Jan 2, 2024)</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">2023</span>
+                        <h4>Fundamentals, Advancements and Applications of Robotics</h4>
+                        <p>Vignan Institute of Technology and Science (Sept 12 – 16, 2023)</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">2021</span>
+                        <h4>Additive Manufacturing Processes and Its Applications</h4>
+                        <p>Sri Manakula Vinayagar Engineering College, Puducherry (Aug 23 – 28, 2021)</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">2020</span>
+                        <h4>Mathematical Modeling & Numerical Techniques 2020</h4>
+                        <p>Kakatiya Institute of Technology and Science, Warangal</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">2020</span>
+                        <h4>Frontiers of Research in Mechanical Engineering (FORME 2020)</h4>
+                        <p>Satya Institute of Technology and Management, Vizianagaram</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">2019</span>
+                        <h4>Three-Week Faculty Induction Training Program (PMMMNMTT Framework)</h4>
+                        <p>Teaching Learning Centre, Indian Institute of Technology, Hyderabad</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">Foundational</span>
+                        <h4>Engineering Physics and Materials Science FDP</h4>
+                        <p>Chaitanya Bharathi Institute of Technology, Hyderabad</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">Foundational</span>
+                        <h4>Recent Trends in Manufacturing</h4>
+                        <p>Mahatma Gandhi Institute of Technology, Hyderabad</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">Foundational</span>
+                        <h4>Recent Developments of Nano-Composites and Smart Materials in Aerospace</h4>
+                        <p>MLR Institute of Technology, Hyderabad</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">Foundational</span>
+                        <h4>Optimization Techniques for Mechanical Engineers</h4>
+                        <p>Vignan Institute of Technology and Science, Hyderabad</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">Foundational</span>
+                        <h4>Research Opportunities in Advanced Welding Processes</h4>
+                        <p>Hindusthan College of Engineering and Technology, Coimbatore</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ATAL Content Block -->
+            <div id="dev-atal" class="dev-tab-content">
+                <div class="dev-list">
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">Nov 2025</span>
+                        <h4>ATAL FDP: Robotics for Industry 4.0: Enabling Smart Manufacturing</h4>
+                        <p>Sri Venkateswara College of Engineering (Nov 17 – 22, 2025)</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">July 2021</span>
+                        <h4>ATAL FDP: Green Technology and Sustainability Engineering</h4>
+                        <p>Amrita Vishwa Vidyapeetham (July 5 – 9, 2021)</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">July 2026</span>
+                        <h4>Summer School: Data-Driven Modeling for Mechanical Systems (D2MMS)</h4>
+                        <p>Department of Mechanical Engineering, IIT (ISM) Dhanbad (July 1 – 5, 2026)</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">Dec 2025</span>
+                        <h4>International Conference: AI for Forensics and Biometric Applications (AIFB)</h4>
+                        <p>Indian Institute of Technology, Bhilai (Dec 19 – 20, 2025)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workshops Content Block -->
+            <div id="dev-workshops" class="dev-tab-content">
+                <div class="dev-list">
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">2026</span>
+                        <h4>Workshop: Problem-Driven AI: Real World Applications & Solution Frameworks</h4>
+                        <p>National Institute of Technology, Rourkela (Feb 7 – 16, 2026)</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">2021</span>
+                        <h4>Short-Term Course: Enduring Trends in Hydraulic Control Systems</h4>
+                        <p>CCE, Indian Institute of Technology, Madras (March 22 – 27, 2021)</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">Advanced</span>
+                        <h4>Short-Term Course: Theory of Plasticity and Its Applications</h4>
+                        <p>CE & QIP, Indian Institute of Technology, Bombay</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">Advanced</span>
+                        <h4>Short-Term Course: Application of Forecasting Methods in Engineering</h4>
+                        <p>AICTE & QIP, Indian Institute of Technology, Kharagpur</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">Technical</span>
+                        <h4>STTP: Modeling & Analysis using MATLAB and Python for Mechanical Engineering</h4>
+                        <p>VNR Vignana Jyothi Institute of Engineering and Technology, Hyderabad</p>
+                    </div>
+                    <div class="dev-item-card glass-card">
+                        <span class="dev-date">Technical</span>
+                        <h4>STTP: Advances in Finite Element Method for Industry & Research</h4>
+                        <p>Vasavi College of Engineering, Hyderabad</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts & References Section -->
+    <section id="contact" class="contact-section section-padding bg-light scroll-reveal">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="sub-heading">Get In Touch</span>
+                <h2 class="main-heading">Contact & References</h2>
+                <div class="heading-line"></div>
+            </div>
+
             <div class="contact-grid">
-                <div class="contact-info" data-aos="fade-right">
-                    <h3 class="about-subtitle">Get in Touch</h3>
-                    <p class="about-p">
-                        Feel free to contact me for research collaborations, teaching questions, or course details.
-                    </p>
-                    <div class="contact-card">
-                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                        <div class="contact-detail">
-                            <h4>Email</h4>
-                            <p>sanjeevkumargajawada@gmail.com</p>
-                        </div>
+                <!-- Reference Panels -->
+                <div class="references-panel glass-card">
+                    <h3>Academic References</h3>
+                    
+                    <div class="ref-box">
+                        <h4>Dr. Prashanta Kr. Mahato</h4>
+                        <p class="ref-title">Professor, Dept. of Mechanical Engineering</p>
+                        <p>IIT (ISM), Dhanbad</p>
+                        <p><i class="fas fa-envelope"></i> pkmahato@iitism.ac.in</p>
                     </div>
-                    <div class="contact-card">
-                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                        <div class="contact-detail">
-                            <h4>Phone</h4>
-                            <p>(+91) 9030 833 667</p>
-                        </div>
+
+                    <div class="ref-box">
+                        <h4>Dr. Suparno Bhattacharyya</h4>
+                        <p class="ref-title">Assistant Professor, Dept. of Mechanical Engineering</p>
+                        <p>IIT (ISM), Dhanbad</p>
+                        <p><i class="fas fa-envelope"></i> suparno@iitism.ac.in</p>
                     </div>
-                    <div class="contact-card">
-                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <div class="contact-detail">
-                            <h4>Address</h4>
-                            <p>Plot No. 138, Road Number 5, Sri Ram Nagar colony, Turkayamjal, Telangana-501510</p>
-                        </div>
+
+                    <div class="ref-box">
+                        <h4>Dr. Rajeswara Reddy Resapu</h4>
+                        <p class="ref-title">Associate Professor & Head, Dept. of Mechanical Engineering</p>
+                        <p>GITAM Deemed To Be University, Visakhapatnam</p>
+                        <p><i class="fas fa-envelope"></i> rresapu@gitam.edu</p>
                     </div>
                 </div>
 
-                <div class="query-form" data-aos="fade-left">
-                    <h3 class="about-subtitle" style="margin-bottom: 0;">Submit a Query</h3>
-                    <form id="submitQuery" action="#" method="POST" onsubmit="handleForm(event)">
+                <!-- Contact Form Wrapper -->
+                <div class="contact-form-wrapper glass-card">
+                    <h3>Send a Message</h3>
+                    <form id="portfolioContactForm" onsubmit="handleFormSubmit(event)">
                         <div class="form-group">
-                            <label for="formName">Name</label>
-                            <input type="text" id="formName" class="form-control" required placeholder="John Doe">
+                            <label for="form-name">Full Name</label>
+                            <input type="text" id="form-name" required placeholder="Dr. Jane Doe">
                         </div>
                         <div class="form-group">
-                            <label for="formEmail">Email</label>
-                            <input type="email" id="formEmail" class="form-control" required placeholder="john@example.com">
+                            <label for="form-email">Email Address</label>
+                            <input type="email" id="form-email" required placeholder="jane.doe@university.edu">
                         </div>
                         <div class="form-group">
-                            <label for="formMessage">Message</label>
-                            <textarea id="formMessage" rows="4" class="form-control" required placeholder="Describe your collaboration proposal or academic questions here..."></textarea>
+                            <label for="form-subject">Subject</label>
+                            <input type="text" id="form-subject" required placeholder="Research Collaboration Proposal">
                         </div>
-                        <button type="submit" class="btn btn-primary" style="align-self: flex-start; margin-top: 0.5rem;">Send Query</button>
+                        <div class="form-group">
+                            <label for="form-message">Message</label>
+                            <textarea id="form-message" rows="5" required placeholder="Dear Sanjeevkumar, I reviewed your work on aeroelastic structural dynamic models..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary ripple block-btn">Send Secure Message <i class="fas fa-paper-plane"></i></button>
                     </form>
+                    <div id="form-feedback" class="form-feedback-hidden"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Clean Uncluttered Academic Registry Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-socials">
-                <a href="https://scholar.google.com/" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-                <a href="https://orcid.org/" target="_blank" title="ORCID"><i class="fab fa-orcid"></i></a>
-                <a href="https://github.com/" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/skgajawada/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <!-- Footer -->
+    <footer class="portfolio-footer">
+        <div class="footer-container">
+            <p class="footer-logo">Gajavada Sanjeevkumar</p>
+            <p class="footer-text">PhD Research Scholar • Computational Structural Mechanics & Aeroelasticity</p>
+            <div class="footer-links">
+                <a href="#home">Top</a>
+                <a href="#about">About</a>
+                <a href="#research">Research</a>
+                <a href="#certifications">Certifications</a>
+                <a href="#contact">Contact</a>
             </div>
-            <p>&copy; 2026 Gajavada Sanjeevkumar. All Rights Reserved.</p>
-            
-            <div class="footer-counter">
-                <i class="fas fa-users"></i> Profile Visitors: <span class="counter-badge" id="visitor-count">1,824</span>
-            </div>
+            <p class="copyright">&copy; 2026 Gajavada Sanjeevkumar. Designed to Premium Academic Specifications (Vanilla HTML5/CSS3/JS).</p>
         </div>
     </footer>
 
-    <!-- Execution Engine Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <!-- Back To Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts Injection -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    
-    <script>
-        // Page Initializer
-        window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
-            loader.style.opacity = '0';
-            setTimeout(() => {
-                loader.style.display = 'none';
-            }, 500);
-            
-            // Initiate Scroll Animations
-            AOS.init({
-                duration: 800,
-                once: true,
-                offset: 80
-            });
-            
-            simulateCounter();
-        });
-
-        // Interactive Theme Engine Logic
-        function toggleTheme() {
-            const body = document.body;
-            const icon = document.getElementById('theme-icon');
-            body.classList.toggle('dark-mode');
-            
-            if(body.classList.contains('dark-mode')) {
-                icon.className = 'fas fa-sun';
-            } else {
-                icon.className = 'fas fa-moon';
-            }
-        }
-
-        // Particle System Canvas Driver Initialization
-        particlesJS("particles-js", {
-            "particles": {
-                "number": { "value": 60, "density": { "enable": true, "value_area": 900 } },
-                "color": { "value": "#0ea5e9" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.25, "random": false },
-                "size": { "value": 3, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#0ea5e9", "opacity": 0.15, "width": 1 },
-                "move": { "enable": true, "speed": 1.2, "direction": "none", "random": false, "straight": false, "out_mode": "out" }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": false } }
-            },
-            "retina_detect": true
-        });
-
-        // Certification Dynamic Categories Processing Engine
-        function filterCerts(category) {
-            const cards = document.querySelectorAll('.cert-card');
-            const buttons = document.querySelectorAll('.filter-btn');
-            
-            buttons.forEach(btn => btn.classList.remove('active'));
-            if(event) {
-                event.target.classList.add('active');
-            }
-            
-            cards.forEach(card => {
-                if (category === 'all' || card.getAttribute('data-category') === category) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        // Certification Live Text Search Filter Loop
-        function searchCerts() {
-            const query = document.getElementById('certSearch').value.toLowerCase();
-            const cards = document.querySelectorAll('.cert-card');
-            
-            cards.forEach(card => {
-                const title = card.getAttribute('data-title');
-                if (title.includes(query)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        // Query Dispatch Logic Submission Form Mock
-        function handleForm(e) {
-            e.preventDefault();
-            alert("Thank you! Gajavada Sanjeevkumar has received your query submission. We will get back to you soon.");
-            document.getElementById('submitQuery').reset();
-        }
-
-        // Live Dynamic Visitor Simulation
-        function simulateCounter() {
-            const targetSpan = document.getElementById('visitor-count');
-            let initialCount = 1824;
-            setInterval(() => {
-                initialCount += Math.floor(Math.random() * 2);
-                targetSpan.innerText = initialCount.toLocaleString();
-            }, 12000);
-        }
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>
