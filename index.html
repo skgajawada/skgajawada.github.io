@@ -1167,39 +1167,80 @@
         </div>
     </section>
 
-    <!-- REFERENCES & CONTACT -->
-    <section id="contact" style="background-color: rgba(14, 165, 233, 0.02); border-top: 1px solid var(--border-color);">
-        <div class="container">
-            <div class="contact-grid">
-                <div>
-                    <h3 style="margin-bottom: 25px; font-family: var(--font-serif); font-size: 1.8rem;">Research References</h3>
-                    <div class="glass-card">
-                        <div class="ref-card">
-                            <div class="ref-name">Dr. Prashanta Kr. Mahato</div>
-                            <div class="ref-dept">Professor, Dept. of Mechanical Engineering</div>
-                            <div class="ref-contact">IIT (ISM) Dhanbad | pkmahato@iitism.ac.in</div>
-                        </div>
-                        <div class="ref-card">
-                            <div class="ref-name">Dr. Suparno Bhattacharyya</div>
-                            <div class="ref-dept">Assistant Professor, Dept. of Mechanical Engineering</div>
-                            <div class="ref-contact">IIT (ISM) Dhanbad | suparno@iitism.ac.in</div>
-                        </div>
+    <!-- ==========================================================================
+       CONTACT SECTION
+       ========================================================================== -->
+    <section id="contact" class="section-padding bg-light scroll-reveal">
+        <div class="container section-container">
+            <div class="section-header">
+                <span class="section-tag">Get In Touch</span>
+                <h2 class="section-title">Contact</h2>
+            </div>
+            
+            <div class="glass-card" style="max-width: 700px; margin: 0 auto;">
+                <h3 style="font-size: 24px; margin-bottom: 25px; text-align: center;">Send a Message</h3>
+                <form id="contact-form" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label for="form-name">Full Name</label>
+                        <input type="text" id="form-name" required placeholder="John Doe">
                     </div>
-                </div>
-                <div>
-                    <h3 style="margin-bottom: 25px; font-family: var(--font-serif); font-size: 1.8rem;">Direct Inquiries</h3>
-                    <div class="glass-card" style="display: flex; flex-direction: column; gap: 20px;">
-                        <p style="color: var(--text-muted);">For collaboration opportunities, research synergies, or institutional inquiries, please reach out via direct electronic mail channels.</p>
-                        <a href="mailto:sanjeevkumargajawada@gmail.com" class="btn btn-primary" style="justify-content: center; width: 100%;">
-                            <i class="fa-solid fa-paper-plane"></i> Send Email
-                        </a>
-                        <a href="https://www.linkedin.com/in/skgajawada/" target="_blank" class="btn btn-secondary" style="justify-content: center; width: 100%;">
-                            <i class="fa-brands fa-linkedin"></i> Connect via LinkedIn
-                        </a>
+                    <div class="form-group">
+                        <label for="form-email">Email Address</label>
+                        <input type="email" id="form-email" required placeholder="john@example.com">
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="form-subject">Subject</label>
+                        <input type="text" id="form-subject" required placeholder="Research Collaboration Inquiry">
+                    </div>
+                    <div class="form-group">
+                        <label for="form-message">Message</label>
+                        <textarea id="form-message" rows="5" required placeholder="Your message here..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary block-btn">Send Message</button>
+                    <div id="form-status" class="form-feedback-success form-feedback-hidden">
+                        Thank you! Your message has been sent successfully.
+                    </div>
+                </form>
             </div>
         </div>
+    </section>
+
+    <!-- ==========================================================================
+       FOOTER ECOSYSTEM
+       ========================================================================== -->
+    <footer class="portfolio-footer">
+        <div class="footer-container">
+            <div class="footer-logo">G. SANJEEVKUMAR<span>.</span></div>
+            <p class="footer-text">PhD Scholar | Mechanical Engineering | IIT (ISM) Dhanbad</p>
+            <div class="footer-links">
+                <a href="#hero">Home</a>
+                <a href="#about">About</a>
+                <a href="#research">Research</a>
+                <a href="#timeline">Timeline</a>
+                <a href="#projects">Projects</a>
+                <a href="#certifications">Certifications</a>
+            </div>
+            <p class="copyright">&copy; 2026 Gajavada Sanjeevkumar. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <script>
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const status = document.getElementById('form-status');
+            status.classList.remove('form-feedback-hidden');
+            document.getElementById('contact-form').reset();
+            setTimeout(() => {
+                status.classList.add('form-feedback-hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
     </section>
 
     <footer>
