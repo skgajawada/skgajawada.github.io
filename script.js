@@ -1,1 +1,0 @@
-console.log('Academic Portfolio Loaded');
