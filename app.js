@@ -361,3 +361,52 @@ function initParticlesBackground() {
         });
     }
 }
+document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.getElementById('contactForm');
+    const formResponse = document.getElementById('formResponse');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Stop page reload
+            
+            // Gather form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+
+            // Provide immediate user feedback
+            formResponse.textContent = "Sending your message...";
+            formResponse.className = "response-message info";
+
+            try {
+                // Replace URL with your actual API endpoint or email service link if you have one
+                const response = await fetch('https://api.web3forms.com/submit', { 
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        access_key: "YOUR_ACCESS_KEY_HERE", // If using a service like Web3Forms
+                        ...formData
+                    })
+                });
+
+                if (response.ok) {
+                    formResponse.textContent = "Thank you! Your query has been sent successfully.";
+                    formResponse.className = "response-message success";
+                    contactForm.reset(); // Clear form
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (error) {
+                formResponse.textContent = "Oops! Something went wrong. Please try again later.";
+                formResponse.className = "response-message error";
+                console.error("Form error:", error);
+            }
+        });
+    }
+});
