@@ -1029,27 +1029,15 @@ blockquote {
 }
 
 /* Contacts System & Form Layout */
+/* Contacts System & Form Layout */
 .contact-grid {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: 50px;
+    display: block; /* Removed layout dependency on references column */
 }
 
-.references-panel h3, .contact-form-wrapper h3 {
+.contact-form-wrapper h3 {
     font-size: 24px;
     margin-bottom: 25px;
 }
-
-.ref-box {
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-}
-
-.ref-box:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
-.ref-box h4 { font-size: 16px; margin-bottom: 2px; font-family: var(--font-sans); font-weight: 600; }
-.ref-title { font-size: 13px; color: var(--accent-color); margin-bottom: 5px; }
-.ref-box p { font-size: 13px; color: var(--text-muted); }
 
 .form-group {
     margin-bottom: 20px;
@@ -1070,7 +1058,7 @@ blockquote {
     background-color: var(--primary-bg);
     color: var(--text-main);
     border-radius: 6px;
-    font-family: var(--font-sans);
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
 }
 
