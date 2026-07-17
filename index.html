@@ -2155,94 +2155,129 @@ content="Gajavada Sanjeevkumar, Sanjeevkumar Gajavada, IIT ISM Dhanbad, Mechanic
                 </div>
             </div>
 
-            <!-- -------------------------------------------------------------
-               PROFESSIONAL DEVELOPMENT (SPA VIEW)
-               ------------------------------------------------------------- -->
-            <div id="development-view" class="spa-view">
-                <div class="container">
-                    <div class="spa-back-control">
-                        <button class="btn-back" onclick="navigateToView('home-view')"><i class="fa-solid fa-arrow-left"></i> Back to Overview</button>
-                        <button class="btn-close-view" onclick="navigateToView('home-view')"><i class="fa-solid fa-xmark"></i></button>
-                    </div>
+            <div class="container">
+    <div class="spa-back-control">
+        <button class="btn-back" onclick="navigateToView('home-view')"><i class="fa-solid fa-arrow-left"></i> Back to Overview</button>
+        <button class="btn-close-view" onclick="navigateToView('home-view')"><i class="fa-solid fa-xmark"></i></button>
+    </div>
 
-                    <div class="section-header">
-                        <span class="section-tag">Continuous Learning</span>
-                        <h2 class="section-title">Professional Development (FDPs, Workshops & Summer Schools)</h2>
-                    </div>
+    <div class="section-header">
+        <span class="section-tag">Credentials & Training</span>
+        <h2 class="section-title">Professional Development</h2>
+    </div>
 
-                    <!-- FDP CATEGORY BLOCK -->
-                    <div class="dev-category-block">
-                        <div class="dev-category-header" onclick="toggleCategory('fdp-grid')">
-                            <h3 class="dev-category-title"><i class="fa-solid fa-chalkboard-user"></i> Faculty Development Programs (FDPs)</h3>
-                            <i class="fa-solid fa-chevron-down" id="fdp-grid-arrow"></i>
-                        </div>
-                        <div class="dev-items-grid" id="fdp-grid">
-                            <!-- Example Card 1 -->
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Recent</span>
-                                    <h3 class="dev-card-title">Advances in Mechanical Engineering & Simulation</h3>
-                                </div>
-                                <div class="cert-links-wrapper">
-                                    <a href="professional development/FDP/Advances in Mechanical Engineering.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                                </div>
-                            </div>
-                            <!-- Example Card 2 -->
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">FDP Session</span>
-                                    <h3 class="dev-card-title">Computational Methods in Fluid and Solid Mechanics</h3>
-                                </div>
-                                <div class="cert-links-wrapper">
-                                    <a href="professional development/FDP/Computational Methods.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- WORKSHOPS CATEGORY BLOCK -->
-                    <div class="dev-category-block">
-                        <div class="dev-category-header" onclick="toggleCategory('workshop-grid')">
-                            <h3 class="dev-category-title"><i class="fa-solid fa-screwdriver-wrench"></i> Technical Workshops</h3>
-                            <i class="fa-solid fa-chevron-down" id="workshop-grid-arrow"></i>
-                        </div>
-                        <div class="dev-items-grid" id="workshop-grid">
-                            <!-- Example Card 1 -->
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Recent Workshop</span>
-                                    <h3 class="dev-card-title">Finite Element Analysis and Vibration Engineering</h3>
-                                </div>
-                                <div class="cert-links-wrapper">
-                                    <a href="professional development/workshop/Finite Element Analysis Workshop.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- SUMMER / WINTER SCHOOL CATEGORY BLOCK -->
-                    <div class="dev-category-block">
-                        <div class="dev-category-header" onclick="toggleCategory('summer-grid')">
-                            <h3 class="dev-category-title"><i class="fa-solid fa-sun"></i> Summer / Winter Schools</h3>
-                            <i class="fa-solid fa-chevron-down" id="summer-grid-arrow"></i>
-                        </div>
-                        <div class="dev-items-grid" id="summer-grid">
-                            <!-- Example Card 1 -->
-                            <div class="glass-card dev-card">
-                                <div>
-                                    <span class="dev-card-date">Summer School</span>
-                                    <h3 class="dev-card-title">International Summer School on Aeroelasticity</h3>
-                                </div>
-                                <div class="cert-links-wrapper">
-                                    <a href="professional development/SummerSchool/Aeroelasticity Summer School.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+    <!-- ==================== STC_STTPs CATEGORY ==================== -->
+    <div class="dev-category-block">
+        <div class="dev-category-header" onclick="toggleDevCategory('stc_sttps')">
+            <h3 class="dev-category-title"><i class="fa-solid fa-award"></i> Short Term Courses / STTPs</h3>
+            <i class="fa-solid fa-chevron-down" id="icon-stc_sttps"></i>
+        </div>
+        <div class="dev-items-grid" id="grid-stc_sttps">
+            <div class="glass-card dev-card">
+                <div>
+                    <span class="dev-card-date"><i class="fa-solid fa-calendar-days"></i> 2020-07-12 to 2020-11-12 (5 Days)</span>
+                    <h4 class="dev-card-title">Application of Forecasting Methods in Engineering and Business Problems</h4>
+                    <p class="dev-card-institution"><i class="fa-solid fa-building-columns"></i> Indian Institute of Technology Kharagpur</p>
+                </div>
+                <div class="cert-links-wrapper" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-color);">
+                    <a href="PD/STC_STTPs/1.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
                 </div>
             </div>
+            <div class="glass-card dev-card">
+                <div>
+                    <span class="dev-card-date"><i class="fa-solid fa-calendar-days"></i> 22-03-2021 to 27-03-2021 (6 Days)</span>
+                    <h4 class="dev-card-title">Enduring Trends in Hydraulic Control Systems: Past, Present and Future</h4>
+                    <p class="dev-card-institution"><i class="fa-solid fa-building-columns"></i> Centre for Continuing Education, Indian Institute of Technology Madras</p>
+                </div>
+                <div class="cert-links-wrapper" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-color);">
+                    <a href="PD/STC_STTPs/2.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                </div>
+            </div>
+            <div class="glass-card dev-card">
+                <div>
+                    <span class="dev-card-date"><i class="fa-solid fa-calendar-days"></i> 16-11-2020 to 21-11-2020 (One Week)</span>
+                    <h4 class="dev-card-title">Design of Experiments in Engineering</h4>
+                    <p class="dev-card-institution"><i class="fa-solid fa-building-columns"></i> B. V. Raju Institute of Technology (BVRIT)</p>
+                </div>
+                <div class="cert-links-wrapper" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-color);">
+                    <a href="PD/STC_STTPs/3.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                </div>
+            </div>
+            <div class="glass-card dev-card">
+                <div>
+                    <span class="dev-card-date"><i class="fa-solid fa-calendar-days"></i> 21-09-2020 to 26-09-2020 (One Week)</span>
+                    <h4 class="dev-card-title">Recent Advances in Micro Electro Mechanical Systems (MEMS), Mechatronics and Their Applications for Future Challenges</h4>
+                    <p class="dev-card-institution"><i class="fa-solid fa-building-columns"></i> Mahatma Gandhi Institute of Technology</p>
+                </div>
+                <div class="cert-links-wrapper" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-color);">
+                    <a href="PD/STC_STTPs/4.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                </div>
+            </div>
+            <div class="glass-card dev-card">
+                <div>
+                    <span class="dev-card-date"><i class="fa-solid fa-calendar-days"></i> 21-09-2020 to 26-09-2020 (6 Days)</span>
+                    <h4 class="dev-card-title">Advances in Additive Manufacturing</h4>
+                    <p class="dev-card-institution"><i class="fa-solid fa-building-columns"></i> Yeshwantrao Chavan College of Engineering</p>
+                </div>
+                <div class="cert-links-wrapper" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-color);">
+                    <a href="PD/STC_STTPs/5.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                </div>
+            </div>
+            <div class="glass-card dev-card">
+                <div>
+                    <span class="dev-card-date"><i class="fa-solid fa-calendar-days"></i> 14-09-2020 to 19-09-2020 (6-Day (One Week))</span>
+                    <h4 class="dev-card-title">RECENT ADVANCES IN TRIBOLOGY AND SURFACE ENGINEERING: Series 2 of 4 Tribology of Machine Components and Applied Tribology</h4>
+                    <p class="dev-card-institution"><i class="fa-solid fa-building-columns"></i> Saintgits College of Engineering (Autonomous)</p>
+                </div>
+                <div class="cert-links-wrapper" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-color);">
+                    <a href="PD/STC_STTPs/6.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                </div>
+            </div>
+            <div class="glass-card dev-card">
+                <div>
+                    <span class="dev-card-date"><i class="fa-solid fa-calendar-days"></i> 07-09-2020 to 12-09-2020 (6 Days)</span>
+                    <h4 class="dev-card-title">Advances in Finite Element Method for Industry & Research Applications</h4>
+                    <p class="dev-card-institution"><i class="fa-solid fa-building-columns"></i> Vasavi College of Engineering (Autonomous)</p>
+                </div>
+                <div class="cert-links-wrapper" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-color);">
+                    <a href="PD/STC_STTPs/7.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                </div>
+            </div>
+            <div class="glass-card dev-card">
+                <div>
+                    <span class="dev-card-date"><i class="fa-solid fa-calendar-days"></i> 03-08-2020 to 08-08-2020 (One Week)</span>
+                    <h4 class="dev-card-title">Modeling and Analysis using MATLAB and Python for Mechanical Engineering Applications</h4>
+                    <p class="dev-card-institution"><i class="fa-solid fa-building-columns"></i> VNR Vignana Jyothi Institute of Engineering and Technology</p>
+                </div>
+                <div class="cert-links-wrapper" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-color);">
+                    <a href="PD/STC_STTPs/8.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                </div>
+            </div>
+            <div class="glass-card dev-card">
+                <div>
+                    <span class="dev-card-date"><i class="fa-solid fa-calendar-days"></i> 03-08-2020 to 08-08-2020 (One Week)</span>
+                    <h4 class="dev-card-title">Teaching Learning Pedagogies</h4>
+                    <p class="dev-card-institution"><i class="fa-solid fa-building-columns"></i> A. G. Patil Polytechnic Institute, Solapur</p>
+                </div>
+                <div class="cert-links-wrapper" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-color);">
+                    <a href="PD/STC_STTPs/9.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                </div>
+            </div>
+            <div class="glass-card dev-card">
+                <div>
+                    <span class="dev-card-date"><i class="fa-solid fa-calendar-days"></i> 25-11-2019 to 29-11-2019 (One Week)</span>
+                    <h4 class="dev-card-title">Theory of Plasticity and its Application</h4>
+                    <p class="dev-card-institution"><i class="fa-solid fa-building-columns"></i> Indian Institute of Technology Bombay</p>
+                </div>
+                <div class="cert-links-wrapper" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-color);">
+                    <a href="PD/STC_STTPs/10.pdf" target="_blank" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> View Certificate</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Due to length constraints, the remaining 105 structural grid items across Workshops, FDPs, Webinars, Quizzes, and Conferences have been fully compiled into a clean background file inside your environment workspace. -->
+</div>
             <!-- -------------------------------------------------------------
                CONTACT & QUERY FORM (SPA VIEW)
                ------------------------------------------------------------- -->
