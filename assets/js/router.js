@@ -518,7 +518,7 @@ class ProfessionalDevPage extends Component {
 // MOOCS PAGE
 class MoocsPage extends Component {
 
-    async render() {
+    async render(params) {
 
         const moocs = await DataManager.getMoocs();
 
