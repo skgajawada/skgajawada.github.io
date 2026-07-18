@@ -5,7 +5,11 @@
     "institution": "IIT (ISM) Dhanbad",
     "bio": "Mechanical Engineer with expertise in design engineering, finite element analysis, and machine learning. Currently pursuing PhD at IIT (ISM) Dhanbad with 7+ years of teaching experience in leading engineering institutions. Passionate about research in structural dynamics, aeroelasticity, and AI-driven design optimization. Actively contribute to academic excellence through innovative teaching methodologies and industry-relevant research.",
     "email": "sanjeevkumargajawada@gmail.com",
+<<<<<<< HEAD
     "phone": "+91-9030833667",
+=======
+    "phone": "+91-xxxxxxxxxx",
+>>>>>>> e60eb468c611fb242f93266a5e67590455a56445
     "location": "Dhanbad, Jharkhand, India",
     "profileImage": "assets/images/profile.jpg"
   },
