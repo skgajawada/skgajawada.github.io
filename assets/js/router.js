@@ -595,6 +595,16 @@ padding:20px;
     </div>
 
 </div>
+                    `).join("")}
+
+                </div>
+
+            </section>
+        `;
+
+    }
+
+}
 // SKILLS PAGE
 class SkillsPage extends Component {
     async render() {
