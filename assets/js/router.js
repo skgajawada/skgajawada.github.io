@@ -441,14 +441,35 @@ class ProfessionalDevPage extends Component {
                     <div class="cards-grid">
                         ${categoryCerts.length > 0 ? categoryCerts.map(cert => `
                             <div class="card reveal" style="padding: 1.5rem;">
-                                <h3 class="card-title" style="font-size: 1.1rem; margin-bottom: 0.5rem;">${cert.title}</h3>
-                                <p style="font-size: 0.9rem; color: #777; margin-bottom: 0.5rem;"><strong>Issuer:</strong> ${cert.issuer} ${cert.date ? `• ${cert.date}` : ''}</p>
-                                ${cert.credentialId ? `<p style="font-size: 0.85rem; color: #888; margin-bottom: 1rem;">ID: ${cert.credentialId}</p>` : ''}
-                                ${cert.pdfPath ? `
-                                    <a href="${cert.pdfPath}" target="_blank" class="btn btn-primary" style="display: block; text-align: center; font-size: 0.9rem;">
-                                        <i class="fas fa-file-pdf"></i> View Certificate
+                                <h3 class="card-title" style="font-size:1.1rem; margin-bottom:0.5rem;">
+                                    ${cert.name}
+                                </h3>
+
+                                <p style="font-size:0.9rem; color:#666; margin-bottom:0.4rem;">
+                                    <strong>Organization:</strong> ${cert.organization}
+                                </p>
+
+                                <p style="font-size:0.9rem; color:#666; margin-bottom:0.4rem;">
+                                    <strong>Department:</strong> ${cert.department}
+                                </p>
+
+                                <p style="font-size:0.9rem; color:#666; margin-bottom:0.4rem;">
+                                    <strong>Duration:</strong> ${cert.duration}
+                                </p>
+
+                                <p style="font-size:0.9rem; color:#666; margin-bottom:1rem;">
+                                <strong>Date:</strong>
+                                ${cert.startDate}
+                                    ${cert.endDate ? " to " + cert.endDate : ""}
+                                </p>
+
+                                <a href="assets/certificates/professional-development/${cert.category}/${cert.certificateFile}"
+                                   target="_blank"
+                                   class="btn btn-primary"
+                                   style="display:block;text-align:center;">
+                                   <i class="fas fa-file-pdf"></i>
+                                       View Certificate
                                     </a>
-                                ` : '<span style="color: #bbb; font-style: italic; font-size: 0.9rem;">No PDF document linked</span>'}
                             </div>
                         `).join('') : `
                             <div class="reveal" style="background: var(--light); padding: 2rem; border-radius: 10px; text-align: center; grid-column: 1 / -1;">
