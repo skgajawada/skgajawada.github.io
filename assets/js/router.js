@@ -541,10 +541,22 @@ class MoocsPage extends Component {
 
                             <div class="card fade-in"
                                  onclick="navigateTo('#/moocs/${cat.id}')"
-                                 style="cursor:pointer;">
+                                 style="
+                                 cursor:pointer;
+                                 transition:all .3s ease;
+                                 min-height:260px;
+                                 display:flex;
+                                 flex-direction:column;
+                                 ">
 
                                 <div class="card-icon"
-                                     style="background:${cat.color};">
+                                     style="
+                                     background:${cat.color};
+                                     width:70px;
+                                     height:70px;
+                                     font-size:1.8rem;
+                                     margin-bottom:1.2rem;
+                                     ">
 
                                     <i class="fas ${cat.icon}"></i>
 
@@ -552,11 +564,19 @@ class MoocsPage extends Component {
 
                                 <div class="card-content">
 
-                                    <h3 class="card-title">
+                                    <h3 class="card-title"
+                                        style="
+                                        font-size:1.35rem;
+                                        margin-bottom:12px;
+                                        ">
                                         ${cat.name}
                                     </h3>
 
-                                    <p class="card-description">
+                                    <p class="card-description"
+                                       style="
+                                       flex:1;
+                                       line-height:1.6;
+                                       ">
                                         ${cat.description}
                                     </p>
 
