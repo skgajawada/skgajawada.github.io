@@ -420,7 +420,7 @@ class ProjectsPage extends Component {
                 </div>
 
                 <div class="projects-grid">
-                    ${projects.projects.length > 0 ? data.projects.map(proj => `
+                    ${projects.projects.length > 0 ? projects.projects.map(proj => `
                         <div class="project-card active reveal" data-category="${proj.category}">
                             <div class="project-image">
                                 <i class="fas ${proj.image}"></i>
