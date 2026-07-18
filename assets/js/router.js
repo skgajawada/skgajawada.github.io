@@ -538,60 +538,63 @@ class MoocsPage extends Component {
 
                     ${moocs.moocCertifications.map(cert => `
 
-                        <div class="card">
+                        <div class="card"
+                        style="
+display:flex;
+flex-direction:column;
+min-height:280px;
+padding:20px;
+">
 
-                            <h3 class="card-title">
-                                ${cert.name}
-                            </h3>
+    <h3 class="card-title"
+    style="
+    font-size:1.15rem;
+    line-height:1.4;
+    min-height:60px;
+    margin-bottom:15px;
+    ">
+        ${cert.name}
+    </h3>
 
-                            <p>
-                                <strong>Provider:</strong>
-                                ${cert.issuer}
-                            </p>
+    <p style="margin-bottom:8px;">
+        <strong>Provider:</strong> ${cert.issuer}
+    </p>
 
-                            <p>
-                                <strong>Platform:</strong>
-                                ${cert.vendor.toUpperCase()}
-                            </p>
-                            <div style="display:flex;gap:10px;margin-top:15px;flex-wrap:wrap;">
+    <p style="margin-bottom:15px;">
+        <strong>Platform:</strong> ${cert.vendor.toUpperCase()}
+    </p>
 
-                            <a
-                            href="assets/${cert.certificatePath}"
-                            target="_blank"
-                            class="btn btn-primary">
+    <div style="margin-top:auto;">
 
-                            <i class="fas fa-file-pdf"></i>
+        <div style="display:flex;gap:10px;">
 
-                            Certificate
+            <a
+            href="assets/${cert.certificatePath}"
+            target="_blank"
+            class="btn btn-primary"
+            style="flex:1;text-align:center;">
 
-                            </a>
+                <i class="fas fa-file-pdf"></i>
+                Certificate
 
-                            <a
-                            href="${cert.verifyUrl}"
-                            target="_blank"
-                            class="btn btn-outline">
+            </a>
 
-                            <i class="fas fa-circle-check"></i>
+            <a
+            href="${cert.verifyUrl}"
+            target="_blank"
+            class="btn btn-outline"
+            style="flex:1;text-align:center;">
 
-                            Verify
+                <i class="fas fa-circle-check"></i>
+                Verify
 
-                            </a>
+            </a>
 
-                            </div>
-                            <p><strong>Year:</strong> ${cert.year}</p>
+        </div>
 
-                        </div>
+    </div>
 
-                    `).join("")}
-
-                </div>
-
-            </section>
-        `;
-
-    }
-
-}
+</div>
 // SKILLS PAGE
 class SkillsPage extends Component {
     async render() {
