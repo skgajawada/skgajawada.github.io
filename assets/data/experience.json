@@ -1,1 +1,13 @@
-
+{
+  "experience":[
+    {
+      "designation":"",
+      "organization":"",
+      "location":"",
+      "startDate":"",
+      "endDate":"",
+      "description":"",
+      "responsibilities":[]
+    }
+  ]
+}
