@@ -81,7 +81,9 @@ class DataManager {
     static async getCertificates() {
         return await this.loadData('assets/data/professional-development.json');
     }
-
+    static async getMoocs() {
+    return await this.loadData("assets/data/mooc-certifications.json");
+    }
 }
 
 // Base Component Class
@@ -623,6 +625,7 @@ router.register('/experience', new ExperiencePage());
 router.register('/education', new EducationPage());
 router.register('/projects', new ProjectsPage());
 router.register('/professional-dev', new ProfessionalDevPage());
+router.register('/moocs', new MoocsPage());
 router.register('/skills', new SkillsPage());
 router.register('/contact', new ContactPage());
 
