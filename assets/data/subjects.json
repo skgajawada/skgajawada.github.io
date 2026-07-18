@@ -1,1 +1,11 @@
-
+{
+    "subjects":[
+        {
+            "name":"",
+            "program":"",
+            "semester":"",
+            "description":"",
+            "materials":[]
+        }
+    ]
+}
