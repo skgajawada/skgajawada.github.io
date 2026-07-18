@@ -1,11 +1,12 @@
 // Main Application Router
 class Router {
-    constructor() {
+    constructor(autoInit = true) {
         this.routes = {};
         this.currentRoute = null;
-        this.init();
-    }
-
+        if (autoInit)
+    		
+	    }
+	}
     register(path, component) {
         this.routes[path] = component;
     }
@@ -49,7 +50,7 @@ class Router {
     }
 }
 
-const router = new Router();
+const router = new Router(false);
 
 // Portfolio Data Manager
 class DataManager {
@@ -587,6 +588,7 @@ router.register('/professional-dev', new ProfessionalDevPage());
 router.register('/skills', new SkillsPage());
 router.register('/contact', new ContactPage());
 
+router.init();
 // Helper Functions
 function filterProjects(category) {
     const buttons = document.querySelectorAll('.filter-btn');
