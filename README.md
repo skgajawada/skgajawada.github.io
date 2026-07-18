@@ -234,23 +234,25 @@ cd skgajawada.github.io
 ```
 
 
----
+```bash
 
 ### 2️⃣ Start a Local Server
 
 #### Option A — Python
 
+
 python -m http.server 8000
+```
 
 
----
+```bash
 
 #### Option B — Node.js
 
 npx http-server -p 8000
 
 
----
+```
 
 #### Option C — Visual Studio Code
 
@@ -258,7 +260,7 @@ npx http-server -p 8000
 2. Right-click `index.html`.
 3. Select **Open with Live Server**.
 
----
+```text
 
 ### 3️⃣ Open in Your Browser
 
@@ -267,7 +269,7 @@ Navigate to:
 http://localhost:8000
 
 
----
+```
 
 ### Supported Browsers
 
