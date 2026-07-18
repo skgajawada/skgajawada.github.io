@@ -16,8 +16,14 @@ class Router {
     }
 
     async navigate() {
-        const hash = window.location.hash.slice(1) || 'home';
-        const [route, ...params] = hash.split('/');
+        // Remove leading and trailing slashes to accurately extract route and parameters
+        let hash = window.location.hash.slice(1) || 'home';
+        if (hash.startsWith('/')) hash = hash.slice(1);
+        if (hash.endsWith('/')) hash = hash.slice(0, -1);
+
+        const segments = hash.split('/');
+        const route = segments[0]; // e.g., 'professional-dev'
+        const params = segments.slice(1); // e.g., ['moocs']
         const routePath = `/${route}`;
 
         if (this.routes[routePath]) {
@@ -25,7 +31,7 @@ class Router {
             const component = this.routes[routePath];
             const html = await component.render(params);
             document.getElementById('app').innerHTML = html;
-            component.afterRender();
+            component.afterRender(params); // Pass parameters along to child actions
             this.updateActiveNav(routePath);
             window.scrollTo(0, 0);
         } else {
@@ -89,7 +95,6 @@ class Component {
     }
 
     setupInteractions() {
-        // Scroll reveal animations
         const revealElements = document.querySelectorAll('.reveal');
         const observerOptions = {
             threshold: 0.1,
@@ -129,7 +134,7 @@ class HomePage extends Component {
                         <a href="#/contact" class="btn btn-outline">
                             <i class="fas fa-envelope"></i> Get In Touch
                         </a>
-                        <a href="assets/data/cv.pdf" class="btn btn-secondary" download>
+                        <a href="assets/documents/SANJEEVKUMAR_RESUME.pdf" class="btn btn-secondary" download>
                             <i class="fas fa-download"></i> Download CV
                         </a>
                     </div>
@@ -400,11 +405,50 @@ class ProjectsPage extends Component {
     }
 }
 
-// PROFESSIONAL DEVELOPMENT PAGE
+// PROFESSIONAL DEVELOPMENT MAIN CATEGORIES PAGE
 class ProfessionalDevPage extends Component {
-    async render() {
+    async render(params) {
         const certs = await DataManager.getCertificates();
+        const categoryParam = params && params[0];
 
+        // If a specific subcategory parameter exists in the URL, render the certificate listings instead
+        if (categoryParam) {
+            const currentCat = certs.categories.find(c => c.id === categoryParam);
+            if (!currentCat) return `<div class="container text-center"><h3>Category not found</h3><a href="#/professional-dev" class="btn btn-primary mt-3">Back to Overview</a></div>`;
+            
+            const categoryCerts = certs.certificates.filter(c => c.category === categoryParam);
+
+            return `
+                <section class="fade-in">
+                    <div style="margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">
+                        <a href="#/professional-dev" class="btn btn-outline" style="padding: 0.5rem 1rem;"><i class="fas fa-arrow-left"></i> Back</a>
+                        <h1 class="section-title" style="margin: 0;">${currentCat.name}</h1>
+                    </div>
+                    <p class="lead" style="color: var(--text-light); margin-bottom: 2rem;">${currentCat.description}</p>
+                    
+                    <div class="cards-grid">
+                        ${categoryCerts.length > 0 ? categoryCerts.map(cert => `
+                            <div class="card reveal" style="padding: 1.5rem;">
+                                <h3 class="card-title" style="font-size: 1.1rem; margin-bottom: 0.5rem;">${cert.title}</h3>
+                                <p style="font-size: 0.9rem; color: #777; margin-bottom: 0.5rem;"><strong>Issuer:</strong> ${cert.issuer} ${cert.date ? `• ${cert.date}` : ''}</p>
+                                ${cert.credentialId ? `<p style="font-size: 0.85rem; color: #888; margin-bottom: 1rem;">ID: ${cert.credentialId}</p>` : ''}
+                                ${cert.pdfPath ? `
+                                    <a href="${cert.pdfPath}" target="_blank" class="btn btn-primary" style="display: block; text-align: center; font-size: 0.9rem;">
+                                        <i class="fas fa-file-pdf"></i> View Certificate
+                                    </a>
+                                ` : '<span style="color: #bbb; font-style: italic; font-size: 0.9rem;">No PDF document linked</span>'}
+                            </div>
+                        `).join('') : `
+                            <div class="reveal" style="background: var(--light); padding: 2rem; border-radius: 10px; text-align: center; grid-column: 1 / -1;">
+                                <p style="color: var(--text-light);">No certificates loaded in this section yet.</p>
+                            </div>
+                        `}
+                    </div>
+                </section>
+            `;
+        }
+
+        // Default Overview Layout
         return `
             <section class="fade-in">
                 <h1 class="section-title">Professional Development</h1>
@@ -428,6 +472,11 @@ class ProfessionalDevPage extends Component {
                 </div>
             </section>
         `;
+    }
+
+    // Adapt layout hooks to support animations when a param view handles the rendering lifecycle
+    afterRender(params) {
+        super.afterRender();
     }
 }
 
@@ -528,7 +577,7 @@ class ContactPage extends Component {
     }
 }
 
-// Register routes
+// Register base paths
 router.register('/home', new HomePage());
 router.register('/about', new AboutPage());
 router.register('/experience', new ExperiencePage());
@@ -544,7 +593,7 @@ function filterProjects(category) {
     const cards = document.querySelectorAll('.project-card');
 
     buttons.forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+    if (event && event.target) event.target.classList.add('active');
 
     cards.forEach(card => {
         if (category === 'all' || card.dataset.category === category) {
@@ -570,14 +619,16 @@ function handleContactForm(e) {
 // Back to top button
 document.addEventListener('DOMContentLoaded', function() {
     const backToTopBtn = document.getElementById('backToTop');
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            backToTopBtn.style.display = 'block';
-        } else {
-            backToTopBtn.style.display = 'none';
-        }
-    });
-    backToTopBtn.addEventListener('click', function() {
-        window.scrollTo(0, 0);
-    });
+    if (backToTopBtn) {
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.style.display = 'block';
+            } else {
+                backToTopBtn.style.display = 'none';
+            }
+        });
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo(0, 0);
+        });
+    }
 });
