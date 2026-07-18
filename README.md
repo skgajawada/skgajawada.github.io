@@ -233,33 +233,32 @@ git clone https://github.com/skgajawada/skgajawada.github.io.git
 cd skgajawada.github.io
 ```
 
-
-```bash
+---
 
 ### 2️⃣ Start a Local Server
-
+```bash
 #### Option A — Python
 
 
 python -m http.server 8000
 ```
 
+---
 
-```bash
 
 #### Option B — Node.js
-
+```bash
 npx http-server -p 8000
 
 
 ```
-
+---
 #### Option C — Visual Studio Code
 
 1. Install the **Live Server** extension.
 2. Right-click `index.html`.
 3. Select **Open with Live Server**.
-
+---
 ```text
 
 ### 3️⃣ Open in Your Browser
@@ -270,7 +269,7 @@ http://localhost:8000
 
 
 ```
-
+---
 ### Supported Browsers
 
 | Browser | Status |
