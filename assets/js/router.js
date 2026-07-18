@@ -498,9 +498,7 @@ class ProfessionalDevPage extends Component {
                             <div class="card-content">
                                 <h3 class="card-title">${cat.name}</h3>
                                 <p class="card-description">${cat.description}</p>
-                                <p style="font-weight: bold; color: var(--primary); margin-bottom: 0.5rem;">
-                                    ${certs.certificates.filter(c => c.category === cat.id).length} certificates
-                                </p>
+
                                 <a href="#/professional-dev/${cat.id}" class="card-link">View All <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
