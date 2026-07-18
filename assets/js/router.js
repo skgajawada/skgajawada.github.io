@@ -520,7 +520,46 @@ class ProfessionalDevPage extends Component {
         super.afterRender();
     }
 }
+// MOOCS PAGE
+class MoocsPage extends Component {
 
+    async render() {
+
+        const moocs = await DataManager.getMoocs();
+
+        return `
+            <section class="fade-in">
+
+                <h1 class="section-title">
+                    MOOC Certifications
+                </h1>
+
+                <div class="cards-grid">
+
+                    ${moocs.moocCertifications.map(cert => `
+
+                        <div class="card">
+
+                            <h3>${cert.title}</h3>
+
+                            <p><strong>Platform:</strong> ${cert.platform}</p>
+
+                            <p><strong>Organization:</strong> ${cert.organization}</p>
+
+                            <p><strong>Year:</strong> ${cert.year}</p>
+
+                        </div>
+
+                    `).join("")}
+
+                </div>
+
+            </section>
+        `;
+
+    }
+
+}
 // SKILLS PAGE
 class SkillsPage extends Component {
     async render() {
