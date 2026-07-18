@@ -265,7 +265,7 @@ class HomePage extends Component {
 // ABOUT PAGE
 class AboutPage extends Component {
     async render() {
-        const data = await DataManager.getPortfolioData();
+        const profile = await DataManager.getProfile();
 
         return `
             <section class="fade-in">
@@ -322,14 +322,14 @@ class AboutPage extends Component {
 // EXPERIENCE PAGE
 class ExperiencePage extends Component {
     async render() {
-        const data = await DataManager.getPortfolioData();
-
+        const experience = await DataManager.getExperience();
+        
         return `
             <section class="fade-in">
                 <h1 class="section-title">Professional Experience</h1>
                 
                 <div class="timeline">
-                    ${data.experience.length > 0 ? data.experience.map((exp, i) => `
+                    ${experience.experience.length > 0 ? experience.experience.map((exp, i) => `
                         <div class="timeline-item reveal" style="animation-delay: ${i * 0.1}s;">
                             <div class="timeline-dot">
                                 <i class="fas ${exp.icon}"></i>
@@ -363,14 +363,14 @@ class ExperiencePage extends Component {
 // EDUCATION PAGE
 class EducationPage extends Component {
     async render() {
-        const data = await DataManager.getPortfolioData();
+        const education = await DataManager.getEducation();
 
         return `
             <section class="fade-in">
                 <h1 class="section-title">Education</h1>
                 
                 <div class="timeline">
-                    ${data.education.length > 0 ? data.education.map((edu, i) => `
+                    ${education.education.length > 0 ? education.education.map((edu, i) => `
                         <div class="timeline-item reveal" style="animation-delay: ${i * 0.1}s;">
                             <div class="timeline-dot">
                                 <i class="fas ${edu.icon}"></i>
@@ -404,7 +404,7 @@ class EducationPage extends Component {
 // PROJECTS PAGE
 class ProjectsPage extends Component {
     async render() {
-        const data = await DataManager.getPortfolioData();
+        const projects = await DataManager.getProjects();
         const categories = ['all', 'research', 'academic', 'industrial'];
 
         return `
@@ -420,7 +420,7 @@ class ProjectsPage extends Component {
                 </div>
 
                 <div class="projects-grid">
-                    ${data.projects.length > 0 ? data.projects.map(proj => `
+                    ${projects.projects.length > 0 ? data.projects.map(proj => `
                         <div class="project-card active reveal" data-category="${proj.category}">
                             <div class="project-image">
                                 <i class="fas ${proj.image}"></i>
@@ -448,7 +448,7 @@ class ProjectsPage extends Component {
 // PROFESSIONAL DEVELOPMENT MAIN CATEGORIES PAGE
 class ProfessionalDevPage extends Component {
     async render(params) {
-        const certs = await DataManager.getCertificates();
+        const certs = await DataManager.getProfessionalDevelopment();
         const categoryParam = params && params[0];
 
         // If a specific subcategory parameter exists in the URL, render the certificate listings instead
@@ -523,14 +523,14 @@ class ProfessionalDevPage extends Component {
 // SKILLS PAGE
 class SkillsPage extends Component {
     async render() {
-        const data = await DataManager.getPortfolioData();
+        const skills = await DataManager.getSkills();
 
         return `
             <section class="fade-in">
                 <h1 class="section-title">Skills & Expertise</h1>
                 
                 <div class="skills-container">
-                    ${Object.entries(data.skills).map(([category, skills]) => `
+                    ${Object.entries(skills).map(([category, skills]) => `
                         <div class="skill-category reveal">
                             <h3 class="skill-category-title">${category.charAt(0).toUpperCase() + category.slice(1)}</h3>
                             ${skills.map(skill => `
@@ -555,7 +555,7 @@ class SkillsPage extends Component {
 // CONTACT PAGE
 class ContactPage extends Component {
     async render() {
-        const data = await DataManager.getPortfolioData();
+        const profile = await DataManager.getProfile();
 
         return `
             <section class="fade-in">
@@ -579,10 +579,10 @@ class ContactPage extends Component {
                         <div style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 1.5rem; border-radius: 10px;">
                             <p style="margin-bottom: 1rem;"><strong>Connect On Social</strong></p>
                             <div class="social-links" style="gap: 0.5rem;">
-                                <a href="${data.socialLinks.googleScholar}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-                                <a href="${data.socialLinks.researchGate}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="ResearchGate"><i class="fab fa-researchgate"></i></a>
-                                <a href="${data.socialLinks.github}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="GitHub"><i class="fab fa-github"></i></a>
-                                <a href="${data.socialLinks.linkedin}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="${profile.socialLinks.googleScholar}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                                <a href="${profile.socialLinks.researchGate}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="ResearchGate"><i class="fab fa-researchgate"></i></a>
+                                <a href="${profile.socialLinks.github}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="${profile.socialLinks.linkedin}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                             </div>
                         </div>
                     </div>
