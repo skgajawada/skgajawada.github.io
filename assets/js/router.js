@@ -522,91 +522,60 @@ class MoocsPage extends Component {
         const vendorParam = params && params[0];
         if (!vendorParam) {
 
+    if (!vendorParam) {
+
     return `
+        <section class="fade-in">
 
-        <!-- Categories page goes here -->
+            <h1 class="section-title">
+                MOOC Certifications
+            </h1>
 
+            <div class="cards-grid">
+
+                ${moocs.categories.map(cat => `
+
+                    <div class="card fade-in"
+                        onclick="navigateTo('#/moocs/${cat.id}')"
+                        style="cursor:pointer;">
+
+                        <div class="card-icon"
+                            style="background:${cat.color};">
+
+                            <i class="fas ${cat.icon}"></i>
+
+                        </div>
+
+                        <div class="card-content">
+
+                            <h3 class="card-title">
+                                ${cat.name}
+                            </h3>
+
+                            <p class="card-description">
+                                ${cat.description}
+                            </p>
+
+                            <a href="#/moocs/${cat.id}"
+                                class="card-link">
+
+                                View All
+                                <i class="fas fa-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                `).join("")}
+
+            </div>
+
+        </section>
     `;
 
-}
-        return `
-            <section class="fade-in">
-
-                <h1 class="section-title">
-                    MOOC Certifications
-                </h1>
-
-                <div class="cards-grid">
-
-                    ${moocs.moocCertifications.map(cert => `
-
-                        <div class="card"
-                        style="
-display:flex;
-flex-direction:column;
-min-height:280px;
-padding:20px;
-">
-
-    <h3 class="card-title"
-    style="
-    font-size:1.15rem;
-    line-height:1.4;
-    min-height:60px;
-    margin-bottom:15px;
-    ">
-        ${cert.name}
-    </h3>
-
-    <p style="margin-bottom:8px;">
-        <strong>Provider:</strong> ${cert.issuer}
-    </p>
-
-    <p style="margin-bottom:15px;">
-        <strong>Platform:</strong> ${cert.vendor.toUpperCase()}
-    </p>
-
-    <div style="margin-top:auto;">
-
-        <div style="display:flex;gap:10px;">
-
-            <a
-            href="assets/${cert.certificatePath}"
-            target="_blank"
-            class="btn btn-primary"
-            style="flex:1;text-align:center;">
-
-                <i class="fas fa-file-pdf"></i>
-                Certificate
-
-            </a>
-
-            <a
-            href="${cert.verifyUrl}"
-            target="_blank"
-            class="btn btn-outline"
-            style="flex:1;text-align:center;">
-
-                <i class="fas fa-circle-check"></i>
-                Verify
-
-            </a>
-
-        </div>
-
-    </div>
-
-</div>
-                    `).join("")}
-
-                </div>
-
-            </section>
-        `;
-
-    }
-
-}
+}        
 // SKILLS PAGE
 class SkillsPage extends Component {
     async render() {
