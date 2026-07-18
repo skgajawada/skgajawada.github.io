@@ -127,11 +127,16 @@ class ProfDevDetailPage extends Component {
                                 <p style="color: var(--text-light); font-size: 0.9rem; margin: 0.5rem 0;">ID: ${certificate.id}</p>
                             </div>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                                <a href="assets/certificates/${certificate.certificateFile}" class="btn btn-primary" download style="text-align: center;">
-                                    <i class="fas fa-download"></i> PDF
+                                <a href="assets/certificates/professional-development/${certificate.category}/${certificate.certificateFile}"
+                                   class="btn btn-primary"
+                                   target="_blank">
+                                    <i class="fas fa-file-pdf"></i> PDF
                                 </a>
-                                <a href="assets/certificates/${certificate.certificateImage}" class="btn btn-secondary" target="_blank" style="text-align: center;">
-                                    <i class="fas fa-image"></i> Image
+
+                                <a href="assets/certificates/professional-development/${certificate.category}/${certificate.certificateImage}"
+                                   class="btn btn-secondary"
+                                   target="_blank">
+                                     <i class="fas fa-image"></i> Image
                                 </a>
                             </div>
                         </div>
