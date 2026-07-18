@@ -521,7 +521,16 @@ class MoocsPage extends Component {
     async render(params) {
 
         const moocs = await DataManager.getMoocs();
+        const vendorParam = params && params[0];
+        if (!vendorParam) {
 
+    return `
+
+        <!-- Categories page goes here -->
+
+    `;
+
+}
         return `
             <section class="fade-in">
 
