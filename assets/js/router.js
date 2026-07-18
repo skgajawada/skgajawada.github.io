@@ -540,12 +540,44 @@ class MoocsPage extends Component {
 
                         <div class="card">
 
-                            <h3>${cert.title}</h3>
+                            <h3 class="card-title">
+                                ${cert.name}
+                            </h3>
 
-                            <p><strong>Platform:</strong> ${cert.platform}</p>
+                            <p>
+                                <strong>Provider:</strong>
+                                ${cert.issuer}
+                            </p>
 
-                            <p><strong>Organization:</strong> ${cert.organization}</p>
+                            <p>
+                                <strong>Platform:</strong>
+                                ${cert.vendor.toUpperCase()}
+                            </p>
+                            <div style="display:flex;gap:10px;margin-top:15px;flex-wrap:wrap;">
 
+                            <a
+                            href="assets/${cert.certificatePath}"
+                            target="_blank"
+                            class="btn btn-primary">
+
+                            <i class="fas fa-file-pdf"></i>
+
+                            Certificate
+
+                            </a>
+
+                            <a
+                            href="${cert.verifyUrl}"
+                            target="_blank"
+                            class="btn btn-outline">
+
+                            <i class="fas fa-circle-check"></i>
+
+                            Verify
+
+                            </a>
+
+                            </div>
                             <p><strong>Year:</strong> ${cert.year}</p>
 
                         </div>
