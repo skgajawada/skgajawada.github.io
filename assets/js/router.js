@@ -55,12 +55,11 @@ class Router {
 const router = new Router();
 
 // Portfolio Data Manager
+// Portfolio Data Manager
 class DataManager {
 
     static async loadData(file) {
-
         try {
-
             const response = await fetch(file);
 
             if (!response.ok) {
@@ -70,45 +69,17 @@ class DataManager {
             return await response.json();
 
         } catch (error) {
-
-            console.error(error);
-
+            console.error('Error loading data:', error);
             return null;
-
         }
-
     }
 
-    static getProfile() {
-        return this.loadData("assets/data/profile.json");
+    static async getPortfolioData() {
+        return await this.loadData('assets/data/portfolio-data.json');
     }
 
-    static getExperience() {
-        return this.loadData("assets/data/experience.json");
-    }
-
-    static getEducation() {
-        return this.loadData("assets/data/education.json");
-    }
-
-    static getProjects() {
-        return this.loadData("assets/data/projects.json");
-    }
-
-    static getProfessionalDevelopment() {
-        return this.loadData("assets/data/professional-development.json");
-    }
-
-    static getMoocs() {
-        return this.loadData("assets/data/mooc-certifications.json");
-    }
-
-    static getSubjects() {
-        return this.loadData("assets/data/subjects.json");
-    }
-
-    static getSkills() {
-        return this.loadData("assets/data/skills.json");
+    static async getCertificates() {
+        return await this.loadData('assets/data/professional-development.json');
     }
 
 }
@@ -158,15 +129,15 @@ class Component {
 // HOME PAGE
 class HomePage extends Component {
     async render() {
-        const profile = await DataManager.getProfile();
-        const pd = await DataManager.getProfessionalDevelopment();
+        const data = await DataManager.getPortfolioData();
+        const certs = await DataManager.getCertificates();
         return `
             <section class="hero fade-in">
                 <div class="hero-content">
-                    <h1>${profile.personal.name}</h1>
-                    <p class="subtitle">${profile.personal.title}</p>
-                    <p class="subtitle" style="font-size: 1rem; color: #666;">${profile.personal.institution}</p>
-                    <p class="description">${profile.personal.bio}</p>
+                    <h1>${data.personal.name}</h1>
+                    <p class="subtitle">${data.personal.title}</p>
+                    <p class="subtitle" style="font-size: 1rem; color: #666;">${data.personal.institution}</p>
+                    <p class="description">${data.personal.bio}</p>
                     <div class="hero-buttons">
                         <a href="#/about" class="btn btn-primary">
                             <i class="fas fa-user"></i> View Profile
@@ -180,12 +151,12 @@ class HomePage extends Component {
                     </div>
                 </div>
                 <div class="hero-image fade-in-right">
-                    <img src="${profile.personal.profileImage}" alt="Profile" class="profile-image" onerror="this.src='https://via.placeholder.com/400x400?text=Profile+Image'">
+                    <img src="${data.personal.profileImage}" alt="Profile" class="profile-image" onerror="this.src='https://via.placeholder.com/400x400?text=Profile+Image'">
                 </div>
             </section>
 
             <section class="stats-grid">
-                ${profile.statistics.map((stat, i) => `
+                ${data.stats.map((stat, i) => `
                     <div class="stat-card reveal" style="animation-delay: ${i * 0.1}s;">
                         <i class="fas ${stat.icon}" style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;"></i>
                         <div class="stat-number">${stat.number}</div>
@@ -197,7 +168,7 @@ class HomePage extends Component {
             <section>
                 <h2 class="section-title">Research Interests</h2>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 4rem;">
-                    ${profile.researchInterests.map((interest, i) => `
+                    ${data.researchInterests.map((interest, i) => `
                         <div class="reveal" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 1.5rem; border-radius: 10px; text-align: center; animation-delay: ${i * 0.1}s;">
                             <i class="fas fa-check-circle" style="margin-right: 0.5rem;"></i> ${interest}
                         </div>
@@ -244,7 +215,7 @@ class HomePage extends Component {
                         <div class="card-icon"><i class="fas fa-certificate"></i></div>
                         <div class="card-content">
                             <h3 class="card-title">Professional Dev</h3>
-                            <p class="card-description">${pd.certificates.length} certifications from FDPs, workshops, and webinars with viewable PDFs.</p>
+                            <p class="card-description">${certs.certificates.length} certifications from FDPs, workshops, and webinars with viewable PDFs.</p>
                             <a href="#/professional-dev" class="card-link">View Details <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
@@ -265,7 +236,8 @@ class HomePage extends Component {
 // ABOUT PAGE
 class AboutPage extends Component {
     async render() {
-        const profile = await DataManager.getProfile();
+        const data = await DataManager.getPortfolioData();
+        const certs = await DataManager.getCertificates();
 
         return `
             <section class="fade-in">
@@ -275,13 +247,13 @@ class AboutPage extends Component {
                     <div class="reveal">
                         <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.3rem;">Biography</h3>
                         <p style="line-height: 1.8; color: var(--text-light);">
-                            ${profile.about.biography !== '[Awaiting content]' ? profile.about.biography : 'Biography content awaiting update. I am a dedicated educator and researcher with strong fundamentals in mechanical engineering and emerging expertise in computational design and machine learning.'}
+                            ${data.about.biography !== '[Awaiting content]' ? data.about.biography : 'Biography content awaiting update. I am a dedicated educator and researcher with strong fundamentals in mechanical engineering and emerging expertise in computational design and machine learning.'}
                         </p>
                     </div>
                     <div class="reveal">
                         <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.3rem;">Career Objective</h3>
                         <p style="line-height: 1.8; color: var(--text-light);">
-                            ${profile.about.careerObjective !== '[Awaiting content]' ? profile.about.careerObjective : 'To leverage expertise in design engineering and AI to develop innovative solutions for complex engineering challenges while contributing to academic excellence and mentoring the next generation of engineers.'}
+                            ${data.about.careerObjective !== '[Awaiting content]' ? data.about.careerObjective : 'To leverage expertise in design engineering and AI to develop innovative solutions for complex engineering challenges while contributing to academic excellence and mentoring the next generation of engineers.'}
                         </p>
                     </div>
                 </div>
@@ -290,13 +262,13 @@ class AboutPage extends Component {
                     <div class="reveal">
                         <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.3rem;">Research Vision</h3>
                         <p style="line-height: 1.8; color: var(--text-light);">
-                            ${profile.about.researchVision !== '[Awaiting content]' ? profile.about.researchVision : 'To advance the understanding of structural dynamics and aeroelasticity through innovative finite element analysis and machine learning methodologies.'}
+                            ${data.about.researchVision !== '[Awaiting content]' ? data.about.researchVision : 'To advance the understanding of structural dynamics and aeroelasticity through innovative finite element analysis and machine learning methodologies.'}
                         </p>
                     </div>
                     <div class="reveal">
                         <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.3rem;">Research Philosophy</h3>
                         <p style="line-height: 1.8; color: var(--text-light);">
-                            ${profile.about.researchPhilosophy !== '[Awaiting content]' ? profile.about.researchPhilosophy : 'Rigorous empirical validation combined with computational modeling to derive practical engineering solutions backed by solid theoretical foundations.'}
+                            ${data.about.researchPhilosophy !== '[Awaiting content]' ? data.about.researchPhilosophy : 'Rigorous empirical validation combined with computational modeling to derive practical engineering solutions backed by solid theoretical foundations.'}
                         </p>
                     </div>
                 </div>
@@ -304,14 +276,14 @@ class AboutPage extends Component {
                 <div class="reveal" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 2rem; border-radius: 10px; margin-bottom: 3rem;">
                     <h3 style="margin-bottom: 1rem;"><i class="fas fa-handshake"></i> Administrative Responsibilities</h3>
                     <p style="line-height: 1.8;">
-                        ${profile.about.administrativeResponsibilities !== '[Awaiting content]' ? profile.about.administrativeResponsibilities : 'Committee member for curriculum development, student mentoring, and academic affairs coordination. Active participant in departmental initiatives and institutional governance.'}
+                        ${data.about.administrativeResponsibilities !== '[Awaiting content]' ? data.about.administrativeResponsibilities : 'Committee member for curriculum development, student mentoring, and academic affairs coordination. Active participant in departmental initiatives and institutional governance.'}
                     </p>
                 </div>
 
                 <div class="reveal">
                     <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.3rem;">Personal Interests</h3>
                     <p style="line-height: 1.8; color: var(--text-light);">
-                        ${profile.about.personalInterests !== '[Awaiting content]' ? profile.about.personalInterests : 'Beyond academics, I am passionate about community service, particularly blood donation drives. I enjoy exploring emerging technologies, reading research papers, and mentoring young professionals.'}
+                        ${data.about.personalInterests !== '[Awaiting content]' ? data.about.personalInterests : 'Beyond academics, I am passionate about community service, particularly blood donation drives. I enjoy exploring emerging technologies, reading research papers, and mentoring young professionals.'}
                     </p>
                 </div>
             </section>
@@ -322,14 +294,14 @@ class AboutPage extends Component {
 // EXPERIENCE PAGE
 class ExperiencePage extends Component {
     async render() {
-        const experience = await DataManager.getExperience();
+        const data = await DataManager.getPortfolioData();
         
         return `
             <section class="fade-in">
                 <h1 class="section-title">Professional Experience</h1>
                 
                 <div class="timeline">
-                    ${experience.experience.length > 0 ? experience.experience.map((exp, i) => `
+                    ${data.experience.length > 0 ? data.experience.map((exp, i) => `
                         <div class="timeline-item reveal" style="animation-delay: ${i * 0.1}s;">
                             <div class="timeline-dot">
                                 <i class="fas ${exp.icon}"></i>
@@ -363,14 +335,14 @@ class ExperiencePage extends Component {
 // EDUCATION PAGE
 class EducationPage extends Component {
     async render() {
-        const education = await DataManager.getEducation();
+        const data = await DataManager.getPortfolioData();
 
         return `
             <section class="fade-in">
                 <h1 class="section-title">Education</h1>
                 
                 <div class="timeline">
-                    ${education.education.length > 0 ? education.education.map((edu, i) => `
+                    ${data.education.length > 0 ? data.education.map((edu, i) => `
                         <div class="timeline-item reveal" style="animation-delay: ${i * 0.1}s;">
                             <div class="timeline-dot">
                                 <i class="fas ${edu.icon}"></i>
@@ -404,7 +376,7 @@ class EducationPage extends Component {
 // PROJECTS PAGE
 class ProjectsPage extends Component {
     async render() {
-        const projects = await DataManager.getProjects();
+        const data = await DataManager.getPortfolioData();
         const categories = ['all', 'research', 'academic', 'industrial'];
 
         return `
@@ -420,7 +392,7 @@ class ProjectsPage extends Component {
                 </div>
 
                 <div class="projects-grid">
-                    ${projects.projects.length > 0 ? projects.projects.map(proj => `
+                    ${data.projects.length > 0 ? data.projects.map(proj => `
                         <div class="project-card active reveal" data-category="${proj.category}">
                             <div class="project-image">
                                 <i class="fas ${proj.image}"></i>
@@ -523,14 +495,14 @@ class ProfessionalDevPage extends Component {
 // SKILLS PAGE
 class SkillsPage extends Component {
     async render() {
-        const skills = await DataManager.getSkills();
+        const data = await DataManager.getPortfolioData();
 
         return `
             <section class="fade-in">
                 <h1 class="section-title">Skills & Expertise</h1>
                 
                 <div class="skills-container">
-                    ${Object.entries(skills).map(([category, skills]) => `
+                    ${Object.entries(data.skills).map(([category, skills]) => `
                         <div class="skill-category reveal">
                             <h3 class="skill-category-title">${category.charAt(0).toUpperCase() + category.slice(1)}</h3>
                             ${skills.map(skill => `
@@ -555,7 +527,7 @@ class SkillsPage extends Component {
 // CONTACT PAGE
 class ContactPage extends Component {
     async render() {
-        const profile = await DataManager.getProfile();
+        const data = await DataManager.getPortfolioData();
 
         return `
             <section class="fade-in">
@@ -566,23 +538,23 @@ class ContactPage extends Component {
                         <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.2rem;">Contact Information</h3>
                         <div style="background: var(--light); padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem;">
                             <p style="margin-bottom: 0.5rem;"><strong><i class="fas fa-envelope"></i> Email:</strong></p>
-                            <p><a href="mailto:${profile.personal.email}" style="color: var(--primary);">${profile.personal.email}</a></p>
+                            <p><a href="mailto:${data.personal.email}" style="color: var(--primary);">${data.personal.email}</a></p>
                         </div>
                         <div style="background: var(--light); padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem;">
                             <p style="margin-bottom: 0.5rem;"><strong><i class="fas fa-phone"></i> Phone:</strong></p>
-                            <p>${profile.personal.phone}</p>
+                            <p>${data.personal.phone}</p>
                         </div>
                         <div style="background: var(--light); padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem;">
                             <p style="margin-bottom: 0.5rem;"><strong><i class="fas fa-map-marker-alt"></i> Location:</strong></p>
-                            <p>${profile.personal.location}</p>
+                            <p>${data.personal.location}</p>
                         </div>
                         <div style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 1.5rem; border-radius: 10px;">
                             <p style="margin-bottom: 1rem;"><strong>Connect On Social</strong></p>
                             <div class="social-links" style="gap: 0.5rem;">
-                                <a href="${profile.socialLinks.googleScholar}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-                                <a href="${profile.socialLinks.researchGate}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="ResearchGate"><i class="fab fa-researchgate"></i></a>
-                                <a href="${profile.socialLinks.github}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="GitHub"><i class="fab fa-github"></i></a>
-                                <a href="${profile.socialLinks.linkedin}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="${data.socialLinks.googleScholar}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                                <a href="${data.socialLinks.researchGate}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="ResearchGate"><i class="fab fa-researchgate"></i></a>
+                                <a href="${data.socialLinks.github}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="${data.socialLinks.linkedin}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                             </div>
                         </div>
                     </div>
