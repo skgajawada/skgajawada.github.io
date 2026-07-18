@@ -56,23 +56,61 @@ const router = new Router();
 
 // Portfolio Data Manager
 class DataManager {
+
     static async loadData(file) {
+
         try {
+
             const response = await fetch(file);
+
+            if (!response.ok) {
+                throw new Error(`Unable to load ${file}`);
+            }
+
             return await response.json();
+
         } catch (error) {
-            console.error('Error loading data:', error);
+
+            console.error(error);
+
             return null;
+
         }
+
     }
 
-    static async getPortfolioData() {
-        return await this.loadData('assets/data/portfolio-data.json');
+    static getProfile() {
+        return this.loadData("assets/data/profile.json");
     }
 
-    static async getCertificates() {
-        return await this.loadData('assets/data/certificates.json');
+    static getExperience() {
+        return this.loadData("assets/data/experience.json");
     }
+
+    static getEducation() {
+        return this.loadData("assets/data/education.json");
+    }
+
+    static getProjects() {
+        return this.loadData("assets/data/projects.json");
+    }
+
+    static getProfessionalDevelopment() {
+        return this.loadData("assets/data/professional-development.json");
+    }
+
+    static getMoocs() {
+        return this.loadData("assets/data/mooc-certifications.json");
+    }
+
+    static getSubjects() {
+        return this.loadData("assets/data/subjects.json");
+    }
+
+    static getSkills() {
+        return this.loadData("assets/data/skills.json");
+    }
+
 }
 
 // Base Component Class
