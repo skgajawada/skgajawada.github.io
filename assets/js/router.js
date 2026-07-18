@@ -3,10 +3,12 @@ class Router {
     constructor(autoInit = true) {
         this.routes = {};
         this.currentRoute = null;
-        if (autoInit)
-    		
-	    }
-	}
+
+        if (autoInit) {
+            this.init();
+        }
+    }
+
     register(path, component) {
         this.routes[path] = component;
     }
