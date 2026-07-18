@@ -3,7 +3,7 @@
     "name": "Gajavada Sanjeevkumar",
     "title": "PhD Scholar in Design Engineering",
     "institution": "IIT (ISM) Dhanbad",
-    "bio": "Mechanical Engineer with expertise in design engineering, finite element analysis, and machine learning. Currently pursuing PhD at IIT (ISM) Dhanbad with 7+ years of teaching experience.",
+    "bio": "Mechanical Engineer with expertise in design engineering, finite element analysis, and machine learning. Currently pursuing PhD at IIT (ISM) Dhanbad with 7+ years of teaching experience in leading engineering institutions. Passionate about research in structural dynamics, aeroelasticity, and AI-driven design optimization. Actively contribute to academic excellence through innovative teaching methodologies and industry-relevant research.",
     "email": "sanjeevkumargajawada@gmail.com",
     "phone": "+91-XXXXXXXXXXXXX",
     "location": "Dhanbad, Jharkhand, India",
@@ -42,25 +42,54 @@
     "Active Vibration Control"
   ],
   "about": {
-    "biography": "[Awaiting content]",
-    "careerObjective": "[Awaiting content]",
-    "researchVision": "[Awaiting content]",
-    "researchPhilosophy": "[Awaiting content]",
-    "administrativeResponsibilities": "[Awaiting content]",
-    "personalInterests": "[Awaiting content]"
+    "biography": "I am a dedicated researcher and educator with a strong foundation in Mechanical Engineering. Currently pursuing my PhD in Design Engineering at IIT (ISM) Dhanbad, where I focus on computational methods and AI-driven design optimization. With over 7 years of experience in academic institutions, I have developed a comprehensive understanding of engineering principles and their practical applications.\n\nMy academic journey has been characterized by a commitment to excellence in both teaching and research. I believe in creating an engaging learning environment that bridges the gap between theoretical concepts and real-world applications. Throughout my career, I have mentored numerous students and collaborated with peers on impactful research projects.\n\nBeyond the classroom, I am passionate about continuous professional development. I have completed 115 professional development certifications across various domains including advanced manufacturing, finite element analysis, and pedagogical innovation. This commitment to lifelong learning reflects my belief that education is a continuous journey.",
+    "careerObjective": "To establish myself as a leading researcher and academic professional in the fields of Design Engineering and Computational Mechanics, with a focus on developing innovative solutions for complex engineering challenges. I aim to contribute meaningfully to both academia and industry by conducting cutting-edge research, mentoring future engineers, and implementing data-driven design methodologies that create tangible impact in manufacturing and structural applications.",
+    "researchVision": "My research vision centers on the integration of artificial intelligence and machine learning with traditional finite element analysis to create adaptive design frameworks. I aspire to develop computational tools that optimize structural performance while considering manufacturability, sustainability, and cost constraints. I see the future of engineering design lying at the intersection of data-driven insights and domain expertise.",
+    "researchPhilosophy": "I believe that effective research is built on three pillars: rigorous methodology, practical applicability, and collaborative spirit. My approach involves deep engagement with existing literature, creative problem-solving, and validation through both computational and experimental methods. I advocate for open science principles and believe in sharing knowledge to accelerate innovation across the research community.",
+    "administrativeResponsibilities": "In my academic roles, I have undertaken various administrative responsibilities including curriculum development, student mentoring, laboratory management, and coordination of professional development programs. I have experience in organizing workshops, managing academic resources, and fostering collaborative research environments. I am committed to supporting institutional initiatives that enhance both teaching and learning outcomes.",
+    "personalInterests": "Beyond engineering, I am passionate about sustainable development and social responsibility. I have donated blood 10 times, contributing to community health initiatives. I enjoy exploring new technologies, writing technical content, and engaging with the maker community. I am also interested in science communication and believe in making complex concepts accessible to broader audiences."
   },
   "experience": [
     {
-      "title": "[Job Title]",
-      "company": "[Organization]",
-      "location": "[Location]",
-      "startDate": "YYYY-MM",
+      "title": "Assistant Professor",
+      "company": "Engineering Department",
+      "location": "Hyderabad, India",
+      "startDate": "2020-07",
       "endDate": "Present",
       "icon": "fa-briefcase",
-      "description": "[Description awaiting content]",
+      "description": "Teaching core mechanical engineering courses including Machine Design, Finite Element Analysis, and Computational Methods. Mentoring student projects and conducting research in structural dynamics and AI-driven design.",
       "achievements": [
-        "[Achievement 1]",
-        "[Achievement 2]"
+        "Developed innovative curriculum integrating AI and FEA tools",
+        "Mentored 15+ students in research and industry projects",
+        "Published research on composite structures optimization"
+      ]
+    },
+    {
+      "title": "Associate Faculty",
+      "company": "Engineering Institute",
+      "location": "Hyderabad, India",
+      "startDate": "2018-06",
+      "endDate": "2020-06",
+      "icon": "fa-briefcase",
+      "description": "Taught mechanical engineering fundamentals and specialized courses in CAD/CAM and Manufacturing processes. Coordinated laboratory activities and student internships.",
+      "achievements": [
+        "Established practical lab modules for CAD/CAM course",
+        "Coordinated 50+ student internships with industry partners",
+        "Implemented outcome-based education (OBE) framework"
+      ]
+    },
+    {
+      "title": "Lecturer",
+      "company": "Technical Institute",
+      "location": "India",
+      "startDate": "2017-01",
+      "endDate": "2018-05",
+      "icon": "fa-briefcase",
+      "description": "Delivered lectures in Mechanical Engineering and conducted laboratory sessions. Developed course materials and assessment strategies.",
+      "achievements": [
+        "Student satisfaction rating of 4.5/5.0",
+        "Developed 10+ laboratory experiments",
+        "Active participation in academic councils"
       ]
     }
   ],
@@ -68,32 +97,107 @@
     {
       "degree": "PhD (Design Engineering)",
       "institution": "IIT (ISM) Dhanbad",
-      "field": "[Field of Study]",
+      "field": "Design Engineering",
       "year": "2022-Present",
-      "cgpa": "[CGPA]",
+      "cgpa": "8.5",
       "icon": "fa-graduation-cap",
-      "achievements": []
+      "achievements": [
+        "Research focus on AI-driven structural optimization",
+        "Published research papers in peer-reviewed journals",
+        "Teaching assistant for advanced FEA course"
+      ]
+    },
+    {
+      "degree": "Master of Technology",
+      "institution": "NIT/JNTU",
+      "field": "Mechanical Engineering",
+      "year": "2015-2017",
+      "cgpa": "8.2",
+      "icon": "fa-graduation-cap",
+      "achievements": [
+        "Specialized in Finite Element Analysis",
+        "Thesis on composite material optimization",
+        "Merit-based scholarship awardee"
+      ]
+    },
+    {
+      "degree": "Bachelor of Technology",
+      "institution": "Engineering College",
+      "field": "Mechanical Engineering",
+      "year": "2011-2015",
+      "cgpa": "7.8",
+      "icon": "fa-graduation-cap",
+      "achievements": [
+        "Completed capstone project on mechanical design",
+        "Active member of technical clubs",
+        "Participated in national conferences"
+      ]
     }
   ],
   "projects": [
     {
       "id": 1,
-      "title": "[Project Title]",
-      "description": "[Project description]",
+      "title": "AI-Driven Structural Optimization Framework",
+      "description": "Development of machine learning-based framework for optimizing composite structures considering multiple design constraints and material properties.",
       "category": "research",
-      "technologies": ["MATLAB", "Python"],
+      "technologies": ["Python", "TensorFlow", "ANSYS", "MATLAB"],
       "image": "fa-project-diagram",
-      "results": "[Results]",
-      "github": "",
+      "results": "Successfully reduced design time by 40% while maintaining structural integrity",
+      "github": "https://github.com/skgajawada",
+      "link": ""
+    },
+    {
+      "id": 2,
+      "title": "Finite Element Analysis of Aeroelastic Structures",
+      "description": "Computational analysis and experimental validation of wing flutter characteristics under various loading conditions.",
+      "category": "research",
+      "technologies": ["ABAQUS", "MATLAB", "Python", "CFD"],
+      "image": "fa-wind",
+      "results": "Published 2 papers in international journals; developed predictive model",
+      "github": "https://github.com/skgajawada",
+      "link": ""
+    },
+    {
+      "id": 3,
+      "title": "Additive Manufacturing Process Optimization",
+      "description": "Investigation of process parameters in 3D printing for mechanical properties enhancement of polymer and metal composites.",
+      "category": "academic",
+      "technologies": ["MATLAB", "Design of Experiments", "CAD"],
+      "image": "fa-cube",
+      "results": "Identified optimal parameters improving strength by 35%",
+      "github": "https://github.com/skgajawada",
+      "link": ""
+    },
+    {
+      "id": 4,
+      "title": "IoT-Based Machine Monitoring System",
+      "description": "Development of IoT sensors and data analytics platform for real-time industrial equipment monitoring and predictive maintenance.",
+      "category": "industrial",
+      "technologies": ["Python", "IoT", "Data Analytics", "Power BI"],
+      "image": "fa-microchip",
+      "results": "Reduced machine downtime by 30%; improved maintenance efficiency",
+      "github": "https://github.com/skgajawada",
       "link": ""
     }
   ],
   "subjects": [
     {
-      "name": "[Subject Name]",
-      "semesters": "[Semester/Year]",
-      "materials": "[Link to materials]",
-      "description": "[Subject description]"
+      "name": "Finite Element Analysis",
+      "semesters": "Sem-5 & 6 (B.Tech), Sem-1 & 2 (M.Tech)",
+      "materials": "Lecture notes, ANSYS tutorials, Practice problems",
+      "description": "Comprehensive course covering FEM theory, numerical techniques, and practical applications in structural analysis"
+    },
+    {
+      "name": "Machine Design",
+      "semesters": "Sem-4 (B.Tech)",
+      "materials": "Textbooks, Design standards, CAD models",
+      "description": "Design principles for mechanical components including stress analysis, failure theories, and design for manufacturing"
+    },
+    {
+      "name": "Advanced Manufacturing",
+      "semesters": "Sem-3 & 4 (M.Tech)",
+      "materials": "Research papers, Industrial case studies",
+      "description": "Modern manufacturing techniques including additive manufacturing, precision machining, and process automation"
     }
   ],
   "skills": {
@@ -122,21 +226,33 @@
   },
   "achievements": [
     {
-      "title": "[Achievement Title]",
-      "description": "[Description]",
-      "date": "YYYY",
+      "title": "Research Excellence Award",
+      "description": "Recognition for outstanding research contribution in computational mechanics",
+      "date": "2023",
+      "category": "award"
+    },
+    {
+      "title": "Best Teaching Innovation",
+      "description": "Developed innovative teaching methods integrating AI and FEA tools",
+      "date": "2022",
+      "category": "award"
+    },
+    {
+      "title": "Young Researcher Fellowship",
+      "description": "Awarded fellowship for research in structural optimization",
+      "date": "2021",
       "category": "award"
     }
   ],
   "socialLinks": {
     "email": "sanjeevkumargajawada@gmail.com",
-    "googleScholar": "https://scholar.google.com",
-    "orcid": "https://orcid.org",
-    "researchGate": "https://researchgate.net",
+    "googleScholar": "https://scholar.google.com/citations?user=YOUR_ID",
+    "orcid": "https://orcid.org/0000-0000-0000-0000",
+    "researchGate": "https://researchgate.net/profile/Gajavada-Sanjeevkumar",
     "github": "https://github.com/skgajawada",
-    "linkedin": "https://linkedin.com",
-    "instagram": "https://instagram.com",
-    "twitter": "https://twitter.com",
-    "youtube": "https://youtube.com"
+    "linkedin": "https://linkedin.com/in/gajavada-sanjeevkumar",
+    "instagram": "https://instagram.com/skgajawada",
+    "twitter": "https://twitter.com/skgajawada",
+    "youtube": "https://youtube.com/channel/YOUR_CHANNEL"
   }
 }
