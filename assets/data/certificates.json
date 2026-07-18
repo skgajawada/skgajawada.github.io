@@ -1,47 +1,47 @@
 {
-  "categories": [
-    {
-      "id": "STC",
-      "name": "Short Term Courses / STTPs",
-      "description": "Short Term Courses and Staff Training Programs",
-      "icon": "📚",
-      "color": "#3498db"
-    },
-    {
-      "id": "WS",
-      "name": "Workshops / Seminars",
-      "description": "Workshops and Seminars",
-      "icon": "🔧",
-      "color": "#e74c3c"
-    },
-    {
-      "id": "FDP",
-      "name": "Faculty Development Programs",
-      "description": "FDP and Professional Development",
-      "icon": "👨‍🏫",
-      "color": "#2ecc71"
-    },
-    {
-      "id": "WEB",
-      "name": "Webinars",
-      "description": "Online Webinars and Technical Talks",
-      "icon": "🌐",
-      "color": "#f39c12"
-    },
-    {
-      "id": "QZ",
-      "name": "Quizzes",
-      "description": "Online Quizzes and E-Quizzes",
-      "icon": "❓",
-      "color": "#9b59b6"
-    },
-    {
-      "id": "CONF",
-      "name": "Conferences",
-      "description": "International and National Conferences",
-      "icon": "🎤",
-      "color": "#1abc9c"
-    }
+  "categories":[
+{
+"id":"matlab",
+"name":"MATLAB",
+"description":"MATLAB, Simulink, Control Systems and Modeling courses",
+"icon":"fa-square-root-variable",
+"color":"#F58220"
+},
+{
+"id":"linkedin",
+"name":"LinkedIn Learning",
+"description":"Professional learning in Data Science, Python, MATLAB and Engineering",
+"icon":"fa-linkedin",
+"color":"#0A66C2"
+},
+{
+"id":"coursera",
+"name":"Coursera",
+"description":"University-certified online courses in Business Analytics and Excel",
+"icon":"fa-graduation-cap",
+"color":"#0056D2"
+},
+{
+"id":"dataiku",
+"name":"Dataiku Academy",
+"description":"Machine Learning, MLOps and Generative AI Certifications",
+"icon":"fa-chart-line",
+"color":"#00BFA5"
+},
+{
+"id":"ibm",
+"name":"IBM SkillsBuild",
+"description":"Professional IBM Digital Skills Certifications",
+"icon":"fa-laptop-code",
+"color":"#1261FE"
+},
+{
+"id":"cognitiveai",
+"name":"Cognitive Class",
+"description":"IBM Cognitive Class Professional Courses",
+"icon":"fa-brain",
+"color":"#8E44AD"
+}
   ],
   "certificates": [
     {
