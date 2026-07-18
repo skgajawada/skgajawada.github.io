@@ -19,7 +19,7 @@ A modern academic portfolio showcasing research, engineering projects, teaching 
 
 ## 📸 Portfolio Preview
 
-![Portfolio Homepage](assets/images/portfolio-home.png)
+![Portfolio Homepage](assets/images/profile.jpg)
 
 ---
 
