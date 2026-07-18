@@ -420,7 +420,7 @@ class ProjectsPage extends Component {
 // PROFESSIONAL DEVELOPMENT MAIN CATEGORIES PAGE
 class ProfessionalDevPage extends Component {
     async render(params) {
-        const certs = await DataManager.getProfessionalDevelopment();
+        const certs = await DataManager.getCertificates();
         const categoryParam = params && params[0];
 
         // If a specific subcategory parameter exists in the URL, render the certificate listings instead
