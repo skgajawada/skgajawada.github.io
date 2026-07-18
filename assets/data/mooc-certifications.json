@@ -5,7 +5,7 @@
       "vendor": "matlab",
       "issuer": "MathWorks Training",
       "name": "MATLAB Onramp",
-      "certificatePath": "certificates/MATLAB/MATLAB Onramp.pdf",
+      "certificatePath": "certificates/moocs/MATLAB/MATLAB Onramp.pdf",
       "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=98447788-27ba-43f7-a438-54a4c4b1df5a"
     },
     {
@@ -13,7 +13,7 @@
       "vendor": "matlab",
       "issuer": "MathWorks Training",
       "name": "Simulink Onramp",
-      "certificatePath": "certificates/MATLAB/Simulink Onramp.pdf",
+      "certificatePath": "certificates/moocs/MATLAB/Simulink Onramp.pdf",
       "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=d6887cfb-feb5-49dd-a406-fbf7b5e4d1b8"
     },
     {
@@ -21,7 +21,7 @@
       "vendor": "matlab",
       "issuer": "MathWorks Training",
       "name": "Control System Modeling Essentials",
-      "certificatePath": "certificates/MATLAB/Control System Modeling Essentials.pdf",
+      "certificatePath": "certificates/moocs/MATLAB/Control System Modeling Essentials.pdf",
       "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=e8d11305-c798-4b87-940e-8300139337ea"
     },
     {
@@ -29,7 +29,7 @@
       "vendor": "matlab",
       "issuer": "MathWorks Training",
       "name": "Linearization of Nonlinear Systems",
-      "certificatePath": "certificates/MATLAB/Linearization of Nonlinear Systems.pdf",
+      "certificatePath": "certificates/moocs/MATLAB/Linearization of Nonlinear Systems.pdf",
       "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=c17a101d-2a44-44e0-a914-ee7f78719c34"
     },
     {
@@ -37,7 +37,7 @@
       "vendor": "matlab",
       "issuer": "MathWorks Training",
       "name": "Control System Analysis Techniques",
-      "certificatePath": "certificates/MATLAB/Control System Analysis Techniques.pdf",
+      "certificatePath": "certificates/moocs/MATLAB/Control System Analysis Techniques.pdf",
       "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=0d6e6247-8d07-481d-9aff-816283c9a363"
     },
     {
@@ -45,7 +45,7 @@
       "vendor": "matlab",
       "issuer": "MathWorks Training",
       "name": "PID Control Techniques",
-      "certificatePath": "certificates/MATLAB/PID Control Techniques.pdf",
+      "certificatePath": "certificates/moocs/MATLAB/PID Control Techniques.pdf",
       "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=26974935-40fb-4cbe-ac80-9e258664f207"
     },
     {
@@ -53,7 +53,7 @@
       "vendor": "matlab",
       "issuer": "MathWorks Training",
       "name": "Control System Design with MATLAB and Simulink",
-      "certificatePath": "certificates/MATLAB/Control System Design with MATLAB and Simulink.pdf",
+      "certificatePath": "certificates/moocs/MATLAB/Control System Design with MATLAB and Simulink.pdf",
       "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/learningpath/certificate.html?id="
     },
     {
@@ -61,7 +61,7 @@
       "vendor": "matlab",
       "issuer": "MathWorks Training",
       "name": "Classical Controller Design Techniques",
-      "certificatePath": "certificates/MATLAB/Classical Controller Design Techniques.pdf",
+      "certificatePath": "certificates/moocs/MATLAB/Classical Controller Design Techniques.pdf",
       "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=3df3ce64-b72a-45fb-83c3-dc73f27434e6"
     },
     {
@@ -69,7 +69,7 @@
       "vendor": "matlab",
       "issuer": "MathWorks Training",
       "name": "Control Design Onramp with Simulink",
-      "certificatePath": "certificates/MATLAB/Control Design Onramp with Simulink.pdf",
+      "certificatePath": "certificates/moocs/MATLAB/Control Design Onramp with Simulink.pdf",
       "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=9cccfad1-7baf-4f8f-91a7-254111620c35"
     },
     {
@@ -77,7 +77,7 @@
       "vendor": "matlab",
       "issuer": "MathWorks Training",
       "name": "MATLAB Desktop Tools and Troubleshooting Scripts",
-      "certificatePath": "certificates/MATLAB/MATLAB Desktop Tools and Troubleshooting Scripts.pdf",
+      "certificatePath": "certificates/moocs/MATLAB/MATLAB Desktop Tools and Troubleshooting Scripts.pdf",
       "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=fe00993d-b666-4320-9ff4-ba3eed1f1b66"
     },
     {
@@ -85,7 +85,7 @@
       "vendor": "ibm",
       "issuer": "Cognitive Class",
       "name": "IBM PY0101EN Python Certificate",
-      "certificatePath": "certificates/CognitiveClass/IBM PY0101EN Certificate.pdf",
+      "certificatePath": "certificates/moocs/CognitiveAI/IBM PY0101EN Certificate _ Cognitive Class.pdf",
       "verifyUrl": "https://courses.cognitiveclass.ai/certificates/0d19f10b76a34e86aa3565abb86d317b"
     },
     {
@@ -93,7 +93,7 @@
       "vendor": "linkedin",
       "issuer": "LinkedIn Learning",
       "name": "Learning Data Analytics: 1 Foundations",
-      "certificatePath": "certificates/LinkedIn/Learning Data Analytics 1 Foundations.pdf",
+      "certificatePath": "certificates/moocs/LinkedIn/Learning Data Analytics 1 Foundations.pdf",
       "verifyUrl": "https://www.linkedin.com/learning/certificates/c722240aaf5d8f69a7cea04f45036ae283ef7a13f23b0da378ae92ee5ada0206"
     },
     {
@@ -101,7 +101,7 @@
       "vendor": "linkedin",
       "issuer": "LinkedIn Learning",
       "name": "MySQL for Non-Programmers",
-      "certificatePath": "certificates/LinkedIn/MySQL for NonProgrammers.pdf",
+      "certificatePath": "certificates/moocs/LinkedIn/MySQL for NonProgrammers.pdf",
       "verifyUrl": "https://www.linkedin.com/learning/certificates/16190e5fd82451db63fc9fb16831d52eecd35dcc6d3ea4f432fe5dca10d12c49"
     },
     {
@@ -109,7 +109,7 @@
       "vendor": "linkedin",
       "issuer": "LinkedIn Learning",
       "name": "Learning SQL Programming",
-      "certificatePath": "certificates/LinkedIn/Learning SQL Programming.pdf",
+      "certificatePath": "certificates/moocs/LinkedIn/Learning SQL Programming.pdf",
       "verifyUrl": "https://www.linkedin.com/learning/certificates/1c83f7f99d799579f0115cda9d0120df230372a6a248149c302b245c504fe0a0"
     },
     {
@@ -117,7 +117,7 @@
       "vendor": "linkedin",
       "issuer": "LinkedIn Learning",
       "name": "Python for Data Science and Machine Learning Essential Training Part 1",
-      "certificatePath": "certificates/LinkedIn/Python for Data Science and Machine Learning Essential Training Part 1.pdf",
+      "certificatePath": "certificates/moocs/LinkedIn/Python for Data Science and Machine Learning Essential Training Part 1.pdf",
       "verifyUrl": "https://www.linkedin.com/learning/certificates/d0a4940b9ada1be26c358dd29fba3c2b3a99a3811b38d31218e2dcb0b763b14f"
     },
     {
@@ -125,7 +125,7 @@
       "vendor": "linkedin",
       "issuer": "LinkedIn Learning",
       "name": "MATLAB Essential Training",
-      "certificatePath": "certificates/LinkedIn/MATLAB Essential Training.pdf",
+      "certificatePath": "certificates/moocs/LinkedIn/MATLAB Essential Training.pdf",
       "verifyUrl": "https://www.linkedin.com/learning/certificates/d709fe8ed6ea0cecddee637f5817e3f6c6c24d5bc44102cc6ee809a98a12b6ee"
     },
     {
@@ -133,7 +133,7 @@
       "vendor": "linkedin",
       "issuer": "LinkedIn Learning",
       "name": "Six Sigma Foundations",
-      "certificatePath": "certificates/LinkedIn/Six Sigma Foundations.pdf",
+      "certificatePath": "certificates/moocs/LinkedIn/Six Sigma Foundations.pdf",
       "verifyUrl": "https://www.linkedin.com/learning/certificates/ac0993075d80ece8d4985e0d8956cffb8c3a6fd0cbd550a4a0eb27feff62ec75"
     },
     {
@@ -141,7 +141,7 @@
       "vendor": "linkedin",
       "issuer": "LinkedIn Learning",
       "name": "Statistics Foundations 3: Using Data Sets",
-      "certificatePath": "certificates/LinkedIn/Statistics Foundations 3.pdf",
+      "certificatePath": "certificates/moocs/LinkedIn/Statistics Foundations 3.pdf",
       "verifyUrl": "https://www.linkedin.com/learning/certificates/1f26017e1ac6db7dd1ceee67e504713d51d897b94e74d4cd861205aa04e902e5"
     },
     {
@@ -149,7 +149,7 @@
       "vendor": "linkedin",
       "issuer": "LinkedIn Learning",
       "name": "Operational Excellence Foundations",
-      "certificatePath": "certificates/LinkedIn/Operational Excellence Foundations.pdf",
+      "certificatePath": "certificates/moocs/LinkedIn/Operational Excellence Foundations.pdf",
       "verifyUrl": "https://www.linkedin.com/learning/certificates/52d52362acda852e0bb9cd82f14c236347b5b25bfce957cad0081d2725b26408"
     },
     {
@@ -157,7 +157,7 @@
       "vendor": "linkedin",
       "issuer": "LinkedIn Learning",
       "name": "Six Sigma: Green Belt",
-      "certificatePath": "certificates/LinkedIn/Six Sigma Green Belt.pdf",
+      "certificatePath": "certificates/moocs/LinkedIn/Six Sigma Green Belt.pdf",
       "verifyUrl": "https://www.linkedin.com/learning/certificates/29a40ae378a0f0dddc6f66aea714be8be75826348175b0aba9d91c530237fc05"
     },
     {
@@ -165,7 +165,7 @@
       "vendor": "linkedin",
       "issuer": "LinkedIn Learning",
       "name": "Additive Manufacturing: Tips, Tricks, and Techniques",
-      "certificatePath": "certificates/LinkedIn/Additive Manufacturing.pdf",
+      "certificatePath": "certificates/moocs/LinkedIn/Additive Manufacturing.pdf",
       "verifyUrl": "https://www.linkedin.com/learning/certificates/44c37fa2479a143dae3cf23058bef10a9aa4d552f07eac1cb6e5b9a166ff73a0"
     },
     {
@@ -173,7 +173,7 @@
       "vendor": "linkedin",
       "issuer": "LinkedIn Learning",
       "name": "Accelerated MATLAB",
-      "certificatePath": "certificates/LinkedIn/Accelerated MATLAB.pdf",
+      "certificatePath": "certificates/moocs/LinkedIn/Accelerated MATLAB.pdf",
       "verifyUrl": "https://www.linkedin.com/learning/certificates/688edcc956ef29c6da8c22fb42e3f52c6782dbc68f90e53af367d76f615f0f02"
     },
     {
@@ -181,7 +181,7 @@
       "vendor": "linkedin",
       "issuer": "LinkedIn Learning",
       "name": "Learning MATLAB",
-      "certificatePath": "certificates/LinkedIn/Learning MATLAB.pdf",
+      "certificatePath": "certificates/moocs/LinkedIn/Learning MATLAB.pdf",
       "verifyUrl": "https://www.linkedin.com/learning/certificates/00827e7e19b6fa7e65f2d175caca08e91da5d4fb2b60b76e68b1dd3fdc03131f"
     },
     {
@@ -189,7 +189,7 @@
       "vendor": "linkedin",
       "issuer": "LinkedIn Learning",
       "name": "Python Essential Training",
-      "certificatePath": "certificates/LinkedIn/Python Essential Training.pdf",
+      "certificatePath": "certificates/moocs/LinkedIn/Python Essential Training.pdf",
       "verifyUrl": "https://www.linkedin.com/learning/certificates/b5920cb8058b6ce223edeafcccce74c1f44427f4cb9f6d0e2b248f8a613f5329"
     },
     {
@@ -197,7 +197,7 @@
       "vendor": "coursera",
       "issuer": "Coursera",
       "name": "Getting Started with Microsoft Excel",
-      "certificatePath": "certificates/Coursera/Getting Started with Microsoft Excel.pdf",
+      "certificatePath": "certificates/moocs/coursera/Getting Started with Microsoft Excel.pdf",
       "verifyUrl": "https://coursera.org/share/83e9392356f9aa97a222bfe62fbb039b"
     },
     {
@@ -205,7 +205,7 @@
       "vendor": "coursera",
       "issuer": "Coursera",
       "name": "Business Analytics with Excel: Elementary to Advanced",
-      "certificatePath": "certificates/Coursera/Business Analytics with Excel.pdf",
+      "certificatePath": "certificates/moocs/coursera/Business Analytics with Excel.pdf",
       "verifyUrl": "https://coursera.org/share/f82f7108b083f969f9c6a50671ed7d2a"
     },
     {
@@ -213,7 +213,7 @@
       "vendor": "coursera",
       "issuer": "Coursera",
       "name": "From Excel to Power BI",
-      "certificatePath": "certificates/Coursera/From Excel to Power BI.pdf",
+      "certificatePath": "certificates/moocs/coursera/From Excel to Power BI.pdf",
       "verifyUrl": "https://coursera.org/share/6cc187da98a920ba45d9dc31eb9433cf"
     },
     {
@@ -221,7 +221,7 @@
       "vendor": "dataiku",
       "issuer": "Dataiku Academy",
       "name": "Core Designer Certificate",
-      "certificatePath": "certificates/Dataiku/Core Designer Certificate.pdf",
+      "certificatePath": "certificates/moocs/Dataiku/Core Designer Certificate.pdf",
       "verifyUrl": "https://verify.skilljar.com/c/bkwyituhoj6v"
     },
     {
@@ -229,7 +229,7 @@
       "vendor": "dataiku",
       "issuer": "Dataiku Academy",
       "name": "Advanced Designer Certificate",
-      "certificatePath": "certificates/Dataiku/Advanced Designer Certificate.pdf",
+      "certificatePath": "certificates/moocs/Dataiku/Advanced Designer Certificate.pdf",
       "verifyUrl": "https://verify.skilljar.com/c/7xkwmrk5fmpw"
     },
     {
@@ -237,7 +237,7 @@
       "vendor": "dataiku",
       "issuer": "Dataiku Academy",
       "name": "ML Practitioner Certificate",
-      "certificatePath": "certificates/Dataiku/ML Practitioner Certificate.pdf",
+      "certificatePath": "certificates/moocs/Dataiku/ML Practitioner Certificate.pdf",
       "verifyUrl": "https://verify.skilljar.com/c/vsmffgguetxw"
     },
     {
@@ -245,7 +245,7 @@
       "vendor": "dataiku",
       "issuer": "Dataiku Academy",
       "name": "Generative AI Practitioner Certificate",
-      "certificatePath": "certificates/Dataiku/Generative AI Practitioner Certificate.pdf",
+      "certificatePath": "certificates/moocs/Dataiku/Generative AI Practitioner Certificate.pdf",
       "verifyUrl": "https://verify.skilljar.com/c/cxub5wdwadud"
     },
     {
@@ -253,7 +253,7 @@
       "vendor": "dataiku",
       "issuer": "Dataiku Academy",
       "name": "Developer Certificate",
-      "certificatePath": "certificates/Dataiku/Developer Certificate.pdf",
+      "certificatePath": "certificates/moocs/Dataiku/Developer Certificate.pdf",
       "verifyUrl": "https://verify.skilljar.com/c/qjka8bpmmvat"
     },
     {
@@ -261,7 +261,7 @@
       "vendor": "dataiku",
       "issuer": "Dataiku Academy",
       "name": "MLOps Practitioner Certificate",
-      "certificatePath": "certificates/Dataiku/MLOps Practitioner Certificate.pdf",
+      "certificatePath": "certificates/moocs/Dataiku/MLOps Practitioner Certificate.pdf",
       "verifyUrl": "https://verify.skilljar.com/c/du4fm2yw9yvp"
     },
     {
@@ -269,7 +269,7 @@
       "vendor": "ibm",
       "issuer": "IBM SkillsBuild",
       "name": "Data Literacy",
-      "certificatePath": "certificates/IBM/Data Literacy.pdf",
+      "certificatePath": "certificates/moocs/IBM/Data Literacy.pdf",
       "verifyUrl": "https://www.credly.com/badges/10ffb570-bdb3-43fa-b7c5-5a0c8e3226b4/public_url"
     },
     {
@@ -277,7 +277,7 @@
       "vendor": "ibm",
       "issuer": "IBM SkillsBuild",
       "name": "Data Fundamentals",
-      "certificatePath": "certificates/IBM/Data Fundamentals.pdf",
+      "certificatePath": "certificates/moocs/IBM/Data Fundamentals.pdf",
       "verifyUrl": "https://www.credly.com/badges/9fa664e5-7bb0-43c8-b93d-5f85a9a10ee7/public_url"
     }
   ]
