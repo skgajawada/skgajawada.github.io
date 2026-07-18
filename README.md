@@ -235,7 +235,7 @@ cd skgajawada.github.io
 
 ---
 
-### 2️⃣ Start a Local Server
+#### 2️⃣ Start a Local Server
 ```bash
 #### Option A — Python
 
@@ -261,7 +261,7 @@ npx http-server -p 8000
 ---
 ```text
 
-### 3️⃣ Open in Your Browser
+#### 3️⃣ Open in Your Browser
 
 Navigate to:
 
@@ -270,7 +270,7 @@ http://localhost:8000
 
 ```
 ---
-### Supported Browsers
+#### Supported Browsers
 
 | Browser | Status |
 |----------|:------:|
