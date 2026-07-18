@@ -517,3 +517,136 @@ function RenderApplicationShell() {
 document.addEventListener('DOMContentLoaded', () => {
     RenderApplicationShell();
 });
+/* =============================================================
+   DYNAMIC MULTI-TIER RE-DIRECT PATH ROUTING CORE ENGINE
+   ============================================================= */
+
+// Complete dataset for professional development certificates
+const PD_REGISTRY = {
+    "STC_STTPs": [
+        { id: "1", title: "Application of Forecasting Methods in Engineering and Business Problems", institution: "Indian Institute of Technology Kharagpur", date: "2020-07-12 to 2020-11-12 (5 Days)" },
+        { id: "2", title: "Enduring Trends in Hydraulic Control Systems: Past, Present and Future", institution: "Indian Institute of Technology Madras", date: "22-03-2021 to 27-03-2021" },
+        { id: "10", title: "Theory of Plasticity and its Application", institution: "Indian Institute of Technology Bombay", date: "25-11-2019 to 29-11-2019" }
+    ],
+    "Workshop": [
+        { id: "11", title: "Implementation of OBE and Online Teaching", institution: "National Institute of Technical Teachers Training and Research", date: "2020" },
+        { id: "125", title: "Essential Technologies and Career Opportunities in Mechanical Engineering", institution: "Engineering Association", date: "2021" }
+    ],
+    "FDP": [
+        { id: "17", title: "Advanced ANSYS Mechanical Software domain", institution: "Ansys Training Facility Center", date: "2020" }
+    ],
+    "Webinars": [
+        { id: "64", title: "Envision Towards Particle Sciences and Biodiesel Production", institution: "Department of Mechanical Engineering", date: "2020" }
+    ]
+};
+
+// Variable states tracing application structural index positioning
+let currentPDState = { level: 1, category: null, itemIndex: null };
+
+function navigateToPDPath(category, itemId = null) {
+    let baseTargetURL = window.location.origin + "/PD/" + category;
+    if (itemId) {
+        baseTargetURL += "/" + itemId;
+    }
+
+    // Rewrite the browser address field without introducing screen flickering or reload delays
+    window.history.pushState({ category: category, itemId: itemId }, "", baseTargetURL);
+    renderPDUIPanels(category, itemId);
+}
+
+function renderPDUIPanels(category, itemId) {
+    const hub = document.getElementById('pd-level1-hub');
+    const listView = document.getElementById('pd-level2-list-view');
+    const detailView = document.getElementById('pd-level3-detail-view');
+    const listContainer = document.getElementById('pd-dynamic-list-container');
+    const backBtn = document.getElementById('pd-universal-back-btn');
+
+    // Reset default views
+    hub.style.display = 'none';
+    listView.style.display = 'none';
+    detailView.style.display = 'none';
+
+    if (!itemId) {
+        // LEVEL 2 - Render Item List Grid Under Selected Category Sub-heading
+        currentPDState = { level: 2, category: category, itemIndex: null };
+        document.getElementById('pd-section-tag').innerText = "Category Collection";
+        document.getElementById('pd-section-main-title').innerText = category.replace('_', ' / ');
+        
+        listContainer.innerHTML = '';
+        const items = PD_REGISTRY[category] || [];
+        
+        items.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'glass-card dev-card';
+            card.style.cursor = 'pointer';
+            card.onclick = () => navigateToPDPath(category, item.id);
+            card.innerHTML = `
+                <div>
+                    <span class="dev-card-date"><i class="fa-solid fa-calendar-days"></i> ${item.date}</span>
+                    <h4 class="dev-card-title">${item.title}</h4>
+                    <p class="dev-card-institution"><i class="fa-solid fa-building-columns"></i> ${item.institution}</p>
+                </div>
+                <span class="dashboard-card-action" style="margin-top:auto; padding-top:15px; color: var(--accent);">
+                    View Details & Certificate <i class="fa-solid fa-chevron-right"></i>
+                </span>
+            `;
+            listContainer.appendChild(card);
+        });
+        
+        listView.style.display = 'block';
+        backBtn.innerHTML = `<i class="fa-solid fa-arrow-left"></i> Back to Categories`;
+    } else {
+        // LEVEL 3 - Detailed Sub-sub Heading Registry View & Dedicated PDF Target Redirect Panel
+        currentPDState = { level: 3, category: category, itemIndex: itemId };
+        const items = PD_REGISTRY[category] || [];
+        const targetedItem = items.find(i => i.id === itemId);
+
+        if (targetedItem) {
+            document.getElementById('pd-section-tag').innerText = `Certificate Registry #${targetedItem.id}`;
+            document.getElementById('pd-section-main-title').innerText = "Detailed Verification";
+            
+            document.getElementById('detail-cert-title').innerText = targetedItem.title;
+            document.getElementById('detail-cert-inst').innerHTML = `<i class="fa-solid fa-building-columns"></i> Issued By: ${targetedItem.institution}`;
+            document.getElementById('detail-cert-date').innerHTML = `<i class="fa-solid fa-calendar-days"></i> Training Horizon: ${targetedItem.date}`;
+            
+            const pdfFilePath = `PD/${category}/${targetedItem.id}.pdf`;
+            document.getElementById('detail-cert-path').innerText = pdfFilePath;
+            
+            const actionLink = document.getElementById('detail-cert-action-link');
+            actionLink.href = pdfFilePath;
+            
+            detailView.style.display = 'block';
+            backBtn.innerHTML = `<i class="fa-solid fa-arrow-left"></i> Back to List`;
+        }
+    }
+}
+
+function handlePDBackNavigation() {
+    if (currentPDState.level === 3) {
+        navigateToPDPath(currentPDState.category);
+    } else if (currentPDState.level === 2) {
+        resetPDHomeView();
+    }
+}
+
+function resetPDHomeView() {
+    currentPDState = { level: 1, category: null, itemIndex: null };
+    window.history.pushState(null, "", window.location.origin + window.location.pathname);
+    
+    document.getElementById('pd-section-tag').innerText = "Credentials & Training";
+    document.getElementById('pd-section-main-title').innerText = "Professional Development";
+    
+    document.getElementById('pd-level1-hub').style.display = 'grid';
+    document.getElementById('pd-level2-list-view').style.display = 'none';
+    document.getElementById('pd-level3-detail-view').style.display = 'none';
+    document.getElementById('pd-universal-back-btn').innerHTML = `<i class="fa-solid fa-arrow-left"></i> Back`;
+}
+
+// Override view tracking engine to handle address modifications gracefully
+const nativeNavigationEngine = navigateToView;
+navigateToView = function(viewId) {
+    if (viewId !== 'development-view') {
+        window.history.pushState(null, "", window.location.origin + window.location.pathname);
+    }
+    nativeNavigationEngine(viewId);
+};
