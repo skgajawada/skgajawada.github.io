@@ -226,10 +226,6 @@ Run the project using a local web server instead.
 
 ---
 
----
-
----
-
 ### **1️⃣ Clone the Repository**
 
 ```bash
@@ -268,8 +264,6 @@ Navigate to:
 ```text
 http://localhost:8000
 ```
-
----
 ---
 #### Supported Browsers
 
