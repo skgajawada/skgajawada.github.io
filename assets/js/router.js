@@ -429,7 +429,9 @@ class ProfessionalDevPage extends Component {
             if (!currentCat) return `<div class="container text-center"><h3>Category not found</h3><a href="#/professional-dev" class="btn btn-primary mt-3">Back to Overview</a></div>`;
             
             const categoryCerts = certs.certificates.filter(c => c.category === categoryParam);
-
+            
+            console.log("Category:", categoryParam);
+            console.log("Certificates:", categoryCerts);
             return `
                 <section class="fade-in">
                     <div style="margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">
