@@ -1,0 +1,16 @@
+{
+  "projects":[
+    {
+      "id":1,
+      "title":"",
+      "category":"",
+      "description":"",
+      "technologies":[
+      ],
+      "image":"",
+      "github":"",
+      "paper":"",
+      "demo":""
+    }
+  ]
+}
