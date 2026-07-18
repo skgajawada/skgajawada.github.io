@@ -1,4 +1,49 @@
 {
+  "categories": [
+    {
+      "id": "matlab",
+      "name": "MATLAB",
+      "description": "MathWorks Training and MATLAB Academy courses",
+      "icon": "fa-square-root-variable",
+      "color": "#F58220"
+    },
+    {
+      "id": "linkedin",
+      "name": "LinkedIn Learning",
+      "description": "Professional development and technical courses",
+      "icon": "fa-linkedin",
+      "color": "#0A66C2"
+    },
+    {
+      "id": "coursera",
+      "name": "Coursera",
+      "description": "University and industry certification courses",
+      "icon": "fa-graduation-cap",
+      "color": "#0056D2"
+    },
+    {
+      "id": "dataiku",
+      "name": "Dataiku Academy",
+      "description": "Data Science and Machine Learning certifications",
+      "icon": "fa-chart-line",
+      "color": "#00BFA5"
+    },
+    {
+      "id": "ibm",
+      "name": "IBM SkillsBuild",
+      "description": "IBM professional certifications",
+      "icon": "fa-ibm",
+      "color": "#1261FE"
+    },
+    {
+      "id": "cognitiveai",
+      "name": "Cognitive Class",
+      "description": "IBM Cognitive Class certifications",
+      "icon": "fa-brain",
+      "color": "#8E44AD"
+    }
+  ],
+
   "moocCertifications": [
     {
       "id": 1,
