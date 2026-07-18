@@ -432,8 +432,6 @@ class ProfessionalDevPage extends Component {
             
             const categoryCerts = certs.certificates.filter(c => c.category === categoryParam);
             
-            console.log("Category:", categoryParam);
-            console.log("Certificates:", categoryCerts);
             return `
                 <section class="fade-in">
                     <div style="margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">
@@ -443,10 +441,7 @@ class ProfessionalDevPage extends Component {
                     <p class="lead" style="color: var(--text-light); margin-bottom: 2rem;">${currentCat.description}</p>
                     
                     <div class="cards-grid">
-                   
-                    <p style="color:red;font-size:20px;">
-                    Found ${categoryCerts.length} certificates
-                    </p>
+
                         ${categoryCerts.length > 0 ? categoryCerts.map(cert => `
                             <div class="card reveal" style="padding: 1.5rem;">
                                 <h3 class="card-title" style="font-size:1.1rem; margin-bottom:0.5rem;">
