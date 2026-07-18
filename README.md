@@ -226,50 +226,29 @@ Run the project using a local web server instead.
 
 ---
 
-### 1️⃣ Clone the Repository
-
-```bash
+1️⃣ Clone the Repository
+Bash
 git clone https://github.com/skgajawada/skgajawada.github.io.git
 cd skgajawada.github.io
-```
-
----
-
-#### 2️⃣ Start a Local Server
-```bash
-#### Option A — Python
-
-
+2️⃣ Start a Local Server
+Option A — Python
+Bash
 python -m http.server 8000
-```
-
----
-
-
-#### Option B — Node.js
-```bash
+Option B — Node.js
+Bash
 npx http-server -p 8000
+Option C — Visual Studio Code
+Install the Live Server extension.
 
+Right-click index.html.
 
-```
----
-#### Option C — Visual Studio Code
+Select Open with Live Server.
 
-1. Install the **Live Server** extension.
-2. Right-click `index.html`.
-3. Select **Open with Live Server**.
----
-```text
-
-#### 3️⃣ Open in Your Browser
-
+3️⃣ Open in Your Browser
 Navigate to:
 
+Plaintext
 http://localhost:8000
-
-
-```
----
 #### Supported Browsers
 
 | Browser | Status |
