@@ -1,0 +1,120 @@
+/* Dark Mode Variables */
+body.dark-mode {
+    --primary: #3498db;
+    --secondary: #2ecc71;
+    --accent: #e74c3c;
+    --dark: #1a1a2e;
+    --light: #2d3561;
+    --text: #e0e0e0;
+    --text-light: #b0b0b0;
+    --border: #404060;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode {
+    background: #0f0f1e;
+    color: var(--text);
+}
+
+body.dark-mode .navbar {
+    background: #1a1a2e;
+    box-shadow: var(--shadow);
+}
+
+body.dark-mode .nav-logo {
+    color: var(--primary);
+}
+
+body.dark-mode .nav-link {
+    color: var(--text);
+}
+
+body.dark-mode .theme-toggle {
+    background: var(--light);
+    color: var(--text);
+}
+
+body.dark-mode .theme-toggle:hover {
+    background: var(--primary);
+    color: white;
+}
+
+body.dark-mode .stat-card,
+body.dark-mode .card,
+body.dark-mode .timeline-content,
+body.dark-mode .skill-category,
+body.dark-mode .dashboard-card,
+body.dark-mode .contact-form,
+body.dark-mode .project-card {
+    background: var(--light);
+    color: var(--text);
+}
+
+body.dark-mode .section-title {
+    color: var(--text);
+}
+
+body.dark-mode .card-title,
+body.dark-mode .timeline-title {
+    color: var(--text);
+}
+
+body.dark-mode .timeline::before {
+    background: var(--primary);
+}
+
+body.dark-mode .timeline-dot {
+    background: #1a1a2e;
+    border-color: var(--primary);
+}
+
+body.dark-mode .filter-btn {
+    background: var(--light);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+body.dark-mode .filter-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+body.dark-mode .filter-btn.active {
+    background: var(--primary);
+    color: white;
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea {
+    background: var(--dark);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group textarea:focus {
+    border-color: var(--primary);
+}
+
+body.dark-mode .skill-bar {
+    background: var(--dark);
+}
+
+body.dark-mode .footer {
+    background: #0f0f1e;
+    border-top: 1px solid var(--border);
+}
+
+body.dark-mode .footer-section a {
+    color: var(--text-light);
+}
+
+body.dark-mode .footer-section a:hover {
+    color: var(--primary);
+}
+
+body.dark-mode .tech-tag {
+    background: var(--dark);
+    color: var(--text);
+}

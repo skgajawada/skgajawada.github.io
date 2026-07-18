@@ -1,0 +1,142 @@
+{
+  "personal": {
+    "name": "Gajavada Sanjeevkumar",
+    "title": "PhD Scholar in Design Engineering",
+    "institution": "IIT (ISM) Dhanbad",
+    "bio": "Mechanical Engineer with expertise in design engineering, finite element analysis, and machine learning. Currently pursuing PhD at IIT (ISM) Dhanbad with 7+ years of teaching experience.",
+    "email": "sanjeevkumargajawada@gmail.com",
+    "phone": "+91-XXXXXXXXXXXXX",
+    "location": "Dhanbad, Jharkhand, India",
+    "profileImage": "assets/images/profile.jpg"
+  },
+  "stats": [
+    {
+      "number": "7+",
+      "label": "Years Teaching Experience",
+      "icon": "fa-chalkboard-user"
+    },
+    {
+      "number": "115",
+      "label": "Professional Development Certifications",
+      "icon": "fa-certificate"
+    },
+    {
+      "number": "30+",
+      "label": "Professional MOOC Certifications",
+      "icon": "fa-graduation-cap"
+    },
+    {
+      "number": "10",
+      "label": "Blood Donations",
+      "icon": "fa-droplet"
+    }
+  ],
+  "researchInterests": [
+    "Aeroelasticity",
+    "Structural Dynamics",
+    "Finite Element Analysis",
+    "Composite Structures",
+    "Machine Design",
+    "Artificial Intelligence",
+    "Machine Learning",
+    "Active Vibration Control"
+  ],
+  "about": {
+    "biography": "[Awaiting content]",
+    "careerObjective": "[Awaiting content]",
+    "researchVision": "[Awaiting content]",
+    "researchPhilosophy": "[Awaiting content]",
+    "administrativeResponsibilities": "[Awaiting content]",
+    "personalInterests": "[Awaiting content]"
+  },
+  "experience": [
+    {
+      "title": "[Job Title]",
+      "company": "[Organization]",
+      "location": "[Location]",
+      "startDate": "YYYY-MM",
+      "endDate": "Present",
+      "icon": "fa-briefcase",
+      "description": "[Description awaiting content]",
+      "achievements": [
+        "[Achievement 1]",
+        "[Achievement 2]"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "PhD (Design Engineering)",
+      "institution": "IIT (ISM) Dhanbad",
+      "field": "[Field of Study]",
+      "year": "2022-Present",
+      "cgpa": "[CGPA]",
+      "icon": "fa-graduation-cap",
+      "achievements": []
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "[Project Title]",
+      "description": "[Project description]",
+      "category": "research",
+      "technologies": ["MATLAB", "Python"],
+      "image": "fa-project-diagram",
+      "results": "[Results]",
+      "github": "",
+      "link": ""
+    }
+  ],
+  "subjects": [
+    {
+      "name": "[Subject Name]",
+      "semesters": "[Semester/Year]",
+      "materials": "[Link to materials]",
+      "description": "[Subject description]"
+    }
+  ],
+  "skills": {
+    "programming": [
+      { "name": "MATLAB", "proficiency": 90 },
+      { "name": "Python", "proficiency": 85 },
+      { "name": "C", "proficiency": 75 },
+      { "name": "SQL", "proficiency": 70 }
+    ],
+    "engineering": [
+      { "name": "ANSYS", "proficiency": 88 },
+      { "name": "ABAQUS", "proficiency": 85 },
+      { "name": "SolidWorks", "proficiency": 82 },
+      { "name": "CATIA", "proficiency": 75 }
+    ],
+    "datascience": [
+      { "name": "Power BI", "proficiency": 80 },
+      { "name": "Tableau", "proficiency": 78 },
+      { "name": "Excel", "proficiency": 90 }
+    ],
+    "soft": [
+      { "name": "Leadership", "proficiency": 85 },
+      { "name": "Communication", "proficiency": 88 },
+      { "name": "Problem Solving", "proficiency": 90 }
+    ]
+  },
+  "achievements": [
+    {
+      "title": "[Achievement Title]",
+      "description": "[Description]",
+      "date": "YYYY",
+      "category": "award"
+    }
+  ],
+  "socialLinks": {
+    "email": "sanjeevkumargajawada@gmail.com",
+    "googleScholar": "https://scholar.google.com",
+    "orcid": "https://orcid.org",
+    "researchGate": "https://researchgate.net",
+    "github": "https://github.com/skgajawada",
+    "linkedin": "https://linkedin.com",
+    "instagram": "https://instagram.com",
+    "twitter": "https://twitter.com",
+    "youtube": "https://youtube.com"
+  }
+}
