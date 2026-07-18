@@ -216,11 +216,41 @@ class HomePage extends Component {
                     <div class="card fade-in">
                         <div class="card-icon"><i class="fas fa-certificate"></i></div>
                         <div class="card-content">
-                            <h3 class="card-title">Professional Dev</h3>
-                            <p class="card-description">${certs.certificates.length} certifications from FDPs, workshops, and webinars with viewable PDFs.</p>
+                            <h3 class="card-title">Professional Development</h3>
+                            
+                            <p class="card-description"> 
+                            Explore Faculty Development Programs, Workshops, Conferences, STTPs, Webinars, Quizzes and other professional development activities with downloadable certificates.
+                            </p>
                             <a href="#/professional-dev" class="card-link">View Details <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
+                    <!-- NEW CARD STARTS HERE -->
+
+<div class="card fade-in">
+
+    <div class="card-icon">
+        <i class="fas fa-laptop-code"></i>
+    </div>
+
+    <div class="card-content">
+
+        <h3 class="card-title">
+            MOOCs
+        </h3>
+
+        <p class="card-description">
+            Explore online certifications earned through MATLAB Academy, LinkedIn Learning, Coursera, Dataiku Academy, IBM SkillsBuild and Cognitive Class.
+        </p>
+
+        <a href="#/moocs" class="card-link">
+            View Details
+            <i class="fas fa-arrow-right"></i>
+        </a>
+
+    </div>
+
+</div>
+
                     <div class="card fade-in">
                         <div class="card-icon"><i class="fas fa-envelope"></i></div>
                         <div class="card-content">
