@@ -158,16 +158,15 @@ class Component {
 // HOME PAGE
 class HomePage extends Component {
     async render() {
-        const data = await DataManager.getPortfolioData();
-        const certs = await DataManager.getCertificates();
-
+        const profile = await DataManager.getProfile();
+        const pd = await DataManager.getProfessionalDevelopment();
         return `
             <section class="hero fade-in">
                 <div class="hero-content">
-                    <h1>${data.personal.name}</h1>
-                    <p class="subtitle">${data.personal.title}</p>
-                    <p class="subtitle" style="font-size: 1rem; color: #666;">${data.personal.institution}</p>
-                    <p class="description">${data.personal.bio}</p>
+                    <h1>${profile.personal.name}</h1>
+                    <p class="subtitle">${profile.personal.title}</p>
+                    <p class="subtitle" style="font-size: 1rem; color: #666;">${profile.personal.institution}</p>
+                    <p class="description">${profile.personal.bio}</p>
                     <div class="hero-buttons">
                         <a href="#/about" class="btn btn-primary">
                             <i class="fas fa-user"></i> View Profile
@@ -181,12 +180,12 @@ class HomePage extends Component {
                     </div>
                 </div>
                 <div class="hero-image fade-in-right">
-                    <img src="${data.personal.profileImage}" alt="Profile" class="profile-image" onerror="this.src='https://via.placeholder.com/400x400?text=Profile+Image'">
+                    <img src="${profile.personal.profileImage}" alt="Profile" class="profile-image" onerror="this.src='https://via.placeholder.com/400x400?text=Profile+Image'">
                 </div>
             </section>
 
             <section class="stats-grid">
-                ${data.stats.map((stat, i) => `
+                ${profile.statistics.map((stat, i) => `
                     <div class="stat-card reveal" style="animation-delay: ${i * 0.1}s;">
                         <i class="fas ${stat.icon}" style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;"></i>
                         <div class="stat-number">${stat.number}</div>
@@ -198,7 +197,7 @@ class HomePage extends Component {
             <section>
                 <h2 class="section-title">Research Interests</h2>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 4rem;">
-                    ${data.researchInterests.map((interest, i) => `
+                    ${profile.researchInterests.map((interest, i) => `
                         <div class="reveal" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 1.5rem; border-radius: 10px; text-align: center; animation-delay: ${i * 0.1}s;">
                             <i class="fas fa-check-circle" style="margin-right: 0.5rem;"></i> ${interest}
                         </div>
@@ -245,7 +244,7 @@ class HomePage extends Component {
                         <div class="card-icon"><i class="fas fa-certificate"></i></div>
                         <div class="card-content">
                             <h3 class="card-title">Professional Dev</h3>
-                            <p class="card-description">${certs.certificates.length} certifications from FDPs, workshops, and webinars with viewable PDFs.</p>
+                            <p class="card-description">${pd.certificates.length} certifications from FDPs, workshops, and webinars with viewable PDFs.</p>
                             <a href="#/professional-dev" class="card-link">View Details <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
@@ -276,13 +275,13 @@ class AboutPage extends Component {
                     <div class="reveal">
                         <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.3rem;">Biography</h3>
                         <p style="line-height: 1.8; color: var(--text-light);">
-                            ${data.about.biography !== '[Awaiting content]' ? data.about.biography : 'Biography content awaiting update. I am a dedicated educator and researcher with strong fundamentals in mechanical engineering and emerging expertise in computational design and machine learning.'}
+                            ${profile.about.biography !== '[Awaiting content]' ? profile.about.biography : 'Biography content awaiting update. I am a dedicated educator and researcher with strong fundamentals in mechanical engineering and emerging expertise in computational design and machine learning.'}
                         </p>
                     </div>
                     <div class="reveal">
                         <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.3rem;">Career Objective</h3>
                         <p style="line-height: 1.8; color: var(--text-light);">
-                            ${data.about.careerObjective !== '[Awaiting content]' ? data.about.careerObjective : 'To leverage expertise in design engineering and AI to develop innovative solutions for complex engineering challenges while contributing to academic excellence and mentoring the next generation of engineers.'}
+                            ${profile.about.careerObjective !== '[Awaiting content]' ? profile.about.careerObjective : 'To leverage expertise in design engineering and AI to develop innovative solutions for complex engineering challenges while contributing to academic excellence and mentoring the next generation of engineers.'}
                         </p>
                     </div>
                 </div>
@@ -291,13 +290,13 @@ class AboutPage extends Component {
                     <div class="reveal">
                         <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.3rem;">Research Vision</h3>
                         <p style="line-height: 1.8; color: var(--text-light);">
-                            ${data.about.researchVision !== '[Awaiting content]' ? data.about.researchVision : 'To advance the understanding of structural dynamics and aeroelasticity through innovative finite element analysis and machine learning methodologies.'}
+                            ${profile.about.researchVision !== '[Awaiting content]' ? profile.about.researchVision : 'To advance the understanding of structural dynamics and aeroelasticity through innovative finite element analysis and machine learning methodologies.'}
                         </p>
                     </div>
                     <div class="reveal">
                         <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.3rem;">Research Philosophy</h3>
                         <p style="line-height: 1.8; color: var(--text-light);">
-                            ${data.about.researchPhilosophy !== '[Awaiting content]' ? data.about.researchPhilosophy : 'Rigorous empirical validation combined with computational modeling to derive practical engineering solutions backed by solid theoretical foundations.'}
+                            ${profile.about.researchPhilosophy !== '[Awaiting content]' ? profile.about.researchPhilosophy : 'Rigorous empirical validation combined with computational modeling to derive practical engineering solutions backed by solid theoretical foundations.'}
                         </p>
                     </div>
                 </div>
@@ -305,14 +304,14 @@ class AboutPage extends Component {
                 <div class="reveal" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 2rem; border-radius: 10px; margin-bottom: 3rem;">
                     <h3 style="margin-bottom: 1rem;"><i class="fas fa-handshake"></i> Administrative Responsibilities</h3>
                     <p style="line-height: 1.8;">
-                        ${data.about.administrativeResponsibilities !== '[Awaiting content]' ? data.about.administrativeResponsibilities : 'Committee member for curriculum development, student mentoring, and academic affairs coordination. Active participant in departmental initiatives and institutional governance.'}
+                        ${profile.about.administrativeResponsibilities !== '[Awaiting content]' ? profile.about.administrativeResponsibilities : 'Committee member for curriculum development, student mentoring, and academic affairs coordination. Active participant in departmental initiatives and institutional governance.'}
                     </p>
                 </div>
 
                 <div class="reveal">
                     <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.3rem;">Personal Interests</h3>
                     <p style="line-height: 1.8; color: var(--text-light);">
-                        ${data.about.personalInterests !== '[Awaiting content]' ? data.about.personalInterests : 'Beyond academics, I am passionate about community service, particularly blood donation drives. I enjoy exploring emerging technologies, reading research papers, and mentoring young professionals.'}
+                        ${profile.about.personalInterests !== '[Awaiting content]' ? profile.about.personalInterests : 'Beyond academics, I am passionate about community service, particularly blood donation drives. I enjoy exploring emerging technologies, reading research papers, and mentoring young professionals.'}
                     </p>
                 </div>
             </section>
@@ -567,15 +566,15 @@ class ContactPage extends Component {
                         <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.2rem;">Contact Information</h3>
                         <div style="background: var(--light); padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem;">
                             <p style="margin-bottom: 0.5rem;"><strong><i class="fas fa-envelope"></i> Email:</strong></p>
-                            <p><a href="mailto:${data.personal.email}" style="color: var(--primary);">${data.personal.email}</a></p>
+                            <p><a href="mailto:${profile.personal.email}" style="color: var(--primary);">${profile.personal.email}</a></p>
                         </div>
                         <div style="background: var(--light); padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem;">
                             <p style="margin-bottom: 0.5rem;"><strong><i class="fas fa-phone"></i> Phone:</strong></p>
-                            <p>${data.personal.phone}</p>
+                            <p>${profile.personal.phone}</p>
                         </div>
                         <div style="background: var(--light); padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem;">
                             <p style="margin-bottom: 0.5rem;"><strong><i class="fas fa-map-marker-alt"></i> Location:</strong></p>
-                            <p>${data.personal.location}</p>
+                            <p>${profile.personal.location}</p>
                         </div>
                         <div style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 1.5rem; border-radius: 10px;">
                             <p style="margin-bottom: 1rem;"><strong>Connect On Social</strong></p>
