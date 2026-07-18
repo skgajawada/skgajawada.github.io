@@ -2162,106 +2162,96 @@ content="Gajavada Sanjeevkumar, Sanjeevkumar Gajavada, IIT ISM Dhanbad, Mechanic
     </div>
 
     <!-- -------------------------------------------------------------
-   PROFESSIONAL DEVELOPMENT (SPA ARCHITECTURE & DYNAMIC SUB-ROUTING)
+   PROFESSIONAL DEVELOPMENT (SPA ARCHITECTURE)
    ------------------------------------------------------------- -->
 <div id="development-view" class="spa-view">
     <div class="container">
-        <!-- Breadcrumb Control Bar supporting Extended Navigation Depth Paths -->
-        <div class="spa-back-control" id="pd-breadcrumbs-bar">
-            <button class="btn-back" onclick="PDRouter.navigateBack()"><i class="fa-solid fa-arrow-left"></i> Back</button>
-            <div id="pd-url-display" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); background: rgba(14, 165, 233, 0.08); padding: 4px 12px; border-radius: var(--radius-sm);">/PD</div>
-            <button class="btn-close-view" onclick="navigateToView('home-view')"><i class="fa-solid fa-xmark"></i></button>
+        <!-- Breadcrumb & Router Navigation Display Control Bar -->
+        <div class="spa-back-control" id="pd-breadcrumbs-bar" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px;">
+            <button class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;" onclick="PDRouter.navigateBack()"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <div id="pd-url-display" style="font-family: monospace; font-size: 0.85rem; color: #0ea5e9; background: rgba(14, 165, 233, 0.08); padding: 6px 14px; border-radius: 4px; border: 1px solid rgba(14, 165, 233, 0.2); flex-grow: 1; text-align: left; margin: 0 10px;">/PD</div>
         </div>
 
         <div class="section-header">
-            <span class="section-tag">Credentials & Continuing Education</span>
-            <h2 class="section-title">Professional Development</h2>
+            <span class="section-tag" style="color: #0ea5e9; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem; font-weight: 600;">Credentials & Continuing Education</span>
+            <h2 class="section-title" style="font-size: 2.25rem; font-weight: 700; margin-top: 5px; margin-bottom: 15px;">Professional Development</h2>
         </div>
 
-        <!-- LEVEL 1: OVERVIEW DASHBOARD (Shows basic overview & available headings) -->
+        <!-- LEVEL 1: OVERVIEW DASHBOARD (Category View) -->
         <div id="pd-level1-view" class="pd-level-container">
-            <p class="biography-text" style="margin-bottom: 25px;">Track record containing **115 verified certificates** cataloging Faculty Development Programs, advanced global technical workshops, research seminars, and engineering summer schools.</p>
+            <p style="color: rgba(255,255,255,0.7); font-size: 1.05rem; margin-bottom: 30px; line-height: 1.6;">Track record containing <strong>115 verified certificates</strong> cataloging Faculty Development Programs, advanced global technical workshops, research seminars, and engineering summer schools.</p>
             
-            <div class="dashboard-grid">
-                <div class="dashboard-card" onclick="PDRouter.navigate('/PD/STC')">
-                    <div class="dashboard-card-icon"><i class="fa-solid fa-clock"></i></div>
-                    <h3>Short Term Courses / STTPs</h3>
-                    <p>Advanced specializations including predictive modeling analytics, forecasting math frameworks, and structural plasticity algorithms.</p>
-                    <span class="dashboard-card-action">Explore Collection <i class="fa-solid fa-arrow-right"></i></span>
+            <div class="dashboard-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div class="dashboard-card" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 25px; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;" onclick="PDRouter.navigate('/PD/STC')">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 10px; color: #fff;"><i class="fa-solid fa-clock" style="color:#0ea5e9; margin-right:8px;"></i> Short Term Courses / STTPs</h3>
+                    <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 15px;">Advanced specializations including predictive modeling analytics, forecasting math frameworks, and structural plasticity algorithms.</p>
+                    <span style="color: #0ea5e9; font-size: 0.9rem; font-weight: 600;">Explore Collection &rarr;</span>
                 </div>
-                <div class="dashboard-card" onclick="PDRouter.navigate('/PD/FDP')">
-                    <div class="dashboard-card-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
-                    <h3>Faculty Development Programs</h3>
-                    <p>Academic pedagogy innovations, Finite Element Analysis methods, and domain simulations.</p>
-                    <span class="dashboard-card-action">Explore Collection <i class="fa-solid fa-arrow-right"></i></span>
+                <div class="dashboard-card" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 25px; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;" onclick="PDRouter.navigate('/PD/FDP')">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 10px; color: #fff;"><i class="fa-solid fa-chalkboard-user" style="color:#0ea5e9; margin-right:8px;"></i> Faculty Development Programs</h3>
+                    <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 15px;">Academic pedagogy innovations, Finite Element Analysis methods, and computational engineering solutions.</p>
+                    <span style="color: #0ea5e9; font-size: 0.9rem; font-weight: 600;">Explore Collection &rarr;</span>
                 </div>
-                <div class="dashboard-card" onclick="PDRouter.navigate('/PD/Workshops')">
-                    <div class="dashboard-card-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-                    <h3>Workshops & Seminars</h3>
-                    <p>Hands-on engineering tool applications, Outcome Based Education templates, and manufacturing modules.</p>
-                    <span class="dashboard-card-action">Explore Collection <i class="fa-solid fa-arrow-right"></i></span>
+                <div class="dashboard-card" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 25px; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;" onclick="PDRouter.navigate('/PD/Workshops')">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 10px; color: #fff;"><i class="fa-solid fa-screwdriver-wrench" style="color:#0ea5e9; margin-right:8px;"></i> Workshops & Seminars</h3>
+                    <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 15px;">Hands-on engineering tool applications, Outcome Based Education templates, and modern product design modules.</p>
+                    <span style="color: #0ea5e9; font-size: 0.9rem; font-weight: 600;">Explore Collection &rarr;</span>
                 </div>
-                <div class="dashboard-card" onclick="PDRouter.navigate('/PD/Webinars')">
-                    <div class="dashboard-card-icon"><i class="fa-solid fa-globe"></i></div>
-                    <h3>Webinars</h3>
-                    <p>Digital technology symposiums, alternative energy updates, and particle science profiles.</p>
-                    <span class="dashboard-card-action">Explore Collection <i class="fa-solid fa-arrow-right"></i></span>
+                <div class="dashboard-card" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 25px; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;" onclick="PDRouter.navigate('/PD/Webinars')">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 10px; color: #fff;"><i class="fa-solid fa-globe" style="color:#0ea5e9; margin-right:8px;"></i> Webinars</h3>
+                    <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 15px;">Digital technology symposiums, alternative energy updates, and particle science profiles.</p>
+                    <span style="color: #0ea5e9; font-size: 0.9rem; font-weight: 600;">Explore Collection &rarr;</span>
                 </div>
-                <div class="dashboard-card" onclick="PDRouter.navigate('/PD/Quizzes')">
-                    <div class="dashboard-card-icon"><i class="fa-solid fa-lightbulb"></i></div>
-                    <h3>Quizzes</h3>
-                    <p>Technical evaluation metrics, mechanical competence verification tests, and engineering parameters.</p>
-                    <span class="dashboard-card-action">Explore Collection <i class="fa-solid fa-arrow-right"></i></span>
+                <div class="dashboard-card" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 25px; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;" onclick="PDRouter.navigate('/PD/Quizzes')">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 10px; color: #fff;"><i class="fa-solid fa-lightbulb" style="color:#0ea5e9; margin-right:8px;"></i> Quizzes</h3>
+                    <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 15px;">Technical evaluation metrics, mechanical competence verification tests, and engineering parameters.</p>
+                    <span style="color: #0ea5e9; font-size: 0.9rem; font-weight: 600;">Explore Collection &rarr;</span>
                 </div>
-                <div class="dashboard-card" onclick="PDRouter.navigate('/PD/Conferences')">
-                    <div class="dashboard-card-icon"><i class="fa-solid fa-users-rectangle"></i></div>
-                    <h3>Summer Schools & Conferences</h3>
-                    <p>Global research conventions, mechanical dynamics summer forums, and peer-reviewed symposium displays.</p>
-                    <span class="dashboard-card-action">Explore Collection <i class="fa-solid fa-arrow-right"></i></span>
+                <div class="dashboard-card" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 25px; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;" onclick="PDRouter.navigate('/PD/Conferences')">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 10px; color: #fff;"><i class="fa-solid fa-users-rectangle" style="color:#0ea5e9; margin-right:8px;"></i> Summer Schools & Conferences</h3>
+                    <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 15px;">Global research conventions, fluids under confinement forums, and peer-reviewed symposium displays.</p>
+                    <span style="color: #0ea5e9; font-size: 0.9rem; font-weight: 600;">Explore Collection &rarr;</span>
                 </div>
             </div>
         </div>
 
-        <!-- LEVEL 2: DYNAMIC LIST / LIST VIEW -->
+        <!-- LEVEL 2: DYNAMIC LIST / CERTIFICATE LIST SUB-VIEW -->
         <div id="pd-level2-view" class="pd-level-container" style="display:none;">
-            <h3 id="pd-level2-title" class="section-title" style="font-size: 1.8rem; margin-bottom: 25px;">Subheading Collection</h3>
-            <div class="certifications-grid" id="pd-level2-grid">
-                <!-- Dynamically populated by JS Engine -->
+            <h3 id="pd-level2-title" style="font-size: 1.6rem; margin-bottom: 20px; color: #fff;">Subheading Collection</h3>
+            <div class="certifications-grid" id="pd-level2-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">
+                <!-- Dynamically populated by the JS Engine -->
             </div>
         </div>
 
-        <!-- LEVEL 3: DETAILED DETACHED PROFILE INFORMATION VIEW -->
+        <!-- LEVEL 3: DETAILED RESIDENTIAL PROFILE VIEW -->
         <div id="pd-level3-view" class="pd-level-container" style="display:none;">
-            <div class="glass-card" style="max-width: 800px; margin: 0 auto; padding: 40px;">
-                <span id="info-category" class="cert-issuer">Category Descriptor</span>
-                <h3 id="info-title" class="section-title" style="font-size: 1.8rem; margin-top: 5px; margin-bottom: 20px; line-height: 1.3;">Certificate Target Name</h3>
+            <div class="glass-card" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); max-width: 750px; margin: 0 auto; padding: 30px; border-radius: 8px;">
+                <span id="info-category" style="color: #0ea5e9; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Category</span>
+                <h3 id="info-title" style="font-size: 1.5rem; margin-top: 5px; margin-bottom: 20px; color: #fff; line-height: 1.4;">Event Title</h3>
                 
-                <div style="margin-bottom: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div style="margin-bottom: 25px; display: grid; grid-template-columns: 1fr; gap: 15px;">
                     <div>
-                        <span style="display:block; font-size: 0.8rem; color: var(--text-muted); font-weight:700; text-transform:uppercase;"><i class="fa-solid fa-building-columns"></i> Issuing Institution</span>
-                        <span id="info-institution" style="font-size: 1rem; color: var(--text-main); font-weight: 500;">IIT Institute</span>
+                        <span style="display:block; font-size: 0.75rem; color: rgba(255,255,255,0.4); text-transform:uppercase; font-weight:600;"><i class="fa-solid fa-building-columns"></i> Organizing Institution</span>
+                        <span id="info-institution" style="font-size: 0.95rem; color: rgba(255,255,255,0.95);">Institution Name</span>
                     </div>
                     <div>
-                        <span style="display:block; font-size: 0.8rem; color: var(--text-muted); font-weight:700; text-transform:uppercase;"><i class="fa-solid fa-calendar-days"></i> Timeline / Span</span>
-                        <span id="info-date" style="font-size: 1rem; color: var(--text-main); font-weight: 500;">Duration Period</span>
+                        <span style="display:block; font-size: 0.75rem; color: rgba(255,255,255,0.4); text-transform:uppercase; font-weight:600;"><i class="fa-solid fa-calendar-days"></i> Period / Timeline</span>
+                        <span id="info-date" style="font-size: 0.95rem; color: rgba(255,255,255,0.95);">Date Range</span>
                     </div>
                 </div>
 
-                <div style="border-top: 1px solid var(--border-color); padding-top: 25px; display: flex; gap: 15px;">
-                    <!-- Direct Dynamic Target Link out to GitHub Repositories File Structure -->
-                    <a id="info-cert-link" href="#" target="_blank" class="btn btn-primary">
-                        <i class="fa-solid fa-file-pdf"></i> View Verified Certificate
+                <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
+                    <a id="info-cert-link" href="#" target="_blank" style="background: #0ea5e9; color: #fff; border: none; padding: 10px 20px; border-radius: 4px; font-weight: 500; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-file-pdf"></i> View Certificate Asset
                     </a>
-                    <button class="btn btn-secondary" onclick="PDRouter.navigateBack()">
-                        <i class="fa-solid fa-arrow-rotate-left"></i> Return to List
+                    <button class="btn btn-secondary" style="padding: 10px 20px;" onclick="PDRouter.navigateBack()">
+                        <i class="fa-solid fa-arrow-rotate-left"></i> Back to List
                     </button>
                 </div>
             </div>
         </div>
-
     </div>
-</div>
-            <!-- -------------------------------------------------------------
+</div>            <!-- -------------------------------------------------------------
                CONTACT & QUERY FORM (SPA VIEW)
                ------------------------------------------------------------- -->
             <div id="contact-view" class="spa-view">
