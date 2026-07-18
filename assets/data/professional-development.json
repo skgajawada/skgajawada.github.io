@@ -1,14 +1,14 @@
 {
   "categories": [
     {
-      "id": "STC",
+      "id": "STC_STTPs",
       "name": "Short Term Courses / STTPs",
       "description": "Short Term Courses and Staff Training Programs",
       "icon": "📚",
       "color": "#3498db"
     },
     {
-      "id": "WS",
+      "id": "Workshop",
       "name": "Workshops / Seminars",
       "description": "Workshops and Seminars",
       "icon": "🔧",
@@ -22,21 +22,21 @@
       "color": "#2ecc71"
     },
     {
-      "id": "WEB",
+      "id": "Webinars",
       "name": "Webinars",
       "description": "Online Webinars and Technical Talks",
       "icon": "🌐",
       "color": "#f39c12"
     },
     {
-      "id": "QZ",
+      "id": "Quiz",
       "name": "Quizzes",
       "description": "Online Quizzes and E-Quizzes",
       "icon": "❓",
       "color": "#9b59b6"
     },
     {
-      "id": "CONF",
+      "id": "Conference",
       "name": "Conferences",
       "description": "International and National Conferences",
       "icon": "🎤",
@@ -46,7 +46,7 @@
   "certificates": [
     {
       "id": 1,
-      "category": "STC",
+      "category": "STC_STTPs",
       "categoryName": "Short Term Courses / STTPs",
       "name": "Application of Forecasting Methods in Engineering and Business Problems",
       "type": "Short Term Course",
@@ -57,12 +57,12 @@
       "organization": "Indian Institute of Technology Kharagpur",
       "venue": "Kharagpur",
       "association": "AICTE-QIP",
-      "certificateFile": "STC_001.pdf",
-      "certificateImage": "STC_001.jpg"
+      "certificateFile": "1.pdf",
+      "certificateImage": "1.jpg"
     },
     {
       "id": 2,
-      "category": "STC",
+      "category": "STC_STTPs",
       "categoryName": "Short Term Courses / STTPs",
       "name": "Enduring Trends in Hydraulic Control Systems: Past, Present and Future",
       "type": "Short Term Course",
@@ -73,12 +73,12 @@
       "organization": "Centre for Continuing Education, Indian Institute of Technology Madras",
       "venue": "Chennai",
       "association": "AICTE Sponsored",
-      "certificateFile": "STC_002.pdf",
-      "certificateImage": "STC_002.jpg"
+      "certificateFile": "2.pdf",
+      "certificateImage": "2.jpg"
     },
     {
       "id": 3,
-      "category": "STC",
+      "category": "STC_STTPs",
       "categoryName": "Short Term Courses / STTPs",
       "name": "Design of Experiments in Engineering",
       "type": "STTP",
@@ -89,12 +89,12 @@
       "organization": "B. V. Raju Institute of Technology (BVRIT)",
       "venue": "Vishnupur, Narsapur, Medak District",
       "association": "AICTE Sponsored",
-      "certificateFile": "STC_003.pdf",
-      "certificateImage": "STC_003.jpg"
+      "certificateFile": "3.pdf",
+      "certificateImage": "3.jpg"
     },
     {
       "id": 4,
-      "category": "STC",
+      "category": "STC_STTPs",
       "categoryName": "Short Term Courses / STTPs",
       "name": "Recent Advances in Micro Electro Mechanical Systems (MEMS), Mechatronics and Their Applications for Future Challenges",
       "type": "STTP",
@@ -105,12 +105,12 @@
       "organization": "Mahatma Gandhi Institute of Technology",
       "venue": "Hyderabad, Telangana",
       "association": "AICTE Sponsored (Slot-2)",
-      "certificateFile": "STC_004.pdf",
-      "certificateImage": "STC_004.jpg"
+      "certificateFile": "4.pdf",
+      "certificateImage": "4.jpg"
     },
     {
       "id": 5,
-      "category": "STC",
+      "category": "STC_STTPs",
       "categoryName": "Short Term Courses / STTPs",
       "name": "Advances in Additive Manufacturing",
       "type": "STTP",
@@ -121,12 +121,12 @@
       "organization": "Yeshwantrao Chavan College of Engineering",
       "venue": "Nagpur, Maharashtra",
       "association": "AICTE AQIS Sponsored / Siemens Centre of Excellence / NAFETIC",
-      "certificateFile": "STC_005.pdf",
-      "certificateImage": "STC_005.jpg"
+      "certificateFile": "5.pdf",
+      "certificateImage": "5.jpg"
     },
     {
       "id": 6,
-      "category": "STC",
+      "category": "STC_STTPs",
       "categoryName": "Short Term Courses / STTPs",
       "name": "RECENT ADVANCES IN TRIBOLOGY AND SURFACE ENGINEERING: Series 2 of 4 Tribology of Machine Components and Applied Tribology",
       "type": "STTP",
@@ -137,12 +137,12 @@
       "organization": "Saintgits College of Engineering (Autonomous)",
       "venue": "Online",
       "association": "AICTE Sponsored",
-      "certificateFile": "STC_006.pdf",
-      "certificateImage": "STC_006.jpg"
+      "certificateFile": "6.pdf",
+      "certificateImage": "6.jpg"
     },
     {
       "id": 7,
-      "category": "STC",
+      "category": "STC_STTPs",
       "categoryName": "Short Term Courses / STTPs",
       "name": "Advances in Finite Element Method for Industry & Research Applications",
       "type": "STTP",
@@ -153,12 +153,12 @@
       "organization": "Vasavi College of Engineering (Autonomous)",
       "venue": "Hyderabad, Telangana",
       "association": "AICTE Sponsored",
-      "certificateFile": "STC_007.pdf",
-      "certificateImage": "STC_007.jpg"
+      "certificateFile": "7.pdf",
+      "certificateImage": "7.jpg"
     },
     {
       "id": 8,
-      "category": "STC",
+      "category": "STC_STTPs",
       "categoryName": "Short Term Courses / STTPs",
       "name": "Modeling and Analysis using MATLAB and Python for Mechanical Engineering Applications",
       "type": "STTP",
@@ -169,12 +169,12 @@
       "organization": "VNR Vignana Jyothi Institute of Engineering and Technology",
       "venue": "Hyderabad, Telangana",
       "association": "AICTE Sponsored",
-      "certificateFile": "STC_008.pdf",
-      "certificateImage": "STC_008.jpg"
+      "certificateFile": "8.pdf",
+      "certificateImage": "8.jpg"
     },
     {
       "id": 9,
-      "category": "STC",
+      "category": "STC_STTPs",
       "categoryName": "Short Term Courses / STTPs",
       "name": "Teaching Learning Pedagogies",
       "type": "STTP",
@@ -185,12 +185,12 @@
       "organization": "A. G. Patil Polytechnic Institute, Solapur",
       "venue": "Solapur",
       "association": "Approved & Funded by AICTE under AQIS",
-      "certificateFile": "STC_009.pdf",
-      "certificateImage": "STC_009.jpg"
+      "certificateFile": "9.pdf",
+      "certificateImage": "9.jpg"
     },
     {
       "id": 10,
-      "category": "STC",
+      "category": "STC_STTPs",
       "categoryName": "Short Term Courses / STTPs",
       "name": "Theory of Plasticity and its Application",
       "type": "QIP Short Term Course",
@@ -201,12 +201,12 @@
       "organization": "Indian Institute of Technology Bombay",
       "venue": "Mumbai",
       "association": "AICTE Sponsored QIP",
-      "certificateFile": "STC_010.pdf",
-      "certificateImage": "STC_010.jpg"
+      "certificateFile": "10.pdf",
+      "certificateImage": "10.jpg"
     },
     {
       "id": 11,
-      "category": "WS",
+      "category": "Workshop",
       "categoryName": "Workshops / Seminars",
       "name": "Implementation of OBE and Online Teaching",
       "type": "Training Programme",
@@ -217,12 +217,12 @@
       "organization": "National Institute of Technical Teachers Training and Research, Chennai",
       "venue": "Chennai",
       "association": "Ministry of Education, Government of India",
-      "certificateFile": "WS_011.pdf",
-      "certificateImage": "WS_011.jpg"
+      "certificateFile": "11.pdf",
+      "certificateImage": "11.jpg"
     },
     {
       "id": 12,
-      "category": "WS",
+      "category": "Workshop",
       "categoryName": "Workshops / Seminars",
       "name": "EMERGING TRENDS IN THERMAL ENGINEERING",
       "type": "Workshop",
@@ -233,12 +233,12 @@
       "organization": "Sree Chaitanya College of Engineering, Karimnagar",
       "venue": "Karimnagar",
       "association": "ISTE",
-      "certificateFile": "WS_012.pdf",
-      "certificateImage": "WS_012.jpg"
+      "certificateFile": "12.pdf",
+      "certificateImage": "12.jpg"
     },
     {
       "id": 13,
-      "category": "WS",
+      "category": "Workshop",
       "categoryName": "Workshops / Seminars",
       "name": "Metallurgy for Mechanical Engineering",
       "type": "Workshop",
@@ -249,12 +249,12 @@
       "organization": "Sree Chaitanya College of Engineering",
       "venue": "Karimnagar, Telangana",
       "association": "N/A",
-      "certificateFile": "WS_013.pdf",
-      "certificateImage": "WS_013.jpg"
+      "certificateFile": "13.pdf",
+      "certificateImage": "13.jpg"
     },
     {
       "id": 14,
-      "category": "WS",
+      "category": "Workshop",
       "categoryName": "Workshops / Seminars",
       "name": "ARDUNO (Arduino Uno Workshop during e-Tempesta)",
       "type": "Workshop",
@@ -265,12 +265,12 @@
       "organization": "NSHM Knowledge Campus, Durgapur",
       "venue": "Durgapur",
       "association": "e-Tempesta (Signature Event of NSET)",
-      "certificateFile": "WS_014.pdf",
-      "certificateImage": "WS_014.jpg"
+      "certificateFile": "14.pdf",
+      "certificateImage": "14.jpg"
     },
     {
       "id": 15,
-      "category": "WS",
+      "category": "Workshop",
       "categoryName": "Workshops / Seminars",
       "name": "How to make interactive videos",
       "type": "International Workshop",
@@ -281,12 +281,12 @@
       "organization": "Global Teacher Educator YouTube Channel",
       "venue": "Chennai",
       "association": "HZU Dehradun & L.N.M. University",
-      "certificateFile": "WS_015.pdf",
-      "certificateImage": "WS_015.jpg"
+      "certificateFile": "15.pdf",
+      "certificateImage": "15.jpg"
     },
     {
       "id": 16,
-      "category": "WS",
+      "category": "Workshop",
       "categoryName": "Workshops / Seminars",
       "name": "A Vision Towards Materials and Manufacturing",
       "type": "National Webinar Series",
@@ -297,12 +297,12 @@
       "organization": "KPR Institute of Engineering and Technology (KPRIET)",
       "venue": "Avinashi Road, Arasur, Coimbatore",
       "association": "Institution's Innovation Council & MHRD's Innovation Cell",
-      "certificateFile": "WS_016.pdf",
-      "certificateImage": "WS_016.jpg"
+      "certificateFile": "16.pdf",
+      "certificateImage": "16.jpg"
     },
     {
       "id": 17,
-      "category": "WS",
+      "category": "Workshop",
       "categoryName": "Workshops / Seminars",
       "name": "Essential Technologies and Career Opportunities in Mechanical Engineering",
       "type": "International Webinar Series",
@@ -313,8 +313,8 @@
       "organization": "Universal Engineering College, Vallivattom",
       "venue": "Vellangallur, Thrissur, Kerala",
       "association": "N/A",
-      "certificateFile": "WS_017.pdf",
-      "certificateImage": "WS_017.jpg"
+      "certificateFile": "17.pdf",
+      "certificateImage": "17.jpg"
     },
     {
       "id": 18,
@@ -329,8 +329,8 @@
       "organization": "Chaitanya Bharathi Institute of Technology (CBIT)",
       "venue": "CBIT",
       "association": "ARK Infosolutions Pvt. Ltd. (Digital Manufacturing Division)",
-      "certificateFile": "FDP_018.pdf",
-      "certificateImage": "FDP_018.jpg"
+      "certificateFile": "18.pdf",
+      "certificateImage": "18.jpg"
     },
     {
       "id": 19,
@@ -345,8 +345,8 @@
       "organization": "VNR Vignana Jyothi Institute of Engineering & Technology (VNR VJIET)",
       "venue": "Online",
       "association": "VNR VJIET",
-      "certificateFile": "FDP_019.pdf",
-      "certificateImage": "FDP_019.jpg"
+      "certificateFile": "19.pdf",
+      "certificateImage": "19.jpg"
     },
     {
       "id": 20,
@@ -361,8 +361,8 @@
       "organization": "Vallurupalli Nageswara Rao Vignana Jyothi Institute of Engineering and Technology",
       "venue": "Nizampet, Hyderabad",
       "association": "UGC Autonomous / JNTUH Affiliated",
-      "certificateFile": "FDP_020.pdf",
-      "certificateImage": "FDP_020.jpg"
+      "certificateFile": "20.pdf",
+      "certificateImage": "20.jpg"
     },
     {
       "id": 21,
@@ -377,8 +377,8 @@
       "organization": "Sri Manakula Vinayagar Engineering College",
       "venue": "Puducherry",
       "association": "Autonomous Institution",
-      "certificateFile": "FDP_021.pdf",
-      "certificateImage": "FDP_021.jpg"
+      "certificateFile": "21.pdf",
+      "certificateImage": "21.jpg"
     },
     {
       "id": 22,
@@ -393,8 +393,8 @@
       "organization": "Kakatiya Institute of Technology & Science, Warangal",
       "venue": "Warangal, Telangana",
       "association": "ISTE Sponsored",
-      "certificateFile": "FDP_022.pdf",
-      "certificateImage": "FDP_022.jpg"
+      "certificateFile": "22.pdf",
+      "certificateImage": "22.jpg"
     },
     {
       "id": 23,
@@ -409,8 +409,8 @@
       "organization": "MLR Institute of Technology",
       "venue": "Hyderabad",
       "association": "AICTE Sponsored",
-      "certificateFile": "FDP_023.pdf",
-      "certificateImage": "FDP_023.jpg"
+      "certificateFile": "23.pdf",
+      "certificateImage": "23.jpg"
     },
     {
       "id": 24,
@@ -425,8 +425,8 @@
       "organization": "JAIN (Deemed-to-be) University",
       "venue": "Bengaluru",
       "association": "Faculty of Engineering and Technology",
-      "certificateFile": "FDP_024.pdf",
-      "certificateImage": "FDP_024.jpg"
+      "certificateFile": "24.pdf",
+      "certificateImage": "24.jpg"
     },
     {
       "id": 25,
@@ -441,8 +441,8 @@
       "organization": "Chaitanya Bharathi Institute of Technology (A)",
       "venue": "Hyderabad, Telangana",
       "association": "Committed to Research, Innovation and Education",
-      "certificateFile": "FDP_025.pdf",
-      "certificateImage": "FDP_025.jpg"
+      "certificateFile": "25.pdf",
+      "certificateImage": "25.jpg"
     },
     {
       "id": 26,
@@ -457,8 +457,8 @@
       "organization": "St. Joseph's College of Engineering",
       "venue": "OMR, Chennai",
       "association": "St. Joseph's Group of Institutions",
-      "certificateFile": "FDP_026.pdf",
-      "certificateImage": "FDP_026.jpg"
+      "certificateFile": "26.pdf",
+      "certificateImage": "26.jpg"
     },
     {
       "id": 27,
@@ -473,8 +473,8 @@
       "organization": "B.V.V.Sangha's Shri S. R. Kanthi Arts, Commerce and Science College Mudhol",
       "venue": "Mudhol",
       "association": "IQAC INITIATIVE",
-      "certificateFile": "FDP_027.pdf",
-      "certificateImage": "FDP_027.jpg"
+      "certificateFile": "27.pdf",
+      "certificateImage": "27.jpg"
     },
     {
       "id": 28,
@@ -489,8 +489,8 @@
       "organization": "Narsimha Reddy Engineering College",
       "venue": "Secunderabad, Telangana",
       "association": "Society of Automotive Engineers INDIA (SAEINDIA)",
-      "certificateFile": "FDP_028.pdf",
-      "certificateImage": "FDP_028.jpg"
+      "certificateFile": "28.pdf",
+      "certificateImage": "28.jpg"
     },
     {
       "id": 29,
@@ -505,8 +505,8 @@
       "organization": "Mahatma Gandhi Institute of Technology, Hyderabad",
       "venue": "Hyderabad",
       "association": "NBA, NAAC",
-      "certificateFile": "FDP_029.pdf",
-      "certificateImage": "FDP_029.jpg"
+      "certificateFile": "29.pdf",
+      "certificateImage": "29.jpg"
     },
     {
       "id": 30,
@@ -521,8 +521,8 @@
       "organization": "Kakatiya Institute of Technology and Science, Warangal",
       "venue": "Warangal",
       "association": "Faculty of Mathematics",
-      "certificateFile": "FDP_030.pdf",
-      "certificateImage": "FDP_030.jpg"
+      "certificateFile": "30.pdf",
+      "certificateImage": "30.jpg"
     },
     {
       "id": 31,
@@ -537,8 +537,8 @@
       "organization": "G. H. Raisoni College of Engineering, Nagpur",
       "venue": "Nagpur",
       "association": "The Institution of Engineers (India) Nagpur Local Centre",
-      "certificateFile": "FDP_031.pdf",
-      "certificateImage": "FDP_031.jpg"
+      "certificateFile": "31.pdf",
+      "certificateImage": "31.jpg"
     },
     {
       "id": 32,
@@ -553,8 +553,8 @@
       "organization": "Vignan Institute of Technology & Science, Deshmukhi",
       "venue": "Deshmukhi",
       "association": "Affiliated to JNTUH",
-      "certificateFile": "FDP_032.pdf",
-      "certificateImage": "FDP_032.jpg"
+      "certificateFile": "32.pdf",
+      "certificateImage": "32.jpg"
     },
     {
       "id": 33,
@@ -569,8 +569,8 @@
       "organization": "Visvesvaraya College of Engineering and Technology",
       "venue": "Hyderabad",
       "association": "N/A",
-      "certificateFile": "FDP_033.pdf",
-      "certificateImage": "FDP_033.jpg"
+      "certificateFile": "33.pdf",
+      "certificateImage": "33.jpg"
     },
     {
       "id": 34,
@@ -585,8 +585,8 @@
       "organization": "R. R. Institute of Technology",
       "venue": "Chikkabanavara, Bengaluru",
       "association": "N/A",
-      "certificateFile": "FDP_034.pdf",
-      "certificateImage": "FDP_034.jpg"
+      "certificateFile": "34.pdf",
+      "certificateImage": "34.jpg"
     },
     {
       "id": 35,
@@ -601,8 +601,8 @@
       "organization": "Hindusthan College of Engineering and Technology",
       "venue": "Coimbatore",
       "association": "N/A",
-      "certificateFile": "FDP_035.pdf",
-      "certificateImage": "FDP_035.jpg"
+      "certificateFile": "35.pdf",
+      "certificateImage": "35.jpg"
     },
     {
       "id": 36,
@@ -617,8 +617,8 @@
       "organization": "Mahatma Gandhi Institute of Technology",
       "venue": "Hyderabad",
       "association": "N/A",
-      "certificateFile": "FDP_036.pdf",
-      "certificateImage": "FDP_036.jpg"
+      "certificateFile": "36.pdf",
+      "certificateImage": "36.jpg"
     },
     {
       "id": 37,
@@ -633,8 +633,8 @@
       "organization": "Sree Chaitanya College of Engineering",
       "venue": "LMD Colony, Thimmapur, Karimnagar, TS",
       "association": "Approved by AICTE & Affiliated to JNTUH",
-      "certificateFile": "FDP_037.pdf",
-      "certificateImage": "FDP_037.jpg"
+      "certificateFile": "37.pdf",
+      "certificateImage": "37.jpg"
     },
     {
       "id": 38,
@@ -649,8 +649,8 @@
       "organization": "Synxa IT Pvt. Ltd.",
       "venue": "Skilltohire.com (Online)",
       "association": "Skill to Hire",
-      "certificateFile": "FDP_038.pdf",
-      "certificateImage": "FDP_038.jpg"
+      "certificateFile": "38.pdf",
+      "certificateImage": "38.jpg"
     },
     {
       "id": 39,
@@ -665,8 +665,8 @@
       "organization": "TASK",
       "venue": "Online",
       "association": "N/A",
-      "certificateFile": "FDP_039.pdf",
-      "certificateImage": "FDP_039.jpg"
+      "certificateFile": "39.pdf",
+      "certificateImage": "39.jpg"
     },
     {
       "id": 40,
@@ -681,12 +681,12 @@
       "organization": "Indian Institute of Technology Hyderabad",
       "venue": "Hyderabad / Online",
       "association": "PMMMNMTT supported by MHRD",
-      "certificateFile": "FDP_040.pdf",
-      "certificateImage": "FDP_040.jpg"
+      "certificateFile": "40.pdf",
+      "certificateImage": "40.jpg"
     },
     {
       "id": 41,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Emission Control Strategies in Thermal Power Plants",
       "type": "Workshop",
@@ -697,12 +697,12 @@
       "organization": "OP Jindal University, Raigarh & Jindal Institute of Power Technology",
       "venue": "Hybrid Mode",
       "association": "Jindal Power Limited, Tamnar & IEEE MP Section",
-      "certificateFile": "WEB_041.pdf",
-      "certificateImage": "WEB_041.jpg"
+      "certificateFile": "41.pdf",
+      "certificateImage": "41.jpg"
     },
     {
       "id": 42,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Lean Six Sigma White Belt",
       "type": "Training",
@@ -713,12 +713,12 @@
       "organization": "MF Treinamentos",
       "venue": "Online",
       "association": "Approved in Final Test",
-      "certificateFile": "WEB_042.pdf",
-      "certificateImage": "WEB_042.jpg"
+      "certificateFile": "42.pdf",
+      "certificateImage": "42.jpg"
     },
     {
       "id": 43,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Linear Algebra & its Importance in Engineering, Technology & Culture",
       "type": "Workshop",
@@ -729,12 +729,12 @@
       "organization": "SKILL LYNC",
       "venue": "Online",
       "association": "N/A",
-      "certificateFile": "WEB_043.pdf",
-      "certificateImage": "WEB_043.jpg"
+      "certificateFile": "43.pdf",
+      "certificateImage": "43.jpg"
     },
     {
       "id": 44,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Fluid Dynamics",
       "type": "Webinar",
@@ -745,12 +745,12 @@
       "organization": "Sri Venkateswara College of Engineering",
       "venue": "Pennalur, Sriperumbudur",
       "association": "Autonomous-Affiliated to Anna University",
-      "certificateFile": "WEB_044.pdf",
-      "certificateImage": "WEB_044.jpg"
+      "certificateFile": "44.pdf",
+      "certificateImage": "44.jpg"
     },
     {
       "id": 45,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "ADDITIVE MANUFACTURING FOR ENGINEERS",
       "type": "Webinar",
@@ -761,12 +761,12 @@
       "organization": "SRM Institute of Science & Technology",
       "venue": "Online",
       "association": "SRMIST",
-      "certificateFile": "WEB_045.pdf",
-      "certificateImage": "WEB_045.jpg"
+      "certificateFile": "45.pdf",
+      "certificateImage": "45.jpg"
     },
     {
       "id": 46,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "The Role of Entrepreneurship in Post COVID-19 Resurgence",
       "type": "Webinar",
@@ -777,12 +777,12 @@
       "organization": "Vignan Institute of Technology and Science, Deshmukhi",
       "venue": "Deshmukhi",
       "association": "In association with Dept of Mechanical Engineering / H-Bots Robotics",
-      "certificateFile": "WEB_046.pdf",
-      "certificateImage": "WEB_046.jpg"
+      "certificateFile": "46.pdf",
+      "certificateImage": "46.jpg"
     },
     {
       "id": 47,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Data Science Approach for Mechanical Engineers",
       "type": "Webinar",
@@ -793,12 +793,12 @@
       "organization": "Vignan Institute of Technology and Science, Deshmukhi",
       "venue": "Deshmukhi",
       "association": "N/A",
-      "certificateFile": "WEB_047.pdf",
-      "certificateImage": "WEB_047.jpg"
+      "certificateFile": "47.pdf",
+      "certificateImage": "47.jpg"
     },
     {
       "id": 48,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Microsoft Team",
       "type": "Webinar",
@@ -809,12 +809,12 @@
       "organization": "Vellore Institute of Technology Chennai",
       "venue": "Chennai, Tamil Nadu",
       "association": "Deemed to be University",
-      "certificateFile": "WEB_048.pdf",
-      "certificateImage": "WEB_048.jpg"
+      "certificateFile": "48.pdf",
+      "certificateImage": "48.jpg"
     },
     {
       "id": 49,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Innovative practices of Teaching & Learning in Sciences",
       "type": "Webinar",
@@ -825,12 +825,12 @@
       "organization": "Balaji Institute of Technology & Science",
       "venue": "Narsampet, Warangal Rural, Telangana",
       "association": "Affiliated to JNTU Hyderabad",
-      "certificateFile": "WEB_049.pdf",
-      "certificateImage": "WEB_049.jpg"
+      "certificateFile": "49.pdf",
+      "certificateImage": "49.jpg"
     },
     {
       "id": 50,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Atmanirbhar Bharat: Environmental Sustainability",
       "type": "National Seminar (Web)",
@@ -841,12 +841,12 @@
       "organization": "National Institute of Technical Teachers' Training and Research (NITTTR), Kolkata",
       "venue": "Online (Web)",
       "association": "SPIU, Uttar Pradesh",
-      "certificateFile": "WEB_050.pdf",
-      "certificateImage": "WEB_050.jpg"
+      "certificateFile": "50.pdf",
+      "certificateImage": "50.jpg"
     },
     {
       "id": 51,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Design Thinking to Digital Thinking",
       "type": "Webinar",
@@ -857,12 +857,12 @@
       "organization": "CMR Institute of Technology",
       "venue": "Hyderabad",
       "association": "UGC Autonomous",
-      "certificateFile": "WEB_051.pdf",
-      "certificateImage": "WEB_051.jpg"
+      "certificateFile": "51.pdf",
+      "certificateImage": "51.jpg"
     },
     {
       "id": 52,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Quantum Dot and its Applications",
       "type": "Webinar",
@@ -873,12 +873,12 @@
       "organization": "Vel Tech High Tech Dr.Rangarajan Dr.Sakunthala Engineering College",
       "venue": "Chennai, Tamilnadu",
       "association": "Institution's Innovation Council",
-      "certificateFile": "WEB_052.pdf",
-      "certificateImage": "WEB_052.jpg"
+      "certificateFile": "52.pdf",
+      "certificateImage": "52.jpg"
     },
     {
       "id": 53,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Halide Perovskites and Metal-Organic Frameworks for Solar Fuel Generation",
       "type": "Webinar",
@@ -889,12 +889,12 @@
       "organization": "St. Joseph's College of Engineering, Chennai",
       "venue": "Chennai",
       "association": "St. Joseph's Group of Institutions",
-      "certificateFile": "WEB_053.pdf",
-      "certificateImage": "WEB_053.jpg"
+      "certificateFile": "53.pdf",
+      "certificateImage": "53.jpg"
     },
     {
       "id": 54,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Security and Privacy Concerns in Online Teaching-Learning",
       "type": "Webinar",
@@ -905,12 +905,12 @@
       "organization": "Shri Shivaji Shikshan Prasarak Mandal's College of Education, Barshi",
       "venue": "Barshi",
       "association": "IQAC Organized",
-      "certificateFile": "WEB_054.pdf",
-      "certificateImage": "WEB_054.jpg"
+      "certificateFile": "54.pdf",
+      "certificateImage": "54.jpg"
     },
     {
       "id": 55,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Risk Management in Institutions & Industries",
       "type": "Webinar",
@@ -921,12 +921,12 @@
       "organization": "Sri Venkateshwara College of Engineering, Bengaluru",
       "venue": "Bengaluru",
       "association": "Institution's Innovation Council / IQAC",
-      "certificateFile": "WEB_055.pdf",
-      "certificateImage": "WEB_055.jpg"
+      "certificateFile": "55.pdf",
+      "certificateImage": "55.jpg"
     },
     {
       "id": 56,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Technology Design and Management in Future Urban Environment: Research Challenges and Opportunities",
       "type": "Webinar",
@@ -937,12 +937,12 @@
       "organization": "The Institution of Engineering and Technology",
       "venue": "Online / Chennai Network",
       "association": "IET Chennai Local Network",
-      "certificateFile": "WEB_056.pdf",
-      "certificateImage": "WEB_056.jpg"
+      "certificateFile": "56.pdf",
+      "certificateImage": "56.jpg"
     },
     {
       "id": 57,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Role of Guidance and Career Counselling in the Perspective of Present Pandemic Situation of Covid-19",
       "type": "Webinar",
@@ -953,12 +953,12 @@
       "organization": "Mankar College",
       "venue": "Purba Bardhaman, West Bengal",
       "association": "Affiliated to The University of Burdwan",
-      "certificateFile": "WEB_057.pdf",
-      "certificateImage": "WEB_057.jpg"
+      "certificateFile": "57.pdf",
+      "certificateImage": "57.jpg"
     },
     {
       "id": 58,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Matrices and Their Applications in Engineering",
       "type": "Webinar",
@@ -969,12 +969,12 @@
       "organization": "RGUKT-Nuzvid",
       "venue": "RGUKT-Nuzvid",
       "association": "Govt. of Andhra Pradesh Initiative",
-      "certificateFile": "WEB_058.pdf",
-      "certificateImage": "WEB_058.jpg"
+      "certificateFile": "58.pdf",
+      "certificateImage": "58.jpg"
     },
     {
       "id": 59,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "CLASSROOM COMMUNICATION STRATEGIES FOR TEACHER TRAINEES",
       "type": "Webinar",
@@ -985,12 +985,12 @@
       "organization": "St. John's College of Education, Palayamkottai",
       "venue": "Palayamkottai, Tirunelveli District, Tamilnadu",
       "association": "Tirunelveli Diocesan Trust Association",
-      "certificateFile": "WEB_059.pdf",
-      "certificateImage": "WEB_059.jpg"
+      "certificateFile": "59.pdf",
+      "certificateImage": "59.jpg"
     },
     {
       "id": 60,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Industrial Expectations From Budding Engineers",
       "type": "Webinar",
@@ -1001,12 +1001,12 @@
       "organization": "Lakshmi Ammal Polytechnic College",
       "venue": "Kovilpatti, Thoothukudi, Tamilnadu",
       "association": "N/A",
-      "certificateFile": "WEB_060.pdf",
-      "certificateImage": "WEB_060.jpg"
+      "certificateFile": "60.pdf",
+      "certificateImage": "60.jpg"
     },
     {
       "id": 61,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "CFD Application in Bluff Body Flow Analysis",
       "type": "Webinar",
@@ -1017,12 +1017,12 @@
       "organization": "Sri Venkateswara College of Engineering",
       "venue": "Pennalur, Sriperumbudur Tk",
       "association": "Institution's Innovation Council (Ministry of HRD Initiative)",
-      "certificateFile": "WEB_061.pdf",
-      "certificateImage": "WEB_061.jpg"
+      "certificateFile": "61.pdf",
+      "certificateImage": "61.jpg"
     },
     {
       "id": 62,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Data Mining Processes in Manufacturing System",
       "type": "Webinar",
@@ -1033,12 +1033,12 @@
       "organization": "Nadar Saraswathi College of Engineering and Technology, Theni",
       "venue": "Theni",
       "association": "ISTE, MHRD's Innovation Cell, Institution's Innovation Council",
-      "certificateFile": "WEB_062.pdf",
-      "certificateImage": "WEB_062.jpg"
+      "certificateFile": "62.pdf",
+      "certificateImage": "62.jpg"
     },
     {
       "id": 63,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Mathematics- A tool for Engineering and Technology",
       "type": "Webinar",
@@ -1049,12 +1049,12 @@
       "organization": "New Prince Shri Bhavani Arts and Science College",
       "venue": "Medavakkam, Chennai",
       "association": "N/A",
-      "certificateFile": "WEB_063.pdf",
-      "certificateImage": "WEB_063.jpg"
+      "certificateFile": "63.pdf",
+      "certificateImage": "63.jpg"
     },
     {
       "id": 64,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Flipped Classroom",
       "type": "Webinar",
@@ -1065,12 +1065,12 @@
       "organization": "Vellore Institute of Technology",
       "venue": "Chennai",
       "association": "N/A",
-      "certificateFile": "WEB_064.pdf",
-      "certificateImage": "WEB_064.jpg"
+      "certificateFile": "64.pdf",
+      "certificateImage": "64.jpg"
     },
     {
       "id": 65,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Envision Towards Particle Sciences and Biodiesel Production",
       "type": "International Webinar Series",
@@ -1081,12 +1081,12 @@
       "organization": "KPR Institute of Engineering and Technology (KPRIET)",
       "venue": "Coimbatore",
       "association": "Institution's Innovation Council & MHRD's Innovation Cell",
-      "certificateFile": "WEB_065.pdf",
-      "certificateImage": "WEB_065.jpg"
+      "certificateFile": "65.pdf",
+      "certificateImage": "65.jpg"
     },
     {
       "id": 66,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Recent Trends In Physical Sciences",
       "type": "National Webinar",
@@ -1097,12 +1097,12 @@
       "organization": "J.N.S. Govt. P.G. College, Shujalpur (M.P.)",
       "venue": "Shujalpur",
       "association": "IAPT RC-09",
-      "certificateFile": "WEB_066.pdf",
-      "certificateImage": "WEB_066.jpg"
+      "certificateFile": "66.pdf",
+      "certificateImage": "66.jpg"
     },
     {
       "id": 67,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Dr. A. P. J. Abdul Kalam Memorial Lecture: PURA – Providing Urban Amenities in Rural Areas",
       "type": "Memorial Lecture",
@@ -1113,12 +1113,12 @@
       "organization": "Anna University Tiruchirappalli",
       "venue": "Tiruchirappalli",
       "association": "Vision 2020",
-      "certificateFile": "WEB_067.pdf",
-      "certificateImage": "WEB_067.jpg"
+      "certificateFile": "67.pdf",
+      "certificateImage": "67.jpg"
     },
     {
       "id": 68,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Automation, Robotics and Intelligence",
       "type": "Webinar",
@@ -1129,12 +1129,12 @@
       "organization": "MAKAUT, West Bengal",
       "venue": "Online",
       "association": "N/A",
-      "certificateFile": "WEB_068.pdf",
-      "certificateImage": "WEB_068.jpg"
+      "certificateFile": "68.pdf",
+      "certificateImage": "68.jpg"
     },
     {
       "id": 69,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Turbocharged IC Engines & Market Expectations",
       "type": "Webinar",
@@ -1145,12 +1145,12 @@
       "organization": "St. Joseph's College of Engineering",
       "venue": "OMR, Chennai",
       "association": "St. Joseph's Group of Institutions",
-      "certificateFile": "WEB_069.pdf",
-      "certificateImage": "WEB_069.jpg"
+      "certificateFile": "69.pdf",
+      "certificateImage": "69.jpg"
     },
     {
       "id": 70,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "JOURNEY OF ESTABLISHING A DIGITAL TWIN",
       "type": "Webinar",
@@ -1161,12 +1161,12 @@
       "organization": "PSG College of Technology",
       "venue": "Coimbatore, Tamil Nadu",
       "association": "N/A",
-      "certificateFile": "WEB_070.pdf",
-      "certificateImage": "WEB_070.jpg"
+      "certificateFile": "70.pdf",
+      "certificateImage": "70.jpg"
     },
     {
       "id": 71,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Mathematics is the Brain of Engineering & Technology",
       "type": "International Webinar",
@@ -1177,12 +1177,12 @@
       "organization": "VBIT",
       "venue": "Hyderabad, Telangana",
       "association": "Under UGC",
-      "certificateFile": "WEB_071.pdf",
-      "certificateImage": "WEB_071.jpg"
+      "certificateFile": "71.pdf",
+      "certificateImage": "71.jpg"
     },
     {
       "id": 72,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "A Practical Approach on Industry 4.0 & it's Implementation in Smart Factories",
       "type": "Webinar",
@@ -1193,12 +1193,12 @@
       "organization": "MGIT",
       "venue": "Hyderabad",
       "association": "MTAB Technology Centre",
-      "certificateFile": "WEB_072.pdf",
-      "certificateImage": "WEB_072.jpg"
+      "certificateFile": "72.pdf",
+      "certificateImage": "72.jpg"
     },
     {
       "id": 73,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Career Awareness & Job Opportunities in India and Overseas",
       "type": "Seminar",
@@ -1209,12 +1209,12 @@
       "organization": "Govt. P. G. College, Bina",
       "venue": "Bina",
       "association": "Swami Vivekananda Career Guidance Scheme",
-      "certificateFile": "WEB_073.pdf",
-      "certificateImage": "WEB_073.jpg"
+      "certificateFile": "73.pdf",
+      "certificateImage": "73.jpg"
     },
     {
       "id": 74,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Job Opportunities for Engineers in Defence Services",
       "type": "Webinar",
@@ -1225,12 +1225,12 @@
       "organization": "Vemana Institute of Technology",
       "venue": "Bengaluru",
       "association": "Karnataka ReddyJana Sangha",
-      "certificateFile": "WEB_074.pdf",
-      "certificateImage": "WEB_074.jpg"
+      "certificateFile": "74.pdf",
+      "certificateImage": "74.jpg"
     },
     {
       "id": 75,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Additive Manufacturing",
       "type": "Workshop",
@@ -1241,12 +1241,12 @@
       "organization": "Mandsaur University",
       "venue": "Mandsaur",
       "association": "Mcube 3D Printing Pvt. Ltd.",
-      "certificateFile": "WEB_075.pdf",
-      "certificateImage": "WEB_075.jpg"
+      "certificateFile": "75.pdf",
+      "certificateImage": "75.jpg"
     },
     {
       "id": 76,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Robots in COVID-19 & Robotics and its Future Scope",
       "type": "Webinar",
@@ -1257,12 +1257,12 @@
       "organization": "C. Abdul Hakeem College",
       "venue": "Vellore",
       "association": "N/A",
-      "certificateFile": "WEB_076.pdf",
-      "certificateImage": "WEB_076.jpg"
+      "certificateFile": "76.pdf",
+      "certificateImage": "76.jpg"
     },
     {
       "id": 77,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "How to Stand out from Crowd as Fresh Engineering Graduate in Renewed Industry Scenario",
       "type": "Webinar",
@@ -1273,12 +1273,12 @@
       "organization": "Sri Taralabalu Jagadguru Institute of Technology",
       "venue": "Ranebennur",
       "association": "N/A",
-      "certificateFile": "WEB_077.pdf",
-      "certificateImage": "WEB_077.jpg"
+      "certificateFile": "77.pdf",
+      "certificateImage": "77.jpg"
     },
     {
       "id": 78,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Resume Writing",
       "type": "Workshop",
@@ -1289,12 +1289,12 @@
       "organization": "ABES Engineering College",
       "venue": "Ghaziabad",
       "association": "N/A",
-      "certificateFile": "WEB_078.pdf",
-      "certificateImage": "WEB_078.jpg"
+      "certificateFile": "78.pdf",
+      "certificateImage": "78.jpg"
     },
     {
       "id": 79,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Testing of Internal Combustion Engines",
       "type": "Webinar",
@@ -1305,12 +1305,12 @@
       "organization": "Francis Xavier Engineering College",
       "venue": "Tirunelveli",
       "association": "Presented by NIT Tiruchirappalli",
-      "certificateFile": "WEB_079.pdf",
-      "certificateImage": "WEB_079.jpg"
+      "certificateFile": "79.pdf",
+      "certificateImage": "79.jpg"
     },
     {
       "id": 80,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Machine Learning with WEKA",
       "type": "National Webinar",
@@ -1321,12 +1321,12 @@
       "organization": "Guru Nanak College",
       "venue": "Budhlada",
       "association": "N/A",
-      "certificateFile": "WEB_080.pdf",
-      "certificateImage": "WEB_080.jpg"
+      "certificateFile": "80.pdf",
+      "certificateImage": "80.jpg"
     },
     {
       "id": 81,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Indoor Air Quality - Creating Healthier Spaces",
       "type": "Technical Talk / Webinar",
@@ -1337,12 +1337,12 @@
       "organization": "Nawab Shah Alam Khan College of Engineering & Technology",
       "venue": "Malakpet, Hyderabad",
       "association": "Webinar Series",
-      "certificateFile": "WEB_081.pdf",
-      "certificateImage": "WEB_081.jpg"
+      "certificateFile": "81.pdf",
+      "certificateImage": "81.jpg"
     },
     {
       "id": 82,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Energy Conservation and Management",
       "type": "Webinar",
@@ -1353,12 +1353,12 @@
       "organization": "Francis Xavier Engineering College",
       "venue": "Tirunelveli",
       "association": "N/A",
-      "certificateFile": "WEB_082.pdf",
-      "certificateImage": "WEB_082.jpg"
+      "certificateFile": "82.pdf",
+      "certificateImage": "82.jpg"
     },
     {
       "id": 83,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Conducting Polymer Nanocomposites And Its Applications",
       "type": "Webinar",
@@ -1369,12 +1369,12 @@
       "organization": "AMC Engineering College",
       "venue": "Bengaluru",
       "association": "N/A",
-      "certificateFile": "WEB_083.pdf",
-      "certificateImage": "WEB_083.jpg"
+      "certificateFile": "83.pdf",
+      "certificateImage": "83.jpg"
     },
     {
       "id": 84,
-      "category": "WEB",
+      "category": "Webinars",
       "categoryName": "Webinars",
       "name": "Fuzzy Set Theory and its Applications (FSTA-2020)",
       "type": "Seminar",
@@ -1385,12 +1385,12 @@
       "organization": "GITAM (Deemed to be University)",
       "venue": "Visakhapatnam, Andhra Pradesh",
       "association": "National Mathematics Day",
-      "certificateFile": "WEB_084.pdf",
-      "certificateImage": "WEB_084.jpg"
+      "certificateFile": "84.pdf",
+      "certificateImage": "84.jpg"
     },
     {
       "id": 85,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Emerging Trends In Thermal Engineering",
       "type": "Quiz",
@@ -1401,12 +1401,12 @@
       "organization": "Sree Chaitanya College of Engineering, Karimnagar",
       "venue": "Karimnagar",
       "association": "A Five Day National Level Online Workshop",
-      "certificateFile": "QZ_085.pdf",
-      "certificateImage": "QZ_085.jpg"
+      "certificateFile": "Webinars85.pdf",
+      "certificateImage": "Webinars85.jpg"
     },
     {
       "id": 86,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Fundamentals of Mechanical Engineering",
       "type": "National Level E-Quiz",
@@ -1417,12 +1417,12 @@
       "organization": "Vidyavardhaka College of Engineering",
       "venue": "Mysuru",
       "association": "N/A",
-      "certificateFile": "QZ_086.pdf",
-      "certificateImage": "QZ_086.jpg"
+      "certificateFile": "Webinars86.pdf",
+      "certificateImage": "Webinars86.jpg"
     },
     {
       "id": 87,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Basics of Mechanical Engineering",
       "type": "E-Quiz",
@@ -1433,12 +1433,12 @@
       "organization": "Vidyavardhaka College of Engineering",
       "venue": "Mysuru",
       "association": "N/A",
-      "certificateFile": "QZ_087.pdf",
-      "certificateImage": "QZ_087.jpg"
+      "certificateFile": "Webinars87.pdf",
+      "certificateImage": "Webinars87.jpg"
     },
     {
       "id": 88,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Quiz On Applied Physics",
       "type": "Quiz",
@@ -1449,12 +1449,12 @@
       "organization": "Vaagdevi College of Engineering",
       "venue": "Warangal / Online",
       "association": "Viswambhara Educational Society",
-      "certificateFile": "QZ_088.pdf",
-      "certificateImage": "QZ_088.jpg"
+      "certificateFile": "Webinars88.pdf",
+      "certificateImage": "Webinars88.jpg"
     },
     {
       "id": 89,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "National Level Online Quiz on Mechanical Engineering",
       "type": "Quiz",
@@ -1465,12 +1465,12 @@
       "organization": "College of Engineering, Ambajogai Dist. Beed",
       "venue": "Ambajogai Dist. Beed",
       "association": "Mahatma Basaveshwar Education Society",
-      "certificateFile": "QZ_089.pdf",
-      "certificateImage": "QZ_089.jpg"
+      "certificateFile": "Webinars89.pdf",
+      "certificateImage": "Webinars89.jpg"
     },
     {
       "id": 90,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "National Level Online Quiz on Production Engineering",
       "type": "Quiz",
@@ -1481,12 +1481,12 @@
       "organization": "Vaagdevi College of Engineering, Warangal",
       "venue": "Warangal",
       "association": "Vishwambhara Educational Society",
-      "certificateFile": "QZ_090.pdf",
-      "certificateImage": "QZ_090.jpg"
+      "certificateFile": "Webinars90.pdf",
+      "certificateImage": "Webinars90.jpg"
     },
     {
       "id": 91,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Thermal Engineering",
       "type": "Quiz",
@@ -1497,12 +1497,12 @@
       "organization": "Vidyavardhaka Polytechnic, Mysuru",
       "venue": "Mysuru",
       "association": "Vidyavardhaka Sangha (Regd.)",
-      "certificateFile": "QZ_091.pdf",
-      "certificateImage": "QZ_091.jpg"
+      "certificateFile": "Webinars91.pdf",
+      "certificateImage": "Webinars91.jpg"
     },
     {
       "id": 92,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "National Level Online Quiz On Experimental Physics",
       "type": "Quiz",
@@ -1513,12 +1513,12 @@
       "organization": "RISE Krishna Sai Prakasam Group of Institutions",
       "venue": "Vallur, Ongole, Prakasam Dt, Andhra Pradesh",
       "association": "NBA Accredited Institution",
-      "certificateFile": "QZ_092.pdf",
-      "certificateImage": "QZ_092.jpg"
+      "certificateFile": "Webinars92.pdf",
+      "certificateImage": "Webinars92.jpg"
     },
     {
       "id": 93,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Nuclear & Particle Physics-2020",
       "type": "E-Quiz",
@@ -1529,12 +1529,12 @@
       "organization": "V.M.K S.R.VASTRAD ARTS, SCIENCE & V.S.BELLIHAL COMMERCE COLLEGE",
       "venue": "Hungund / Bagalkot, Karnataka",
       "association": "IQAC Initiative",
-      "certificateFile": "QZ_093.pdf",
-      "certificateImage": "QZ_093.jpg"
+      "certificateFile": "Webinars93.pdf",
+      "certificateImage": "Webinars93.jpg"
     },
     {
       "id": 94,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Thermal Engineering-I",
       "type": "Quiz",
@@ -1545,12 +1545,12 @@
       "organization": "Nadimpalli Satyanarayana Raju Institute of Technology",
       "venue": "Visakhapatnam",
       "association": "N/A",
-      "certificateFile": "QZ_094.pdf",
-      "certificateImage": "QZ_094.jpg"
+      "certificateFile": "Webinars94.pdf",
+      "certificateImage": "Webinars94.jpg"
     },
     {
       "id": 95,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "E-Quiz on NBA: Level-1",
       "type": "Quiz",
@@ -1561,12 +1561,12 @@
       "organization": "Sapthagiri College of Engineering",
       "venue": "Bengaluru",
       "association": "Affiliated to VTU, Belagavi & Approved by AICTE",
-      "certificateFile": "QZ_095.pdf",
-      "certificateImage": "QZ_095.jpg"
+      "certificateFile": "Webinars95.pdf",
+      "certificateImage": "Webinars95.jpg"
     },
     {
       "id": 96,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Fluid Mechanics",
       "type": "Online Technical Quiz",
@@ -1577,12 +1577,12 @@
       "organization": "Visvesvaraya College of Engineering and Technology",
       "venue": "Hyderabad",
       "association": "N/A",
-      "certificateFile": "QZ_096.pdf",
-      "certificateImage": "QZ_096.jpg"
+      "certificateFile": "Webinars96.pdf",
+      "certificateImage": "Webinars96.jpg"
     },
     {
       "id": 97,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "e-Quiz on Physics",
       "type": "Quiz",
@@ -1593,12 +1593,12 @@
       "organization": "Field Marshal K. M. Cariappa College, Madikeri (Mangalore University)",
       "venue": "Online",
       "association": "N/A",
-      "certificateFile": "QZ_097.pdf",
-      "certificateImage": "QZ_097.jpg"
+      "certificateFile": "Webinars97.pdf",
+      "certificateImage": "Webinars97.jpg"
     },
     {
       "id": 98,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Kargil Vijay Diwas: The National Heroes",
       "type": "Quiz",
@@ -1609,12 +1609,12 @@
       "organization": "Swami Swatantranand Memorial College",
       "venue": "Dinanagar, Gurdaspur, Punjab",
       "association": "Affiliated to Guru Nanak Dev University, Amritsar",
-      "certificateFile": "QZ_098.pdf",
-      "certificateImage": "QZ_098.jpg"
+      "certificateFile": "Webinars98.pdf",
+      "certificateImage": "Webinars98.jpg"
     },
     {
       "id": 99,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Strength of Materials",
       "type": "National Level Online Quiz",
@@ -1625,12 +1625,12 @@
       "organization": "Vishnu Institute of Technology",
       "venue": "Bhimavaram",
       "association": "N/A",
-      "certificateFile": "QZ_099.pdf",
-      "certificateImage": "QZ_099.jpg"
+      "certificateFile": "Webinars99.pdf",
+      "certificateImage": "Webinars99.jpg"
     },
     {
       "id": 100,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Automobile Engineering",
       "type": "National Level Quiz",
@@ -1641,12 +1641,12 @@
       "organization": "Mandsaur University",
       "venue": "Mandsaur",
       "association": "N/A",
-      "certificateFile": "QZ_100.pdf",
-      "certificateImage": "QZ_100.jpg"
+      "certificateFile": "Webinars100.pdf",
+      "certificateImage": "Webinars100.jpg"
     },
     {
       "id": 101,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Machine Tools",
       "type": "Online Quiz",
@@ -1657,12 +1657,12 @@
       "organization": "Sree Visvesvaraya Institute of Technology & Science",
       "venue": "Mahabubnagar",
       "association": "N/A",
-      "certificateFile": "QZ_101.pdf",
-      "certificateImage": "QZ_101.jpg"
+      "certificateFile": "Webinars101.pdf",
+      "certificateImage": "Webinars101.jpg"
     },
     {
       "id": 102,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Quantitative Aptitude",
       "type": "Online Quiz",
@@ -1673,12 +1673,12 @@
       "organization": "Madurai Sivakasi Nadars Pioneer Meenakshi Women's College",
       "venue": "Poovanthi",
       "association": "N/A",
-      "certificateFile": "QZ_102.pdf",
-      "certificateImage": "QZ_102.jpg"
+      "certificateFile": "Webinars102.pdf",
+      "certificateImage": "Webinars102.jpg"
     },
     {
       "id": 103,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Manufacturing Processes",
       "type": "Online Quiz",
@@ -1689,12 +1689,12 @@
       "organization": "Valivalam Desikar Polytechnic College",
       "venue": "Nagapattinam",
       "association": "N/A",
-      "certificateFile": "QZ_103.pdf",
-      "certificateImage": "QZ_103.jpg"
+      "certificateFile": "Webinars103.pdf",
+      "certificateImage": "Webinars103.jpg"
     },
     {
       "id": 104,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Elements of Mechanical Engineering",
       "type": "National Level Online Quiz",
@@ -1705,12 +1705,12 @@
       "organization": "Sir M Visvesvaraya Institute of Technology",
       "venue": "Bengaluru",
       "association": "N/A",
-      "certificateFile": "QZ_104.pdf",
-      "certificateImage": "QZ_104.jpg"
+      "certificateFile": "Webinars104.pdf",
+      "certificateImage": "Webinars104.jpg"
     },
     {
       "id": 105,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Basics on Mechanical Engineering-2020",
       "type": "E-Quiz",
@@ -1721,12 +1721,12 @@
       "organization": "Sir Vishveshwaraiah Institute of Science & Technology",
       "venue": "Madanapalle",
       "association": "N/A",
-      "certificateFile": "QZ_105.pdf",
-      "certificateImage": "QZ_105.jpg"
+      "certificateFile": "Webinars105.pdf",
+      "certificateImage": "Webinars105.jpg"
     },
     {
       "id": 106,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Operation Research",
       "type": "Online Quiz",
@@ -1737,12 +1737,12 @@
       "organization": "Sree Visvesvaraya Institute of Technology & Science",
       "venue": "Mahabubnagar",
       "association": "N/A",
-      "certificateFile": "QZ_106.pdf",
-      "certificateImage": "QZ_106.jpg"
+      "certificateFile": "Webinars106.pdf",
+      "certificateImage": "Webinars106.jpg"
     },
     {
       "id": 107,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Finite Element Analysis",
       "type": "Online Quiz",
@@ -1753,12 +1753,12 @@
       "organization": "Ganadipathy Tulsi's Jain Engineering College",
       "venue": "Vellore",
       "association": "N/A",
-      "certificateFile": "QZ_107.pdf",
-      "certificateImage": "QZ_107.jpg"
+      "certificateFile": "Webinars107.pdf",
+      "certificateImage": "Webinars107.jpg"
     },
     {
       "id": 108,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Advanced I.C. Engines",
       "type": "National Level Quiz",
@@ -1769,12 +1769,12 @@
       "organization": "Malla Reddy Engineering College (Autonomous)",
       "venue": "Secunderabad",
       "association": "N/A",
-      "certificateFile": "QZ_108.pdf",
-      "certificateImage": "QZ_108.jpg"
+      "certificateFile": "Webinars108.pdf",
+      "certificateImage": "Webinars108.jpg"
     },
     {
       "id": 109,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Robots in Industry 4.0",
       "type": "Technical Quiz",
@@ -1785,12 +1785,12 @@
       "organization": "Malla Reddy Engineering College (Autonomous)",
       "venue": "Secunderabad",
       "association": "N/A",
-      "certificateFile": "QZ_109.pdf",
-      "certificateImage": "QZ_109.jpg"
+      "certificateFile": "Webinars109.pdf",
+      "certificateImage": "Webinars109.jpg"
     },
     {
       "id": 110,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Industrial Safety",
       "type": "E-Quiz",
@@ -1801,12 +1801,12 @@
       "organization": "Vidyavardhaka College of Engineering",
       "venue": "Mysuru",
       "association": "N/A",
-      "certificateFile": "QZ_110.pdf",
-      "certificateImage": "QZ_110.jpg"
+      "certificateFile": "Webinars110.pdf",
+      "certificateImage": "Webinars110.jpg"
     },
     {
       "id": 111,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Automotive Catechize",
       "type": "Online Quiz",
@@ -1817,12 +1817,12 @@
       "organization": "Kumaraguru College of Technology",
       "venue": "Coimbatore",
       "association": "SAEINDIA KCT Collegiate Club",
-      "certificateFile": "QZ_111.pdf",
-      "certificateImage": "QZ_111.jpg"
+      "certificateFile": "Webinars111.pdf",
+      "certificateImage": "Webinars111.jpg"
     },
     {
       "id": 112,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "E-Quiz on Mathematics",
       "type": "Quiz",
@@ -1833,12 +1833,12 @@
       "organization": "Siddhar Sivagnaani Arts and Science College",
       "venue": "Bommayapalayam",
       "association": "N/A",
-      "certificateFile": "QZ_112.pdf",
-      "certificateImage": "QZ_112.jpg"
+      "certificateFile": "Webinars112.pdf",
+      "certificateImage": "Webinars112.jpg"
     },
     {
       "id": 113,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Robotics-2020",
       "type": "E-Quiz",
@@ -1849,12 +1849,12 @@
       "organization": "NSHM Knowledge Campus",
       "venue": "Durgapur",
       "association": "N/A",
-      "certificateFile": "QZ_113.pdf",
-      "certificateImage": "QZ_113.jpg"
+      "certificateFile": "Webinars113.pdf",
+      "certificateImage": "Webinars113.jpg"
     },
     {
       "id": 114,
-      "category": "QZ",
+      "category": "Quiz",
       "categoryName": "Quizzes",
       "name": "Recent Development in Science and Technology",
       "type": "National Level Online Quiz",
@@ -1865,12 +1865,12 @@
       "organization": "Mandsaur University",
       "venue": "Mandsaur",
       "association": "N/A",
-      "certificateFile": "QZ_114.pdf",
-      "certificateImage": "QZ_114.jpg"
+      "certificateFile": "Webinars114.pdf",
+      "certificateImage": "Webinars114.jpg"
     },
     {
       "id": 115,
-      "category": "CONF",
+      "category": "Conference",
       "categoryName": "Conferences",
       "name": "2nd International Conference on Fluids Under Confinement",
       "type": "Conference",
@@ -1881,8 +1881,8 @@
       "organization": "IIT Kharagpur",
       "venue": "IIT Kharagpur",
       "association": "SPARC (Scheme for Promotion of Academic and Research Collaboration)",
-      "certificateFile": "CONF_115.pdf",
-      "certificateImage": "CONF_115.jpg"
+      "certificateFile": "115.pdf",
+      "certificateImage": "115.jpg"
     }
   ]
 }
