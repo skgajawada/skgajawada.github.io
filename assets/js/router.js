@@ -52,7 +52,7 @@ class Router {
     }
 }
 
-const router = new Router(false);
+const router = new Router();
 
 // Portfolio Data Manager
 class DataManager {
@@ -590,7 +590,6 @@ router.register('/professional-dev', new ProfessionalDevPage());
 router.register('/skills', new SkillsPage());
 router.register('/contact', new ContactPage());
 
-router.init();
 // Helper Functions
 function filterProjects(category) {
     const buttons = document.querySelectorAll('.filter-btn');
