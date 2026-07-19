@@ -10,15 +10,15 @@
 "institution":"Guru Nanak Institutions Technical Campus",
 "department":"Mechanical Engineering",
 "offerings":[
-{"batch":"2022–2023","semester":"I"},
-{"batch":"2023–2024","semester":"II"}
+{"batch":"2022-2023","semester":"I"},
+{"batch":"2023-2024","semester":"II"}
 ]
 },
 {
 "institution":"Sree Chaitanya College of Engineering",
 "department":"Mechanical Engineering",
 "offerings":[
-{"batch":"2019–2023","semester":"I"}
+{"batch":"2019-2020","semester":"I"}
 ]
 }
 ]
@@ -42,7 +42,7 @@
 "institution":"Sree Chaitanya College of Engineering",
 "department":"Mechanical Engineering",
 "offerings":[
-{"batch":"2019–2023","semester":"I"}
+{"batch":"2019-2020","semester":"I"}
 ]
 }
 ]
@@ -65,7 +65,7 @@
 "institution":"Sree Chaitanya College of Engineering",
 "department":"Mechanical Engineering",
 "offerings":[
-{"batch":"2018–2022","semester":"IV"}
+{"batch":"2018-2029","semester":"IV"}
 ]
 }
 ]
@@ -82,14 +82,14 @@
 "department":"Mechanical Engineering",
 "offerings":[
 {"batch":"2022–2026","semester":"III"},
-{"batch":"2023–2027","semester":"III"}
+{"batch":"2023-2024","semester":"III"}
 ]
 },
 {
 "institution":"Sree Chaitanya College of Engineering",
 "department":"Mechanical Engineering",
 "offerings":[
-{"batch":"2018–2022","semester":"III"}
+{"batch":"2018-2029","semester":"III"}
 ]
 }
 ]
@@ -106,14 +106,14 @@
 "department":"Mechanical Engineering",
 "offerings":[
 {"batch":"2022–2026","semester":"III"},
-{"batch":"2023–2027","semester":"III"}
+{"batch":"2023-2024","semester":"III"}
 ]
 },
 {
 "institution":"Sree Chaitanya College of Engineering",
 "department":"Mechanical Engineering",
 "offerings":[
-{"batch":"2018–2022","semester":"III"}
+{"batch":"2018-2029","semester":"III"}
 ]
 }
 ]
@@ -136,7 +136,7 @@
 "institution":"Sree Chaitanya College of Engineering",
 "department":"Mechanical Engineering",
 "offerings":[
-{"batch":"2018–2022","semester":"V"}
+{"batch":"2018-2029","semester":"V"}
 ]
 }
 ]
@@ -159,7 +159,7 @@
 "institution":"Sree Chaitanya College of Engineering",
 "department":"Mechanical Engineering",
 "offerings":[
-{"batch":"2018–2022","semester":"IV"}
+{"batch":"2018-2029","semester":"IV"}
 ]
 }
 ]
