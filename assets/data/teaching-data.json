@@ -1,61 +1,94 @@
 {
-  "subjects": [
-    {
-      "id": "engineering-mechanics",
-      "title": "Engineering Mechanics",
-      "icon": "fa-cogs",
-      "folder": "engineering mechanics",
-      "teaching": [
-        {
-          "institution": "Guru Nanak Institutions Technical Campus",
-          "department": "Mechanical Engineering",
-          "batch": "2022–2023",
-          "semester": "I"
-        },
-        {
-          "institution": "Guru Nanak Institutions Technical Campus",
-          "department": "Mechanical Engineering",
-          "batch": "2023–2024",
-          "semester": "II"
-        },
-        {
-          "institution": "Sree Chaitanya College of Engineering",
-          "department": "Mechanical Engineering",
-          "batch": "2019–2023",
-          "semester": "I"
-        }
-      ]
-    },
+"id":"engineering-mechanics",
+"title":"Engineering Mechanics",
+"icon":"fa-cogs",
+"folder":"Engineering Mechanics",
+"teaching":[
+{
+"institution":"Guru Nanak Institutions Technical Campus",
+"department":"Mechanical Engineering",
+"offerings":[
+{"batch":"2022–2023","semester":"I"},
+{"batch":"2023–2024","semester":"II"}
+]
+},
+{
+"institution":"Sree Chaitanya College of Engineering",
+"department":"Mechanical Engineering",
+"offerings":[
+{"batch":"2019–2023","semester":"I"}
+]
+}
+]
+},
 
-    {
-      "id": "engineering-graphics",
-      "title": "Engineering Graphics",
-      "icon": "fa-drafting-compass",
-      "folder": "engineering graphics",
-      "teaching": [
-        {
-          "institution": "Guru Nanak Institutions Technical Campus",
-          "department": "Mechanical Engineering",
-          "batch": "2021–2025",
-          "semester": "I"
-        }
-      ]
-    },
+{
+"id":"engineering-graphics",
+"title":"Engineering Graphics",
+"icon":"fa-drafting-compass",
+"folder":"Engineering Graphics",
+"teaching":[
+{
+"institution":"Guru Nanak Institutions Technical Campus",
+"department":"Mechanical Engineering",
+"offerings":[
+{"batch":"2021–2025","semester":"I"},
+{"batch":"2022–2026","semester":"I"}
+]
+},
+{
+"institution":"Sree Chaitanya College of Engineering",
+"department":"Mechanical Engineering",
+"offerings":[
+{"batch":"2019–2023","semester":"I"}
+]
+}
+]
+},
 
-    {
-      "id": "mechanics-of-solids",
-      "title": "Mechanics of Solids",
-      "icon": "fa-cube",
-      "folder": "mechanics of solids",
-      "teaching": [
-        {
-          "institution": "Guru Nanak Institutions Technical Campus",
-          "department": "Mechanical Engineering",
-          "batch": "2022–2026",
-          "semester": "III"
-        }
-      ]
-    }
+{
+"id":"fmhm",
+"title":"Fluid Mechanics and Hydraulic Machines",
+"icon":"fa-water",
+"folder":"FMHM",
+"teaching":[
+{
+"institution":"Guru Nanak Institutions Technical Campus",
+"department":"Mechanical Engineering",
+"offerings":[
+{"batch":"2022–2026","semester":"IV"}
+]
+},
+{
+"institution":"Sree Chaitanya College of Engineering",
+"department":"Mechanical Engineering",
+"offerings":[
+{"batch":"2018–2022","semester":"IV"}
+]
+}
+]
+},
 
-  ]
+{
+"id":"mechanics-of-solids",
+"title":"Mechanics of Solids",
+"icon":"fa-cube",
+"folder":"Mechanics of Solids",
+"teaching":[
+{
+"institution":"Guru Nanak Institutions Technical Campus",
+"department":"Mechanical Engineering",
+"offerings":[
+{"batch":"2022–2026","semester":"III"},
+{"batch":"2023–2027","semester":"III"}
+]
+},
+{
+"institution":"Sree Chaitanya College of Engineering",
+"department":"Mechanical Engineering",
+"offerings":[
+{"batch":"2018–2022","semester":"III"}
+]
+}
+]
 }
