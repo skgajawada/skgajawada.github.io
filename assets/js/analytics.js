@@ -6,10 +6,10 @@ class AnalyticsDashboard extends Component {
         this.certs = await DataManager.getCertificates();
 
         const totalCerts = this.certs.certificates.length;
-        const roundedCerts =
-            totalCerts >= 100
-                ? `${Math.floor(totalCerts / 10) * 10}+`
-                : totalCerts.toString();
+        const roundedCerts = DataManager.getRoundedCount(totalCerts, 100);
+        const moocs = await DataManager.getMOOCs();
+        const totalMoocs = moocs.moocCertifications.length;
+        const roundedMoocs = DataManager.getRoundedCount(totalMoocs, 10);
         this.certsByCategory = {};
 
         this.certs.categories.forEach(cat => {
@@ -89,7 +89,8 @@ ${roundedCerts}
 
 <div class="metric-title">
 
-Professional Development
+Professional Development<br>
+Certifications
 
 </div>
 
@@ -119,7 +120,7 @@ Years Teaching Experience
 
 <div class="metric-number purple">
 
-30+
+${roundedMoocs}
 
 </div>
 
