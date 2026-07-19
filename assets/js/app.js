@@ -31,24 +31,21 @@ class App {
         });
     }
 
-    setupMobileMenu() {
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
+    setupMobileMenu(){
 
-        if (hamburger) {
-            hamburger.addEventListener('click', () => {
-                navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
-                navMenu.style.position = 'absolute';
-                navMenu.style.top = '100%';
-                navMenu.style.left = '0';
-                navMenu.style.right = '0';
-                navMenu.style.flexDirection = 'column';
-                navMenu.style.background = 'white';
-                navMenu.style.padding = '1rem';
-                navMenu.style.borderRadius = '0 0 10px 10px';
-            });
-        }
-    }
+const hamburger=document.querySelector(".hamburger");
+
+const navMenu=document.querySelector(".nav-menu");
+
+if(!hamburger||!navMenu)return;
+
+hamburger.addEventListener("click",()=>{
+
+navMenu.classList.toggle("open");
+
+});
+
+}
 }
 
 // Initialize app when DOM is ready
