@@ -225,8 +225,4 @@ Access Materials
 }
 
 }
-</section>
-`;
-}
 
-}
