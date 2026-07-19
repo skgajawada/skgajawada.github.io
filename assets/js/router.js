@@ -260,16 +260,7 @@ ${currentSubject.courses.map(course=>`
 Batch : ${course.batch}
 </p>
 
-<a href="assets/teaching/${course.folder}/index.html"
-target="_blank"
-class="btn btn-primary"
-style="display:block;text-align:center;margin-top:1rem;">
 
-<i class="fas fa-folder-open"></i>
-
-Access Materials
-
-</a>
 <a href="assets/teaching/${course.folder}/index.html"
 target="_blank"
 class="btn btn-primary"
