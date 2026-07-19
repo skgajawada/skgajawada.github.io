@@ -302,42 +302,15 @@ margin-bottom:15px;
 </div>
 
 `).join("")}
-<div style="text-align:center;margin-top:30px;">
-
-<a
-href="assets/teaching/${subject.folder}/index.html"
-target="_blank"
-class="btn btn-primary">
-
-<i class="fas fa-folder-open"></i>
-
-<div style="
-text-align:center;
-margin-top:40px;
-">
-
-<a
-href="assets/teaching/${subject.folder}/index.html"
-target="_blank"
-class="btn btn-primary"
-style="
-padding:16px 45px;
-font-size:1.05rem;
-border-radius:10px;
-">
-
-<i class="fas fa-folder-open"></i>
-
-Access Course Materials
-
-</a>
-
+<div style="text-align:center;margin-top:40px;">
+    <a href="assets/teaching/${subject.folder}/index.html"
+       target="_blank"
+       class="btn btn-primary"
+       style="padding:16px 45px;font-size:1.05rem;border-radius:10px;">
+        <i class="fas fa-folder-open"></i>
+        Access Course Materials
+    </a>
 </div>
-
-</a>
-
-</div>
-
 </div>
 
 </section>
