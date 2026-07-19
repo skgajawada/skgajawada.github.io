@@ -130,7 +130,177 @@ class Component {
         revealElements.forEach(el => observer.observe(el));
     }
 }
+// TEACHING PAGE
+class TeachingPage extends Component{
 
+async render(params){
+
+const teaching=await DataManager.getTeaching();
+
+const subjectId=params&&params[0];
+
+if(!subjectId){
+
+return`
+
+<section class="fade-in">
+
+<h1 class="section-title">
+
+Teaching
+
+</h1>
+
+<div class="cards-grid stagger-container">
+
+${teaching.subjects.map(subject=>`
+
+<div class="card fade-in"
+onclick="navigateTo('#/teaching/${subject.id}')"
+style="cursor:pointer;">
+
+<div class="card-icon">
+
+<i class="fas ${subject.icon}"></i>
+
+</div>
+
+<div class="card-content">
+
+<h3 class="card-title">
+
+${subject.title}
+
+</h3>
+
+<a href="#/teaching/${subject.id}"
+class="card-link">
+
+View Teaching
+
+<i class="fas fa-arrow-right"></i>
+
+</a>
+
+</div>
+
+</div>
+
+`).join("")}
+
+</div>
+
+</section>
+
+`;
+
+}
+
+const currentSubject=teaching.subjects.find(
+s=>s.id===subjectId
+);
+
+if(!currentSubject){
+
+return`
+
+<section class="fade-in">
+
+<h2>Subject Not Found</h2>
+
+<a href="#/teaching"
+class="btn btn-primary">
+
+Back
+
+</a>
+
+</section>
+
+`;
+
+}
+
+return`
+
+<section class="fade-in">
+
+<div style="display:flex;align-items:center;gap:1rem;margin-bottom:2rem;">
+
+<a href="#/teaching"
+class="btn btn-outline">
+
+<i class="fas fa-arrow-left"></i>
+
+Back
+
+</a>
+
+<h1 class="section-title"
+style="margin:0;">
+
+${currentSubject.title}
+
+</h1>
+
+</div>
+
+<div class="cards-grid">
+
+${currentSubject.courses.map(course=>`
+
+<div class="card reveal"
+style="padding:1.5rem;">
+
+<h3 class="card-title">
+
+${course.institution}
+
+</h3>
+
+<p style="margin-top:12px;">
+
+<strong>
+
+${course.branch}
+
+</strong>
+
+</p>
+
+<p style="margin-bottom:20px;">
+
+Batch : ${course.batch}
+
+</p>
+
+<a href="assets/teaching/${course.folder}/index.html"
+
+target="_blank"
+
+class="btn btn-primary"
+
+style="display:block;text-align:center;">
+
+<i class="fas fa-folder-open"></i>
+
+Access Materials
+
+</a>
+
+</div>
+
+`).join("")}
+
+</div>
+
+</section>
+
+`;
+
+}
+
+}
 // HOME PAGE
 class HomePage extends Component {
     async render() {
