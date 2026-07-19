@@ -328,6 +328,21 @@ class HomePage extends Component {
         const totalCerts = certs.certificates.length;
 
         const roundedCerts =
+            totalCerts >= 10
+                ? `${Math.floor(totalCerts / 10) * 10}+`
+                : totalCerts.toString();
+        
+        const moocs = await DataManager.getMOOCs();
+        
+        const totalMoocs = moocs.certificates.length;
+        
+        const roundedMoocs =
+            totalMoocs >= 10
+                ? `${Math.floor(totalMoocs / 10) * 10}+`
+                : totalMoocs.toString();
+        const totalCerts = certs.certificates.length;
+
+        const roundedCerts =
         totalCerts >= 100
         ? `${Math.floor(totalCerts/10)*10}+`
         : totalCerts.toString();
@@ -356,29 +371,29 @@ class HomePage extends Component {
             </section>
             <section class="stats-grid">
 
-                <div class="stat-card reveal">
+            <div class="stat-card reveal">
                 <i class="fas fa-chalkboard-teacher" style="font-size:2rem;color:var(--primary);margin-bottom:.5rem;"></i>
                 <div class="stat-number">7+</div>
                 <div class="stat-label">Years Teaching Experience</div>
-                </div>
-                
-                <div class="stat-card reveal">
+            </div>
+            
+            <div class="stat-card reveal">
                 <i class="fas fa-certificate" style="font-size:2rem;color:var(--primary);margin-bottom:.5rem;"></i>
                 <div class="stat-number">${roundedCerts}</div>
                 <div class="stat-label">Professional Development</div>
-                </div>
-                
-                <div class="stat-card reveal">
+            </div>
+            
+            <div class="stat-card reveal">
                 <i class="fas fa-book" style="font-size:2rem;color:var(--primary);margin-bottom:.5rem;"></i>
-                <div class="stat-number">11</div>
+                <div class="stat-number">10+</div>
                 <div class="stat-label">Subjects Taught</div>
-                </div>
-                
-                <div class="stat-card reveal">
+            </div>
+            
+            <div class="stat-card reveal">
                 <i class="fas fa-laptop-code" style="font-size:2rem;color:var(--primary);margin-bottom:.5rem;"></i>
-                <div class="stat-number">30+</div>
+                <div class="stat-number">${roundedMoocs}</div>
                 <div class="stat-label">MOOC Certifications</div>
-                </div>
+            </div>
                 
                 </section>
                 <h2 class="section-title">Research Interests</h2>
