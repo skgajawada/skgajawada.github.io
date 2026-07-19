@@ -748,6 +748,7 @@ Verify
     }
 
 }
+/*
 // TEACHING PAGE
 class TeachingPage extends Component {
 
@@ -992,23 +993,7 @@ Downloads
 `;
 
 }
-<div class="card reveal" style="padding:1.5rem;">
-<h3 class="card-title">${course.institution}</h3>
-<p><strong>Program:</strong> ${course.program}</p>
-<p><strong>Branch:</strong> ${course.branch}</p>
-<p><strong>Batch:</strong> ${course.batch}</p>
-<p><strong>Semester:</strong> ${course.semester || "-"}</p>
-<p><strong>Regulation:</strong> ${course.regulation || "-"}</p>
-<a href="#/teaching/${currentSubject.id}/${course.id}" class="btn btn-primary" style="display:block;text-align:center;margin-top:1rem;">
-<i class="fas fa-book-open"></i>
-Course Materials
-</a>
-</div>
-`).join("")}
-</div>
-</section>
-`;
-}
+*/
 // SKILLS PAGE
 class SkillsPage extends Component {
     async render() {
