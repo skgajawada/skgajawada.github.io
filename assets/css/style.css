@@ -675,7 +675,79 @@ white-space:nowrap;
     gap: 1rem;
     flex-wrap: wrap;
 }
+/* =====================================
+   KEY METRICS
+===================================== */
 
+.metrics-grid{
+
+display:grid;
+
+grid-template-columns:1fr;
+
+gap:18px;
+
+margin-top:20px;
+
+}
+
+.metric-item{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:14px 0;
+
+border-bottom:1px solid #e5e7eb;
+
+}
+
+.metric-label{
+
+font-size:16px;
+
+font-weight:600;
+
+color:#444;
+
+}
+
+.metric-value{
+
+font-size:28px;
+
+font-weight:700;
+
+white-space:nowrap;
+
+}
+
+.metric-value.blue{
+
+color:#2563eb;
+
+}
+
+.metric-value.green{
+
+color:#16a34a;
+
+}
+
+.metric-value.purple{
+
+color:#9333ea;
+
+}
+
+.metric-value.red{
+
+color:#dc2626;
+
+}
 .social-links a {
     width: 40px;
     height: 40px;
