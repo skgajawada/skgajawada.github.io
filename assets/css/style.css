@@ -40,7 +40,7 @@ body {
 }
 
 .nav-container {
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto;
     padding: 1rem 2rem;
     display: flex;
@@ -57,11 +57,13 @@ body {
     gap: 0.5rem;
 }
 
-.nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-    align-items: center;
+.nav-menu{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    list-style:none;
+    gap:14px 22px;
 }
 .nav-menu li{
 
@@ -96,6 +98,9 @@ white-space:nowrap;
 .nav-link:hover::after,
 .nav-link.active::after {
     width: 100%;
+.nav-link{
+    white-space:nowrap;
+}
 }
 
 .theme-toggle {
