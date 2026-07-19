@@ -846,6 +846,7 @@ class ContactPage extends Component {
 router.register('/home', new HomePage());
 router.register('/about', new AboutPage());
 router.register('/experience', new ExperiencePage());
+router.register('/teaching', new TeachingPage());
 router.register('/education', new EducationPage());
 router.register('/projects', new ProjectsPage());
 router.register('/professional-dev', new ProfessionalDevPage());
