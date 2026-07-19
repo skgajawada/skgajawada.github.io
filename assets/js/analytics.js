@@ -72,33 +72,83 @@ Professional Growth
 Key Metrics
 </h3>
 
-<div class="metrics-grid">
+<div class="metrics-dashboard">
 
-<div class="metric-item">
-<span class="metric-label">Professional Development</span>
-<span class="metric-value blue">${totalCerts}</span>
+<div class="metric-box">
+
+<i class="fas fa-certificate metric-icon blue"></i>
+
+<div class="metric-number blue">
+
+${totalCerts}
+
 </div>
 
-<div class="metric-item">
-<span class="metric-label">Teaching Experience</span>
-<span class="metric-value green">7+ Years</span>
-</div>
+<div class="metric-title">
 
-<div class="metric-item">
-<span class="metric-label">MOOC Certifications</span>
-<span class="metric-value purple">30+</span>
-</div>
-
-<div class="metric-item">
-<span class="metric-label">Blood Donations</span>
-<span class="metric-value red">10</span>
-</div>
+Professional Development
 
 </div>
 
 </div>
 
+<div class="metric-box">
 
+<i class="fas fa-chalkboard-teacher metric-icon green"></i>
+
+<div class="metric-number green">
+
+7+
+
+</div>
+
+<div class="metric-title">
+
+Years Teaching Experience
+
+</div>
+
+</div>
+
+<div class="metric-box">
+
+<i class="fas fa-laptop-code metric-icon purple"></i>
+
+<div class="metric-number purple">
+
+30+
+
+</div>
+
+<div class="metric-title">
+
+MOOC Certifications
+
+</div>
+
+</div>
+
+<div class="metric-box">
+
+<i class="fas fa-heart metric-icon red"></i>
+
+<div class="metric-number red">
+
+10
+
+</div>
+
+<div class="metric-title">
+
+Blood Donations
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 </section>
 
 `;
