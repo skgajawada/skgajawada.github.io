@@ -428,6 +428,22 @@ class HomePage extends Component {
                             <a href="#/experience" class="card-link">View Details <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
+
+                        <div class="card fade-in">
+                            <div class="card-icon">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">Teaching</h3>
+                                <p class="card-description">
+                                    Explore subjects taught, institutions, batches, and course materials.
+                                </p>
+                                <a href="#/teaching" class="card-link">
+                                    View Details
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
                     <div class="card fade-in">
                         <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
                         <div class="card-content">
@@ -594,22 +610,7 @@ class ExperiencePage extends Component {
         `;
     }
 }
-//TEACHING PAGE
-<div class="card fade-in">
-    <div class="card-icon">
-        <i class="fas fa-chalkboard-teacher"></i>
-    </div>
-    <div class="card-content">
-        <h3 class="card-title">Teaching</h3>
-        <p class="card-description">
-            Explore subjects taught, institutions, batches, and course materials.
-        </p>
-        <a href="#/teaching" class="card-link">
-            View Details
-            <i class="fas fa-arrow-right"></i>
-        </a>
-    </div>
-</div>
+
 // EDUCATION PAGE
 class EducationPage extends Component {
     async render() {
