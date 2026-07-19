@@ -81,6 +81,9 @@ class DataManager {
     static async getCertificates() {
         return await this.loadData('assets/data/professional-development.json');
     }
+    static async getMOOCs() {
+    return await this.loadJSON('assets/data/moocs.json');
+    }
     static async getMoocs() {
     return await this.loadData("assets/data/mooc-certifications.json");
     }
