@@ -92,3 +92,137 @@
 }
 ]
 }
+,
+{
+"id":"thermodynamics",
+"title":"Thermodynamics",
+"icon":"fa-temperature-half",
+"folder":"Thermodynamics",
+"teaching":[
+{
+"institution":"Guru Nanak Institutions Technical Campus",
+"department":"Mechanical Engineering",
+"offerings":[
+{"batch":"2022–2026","semester":"III"},
+{"batch":"2023–2027","semester":"III"}
+]
+},
+{
+"institution":"Sree Chaitanya College of Engineering",
+"department":"Mechanical Engineering",
+"offerings":[
+{"batch":"2018–2022","semester":"III"}
+]
+}
+]
+},
+
+{
+"id":"heat-transfer",
+"title":"Heat Transfer",
+"icon":"fa-fire",
+"folder":"Heat Transfer",
+"teaching":[
+{
+"institution":"Guru Nanak Institutions Technical Campus",
+"department":"Mechanical Engineering",
+"offerings":[
+{"batch":"2022–2026","semester":"V"}
+]
+},
+{
+"institution":"Sree Chaitanya College of Engineering",
+"department":"Mechanical Engineering",
+"offerings":[
+{"batch":"2018–2022","semester":"V"}
+]
+}
+]
+},
+
+{
+"id":"kinematics-of-machinery",
+"title":"Kinematics of Machinery",
+"icon":"fa-gears",
+"folder":"Kinematics of Machinery",
+"teaching":[
+{
+"institution":"Guru Nanak Institutions Technical Campus",
+"department":"Mechanical Engineering",
+"offerings":[
+{"batch":"2022–2026","semester":"IV"}
+]
+},
+{
+"institution":"Sree Chaitanya College of Engineering",
+"department":"Mechanical Engineering",
+"offerings":[
+{"batch":"2018–2022","semester":"IV"}
+]
+}
+]
+},
+
+{
+"id":"operations-research",
+"title":"Operations Research",
+"icon":"fa-chart-line",
+"folder":"Operations Research",
+"teaching":[
+{
+"institution":"Guru Nanak Institutions Technical Campus",
+"department":"Mechanical Engineering",
+"offerings":[
+{"batch":"2022–2026","semester":"VI"}
+]
+}
+]
+},
+
+{
+"id":"design-of-machine-members-1",
+"title":"Design of Machine Members - I",
+"icon":"fa-screwdriver-wrench",
+"folder":"Design of Machine Members_1",
+"teaching":[
+{
+"institution":"Guru Nanak Institutions Technical Campus",
+"department":"Mechanical Engineering",
+"offerings":[
+{"batch":"2022–2026","semester":"V"}
+]
+}
+]
+},
+
+{
+"id":"design-of-machine-members-2",
+"title":"Design of Machine Members - II",
+"icon":"fa-screwdriver-wrench",
+"folder":"Design of Machine Members_2",
+"teaching":[
+{
+"institution":"Guru Nanak Institutions Technical Campus",
+"department":"Mechanical Engineering",
+"offerings":[
+{"batch":"2022–2026","semester":"VI"}
+]
+}
+]
+},
+
+{
+"id":"finite-element-methods",
+"title":"Finite Element Methods",
+"icon":"fa-cubes",
+"folder":"Finite Element Methods",
+"teaching":[
+{
+"institution":"Guru Nanak Institutions Technical Campus",
+"department":"Mechanical Engineering",
+"offerings":[
+{"batch":"2022–2026","semester":"VII"}
+]
+}
+]
+}
