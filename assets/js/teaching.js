@@ -139,44 +139,92 @@ Course Materials
 </section>
 `;
 }
-const currentCourse=currentSubject.courses.find(c=>c.id===courseParam);
+const currentCourse=currentSubject.courses.find(
+c=>c.id===courseParam
+);
+
 if(!currentCourse){
+
 return`
+
 <section class="fade-in">
+
 <h2>Course Not Found</h2>
-<a href="#/teaching/${currentSubject.id}" class="btn btn-primary">Back</a>
-</section>
-`;
-}
-return`
-<section class="fade-in">
-<div style="display:flex;align-items:center;gap:1rem;margin-bottom:2rem;">
-<a href="#/teaching/${currentSubject.id}" class="btn btn-outline">
-<i class="fas fa-arrow-left"></i>
+
+<a href="#/teaching/${currentSubject.id}" class="btn btn-primary">
+
 Back
+
 </a>
+
+</section>
+
+`;
+
+}
+
+return`
+
+<section class="fade-in">
+
+<div style="display:flex;align-items:center;gap:1rem;margin-bottom:2rem;">
+
+<a href="#/teaching/${currentSubject.id}" class="btn btn-outline">
+
+<i class="fas fa-arrow-left"></i>
+
+Back
+
+</a>
+
 <h1 class="section-title" style="margin:0;">
+
 ${currentSubject.title}
+
 </h1>
+
 </div>
+
 <div class="card">
-<h3>${currentCourse.institution}</h3>
+
+<h2>${currentCourse.institution}</h2>
+
 <p><strong>Program:</strong> ${currentCourse.program}</p>
+
 <p><strong>Branch:</strong> ${currentCourse.branch}</p>
+
 <p><strong>Batch:</strong> ${currentCourse.batch}</p>
+
 <p><strong>Semester:</strong> ${currentCourse.semester||"-"}</p>
+
 <p><strong>Regulation:</strong> ${currentCourse.regulation||"-"}</p>
-<div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:25px;">
-<a href="assets/teaching/${currentCourse.folder}/information.json" target="_blank" class="btn btn-primary">Information</a>
-<a href="assets/teaching/${currentCourse.folder}/Notes/" target="_blank" class="btn btn-outline">Notes</a>
-<a href="assets/teaching/${currentCourse.folder}/PPT/" target="_blank" class="btn btn-outline">PPT</a>
-<a href="assets/teaching/${currentCourse.folder}/QB/" target="_blank" class="btn btn-outline">QB</a>
-<a href="assets/teaching/${currentCourse.folder}/Papers/" target="_blank" class="btn btn-outline">Papers</a>
-<a href="assets/teaching/${currentCourse.folder}/Videos/" target="_blank" class="btn btn-outline">Videos</a>
-<a href="assets/teaching/${currentCourse.folder}/Books/" target="_blank" class="btn btn-outline">Books</a>
-<a href="assets/teaching/${currentCourse.folder}/Downloads/" target="_blank" class="btn btn-outline">Downloads</a>
+
+<hr style="margin:25px 0;">
+
+<div style="text-align:center;">
+
+<a href="assets/teaching/${currentCourse.folder}/index.html"
+target="_blank"
+class="btn btn-primary"
+style="padding:14px 30px;font-size:1.05rem;">
+
+<i class="fas fa-folder-open"></i>
+
+Access Materials
+
+</a>
+
 </div>
+
 </div>
+
+</section>
+
+`;
+
+}
+
+}
 </section>
 `;
 }
