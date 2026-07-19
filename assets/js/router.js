@@ -238,13 +238,28 @@ ${subject.title}
 
 </div>
 
-<div class="card reveal">
+<div class="card reveal"
+style="
+max-width:900px;
+margin:auto;
+padding:40px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,.08);
+">
 
 ${subject.teaching.map(item=>`
 
-<div style="margin-bottom:25px;">
+<div style="
+margin-bottom:35px;
+padding-bottom:25px;
+border-bottom:1px solid #e5e7eb;
+">
 
-<h3 style="color:var(--primary);margin-bottom:10px;">
+<h3 style="
+color:#2563eb;
+margin-bottom:15px;
+font-size:1.4rem;
+">
 
 <i class="fas fa-university"></i>
 
@@ -252,21 +267,31 @@ ${item.institution}
 
 </h3>
 
+<p style="
+font-weight:600;
+margin-bottom:15px;
+">
+
+${item.department}
+
+</p>
+
+${item.offerings.map(off=>`
+
+<div style="
+padding-left:20px;
+margin-bottom:15px;
+">
+
 <p>
 
-<strong>${item.department}</strong>
+● <strong>Batch :</strong> ${off.batch}
 
 </p>
 
 <p>
 
-Batch : ${item.batch}
-
-</p>
-
-<p>
-
-Semester : ${item.semester}
+● <strong>Semester :</strong> ${off.semester}
 
 </p>
 
@@ -274,6 +299,9 @@ Semester : ${item.semester}
 
 `).join("")}
 
+</div>
+
+`).join("")}
 <div style="text-align:center;margin-top:30px;">
 
 <a
@@ -283,7 +311,28 @@ class="btn btn-primary">
 
 <i class="fas fa-folder-open"></i>
 
-Access Materials
+<div style="
+text-align:center;
+margin-top:40px;
+">
+
+<a
+href="assets/teaching/${subject.folder}/index.html"
+target="_blank"
+class="btn btn-primary"
+style="
+padding:16px 45px;
+font-size:1.05rem;
+border-radius:10px;
+">
+
+<i class="fas fa-folder-open"></i>
+
+Access Course Materials
+
+</a>
+
+</div>
 
 </a>
 
