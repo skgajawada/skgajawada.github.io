@@ -58,36 +58,32 @@ const router = new Router();
 // Portfolio Data Manager
 class DataManager {
 
-    static async loadData(file) {
-        try {
-            const response = await fetch(file);
+    static async loadData(file){
+        const response = await fetch(file);
 
-            if (!response.ok) {
-                throw new Error(`Unable to load ${file}`);
-            }
-
-            return await response.json();
-
-        } catch (error) {
-            console.error('Error loading data:', error);
-            return null;
+        if(!response.ok){
+            throw new Error(`Unable to load ${file}`);
         }
+
+        return await response.json();
     }
 
-    static async getPortfolioData() {
-        return await this.loadData('assets/data/portfolio-data.json');
+    static async getPortfolioData(){
+        return await this.loadData("assets/data/portfolio-data.json");
     }
 
-    static async getCertificates() {
-        return await this.loadData('assets/data/professional-development.json');
+    static async getCertificates(){
+        return await this.loadData("assets/data/professional-development.json");
     }
 
-    static async getMoocs() {
-    return await this.loadData("assets/data/mooc-certifications.json");
+    static async getMOOCs(){
+        return await this.loadData("assets/data/mooc-certifications.json");
     }
-    static async getTeaching() {
-    return await this.loadData("assets/data/teaching-data.json");
+
+    static async getTeaching(){
+        return await this.loadData("assets/data/teaching-data.json");
     }
+
 }
 
 // Base Component Class
