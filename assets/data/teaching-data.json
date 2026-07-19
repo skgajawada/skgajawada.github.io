@@ -1,15 +1,195 @@
 {
-  "subjects":[
+  "subjects": [
     {
-      "id":"engineering-mechanics",
-      "title":"Engineering Mechanics",
-      "program":"B.Tech",
-      "branch":"Mechanical Engineering",
-      "institution":"Guru Nanak Institutions Technical Campus",
-      "batch":"2022-2026",
-      "semester":"II",
-      "courseCode":"ME201",
-      "regulation":"R20"
+      "id": "engineering-mechanics",
+      "title": "Engineering Mechanics",
+      "icon": "fa-cogs",
+      "courses": [
+        {
+          "id": "gnitc_me_2021",
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "program": "B.Tech",
+          "branch": "Mechanical Engineering",
+          "batch": "2021-2025",
+          "semester": "I",
+          "regulation": "R20",
+          "folder": "GNITC_ME_2021"
+        },
+        {
+          "id": "gnitc_me_2022",
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "program": "B.Tech",
+          "branch": "Mechanical Engineering",
+          "batch": "2022-2026",
+          "semester": "I",
+          "regulation": "R20",
+          "folder": "GNITC_ME_2022"
+        },
+        {
+          "id": "gnitc_me_2023",
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "program": "B.Tech",
+          "branch": "Mechanical Engineering",
+          "batch": "2023-2027",
+          "semester": "I",
+          "regulation": "R22",
+          "folder": "GNITC_ME_2023"
+        }
+      ]
+    },
+
+    {
+      "id": "engineering-graphics",
+      "title": "Engineering Graphics",
+      "icon": "fa-pencil-ruler",
+      "courses": [
+        {
+          "id": "gnitc_me_eg_2022",
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "program": "B.Tech",
+          "branch": "Mechanical Engineering",
+          "batch": "2022-2026",
+          "semester": "I",
+          "regulation": "R20",
+          "folder": "GNITC_EG_2022"
+        }
+      ]
+    },
+
+    {
+      "id": "mechanics-of-solids",
+      "title": "Mechanics of Solids",
+      "icon": "fa-cube",
+      "courses": [
+        {
+          "id": "gnitc_mos_2022",
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "program": "B.Tech",
+          "branch": "Mechanical Engineering",
+          "batch": "2022-2026",
+          "semester": "III",
+          "folder": "GNITC_MOS_2022"
+        }
+      ]
+    },
+
+    {
+      "id": "kinematics-of-machinery",
+      "title": "Kinematics of Machinery",
+      "icon": "fa-gears",
+      "courses": [
+        {
+          "id": "gnitc_kom_2022",
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "program": "B.Tech",
+          "branch": "Mechanical Engineering",
+          "batch": "2022-2026",
+          "semester": "IV",
+          "folder": "GNITC_KOM_2022"
+        }
+      ]
+    },
+
+    {
+      "id": "fluid-mechanics",
+      "title": "Fluid Mechanics & Hydraulic Machines",
+      "icon": "fa-water",
+      "courses": [
+        {
+          "id": "scce_fmhm_2019",
+          "institution": "Sree Chaitanya College of Engineering",
+          "program": "B.Tech",
+          "branch": "Mechanical Engineering",
+          "batch": "2019-2023",
+          "semester": "III",
+          "folder": "SCCE_FMHM_2019"
+        }
+      ]
+    },
+
+    {
+      "id": "thermodynamics",
+      "title": "Thermodynamics",
+      "icon": "fa-fire",
+      "courses": [
+        {
+          "id": "gnitc_td_2022",
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "program": "B.Tech",
+          "branch": "Mechanical Engineering",
+          "batch": "2022-2026",
+          "semester": "III",
+          "folder": "GNITC_TD_2022"
+        }
+      ]
+    },
+
+    {
+      "id": "heat-transfer",
+      "title": "Heat Transfer",
+      "icon": "fa-temperature-high",
+      "courses": [
+        {
+          "id": "gnitc_ht_2022",
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "program": "B.Tech",
+          "branch": "Mechanical Engineering",
+          "batch": "2022-2026",
+          "semester": "VI",
+          "folder": "GNITC_HT_2022"
+        }
+      ]
+    },
+
+    {
+      "id": "design-of-machine-elements",
+      "title": "Design of Machine Elements",
+      "icon": "fa-screwdriver-wrench",
+      "courses": [
+        {
+          "id": "gnitc_dme_2022",
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "program": "B.Tech",
+          "branch": "Mechanical Engineering",
+          "batch": "2022-2026",
+          "semester": "V",
+          "folder": "GNITC_DME_2022"
+        }
+      ]
+    },
+
+    {
+      "id": "operations-research",
+      "title": "Operations Research",
+      "icon": "fa-chart-line",
+      "courses": [
+        {
+          "id": "gnitc_or_2022",
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "program": "B.Tech",
+          "branch": "Mechanical Engineering",
+          "batch": "2022-2026",
+          "semester": "VI",
+          "folder": "GNITC_OR_2022"
+        }
+      ]
+    },
+
+    {
+      "id": "finite-element-methods",
+      "title": "Finite Element Methods",
+      "icon": "fa-vector-square",
+      "courses": [
+        {
+          "id": "gnitc_fem_2022",
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "program": "B.Tech",
+          "branch": "Mechanical Engineering",
+          "batch": "2022-2026",
+          "semester": "VII",
+          "folder": "GNITC_FEM_2022"
+        }
+      ]
     }
   ]
 }
