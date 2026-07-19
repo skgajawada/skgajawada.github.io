@@ -52,10 +52,10 @@
   "experience": [
     {
       "title": "Assistant Professor",
-      "company": "Engineering Department",
+      "company": "Guru Nanak Institutions Technical Campus",
       "location": "Hyderabad, India",
-      "startDate": "2020-07",
-      "endDate": "Present",
+      "startDate": "2021-03-23",
+      "endDate": "2025-06-28",
       "icon": "fa-briefcase",
       "description": "Teaching core mechanical engineering courses including Machine Design, Finite Element Analysis, and Computational Methods. Mentoring student projects and conducting research in structural dynamics and AI-driven design.",
       "achievements": [
@@ -65,11 +65,11 @@
       ]
     },
     {
-      "title": "Associate Faculty",
-      "company": "Engineering Institute",
-      "location": "Hyderabad, India",
-      "startDate": "2018-06",
-      "endDate": "2020-06",
+      "title": "Assistant Professor",
+      "company": "Sree Chaitanya College of Engineering",
+      "location": "Karimnagar, India",
+      "startDate": "2018-11-26",
+      "endDate": "2021-03-22",
       "icon": "fa-briefcase",
       "description": "Taught mechanical engineering fundamentals and specialized courses in CAD/CAM and Manufacturing processes. Coordinated laboratory activities and student internships.",
       "achievements": [
@@ -80,14 +80,13 @@
     },
     {
       "title": "Lecturer",
-      "company": "Technical Institute",
+      "company": "Jyothishmathi Institute of Technology and Science, Karimnagar",
       "location": "India",
-      "startDate": "2017-01",
-      "endDate": "2018-05",
+      "startDate": "2015-12-07",
+      "endDate": "2016-06-30",
       "icon": "fa-briefcase",
       "description": "Delivered lectures in Mechanical Engineering and conducted laboratory sessions. Developed course materials and assessment strategies.",
       "achievements": [
-        "Student satisfaction rating of 4.5/5.0",
         "Developed 10+ laboratory experiments",
         "Active participation in academic councils"
       ]
@@ -97,25 +96,23 @@
     {
       "degree": "PhD (Design Engineering)",
       "institution": "IIT (ISM) Dhanbad",
-      "field": "Design Engineering",
-      "year": "2022-Present",
-      "cgpa": "8.5",
+      "field": "Mechanical Engineering (Machine Design)",
+      "year": "2025-Present",
       "icon": "fa-graduation-cap",
       "achievements": [
         "Research focus on AI-driven structural optimization",
-        "Published research papers in peer-reviewed journals",
-        "Teaching assistant for advanced FEA course"
+        "Teaching assistant for advanced FEA MATLAB Lab"
       ]
     },
     {
       "degree": "Master of Technology",
-      "institution": "NIT/JNTU",
+      "institution": "GITAM Deemed To Be University",
       "field": "Mechanical Engineering",
-      "year": "2015-2017",
-      "cgpa": "8.2",
+      "year": "2016-2018",
+      "cgpa": "8.78",
       "icon": "fa-graduation-cap",
       "achievements": [
-        "Specialized in Finite Element Analysis",
+        "Specialized in Machine Design",
         "Thesis on composite material optimization",
         "Merit-based scholarship awardee"
       ]
@@ -124,8 +121,8 @@
       "degree": "Bachelor of Technology",
       "institution": "Engineering College",
       "field": "Mechanical Engineering",
-      "year": "2011-2015",
-      "cgpa": "7.8",
+      "year": "2010-2014",
+      "percentage": "71.28",
       "icon": "fa-graduation-cap",
       "achievements": [
         "Completed capstone project on mechanical design",
@@ -253,6 +250,6 @@
     "linkedin": "https://linkedin.com/in/gajavada-sanjeevkumar",
     "instagram": "https://instagram.com/skgajawada",
     "twitter": "https://twitter.com/skgajawada",
-    "youtube": "https://youtube.com/channel/YOUR_CHANNEL"
+    "youtube": "https://youtube.com/@skgajawada"
   }
 }
