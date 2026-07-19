@@ -250,11 +250,26 @@ ${currentSubject.title}
 ${currentSubject.courses.map(course=>`
 <div class="card reveal" style="padding:1.5rem;">
 <h3 class="card-title">${course.institution}</h3>
-<p><strong>Program:</strong> ${course.program}</p>
-<p><strong>Branch:</strong> ${course.branch}</p>
-<p><strong>Batch:</strong> ${course.batch}</p>
-<p><strong>Semester:</strong> ${course.semester||"-"}</p>
-<p><strong>Regulation:</strong> ${course.regulation||"-"}</p>
+<h3 class="card-title">${course.institution}</h3>
+
+<p style="margin-top:12px;">
+<strong>${course.branch}</strong>
+</p>
+
+<p style="margin-bottom:20px;">
+Batch : ${course.batch}
+</p>
+
+<a href="assets/teaching/${course.folder}/index.html"
+target="_blank"
+class="btn btn-primary"
+style="display:block;text-align:center;margin-top:1rem;">
+
+<i class="fas fa-folder-open"></i>
+
+Access Materials
+
+</a>
 <a href="assets/teaching/${course.folder}/index.html"
 target="_blank"
 class="btn btn-primary"
