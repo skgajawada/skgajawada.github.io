@@ -59,14 +59,28 @@ const router = new Router(false);
 class DataManager {
 
     static async loadData(file){
+
+    try{
+
         const response = await fetch(file);
 
         if(!response.ok){
-            throw new Error(`Unable to load ${file}`);
+
+            throw new Error(file);
+
         }
 
         return await response.json();
+
+    }catch(e){
+
+        console.error(file,e);
+
+        return null;
+
     }
+
+}
 
     static async getPortfolioData(){
         return await this.loadData("assets/data/portfolio-data.json");
@@ -334,7 +348,7 @@ class HomePage extends Component {
         
         const moocs = await DataManager.getMOOCs();
         console.log("MOOCs:", moocs);
-        
+        console.log(moocs);
         const totalMoocs = moocs.moocCertifications.length;
         
         const roundedMoocs =
@@ -790,7 +804,7 @@ class MoocsPage extends Component {
 
     async render(params) {
 
-        const moocs = await DataManager.getMoocs();
+        const moocs = await DataManager.getMOOCs();
         const vendorParam = params && params[0];
 
         // ===========================
