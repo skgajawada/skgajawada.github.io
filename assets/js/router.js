@@ -97,7 +97,11 @@ class DataManager {
     static async getTeaching(){
         return await this.loadData("assets/data/teaching-data.json");
     }
-
+    static getRoundedCount(count, threshold = 100) {
+    return count >= threshold
+        ? `${Math.floor(count / 10) * 10}+`
+        : count.toString();
+}
 }
 
 // Base Component Class
@@ -336,9 +340,9 @@ margin-bottom:15px;
 class HomePage extends Component {
     async render() {
         const data = await DataManager.getPortfolioData();
-        console.log("Portfolio:", data);
+
         const certs = await DataManager.getCertificates();
-        console.log("Certificates:", certs);
+
         const totalCerts = certs.certificates.length;
 
         const roundedCerts =
@@ -347,8 +351,8 @@ class HomePage extends Component {
                 : totalCerts.toString();
         
         const moocs = await DataManager.getMOOCs();
-        console.log("MOOCs:", moocs);
-        console.log(moocs);
+
+
         const totalMoocs = moocs.moocCertifications.length;
         
         const roundedMoocs =
