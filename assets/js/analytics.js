@@ -80,7 +80,7 @@ Key Metrics
 
 <div class="metric-number blue">
 
-${totalCerts}
+${Math.floor(totalCerts/10)*10}+
 
 </div>
 
