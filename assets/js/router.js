@@ -131,11 +131,11 @@ class Component {
     }
 }
 // TEACHING PAGE
-class TeachingPage extends Component{
+class TeachingPage extends Component {
 
 async render(params){
 
-const teaching=await DataManager.getTeaching();
+const data=await DataManager.getTeaching();
 
 const subjectId=params&&params[0];
 
@@ -146,38 +146,31 @@ return`
 <section class="fade-in">
 
 <h1 class="section-title">
-
 Teaching
-
 </h1>
 
 <div class="cards-grid stagger-container">
 
-${teaching.subjects.map(subject=>`
+${data.subjects.map(subject=>`
 
 <div class="card fade-in"
 onclick="navigateTo('#/teaching/${subject.id}')"
 style="cursor:pointer;">
 
 <div class="card-icon">
-
 <i class="fas ${subject.icon}"></i>
-
 </div>
 
 <div class="card-content">
 
 <h3 class="card-title">
-
 ${subject.title}
-
 </h3>
 
 <a href="#/teaching/${subject.id}"
 class="card-link">
 
-View Teaching
-
+View Details
 <i class="fas fa-arrow-right"></i>
 
 </a>
@@ -196,11 +189,11 @@ View Teaching
 
 }
 
-const currentSubject=teaching.subjects.find(
+const subject=data.subjects.find(
 s=>s.id===subjectId
 );
 
-if(!currentSubject){
+if(!subject){
 
 return`
 
@@ -239,48 +232,54 @@ Back
 <h1 class="section-title"
 style="margin:0;">
 
-${currentSubject.title}
+${subject.title}
 
 </h1>
 
 </div>
 
-<div class="cards-grid">
+<div class="card reveal">
 
-${currentSubject.courses.map(course=>`
+${subject.teaching.map(item=>`
 
-<div class="card reveal"
-style="padding:1.5rem;">
+<div style="margin-bottom:25px;">
 
-<h3 class="card-title">
+<h3 style="color:var(--primary);margin-bottom:10px;">
 
-${course.institution}
+<i class="fas fa-university"></i>
+
+${item.institution}
 
 </h3>
 
-<p style="margin-top:12px;">
+<p>
 
-<strong>
-
-${course.branch}
-
-</strong>
+<strong>${item.department}</strong>
 
 </p>
 
-<p style="margin-bottom:20px;">
+<p>
 
-Batch : ${course.batch}
+Batch : ${item.batch}
 
 </p>
 
-<a href="assets/teaching/${course.folder}/index.html"
+<p>
 
+Semester : ${item.semester}
+
+</p>
+
+</div>
+
+`).join("")}
+
+<div style="text-align:center;margin-top:30px;">
+
+<a
+href="assets/teaching/${subject.folder}/index.html"
 target="_blank"
-
-class="btn btn-primary"
-
-style="display:block;text-align:center;">
+class="btn btn-primary">
 
 <i class="fas fa-folder-open"></i>
 
@@ -289,8 +288,6 @@ Access Materials
 </a>
 
 </div>
-
-`).join("")}
 
 </div>
 
