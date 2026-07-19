@@ -343,12 +343,6 @@ class HomePage extends Component {
             totalMoocs >= 10
                 ? `${Math.floor(totalMoocs / 10) * 10}+`
                 : totalMoocs.toString();
-        const totalCerts = certs.certificates.length;
-
-        const roundedCerts =
-        totalCerts >= 100
-        ? `${Math.floor(totalCerts/10)*10}+`
-        : totalCerts.toString();
         return `
             <section class="hero fade-in">
                 <div class="hero-content">
@@ -399,7 +393,11 @@ class HomePage extends Component {
             </div>
                 
                 </section>
-                <h2 class="section-title">Research Interests</h2>
+
+                <section>
+                
+                <h2 class="section-title">
+                Research Interests</h2>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 4rem;">
                     ${data.researchInterests.map((interest, i) => `
                         <div class="reveal" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 1.5rem; border-radius: 10px; text-align: center; animation-delay: ${i * 0.1}s;">
