@@ -1,4 +1,6 @@
 {
+  "subjects": [
+    {
 "id":"engineering-mechanics",
 "title":"Engineering Mechanics",
 "icon":"fa-cogs",
@@ -226,3 +228,5 @@
 }
 ]
 }
+]
+}  
