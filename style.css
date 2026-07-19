@@ -193,7 +193,20 @@ a {
     align-items: center;
     gap: 15px;
 }
+.hamburger{
+display:none;
+flex-direction:column;
+gap:5px;
+cursor:pointer;
+}
 
+.hamburger span{
+width:28px;
+height:3px;
+background:var(--text-main);
+border-radius:20px;
+transition:.3s;
+}
 .nav-toggle {
     display: none;
     font-size: 22px;
@@ -1230,21 +1243,44 @@ blockquote {
     .timeline-section-grid { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 768px) {
-    .nav-toggle { display: block; color: var(--text-main); }
-    .nav-menu {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background-color: var(--secondary-bg);
-        flex-direction: column;
-        padding: 40px 0;
-        gap: 25px;
-        transition: left 0.4s ease;
-        border-top: 1px solid var(--border-color);
-    }
-    .nav-menu.open { left: 0; }
-    .hero-name { font-size: 38px; }
+@media (max-width:768px){
+
+.nav-container{
+padding:15px 20px;
+}
+
+.nav-logo span{
+font-size:18px;
+}
+
+.hamburger{
+display:flex;
+}
+
+.nav-menu{
+position:fixed;
+top:70px;
+left:-100%;
+width:100%;
+height:calc(100vh - 70px);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:flex-start;
+gap:20px;
+padding:40px;
+background:var(--secondary-bg);
+transition:.4s;
+overflow-y:auto;
+z-index:999;
+}
+
+.nav-menu.open{
+left:0;
+}
+
+.hero-name{
+font-size:36px;
+}
+
 }
