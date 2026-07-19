@@ -1,5 +1,15 @@
 {
-  "subjects": [
-
+  "subjects":[
+    {
+      "id":"engineering-mechanics",
+      "title":"Engineering Mechanics",
+      "program":"B.Tech",
+      "branch":"Mechanical Engineering",
+      "institution":"Guru Nanak Institutions Technical Campus",
+      "batch":"2022-2026",
+      "semester":"II",
+      "courseCode":"ME201",
+      "regulation":"R20"
+    }
   ]
 }
