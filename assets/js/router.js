@@ -250,7 +250,6 @@ ${currentSubject.title}
 ${currentSubject.courses.map(course=>`
 <div class="card reveal" style="padding:1.5rem;">
 <h3 class="card-title">${course.institution}</h3>
-<h3 class="card-title">${course.institution}</h3>
 
 <p style="margin-top:12px;">
 <strong>${course.branch}</strong>
