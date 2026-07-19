@@ -4,7 +4,7 @@
       "id": "engineering-mechanics",
       "title": "Engineering Mechanics",
       "icon": "fa-cogs",
-      "folder": "engineering-mechanics",
+      "folder": "engineering mechanics",
       "teaching": [
         {
           "institution": "Guru Nanak Institutions Technical Campus",
@@ -31,7 +31,7 @@
       "id": "engineering-graphics",
       "title": "Engineering Graphics",
       "icon": "fa-drafting-compass",
-      "folder": "engineering-graphics",
+      "folder": "engineering graphics",
       "teaching": [
         {
           "institution": "Guru Nanak Institutions Technical Campus",
@@ -46,7 +46,7 @@
       "id": "mechanics-of-solids",
       "title": "Mechanics of Solids",
       "icon": "fa-cube",
-      "folder": "mechanics-of-solids",
+      "folder": "mechanics of solids",
       "teaching": [
         {
           "institution": "Guru Nanak Institutions Technical Campus",
