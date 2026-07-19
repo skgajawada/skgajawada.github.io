@@ -72,47 +72,32 @@ Professional Growth
 Key Metrics
 </h3>
 
-<div style="padding:20px;line-height:2;">
+<div class="metrics-grid">
 
-<p>
-<strong>Total Professional Development:</strong>
-<span style="float:right;font-size:22px;font-weight:bold;color:#2563eb;">
-${totalCerts}
-</span>
-</p>
+<div class="metric-item">
+<span class="metric-label">Professional Development</span>
+<span class="metric-value blue">${totalCerts}</span>
+</div>
 
-<hr>
+<div class="metric-item">
+<span class="metric-label">Teaching Experience</span>
+<span class="metric-value green">7+ Years</span>
+</div>
 
-<p>
-<strong>Teaching Experience:</strong>
-<span style="float:right;font-size:22px;font-weight:bold;color:#16a34a;">
-7+ Years
-</span>
-</p>
+<div class="metric-item">
+<span class="metric-label">MOOC Certifications</span>
+<span class="metric-value purple">30+</span>
+</div>
 
-<hr>
-
-<p>
-<strong>MOOC Certifications:</strong>
-<span style="float:right;font-size:22px;font-weight:bold;color:#9333ea;">
-30+
-</span>
-</p>
-
-<hr>
-
-<p>
-<strong>Blood Donations:</strong>
-<span style="float:right;font-size:22px;font-weight:bold;color:#dc2626;">
-10
-</span>
-</p>
-
+<div class="metric-item">
+<span class="metric-label">Blood Donations</span>
+<span class="metric-value red">10</span>
 </div>
 
 </div>
 
 </div>
+
 
 </section>
 
