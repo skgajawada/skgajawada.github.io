@@ -342,23 +342,12 @@ class HomePage extends Component {
         const data = await DataManager.getPortfolioData();
 
         const certs = await DataManager.getCertificates();
-
         const totalCerts = certs.certificates.length;
-
-        const roundedCerts =
-            totalCerts >= 10
-                ? `${Math.floor(totalCerts / 10) * 10}+`
-                : totalCerts.toString();
+        const roundedCerts = DataManager.getRoundedCount(totalCerts, 100);
         
         const moocs = await DataManager.getMOOCs();
-
-
         const totalMoocs = moocs.moocCertifications.length;
-        
-        const roundedMoocs =
-            totalMoocs >= 10
-                ? `${Math.floor(totalMoocs / 10) * 10}+`
-                : totalMoocs.toString();
+        const roundedMoocs = DataManager.getRoundedCount(totalMoocs, 10);
         return `
             <section class="hero fade-in">
                 <div class="hero-content">
