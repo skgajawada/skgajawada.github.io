@@ -169,12 +169,6 @@ style="cursor:pointer;">
 ${subject.title}
 </h3>
 
-<p class="card-description">
-
-${subject.courses.length} Course Offering(s)
-
-</p>
-
 <a
 href="#/teaching/${subject.id}"
 class="card-link">
@@ -261,9 +255,15 @@ ${currentSubject.courses.map(course=>`
 <p><strong>Batch:</strong> ${course.batch}</p>
 <p><strong>Semester:</strong> ${course.semester||"-"}</p>
 <p><strong>Regulation:</strong> ${course.regulation||"-"}</p>
-<a href="#/teaching/${currentSubject.id}/${course.id}" class="btn btn-primary" style="display:block;text-align:center;margin-top:1rem;">
-<i class="fas fa-book-open"></i>
-Course Materials
+<a href="assets/teaching/${course.folder}/index.html"
+target="_blank"
+class="btn btn-primary"
+style="display:block;text-align:center;margin-top:1rem;">
+
+<i class="fas fa-folder-open"></i>
+
+Access Materials
+
 </a>
 </div>
 `).join("")}
@@ -271,7 +271,7 @@ Course Materials
 </section>
 `;
 }
-const currentCourse=currentSubject.courses.find(
+
 c=>c.id===courseParam
 );
 
