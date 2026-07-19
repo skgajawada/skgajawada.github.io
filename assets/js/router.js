@@ -382,7 +382,7 @@ class HomePage extends Component {
             <div class="stat-card reveal">
                 <i class="fas fa-certificate" style="font-size:2rem;color:var(--primary);margin-bottom:.5rem;"></i>
                 <div class="stat-number">${roundedCerts}</div>
-                <div class="stat-label">Professional Development</div>
+                <div class="stat-label">Professional Development <br> Certifications</div>
             </div>
             
             <div class="stat-card reveal">
