@@ -325,6 +325,12 @@ class HomePage extends Component {
     async render() {
         const data = await DataManager.getPortfolioData();
         const certs = await DataManager.getCertificates();
+        const totalCerts = certs.certificates.length;
+
+        const roundedCerts =
+        totalCerts >= 100
+        ? `${Math.floor(totalCerts/10)*10}+`
+        : totalCerts.toString();
         return `
             <section class="hero fade-in">
                 <div class="hero-content">
@@ -348,18 +354,33 @@ class HomePage extends Component {
                     <img src="${data.personal.profileImage}" alt="Profile" class="profile-image" onerror="this.src='https://via.placeholder.com/400x400?text=Profile+Image'">
                 </div>
             </section>
-
             <section class="stats-grid">
-                ${data.stats.map((stat, i) => `
-                    <div class="stat-card reveal" style="animation-delay: ${i * 0.1}s;">
-                        <i class="fas ${stat.icon}" style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;"></i>
-                        <div class="stat-number">${stat.number}</div>
-                        <div class="stat-label">${stat.label}</div>
-                    </div>
-                `).join('')}
-            </section>
 
-            <section>
+                <div class="stat-card reveal">
+                <i class="fas fa-chalkboard-teacher" style="font-size:2rem;color:var(--primary);margin-bottom:.5rem;"></i>
+                <div class="stat-number">7+</div>
+                <div class="stat-label">Years Teaching Experience</div>
+                </div>
+                
+                <div class="stat-card reveal">
+                <i class="fas fa-certificate" style="font-size:2rem;color:var(--primary);margin-bottom:.5rem;"></i>
+                <div class="stat-number">${roundedCerts}</div>
+                <div class="stat-label">Professional Development</div>
+                </div>
+                
+                <div class="stat-card reveal">
+                <i class="fas fa-book" style="font-size:2rem;color:var(--primary);margin-bottom:.5rem;"></i>
+                <div class="stat-number">11</div>
+                <div class="stat-label">Subjects Taught</div>
+                </div>
+                
+                <div class="stat-card reveal">
+                <i class="fas fa-laptop-code" style="font-size:2rem;color:var(--primary);margin-bottom:.5rem;"></i>
+                <div class="stat-number">30+</div>
+                <div class="stat-label">MOOC Certifications</div>
+                </div>
+                
+                </section>
                 <h2 class="section-title">Research Interests</h2>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 4rem;">
                     ${data.researchInterests.map((interest, i) => `
