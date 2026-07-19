@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Graphics</title>
+
+<link rel="stylesheet" href="../../assets/css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+background:#f5f7fb;
+margin:0;
+padding:40px;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+}
+
+.title{
+font-size:2rem;
+font-weight:700;
+margin-bottom:40px;
+color:#1d3557;
+text-align:center;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:#fff;
+border-radius:12px;
+padding:30px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card i{
+font-size:42px;
+color:#2563eb;
+margin-bottom:15px;
+}
+
+.card h3{
+margin-bottom:20px;
+}
+
+.card a{
+display:inline-block;
+padding:10px 20px;
+background:#2563eb;
+color:#fff;
+text-decoration:none;
+border-radius:6px;
+}
+
+.card a:hover{
+background:#1d4ed8;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 class="title">
+
+Engineering Graphics
+
+</h1>
+
+<div class="grid">
+
+<div class="card">
+<i class="fas fa-book"></i>
+<h3>Notes</h3>
+<a href="Notes/">Open</a>
+</div>
+
+<div class="card">
+<i class="fas fa-file-powerpoint"></i>
+<h3>PPT</h3>
+<a href="PPT/">Open</a>
+</div>
+
+<div class="card">
+<i class="fas fa-question-circle"></i>
+<h3>Question Bank</h3>
+<a href="QB/">Open</a>
+</div>
+
+<div class="card">
+<i class="fas fa-file-alt"></i>
+<h3>Previous Papers</h3>
+<a href="Papers/">Open</a>
+</div>
+
+<div class="card">
+<i class="fas fa-book-open"></i>
+<h3>Books</h3>
+<a href="Books/">Open</a>
+</div>
+
+<div class="card">
+<i class="fas fa-video"></i>
+<h3>Videos</h3>
+<a href="Videos/">Open</a>
+</div>
+
+<div class="card">
+<i class="fas fa-download"></i>
+<h3>Downloads</h3>
+<a href="Downloads/">Open</a>
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
