@@ -6,7 +6,10 @@ class AnalyticsDashboard extends Component {
         this.certs = await DataManager.getCertificates();
 
         const totalCerts = this.certs.certificates.length;
-
+        const roundedCerts =
+            totalCerts >= 100
+                ? `${Math.floor(totalCerts / 10) * 10}+`
+                : totalCerts.toString();
         this.certsByCategory = {};
 
         this.certs.categories.forEach(cat => {
@@ -80,7 +83,7 @@ Key Metrics
 
 <div class="metric-number blue">
 
-${Math.floor(totalCerts/10)*10}+
+${roundedCerts}
 
 </div>
 
