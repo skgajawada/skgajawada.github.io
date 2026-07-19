@@ -325,7 +325,9 @@ margin-bottom:15px;
 class HomePage extends Component {
     async render() {
         const data = await DataManager.getPortfolioData();
+        console.log("Portfolio:", data);
         const certs = await DataManager.getCertificates();
+        console.log("Certificates:", certs);
         const totalCerts = certs.certificates.length;
 
         const roundedCerts =
@@ -334,6 +336,7 @@ class HomePage extends Component {
                 : totalCerts.toString();
         
         const moocs = await DataManager.getMOOCs();
+        console.log("MOOCs:", moocs);
         
         const totalMoocs = moocs.certificates.length;
         
