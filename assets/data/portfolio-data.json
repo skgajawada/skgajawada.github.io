@@ -54,22 +54,21 @@
       "title": "Assistant Professor",
       "company": "Guru Nanak Institutions Technical Campus",
       "location": "Hyderabad, India",
-      "startDate": "2021-03-23",
-      "endDate": "2025-06-28",
+      "startDate": "23/03/2021",
+      "endDate": "28/06/2025",
       "icon": "fa-briefcase",
       "description": "Teaching core mechanical engineering courses including Machine Design, Finite Element Analysis, and Computational Methods. Mentoring student projects and conducting research in structural dynamics and AI-driven design.",
       "achievements": [
         "Developed innovative curriculum integrating AI and FEA tools",
-        "Mentored 15+ students in research and industry projects",
-        "Published research on composite structures optimization"
+        "Mentored 15+ students in research and industry projects"
       ]
     },
     {
       "title": "Assistant Professor",
       "company": "Sree Chaitanya College of Engineering",
       "location": "Karimnagar, India",
-      "startDate": "2018-11-26",
-      "endDate": "2021-03-22",
+      "startDate": "26/11/2018",
+      "endDate": "22/03/2021",
       "icon": "fa-briefcase",
       "description": "Taught mechanical engineering fundamentals and specialized courses in CAD/CAM and Manufacturing processes. Coordinated laboratory activities and student internships.",
       "achievements": [
@@ -82,8 +81,8 @@
       "title": "Lecturer",
       "company": "Jyothishmathi Institute of Technology and Science, Karimnagar",
       "location": "India",
-      "startDate": "2015-12-07",
-      "endDate": "2016-06-30",
+      "startDate": "07/12/2015",
+      "endDate": "30/06/2016",
       "icon": "fa-briefcase",
       "description": "Delivered lectures in Mechanical Engineering and conducted laboratory sessions. Developed course materials and assessment strategies.",
       "achievements": [
@@ -247,7 +246,7 @@
     "orcid": "https://orcid.org/0000-0000-0000-0000",
     "researchGate": "https://researchgate.net/profile/Gajavada-Sanjeevkumar",
     "github": "https://github.com/skgajawada",
-    "linkedin": "https://linkedin.com/in/gajavada-sanjeevkumar",
+    "linkedin": "https://linkedin.com/in/skgajawada",
     "instagram": "https://instagram.com/skgajawada",
     "twitter": "https://twitter.com/skgajawada",
     "youtube": "https://youtube.com/@skgajawada"
