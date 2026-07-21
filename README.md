@@ -2,11 +2,6 @@
 
 A lightweight, modular academic and research portfolio built as a client-side Single Page Application (SPA) using Vanilla JavaScript. This framework separates content from layout logic using a completely JSON-driven design, incorporating custom client routing, modular page injection, and data summaries.
 
----
-
-## 📸 Portfolio Preview
-
----
 
 ## 🌐 Live Demo
 
@@ -317,7 +312,7 @@ The layout architecture, underlying component injection framework, styling model
 
 ### Contact Information
 
-* 📧 **Email:** skgajawada@gmail.com
+* 📧 **Email:** sanjeevkumargajawada@gmail.com
 * 🎓 **Affiliation:** Research Scholar, Department of Mechanical Engineering, IIT (ISM) Dhanbad
 * 📍 **Location:** Dhanbad, Jharkhand, India
 
