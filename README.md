@@ -1,111 +1,149 @@
-Plaintext
-# 🎓 Gajavada Sanjeevkumar – Research & Professional Portfolio
+# 🎓 Gajavada Sanjeevkumar – Academic & Research Portfolio
 
-> **Researcher • Mechanical Engineer • Educator • Data Science Enthusiast**
-
-A modern academic portfolio showcasing research, engineering projects, teaching experience, professional development, and technical expertise — built using a custom **Vanilla JavaScript Single Page Application (SPA)** architecture.
-
-[![Version](https://img.shields.io/badge/Version-1.1.0-blue.svg)](https://github.com/skgajawada/skgajawada.github.io)
-[![License](https://img.shields.io/badge/License-Portfolio_Use-lightgrey.svg)](#-license)
-[![Platform](https://img.shields.io/badge/Platform-GitHub_Pages-orange.svg)](https://skgajawada.github.io)
-
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
-![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=flat&logo=chartdotjs&logoColor=white)
-![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-222222?style=flat&logo=github&logoColor=white)
+A lightweight, modular academic and research portfolio built as a client-side Single Page Application (SPA) using Vanilla JavaScript. This framework separates content from layout logic using a completely JSON-driven design, incorporating custom client routing, modular page injection, and data summaries.
 
 ---
 
 ## 📸 Portfolio Preview
 
-![Portfolio Homepage](assets/images/pp.jpg)
-
 ---
 
 ## 🌐 Live Demo
 
-- **Portfolio Website:** [https://skgajawada.github.io](https://skgajawada.github.io)
-- **GitHub Repository:** [https://github.com/skgajawada/skgajawada.github.io](https://github.com/skgajawada/skgajawada.github.io)
+* **Portfolio Website:** [https://skgajawada.github.io](https://skgajawada.github.io)
+* **GitHub Repository:** [https://github.com/skgajawada/skgajawada.github.io](https://github.com/skgajawada/skgajawada.github.io)
 
 ---
 
-## 🌟 Highlights
+## 📖 About the Project
 
-- 🎓 Academic & Research Portfolio
-- 💼 Interactive Professional Experience Timeline
-- 📚 Research, Academic & Industrial Project Gallery
-- 📜 150+ Professional Development & MOOCs Certificates
-- 🎓 Dedicated MOOCs Certifications Portal
-- 💻 Custom Vanilla JavaScript SPA
-- 🌙 Automatic Dark Mode
-- 📊 Analytics Dashboard
-- 🔍 Dynamic Search & Filtering
-- 📱 Fully Responsive Design
-- 🚀 Hosted on GitHub Pages
+This repository hosts my personal academic and professional portfolio engineered as a clean Single Page Application (SPA). By leveraging native web APIs without modern framework dependencies, the portal keeps content data parameters inside structured datasets, keeping data updates separate from the core operational script logic.
 
----
+The application tracks academic milestones, engineering projects, course instructional modules, and verified professional development history using asynchronous data feeds and interactive templates.
 
-## 🗺️ Table of Contents
 
-- [Live Demo](#-live-demo)
-- [Highlights](#-highlights)
-- [Key Features](#-key-features)
-- [Website Sections](#-website-sections)
-- [Project Structure](#-project-structure)
-- [Navigation & Deep Linking](#-navigation--deep-linking)
-- [Supported Platforms](#-supported-platforms)
-- [Installation & Local Development](#-installation--local-development)
-- [Customization](#-customization)
-- [Technologies Used](#-technologies-used)
-- [Privacy](#-privacy)
-- [Changelog](#-changelog)
-- [Future Roadmap](#-future-roadmap)
-- [Academic & Professional Profiles](#-academic--professional-profiles)
-- [License](#-license)
-- [Contact](#-contact)
+
+## ✔️ Key Features
+
+* **Responsive Design:** Responsive layouts optimized for desktop, tablet, and mobile devices.
+* **Vanilla JavaScript SPA:** Zero reliance on bloated node modules or heavy framework layers.
+* **Custom Hash-Based Router:** Lightweight route parsing that handles nested sub-paths smoothly.
+* **JSON-Driven Core:** Total isolation between the display code and your personal data profiles.
+* **Dynamic Statistics:** Automatic run-time tracking and tallies of your active certifications.
+* **Integrated Academic Subsystems:** Specialized views for engineering projects, instructional assets, and external course logs.
+* **Analytics Component:** Clean visual metrics dashboard using low-overhead HTML5 canvas objects.
 
 ---
 
-## ✨ Key Features
+## 📊 Repository Statistics
 
-### 🎨 Design & User Experience
-
-- Fully responsive layouts optimized for desktop, tablet, and mobile devices
-- Automatic Dark Mode with LocalStorage persistence
-- Native CSS animations and smooth transitions
-- Scroll reveal effects powered by the Intersection Observer API
-- Interactive cards, timelines, dashboards, and filtering
-- Lightweight architecture with zero UI framework dependencies
-
----
-
-### 🚀 Core Architecture
-
-- Custom Vanilla JavaScript Single Page Application (SPA)
-- Client-side hash-based routing with deep-link support
-- JSON-driven content management
-- Modular JavaScript architecture
-- Dynamic analytics powered by Chart.js
-- Fast loading with minimal dependencies
-- SEO-friendly project structure
+| Operational Core | Current Benchmark |
+| --- | --- |
+| Website Modules | 10+ Modules |
+| Professional Development Categories | 6 Main Classes |
+| MOOC Platforms Tracks | 6 Vendors |
+| Active Instructional Subjects | 10+ Courses |
+| Professional Development Logs | Dynamic (100+) |
+| Validated MOOC Records | Dynamic (30+) |
+| Deployment Pipeline | GitHub Pages |
 
 ---
 
-## 📑 Website Sections
+## ✨ Highlights & Architecture
 
-| Section | Description |
-|----------|-------------|
-| 🏠 **Home** | Hero banner, quick statistics, research highlights, and featured content |
-| 👤 **About** | Biography, career objective, research vision, philosophy, and institutional responsibilities |
-| 💼 **Professional Experience** | Interactive timeline of academic, industrial, and teaching experience |
-| 🎓 **Education** | Degrees, institutions, CGPA, certifications, and academic achievements |
-| 📚 **Academic Projects** | Categorized gallery of Research, Academic, and Industrial projects |
-| 🎓 **MOOCs Certifications** | Platform-wise organization of online certifications with verification support |
-| 🏆 **Professional Development** | STTPs, Workshops, FDPs, Conferences, Webinars, and Quizzes |
-| 💡 **Skills** | Programming, Engineering, AI, Data Science, and Soft Skills with proficiency indicators |
-| 📞 **Contact** | Contact form, social profiles, research profiles, and communication links |
-| 📊 **Analytics** | Interactive dashboard showing visitor statistics and portfolio insights |
+### Custom Routing Control
+
+A lightweight engine built directly on browser window history interfaces, capturing state changes to replace views contextually without full page refreshes.
+
+### Complete Content Decoupling
+
+Data arrays load asynchronously when the application initializes. Modifying text parameters, expanding course histories, or dropping in new records only requires updating static array files without altering core scripts.
+
+### Client-Side Analytics Engine
+
+Utilizes integrated graphing libraries to render clean category distributions, experience timelines, and skill matrices using standard canvas drawing APIs.
+
+---
+
+## 📚 Website Modules
+
+| Module | Description |
+| --- | --- |
+| 🏠 **Home** | Landing dashboard featuring career overview summaries, quick navigation links, and total count statistics. |
+| 👤 **About** | Academic bio covering primary research focuses, engineering specialities, and educational paths. |
+| 💼 **Experience** | Professional timeline displaying active academic positions, research fellowships, and institutional appointments. |
+| 🎓 **Education** | Summary mapping degrees, qualification parameters, and institutional metrics. |
+| 👨‍🏫 **Teaching** | Instructional log tracking semesters taught, subject syllabi, class groups, and downloadable course guides. |
+| 📂 **Projects** | Categorized index of academic, research, and coding initiatives with descriptions and code links. |
+| 🏆 **Professional Development** | Log sheet archiving FDPs, STTPs, technical workshops, and conference appearances. |
+| 💻 **MOOCs Certifications** | Platform-specific learning registry complete with validation paths and direct credential links. |
+| 📊 **Analytics** | Graphical statistics screen translating portfolio counts into clean data summaries. |
+| 📞 **Contact** | Secure channels mapping formal outreach details, institution profiles, and networks. |
+
+---
+
+## 🏗️ SPA Architecture
+
+The application uses a centralized router to resolve routes and dynamically render the required page components:
+
+```text
+                     Browser
+                        │
+                        ▼
+                Hash-Based Router
+                        │
+                        ▼
+                 Route Resolution
+                        │
+                        ▼
+                Component Loader
+                        │
+                        ▼
+                   DataManager
+                        │
+        ┌───────────────┼────────────────┐
+        │               │                │
+        ▼               ▼                ▼
+portfolio-data   professional-       mooc-
+.json            development.json    certifications.json
+                        │
+                        ▼
+               Reusable Components
+                        │
+                        ▼
+             Dynamic Page Rendering
+
+```
+
+---
+
+## ⚙️ Dynamic JSON Architecture
+
+Portfolio content is cleanly maintained inside external data files. The application reads these records asynchronously to build interactive layout views dynamically using your exact repository properties:
+
+```json
+{
+  "categories": [
+    {
+      "id": "fdp",
+      "name": "Faculty Development Programs",
+      "icon": "fa-chalkboard-teacher"
+    }
+  ],
+  "certificates": [
+    {
+      "id": "cert-001",
+      "title": "Advanced Mechanical Systems",
+      "issuer": "NPTEL / IIT Madras",
+      "date": "2025-10",
+      "category": "fdp",
+      "verificationUrl": "https://nptel.ac.in/noc/",
+      "documentPath": "assets/certificates/fdp/advanced-mech.pdf"
+    }
+  ]
+}
+
+```
 
 ---
 
@@ -113,422 +151,180 @@ A modern academic portfolio showcasing research, engineering projects, teaching 
 
 ```text
 skgajawada.github.io/
+│
 ├── index.html
-├── favicon.ico
 ├── README.md
 ├── sitemap.xml
+│
 └── assets/
+    │
     ├── css/
-    │   ├── style.css
-    │   ├── animations.css
-    │   └── dark-mode.css
+    │   └── style.css
+    │
     ├── js/
     │   ├── app.js
-    │   ├── router.js
-    │   ├── analytics.js
-    │   ├── dark-mode.js
-    │   ├── animations.js
-    │   ├── moocs.js
-    │   └── professional-dev.js
+    │   └── router.js
+    │
     ├── data/
     │   ├── portfolio-data.json
-    │   ├── moocs.json
-    │   └── certificates.json
+    │   ├── professional-development.json
+    │   ├── mooc-certifications.json
+    │   └── teaching-data.json
+    │
+    ├── certificates/
+    │   ├── professional-development/
+    │   └── moocs/
+    │
+    ├── teaching/
+    │
+    ├── documents/
+    │
     └── images/
-        ├── profile.jpg
-        ├── portfolio-home.png
-        ├── favicon.png
-        └── icons/
-```
 
-## 📊 Navigation & Deep Linking
-
-The website uses a custom client-side **hash-based SPA router**. Every page can be accessed directly through a unique URL, making navigation fast while supporting deep linking.
-
-| Route | Description |
-|--------|-------------|
-| `#/home` | Landing page with hero banner, statistics, and research overview |
-| `#/about` | Biography, objectives, research interests, and professional summary |
-| `#/experience` | Interactive professional experience timeline |
-| `#/education` | Academic qualifications and certifications |
-| `#/projects` | Research, academic, and industrial project gallery |
-| `#/projects/{category}` | Displays projects belonging to a selected category |
-| `#/projects/{category}/{id}` | Opens an individual project page |
-| `#/moocs` | Complete MOOCs dashboard |
-| `#/moocs/{platform}` | Browse certificates by platform (Coursera, NPTEL, etc.) |
-| `#/moocs/{platform}/{id}` | Displays a specific certificate |
-| `#/professional-dev` | Professional Development dashboard |
-| `#/professional-dev/{category}` | Browse FDPs, Workshops, STTPs, Conferences, etc. |
-| `#/professional-dev/{category}/{id}` | Displays a specific event or certificate |
-| `#/skills` | Technical skills and proficiency charts |
-| `#/analytics` | Interactive analytics dashboard |
-| `#/contact` | Contact information and communication links |
-
----
-
-## 🌐 Supported Learning Platforms
-
-### 🎓 MOOCs Platforms
-
-- NPTEL
-- SWAYAM
-- Coursera
-- edX
-- Udemy
-- FutureLearn
-- Great Learning
-- Simplilearn
-- IIT Online Programs
-- Infosys Springboard
-- Cisco Networking Academy
-
----
-
-### 🏢 Enterprise Certifications
-
-- Google
-- Microsoft
-- IBM
-- Oracle
-- AWS
-- Cisco
-- LinkedIn Learning
-- SAP
-- Intel
-- NVIDIA
-
----
-
-### 🎯 Professional Development
-
-The portfolio also archives participation in:
-
-- Faculty Development Programs (FDPs)
-- Short-Term Training Programs (STTPs)
-- Workshops
-- International Conferences
-- National Conferences
-- Technical Webinars
-- Seminars
-- Symposiums
-- Expert Talks
-- Hackathons
-- Technical Quizzes
-- Industrial Training Programs
-
----
-
-## 🚀 Installation & Local Development
-
-Because the portfolio loads JSON data using the JavaScript **Fetch API**, opening `index.html` directly (`file:///`) will trigger browser security restrictions (CORS).
-
-Run the project using a local web server instead.
-
----
-
-### **1️⃣ Clone the Repository**
-
-```bash
-git clone https://github.com/skgajawada/skgajawada.github.io.git
-cd skgajawada.github.io
 ```
 
 ---
 
-### **2️⃣ Start a Local Server**
+## 🔄 Routing & Deep Linking
 
-#### **Option A — Python**
+The router binds directly to browser URL adjustments, managing interface shifts smoothly via location hash variations:
 
-```bash
-python -m http.server 8000
-```
+* **Core Section Target:** `#/professional-dev`
+* **Deep Linked Argument:** `#/professional-dev/fdp`
 
-#### **Option B — Node.js**
-
-```bash
-npx http-server -p 8000
-```
-
-#### **Option C — Visual Studio Code**
-
-1. Install the **Live Server** extension.
-2. Right-click `index.html`.
-3. Select **Open with Live Server**.
-
----
-
-### **3️⃣ Open in Your Browser**
-
-Navigate to:
+### Sample Navigation Paths
 
 ```text
-http://localhost:8000
+#/home
+#/about
+#/experience
+#/teaching/machine-design
+#/moocs/coursera
+
 ```
----
-#### Supported Browsers
-
-| Browser | Status |
-|----------|:------:|
-| Google Chrome | ✅ |
-| Microsoft Edge | ✅ |
-| Mozilla Firefox | ✅ |
-| Safari | ✅ |
-| Brave | ✅ |
-| Opera | ✅ |
-
----
-
-### Performance Highlights
-
-- ⚡ Lightweight Vanilla JavaScript architecture
-- ⚡ No frontend frameworks
-- ⚡ Fast page rendering
-- ⚡ Lazy loading where applicable
-- ⚡ Responsive design
-- ⚡ Client-side routing
-- ⚡ JSON-driven content
-- ⚡ Optimized for GitHub Pages
-
----
-
-## 🎨 Customization
-
-The portfolio is designed to be **fully data-driven**, allowing you to update content without modifying the application's core JavaScript.
-
----
-
-### Configuration Files
-
-| File | Purpose |
-|------|---------|
-| `assets/data/portfolio-data.json` | Personal information, biography, education, experience, skills, projects, achievements, and contact details |
-| `assets/data/moocs.json` | Online certifications, providers, certificate IDs, verification links, and categories |
-| `assets/data/certificates.json` | Professional Development records including FDPs, STTPs, Workshops, Conferences, Webinars, and Seminars |
-| `assets/css/style.css` | Global styles, typography, spacing, colors, and responsive layouts |
-| `assets/css/dark-mode.css` | Dark theme variables and component styling |
-| `assets/css/animations.css` | Animation effects and page transitions |
-| `assets/js/router.js` | Client-side SPA routing logic |
-| `assets/js/app.js` | Main application controller |
-| `assets/js/analytics.js` | Analytics dashboard logic |
-| `assets/js/moocs.js` | MOOCs module |
-| `assets/js/professional-dev.js` | Professional Development module |
-
----
-
-### Personalizing the Portfolio
-
-To customize the portfolio:
-
-- Update your personal information in `portfolio-data.json`
-- Add or edit project details
-- Include new publications and achievements
-- Add new certifications to `moocs.json`
-- Update Professional Development activities
-- Replace images inside `assets/images/`
-- Modify color themes in `style.css`
-- Customize icons and animations as required
-
-No JavaScript knowledge is required for routine content updates.
 
 ---
 
 ## 🔧 Technologies Used
 
-### Frontend
-
-- HTML5
-- CSS3
-- Vanilla JavaScript (ES6+)
-
----
-
-### Styling
-
-- CSS Grid
-- Flexbox
-- CSS Variables
-- Media Queries
-- CSS Animations
-
----
-
-### Data Management
-
-- JSON
-- Fetch API
-- LocalStorage
-
----
-
-### Visualization
-
-- Chart.js
-
----
-
-### Icons & Fonts
-
-- Font Awesome
-- Google Fonts
-
----
-
-### Hosting
-
-- GitHub Pages
-
----
-
-### Development Tools
-
-- Visual Studio Code
-- Git
-- GitHub
-
----
-
-### Technology Stack Summary
-
 | Category | Technology |
-|----------|------------|
-| Frontend | HTML5, CSS3, Vanilla JavaScript (ES6+) |
-| Layout | CSS Grid, Flexbox |
-| Routing | Custom Hash-based SPA Router |
-| Data | JSON, Fetch API |
-| Charts | Chart.js |
-| Icons | Font Awesome |
-| Storage | LocalStorage |
-| Hosting | GitHub Pages |
-| Version Control | Git & GitHub |
+| --- | --- |
+| **Frontend** | HTML5, CSS3, JavaScript (ES6+) |
+| **Styling** | CSS Grid, Flexbox, CSS Custom Properties, Media Queries |
+| **Data Management** | JSON, Fetch API, JavaScript Promises, LocalStorage |
+| **Visualization** | Chart.js |
+| **Icons & Design** | Font Awesome v6 Vector Icons |
+| **Hosting & Deployment** | GitHub Pages Pipeline |
 
 ---
 
-## 🔒 Privacy
+## 🛠️ Installation & Setup
 
-This portfolio follows a **privacy-first** approach.
+Because the application uses the Fetch API to load operational JSON data records asynchronously, modern browsers require local execution to occur over an active local web server. Direct file system launching (`file://`) will trigger CORS security blockades.
 
-### No Personal Data Collection
+### 1. Clone the Files
 
-- ✅ No cookies
-- ✅ No advertisements
-- ✅ No third-party trackers
-- ✅ No analytics services such as Google Analytics
-- ✅ No user accounts
-- ✅ No login system
+```bash
+git clone https://github.com/skgajawada/skgajawada.github.io.git
+cd skgajawada.github.io
+
+```
+
+### 2. Initiate Local Server
+
+#### Environment Option A: Python 3
+
+```bash
+python -m http.server 8000
+
+```
+
+#### Environment Option B: Node.js npm utilities
+
+```bash
+npx live-server
+
+```
+
+*Alternatively:*
+
+```bash
+npx http-server -p 8000
+
+```
+
+#### Environment Option C: VS Code Extension
+
+Open the directory within Visual Studio Code, right-click `index.html`, and execute the `Open with Live Server` control flag.
+
+### 3. Open the Dashboard
+
+Navigate your web client interface directly to:
+
+```text
+http://localhost:8000
+
+```
 
 ---
 
-### Analytics Dashboard
+## 🎨 Customization Guide
 
-The Analytics Dashboard is intended only to visualize portfolio statistics.
+Rebuilding this framework to represent alternative credentials requires modifying the properties held inside the structured JSON tracking sheets found under `assets/data/`:
 
-It:
+* **`portfolio-data.json`** -> Swap biographies, alter standard metrics, adjust technical skill blocks, and map timeline entries.
+* **`teaching-data.json`** -> Reconfigure subjects, insert active syllabus objects, update student batches, and link curriculum downloads.
+* **`professional-development.json`** and **`mooc-certifications.json`** -> Insert new validation rows, platform descriptors, tracking codes, and credential names.
 
-- does **not** collect Personally Identifiable Information (PII),
-- does **not** track visitors across websites,
-- does **not** create advertising profiles,
-- operates entirely within the portfolio application.
+---
+
+## 🔒 Privacy & Data Policy
+
+* **Telemetry Tracking:** The implementation does not execute analytical telemetry, deploy advertising pixels, or share user behavioral metrics.
+* **Cookies Usage:** The platform functions fully without writing system tracking files or persistent tracking configurations.
+* **Data Locality:** All graph evaluation, formatting, layout orchestration, and dashboard rendering loops process purely inside the local browser context.
 
 ---
 
 ## 📝 Changelog
 
-### Version 1.1.0 (Current)
+### Version 2.1.0
 
-#### Added
+* Added fully functional Teaching Resources & Professional Development Modules portals.
+* Incorporated custom asynchronous JSON mapping layers across modules.
+* Added native Chart.js configurations to structure statistical data views.
+* Fixed deep link string resolution anomalies inside the router subroutines.
 
-- Dedicated MOOCs module
-- Professional Development module
-- Analytics dashboard
-- Dynamic certificate pages
-- Deep-link routing
-- Responsive improvements
-- Homepage enhancements
-- Portfolio preview
-- Documentation updates
+### Version 2.0.0
 
-#### Improved
-
-- User interface consistency
-- Mobile responsiveness
-- Loading performance
-- JSON architecture
-- Search experience
-- Navigation
-- Dark Mode
-
-#### Fixed
-
-- Routing edge cases
-- Layout inconsistencies
-- Minor UI issues
-
----
+* Migrated the portfolio from static multi-page files to a streamlined Vanilla JavaScript SPA structure.
 
 ### Version 1.0.0
 
-#### Initial Release
-
-- Personal portfolio
-- About section
-- Education
-- Experience
-- Projects
-- Skills
-- Contact page
-- Dark Mode
-- Responsive design
+* Initial deployment version utilizing basic structural elements.
 
 ---
 
-## 🚀 Future Roadmap
+## 📄 Terms of Use & Intellectual Property
 
-### Academic
+Copyright © 2026 **Gajavada Sanjeevkumar**. All rights reserved.
 
-- [ ] Publications database
-- [ ] Patent portfolio
-- [ ] Research grants
-- [ ] Awards & Honors
-- [ ] Research collaborations
+The layout architecture, underlying component injection framework, styling models, and custom routing scripts are available for open educational configuration and personal design reuse. However, all academic records, specific text assessments, research files, publications, and associated structural credentials remain the exclusive intellectual property of the author and cannot be repurposed or republished without explicit written permission.
 
 ---
 
-### Portfolio
+## 📞 Contact & Professional Profiles
 
-- [ ] Downloadable CV
-- [ ] Research blog
-- [ ] Project search improvements
-- [ ] Advanced filtering
-- [ ] Publications search
-- [ ] Timeline enhancements
+### Contact Information
 
----
+* 📧 **Email:** skgajawada@gmail.com
+* 🎓 **Affiliation:** Research Scholar, Department of Mechanical Engineering, IIT (ISM) Dhanbad
+* 📍 **Location:** Dhanbad, Jharkhand, India
 
-### Technical
-
-- [ ] Progressive Web App (PWA)
-- [ ] Offline support
-- [ ] REST API integration
-- [ ] Admin dashboard
-- [ ] CMS support
-- [ ] Automatic sitemap generation
-- [ ] Performance optimization
-- [ ] Accessibility improvements
-
----
-
-### Long-Term Vision
-
-The long-term objective of this portfolio is to serve as a comprehensive academic and professional repository, documenting research activities, publications, engineering projects, teaching experience, certifications, and continuous professional development within a modern, responsive, and easily maintainable web application.
-
----
-
-## 🔗 Academic & Professional Profiles
-
-Stay connected through my academic, research, and professional platforms.
+### Online Profiles
 
 | Platform | Link |
-|----------|------|
+| --- | --- |
 | 🌐 **Portfolio Website** | [https://skgajawada.github.io](https://skgajawada.github.io) |
 | 💻 **GitHub** | [https://github.com/skgajawada](https://github.com/skgajawada) |
 | 💼 **LinkedIn** | [https://linkedin.com/in/skgajawada](https://linkedin.com/in/skgajawada) |
@@ -536,116 +332,53 @@ Stay connected through my academic, research, and professional platforms.
 | 🎓 **Google Scholar** | [https://scholar.google.com/citations?user=skgajawada](https://scholar.google.com/citations?user=skgajawada) |
 | 📚 **ResearchGate** | [https://www.researchgate.org/profile/skgajawada](https://www.researchgate.org/profile/skgajawada) |
 | 🆔 **ORCID** | [https://orcid.org/0000-0000-0000-0000](https://orcid.org/0000-0000-0000-0000) |
-| 🐦 **Twitter (X)** | [https://x.com/sk_gajawada](https://x.com/sk_gajawada) |
+| 🐦 **X (Twitter)** | [https://x.com/sk_gajawada](https://x.com/sk_gajawada) |
 | 📸 **Instagram** | [https://www.instagram.com/skgajawada/](https://www.instagram.com/skgajawada/) |
 | 👥 **Facebook** | [https://www.facebook.com/skgajawada/](https://www.facebook.com/skgajawada/) |
 | 🎥 **YouTube** | [https://www.youtube.com/@skgajawada](https://www.youtube.com/@skgajawada) |
+| 💬 **WhatsApp** | [https://wa.me/skgajawada](https://wa.me/skgajawada) |
+| ✈️ **Telegram** | [https://t.me/skgajawada](https://t.me/skgajawada) |
 
 ---
 
-## 📄 License
+## 🙏 Acknowledgements
 
-Copyright © 2026 **Gajavada Sanjeevkumar**.
-
-All rights reserved.
-
-This repository is intended for **academic, professional, and portfolio demonstration purposes**.
-
-You may:
-
-- View the source code
-- Learn from the implementation
-- Reference design ideas with appropriate attribution
-
-You may **not**:
-
-- Redistribute this repository as your own work.
-- Copy significant portions of the portfolio content.
-- Reuse personal information, images, certificates, publications, or documentation without written permission.
-- Use this portfolio for commercial purposes without authorization.
-
-For permissions or collaboration opportunities, please contact the repository owner.
+* **Indian Institute of Technology (ISM) Dhanbad** for providing institutional infrastructure, computing resources, and academic support.
+* **The Open-Source Community** for developing high-performance frontend libraries like Chart.js and Font Awesome graphics packages.
+* **Open-source contributors** whose libraries, utilities, and tools support the development and maintenance of this project.
+* **GitHub and GitHub Pages** for modern hosting environments and automated deployment pipelines.
 
 ---
 
-## 📞 Contact
+## ⭐ Repository Status
 
-If you would like to discuss research, collaborations, teaching, software development, or academic opportunities, feel free to reach out.
-
-| Contact | Information |
-|----------|-------------|
-| 🌐 Website | [https://skgajawada.github.io](https://skgajawada.github.io) |
-| 📧 Email | sanjeevkumargajawada@gmail.com |
-| 📞 Call | +91 9030 833 667 |
-| 💬 WhatsApp | [https://wa.me/skgajawada](https://wa.me/skgajawada) |
-| ✈️ Telegram | [https://t.me/skgajawada](https://t.me/skgajawada) |
-| 📍 Location | Dhanbad, Jharkhand, India |
-
----
-
-## 🤝 Acknowledgements
-
-This portfolio has been developed to showcase academic achievements, engineering projects, research activities, teaching experience, and continuous professional development.
-
-Special thanks to the open-source community and the developers of the following technologies:
-
-- HTML5
-- CSS3
-- JavaScript (ES6+)
-- Chart.js
-- Font Awesome
-- Git
-- GitHub
-- GitHub Pages
-
-Their tools and resources have made this project possible.
-
----
-
-## ⭐ Support
-
-If you found this project useful:
-
-- ⭐ Star this repository
-- 🍴 Fork it for learning purposes
-- 🛠️ Suggest improvements by opening an issue
-- 🤝 Connect for research collaborations or professional discussions
-
-Your support is greatly appreciated.
-
----
-
-## 📈 Repository Status
-
-| Item | Status |
-|------|:------:|
+| Feature | Status |
+| --- | --- |
 | Responsive Design | ✅ |
-| Dark Mode | ✅ |
-| SPA Routing | ✅ |
-| JSON-driven Content | ✅ |
-| Analytics Dashboard | ✅ |
-| MOOCs Module | ✅ |
-| Professional Development Module | ✅ |
-| GitHub Pages Deployment | ✅ |
 | Mobile Friendly | ✅ |
-| Active Maintenance | ✅ |
+| SPA Routing | ✅ |
+| JSON-driven Architecture | ✅ |
+| Teaching Portal | ✅ |
+| Professional Development | ✅ |
+| MOOCs Module | ✅ |
+| Analytics Dashboard | ✅ |
+| GitHub Pages Deployment | ✅ |
+| Active Development | ✅ |
 
 ---
 
-<div align="center">
+# 🎓 Gajavada Sanjeevkumar
 
-## 🎓 Gajavada Sanjeevkumar
+**Research Scholar**
 
-**Researcher • Mechanical Engineer • Educator • Data Science Enthusiast**
+Department of Mechanical Engineering
 
-🌐 **Website:** [https://skgajawada.github.io](https://skgajawada.github.io)
+Indian Institute of Technology (ISM) Dhanbad
 
----
+🌐 [https://skgajawada.github.io](https://skgajawada.github.io)
 
-Made with ❤️ using **HTML5**, **CSS3**, **Vanilla JavaScript**, and **Chart.js**
+Built with HTML5 • CSS3 • Vanilla JavaScript • Chart.js
 
-**© 2026 Gajavada Sanjeevkumar. All Rights Reserved.**
+© 2026 Gajavada Sanjeevkumar. All Rights Reserved.
 
-⭐ *If you enjoyed exploring this portfolio, consider giving the repository a Star!*
-
-</div>
+⭐ If you found this repository useful, consider giving it a Star!
