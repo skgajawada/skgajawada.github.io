@@ -1309,7 +1309,11 @@ class ContactPage extends Component {
 
                     <div class="reveal">
                         <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.2rem;">Send Message</h3>
-                        <form class="contact-form" onsubmit="handleContactForm(event)">
+                        <form id="contactForm" class="contact-form" onsubmit="handleContactForm(event)">
+                        <input type="hidden" name="access_key" value="b1cad834-0a09-44a4-bbbb-8c031c2e24e0">
+                        <input type="hidden" name="subject" value="New message from Portfolio Website">
+                        <input type="hidden" name="from_name" value="Gajavada Sanjeevkumar Portfolio">
+                        <input type="checkbox" name="botcheck" style="display:none;">
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" id="name" name="name" required>
@@ -1374,10 +1378,42 @@ function navigateTo(url) {
     window.location.hash = url;
 }
 
-function handleContactForm(e) {
+async function handleContactForm(e) {
     e.preventDefault();
-    alert('Thank you for your message! I will get back to you soon.');
-    e.target.reset();
+
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    const originalHTML = submitBtn.innerHTML;
+
+    submitBtn.innerHTML =
+        '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+    submitBtn.disabled = true;
+
+    try {
+        const formData = new FormData(form);
+
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            alert("✅ Thank you! Your message has been sent successfully.");
+            form.reset();
+        } else {
+            alert("❌ " + result.message);
+        }
+
+    } catch (error) {
+        alert("❌ Unable to send your message. Please try again.");
+    } finally {
+        submitBtn.innerHTML = originalHTML;
+        submitBtn.disabled = false;
+    }
 }
 
 // Back to top button
