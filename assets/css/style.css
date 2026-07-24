@@ -1015,12 +1015,12 @@ font-size:34px;
 }
 
 .footer-copyright a{
-    color:var(--primary);
+    color:#ffffff;
     text-decoration:none;
-    transition:0.3s;
+    transition:0.3s ease;
 }
 
 .footer-copyright a:hover{
-    color:#ffffff;
+    color:var(--primary);
     text-decoration:underline;
 }
