@@ -763,16 +763,6 @@ color:#dc2626;
     background: var(--primary);
 }
 
-.footer-bottom {
-    text-align: center;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
 
 .back-to-top {
     width: 40px;
@@ -1003,8 +993,9 @@ font-size:34px;
     justify-content:space-between;
     align-items:center;
     flex-wrap:wrap;
-    gap:15px;
+    gap:20px;
     padding-top:20px;
+    border-top:1px solid rgba(255,255,255,0.1);
 }
 
 .footer-credit{
@@ -1026,8 +1017,10 @@ font-size:34px;
 .footer-copyright a{
     color:var(--primary);
     text-decoration:none;
+    transition:0.3s;
 }
 
 .footer-copyright a:hover{
+    color:#ffffff;
     text-decoration:underline;
 }
