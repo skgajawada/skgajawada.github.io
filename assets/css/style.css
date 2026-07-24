@@ -998,3 +998,36 @@ font-size:34px;
 }
 
 }
+.footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:15px;
+    padding-top:20px;
+}
+
+.footer-credit{
+    color:#ffffff;
+    font-size:0.95rem;
+}
+
+.footer-credit strong{
+    color:#ffffff;
+    font-weight:700;
+}
+
+.footer-copyright{
+    color:#ffffff;
+    font-size:0.95rem;
+    text-align:center;
+}
+
+.footer-copyright a{
+    color:var(--primary);
+    text-decoration:none;
+}
+
+.footer-copyright a:hover{
+    text-decoration:underline;
+}
