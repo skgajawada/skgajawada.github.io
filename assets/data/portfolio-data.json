@@ -131,51 +131,88 @@
     }
   ],
   "projects": [
-    {
-      "id": 1,
-      "title": "AI-Driven Structural Optimization Framework",
-      "description": "Development of machine learning-based framework for optimizing composite structures considering multiple design constraints and material properties.",
-      "category": "research",
-      "technologies": ["Python", "TensorFlow", "ANSYS", "MATLAB"],
-      "image": "fa-project-diagram",
-      "results": "Successfully reduced design time by 40% while maintaining structural integrity",
-      "github": "https://github.com/skgajawada",
-      "link": ""
-    },
-    {
-      "id": 2,
-      "title": "Finite Element Analysis of Aeroelastic Structures",
-      "description": "Computational analysis and experimental validation of wing flutter characteristics under various loading conditions.",
-      "category": "research",
-      "technologies": ["ABAQUS", "MATLAB", "Python", "CFD"],
-      "image": "fa-wind",
-      "results": "Published 2 papers in international journals; developed predictive model",
-      "github": "https://github.com/skgajawada",
-      "link": ""
-    },
-    {
-      "id": 3,
-      "title": "Additive Manufacturing Process Optimization",
-      "description": "Investigation of process parameters in 3D printing for mechanical properties enhancement of polymer and metal composites.",
-      "category": "academic",
-      "technologies": ["MATLAB", "Design of Experiments", "CAD"],
-      "image": "fa-cube",
-      "results": "Identified optimal parameters improving strength by 35%",
-      "github": "https://github.com/skgajawada",
-      "link": ""
-    },
-    {
-      "id": 4,
-      "title": "IoT-Based Machine Monitoring System",
-      "description": "Development of IoT sensors and data analytics platform for real-time industrial equipment monitoring and predictive maintenance.",
-      "category": "industrial",
-      "technologies": ["Python", "IoT", "Data Analytics", "Power BI"],
-      "image": "fa-microchip",
-      "results": "Reduced machine downtime by 30%; improved maintenance efficiency",
-      "github": "https://github.com/skgajawada",
-      "link": ""
-    }
-  ],
+  {
+    "id": 1,
+    "title": "Federated Learning for Intelligent Transportation Systems",
+    "description": "Developed decentralized and privacy-preserving machine learning frameworks for Intelligent Transportation Systems using Python, TensorFlow, Scikit-learn, Dataiku DSS, and advanced data analytics techniques.",
+    "category": "research",
+    "technologies": [
+      "Python",
+      "TensorFlow",
+      "Scikit-learn",
+      "Dataiku DSS",
+      "Federated Learning"
+    ],
+    "image": "fa-network-wired",
+    "results": "Designed privacy-preserving federated learning models for intelligent transportation applications.",
+    "github": "",
+    "link": ""
+  },
+  {
+    "id": 2,
+    "title": "AI-Driven Frequency Response Analysis for Transformer Diagnostics",
+    "description": "Developed a unified data processing and machine learning framework for automated transformer fault identification using Frequency Response Analysis (FRA) data.",
+    "category": "research",
+    "technologies": [
+      "Python",
+      "Machine Learning",
+      "Frequency Response Analysis",
+      "Data Science"
+    ],
+    "image": "fa-bolt",
+    "results": "Implemented an AI-driven framework for intelligent transformer diagnostics.",
+    "github": "",
+    "link": ""
+  },
+  {
+    "id": 3,
+    "title": "Elastic-Plastic Material Analysis using Finite Element Analysis",
+    "description": "Master's thesis investigating the effect of elastic-plastic material properties of metals on hardness values using Finite Element Analysis.",
+    "category": "academic",
+    "technologies": [
+      "ANSYS",
+      "Finite Element Analysis",
+      "Machine Design",
+      "Material Modeling"
+    ],
+    "image": "fa-cubes",
+    "results": "Evaluated theoretical and experimental hardness variations through computational analysis.",
+    "github": "",
+    "link": ""
+  },
+  {
+    "id": 4,
+    "title": "Hydraulic Robotic Arm for Pick and Place Operation",
+    "description": "Designed and fabricated a hydraulically actuated multi-axis robotic arm for automated material handling operations.",
+    "category": "academic",
+    "technologies": [
+      "Hydraulics",
+      "Mechanical Design",
+      "Manufacturing",
+      "CAD"
+    ],
+    "image": "fa-robot",
+    "results": "Successfully designed and fabricated a functional hydraulic robotic arm prototype.",
+    "github": "",
+    "link": ""
+  },
+  {
+    "id": 5,
+    "title": "Study of Internal Combustion Engines and Their Components",
+    "description": "Industrial mini project involving the study of construction, working principles, and major components of Internal Combustion Engines.",
+    "category": "industrial",
+    "technologies": [
+      "IC Engines",
+      "Automobile Engineering",
+      "Mechanical Engineering"
+    ],
+    "image": "fa-gears",
+    "results": "Completed a comprehensive industrial study of IC engine systems and components.",
+    "github": "",
+    "link": ""
+  }
+]
+,
   "subjects": [
     {
       "name": "Finite Element Analysis",
