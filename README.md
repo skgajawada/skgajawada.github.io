@@ -361,19 +361,22 @@ The layout architecture, underlying component injection framework, styling model
 | Active Development | ✅ |
 
 ---
+<div align="center">
 
 # 🎓 Gajavada Sanjeevkumar
 
-**Research Scholar**
+**Research Scholar**  
+Department of Mechanical Engineering  
+**Indian Institute of Technology (ISM) Dhanbad**
 
-Department of Mechanical Engineering
+🌐 **Portfolio:** https://skgajawada.github.io
 
-Indian Institute of Technology (ISM) Dhanbad
+Built with **HTML5 • CSS3 • Vanilla JavaScript • Chart.js**
 
-🌐 [https://skgajawada.github.io](https://skgajawada.github.io)
-
-Built with HTML5 • CSS3 • Vanilla JavaScript • Chart.js
+**Designed, Developed, and Maintained by Gajavada Sanjeevkumar**
 
 © 2026 Gajavada Sanjeevkumar. All Rights Reserved.
 
-⭐ If you found this repository useful, consider giving it a Star!
+⭐ **If you found this repository useful, consider giving it a Star!**
+
+</div>
