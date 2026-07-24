@@ -333,6 +333,22 @@
       "certificateImage": "21.jpg"
     },
     {
+      "id": 136,
+      "category": "FDP",
+      "categoryName": "Faculty Development Programs",
+      "name": "Five Days Faculty Development Programme on Green Technology and Sustainability Engineering",
+      "type": "FDP",
+      "startDate": "05-07-2021",
+      "endDate": "09-07-2021",
+      "duration": "5 Days",
+      "department": "Amrita School of Engineering",
+      "organization": "Amrita Vishwa Vidyapeetham",
+      "venue": "Coimbatore",
+      "association": "AICTE Training and Learning (ATAL) Academy",
+      "certificateFile": "136.pdf",
+      "certificateImage": "136.jpg"
+    },
+    {
       "id": 44,
       "category": "Webinars",
       "categoryName": "Webinars",
