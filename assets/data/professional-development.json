@@ -301,6 +301,22 @@
       "certificateImage": "18.jpg"
     },
     {
+      "id": 137,
+      "category": "Webinar",
+      "categoryName": "Webinars",
+      "name": "AI Tools for Research",
+      "type": "National Level Capacity Building Programme",
+      "startDate": "29-06-2025",
+      "endDate": "29-06-2025",
+      "duration": "1 Day",
+      "department": "",
+      "organization": "A.C.T Academy, Kerala",
+      "venue": "Online",
+      "association": "National Level Capacity Building Programme",
+      "certificateFile": "137.pdf",
+      "certificateImage": "137.jpg"
+    },
+    {
       "id": 40,
       "category": "Webinars",
       "categoryName": "Webinars",
