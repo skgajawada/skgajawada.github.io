@@ -58,52 +58,49 @@ const router = new Router(false);
 // Portfolio Data Manager
 class DataManager {
 
-    static async loadData(file){
+    static async loadData(file) {
+        try {
+            const response = await fetch(file);
 
-    try{
+            if (!response.ok) {
+                throw new Error(file);
+            }
 
-        const response = await fetch(file);
+            return await response.json();
 
-        if(!response.ok){
-
-            throw new Error(file);
-
+        } catch (e) {
+            console.error(file, e);
+            return null;
         }
-
-        return await response.json();
-
-    }catch(e){
-
-        console.error(file,e);
-
-        return null;
-
     }
 
-}
-
-    static async getPortfolioData(){
+    static async getPortfolioData() {
         return await this.loadData("assets/data/portfolio-data.json");
     }
 
-    static async getCertificates(){
+    static async getCertificates() {
         return await this.loadData("assets/data/professional-development.json");
     }
 
-    static async getMOOCs(){
+    static async getMOOCs() {
         return await this.loadData("assets/data/mooc-certifications.json");
     }
 
-    static async getTeaching(){
+    static async getTeaching() {
         return await this.loadData("assets/data/teaching-data.json");
     }
-    static getRoundedCount(count, threshold = 100) {
-    return count >= threshold
-        ? `${Math.floor(count / 10) * 10}+`
-        : count.toString();
-}
-}
 
+    // NEW METHOD
+    static async getSocialResponsibility() {
+        return await this.loadData("assets/data/social-responsibility.json");
+    }
+
+    static getRoundedCount(count, threshold = 100) {
+        return count >= threshold
+            ? `${Math.floor(count / 10) * 10}+`
+            : count.toString();
+    }
+}
 // Base Component Class
 class Component {
     constructor(name) {
