@@ -293,16 +293,15 @@
   ],
   "skills": {
     "programming": [
-      { "name": "MATLAB", "proficiency": 90 },
-      { "name": "Python", "proficiency": 85 },
-      { "name": "C", "proficiency": 75 },
+      { "name": "MATLAB", "proficiency": 50 },
+      { "name": "Python", "proficiency": 55 },
       { "name": "SQL", "proficiency": 70 }
     ],
     "engineering": [
-      { "name": "ANSYS", "proficiency": 88 },
-      { "name": "ABAQUS", "proficiency": 85 },
-      { "name": "SolidWorks", "proficiency": 82 },
-      { "name": "CATIA", "proficiency": 75 }
+      { "name": "ANSYS", "proficiency": 50 },
+      { "name": "ABAQUS", "proficiency": 45 },
+      { "name": "SolidWorks", "proficiency": 40 },
+      { "name": "CATIA", "proficiency": 40 }
     ],
     "datascience": [
       { "name": "Power BI", "proficiency": 80 },
