@@ -54,8 +54,8 @@
       "title": "Online Data Science Intern",
       "company": "Sabudh Foundation (in collaboration with STPI, Mohali)",
       "location": "Remote",
-      "startDate": "01/01/2026",
-      "endDate": "30/06/2026",
+      "startDate": "Jan 2026",
+      "endDate": "June 2026",
       "icon": "fa-laptop-code",
       "description": "Developed distributed and privacy-preserving machine learning solutions for Intelligent Transportation Systems using Federated Learning. Implemented end-to-end data science workflows with Python, TensorFlow, Scikit-learn, and Dataiku DSS for collaborative model development and analytics.",
       "achievements": [
@@ -68,8 +68,8 @@
       "title": "Assistant Professor",
       "company": "Guru Nanak Institutions Technical Campus",
       "location": "Hyderabad, Telangana, India",
-      "startDate": "23/03/2021",
-      "endDate": "28/06/2025",
+      "startDate": "March 2021",
+      "endDate": "June 2025",
       "icon": "fa-chalkboard-teacher",
       "description": "Taught undergraduate Mechanical Engineering courses, mentored student projects, supervised laboratory sessions, and actively contributed to academic administration, accreditation activities, and Outcome-Based Education (OBE) implementation.",
       "achievements": [
@@ -86,8 +86,8 @@
       "title": "Assistant Professor",
       "company": "Sree Chaitanya College of Engineering",
       "location": "Karimnagar, Telangana, India",
-      "startDate": "26/11/2018",
-      "endDate": "22/03/2021",
+      "startDate": "Nov 2018",
+      "endDate": "March 2021",
       "icon": "fa-chalkboard-teacher",
       "description": "Delivered undergraduate Mechanical Engineering courses, conducted laboratory sessions, mentored student projects, and coordinated academic and professional development activities.",
       "achievements": [
@@ -103,8 +103,8 @@
       "title": "Lecturer",
       "company": "Jyothishmathi Institute of Technology and Science",
       "location": "Karimnagar, Telangana, India",
-      "startDate": "07/12/2015",
-      "endDate": "30/06/2016",
+      "startDate": "Dec 2015",
+      "endDate": "June 2016",
       "icon": "fa-user-graduate",
       "description": "Delivered undergraduate Mechanical Engineering lectures, conducted practical laboratory sessions, and supported academic and examination administration.",
       "achievements": [
