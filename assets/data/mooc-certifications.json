@@ -46,6 +46,24 @@
 
   "moocCertifications": [
     {
+      "id": 125,
+      "title": "Learn and Challenge in MATLAB Image Processing",
+      "provider": "MathWorks",
+      "category": "MATLAB",
+      "level": "Digital Credential",
+      "completionDate": "11-04-2026",
+      "description": "Successfully completed the Learn and Challenge in MATLAB Image Processing programme and earned a Digital Credential hosted by MathWorks. The programme focused on fundamental image processing techniques using MATLAB and recognized outstanding participation and performance.",
+      "skills": [
+        "MATLAB",
+        "Image Processing",
+        "Digital Image Analysis",
+        "Computer Vision Fundamentals",
+        "Visualization"
+      ],
+      "credential": "Certificate of Achievement",
+      "certificateFile": "125.pdf",
+    },
+    {
       "id": 1,
       "vendor": "matlab",
       "issuer": "MathWorks Training",
