@@ -703,8 +703,26 @@ white-space:nowrap;
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
-    max-width: 420px;   /* Adjust as needed */
+    max-width: 550px;
     margin: 0 auto;
+}
+
+.social-links a {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    font-size: 1.6rem;      /* Increase icon size */
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background: var(--primary);
+    transform: translateY(-4px) scale(1.08);
 }
 
 /* =====================================
