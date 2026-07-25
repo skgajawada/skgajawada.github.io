@@ -508,6 +508,22 @@
       "certificateFile": "12.pdf",
       "certificateImage": "12.jpg"
     },
+     {
+      "id": 138,
+      "category": "Quiz",
+      "categoryName": "Quiz Competitions",
+      "name": "National Level Online Quiz on the Occasion of United Nations Day",
+      "type": "Quiz",
+      "startDate": "24-10-2025",
+      "endDate": "24-10-2025",
+      "duration": "1 Day",
+      "department": "",
+      "organization": "Bureau of Indian Standards (BIS)",
+      "venue": "Online",
+      "association": "United Nations Day",
+      "certificateFile": "138.pdf",
+      "certificateImage": "138.jpg"
+    },
     {
       "id": 83,
       "category": "Quiz",
