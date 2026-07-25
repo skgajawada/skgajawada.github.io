@@ -995,252 +995,6 @@ Verify
     }
 
 }
-/*
-// TEACHING PAGE
-class TeachingPage extends Component {
-
-    async render(params) {
-
-        const teaching = await DataManager.getTeaching();
-        const subjectParam = params && params[0];
-
-        // ==========================
-        // SUBJECT LIST
-        // ==========================
-
-        if (!subjectParam) {
-
-            return `
-
-<section class="fade-in">
-
-<h1 class="section-title">
-Teaching
-</h1>
-
-<div class="cards-grid stagger-container">
-
-${teaching.subjects.map(subject => `
-
-<div class="card fade-in"
-onclick="navigateTo('#/teaching/${subject.id}')"
-style="cursor:pointer;">
-
-<div class="card-icon">
-
-<i class="fas ${subject.icon}"></i>
-
-</div>
-
-<div class="card-content">
-
-<h3 class="card-title">
-
-${subject.title}
-
-</h3>
-
-<p class="card-description">
-
-${subject.courses.length} Course Offering(s)
-
-</p>
-
-<a
-href="#/teaching/${subject.id}"
-class="card-link">
-
-View Courses
-<i class="fas fa-arrow-right"></i>
-
-</a>
-
-</div>
-
-</div>
-
-`).join("")}
-
-</div>
-
-</section>
-
-`;
-
-        }
-
-        // ==========================
-        // COURSE LIST
-        // ==========================
-
-        const currentSubject =
-            teaching.subjects.find(
-                s => s.id === subjectParam
-            );
-
-        if (!currentSubject) {
-
-            return `
-
-<section>
-
-<h2>Subject Not Found</h2>
-
-<a href="#/teaching"
-class="btn btn-primary">
-
-Back
-
-</a>
-
-</section>
-
-`;
-
-        }
-
-// COURSE MATERIALS PAGE
-
-if(params.length===2){
-
-const currentCourse=currentSubject.courses.find(
-c=>c.id===params[1]
-);
-
-if(!currentCourse){
-
-return`
-
-<section>
-
-<h2>Course Not Found</h2>
-
-<a href="#/teaching/${currentSubject.id}"
-class="btn btn-primary">
-
-Back
-
-</a>
-
-</section>
-
-`;
-
-}
-
-return`
-
-<section class="fade-in">
-
-<div style="display:flex;align-items:center;gap:1rem;margin-bottom:2rem;">
-
-<a href="#/teaching/${currentSubject.id}"
-class="btn btn-outline">
-
-<i class="fas fa-arrow-left"></i>
-
-Back
-
-</a>
-
-<h1 class="section-title" style="margin:0;">
-
-${currentSubject.title}
-
-</h1>
-
-</div>
-
-<div class="card">
-
-<h3>${currentCourse.institution}</h3>
-
-<p><strong>Program:</strong> ${currentCourse.program}</p>
-
-<p><strong>Branch:</strong> ${currentCourse.branch}</p>
-
-<p><strong>Batch:</strong> ${currentCourse.batch}</p>
-
-<p><strong>Semester:</strong> ${currentCourse.semester}</p>
-
-<p><strong>Regulation:</strong> ${currentCourse.regulation||"-"}</p>
-
-<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:25px;">
-
-<a href="assets/teaching/${currentCourse.folder}/information.json"
-target="_blank"
-class="btn btn-primary">
-
-Information
-
-</a>
-
-<a href="assets/teaching/${currentCourse.folder}/Notes/"
-target="_blank"
-class="btn btn-outline">
-
-Notes
-
-</a>
-
-<a href="assets/teaching/${currentCourse.folder}/PPT/"
-target="_blank"
-class="btn btn-outline">
-
-PPT
-
-</a>
-
-<a href="assets/teaching/${currentCourse.folder}/QB/"
-target="_blank"
-class="btn btn-outline">
-
-QB
-
-</a>
-
-<a href="assets/teaching/${currentCourse.folder}/Papers/"
-target="_blank"
-class="btn btn-outline">
-
-Papers
-
-</a>
-
-<a href="assets/teaching/${currentCourse.folder}/Videos/"
-target="_blank"
-class="btn btn-outline">
-
-Videos
-
-</a>
-
-<a href="assets/teaching/${currentCourse.folder}/Books/"
-target="_blank"
-class="btn btn-outline">
-
-Books
-
-</a>
-
-<a href="assets/teaching/${currentCourse.folder}/Downloads/"
-target="_blank"
-class="btn btn-outline">
-
-Downloads
-
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-`;
-
-}
-*/
 // SKILLS PAGE
 class SkillsPage extends Component {
     async render() {
@@ -1453,55 +1207,54 @@ class SocialResponsibilityPage extends Component {
 // CONTACT PAGE
 class ContactPage extends Component {
     async render() {
-        const data = await DataManager.getPortfolioData();
-
         return `
             <section class="fade-in">
-                <h1 class="section-title">Get In Touch</h1>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem;">
-                    <div class="reveal">
-                        <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.2rem;">Contact Information</h3>
-                        <div style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 1.5rem; border-radius: 10px;">
-                            <p style="margin-bottom: 1rem;"><strong>Connect with Me</strong></p>
-                            <div class="social-links" style="gap: 0.5rem;">
-                                <a href="${data.socialLinks.googleScholar}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-                                <a href="${data.socialLinks.researchGate}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="ResearchGate"><i class="fab fa-researchgate"></i></a>
-                                <a href="${data.socialLinks.github}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="GitHub"><i class="fab fa-github"></i></a>
-                                <a href="${data.socialLinks.linkedin}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                <h1 class="section-title">Get in Touch</h1>
+
+                <div style="max-width: 800px; margin: 0 auto;">
 
                     <div class="reveal">
-                        <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.2rem;">Send Message</h3>
+                        <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.3rem;">
+                            Send a Message
+                        </h3>
+
                         <form id="contactForm" class="contact-form" onsubmit="handleContactForm(event)">
-                        <input type="hidden" name="access_key" value="b1cad834-0a09-44a4-bbbb-8c031c2e24e0">
-                        <input type="hidden" name="subject" value="New message from Portfolio Website">
-                        <input type="hidden" name="from_name" value="Gajavada Sanjeevkumar Portfolio">
-                        <input type="checkbox" name="botcheck" style="display:none;">
+
+                            <input type="hidden" name="access_key" value="b1cad834-0a09-44a4-bbbb-8c031c2e24e0">
+                            <input type="hidden" name="subject" value="New message from Portfolio Website">
+                            <input type="hidden" name="from_name" value="Gajavada Sanjeevkumar Portfolio">
+                            <input type="checkbox" name="botcheck" style="display:none;">
+
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" id="name" name="name" required>
                             </div>
+
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" id="email" name="email" required>
                             </div>
+
                             <div class="form-group">
                                 <label for="subject">Subject</label>
                                 <input type="text" id="subject" name="subject" required>
                             </div>
+
                             <div class="form-group">
                                 <label for="message">Message</label>
-                                <textarea id="message" name="message" required></textarea>
+                                <textarea id="message" name="message" rows="6" required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary" style="width: 100%;">
-                                <i class="fas fa-paper-plane"></i> Send Message
+
+                            <button type="submit" class="btn btn-primary" style="width:100%;">
+                                <i class="fas fa-paper-plane"></i>
+                                Send Message
                             </button>
+
                         </form>
                     </div>
+
                 </div>
+
             </section>
         `;
     }
