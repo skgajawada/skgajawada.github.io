@@ -680,21 +680,21 @@ white-space:nowrap;
 }
 
 .footer-social a{
-    width:46px;
-    height:46px;
+    width:48px;
+    height:48px;
     display:flex;
     justify-content:center;
     align-items:center;
     border-radius:50%;
     background:rgba(255,255,255,.12);
     color:#fff;
-    font-size:1.2rem;
-    transition:.3s;
+    font-size:1.35rem;
+    transition:all .3s ease;
 }
 
 .footer-social a:hover{
-    transform:translateY(-3px);
     background:var(--primary);
+    transform:translateY(-3px);
 }
 
 .social-links {
