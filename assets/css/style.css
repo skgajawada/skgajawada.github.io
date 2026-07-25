@@ -674,22 +674,22 @@ white-space:nowrap;
     justify-content:center;
     align-items:center;
     flex-wrap:wrap;
-    gap:14px;
-    max-width:420px;      /* Adjust this value */
+    gap:0.8rem;          /* Reduced from 1rem */
+    max-width:440px;     /* Keeps icons within 2 rows */
     margin:20px auto;
 }
 
 .footer-social a{
-    width:48px;
-    height:48px;
+    width:42px;          /* Reduced from 48px */
+    height:42px;
     display:flex;
     justify-content:center;
     align-items:center;
     border-radius:50%;
     background:rgba(255,255,255,.12);
     color:#fff;
-    font-size:1.35rem;
-    transition:all .3s ease;
+    font-size:1.2rem;    /* Reduced from 1.35rem */
+    transition:.3s;
 }
 
 .footer-social a:hover{
