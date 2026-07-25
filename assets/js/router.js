@@ -1462,18 +1462,6 @@ class ContactPage extends Component {
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem;">
                     <div class="reveal">
                         <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.2rem;">Contact Information</h3>
-                        <div style="background: var(--light); padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem;">
-                            <p style="margin-bottom: 0.5rem;"><strong><i class="fas fa-envelope"></i> Email:</strong></p>
-                            <p><a href="mailto:${data.personal.email}" style="color: var(--primary);">${data.personal.email}</a></p>
-                        </div>
-                        <div style="background: var(--light); padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem;">
-                            <p style="margin-bottom: 0.5rem;"><strong><i class="fas fa-phone"></i> Phone:</strong></p>
-                            <p>${data.personal.phone}</p>
-                        </div>
-                        <div style="background: var(--light); padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem;">
-                            <p style="margin-bottom: 0.5rem;"><strong><i class="fas fa-map-marker-alt"></i> Location:</strong></p>
-                            <p>${data.personal.location}</p>
-                        </div>
                         <div style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 1.5rem; border-radius: 10px;">
                             <p style="margin-bottom: 1rem;"><strong>Connect On Social</strong></p>
                             <div class="social-links" style="gap: 0.5rem;">
