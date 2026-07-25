@@ -1352,6 +1352,7 @@ router.register('/projects', new ProjectsPage());
 router.register('/professional-dev', new ProfessionalDevPage());
 router.register('/moocs', new MoocsPage());
 router.register('/skills', new SkillsPage());
+router.register('/social-responsibility', new SocialResponsibilityPage());
 router.register('/contact', new ContactPage());
 
 router.init();
