@@ -238,9 +238,9 @@
     },
     {
       "id": 122,
-      "category": "Workshop",
-      "categoryName": "Workshops / Seminars",
-      "name": "Artificial Intelligence in Manufacturing Industries",
+      "category": "FDP",
+      "categoryName": "Faculty Development Programs",
+      "name": "The Role of Artificial Intelligence in Manufacturing Industries",
       "type": "FDP",
       "startDate": "27-10-2025",
       "endDate": "31-10-2025",
