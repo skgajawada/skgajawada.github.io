@@ -116,45 +116,78 @@
       ]
     }
   ],
-  "education": [
+    "education": [
     {
-      "degree": "PhD (Design Engineering)",
-      "institution": "IIT (ISM) Dhanbad",
-      "field": "Mechanical Engineering (Machine Design)",
-      "year": "2025-Present",
+      "degree": "Ph.D. in Mechanical Engineering (Design)",
+      "institution": "Indian Institute of Technology (Indian School of Mines), Dhanbad",
+      "field": "Mechanical Engineering",
+      "year": "July 2025 – Present",
+      "cgpa": "8.20 / 10.0",
       "icon": "fa-graduation-cap",
       "achievements": [
-        "Research focus on AI-driven structural optimization",
-        "Teaching assistant for advanced FEA MATLAB Lab"
+        "Research in Aeroelasticity, Structural Dynamics, Composite Structures, FEM and Artificial Intelligence.",
+        "Ph.D. Scholar, Department of Mechanical Engineering."
       ]
     },
     {
-      "degree": "Master of Technology",
-      "institution": "GITAM Deemed To Be University",
-      "field": "Mechanical Engineering",
-      "year": "2016-2018",
-      "cgpa": "8.78",
-      "icon": "fa-graduation-cap",
+      "degree": "AICTE QIP Postgraduate Certificate in Data Science",
+      "institution": "Indian Institute of Technology Bhilai",
+      "field": "Data Science",
+      "year": "June 2025 – December 2025",
+      "cgpa": "8.67 / 10.0",
+      "icon": "fa-certificate",
       "achievements": [
-        "Specialized in Machine Design",
-        "Thesis on composite material optimization",
-        "Merit-based scholarship awardee"
+        "Completed AICTE QIP PG Certification in Data Science.",
+        "Studied Machine Learning, Deep Learning, Python and Data Analytics."
       ]
     },
     {
-      "degree": "Bachelor of Technology",
-      "institution": "Engineering College",
+      "degree": "Master of Technology (M.Tech.) in Machine Design",
+      "institution": "GITAM (Deemed to be University), Visakhapatnam",
       "field": "Mechanical Engineering",
-      "year": "2010-2014",
-      "percentage": "71.28",
+      "year": "2016 – 2018",
+      "cgpa": "8.78 / 10.0",
       "icon": "fa-graduation-cap",
       "achievements": [
-        "Completed capstone project on mechanical design",
-        "Active member of technical clubs",
-        "Participated in national conferences"
+        "Specialized in Machine Design.",
+        "Master's thesis on elastic-plastic material properties using FEA."
+      ]
+    },
+    {
+      "degree": "Bachelor of Technology (B.Tech.) in Mechanical Engineering",
+      "institution": "Vivekananda Institute of Technology and Science, Karimnagar",
+      "field": "Mechanical Engineering",
+      "year": "2010 – 2014",
+      "percentage": "71.28%",
+      "icon": "fa-graduation-cap",
+      "achievements": [
+        "Completed B.Tech. in Mechanical Engineering.",
+        "Developed Hydraulic Robotic Arm for Pick and Place Operation."
+      ]
+    },
+    {
+      "degree": "Intermediate (M.P.C.)",
+      "institution": "SR Junior College, Karimnagar",
+      "field": "Mathematics, Physics & Chemistry",
+      "year": "2008 – 2010",
+      "percentage": "81.80%",
+      "icon": "fa-school",
+      "achievements": [
+        "Completed Intermediate (M.P.C.)."
+      ]
+    },
+    {
+      "degree": "Secondary School Certificate (SSC)",
+      "institution": "Pragathi Vidyalayam, Sircilla",
+      "field": "",
+      "year": "2007 – 2008",
+      "percentage": "85.50%",
+      "icon": "fa-school",
+      "achievements": [
+        "Completed Secondary School Education."
       ]
     }
-  ],
+    ],
   "projects": [
   {
     "id": 1,
