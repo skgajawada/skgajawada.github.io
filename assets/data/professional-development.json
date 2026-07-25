@@ -108,6 +108,22 @@
       "certificateFile": "128.pdf",
       "certificateImage": "128.jpg"
     },
+     {
+      "id": 124,
+      "category": "Workshop",
+      "categoryName": "Workshops / Seminars",
+      "name": "Entrepreneurship Series – GenAI-Driven Build, Test, Grow (Aligned with IndiaAI Mission – Capacity Building & Innovation)",
+      "type": "Workshop",
+      "startDate": "16-02-2026",
+      "endDate": "17-02-2026",
+      "duration": "2 Days",
+      "department": "",
+      "organization": "NVCTI and CIIE IIT (ISM) Dhanbad Foundation",
+      "venue": "IIT (ISM) Dhanbad",
+      "association": "",
+      "certificateFile": "124.pdf",
+      "certificateImage": "124.jpg"
+    },
     {
       "id": 126,
       "category": "Workshop",
@@ -124,7 +140,39 @@
       "certificateFile": "126.pdf",
       "certificateImage": "126.jpg"
     },
-        {
+    {
+        "id": 120,
+        "category": "FDP",
+        "categoryName": "Faculty Development Programs",
+        "name": "Battery Thermal Management System: Design, Optimization and ML Techniques",
+        "type": "FDP",
+        "startDate": "09-02-2026",
+        "endDate": "14-02-2026",
+        "duration": "6 Days",
+        "department": "Department of Mechanical Engineering",
+        "organization": "Maharaj Vijayaram Gajapathi Raj College of Engineering (Autonomous)",
+        "venue": "Vizianagaram, Andhra Pradesh",
+        "association": "",
+        "certificateFile": "120.pdf",
+        "certificateImage": "120.jpg"
+      },
+      {
+      "id": 123,
+      "category": "Workshop",
+      "categoryName": "Workshops / Seminars",
+      "name": "AI & ML Application with Case Studies",
+      "type": "Workshop",
+      "startDate": "30-01-2026",
+      "endDate": "01-02-2026",
+      "duration": "3 Days",
+      "department": "",
+      "organization": "NVCTI and CIIE IIT (ISM) Dhanbad Foundation",
+      "venue": "IIT (ISM) Dhanbad",
+      "association": "",
+      "certificateFile": "123.pdf",
+      "certificateImage": "123.jpg"
+    },
+    {
       "id": 130,
       "category": "FDP",
       "categoryName": "Faculty Development Programs",
@@ -187,6 +235,22 @@
       "association": "",
       "certificateFile": "133.pdf",
       "certificateImage": "133.jpg"
+    },
+    {
+      "id": 122,
+      "category": "Workshop",
+      "categoryName": "Workshops / Seminars",
+      "name": "Artificial Intelligence in Manufacturing Industries",
+      "type": "FDP",
+      "startDate": "27-10-2025",
+      "endDate": "31-10-2025",
+      "duration": "5 Days",
+      "department": "Department of Mechanical Engineering & Data Engineering",
+      "organization": "Maharaj Vijayaram Gajapathi Raj College of Engineering (Autonomous)",
+      "venue": "Vizianagaram, Andhra Pradesh",
+      "association": "",
+      "certificateFile": "122.pdf",
+      "certificateImage": "122.jpg"
     },
     {
       "id": 135,
