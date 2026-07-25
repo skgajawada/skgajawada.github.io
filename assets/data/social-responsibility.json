@@ -1,0 +1,96 @@
+{
+  "categories": [
+    {
+      "id": "BloodDonation",
+      "name": "Blood Donation",
+      "icon": "🩸",
+      "color": "#e74c3c"
+    },
+    {
+      "id": "Pledge",
+      "name": "Pledges",
+      "icon": "🤝",
+      "color": "#3498db"
+    },
+    {
+      "id": "Volunteering",
+      "name": "Volunteering",
+      "icon": "🙋",
+      "color": "#2ecc71"
+    },
+    {
+      "id": "Awareness",
+      "name": "Awareness Campaigns",
+      "icon": "🌍",
+      "color": "#f39c12"
+    }
+  ]
+},
+{
+ "socialResponsibilities":[
+{
+  "id": 116,
+  "category": "Blood Donation",
+  "categoryName": "Social Responsibility",
+  "name": "Mega Blood Donation Camp",
+  "type": "Blood Donation",
+  "startDate": "26-01-2026",
+  "endDate": "26-01-2026",
+  "duration": "1 Day",
+  "department": "",
+  "organization": "Fast Forward India (An NGO under the aegis of CSM, IIT (ISM) Dhanbad)",
+  "venue": "IIT (ISM) Dhanbad",
+  "association": "",
+  "certificateFile": "116.pdf",
+  "certificateImage": "116.jpg"
+},
+{
+  "id": 117,
+  "category": "Blood Donation",
+  "categoryName": "Social Responsibility",
+  "name": "Blood Donation Camp",
+  "type": "Blood Donation",
+  "startDate": "15-08-2025",
+  "endDate": "15-08-2025",
+  "duration": "1 Day",
+  "department": "",
+  "organization": "Fast Forward India (An NGO under the aegis of CSM, IIT (ISM) Dhanbad)",
+  "venue": "IIT (ISM) Dhanbad",
+  "association": "",
+  "certificateFile": "117.pdf",
+  "certificateImage": "117.jpg"
+},
+{
+  "id": 121,
+  "category": "Social Awareness",
+  "categoryName": "Social Responsibility",
+  "name": "Nasha Mukt Bharat Abhiyan – Say No to Drugs Pledge",
+  "type": "National Pledge",
+  "startDate": "14-08-2025",
+  "endDate": "14-08-2025",
+  "duration": "1 Day",
+  "department": "",
+  "organization": "Ministry of Social Justice & Empowerment, Government of India",
+  "venue": "Online",
+  "association": "Nasha Mukt Bharat Abhiyan",
+  "certificateFile": "121.pdf",
+  "certificateImage": "121.jpg"
+},
+{
+  "id": 118,
+  "category": "Social Awareness",
+  "categoryName": "Social Responsibility",
+  "name": "Mission Parivarthana – Anti-Drug Soldiers Enrollment",
+  "type": "Social Awareness Campaign",
+  "startDate": "26-06-2024",
+  "endDate": "26-06-2024",
+  "duration": "1 Day",
+  "department": "",
+  "organization": "Telangana Anti Narcotics Bureau (TGANB)",
+  "venue": "Telangana",
+  "association": "Mission Parivarthana & Department for Empowerment of Persons with Disabilities, Senior Citizens and Transgender Persons",
+  "certificateFile": "118.pdf",
+  "certificateImage": "118.jpg"
+}
+]
+}
