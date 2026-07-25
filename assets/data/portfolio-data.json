@@ -49,45 +49,70 @@
     "administrativeResponsibilities": "In my academic roles, I have undertaken various administrative responsibilities including curriculum development, student mentoring, laboratory management, and coordination of professional development programs. I have experience in organizing workshops, managing academic resources, and fostering collaborative research environments. I am committed to supporting institutional initiatives that enhance both teaching and learning outcomes.",
     "personalInterests": "Beyond engineering, I am passionate about sustainable development and social responsibility. I have donated blood 10 times, contributing to community health initiatives. I enjoy exploring new technologies, writing technical content, and engaging with the maker community. I am also interested in science communication and believe in making complex concepts accessible to broader audiences."
   },
-  "experience": [
+    "experience": [
+    {
+      "title": "Online Data Science Intern",
+      "company": "Sabudh Foundation (in collaboration with STPI, Mohali)",
+      "location": "Remote",
+      "startDate": "01/01/2026",
+      "endDate": "30/06/2026",
+      "icon": "fa-laptop-code",
+      "description": "Developed distributed and privacy-preserving machine learning solutions for Intelligent Transportation Systems using Federated Learning. Implemented end-to-end data science workflows with Python, TensorFlow, Scikit-learn, and Dataiku DSS for collaborative model development and analytics.",
+      "achievements": [
+        "Developed decentralized machine learning models for Intelligent Transportation Systems",
+        "Implemented Federated Learning workflows using Python, TensorFlow, Scikit-learn, and Dataiku DSS",
+        "Worked on privacy-preserving AI solutions for distributed data environments"
+      ]
+    },
     {
       "title": "Assistant Professor",
       "company": "Guru Nanak Institutions Technical Campus",
-      "location": "Hyderabad, India",
+      "location": "Hyderabad, Telangana, India",
       "startDate": "23/03/2021",
       "endDate": "28/06/2025",
-      "icon": "fa-briefcase",
-      "description": "Teaching core mechanical engineering courses including Machine Design, Finite Element Analysis, and Computational Methods. Mentoring student projects and conducting research in structural dynamics and AI-driven design.",
+      "icon": "fa-chalkboard-teacher",
+      "description": "Taught undergraduate Mechanical Engineering courses, mentored student projects, supervised laboratory sessions, and actively contributed to academic administration, accreditation activities, and Outcome-Based Education (OBE) implementation.",
       "achievements": [
-        "Developed innovative curriculum integrating AI and FEA tools",
-        "Mentored 15+ students in research and industry projects"
+        "Taught various undergraduate Mechanical Engineering theory and laboratory courses",
+        "Mentored undergraduate academic, design, and research projects",
+        "Served as Minor Degree Coordinator, Remedial & Tutorial Classes Coordinator, and Kinematics & Dynamics Laboratory Coordinator",
+        "Managed NAAC, NBA, and NIRF accreditation documentation and departmental activities",
+        "Coordinated departmental preparations for JNTUH inspection visits",
+        "Served as Faculty Advisor for SAE BAJA and Go-Karting student teams",
+        "Implemented Outcome-Based Education (OBE) practices across courses"
       ]
     },
     {
       "title": "Assistant Professor",
       "company": "Sree Chaitanya College of Engineering",
-      "location": "Karimnagar, India",
+      "location": "Karimnagar, Telangana, India",
       "startDate": "26/11/2018",
       "endDate": "22/03/2021",
-      "icon": "fa-briefcase",
-      "description": "Taught mechanical engineering fundamentals and specialized courses in CAD/CAM and Manufacturing processes. Coordinated laboratory activities and student internships.",
+      "icon": "fa-chalkboard-teacher",
+      "description": "Delivered undergraduate Mechanical Engineering courses, conducted laboratory sessions, mentored student projects, and coordinated academic and professional development activities.",
       "achievements": [
-        "Established practical lab modules for CAD/CAM course",
-        "Coordinated 50+ student internships with industry partners",
-        "Implemented outcome-based education (OBE) framework"
+        "Taught various undergraduate Mechanical Engineering theory and laboratory courses",
+        "Mentored undergraduate academic and research projects",
+        "Served as Faculty Coordinator for the ISTE Student Chapter",
+        "Coordinated Kinematics & Dynamics Laboratory activities",
+        "Organized workshops, seminars, and technical events for students",
+        "Supported implementation of Outcome-Based Education (OBE) practices"
       ]
     },
     {
       "title": "Lecturer",
-      "company": "Jyothishmathi Institute of Technology and Science, Karimnagar",
-      "location": "India",
+      "company": "Jyothishmathi Institute of Technology and Science",
+      "location": "Karimnagar, Telangana, India",
       "startDate": "07/12/2015",
       "endDate": "30/06/2016",
-      "icon": "fa-briefcase",
-      "description": "Delivered lectures in Mechanical Engineering and conducted laboratory sessions. Developed course materials and assessment strategies.",
+      "icon": "fa-user-graduate",
+      "description": "Delivered undergraduate Mechanical Engineering lectures, conducted practical laboratory sessions, and supported academic and examination administration.",
       "achievements": [
-        "Developed 10+ laboratory experiments",
-        "Active participation in academic councils"
+        "Taught various undergraduate Mechanical Engineering theory subjects",
+        "Conducted Engineering Mechanics, Engineering Graphics, Workshop Practice, and Mechanical Engineering laboratory sessions",
+        "Mentored undergraduate students in academic activities",
+        "Served as Academic and Examination Branch Coordinator",
+        "Prepared course materials, laboratory manuals, and student assessments"
       ]
     }
   ],
