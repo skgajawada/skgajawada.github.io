@@ -1463,7 +1463,7 @@ class ContactPage extends Component {
                     <div class="reveal">
                         <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.2rem;">Contact Information</h3>
                         <div style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 1.5rem; border-radius: 10px;">
-                            <p style="margin-bottom: 1rem;"><strong>Connect On Social</strong></p>
+                            <p style="margin-bottom: 1rem;"><strong>Connect with Me</strong></p>
                             <div class="social-links" style="gap: 0.5rem;">
                                 <a href="${data.socialLinks.googleScholar}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
                                 <a href="${data.socialLinks.researchGate}" target="_blank" style="background: rgba(255,255,255,0.2); color: white;" title="ResearchGate"><i class="fab fa-researchgate"></i></a>
