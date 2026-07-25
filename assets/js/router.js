@@ -632,7 +632,11 @@ class EducationPage extends Component {
                                 <div class="timeline-date">${edu.year}</div>
                                 <h3 class="timeline-title">${edu.degree}</h3>
                                 <p class="timeline-subtitle">${edu.institution}</p>
-                                <p class="timeline-description">Field: ${edu.field}${edu.cgpa ? ' | CGPA: ' + edu.cgpa : ''}</p>
+                                <p class="timeline-description">
+                                    ${edu.field ? `Field: ${edu.field}` : ''}
+                                    ${edu.cgpa ? ` | CGPA: ${edu.cgpa}` : ''}
+                                    ${edu.percentage ? ` | Percentage: ${edu.percentage}` : ''}
+                                </p>
                                 ${edu.achievements && edu.achievements.length > 0 ? `
                                     <div style="margin-top: 1rem;">
                                         <strong>Achievements:</strong>
