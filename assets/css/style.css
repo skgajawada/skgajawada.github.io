@@ -669,12 +669,44 @@ white-space:nowrap;
 .footer-section a:hover {
     color: var(--primary);
 }
+.footer-social{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:14px;
+    max-width:420px;      /* Adjust this value */
+    margin:20px auto;
+}
+
+.footer-social a{
+    width:46px;
+    height:46px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    background:rgba(255,255,255,.12);
+    color:#fff;
+    font-size:1.2rem;
+    transition:.3s;
+}
+
+.footer-social a:hover{
+    transform:translateY(-3px);
+    background:var(--primary);
+}
 
 .social-links {
     display: flex;
-    gap: 1rem;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
+    gap: 1rem;
+    max-width: 420px;   /* Adjust as needed */
+    margin: 0 auto;
 }
+
 /* =====================================
    KEY METRICS
 ===================================== */
