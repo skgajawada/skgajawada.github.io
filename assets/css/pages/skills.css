@@ -1,1 +1,42 @@
+/* ==========================================================
+   SKILLS
+========================================================== */
 
+.cards-grid.skills-grid{
+    grid-template-columns:repeat(auto-fit,minmax(380px,1fr));
+}
+
+.skills-grid .card{
+    height:100%;
+}
+
+.skills-grid .card-content{
+    padding:2rem;
+}
+
+.skills-grid .card-title{
+    text-align:center;
+    margin-bottom:2rem;
+}
+
+.skills-tags{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:.8rem;
+}
+
+.skill-tag{
+    padding:.65rem 1rem;
+    border-radius:999px;
+    background:#eef6ff;
+    border:1px solid rgba(52,152,219,.15);
+    color:var(--primary);
+    font-size:.95rem;
+    transition:var(--transition);
+}
+
+.skill-tag:hover{
+    background:var(--primary);
+    color:#fff;
+}
