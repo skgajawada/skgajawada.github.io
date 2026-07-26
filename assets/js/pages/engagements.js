@@ -7,14 +7,14 @@ class EngagementsPage extends Component {
         // If a specific subcategory parameter exists in the URL, render the certificate listings instead
         if (categoryParam) {
             const currentCat = certs.categories.find(c => c.id === categoryParam);
-            if (!currentCat) return `<div class="container text-center"><h3>Category not found</h3><a href="#/professional-dev" class="btn btn-primary mt-3">Back to Overview</a></div>`;
+            if (!currentCat) return `<div class="container text-center"><h3>Category not found</h3><a href="#/engagements" class="btn btn-primary mt-3">Back to Overview</a></div>`;
             
             const categoryCerts = certs.certificates.filter(c => c.category === categoryParam);
             
             return `
                 <section class="fade-in">
                     <div style="margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">
-                        <a href="#/professional-dev" class="btn btn-outline" style="padding: 0.5rem 1rem;"><i class="fas fa-arrow-left"></i> Back</a>
+                        <a href="#/engagements" class="btn btn-outline"  style="padding: 0.5rem 1rem;"><i class="fas fa-arrow-left"></i> Back</a>
                         <h1 class="section-title" style="margin: 0;">${currentCat.name}</h1>
                     </div>
                     <p class="lead" style="color: var(--text-light); margin-bottom: 2rem;">${currentCat.description}</p>
@@ -70,7 +70,7 @@ class EngagementsPage extends Component {
                 
                 <div class="cards-grid stagger-container">
                     ${certs.categories.map((cat, i) => `
-                        <div class="card fade-in" onclick="navigateTo('#/professional-dev/${cat.id}')" style="cursor: pointer;">
+                        <div class="card fade-in" onclick="navigateTo('#/engagements/${cat.id}')" style="cursor: pointer;">
                             <div class="card-icon" style="background: ${cat.color};">
                                 <i class="fas ${cat.icon.includes('fa-') ? cat.icon : 'fa-certificate'}"></i>
                             </div>
@@ -78,7 +78,7 @@ class EngagementsPage extends Component {
                                 <h3 class="card-title">${cat.name}</h3>
                                 <p class="card-description">${cat.description}</p>
 
-                                <a href="#/professional-dev/${cat.id}" class="card-link">View All <i class="fas fa-arrow-right"></i></a>
+                                <a href="#/engagements/${cat.id}" class="card-link">View All <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     `).join('')}
