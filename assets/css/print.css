@@ -1,0 +1,44 @@
+/* ==========================================================
+   PRINT
+========================================================== */
+
+@media print{
+
+    body{
+        background:#fff;
+        color:#000;
+    }
+
+    .navbar,
+    .footer,
+    .theme-toggle,
+    .hamburger,
+    .hero-buttons,
+    .back-to-top{
+        display:none !important;
+    }
+
+    .app-container{
+        max-width:100%;
+        padding:0;
+    }
+
+    .card,
+    .timeline-content{
+        box-shadow:none;
+        border:1px solid #ccc;
+    }
+
+    a{
+        color:#000;
+        text-decoration:none;
+    }
+
+    .section-title{
+        page-break-after:avoid;
+    }
+
+    .card{
+        page-break-inside:avoid;
+    }
+}
