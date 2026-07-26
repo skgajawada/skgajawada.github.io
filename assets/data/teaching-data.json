@@ -1,232 +1,300 @@
 {
   "subjects": [
     {
-"id":"engineering-mechanics",
-"title":"Engineering Mechanics",
-"icon":"fa-cogs",
-"folder":"Engineering Mechanics",
-"teaching":[
-{
-"institution":"Guru Nanak Institutions Technical Campus",
-"department":"Mechanical Engineering",
-"offerings":[
-{"batch":"2022-2023","semester":"I"},
-{"batch":"2023-2024","semester":"II"}
-]
-},
-{
-"institution":"Sree Chaitanya College of Engineering",
-"department":"Mechanical Engineering",
-"offerings":[
-{"batch":"2019-2020","semester":"I"}
-]
-}
-]
-},
+      "id": "engineering-mechanics",
+      "title": "Engineering Mechanics",
+      "icon": "fa-cogs",
+      "folder": "Engineering Mechanics",
+      "teaching": [
+        {
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "department": "Mechanical Engineering",
+          "offerings": [
+            {
+              "academicYear": "2022-2023",
+              "year": "II",
+              "semester": "I",
+              "branch": "Mechanical Engineering",
+              "section": "ME-2"
+            }
+          ]
+        }
+      ]
+    },
 
-{
-"id":"engineering-graphics",
-"title":"Engineering Graphics",
-"icon":"fa-drafting-compass",
-"folder":"Engineering Graphics",
-"teaching":[
-{
-"institution":"Guru Nanak Institutions Technical Campus",
-"department":"Mechanical Engineering",
-"offerings":[
-{"batch":"2021–2025","semester":"I"},
-{"batch":"2022–2026","semester":"I"}
-]
-},
-{
-"institution":"Sree Chaitanya College of Engineering",
-"department":"Mechanical Engineering",
-"offerings":[
-{"batch":"2019-2020","semester":"I"}
-]
-}
-]
-},
+    {
+      "id": "engineering-graphics",
+      "title": "Engineering Graphics",
+      "icon": "fa-drafting-compass",
+      "folder": "Engineering Graphics",
+      "teaching": [
+        {
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "department": "First Year Engineering",
+          "offerings": [
+            {
+              "academicYear": "2023-2024",
+              "year": "I",
+              "semester": "I",
+              "branch": "Computer Science and Engineering",
+              "section": "CSE-1"
+            },
+            {
+              "academicYear": "2024-2025",
+              "year": "I",
+              "semester": "I",
+              "branch": "Computer Science and Engineering",
+              "section": "CSE-5"
+            },
+            {
+              "academicYear": "2024-2025",
+              "year": "I",
+              "semester": "I",
+              "branch": "Information Technology",
+              "section": "IT-1"
+            },
+            {
+              "academicYear": "2023-2024",
+              "year": "I",
+              "semester": "II",
+              "branch": "Electronics and Communication Engineering",
+              "section": "ECE-3"
+            },
+            {
+              "academicYear": "2024-2025",
+              "year": "I",
+              "semester": "II",
+              "branch": "Electronics and Communication Engineering",
+              "section": "ECE-5"
+            },
+            {
+              "academicYear": "2024-2025",
+              "year": "I",
+              "semester": "II",
+              "branch": "Mechanical Engineering",
+              "section": "ME"
+            }
+          ]
+        },
+        {
+          "institution": "Jyothishmathi Institute of Technology and Science",
+          "department": "Computer Science and Engineering",
+          "offerings": [
+            {
+              "academicYear": "2015-2016",
+              "year": "I",
+              "semester": "II",
+              "branch": "Computer Science and Engineering",
+              "section": "CSE"
+            }
+          ]
+        }
+      ]
+    },
 
-{
-"id":"fmhm",
-"title":"Fluid Mechanics and Hydraulic Machines",
-"icon":"fa-water",
-"folder":"FMHM",
-"teaching":[
-{
-"institution":"Guru Nanak Institutions Technical Campus",
-"department":"Mechanical Engineering",
-"offerings":[
-{"batch":"2022–2026","semester":"IV"}
-]
-},
-{
-"institution":"Sree Chaitanya College of Engineering",
-"department":"Mechanical Engineering",
-"offerings":[
-{"batch":"2018-2029","semester":"IV"}
-]
-}
-]
-},
+    {
+      "id": "fluid-mechanics",
+      "title": "Fluid Mechanics",
+      "icon": "fa-water",
+      "folder": "Fluid Mechanics",
+      "teaching": [
+        {
+          "institution": "Sree Chaitanya College of Engineering",
+          "department": "Mechanical Engineering",
+          "offerings": [
+            {
+              "academicYear": "2018-2019",
+              "year": "II",
+              "semester": "II",
+              "branch": "Mechanical Engineering"
+            }
+          ]
+        }
+      ]
+    },
 
-{
-"id":"mechanics-of-solids",
-"title":"Mechanics of Solids",
-"icon":"fa-cube",
-"folder":"Mechanics of Solids",
-"teaching":[
-{
-"institution":"Guru Nanak Institutions Technical Campus",
-"department":"Mechanical Engineering",
-"offerings":[
-{"batch":"2022–2026","semester":"III"},
-{"batch":"2023-2024","semester":"III"}
-]
-},
-{
-"institution":"Sree Chaitanya College of Engineering",
-"department":"Mechanical Engineering",
-"offerings":[
-{"batch":"2018-2029","semester":"III"}
-]
-}
-]
-}
-,
-{
-"id":"thermodynamics",
-"title":"Thermodynamics",
-"icon":"fa-temperature-half",
-"folder":"Thermodynamics",
-"teaching":[
-{
-"institution":"Guru Nanak Institutions Technical Campus",
-"department":"Mechanical Engineering",
-"offerings":[
-{"batch":"2022–2026","semester":"III"},
-{"batch":"2023-2024","semester":"III"}
-]
-},
-{
-"institution":"Sree Chaitanya College of Engineering",
-"department":"Mechanical Engineering",
-"offerings":[
-{"batch":"2018-2029","semester":"III"}
-]
-}
-]
-},
+    {
+      "id": "mechanics-of-solids",
+      "title": "Mechanics of Solids",
+      "icon": "fa-cube",
+      "folder": "Mechanics of Solids",
+      "teaching": [
+        {
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "department": "Mechanical Engineering",
+          "offerings": [
+            {
+              "academicYear": "2021-2022",
+              "year": "II",
+              "semester": "II",
+              "branch": "Mechanical Engineering",
+              "section": "ME-2"
+            },
+            {
+              "academicYear": "2021-2022",
+              "year": "II",
+              "semester": "II",
+              "branch": "Mechanical Engineering",
+              "section": "ME-3"
+            }
+          ]
+        }
+      ]
+    },
 
-{
-"id":"heat-transfer",
-"title":"Heat Transfer",
-"icon":"fa-fire",
-"folder":"Heat Transfer",
-"teaching":[
-{
-"institution":"Guru Nanak Institutions Technical Campus",
-"department":"Mechanical Engineering",
-"offerings":[
-{"batch":"2022–2026","semester":"V"}
-]
-},
-{
-"institution":"Sree Chaitanya College of Engineering",
-"department":"Mechanical Engineering",
-"offerings":[
-{"batch":"2018-2029","semester":"V"}
-]
-}
-]
-},
+    {
+      "id": "operations-research",
+      "title": "Operations Research",
+      "icon": "fa-chart-line",
+      "folder": "Operations Research",
+      "teaching": [
+        {
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "department": "Mechanical Engineering",
+          "offerings": [
+            {
+              "academicYear": "2023-2024",
+              "year": "III",
+              "semester": "I",
+              "branch": "Mechanical Engineering",
+              "section": "ME-1"
+            },
+            {
+              "academicYear": "2023-2024",
+              "year": "III",
+              "semester": "I",
+              "branch": "Mechanical Engineering",
+              "section": "ME-2"
+            }
+          ]
+        }
+      ]
+    },
 
-{
-"id":"kinematics-of-machinery",
-"title":"Kinematics of Machinery",
-"icon":"fa-gears",
-"folder":"Kinematics of Machinery",
-"teaching":[
-{
-"institution":"Guru Nanak Institutions Technical Campus",
-"department":"Mechanical Engineering",
-"offerings":[
-{"batch":"2022–2026","semester":"IV"}
-]
-},
-{
-"institution":"Sree Chaitanya College of Engineering",
-"department":"Mechanical Engineering",
-"offerings":[
-{"batch":"2018-2029","semester":"IV"}
-]
-}
-]
-},
+    {
+      "id": "plant-layout-material-handling",
+      "title": "Plant Layout and Material Handling",
+      "icon": "fa-industry",
+      "folder": "Plant Layout and Material Handling",
+      "teaching": [
+        {
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "department": "Mechanical Engineering",
+          "offerings": [
+            {
+              "academicYear": "2023-2024",
+              "year": "IV",
+              "semester": "II",
+              "branch": "Mechanical Engineering",
+              "section": "ME-1"
+            }
+          ]
+        }
+      ]
+    },
 
-{
-"id":"operations-research",
-"title":"Operations Research",
-"icon":"fa-chart-line",
-"folder":"Operations Research",
-"teaching":[
-{
-"institution":"Guru Nanak Institutions Technical Campus",
-"department":"Mechanical Engineering",
-"offerings":[
-{"batch":"2022–2026","semester":"VI"}
-]
-}
-]
-},
+    {
+      "id": "kinematics-of-machinery",
+      "title": "Kinematics of Machinery",
+      "icon": "fa-gears",
+      "folder": "Kinematics of Machinery",
+      "teaching": [
+        {
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "department": "Mechanical Engineering",
+          "offerings": [
+            {
+              "academicYear": "2020-2021",
+              "year": "II",
+              "semester": "I",
+              "branch": "Mechanical Engineering",
+              "section": "ME-4"
+            }
+          ]
+        }
+      ]
+    },
 
-{
-"id":"design-of-machine-members-1",
-"title":"Design of Machine Members - I",
-"icon":"fa-screwdriver-wrench",
-"folder":"Design of Machine Members_1",
-"teaching":[
-{
-"institution":"Guru Nanak Institutions Technical Campus",
-"department":"Mechanical Engineering",
-"offerings":[
-{"batch":"2022–2026","semester":"V"}
-]
-}
-]
-},
+    {
+      "id": "design-of-machine-elements-2",
+      "title": "Design of Machine Elements - II",
+      "icon": "fa-screwdriver-wrench",
+      "folder": "Design of Machine Elements_2",
+      "teaching": [
+        {
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "department": "Mechanical Engineering",
+          "offerings": [
+            {
+              "academicYear": "2020-2021",
+              "year": "III",
+              "semester": "II",
+              "branch": "Mechanical Engineering",
+              "section": "ME-1"
+            }
+          ]
+        },
+        {
+          "institution": "Sree Chaitanya College of Engineering",
+          "department": "Mechanical Engineering",
+          "offerings": [
+            {
+              "academicYear": "2018-2019",
+              "year": "III",
+              "semester": "II",
+              "branch": "Mechanical Engineering"
+            }
+          ]
+        }
+      ]
+    },
 
-{
-"id":"design-of-machine-members-2",
-"title":"Design of Machine Members - II",
-"icon":"fa-screwdriver-wrench",
-"folder":"Design of Machine Members_2",
-"teaching":[
-{
-"institution":"Guru Nanak Institutions Technical Campus",
-"department":"Mechanical Engineering",
-"offerings":[
-{"batch":"2022–2026","semester":"VI"}
-]
+    {
+      "id": "finite-element-methods",
+      "title": "Finite Element Methods",
+      "icon": "fa-cubes",
+      "folder": "Finite Element Methods",
+      "teaching": [
+        {
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "department": "Mechanical Engineering",
+          "offerings": [
+            {
+              "academicYear": "2021-2022",
+              "year": "IV",
+              "semester": "I",
+              "branch": "Mechanical Engineering",
+              "section": "ME-1"
+            },
+            {
+              "academicYear": "2022-2023",
+              "year": "IV",
+              "semester": "I",
+              "branch": "Mechanical Engineering",
+              "section": "ME-1"
+            },
+            {
+              "academicYear": "2024-2025",
+              "year": "IV",
+              "semester": "I",
+              "branch": "Mechanical Engineering",
+              "section": "ME-2"
+            }
+          ]
+        },
+        {
+          "institution": "Jyothishmathi Institute of Technology and Science",
+          "department": "Mechanical Engineering",
+          "offerings": [
+            {
+              "academicYear": "2015-2016",
+              "year": "III",
+              "semester": "II",
+              "branch": "Mechanical Engineering"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
-]
-},
-
-{
-"id":"finite-element-methods",
-"title":"Finite Element Methods",
-"icon":"fa-cubes",
-"folder":"Finite Element Methods",
-"teaching":[
-{
-"institution":"Guru Nanak Institutions Technical Campus",
-"department":"Mechanical Engineering",
-"offerings":[
-{"batch":"2022–2026","semester":"VII"}
-]
-}
-]
-}
-]
-}  
