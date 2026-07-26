@@ -1,1 +1,67 @@
+/* ==========================================================
+   PROJECTS
+========================================================== */
 
+.projects-filters{
+    display:flex;
+    flex-wrap:wrap;
+    gap:1rem;
+    margin-bottom:2rem;
+}
+
+.filter-btn{
+    padding:.7rem 1.5rem;
+    border:2px solid var(--border);
+    border-radius:30px;
+    background:#fff;
+    color:var(--text);
+    font-weight:600;
+    transition:var(--transition);
+}
+
+.filter-btn:hover,
+.filter-btn.active{
+    background:var(--primary);
+    border-color:var(--primary);
+    color:#fff;
+}
+
+.projects-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+    gap:2rem;
+}
+
+.project-card{
+    background:#fff;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    transition:var(--transition);
+}
+
+.project-card:hover{
+    transform:translateY(-6px);
+    box-shadow:var(--shadow-lg);
+}
+
+.project-image{
+    height:200px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:#fff;
+    font-size:3rem;
+}
+
+.project-info{
+    padding:1.5rem;
+}
+
+.project-tech{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.5rem;
+    margin-top:1rem;
+}
