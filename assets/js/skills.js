@@ -4,8 +4,15 @@ return `
 
     <div class="skills-grid">
         ${Object.entries(data.skills).map(([category, skills]) => `
-            <div class="skill-category reveal">
-                <h3 class="skill-category-title">${category}</h3>
+            <div class="skill-panel reveal">
+
+                <div class="skill-header">
+                    <span class="skill-icon">
+                        <i class="fas fa-chevron-right"></i>
+                    </span>
+
+                    <h3>${category}</h3>
+                </div>
 
                 <div class="skills-tags">
                     ${skills.map(skill => `
@@ -14,6 +21,7 @@ return `
                         </span>
                     `).join('')}
                 </div>
+
             </div>
         `).join('')}
     </div>
