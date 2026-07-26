@@ -107,6 +107,7 @@
               "year": "II",
               "semester": "II",
               "branch": "Mechanical Engineering"
+              "section": "ME-1"
             }
           ]
         }
@@ -147,50 +148,49 @@
       "title": "Operations Research",
       "icon": "fa-chart-line",
       "folder": "Operations Research",
-      "teaching": [
-        {
-          "institution": "Guru Nanak Institutions Technical Campus",
-          "department": "Mechanical Engineering",
-          "offerings": [
-            {
-              "academicYear": "2023-2024",
-              "year": "III",
-              "semester": "I",
-              "branch": "Mechanical Engineering",
-              "section": "ME-1"
-            },
-            {
-              "academicYear": "2023-2024",
-              "year": "III",
-              "semester": "I",
-              "branch": "Mechanical Engineering",
-              "section": "ME-2"
-            },
-            {
-              "institution": "Sree Chaitanya College of Engineering",
-              "department": "Mechanical Engineering",
-              "offerings": [
-                {
-                  "academicYear": "2020-2021",
-                  "year": "III",
-                  "semester": "II",
-                  "branch": "Mechanical Engineering",
-                  "section": "ME-1"
-                },
-                {
-                  "academicYear": "2020-2021",
-                  "year": "III",
-                  "semester": "II",
-                  "branch": "Mechanical Engineering",
-                  "section": "ME-2"
-                }
-              ]
-            }
-          ]
-        }
+      "teaching":[
+      {
+      "institution":"Guru Nanak Institutions Technical Campus",
+      "department":"Mechanical Engineering",
+      "offerings":[
+      {
+      "academicYear":"2023-2024",
+      "year":"III",
+      "semester":"I",
+      "branch":"Mechanical Engineering",
+      "section":"ME-1"
+      },
+      {
+      "academicYear":"2023-2024",
+      "year":"III",
+      "semester":"I",
+      "branch":"Mechanical Engineering",
+      "section":"ME-2"
+      }
+      ]
+      },
+      {
+      "institution":"Sree Chaitanya College of Engineering",
+      "department":"Mechanical Engineering",
+      "offerings":[
+      {
+      "academicYear":"2020-2021",
+      "year":"III",
+      "semester":"II",
+      "branch":"Mechanical Engineering",
+      "section":"ME-1"
+      },
+      {
+      "academicYear":"2020-2021",
+      "year":"III",
+      "semester":"II",
+      "branch":"Mechanical Engineering",
+      "section":"ME-2"
+      }
+      ]
+      }
       ]
     },
-
     {
       "id": "plant-layout-material-handling",
       "title": "Plant Layout and Material Handling",
@@ -226,7 +226,7 @@
             {
               "academicYear": "2020-2021",
               "year": "II",
-              "semester": "I",
+              "semester": "II",
               "branch": "Mechanical Engineering",
               "section": "ME-4"
             }
