@@ -106,7 +106,7 @@
               "academicYear": "2018-2019",
               "year": "II",
               "semester": "II",
-              "branch": "Mechanical Engineering"
+              "branch": "Mechanical Engineering",
               "section": "ME-1"
             }
           ]
@@ -258,18 +258,45 @@
           "institution": "Sree Chaitanya College of Engineering",
           "department": "Mechanical Engineering",
           "offerings": [
-            {
+           {
               "academicYear": "2018-2019",
               "year": "III",
               "semester": "II",
-              "branch": "Mechanical Engineering"
+              "branch": "Mechanical Engineering",
               "section": "ME-2"
             }
           ]
         }
       ]
     },
-
+    {
+      "id": "basics-of-mechanical-engineering",
+      "title": "Basics of Mechanical Engineering",
+      "icon": "fa-gear",
+      "folder": "Basics of Mechanical Engineering",
+      "teaching": [
+        {
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "department": "Civil Engineering",
+          "offerings": [
+            {
+              "academicYear": "2022-2023",
+              "year": "II",
+              "semester": "II",
+              "branch": "Civil Engineering",
+              "section": "CE-1"
+            },
+            {
+              "academicYear": "2022-2023",
+              "year": "II",
+              "semester": "II",
+              "branch": "Civil Engineering",
+              "section": "CE-2"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "finite-element-methods",
       "title": "Finite Element Methods",
@@ -311,7 +338,7 @@
               "academicYear": "2015-2016",
               "year": "III",
               "semester": "II",
-              "branch": "Mechanical Engineering"
+              "branch": "Mechanical Engineering",
               "section": "ME"
             }
           ]
