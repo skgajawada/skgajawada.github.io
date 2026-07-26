@@ -9,7 +9,7 @@ class SkillsPage extends Component {
 
                 <div class="cards-grid">
                     ${Object.entries(data.skills).map(([category, skills]) => `
-                        <div class="card reveal">
+                        <div class="card reveal skill-card">
 
                             <div class="card-content">
                         
