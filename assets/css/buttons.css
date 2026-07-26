@@ -1,1 +1,85 @@
+/* ==========================================================
+   BUTTONS
+========================================================== */
 
+.btn{
+
+    display:inline-flex;
+
+    justify-content:center;
+    align-items:center;
+
+    gap:.6rem;
+
+    padding:.8rem 1.6rem;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+    cursor:pointer;
+}
+
+.btn-primary{
+
+    background:var(--primary);
+
+    color:#fff;
+}
+
+.btn-primary:hover{
+
+    background:#2980b9;
+
+    transform:translateY(-2px);
+}
+
+.btn-secondary{
+
+    background:var(--secondary);
+
+    color:#fff;
+}
+
+.btn-secondary:hover{
+
+    opacity:.9;
+}
+
+.btn-outline{
+
+    border:2px solid var(--primary);
+
+    color:var(--primary);
+
+    background:transparent;
+}
+
+.btn-outline:hover{
+
+    background:var(--primary);
+
+    color:#fff;
+}
+
+.card-link{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:.5rem;
+
+    color:var(--primary);
+
+    font-weight:600;
+
+    transition:var(--transition);
+}
+
+.card-link:hover{
+
+    gap:.9rem;
+}
