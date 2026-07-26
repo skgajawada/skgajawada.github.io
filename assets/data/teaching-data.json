@@ -85,7 +85,7 @@
               "year": "I",
               "semester": "II",
               "branch": "Computer Science and Engineering",
-              "section": "CSE"
+              "section": "CSE-B"
             }
           ]
         }
@@ -165,6 +165,26 @@
               "semester": "I",
               "branch": "Mechanical Engineering",
               "section": "ME-2"
+            },
+            {
+              "institution": "Sree Chaitanya College of Engineering",
+              "department": "Mechanical Engineering",
+              "offerings": [
+                {
+                  "academicYear": "2020-2021",
+                  "year": "III",
+                  "semester": "II",
+                  "branch": "Mechanical Engineering",
+                  "section": "ME-1"
+                },
+                {
+                  "academicYear": "2020-2021",
+                  "year": "III",
+                  "semester": "II",
+                  "branch": "Mechanical Engineering",
+                  "section": "ME-2"
+                }
+              ]
             }
           ]
         }
@@ -291,6 +311,34 @@
               "year": "III",
               "semester": "II",
               "branch": "Mechanical Engineering"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "engineering-workshop-lab",
+      "title": "Engineering Workshop Lab",
+      "icon": "fa-hammer",
+      "folder": "Engineering Workshop Lab",
+      "teaching": [
+        {
+          "institution": "Jyothishmathi Institute of Technology and Science",
+          "department": "First Year Engineering",
+          "offerings": [
+            {
+              "academicYear": "2015-2016",
+              "year": "I",
+              "semester": "II",
+              "branch": "Electronics and Communication Engineering",
+              "section": "ECE-A"
+            },
+            {
+              "academicYear": "2015-2016",
+              "year": "I",
+              "semester": "II",
+              "branch": "Computer Science and Engineering",
+              "section": "CSE-C"
             }
           ]
         }
