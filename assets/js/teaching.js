@@ -26,9 +26,7 @@ onclick="navigateTo('#/teaching/${subject.id}')"
 style="cursor:pointer;">
 
 <div class="card-icon">
-
 <i class="fas ${subject.icon}"></i>
-
 </div>
 
 <div class="card-content">
@@ -38,18 +36,12 @@ ${subject.title}
 </h3>
 
 <p class="card-description">
-
-${subject.courses.length} Course Offering(s)
-
+${subject.teaching.length} Institution(s)
 </p>
 
-<a
-href="#/teaching/${subject.id}"
-class="card-link">
-
-View Courses
+<a href="#/teaching/${subject.id}" class="card-link">
+View Teaching Details
 <i class="fas fa-arrow-right"></i>
-
 </a>
 
 </div>
@@ -100,8 +92,7 @@ return`
 
 <div style="display:flex;align-items:center;gap:1rem;margin-bottom:2rem;">
 
-<a
-href="#/teaching"
+<a href="#/teaching"
 class="btn btn-outline">
 
 <i class="fas fa-arrow-left"></i>
@@ -119,42 +110,72 @@ ${currentSubject.title}
 
 </div>
 
-<div class="cards-grid">
+${currentSubject.teaching.map((college,index)=>`
 
-${currentSubject.courses.map(course=>`
-<div class="card reveal" style="padding:1.5rem;">
-<h3 class="card-title">${course.institution}</h3>
-<p><strong>Program:</strong> ${course.program}</p>
-<p><strong>Branch:</strong> ${course.branch}</p>
-<p><strong>Batch:</strong> ${course.batch}</p>
-<p><strong>Semester:</strong> ${course.semester||"-"}</p>
-<p><strong>Regulation:</strong> ${course.regulation||"-"}</p>
-<a href="#/teaching/${currentSubject.id}/${course.id}" class="btn btn-primary" style="display:block;text-align:center;margin-top:1rem;">
-<i class="fas fa-book-open"></i>
-Course Materials
-</a>
-</div>
+<div class="card reveal" style="padding:1.8rem;margin-bottom:2rem;">
+
+<h2 style="color:var(--primary-color);margin-bottom:0.8rem;">
+<i class="fas fa-university"></i>
+${college.institution}
+</h2>
+
+<p style="margin-bottom:1rem;">
+<strong>${college.department}</strong>
+</p>
+
+<ul style="margin-left:1.2rem;line-height:1.9;">
+
+${college.offerings.map(off=>`
+
+<li>
+<strong>Academic Year :</strong> ${off.academicYear}<br>
+<strong>Year :</strong> ${off.year}<br>
+<strong>Semester :</strong> ${off.semester}<br>
+<strong>Branch :</strong> ${off.branch}<br>
+<strong>Section :</strong> ${off.section}
+</li>
+<br>
+
 `).join("")}
-</div>
-</section>
-`;
-}
-const currentCourse=currentSubject.courses.find(
-c=>c.id===courseParam
-);
 
-if(!currentCourse){
+</ul>
+
+<div style="text-align:center;margin-top:2rem;">
+
+<a href="#/teaching/${currentSubject.id}/course${index}"
+
+class="btn btn-primary">
+
+<i class="fas fa-folder-open"></i>
+
+Access Course Materials
+
+</a>
+
+</div>
+
+</div>
+
+`).join("")}
+
+</section>
+
+`;
+
+}
+const currentCourseIndex=parseInt(courseParam.replace("course",""));
+const currentCollege=currentSubject.teaching[currentCourseIndex];
+
+if(!currentCollege){
 
 return`
 
 <section class="fade-in">
 
-<h2>Course Not Found</h2>
+<h2>Teaching Record Not Found</h2>
 
 <a href="#/teaching/${currentSubject.id}" class="btn btn-primary">
-
 Back
-
 </a>
 
 </section>
@@ -187,30 +208,45 @@ ${currentSubject.title}
 
 <div class="card">
 
-<h2>${currentCourse.institution}</h2>
+<h2 style="color:var(--primary-color);">
+<i class="fas fa-university"></i>
+${currentCollege.institution}
+</h2>
 
-<p><strong>Program:</strong> ${currentCourse.program}</p>
+<p style="margin-bottom:1.5rem;">
+<strong>${currentCollege.department}</strong>
+</p>
 
-<p><strong>Branch:</strong> ${currentCourse.branch}</p>
+${currentCollege.offerings.map(off=>`
 
-<p><strong>Batch:</strong> ${currentCourse.batch}</p>
+<div style="padding:1rem;border:1px solid var(--border-color);border-radius:10px;margin-bottom:1rem;">
 
-<p><strong>Semester:</strong> ${currentCourse.semester||"-"}</p>
+<p><strong>Academic Year :</strong> ${off.academicYear}</p>
 
-<p><strong>Regulation:</strong> ${currentCourse.regulation||"-"}</p>
+<p><strong>Year :</strong> ${off.year}</p>
 
-<hr style="margin:25px 0;">
+<p><strong>Semester :</strong> ${off.semester}</p>
+
+<p><strong>Branch :</strong> ${off.branch}</p>
+
+<p><strong>Section :</strong> ${off.section}</p>
+
+</div>
+
+`).join("")}
+
+<hr style="margin:30px 0;">
 
 <div style="text-align:center;">
 
-<a href="assets/teaching/${currentCourse.folder}/index.html"
+<a href="assets/teaching/${currentSubject.folder}/index.html"
 target="_blank"
 class="btn btn-primary"
 style="padding:14px 30px;font-size:1.05rem;">
 
 <i class="fas fa-folder-open"></i>
 
-Access Materials
+Access Course Materials
 
 </a>
 
@@ -225,4 +261,3 @@ Access Materials
 }
 
 }
-
