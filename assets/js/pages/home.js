@@ -133,7 +133,7 @@ class HomePage extends Component {
                             <p class="card-description"> 
                             Explore Faculty Development Programs, Workshops, Conferences, STTPs, Webinars, Quizzes and other professional development activities with downloadable certificates.
                             </p>
-                            <a href="#/professional-dev" class="card-link">View Details <i class="fas fa-arrow-right"></i></a>
+                            <a href="#/engagements" class="card-link">View Details <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                     <!-- NEW CARD STARTS HERE -->
