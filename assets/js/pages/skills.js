@@ -10,15 +10,19 @@ class SkillsPage extends Component {
                 <div class="cards-grid">
                     ${Object.entries(data.skills).map(([category, skills]) => `
                         <div class="card reveal">
-                            <h3 class="card-title">${category}</h3>
 
-                            <div class="skills-tags">
+                            <div class="card-content">
+                        
+                                <h3 class="card-title">${category}</h3>
+                        
+                                <div class="skills-tags">
                                 ${skills.map(skill => `
                                     <span class="skill-tag">
                                         ${typeof skill === 'string' ? skill : skill.name}
                                     </span>
                                 `).join('')}
-                            </div>
+                                </div>
+                             </div>
                         </div>
                     `).join('')}
                 </div>
