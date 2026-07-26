@@ -18,9 +18,11 @@ class EducationPage extends Component {
                                 <h3 class="timeline-title">${edu.degree}</h3>
                                 <p class="timeline-subtitle">${edu.institution}</p>
                                 <p class="timeline-description">
-                                    ${edu.field ? `Field: ${edu.field}` : ''}
-                                    ${edu.cgpa ? ` | CGPA: ${edu.cgpa}` : ''}
-                                    ${edu.percentage ? ` | Percentage: ${edu.percentage}` : ''}
+                                    ${[
+                                        edu.field ? `Field: ${edu.field}` : null,
+                                        edu.cgpa ? `CGPA: ${edu.cgpa}` : null,
+                                        edu.percentage ? `Percentage: ${edu.percentage}` : null
+                                    ].filter(Boolean).join(' | ')}
                                 </p>
                                 ${edu.achievements && edu.achievements.length > 0 ? `
                                     <div style="margin-top: 1rem;">
