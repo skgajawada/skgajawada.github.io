@@ -1,7 +1,7 @@
 // PROFESSIONAL DEVELOPMENT MAIN CATEGORIES PAGE
 class EngagementsPage extends Component {
     async render(params) {
-        const certs = await DataManager.getCertificates();
+        const certs = await DataManager.getEngagements();
         const categoryParam = params && params[0];
 
         // If a specific subcategory parameter exists in the URL, render the certificate listings instead
