@@ -309,7 +309,7 @@ white-space:nowrap;
 }
 
 .card-content {
-    padding: 2rem;
+    padding: 3rem;
 }
 
 .card-title {
@@ -512,6 +512,31 @@ white-space:nowrap;
     background:var(--primary);
     color:#fff;
 }
+
+.skill-card{
+
+    min-height:240px;
+
+}
+
+.skill-card .card-content{
+
+    padding:2.8rem;
+
+}
+
+.skill-card .card-title{
+
+    margin-bottom:2rem;
+
+}
+
+.skill-card .skills-tags{
+
+    gap:16px;
+
+}
+
 /* Projects Gallery */
 .projects-filters {
     display: flex;
