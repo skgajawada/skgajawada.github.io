@@ -1,1 +1,45 @@
+/* ==========================================================
+   LAYOUT
+========================================================== */
 
+.app-container{
+    max-width:var(--container);
+    margin:auto;
+    padding:2rem;
+    min-height:calc(100vh - 220px);
+}
+
+.container{
+    max-width:var(--container);
+    margin:auto;
+}
+
+.text-center{
+    text-align:center;
+}
+
+.hidden{
+    display:none !important;
+}
+
+.flex{
+    display:flex;
+}
+
+.grid{
+    display:grid;
+}
+
+.w-100{
+    width:100%;
+}
+
+.mt-1{margin-top:.5rem;}
+.mt-2{margin-top:1rem;}
+.mt-3{margin-top:2rem;}
+.mt-4{margin-top:3rem;}
+
+.mb-1{margin-bottom:.5rem;}
+.mb-2{margin-bottom:1rem;}
+.mb-3{margin-bottom:2rem;}
+.mb-4{margin-bottom:3rem;}
