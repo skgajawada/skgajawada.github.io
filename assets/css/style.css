@@ -442,13 +442,11 @@ white-space:nowrap;
 .skill-category{
     background:#fff;
     border-radius:18px;
-    padding:30px;
+    padding:32px;
     min-height:240px;
     box-shadow:var(--shadow);
     border:1px solid rgba(0,0,0,.06);
     transition:.3s ease;
-    display:flex;
-    flex-direction:column;
 }
 
 .skill-category:hover{
@@ -457,19 +455,22 @@ white-space:nowrap;
 }
 
 .skill-category-title{
+    margin:0;
+    padding:0 0 20px 0;
+    margin-bottom:24px;
+
     font-size:1.45rem;
     font-weight:700;
     color:var(--dark);
-    margin:0 0 28px 0;
-    padding-bottom:14px;
+
     border-bottom:2px solid rgba(37,99,235,.12);
 }
 
 .skills-tags{
     display:flex;
     flex-wrap:wrap;
-    gap:16px;
-    margin-top:8px;
+    gap:14px;
+    margin:0;
 }
 .skill-tag{
     padding:11px 20px;
