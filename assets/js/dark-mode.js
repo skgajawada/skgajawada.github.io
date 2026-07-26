@@ -10,10 +10,21 @@ function initDarkMode() {
     updateThemeIcon(currentTheme);
 
     themeToggle.addEventListener('click', function() {
+
+        // Rotate the icon
+        themeToggle.classList.add('rotate');
+    
+        setTimeout(() => {
+            themeToggle.classList.remove('rotate');
+        }, 600);
+    
         const theme = body.classList.contains('light-mode') ? 'dark-mode' : 'light-mode';
+    
         body.classList.remove('light-mode', 'dark-mode');
         body.classList.add(theme);
+    
         localStorage.setItem('theme', theme);
+    
         updateThemeIcon(theme);
     });
 }
