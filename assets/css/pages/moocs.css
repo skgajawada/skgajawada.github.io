@@ -1,1 +1,27 @@
+/* ==========================================================
+   MOOCs
+========================================================== */
 
+.mooc-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:2rem;
+}
+
+.mooc-card{
+    background:#fff;
+    padding:2rem;
+    border-radius:16px;
+    box-shadow:var(--shadow);
+}
+
+.mooc-provider{
+    color:var(--primary);
+    font-weight:600;
+    margin:.5rem 0;
+}
+
+.mooc-date{
+    color:var(--text-light);
+    font-size:.9rem;
+}
