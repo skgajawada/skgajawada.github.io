@@ -21,10 +21,9 @@ class DataManager {
         return await this.loadData("assets/data/portfolio-data.json");
     }
 
-    static async getCertificates() {
+    static async getEngagements() {
         return await this.loadData("assets/data/professional-development.json");
     }
-
     static async getMOOCs() {
         return await this.loadData("assets/data/mooc-certifications.json");
     }
