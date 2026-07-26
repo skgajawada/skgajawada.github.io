@@ -435,8 +435,8 @@ white-space:nowrap;
 
 .skills-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
-    gap:2rem;
+    grid-template-columns:repeat(auto-fit,minmax(420px,1fr));
+    gap:2.5rem;
 }
 
 .skill-category{
@@ -446,6 +446,11 @@ white-space:nowrap;
     min-height:240px;
     box-shadow:var(--shadow);
     border:1px solid rgba(0,0,0,.06);
+    /* Increase the card size */
+    min-height: 260px;
+    
+    /* Increase the inner margin */
+    padding: 48px;
     transition:.3s ease;
 }
 
@@ -457,7 +462,7 @@ white-space:nowrap;
 .skill-category-title{
     margin:0;
     padding:0 0 20px 0;
-    margin-bottom:24px;
+    margin-bottom:32px;
 
     font-size:1.45rem;
     font-weight:700;
@@ -469,8 +474,8 @@ white-space:nowrap;
 .skills-tags{
     display:flex;
     flex-wrap:wrap;
-    gap:14px;
-    margin:0;
+    gap:16px;
+    margin:16px;
 }
 .skill-tag{
     padding:11px 20px;
