@@ -15,7 +15,9 @@ class HomePage extends Component {
                 <div class="hero-content">
                     <h1>${data.personal.name}</h1>
                     <p class="subtitle">${data.personal.title}</p>
-                    <p class="subtitle" style="font-size: 1rem; color: #666;">${data.personal.institution}</p>
+                    <p class="hero-institution">
+                        ${data.personal.institution}
+                    </p>
                     <p class="description">${data.personal.bio}</p>
                     <div class="hero-buttons">
                         <a href="#/about" class="btn btn-primary">
