@@ -440,6 +440,18 @@ white-space:nowrap;
 }
 
 .skill-category{
+    padding:36px;
+}
+
+.skill-category-title{
+    margin-bottom:30px;
+}
+
+.skills-tags{
+    margin-top:10px;
+}
+
+.skill-category{
     background:#fff;
     border-radius:18px;
     box-shadow:var(--shadow);
