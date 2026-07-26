@@ -996,6 +996,7 @@ Verify
 
 }
 // SKILLS PAGE
+// SKILLS PAGE
 class SkillsPage extends Component {
     async render() {
         const data = await DataManager.getPortfolioData();
@@ -1003,22 +1004,19 @@ class SkillsPage extends Component {
         return `
             <section class="fade-in">
                 <h1 class="section-title">Skills & Expertise</h1>
-                
-                <div class="skills-container">
+
+                <div class="cards-grid">
                     ${Object.entries(data.skills).map(([category, skills]) => `
-                        <div class="skill-category reveal">
-                            <h3 class="skill-category-title">${category.charAt(0).toUpperCase() + category.slice(1)}</h3>
-                            ${skills.map(skill => `
-                                <div class="skill-item">
-                                    <div class="skill-name">
-                                        <span>${skill.name}</span>
-                                        <span style="color: var(--primary);">${skill.proficiency}%</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: ${skill.proficiency}%;"></div>
-                                    </div>
-                                </div>
-                            `).join('')}
+                        <div class="card reveal">
+                            <h3 class="card-title">${category}</h3>
+
+                            <div class="skills-tags">
+                                ${skills.map(skill => `
+                                    <span class="skill-tag">
+                                        ${typeof skill === 'string' ? skill : skill.name}
+                                    </span>
+                                `).join('')}
+                            </div>
                         </div>
                     `).join('')}
                 </div>
