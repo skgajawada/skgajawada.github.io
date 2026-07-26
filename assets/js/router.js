@@ -34,8 +34,19 @@ class Router {
             const component = this.routes[routePath];
             const html = await component.render(params);
             document.getElementById('app').innerHTML = html;
-            component.afterRender(params); // Pass parameters along to child actions
+            component.afterRender(params);
+            
             this.updateActiveNav(routePath);
+            
+            // Track page view in Google Analytics
+            if (typeof gtag === 'function') {
+                gtag('event', 'page_view', {
+                    page_title: route.replace('/', '').replace(/-/g, ' '),
+                    page_location: window.location.href,
+                    page_path: window.location.hash.replace('#', '')
+                });
+            }
+            
             window.scrollTo(0, 0);
         } else {
             window.location.hash = '/home';
