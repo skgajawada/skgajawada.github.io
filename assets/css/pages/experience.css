@@ -1,121 +1,70 @@
 /* ==========================================================
    EXPERIENCE
 ========================================================== */
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-bottom: 4rem;
+/* Timeline */
+.timeline {
+    position: relative;
+    padding: 2rem 0;
 }
 
-.stat-card {
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--primary);
+}
+
+.timeline-item {
+    margin-bottom: 3rem;
+    padding-left: 100px;
+    position: relative;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border: 4px solid var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 1.5rem;
+}
+
+.timeline-content {
     background: white;
     padding: 2rem;
     border-radius: 10px;
-    text-align: center;
     box-shadow: var(--shadow);
-    transition: all 0.3s ease;
-    border-left: 5px solid var(--primary);
 }
 
-.stat-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-lg);
-}
-
-.stat-number {
-    font-size: 2.5rem;
-    font-weight: bold;
+.timeline-date {
+    font-size: 0.9rem;
     color: var(--primary);
+    font-weight: bold;
     margin-bottom: 0.5rem;
 }
 
-.stat-label {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    text-transform: uppercase;
-}
-
-/* Card Section */
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-bottom: 4rem;
-}
-
-.card {
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-lg);
-}
-
-.card-icon {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    padding: 2rem;
-    text-align: center;
-    color: white;
-    font-size: 2.5rem;
-}
-
-.card-content {
-    padding: 3rem;
-}
-
-.card-title {
+.timeline-title {
     font-size: 1.3rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
-    color: var(--dark);
 }
 
-.card-description {
-    font-size: 0.9rem;
+.timeline-subtitle {
     color: var(--text-light);
     margin-bottom: 1rem;
+}
+
+.timeline-description {
+    color: var(--text);
     line-height: 1.6;
-}
-
-.card-link {
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s ease;
-}
-
-.card-link:hover {
-    gap: 1rem;
-    color: var(--secondary);
-}
-
-/* Section Titles */
-.section-title {
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: var(--dark);
-    position: relative;
-    padding-bottom: 1rem;
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 60px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    border-radius: 2px;
 }
