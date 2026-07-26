@@ -3,7 +3,7 @@ class HomePage extends Component {
     async render() {
         const data = await DataManager.getPortfolioData();
 
-        const certs = await DataManager.getCertificates();
+        const certs = await DataManager.getEngagements();
         const totalCerts = certs.certificates.length;
         const roundedCerts = DataManager.getRoundedCount(totalCerts, 100);
         

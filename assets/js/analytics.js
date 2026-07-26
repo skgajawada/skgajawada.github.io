@@ -3,7 +3,7 @@ class AnalyticsDashboard extends Component {
 
     async render() {
 
-        this.certs = await DataManager.getCertificates();
+        this.certs = await DataManager.getEngagements();
 
         const totalCerts = this.certs.certificates.length;
         const roundedCerts = DataManager.getRoundedCount(totalCerts, 100);

@@ -3,7 +3,7 @@
 class AboutPage extends Component {
     async render() {
         const data = await DataManager.getPortfolioData();
-        const certs = await DataManager.getCertificates();
+        const certs = await DataManager.getEngagements();
 
         return `
             <section class="fade-in">
