@@ -61,7 +61,7 @@ router.register('/experience', new ExperiencePage());
 router.register('/teaching',new TeachingPage());
 router.register('/education', new EducationPage());
 router.register('/projects', new ProjectsPage());
-router.register('/professional-dev', new ProfessionalDevPage());
+router.register('/engagements', new EngagementsPage());
 router.register('/moocs', new MoocsPage());
 router.register('/skills', new SkillsPage());
 //router.register('/social-responsibility', new SocialResponsibilityPage());
