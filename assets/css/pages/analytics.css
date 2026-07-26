@@ -1,1 +1,33 @@
+/* ==========================================================
+   ANALYTICS
+========================================================== */
 
+.metrics-dashboard{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:1.5rem;
+}
+
+.metric-box{
+    background:#fff;
+    padding:2rem;
+    text-align:center;
+    border-radius:16px;
+    box-shadow:var(--shadow);
+    border-top:5px solid var(--primary);
+}
+
+.metric-icon{
+    font-size:2rem;
+    margin-bottom:1rem;
+}
+
+.metric-number{
+    font-size:2.5rem;
+    font-weight:700;
+    margin-bottom:.5rem;
+}
+
+.metric-title{
+    color:var(--text-light);
+}
