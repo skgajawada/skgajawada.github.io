@@ -1,5 +1,5 @@
 // PROFESSIONAL DEVELOPMENT MAIN CATEGORIES PAGE
-class ProfessionalDevPage extends Component {
+class EngagementsPage extends Component {
     async render(params) {
         const certs = await DataManager.getCertificates();
         const categoryParam = params && params[0];
