@@ -263,6 +263,7 @@
               "year": "III",
               "semester": "II",
               "branch": "Mechanical Engineering"
+              "section": "ME-2"
             }
           ]
         }
@@ -311,6 +312,7 @@
               "year": "III",
               "semester": "II",
               "branch": "Mechanical Engineering"
+              "section": "ME"
             }
           ]
         }
