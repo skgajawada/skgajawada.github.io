@@ -361,5 +361,3 @@ Blood Donations
     }
 
 }
-
-router.register("/analytics", new AnalyticsDashboard());
