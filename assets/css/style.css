@@ -474,7 +474,31 @@ white-space:nowrap;
     border-radius: 10px;
     transition: width 0.5s ease;
 }
+.skills-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:15px;
+}
 
+.skill-tag{
+    display:inline-flex;
+    align-items:center;
+    padding:8px 14px;
+    border-radius:30px;
+    background:#eef6ff;
+    color:var(--primary);
+    font-size:.95rem;
+    font-weight:500;
+    border:1px solid rgba(37,99,235,.15);
+    transition:.3s ease;
+}
+
+.skill-tag:hover{
+    background:var(--primary);
+    color:#fff;
+    transform:translateY(-2px);
+}
 /* Projects Gallery */
 .projects-filters {
     display: flex;
