@@ -1,1 +1,34 @@
+/* ==========================================================
+   FORMS
+========================================================== */
 
+.form-group{
+    margin-bottom:1.5rem;
+}
+
+.form-control{
+    width:100%;
+    padding:.9rem 1rem;
+    border:1px solid var(--border);
+    border-radius:10px;
+    font-size:1rem;
+    transition:var(--transition);
+}
+
+.form-control:focus{
+    outline:none;
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(52,152,219,.15);
+}
+
+textarea.form-control{
+    resize:vertical;
+    min-height:140px;
+}
+
+.contact-form{
+    background:#fff;
+    padding:2rem;
+    border-radius:16px;
+    box-shadow:var(--shadow);
+}
