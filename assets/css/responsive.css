@@ -1,0 +1,60 @@
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:992px){
+
+    .cards-grid{
+        grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    }
+
+    .footer-content{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:768px){
+
+    .nav-menu{
+        display:none;
+    }
+
+    .hamburger{
+        display:flex;
+    }
+
+    .app-container{
+        padding:1.25rem;
+    }
+
+    .section-title{
+        font-size:2rem;
+    }
+
+    .cards-grid{
+        grid-template-columns:1fr;
+    }
+
+    .stats-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:480px){
+
+    .section-title{
+        font-size:1.8rem;
+    }
+
+    .btn{
+        width:100%;
+    }
+
+    .card-content{
+        padding:1.5rem;
+    }
+
+    .footer-content{
+        padding:2rem 1rem;
+    }
+}
