@@ -1,1 +1,26 @@
+/* ==========================================================
+   EXPERIENCE
+========================================================== */
 
+.experience-card{
+    margin-bottom:2rem;
+}
+
+.company{
+    color:var(--primary);
+    font-weight:600;
+}
+
+.duration{
+    color:var(--text-light);
+    font-size:.9rem;
+}
+
+.responsibilities{
+    margin-top:1rem;
+    padding-left:1.3rem;
+}
+
+.responsibilities li{
+    margin-bottom:.5rem;
+}
