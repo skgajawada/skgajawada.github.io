@@ -1,1 +1,59 @@
+/* ==========================================================
+   HOME
+========================================================== */
 
+.hero{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+    background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+    color:#fff;
+    padding:4rem 2rem;
+}
+
+.hero-content{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:4rem;
+    align-items:center;
+}
+
+.hero-title{
+    font-size:3.5rem;
+    font-weight:700;
+    margin-bottom:1rem;
+}
+
+.hero-subtitle{
+    font-size:1.5rem;
+    margin-bottom:1.5rem;
+    opacity:.95;
+}
+
+.hero-description{
+    font-size:1.1rem;
+    line-height:1.8;
+    margin-bottom:2rem;
+}
+
+.hero-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:1rem;
+}
+
+.hero-image{
+    display:flex;
+    justify-content:center;
+}
+
+.profile-image{
+    width:320px;
+    height:320px;
+    border-radius:50%;
+    object-fit:cover;
+    border:6px solid rgba(255,255,255,.2);
+    box-shadow:var(--shadow-lg);
+}
