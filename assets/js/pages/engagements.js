@@ -66,7 +66,7 @@ class EngagementsPage extends Component {
         // Default Overview Layout
         return `
             <section class="fade-in">
-                <h1 class="section-title">Professional Development</h1>
+                <h1 class="section-title">Professional Engagements</h1>
                 
                 <div class="cards-grid stagger-container">
                     ${certs.categories.map((cat, i) => `
