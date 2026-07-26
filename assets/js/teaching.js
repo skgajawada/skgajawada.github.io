@@ -132,7 +132,7 @@ ${college.offerings.map(off=>`
 <strong>Year :</strong> ${off.year}<br>
 <strong>Semester :</strong> ${off.semester}<br>
 <strong>Branch :</strong> ${off.branch}<br>
-<strong>Section :</strong> ${off.section}
+<strong>Section :</strong> ${off.section || "-"}
 </li>
 <br>
 
@@ -229,7 +229,7 @@ ${currentCollege.offerings.map(off=>`
 
 <p><strong>Branch :</strong> ${off.branch}</p>
 
-<p><strong>Section :</strong> ${off.section}</p>
+<p><strong>Section :</strong> ${off.section || "-"}</p>
 
 </div>
 
