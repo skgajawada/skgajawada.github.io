@@ -2,59 +2,94 @@
    RESPONSIVE
 ========================================================== */
 
-@media(max-width:992px){
+/* ===========================
+   Responsive Navigation
+=========================== */
 
-    .cards-grid{
-        grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    }
+@media (max-width:768px){
 
-    .footer-content{
-        grid-template-columns:1fr;
-    }
+.nav-container{
+
+padding:15px 20px;
+
 }
 
-@media(max-width:768px){
+.nav-logo{
 
-    .nav-menu{
-        display:none;
-    }
+font-size:22px;
 
-    .hamburger{
-        display:flex;
-    }
-
-    .app-container{
-        padding:1.25rem;
-    }
-
-    .section-title{
-        font-size:2rem;
-    }
-
-    .cards-grid{
-        grid-template-columns:1fr;
-    }
-
-    .stats-grid{
-        grid-template-columns:1fr;
-    }
 }
 
-@media(max-width:480px){
+.nav-logo span{
 
-    .section-title{
-        font-size:1.8rem;
-    }
+font-size:18px;
 
-    .btn{
-        width:100%;
-    }
+}
 
-    .card-content{
-        padding:1.5rem;
-    }
+.hamburger{
 
-    .footer-content{
-        padding:2rem 1rem;
-    }
+display:flex;
+
+}
+
+.nav-menu{
+
+position:fixed;
+
+top:72px;
+
+left:-100%;
+
+width:100%;
+
+height:calc(100vh - 72px);
+
+background:#fff;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:flex-start;
+
+align-items:center;
+
+gap:20px;
+
+padding:40px 20px;
+
+transition:left .35s ease;
+
+overflow-y:auto;
+
+box-shadow:0 10px 20px rgba(0,0,0,.08);
+
+z-index:999;
+
+}
+
+.nav-menu.open{
+
+left:0;
+
+}
+
+.hero{
+
+grid-template-columns:1fr;
+
+}
+
+.hero-content h1{
+
+font-size:2rem;
+
+}
+
+.section-title{
+
+font-size:2rem;
+
+}
+
 }
