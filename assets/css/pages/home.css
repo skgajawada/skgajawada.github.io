@@ -5,9 +5,18 @@
 .hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-areas: "image content";
     gap: 3rem;
     align-items: center;
     margin-bottom: 4rem;
+}
+
+.hero-content {
+    grid-area: content;
+}
+
+.hero-image {
+    grid-area: image;
 }
 
 .hero-content h1 {
