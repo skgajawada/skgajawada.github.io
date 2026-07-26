@@ -31,19 +31,24 @@ class App {
         });
     }
 
-    setupMobileMenu(){
+setupMobileMenu() {
 
-const hamburger=document.querySelector(".hamburger");
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".nav-menu");
 
-const navMenu=document.querySelector(".nav-menu");
+    if (!hamburger || !navMenu) return;
 
-if(!hamburger||!navMenu)return;
+    hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("open");
+        navMenu.classList.toggle("open");
+    });
 
-hamburger.addEventListener("click",()=>{
-
-navMenu.classList.toggle("open");
-
-});
+    document.querySelectorAll(".nav-link").forEach(link => {
+        link.addEventListener("click", () => {
+            hamburger.classList.remove("open");
+            navMenu.classList.remove("open");
+        });
+    });
 
 }
 }
