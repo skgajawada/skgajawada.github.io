@@ -1,1 +1,20 @@
+/* ==========================================================
+   TEACHING
+========================================================== */
 
+.course-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:2rem;
+}
+
+.course-card{
+    background:#fff;
+    padding:2rem;
+    border-radius:16px;
+    box-shadow:var(--shadow);
+}
+
+.course-card h3{
+    margin-bottom:1rem;
+}
