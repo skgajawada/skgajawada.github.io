@@ -2,44 +2,43 @@
    LAYOUT
 ========================================================== */
 
-.app-container{
-    max-width:var(--container);
-    margin:auto;
-    padding:2rem;
-    min-height:calc(100vh - 220px);
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: calc(100vh - 200px);
 }
 
-.container{
-    max-width:var(--container);
-    margin:auto;
+/* Hero Section */
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 4rem;
 }
 
-.text-center{
-    text-align:center;
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
 }
 
-.hidden{
-    display:none !important;
+.hero-content .subtitle {
+    font-size: 1.3rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
 }
 
-.flex{
-    display:flex;
+.hero-content .description {
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 2rem;
+    line-height: 1.8;
 }
 
-.grid{
-    display:grid;
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
-
-.w-100{
-    width:100%;
-}
-
-.mt-1{margin-top:.5rem;}
-.mt-2{margin-top:1rem;}
-.mt-3{margin-top:2rem;}
-.mt-4{margin-top:3rem;}
-
-.mb-1{margin-bottom:.5rem;}
-.mb-2{margin-bottom:1rem;}
-.mb-3{margin-bottom:2rem;}
-.mb-4{margin-bottom:3rem;}
