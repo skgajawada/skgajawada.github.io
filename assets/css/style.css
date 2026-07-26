@@ -444,7 +444,7 @@ white-space:nowrap;
     background:#fff;
     border-radius:16px;
     padding:2rem;
-    min-height:220px;      /* Increase card height */
+    min-height:240px;      /* Increase card height */
     box-shadow:var(--shadow);
     border:1px solid rgba(0,0,0,.05);
     transition:all .3s ease;
