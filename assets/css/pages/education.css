@@ -1,1 +1,41 @@
+/* ==========================================================
+   EDUCATION
+========================================================== */
 
+.timeline{
+    position:relative;
+    margin-left:20px;
+}
+
+.timeline::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:3px;
+    height:100%;
+    background:var(--primary);
+}
+
+.timeline-item{
+    position:relative;
+    margin-bottom:2rem;
+    padding-left:2rem;
+}
+
+.timeline-dot{
+    position:absolute;
+    left:-9px;
+    top:8px;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:var(--primary);
+}
+
+.timeline-content{
+    background:#fff;
+    padding:1.5rem;
+    border-radius:14px;
+    box-shadow:var(--shadow);
+}
