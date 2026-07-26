@@ -103,6 +103,10 @@ white-space:nowrap;
     transition: transform 0.6s ease;
 }
 
+.theme-toggle.rotate i {
+    transform: rotate(360deg);
+}
+
 
 .hamburger {
     display: none;
