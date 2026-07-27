@@ -36,7 +36,7 @@
       "teaching": [
         {
           "institution": "Guru Nanak Institutions Technical Campus",
-          "department": "First Year Engineering",
+          "department": "Mechanical Engineering",
           "offerings": [
             {
               "academicYear": "2023-2024",
@@ -84,7 +84,7 @@
         },
         {
           "institution": "Sree Chaitanya College of Engineering",
-          "department": "Electrical and Electronics Engineering",
+          "department": "Mechanical Engineering",
           "offerings": [
             {
               "academicYear": "2019-2020",
@@ -97,7 +97,7 @@
         },
         {
           "institution": "Jyothishmathi Institute of Technology and Science",
-          "department": "Computer Science and Engineering",
+          "department": "Mechanical Engineering",
           "offerings": [
             {
               "academicYear": "2015-2016",
@@ -312,7 +312,7 @@
       "teaching": [
         {
           "institution": "Guru Nanak Institutions Technical Campus",
-          "department": "Civil Engineering",
+          "department": "Mechanical Engineering",
           "offerings": [
             {
               "academicYear": "2022-2023",
@@ -534,7 +534,7 @@
       "teaching": [
         {
           "institution": "Jyothishmathi Institute of Technology and Science",
-          "department": "First Year Engineering",
+          "department": "Mechanical Engineering",
           "offerings": [
             {
               "academicYear": "2015-2016",
@@ -554,7 +554,7 @@
         },
         {
           "institution": "Guru Nanak Institutions Technical Campus",
-          "department": "First Year Engineering",
+          "department": "Mechanical Engineering",
           "offerings": [
             {
               "academicYear": "2024-2025",
