@@ -123,22 +123,45 @@ ${college.institution}
 <strong>${college.department}</strong>
 </p>
 
-<ul style="margin-left:1.2rem;line-height:1.9;">
+<div style="
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:18px;
+margin-top:20px;
+">
 
-${college.offerings.map(off=>`
+<div style="
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:18px;
+margin-top:20px;
+">
 
-<li>
-<strong>Academic Year :</strong> ${off.academicYear}<br>
-<strong>Year :</strong> ${off.year}<br>
-<strong>Semester :</strong> ${off.semester}<br>
-<strong>Branch :</strong> ${off.branch}<br>
-<strong>Section :</strong> ${off.section || "-"}
-</li>
-<br>
+${currentCollege.offerings.map(off=>`
+
+<div style="
+background:#fff;
+border:1px solid #e5e7eb;
+border-radius:14px;
+padding:18px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+">
+
+<p><strong>Academic Year</strong><br>${off.academicYear}</p>
+
+<p><strong>Year</strong><br>${off.year}</p>
+
+<p><strong>Semester</strong><br>${off.semester}</p>
+
+<p><strong>Branch</strong><br>${off.branch}</p>
+
+<p><strong>Section</strong><br>${off.section || "-"}</p>
+
+</div>
 
 `).join("")}
 
-</ul>
+</div>
 
 <div style="text-align:center;margin-top:2rem;">
 
