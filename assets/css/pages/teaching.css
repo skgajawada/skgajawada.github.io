@@ -236,52 +236,61 @@
     font-weight:500;
     word-break:break-word;
 }
-/* ==========================================================
+/* ======================================================
    COURSE MATERIALS
-========================================================== */
+====================================================== */
 
 .course-material-section{
-    margin-top:3rem;
-    padding:3rem;
+
+    margin-top:40px;
+
+    padding:35px;
+
+    background:#ffffff;
+
+    border-radius:16px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
     text-align:center;
-    background:linear-gradient(135deg,#f8fbff,#eef5ff);
-    border-radius:20px;
-    border:1px solid rgba(0,0,0,.06);
-    box-shadow:var(--shadow);
+
 }
 
 .course-material-title{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:.8rem;
-    margin:0 0 1rem;
-    font-size:1.8rem;
-    color:var(--primary);
-    font-weight:700;
+
+    font-size:2rem;
+
+    margin-bottom:15px;
+
 }
 
 .course-material-title i{
-    color:var(--primary);
+
+    margin-right:10px;
+
+    color:var(--primary-color);
+
 }
 
 .course-material-text{
-    max-width:720px;
-    margin:0 auto 2rem;
+
+    max-width:700px;
+
+    margin:0 auto 25px;
+
+    color:var(--text-secondary);
+
     line-height:1.8;
-    color:var(--text-light);
-    font-size:1.05rem;
+
 }
 
 .course-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:.7rem;
-    padding:.95rem 2rem;
-    font-size:1rem;
-    font-weight:600;
-}
 
+    padding:14px 28px;
+
+    font-size:1rem;
+
+}
 /* ==========================================================
    PAGE HEADER
 ========================================================== */
