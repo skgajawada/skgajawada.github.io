@@ -184,36 +184,54 @@ class TeachingPage extends Component {
 
     <div class="course-material-section">
 
-        <h2 class="course-material-title">
+    <h2 class="course-material-title">
 
-            <i class="fas fa-folder-open"></i>
+        <i class="fas fa-folder-open"></i>
 
-            Course Materials
+        Course Materials
 
-        </h2>
+    </h2>
 
-        <p class="course-material-text">
+    <p class="course-material-text">
 
-            Lecture notes, presentations,
-            assignments, laboratory manuals,
-            tutorials and additional learning resources
-            are available here.
+        Access lecture notes, presentations, assignments,
+        tutorials, question banks, previous papers,
+        reference books, videos and downloadable resources.
 
-        </p>
+    </p>
 
-        <a
-            href="assets/teaching/${subject.folder}/index.html"
-            target="_blank"
-            class="btn btn-primary course-btn">
+    <div class="materials-grid">
 
-            <i class="fas fa-folder-open"></i>
+        ${[
+            { name: "Notes", folder: "Notes", icon: "fa-book" },
+            { name: "PPT", folder: "PPT", icon: "fa-file-powerpoint" },
+            { name: "Assignments", folder: "Assignments", icon: "fa-pencil-alt" },
+            { name: "Tutorials", folder: "Tutorials", icon: "fa-chalkboard-teacher" },
+            { name: "Question Banks", folder: "QB", icon: "fa-circle-question" },
+            { name: "Previous Papers", folder: "Papers", icon: "fa-file-lines" },
+            { name: "Books", folder: "Books", icon: "fa-book-open" },
+            { name: "Videos", folder: "Videos", icon: "fa-video" },
+            { name: "Downloads", folder: "Downloads", icon: "fa-download" }
+        ].map(item => `
 
-            Access Course Materials
+            <a
+                href="assets/teaching/${subject.folder}/${item.folder}/"
+                target="_blank"
+                class="material-card">
 
-        </a>
+                <i class="fas ${item.icon}"></i>
+
+                <h3>${item.name}</h3>
+
+                <span>Open</span>
+
+            </a>
+
+        `).join("")}
 
     </div>
 
+</div>
 </section>
 
 `;
