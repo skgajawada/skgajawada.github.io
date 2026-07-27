@@ -137,7 +137,7 @@ gap:18px;
 margin-top:20px;
 ">
 
-${currentCollege.offerings.map(off=>`
+${college.offerings.map(off=>`
 
 <div style="
 background:#fff;
