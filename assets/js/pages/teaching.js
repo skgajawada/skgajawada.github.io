@@ -202,6 +202,7 @@ class TeachingPage extends Component {
 
     <div class="materials-grid">
 
+        
         ${[
             { name: "Notes", folder: "Notes", icon: "fa-book" },
             { name: "PPT", folder: "PPT", icon: "fa-file-powerpoint" },
@@ -213,22 +214,19 @@ class TeachingPage extends Component {
             { name: "Videos", folder: "Videos", icon: "fa-video" },
             { name: "Downloads", folder: "Downloads", icon: "fa-download" }
         ].map(item => `
-
-            <a
-                href="assets/teaching/${subject.folder}/${item.folder}/"
-                target="_blank"
-                class="material-card">
-
-                <i class="fas ${item.icon}"></i>
-
-                <h3>${item.name}</h3>
-
-                <span>Open</span>
-
-            </a>
-
+        
+        <a
+            href="assets/teaching/${subject.folder}/${item.folder}/"
+            target="_blank"
+            class="material-card">
+        
+            <i class="fas ${item.icon}"></i>
+        
+            <h3>${item.name}</h3>
+        
+        </a>
+        
         `).join("")}
-
     </div>
 
 </div>
