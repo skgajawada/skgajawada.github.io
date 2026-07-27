@@ -385,3 +385,7 @@ class TeachingPage extends Component {
         }
 
 }
+<a
+    href="assets/teaching/${subject.folder}/index.html"
+    target="_blank"
+    class="btn btn-primary course-btn">
