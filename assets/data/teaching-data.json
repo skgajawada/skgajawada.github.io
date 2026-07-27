@@ -362,7 +362,9 @@
               "semester": "I",
               "branch": "Mechanical Engineering",
               "section": "ME-2"
-            },
+            }
+          ]
+        },
             {
             "institution": "Jyothishmathi Institute of Technology and Science",
             "department": "Mechanical Engineering",
@@ -374,8 +376,6 @@
                 "branch": "Mechanical Engineering",
                 "section": "ME"
               }
-          ]
-        }
       ]
     }
    ]
