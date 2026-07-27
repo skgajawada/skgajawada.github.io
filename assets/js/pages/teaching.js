@@ -219,3 +219,168 @@ class TeachingPage extends Component {
 `;
 
     }
+    renderInstitution(college) {
+
+        return `
+
+<div class="teaching-college">
+
+    <div class="college-header">
+
+        <div class="college-icon">
+            <i class="fas fa-university"></i>
+        </div>
+
+        <div class="college-info">
+
+            <h2 class="college-title">
+                ${college.institution}
+            </h2>
+
+            ${college.department ? `
+
+                <p class="college-department">
+
+                    ${college.department}
+
+                </p>
+
+            ` : ""}
+
+        </div>
+
+    </div>
+
+    <div class="offering-grid">
+
+        ${college.offerings.map(offering =>
+
+            this.renderOfferingCard(offering)
+
+        ).join("")}
+
+    </div>
+
+</div>
+
+`;
+
+    }
+
+    renderOfferingCard(offering) {
+
+        return `
+
+<div class="offering-card">
+
+    <div class="offering-header">
+
+        <i class="fas fa-calendar-alt"></i>
+
+        <span>
+
+            ${offering.academicYear}
+
+        </span>
+
+    </div>
+
+    <div class="offering-body">
+
+        <div class="offering-row">
+
+            <span class="offering-label">
+
+                Year
+
+            </span>
+
+            <span class="offering-value">
+
+                ${offering.year}
+
+            </span>
+
+        </div>
+
+        <div class="offering-row">
+
+            <span class="offering-label">
+
+                Semester
+
+            </span>
+
+            <span class="offering-value">
+
+                ${offering.semester}
+
+            </span>
+
+        </div>
+
+        <div class="offering-row">
+
+            <span class="offering-label">
+
+                Branch
+
+            </span>
+
+            <span class="offering-value">
+
+                ${offering.branch}
+
+            </span>
+
+        </div>
+
+        <div class="offering-row">
+
+            <span class="offering-label">
+
+                Section
+
+            </span>
+
+            <span class="offering-value">
+
+                ${offering.section || "-"}
+
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+`;
+
+    }
+        afterRender() {
+
+        const cards = document.querySelectorAll(
+            ".teaching-card, .offering-card"
+        );
+
+        cards.forEach((card, index) => {
+
+            card.style.opacity = "0";
+            card.style.transform = "translateY(20px)";
+
+            setTimeout(() => {
+
+                card.style.transition =
+                    "opacity .4s ease, transform .4s ease";
+
+                card.style.opacity = "1";
+                card.style.transform = "translateY(0)";
+
+            }, index * 60);
+
+        });
+
+    }
+
+}
