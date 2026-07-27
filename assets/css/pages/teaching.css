@@ -1,20 +1,440 @@
 /* ==========================================================
-   TEACHING
+   TEACHING PAGE
 ========================================================== */
 
-.course-grid{
+.teaching-page,
+.teaching-details{
+    max-width:1300px;
+    margin:0 auto;
+    padding:2rem 0 4rem;
+}
+
+.section-subtitle{
+    max-width:750px;
+    margin:0 auto 3rem;
+    text-align:center;
+    color:var(--text-light);
+    font-size:1.05rem;
+    line-height:1.8;
+}
+
+/* ==========================================================
+   GROUPS
+========================================================== */
+
+.teaching-group{
+    margin-bottom:4rem;
+}
+
+.teaching-group-title{
+    display:flex;
+    align-items:center;
+    gap:.8rem;
+    font-size:1.7rem;
+    color:var(--primary);
+    margin-bottom:1.8rem;
+    font-weight:700;
+}
+
+.teaching-group-title i{
+    width:52px;
+    height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:var(--primary);
+    color:#fff;
+    font-size:1.25rem;
+    box-shadow:var(--shadow);
+}
+
+/* ==========================================================
+   GRID
+========================================================== */
+
+.cards-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
     gap:2rem;
 }
 
-.course-card{
+/* ==========================================================
+   SUBJECT CARD
+========================================================== */
+
+.teaching-card{
     background:#fff;
+    border-radius:18px;
+    box-shadow:var(--shadow);
     padding:2rem;
+    display:flex;
+    gap:1.5rem;
+    align-items:flex-start;
+    transition:.35s;
+    border:1px solid rgba(0,0,0,.05);
+    height:100%;
+}
+
+.teaching-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 45px rgba(0,0,0,.12);
+}
+
+.teaching-card-icon{
+    width:72px;
+    height:72px;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:#fff;
+    flex-shrink:0;
+    font-size:1.8rem;
+}
+
+.teaching-card-content{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+}
+
+.teaching-card-title{
+    margin:0 0 1.2rem;
+    font-size:1.3rem;
+    font-weight:700;
+    color:var(--text);
+    line-height:1.45;
+}
+
+.teaching-btn{
+    margin-top:auto;
+    align-self:flex-start;
+}
+/* ==========================================================
+   INSTITUTION SECTION
+========================================================== */
+
+.teaching-college{
+    background:#fff;
+    border-radius:18px;
+    padding:2rem;
+    margin-bottom:2.5rem;
+    box-shadow:var(--shadow);
+    border:1px solid rgba(0,0,0,.05);
+}
+
+.college-header{
+    display:flex;
+    align-items:center;
+    gap:1.2rem;
+    margin-bottom:2rem;
+    padding-bottom:1.5rem;
+    border-bottom:1px solid rgba(0,0,0,.08);
+}
+
+.college-icon{
+    width:72px;
+    height:72px;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:#fff;
+    font-size:1.7rem;
+    flex-shrink:0;
+}
+
+.college-info{
+    flex:1;
+}
+
+.college-title{
+    margin:0;
+    font-size:1.45rem;
+    color:var(--text);
+    font-weight:700;
+}
+
+.college-department{
+    margin:.45rem 0 0;
+    color:var(--text-light);
+    font-size:1rem;
+}
+
+/* ==========================================================
+   OFFERING GRID
+========================================================== */
+
+.offering-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:1.5rem;
+}
+
+/* ==========================================================
+   OFFERING CARD
+========================================================== */
+
+.offering-card{
+    background:#fafbfc;
     border-radius:16px;
+    border:1px solid rgba(0,0,0,.08);
+    overflow:hidden;
+    transition:.35s;
+}
+
+.offering-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 15px 35px rgba(0,0,0,.10);
+}
+
+.offering-header{
+    display:flex;
+    align-items:center;
+    gap:.7rem;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:#fff;
+    padding:1rem 1.25rem;
+    font-size:1rem;
+    font-weight:600;
+}
+
+.offering-header i{
+    font-size:1rem;
+}
+
+.offering-body{
+    padding:1.25rem;
+}
+
+.offering-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:1rem;
+    padding:.7rem 0;
+    border-bottom:1px dashed rgba(0,0,0,.08);
+}
+
+.offering-row:last-child{
+    border-bottom:none;
+}
+
+.offering-label{
+    font-weight:600;
+    color:var(--text-light);
+    min-width:90px;
+}
+
+.offering-value{
+    flex:1;
+    text-align:right;
+    color:var(--text);
+    font-weight:500;
+    word-break:break-word;
+}
+/* ==========================================================
+   COURSE MATERIALS
+========================================================== */
+
+.course-material-section{
+    margin-top:3rem;
+    padding:3rem;
+    text-align:center;
+    background:linear-gradient(135deg,#f8fbff,#eef5ff);
+    border-radius:20px;
+    border:1px solid rgba(0,0,0,.06);
     box-shadow:var(--shadow);
 }
 
-.course-card h3{
+.course-material-title{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:.8rem;
+    margin:0 0 1rem;
+    font-size:1.8rem;
+    color:var(--primary);
+    font-weight:700;
+}
+
+.course-material-title i{
+    color:var(--primary);
+}
+
+.course-material-text{
+    max-width:720px;
+    margin:0 auto 2rem;
+    line-height:1.8;
+    color:var(--text-light);
+    font-size:1.05rem;
+}
+
+.course-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:.7rem;
+    padding:.95rem 2rem;
+    font-size:1rem;
+    font-weight:600;
+}
+
+/* ==========================================================
+   PAGE HEADER
+========================================================== */
+
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:1.5rem;
+    margin-bottom:2.5rem;
+    flex-wrap:wrap;
+}
+
+.page-header .section-title{
+    margin:0;
+}
+
+/* ==========================================================
+   EMPTY STATE
+========================================================== */
+
+.empty-state{
+    max-width:600px;
+    margin:5rem auto;
+    padding:3rem 2rem;
+    text-align:center;
+    background:#fff;
+    border-radius:18px;
+    box-shadow:var(--shadow);
+}
+
+.empty-state h2{
     margin-bottom:1rem;
+    color:var(--primary);
+}
+
+.empty-state p{
+    color:var(--text-light);
+    line-height:1.8;
+}
+
+/* ==========================================================
+   ANIMATIONS
+========================================================== */
+
+.teaching-card,
+.offering-card,
+.teaching-college{
+    animation:fadeUp .6s ease both;
+}
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width:992px){
+
+    .cards-grid{
+        grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    }
+
+    .offering-grid{
+        grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    }
+
+}
+
+@media (max-width:768px){
+
+    .teaching-page,
+    .teaching-details{
+        padding:1rem 0 3rem;
+    }
+
+    .page-header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .college-header{
+        flex-direction:column;
+        align-items:flex-start;
+        text-align:left;
+    }
+
+    .teaching-card{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .teaching-card-icon{
+        margin-bottom:.5rem;
+    }
+
+    .offering-row{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:.35rem;
+    }
+
+    .offering-value{
+        text-align:left;
+    }
+
+    .course-material-section{
+        padding:2rem 1.5rem;
+    }
+
+}
+
+@media (max-width:576px){
+
+    .cards-grid,
+    .offering-grid{
+        grid-template-columns:1fr;
+    }
+
+    .teaching-group-title{
+        font-size:1.4rem;
+    }
+
+    .college-title{
+        font-size:1.2rem;
+    }
+
+    .course-material-title{
+        font-size:1.45rem;
+        flex-direction:column;
+        gap:.5rem;
+    }
+
+    .course-btn{
+        width:100%;
+        justify-content:center;
+    }
+
+    .teaching-card,
+    .teaching-college{
+        padding:1.4rem;
+    }
+
 }
