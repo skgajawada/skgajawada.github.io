@@ -11,6 +11,13 @@
           "department": "Mechanical Engineering",
           "offerings": [
             {
+              "academicYear": "2021-2022",
+              "year": "II",
+              "semester": "I",
+              "branch": "Mechanical Engineering",
+              "section": "ME-2"
+            },
+            {
               "academicYear": "2022-2023",
               "year": "II",
               "semester": "I",
@@ -21,10 +28,9 @@
         }
       ]
     },
-
     {
       "id": "engineering-graphics",
-      "title": "Engineering Graphics",
+      "title": "Engineering Graphics / CAEG",
       "icon": "fa-drafting-compass",
       "folder": "Engineering Graphics",
       "teaching": [
@@ -40,6 +46,13 @@
               "section": "CSE-1"
             },
             {
+              "academicYear": "2023-2024",
+              "year": "I",
+              "semester": "II",
+              "branch": "Electronics and Communication Engineering",
+              "section": "ECE-3"
+            },
+            {
               "academicYear": "2024-2025",
               "year": "I",
               "semester": "I",
@@ -52,13 +65,6 @@
               "semester": "I",
               "branch": "Information Technology",
               "section": "IT-1"
-            },
-            {
-              "academicYear": "2023-2024",
-              "year": "I",
-              "semester": "II",
-              "branch": "Electronics and Communication Engineering",
-              "section": "ECE-3"
             },
             {
               "academicYear": "2024-2025",
@@ -77,6 +83,19 @@
           ]
         },
         {
+          "institution": "Sree Chaitanya College of Engineering",
+          "department": "Electrical and Electronics Engineering",
+          "offerings": [
+            {
+              "academicYear": "2019-2020",
+              "year": "I",
+              "semester": "II",
+              "branch": "Electrical and Electronics Engineering",
+              "section": "EEE"
+            }
+          ]
+        },
+        {
           "institution": "Jyothishmathi Institute of Technology and Science",
           "department": "Computer Science and Engineering",
           "offerings": [
@@ -91,10 +110,9 @@
         }
       ]
     },
-
     {
-      "id": "fluid-mechanics",
-      "title": "Fluid Mechanics",
+      "id": "fluid-mechanics-hydraulic-machinery",
+      "title": "Fluid Mechanics and Hydraulic Machinery",
       "icon": "fa-water",
       "folder": "Fluid Mechanics",
       "teaching": [
@@ -107,13 +125,12 @@
               "year": "II",
               "semester": "II",
               "branch": "Mechanical Engineering",
-              "section": "ME-1"
+              "section": "ME"
             }
           ]
         }
       ]
     },
-
     {
       "id": "mechanics-of-solids",
       "title": "Mechanics of Solids",
@@ -142,53 +159,52 @@
         }
       ]
     },
-
     {
       "id": "operations-research",
       "title": "Operations Research",
       "icon": "fa-chart-line",
       "folder": "Operations Research",
-      "teaching":[
-      {
-      "institution":"Guru Nanak Institutions Technical Campus",
-      "department":"Mechanical Engineering",
-      "offerings":[
-      {
-      "academicYear":"2023-2024",
-      "year":"III",
-      "semester":"I",
-      "branch":"Mechanical Engineering",
-      "section":"ME-1"
-      },
-      {
-      "academicYear":"2023-2024",
-      "year":"III",
-      "semester":"I",
-      "branch":"Mechanical Engineering",
-      "section":"ME-2"
-      }
-      ]
-      },
-      {
-      "institution":"Sree Chaitanya College of Engineering",
-      "department":"Mechanical Engineering",
-      "offerings":[
-      {
-      "academicYear":"2020-2021",
-      "year":"III",
-      "semester":"II",
-      "branch":"Mechanical Engineering",
-      "section":"ME-1"
-      },
-      {
-      "academicYear":"2020-2021",
-      "year":"III",
-      "semester":"II",
-      "branch":"Mechanical Engineering",
-      "section":"ME-2"
-      }
-      ]
-      }
+      "teaching": [
+        {
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "department": "Mechanical Engineering",
+          "offerings": [
+            {
+              "academicYear": "2023-2024",
+              "year": "III",
+              "semester": "I",
+              "branch": "Mechanical Engineering",
+              "section": "ME-1"
+            },
+            {
+              "academicYear": "2023-2024",
+              "year": "III",
+              "semester": "I",
+              "branch": "Mechanical Engineering",
+              "section": "ME-2"
+            }
+          ]
+        },
+        {
+          "institution": "Sree Chaitanya College of Engineering",
+          "department": "Mechanical Engineering",
+          "offerings": [
+            {
+              "academicYear": "2020-2021",
+              "year": "III",
+              "semester": "I",
+              "branch": "Mechanical Engineering",
+              "section": "ME-A"
+            },
+            {
+              "academicYear": "2020-2021",
+              "year": "III",
+              "semester": "I",
+              "branch": "Mechanical Engineering",
+              "section": "ME-B"
+            }
+          ]
+        }
       ]
     },
     {
@@ -212,7 +228,6 @@
         }
       ]
     },
-
     {
       "id": "kinematics-of-machinery",
       "title": "Kinematics of Machinery",
@@ -226,7 +241,7 @@
             {
               "academicYear": "2020-2021",
               "year": "II",
-              "semester": "II",
+              "semester": "I",
               "branch": "Mechanical Engineering",
               "section": "ME-4"
             }
@@ -234,10 +249,30 @@
         }
       ]
     },
-
     {
-      "id": "design-of-machine-elements-2",
-      "title": "Design of Machine Elements - II",
+      "id": "design-of-machine-members-1",
+      "title": "Design of Machine Members - I",
+      "icon": "fa-wrench",
+      "folder": "Design of Machine Members-I",
+      "teaching": [
+        {
+          "institution": "Sree Chaitanya College of Engineering",
+          "department": "Mechanical Engineering",
+          "offerings": [
+            {
+              "academicYear": "2019-2020",
+              "year": "III",
+              "semester": "I",
+              "branch": "Mechanical Engineering",
+              "section": "ME"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "design-of-machine-members-2",
+      "title": "Design of Machine Members - II",
       "icon": "fa-screwdriver-wrench",
       "folder": "Design of Machine Members-II",
       "teaching": [
@@ -258,12 +293,12 @@
           "institution": "Sree Chaitanya College of Engineering",
           "department": "Mechanical Engineering",
           "offerings": [
-           {
+            {
               "academicYear": "2018-2019",
               "year": "III",
               "semester": "II",
               "branch": "Mechanical Engineering",
-              "section": "ME-2"
+              "section": "ME"
             }
           ]
         }
@@ -329,17 +364,150 @@
               "section": "ME-2"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "id": "kinematics-and-dynamics-lab",
+      "title": "Kinematics and Dynamics Lab",
+      "icon": "fa-flask",
+      "folder": "Kinematics and Dynamics Lab",
+      "teaching": [
         {
-          "institution": "Jyothishmathi Institute of Technology and Science",
+          "institution": "Sree Chaitanya College of Engineering",
           "department": "Mechanical Engineering",
           "offerings": [
             {
-              "academicYear": "2015-2016",
+              "academicYear": "2018-2019",
               "year": "III",
               "semester": "II",
               "branch": "Mechanical Engineering",
               "section": "ME"
+            },
+            {
+              "academicYear": "2019-2020",
+              "year": "III",
+              "semester": "II",
+              "branch": "Mechanical Engineering",
+              "section": "ME"
+            },
+            {
+              "academicYear": "2020-2021",
+              "year": "III",
+              "semester": "I",
+              "branch": "Mechanical Engineering",
+              "section": "ME"
+            }
+          ]
+        },
+        {
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "department": "Mechanical Engineering",
+          "offerings": [
+            {
+              "academicYear": "2021-2022",
+              "year": "III",
+              "semester": "I",
+              "branch": "Mechanical Engineering",
+              "section": "ME-5"
+            },
+            {
+              "academicYear": "2022-2023",
+              "year": "III",
+              "semester": "I",
+              "branch": "Mechanical Engineering",
+              "section": "ME-2"
+            },
+            {
+              "academicYear": "2022-2023",
+              "year": "III",
+              "semester": "I",
+              "branch": "Mechanical Engineering",
+              "section": "ME-4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "machine-drawing-practice-lab",
+      "title": "Machine Drawing Practice Lab",
+      "icon": "fa-pencil-ruler",
+      "folder": "Machine Drawing Practice Lab",
+      "teaching": [
+        {
+          "institution": "Sree Chaitanya College of Engineering",
+          "department": "Mechanical Engineering",
+          "offerings": [
+            {
+              "academicYear": "2019-2020",
+              "year": "II",
+              "semester": "I",
+              "branch": "Mechanical Engineering",
+              "section": "ME-A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "production-technology-lab",
+      "title": "Production Technology Lab",
+      "icon": "fa-industry",
+      "folder": "Production Technology Lab",
+      "teaching": [
+        {
+          "institution": "Sree Chaitanya College of Engineering",
+          "department": "Mechanical Engineering",
+          "offerings": [
+            {
+              "academicYear": "2019-2020",
+              "year": "II",
+              "semester": "I",
+              "branch": "Mechanical Engineering",
+              "section": "ME-B"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "metallurgy-and-mechanics-of-solids-lab",
+      "title": "Metallurgy & Mechanics of Solids Lab",
+      "icon": "fa-flask-vial",
+      "folder": "Metallurgy & Mechanics of Solids Lab",
+      "teaching": [
+        {
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "department": "Mechanical Engineering",
+          "offerings": [
+            {
+              "academicYear": "2020-2021",
+              "year": "II",
+              "semester": "I",
+              "branch": "Mechanical Engineering",
+              "section": "ME-1"
+            },
+            {
+              "academicYear": "2020-2021",
+              "year": "II",
+              "semester": "I",
+              "branch": "Mechanical Engineering",
+              "section": "ME-2"
+            },
+            {
+              "academicYear": "2021-2022",
+              "year": "II",
+              "semester": "II",
+              "branch": "Mechanical Engineering",
+              "section": "ME-2"
+            },
+            {
+              "academicYear": "2021-2022",
+              "year": "II",
+              "semester": "II",
+              "branch": "Mechanical Engineering",
+              "section": "ME-3"
             }
           ]
         }
@@ -368,6 +536,33 @@
               "semester": "II",
               "branch": "Computer Science and Engineering",
               "section": "CSE-C"
+            }
+          ]
+        },
+        {
+          "institution": "Guru Nanak Institutions Technical Campus",
+          "department": "First Year Engineering",
+          "offerings": [
+            {
+              "academicYear": "2024-2025",
+              "year": "I",
+              "semester": "I",
+              "branch": "Computer Science and Cyber Security",
+              "section": "CSC"
+            },
+            {
+              "academicYear": "2024-2025",
+              "year": "I",
+              "semester": "II",
+              "branch": "Computer Science and Engineering",
+              "section": "CSE-1"
+            },
+            {
+              "academicYear": "2024-2025",
+              "year": "I",
+              "semester": "II",
+              "branch": "Electrical and Electronics Engineering",
+              "section": "EEE-1"
             }
           ]
         }
