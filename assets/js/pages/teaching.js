@@ -212,9 +212,7 @@ class TeachingPage extends Component {
         
             </a>
         
-        </div>
-
-</div>
+    </div>
 </section>
 
 `;
