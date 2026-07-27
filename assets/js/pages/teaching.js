@@ -1,286 +1,251 @@
+// ======================================================
 // TEACHING PAGE
+// ======================================================
+
 class TeachingPage extends Component {
 
-async render(params){
+    async render(params) {
 
-const teaching=await DataManager.getTeaching();
-const subjectParam=params&&params[0];
-const courseParam=params&&params[1];
+        const teaching = await DataManager.getTeaching();
+        const subjectId = params?.[0];
 
-if(!subjectParam){
+        // ==================================================
+        // HOME PAGE
+        // ==================================================
 
-return`
+        if (!subjectId) {
 
-<section class="fade-in">
+            const subjects = teaching.subjects.filter(
+                item => item.type === "subject"
+            );
 
-<h1 class="section-title">
-Teaching
-</h1>
+            const labs = teaching.subjects.filter(
+                item => item.type === "lab"
+            );
 
-<div class="cards-grid stagger-container">
+            return `
 
-${teaching.subjects.map(subject=>`
+<section class="fade-in teaching-page">
 
-<div class="card fade-in"
-onclick="navigateTo('#/teaching/${subject.id}')"
-style="cursor:pointer;">
+    <h1 class="section-title">
+        Teaching
+    </h1>
 
-<div class="card-icon">
-<i class="fas ${subject.icon}"></i>
-</div>
+    <div class="teaching-group">
 
-<div class="card-content">
+        <h2 class="teaching-group-title">
 
-<h3 class="card-title">
-${subject.title}
-</h3>
+            <i class="fas fa-book"></i>
 
-<p class="card-description">
-${subject.teaching.length} Institution(s)
-</p>
+            Subjects
 
-<a href="#/teaching/${subject.id}" class="card-link">
-View Teaching Details
-<i class="fas fa-arrow-right"></i>
-</a>
+        </h2>
 
-</div>
+        <div class="cards-grid">
 
-</div>
+            ${subjects.map(subject =>
+                this.renderSubjectCard(subject)
+            ).join("")}
 
-`).join("")}
+        </div>
 
-</div>
+    </div>
 
-</section>
+    <div class="teaching-group">
 
-`;
+        <h2 class="teaching-group-title">
 
-}
+            <i class="fas fa-flask"></i>
 
-const currentSubject=
-teaching.subjects.find(
-s=>s.id===subjectParam
-);
+            Laboratory Courses
 
-if(!currentSubject){
+        </h2>
 
-return`
+        <div class="cards-grid">
 
-<section class="fade-in">
+            ${labs.map(subject =>
+                this.renderSubjectCard(subject)
+            ).join("")}
 
-<h2>Subject Not Found</h2>
+        </div>
 
-<a href="#/teaching"
-class="btn btn-primary">
-
-Back
-
-</a>
+    </div>
 
 </section>
 
 `;
 
-}
+        }
 
-if(!courseParam){
+        // ==================================================
+        // FIND SUBJECT
+        // ==================================================
 
-return`
+        const currentSubject = teaching.subjects.find(
+            item => item.id === subjectId
+        );
+
+        if (!currentSubject) {
+
+            return `
 
 <section class="fade-in">
 
-<div style="display:flex;align-items:center;gap:1rem;margin-bottom:2rem;">
+    <h2>Subject Not Found</h2>
 
-<a href="#/teaching"
-class="btn btn-outline">
+    <a href="#/teaching"
+       class="btn btn-primary">
 
-<i class="fas fa-arrow-left"></i>
+        Back
 
-Back
-
-</a>
-
-<h1 class="section-title"
-style="margin:0;">
-
-${currentSubject.title}
-
-</h1>
-
-</div>
-
-${currentSubject.teaching.map((college,index)=>`
-
-<div class="card reveal" style="padding:1.8rem;margin-bottom:2rem;">
-
-<h2 style="color:var(--primary-color);margin-bottom:0.8rem;">
-<i class="fas fa-university"></i>
-${college.institution}
-</h2>
-
-<p style="margin-bottom:1rem;">
-<strong>${college.department}</strong>
-</p>
-
-<div style="
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:18px;
-margin-top:20px;
-">
-
-<div style="
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:18px;
-margin-top:20px;
-">
-
-${college.offerings.map(off=>`
-
-<div style="
-background:#fff;
-border:1px solid #e5e7eb;
-border-radius:14px;
-padding:18px;
-box-shadow:0 5px 15px rgba(0,0,0,.08);
-">
-
-<p><strong>Academic Year</strong><br>${off.academicYear}</p>
-
-<p><strong>Year</strong><br>${off.year}</p>
-
-<p><strong>Semester</strong><br>${off.semester}</p>
-
-<p><strong>Branch</strong><br>${off.branch}</p>
-
-<p><strong>Section</strong><br>${off.section || "-"}</p>
-
-</div>
-
-`).join("")}
-
-</div>
-
-<div style="text-align:center;margin-top:2rem;">
-
-<a href="#/teaching/${currentSubject.id}/course${index}"
-
-class="btn btn-primary">
-
-<i class="fas fa-folder-open"></i>
-
-Access Course Materials
-
-</a>
-
-</div>
-
-</div>
-
-`).join("")}
+    </a>
 
 </section>
 
 `;
 
-}
-const currentCourseIndex=parseInt(courseParam.replace("course",""));
-const currentCollege=currentSubject.teaching[currentCourseIndex];
+        }
 
-if(!currentCollege){
+        return `
 
-return`
+<section class="fade-in teaching-details">
 
-<section class="fade-in">
+    <div class="page-header">
 
-<h2>Teaching Record Not Found</h2>
+        <a href="#/teaching"
+           class="btn btn-outline">
 
-<a href="#/teaching/${currentSubject.id}" class="btn btn-primary">
-Back
-</a>
+            <i class="fas fa-arrow-left"></i>
+
+            Back
+
+        </a>
+
+        <h1 class="section-title">
+
+            ${currentSubject.title}
+
+        </h1>
+
+    </div>
+        ${currentSubject.teaching.map(college => `
+    
+        <div class="teaching-college">
+
+            <div class="college-header">
+
+                <div class="college-icon">
+                    <i class="fas fa-university"></i>
+                </div>
+
+                <div>
+
+                    <h2 class="college-title">
+                        ${college.institution}
+                    </h2>
+
+                    ${college.department ? `
+                        <p class="college-department">
+                            ${college.department}
+                        </p>
+                    ` : ""}
+
+                </div>
+
+            </div>
+
+            <div class="offering-grid">
+
+                ${college.offerings.map(off => `
+
+                    <div class="offering-card">
+
+                        <div class="offering-year">
+
+                            <span class="offering-icon">📅</span>
+
+                            <span>${off.academicYear}</span>
+
+                        </div>
+
+                        <div class="offering-body">
+
+                            <div class="offering-row">
+
+                                <span>🎓</span>
+
+                                <span>${off.year}</span>
+
+                            </div>
+
+                            <div class="offering-row">
+
+                                <span>📖</span>
+
+                                <span>${off.semester}</span>
+
+                            </div>
+
+                            <div class="offering-row">
+
+                                <span>🏛</span>
+
+                                <span>${off.branch}</span>
+
+                            </div>
+
+                            <div class="offering-row">
+
+                                <span>👥</span>
+
+                                <span>${off.section || "-"}</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `).join("")}
+
+            </div>
+
+        </div>
+
+    `).join("")}
+        <div class="course-material-section">
+
+        <h2 class="course-material-title">
+
+            <i class="fas fa-folder-open"></i>
+
+            Course Materials
+
+        </h2>
+
+        <p class="course-material-text">
+
+            View lecture notes, presentations, assignments,
+            laboratory manuals, question banks and additional
+            learning resources.
+
+        </p>
+
+        <a href="assets/teaching/${currentSubject.folder}/index.html"
+           target="_blank"
+           class="btn btn-primary course-btn">
+
+            <i class="fas fa-folder-open"></i>
+
+            Access Course Materials
+
+        </a>
+
+    </div>
 
 </section>
 
 `;
 
-}
-
-return`
-
-<section class="fade-in">
-
-<div style="display:flex;align-items:center;gap:1rem;margin-bottom:2rem;">
-
-<a href="#/teaching/${currentSubject.id}" class="btn btn-outline">
-
-<i class="fas fa-arrow-left"></i>
-
-Back
-
-</a>
-
-<h1 class="section-title" style="margin:0;">
-
-${currentSubject.title}
-
-</h1>
-
-</div>
-
-<div class="card">
-
-<h2 style="color:var(--primary-color);">
-<i class="fas fa-university"></i>
-${currentCollege.institution}
-</h2>
-
-<p style="margin-bottom:1.5rem;">
-<strong>${currentCollege.department}</strong>
-</p>
-
-${currentCollege.offerings.map(off=>`
-
-<div style="padding:1rem;border:1px solid var(--border-color);border-radius:10px;margin-bottom:1rem;">
-
-<p><strong>Academic Year :</strong> ${off.academicYear}</p>
-
-<p><strong>Year :</strong> ${off.year}</p>
-
-<p><strong>Semester :</strong> ${off.semester}</p>
-
-<p><strong>Branch :</strong> ${off.branch}</p>
-
-<p><strong>Section :</strong> ${off.section || "-"}</p>
-
-</div>
-
-`).join("")}
-
-<hr style="margin:30px 0;">
-
-<div style="text-align:center;">
-
-<a href="assets/teaching/${currentSubject.folder}/index.html"
-target="_blank"
-class="btn btn-primary"
-style="padding:14px 30px;font-size:1.05rem;">
-
-<i class="fas fa-folder-open"></i>
-
-Access Course Materials
-
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-`;
-
-}
-
+    }
 }
