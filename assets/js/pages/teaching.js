@@ -182,52 +182,37 @@ class TeachingPage extends Component {
 
     `).join("")}
 
-    <div class="course-material-section">
-
-    <h2 class="course-material-title">
-
-        <i class="fas fa-folder-open"></i>
-
-        Course Materials
-
-    </h2>
-
-    <p class="course-material-text">
-
-        Access lecture notes, presentations, assignments,
-        tutorials, question banks, previous papers,
-        reference books, videos and downloadable resources.
-
-    </p>
-
-    <div class="materials-grid">
-
+        <div class="course-material-section">
         
-        ${[
-            { name: "Notes", folder: "Notes", icon: "fa-book" },
-            { name: "PPT", folder: "PPT", icon: "fa-file-powerpoint" },
-            { name: "Assignments", folder: "Assignments", icon: "fa-pencil-alt" },
-            { name: "Tutorials", folder: "Tutorials", icon: "fa-chalkboard-teacher" },
-            { name: "Question Banks", folder: "QB", icon: "fa-circle-question" },
-            { name: "Previous Papers", folder: "Papers", icon: "fa-file-lines" },
-            { name: "Books", folder: "Books", icon: "fa-book-open" },
-            { name: "Videos", folder: "Videos", icon: "fa-video" },
-            { name: "Downloads", folder: "Downloads", icon: "fa-download" }
-        ].map(item => `
+            <h2 class="course-material-title">
         
-        <a
-            href="assets/teaching/${subject.folder}/${item.folder}/"
-            target="_blank"
-            class="material-card">
+                <i class="fas fa-folder-open"></i>
         
-            <i class="fas ${item.icon}"></i>
+                Course Materials
         
-            <h3>${item.name}</h3>
+            </h2>
         
-        </a>
+            <p class="course-material-text">
         
-        `).join("")}
-    </div>
+                Lecture notes, presentations,
+                assignments, laboratory manuals,
+                tutorials and additional learning resources
+                are available here.
+        
+            </p>
+        
+            <a
+                href="assets/teaching/${subject.folder}/index.html"
+                target="_blank"
+                class="btn btn-primary course-btn">
+        
+                <i class="fas fa-folder-open"></i>
+        
+                Access Course Materials
+        
+            </a>
+        
+        </div>
 
 </div>
 </section>
