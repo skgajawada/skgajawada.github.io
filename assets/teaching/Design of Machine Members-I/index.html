@@ -1,140 +1,863 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Design of Machine Members_1</title>
 
-<link rel="stylesheet" href="../../assets/css/style.css">
+    <meta charset="UTF-8">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<style>
+    <title>
+        Engineering Mechanics | Gajavada Sanjeevkumar
+    </title>
 
-body{
-font-family:Arial,sans-serif;
-background:#f5f7fb;
-margin:0;
-padding:40px;
-}
+    <meta name="description"
+          content="Engineering Mechanics course portal containing lecture notes, presentations, question banks, books, videos and downloadable learning resources.">
 
-.container{
-max-width:1100px;
-margin:auto;
-}
+    <meta name="author"
+          content="Gajavada Sanjeevkumar">
 
-.title{
-font-size:2rem;
-font-weight:700;
-margin-bottom:40px;
-color:#1d3557;
-text-align:center;
-}
+    <meta name="robots"
+          content="index,follow">
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
+    <!-- Favicon -->
+    <link rel="icon"
+          href="../../../favicon.ico">
 
-.card{
-background:#fff;
-border-radius:12px;
-padding:30px;
-text-align:center;
-box-shadow:0 5px 15px rgba(0,0,0,.08);
-transition:.3s;
-}
+    <!-- Main Portfolio CSS -->
+    <link rel="stylesheet"
+          href="../../../assets/css/style.css">
 
-.card:hover{
-transform:translateY(-5px);
-}
+    <!-- Course CSS -->
+    <link rel="stylesheet"
+          href="style.css">
 
-.card i{
-font-size:42px;
-color:#2563eb;
-margin-bottom:15px;
-}
-
-.card h3{
-margin-bottom:20px;
-}
-
-.card a{
-display:inline-block;
-padding:10px 20px;
-background:#2563eb;
-color:#fff;
-text-decoration:none;
-border-radius:6px;
-}
-
-.card a:hover{
-background:#1d4ed8;
-}
-
-</style>
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
 <body>
 
-<div class="container">
+    <!-- ===========================================
+         HERO SECTION
+    ============================================ -->
 
-<h1 class="title">
+    <header class="course-hero">
 
-Engineering Mechanics
+        <div class="hero-overlay">
 
-</h1>
+            <nav class="course-nav">
 
-<div class="grid">
+                <a href="../../../#/teaching"
+                   class="back-button">
 
-<div class="card">
-<i class="fas fa-book"></i>
-<h3>Notes</h3>
-<a href="Notes/">Open</a>
-</div>
+                    <i class="fas fa-arrow-left"></i>
 
-<div class="card">
-<i class="fas fa-file-powerpoint"></i>
-<h3>PPT</h3>
-<a href="PPT/">Open</a>
-</div>
+                    Back to Teaching
 
-<div class="card">
-<i class="fas fa-question-circle"></i>
-<h3>Question Bank</h3>
-<a href="QB/">Open</a>
-</div>
+                </a>
 
-<div class="card">
-<i class="fas fa-file-alt"></i>
-<h3>Previous Papers</h3>
-<a href="Papers/">Open</a>
-</div>
+            </nav>
 
-<div class="card">
-<i class="fas fa-book-open"></i>
-<h3>Books</h3>
-<a href="Books/">Open</a>
-</div>
+            <div class="hero-content">
 
-<div class="card">
-<i class="fas fa-video"></i>
-<h3>Videos</h3>
-<a href="Videos/">Open</a>
-</div>
+                <span class="course-badge">
 
-<div class="card">
-<i class="fas fa-download"></i>
-<h3>Downloads</h3>
-<a href="Downloads/">Open</a>
-</div>
+                    Mechanical Engineering
 
-</div>
+                </span>
 
-</div>
+                <h1>
+
+                    Engineering Mechanics
+
+                </h1>
+
+                <p>
+
+                    Comprehensive learning resources, lecture notes,
+                    presentations, question banks, reference books,
+                    videos and downloadable materials.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- ===========================================
+         COURSE INFORMATION
+    ============================================ -->
+
+    <section class="course-information">
+
+        <div class="container">
+
+            <div class="info-grid">
+
+                <div class="info-card">
+
+                    <i class="fas fa-graduation-cap"></i>
+
+                    <h3>Programme</h3>
+
+                    <p>B.Tech</p>
+
+                </div>
+
+                <div class="info-card">
+
+                    <i class="fas fa-layer-group"></i>
+
+                    <h3>Course Type</h3>
+
+                    <p>Theory</p>
+
+                </div>
+
+                <div class="info-card">
+
+                    <i class="fas fa-star"></i>
+
+                    <h3>Credits</h3>
+
+                    <p>3</p>
+
+                </div>
+
+                <div class="info-card">
+
+                    <i class="fas fa-user"></i>
+
+                    <h3>Instructor</h3>
+
+                    <p>Gajavada Sanjeevkumar</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===========================================
+         ABOUT COURSE
+    ============================================ -->
+
+    <section class="about-course">
+
+        <div class="container">
+
+            <h2>
+
+                About the Course
+
+            </h2>
+
+            <p>
+
+                Engineering Mechanics introduces the principles of
+                statics and dynamics that form the foundation of
+                Mechanical Engineering. Students learn the analysis of
+                forces, equilibrium, friction, centroids, moments,
+                virtual work, kinematics and kinetics with engineering
+                applications.
+
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- ===========================================
+         COURSE STATISTICS
+    ============================================ -->
+
+    <section class="course-stats">
+
+        <div class="container">
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <h3>12+</h3>
+
+                    <p>Lecture Notes</p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h3>20+</h3>
+
+                    <p>PPT Presentations</p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h3>10+</h3>
+
+                    <p>Question Banks</p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h3>100+</h3>
+
+                    <p>Learning Resources</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===========================================
+         RESOURCE SECTION
+    ============================================ -->
+  <section class="course-resources">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-tag">
+                Learning Resources
+            </span>
+
+            <h2>
+                Course Materials
+            </h2>
+
+            <p>
+
+                Access lecture notes, presentations, assignments,
+                question banks, previous examination papers,
+                reference books, video lectures and downloadable
+                learning resources.
+
+            </p>
+
+        </div>
+
+        <!-- Search -->
+
+        <div class="resource-search">
+
+            <input
+                type="text"
+                id="resourceSearch"
+                placeholder="Search resources...">
+
+            <i class="fas fa-search"></i>
+
+        </div>
+
+        <!-- Resource Grid -->
+
+        <div class="resource-grid">
+
+            <!-- Notes -->
+
+            <div class="resource-card">
+
+                <div class="resource-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+
+                <h3>Lecture Notes</h3>
+
+                <p>
+
+                    Chapter-wise lecture notes with illustrations,
+                    derivations and solved examples.
+
+                </p>
+
+                <a href="Notes/"
+                   class="resource-btn">
+
+                    Open Folder
+
+                </a>
+
+            </div>
+
+            <!-- PPT -->
+
+            <div class="resource-card">
+
+                <div class="resource-icon">
+                    <i class="fas fa-file-powerpoint"></i>
+                </div>
+
+                <h3>PPT Presentations</h3>
+
+                <p>
+
+                    Classroom presentations prepared for
+                    teaching and revision.
+
+                </p>
+
+                <a href="PPT/"
+                   class="resource-btn">
+
+                    Open Folder
+
+                </a>
+
+            </div>
+
+            <!-- Assignments -->
+
+            <div class="resource-card">
+
+                <div class="resource-icon">
+                    <i class="fas fa-pencil-ruler"></i>
+                </div>
+
+                <h3>Assignments</h3>
+
+                <p>
+
+                    Practice assignments, tutorial sheets and
+                    problem-solving exercises.
+
+                </p>
+
+                <a href="Assignments/"
+                   class="resource-btn">
+
+                    Open Folder
+
+                </a>
+
+            </div>
+
+            <!-- Tutorials -->
+
+            <div class="resource-card">
+
+                <div class="resource-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+
+                <h3>Tutorials</h3>
+
+                <p>
+
+                    Guided tutorials with worked examples
+                    and additional practice.
+
+                </p>
+
+                <a href="Tutorials/"
+                   class="resource-btn">
+
+                    Open Folder
+
+                </a>
+
+            </div>
+
+            <!-- Question Bank -->
+
+            <div class="resource-card">
+
+                <div class="resource-icon">
+                    <i class="fas fa-circle-question"></i>
+                </div>
+
+                <h3>Question Banks</h3>
+
+                <p>
+
+                    Unit-wise question banks covering
+                    university examinations.
+
+                </p>
+
+                <a href="QB/"
+                   class="resource-btn">
+
+                    Open Folder
+
+                </a>
+
+            </div>
+
+            <!-- Previous Papers -->
+
+            <div class="resource-card">
+
+                <div class="resource-icon">
+                    <i class="fas fa-file-lines"></i>
+                </div>
+
+                <h3>Previous Papers</h3>
+
+                <p>
+
+                    Previous semester examination papers
+                    for effective preparation.
+
+                </p>
+
+                <a href="Papers/"
+                   class="resource-btn">
+
+                    Open Folder
+
+                </a>
+
+            </div>
+
+            <!-- Books -->
+
+            <div class="resource-card">
+
+                <div class="resource-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+
+                <h3>Reference Books</h3>
+
+                <p>
+
+                    Recommended textbooks and reference
+                    materials for deeper understanding.
+
+                </p>
+
+                <a href="Books/"
+                   class="resource-btn">
+
+                    Open Folder
+
+                </a>
+
+            </div>
+
+            <!-- Videos -->
+
+            <div class="resource-card">
+
+                <div class="resource-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+
+                <h3>Video Lectures</h3>
+
+                <p>
+
+                    Recorded lectures and curated educational
+                    videos.
+
+                </p>
+
+                <a href="Videos/"
+                   class="resource-btn">
+
+                    Open Folder
+
+                </a>
+
+            </div>
+
+            <!-- Downloads -->
+
+            <div class="resource-card">
+
+                <div class="resource-icon">
+                    <i class="fas fa-download"></i>
+                </div>
+
+                <h3>Downloads</h3>
+
+                <p>
+
+                    Syllabus, formula sheets,
+                    manuals and additional files.
+
+                </p>
+
+                <a href="Downloads/"
+                   class="resource-btn">
+
+                    Open Folder
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================================
+     COURSE HIGHLIGHTS
+=========================================== -->
+
+<section class="course-highlights">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-tag">
+
+                Why Study This Course
+
+            </span>
+
+            <h2>
+
+                Learning Outcomes
+
+            </h2>
+
+        </div>
+
+        <div class="highlight-grid">
+
+            <div class="highlight-card">
+
+                <i class="fas fa-check-circle"></i>
+
+                <h3>
+
+                    Strong Fundamentals
+
+                </h3>
+
+                <p>
+
+                    Develop a solid understanding of engineering mechanics.
+
+                </p>
+
+            </div>
+
+            <div class="highlight-card">
+
+                <i class="fas fa-lightbulb"></i>
+
+                <h3>
+
+                    Problem Solving
+
+                </h3>
+
+                <p>
+
+                    Improve analytical thinking through practical engineering problems.
+
+                </p>
+
+            </div>
+
+            <div class="highlight-card">
+
+                <i class="fas fa-gears"></i>
+
+                <h3>
+
+                    Engineering Applications
+
+                </h3>
+
+                <p>
+
+                    Apply mechanics concepts to real mechanical systems.
+
+                </p>
+
+            </div>
+
+            <div class="highlight-card">
+
+                <i class="fas fa-award"></i>
+
+                <h3>
+
+                    Exam Preparation
+
+                </h3>
+
+                <p>
+
+                    Access comprehensive study materials for university examinations.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+  <!-- ===========================================
+     CONTACT / SUPPORT
+=========================================== -->
+
+<section class="course-contact">
+
+    <div class="container">
+
+        <div class="contact-box">
+
+            <i class="fas fa-envelope-open-text"></i>
+
+            <h2>
+
+                Need Help?
+
+            </h2>
+
+            <p>
+
+                If you have questions regarding this course,
+                lecture materials, assignments or examinations,
+                feel free to contact the course instructor.
+
+            </p>
+
+            <a href="../../../#/contact"
+               class="contact-button">
+
+                Contact Instructor
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================================
+     FOOTER
+=========================================== -->
+
+<footer class="course-footer">
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <!-- Course -->
+
+            <div class="footer-column">
+
+                <h3>
+
+                    Engineering Mechanics
+
+                </h3>
+
+                <p>
+
+                    A comprehensive collection of learning
+                    resources prepared to support students in
+                    mastering Engineering Mechanics.
+
+                </p>
+
+            </div>
+
+            <!-- Quick Links -->
+
+            <div class="footer-column">
+
+                <h3>
+
+                    Quick Links
+
+                </h3>
+
+                <ul>
+
+                    <li>
+
+                        <a href="../../../#/home">
+
+                            Home
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="../../../#/teaching">
+
+                            Teaching
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="../../../#/contact">
+
+                            Contact
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <!-- Resources -->
+
+            <div class="footer-column">
+
+                <h3>
+
+                    Resources
+
+                </h3>
+
+                <ul>
+
+                    <li>
+
+                        <a href="Notes/">
+
+                            Lecture Notes
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="PPT/">
+
+                            PPTs
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="QB/">
+
+                            Question Banks
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="Downloads/">
+
+                            Downloads
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <!-- Social -->
+
+            <div class="footer-column">
+
+                <h3>
+
+                    Connect
+
+                </h3>
+
+                <div class="social-icons">
+
+                    <a href="https://github.com/skgajawada"
+                       target="_blank">
+
+                        <i class="fab fa-github"></i>
+
+                    </a>
+
+                    <a href="https://linkedin.com/in/skgajawada"
+                       target="_blank">
+
+                        <i class="fab fa-linkedin"></i>
+
+                    </a>
+
+                    <a href="https://scholar.google.com/citations?user=skgajawada"
+                       target="_blank">
+
+                        <i class="fas fa-graduation-cap"></i>
+
+                    </a>
+
+                    <a href="https://orcid.org/0000-0002-9171-5073"
+                       target="_blank">
+
+                        <i class="fab fa-orcid"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="footer-bottom">
+
+            <p>
+
+                © 2026 Gajavada Sanjeevkumar.
+                All Rights Reserved.
+
+            </p>
+
+            <p>
+
+                Designed & Developed by
+                <strong>Gajavada Sanjeevkumar</strong>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- ===========================================
+     JAVASCRIPT
+=========================================== -->
+
+<script src="script.js"></script>
 
 </body>
 
