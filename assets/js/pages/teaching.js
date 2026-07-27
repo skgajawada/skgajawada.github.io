@@ -4,48 +4,98 @@
 
 class TeachingPage extends Component {
 
-    async render(params) {
+    async render(params = []) {
 
         const teaching = await DataManager.getTeaching();
-        const subjectId = params?.[0];
 
-        // ==================================================
-        // HOME PAGE
-        // ==================================================
+        if (!teaching || !Array.isArray(teaching.subjects)) {
+            return `
+                <section class="fade-in">
+                    <div class="empty-state">
+                        <h2>Teaching data unavailable</h2>
+                        <p>Unable to load teaching information.</p>
+                    </div>
+                </section>
+            `;
+        }
+
+        const subjectId = params[0];
 
         if (!subjectId) {
+            return this.renderHomePage(teaching.subjects);
+        }
 
-            const subjects = teaching.subjects.filter(
-                item => item.type === "subject"
-            );
+        const currentSubject = teaching.subjects.find(
+            subject => subject.id === subjectId
+        );
 
-            const labs = teaching.subjects.filter(
-                item => item.type === "lab"
-            );
-
+        if (!currentSubject) {
             return `
+                <section class="fade-in">
+                    <div class="page-header">
+                        <a href="#/teaching" class="btn btn-outline">
+                            <i class="fas fa-arrow-left"></i>
+                            Back
+                        </a>
+                    </div>
 
+                    <div class="empty-state">
+                        <h2>Subject Not Found</h2>
+                        <p>
+                            The requested teaching page does not exist.
+                        </p>
+                    </div>
+                </section>
+            `;
+        }
+
+        return this.renderSubjectPage(currentSubject);
+    }
+
+    renderHomePage(subjects) {
+
+        const academicSubjects = subjects.filter(subject => {
+
+            if (subject.type)
+                return subject.type === "subject";
+
+            return !/lab/i.test(subject.title);
+
+        });
+
+        const laboratoryCourses = subjects.filter(subject => {
+
+            if (subject.type)
+                return subject.type === "lab";
+
+            return /lab/i.test(subject.title);
+
+        });
+
+        return `
 <section class="fade-in teaching-page">
 
     <h1 class="section-title">
         Teaching
     </h1>
 
+    <p class="section-subtitle">
+        Courses taught across different institutions,
+        departments, academic years and programmes.
+    </p>
+
     <div class="teaching-group">
 
         <h2 class="teaching-group-title">
-
             <i class="fas fa-book"></i>
-
             Subjects
-
         </h2>
 
         <div class="cards-grid">
 
-            ${subjects.map(subject =>
-                this.renderSubjectCard(subject)
-            ).join("")}
+            ${academicSubjects
+                .map(subject => this.renderSubjectCard(subject))
+                .join("")}
 
         </div>
 
@@ -54,57 +104,54 @@ class TeachingPage extends Component {
     <div class="teaching-group">
 
         <h2 class="teaching-group-title">
-
             <i class="fas fa-flask"></i>
-
             Laboratory Courses
-
         </h2>
 
         <div class="cards-grid">
 
-            ${labs.map(subject =>
-                this.renderSubjectCard(subject)
-            ).join("")}
+            ${laboratoryCourses
+                .map(subject => this.renderSubjectCard(subject))
+                .join("")}
 
         </div>
 
     </div>
 
 </section>
+`;
+    }
+        renderSubjectCard(subject) {
+
+        return `
+
+<div class="teaching-card">
+
+    <div class="teaching-card-icon">
+        <i class="fas ${subject.icon}"></i>
+    </div>
+
+    <div class="teaching-card-content">
+
+        <h3 class="teaching-card-title">
+            ${subject.title}
+        </h3>
+
+        <a href="#/teaching/${subject.id}"
+           class="btn btn-primary teaching-btn">
+
+            View Teaching Details
+
+        </a>
+
+    </div>
+
+</div>
 
 `;
+    }
 
-        }
-
-        // ==================================================
-        // FIND SUBJECT
-        // ==================================================
-
-        const currentSubject = teaching.subjects.find(
-            item => item.id === subjectId
-        );
-
-        if (!currentSubject) {
-
-            return `
-
-<section class="fade-in">
-
-    <h2>Subject Not Found</h2>
-
-    <a href="#/teaching"
-       class="btn btn-primary">
-
-        Back
-
-    </a>
-
-</section>
-
-`;
-
-        }
+    renderSubjectPage(subject) {
 
         return `
 
@@ -123,97 +170,19 @@ class TeachingPage extends Component {
 
         <h1 class="section-title">
 
-            ${currentSubject.title}
+            ${subject.title}
 
         </h1>
 
     </div>
-        ${currentSubject.teaching.map(college => `
-    
-        <div class="teaching-college">
 
-            <div class="college-header">
+    ${subject.teaching.map(college => `
 
-                <div class="college-icon">
-                    <i class="fas fa-university"></i>
-                </div>
-
-                <div>
-
-                    <h2 class="college-title">
-                        ${college.institution}
-                    </h2>
-
-                    ${college.department ? `
-                        <p class="college-department">
-                            ${college.department}
-                        </p>
-                    ` : ""}
-
-                </div>
-
-            </div>
-
-            <div class="offering-grid">
-
-                ${college.offerings.map(off => `
-
-                    <div class="offering-card">
-
-                        <div class="offering-year">
-
-                            <span class="offering-icon">📅</span>
-
-                            <span>${off.academicYear}</span>
-
-                        </div>
-
-                        <div class="offering-body">
-
-                            <div class="offering-row">
-
-                                <span>🎓</span>
-
-                                <span>${off.year}</span>
-
-                            </div>
-
-                            <div class="offering-row">
-
-                                <span>📖</span>
-
-                                <span>${off.semester}</span>
-
-                            </div>
-
-                            <div class="offering-row">
-
-                                <span>🏛</span>
-
-                                <span>${off.branch}</span>
-
-                            </div>
-
-                            <div class="offering-row">
-
-                                <span>👥</span>
-
-                                <span>${off.section || "-"}</span>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                `).join("")}
-
-            </div>
-
-        </div>
+        ${this.renderInstitution(college)}
 
     `).join("")}
-        <div class="course-material-section">
+
+    <div class="course-material-section">
 
         <h2 class="course-material-title">
 
@@ -225,15 +194,17 @@ class TeachingPage extends Component {
 
         <p class="course-material-text">
 
-            View lecture notes, presentations, assignments,
-            laboratory manuals, question banks and additional
-            learning resources.
+            Lecture notes, presentations,
+            assignments, laboratory manuals,
+            tutorials and additional learning resources
+            are available here.
 
         </p>
 
-        <a href="assets/teaching/${currentSubject.folder}/index.html"
-           target="_blank"
-           class="btn btn-primary course-btn">
+        <a
+            href="assets/teaching/${subject.folder}/index.html"
+            target="_blank"
+            class="btn btn-primary course-btn">
 
             <i class="fas fa-folder-open"></i>
 
@@ -248,4 +219,3 @@ class TeachingPage extends Component {
 `;
 
     }
-}
