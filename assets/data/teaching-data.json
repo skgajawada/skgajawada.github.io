@@ -362,7 +362,18 @@
               "semester": "I",
               "branch": "Mechanical Engineering",
               "section": "ME-2"
-            }
+            },
+            {
+            "institution": "Jyothishmathi Institute of Technology and Science",
+            "department": "Mechanical Engineering",
+            "offerings": [
+              {
+                "academicYear": "2015-2016",
+                "year": "III",
+                "semester": "II",
+                "branch": "Mechanical Engineering",
+                "section": "ME"
+              }
           ]
         }
       ]
