@@ -3,11 +3,11 @@ class TeachingPage extends Component {
 
 async render(params){
 
-const data=await DataManager.getTeaching();
+const teaching=await DataManager.getTeaching();
+const subjectParam=params&&params[0];
+const courseParam=params&&params[1];
 
-const subjectId=params&&params[0];
-
-if(!subjectId){
+if(!subjectParam){
 
 return`
 
@@ -19,7 +19,7 @@ Teaching
 
 <div class="cards-grid stagger-container">
 
-${data.subjects.map(subject=>`
+${teaching.subjects.map(subject=>`
 
 <div class="card fade-in"
 onclick="navigateTo('#/teaching/${subject.id}')"
@@ -35,12 +35,13 @@ style="cursor:pointer;">
 ${subject.title}
 </h3>
 
-<a href="#/teaching/${subject.id}"
-class="card-link">
+<p class="card-description">
+${subject.teaching.length} Institution(s)
+</p>
 
-View Details
+<a href="#/teaching/${subject.id}" class="card-link">
+View Teaching Details
 <i class="fas fa-arrow-right"></i>
-
 </a>
 
 </div>
@@ -57,11 +58,12 @@ View Details
 
 }
 
-const subject=data.subjects.find(
-s=>s.id===subjectId
+const currentSubject=
+teaching.subjects.find(
+s=>s.id===subjectParam
 );
 
-if(!subject){
+if(!currentSubject){
 
 return`
 
@@ -82,6 +84,8 @@ Back
 
 }
 
+if(!courseParam){
+
 return`
 
 <section class="fade-in">
@@ -100,85 +104,154 @@ Back
 <h1 class="section-title"
 style="margin:0;">
 
-${subject.title}
+${currentSubject.title}
 
 </h1>
 
 </div>
 
-<div class="card reveal"
-style="
-max-width:900px;
-margin:auto;
-padding:40px;
-border-radius:20px;
-box-shadow:0 15px 40px rgba(0,0,0,.08);
-">
+${currentSubject.teaching.map((college,index)=>`
 
-${subject.teaching.map(item=>`
+<div class="card reveal" style="padding:1.8rem;margin-bottom:2rem;">
 
-<div style="
-margin-bottom:35px;
-padding-bottom:25px;
-border-bottom:1px solid #e5e7eb;
-">
-
-<h3 style="
-color:#2563eb;
-margin-bottom:15px;
-font-size:1.4rem;
-">
-
+<h2 style="color:var(--primary-color);margin-bottom:0.8rem;">
 <i class="fas fa-university"></i>
+${college.institution}
+</h2>
 
-${item.institution}
-
-</h3>
-
-<p style="
-font-weight:600;
-margin-bottom:15px;
-">
-
-${item.department}
-
+<p style="margin-bottom:1rem;">
+<strong>${college.department}</strong>
 </p>
 
-${item.offerings.map(off=>`
+<ul style="margin-left:1.2rem;line-height:1.9;">
 
-<div style="
-padding-left:20px;
-margin-bottom:15px;
-">
+${college.offerings.map(off=>`
 
-<p>
+<li>
+<strong>Academic Year :</strong> ${off.academicYear}<br>
+<strong>Year :</strong> ${off.year}<br>
+<strong>Semester :</strong> ${off.semester}<br>
+<strong>Branch :</strong> ${off.branch}<br>
+<strong>Section :</strong> ${off.section || "-"}
+</li>
+<br>
 
-● <strong>Batch :</strong> ${off.batch}
+`).join("")}
 
-</p>
+</ul>
 
-<p>
+<div style="text-align:center;margin-top:2rem;">
 
-● <strong>Semester :</strong> ${off.semester}
+<a href="#/teaching/${currentSubject.id}/course${index}"
 
-</p>
+class="btn btn-primary">
+
+<i class="fas fa-folder-open"></i>
+
+Access Course Materials
+
+</a>
+
+</div>
 
 </div>
 
 `).join("")}
 
+</section>
+
+`;
+
+}
+const currentCourseIndex=parseInt(courseParam.replace("course",""));
+const currentCollege=currentSubject.teaching[currentCourseIndex];
+
+if(!currentCollege){
+
+return`
+
+<section class="fade-in">
+
+<h2>Teaching Record Not Found</h2>
+
+<a href="#/teaching/${currentSubject.id}" class="btn btn-primary">
+Back
+</a>
+
+</section>
+
+`;
+
+}
+
+return`
+
+<section class="fade-in">
+
+<div style="display:flex;align-items:center;gap:1rem;margin-bottom:2rem;">
+
+<a href="#/teaching/${currentSubject.id}" class="btn btn-outline">
+
+<i class="fas fa-arrow-left"></i>
+
+Back
+
+</a>
+
+<h1 class="section-title" style="margin:0;">
+
+${currentSubject.title}
+
+</h1>
+
+</div>
+
+<div class="card">
+
+<h2 style="color:var(--primary-color);">
+<i class="fas fa-university"></i>
+${currentCollege.institution}
+</h2>
+
+<p style="margin-bottom:1.5rem;">
+<strong>${currentCollege.department}</strong>
+</p>
+
+${currentCollege.offerings.map(off=>`
+
+<div style="padding:1rem;border:1px solid var(--border-color);border-radius:10px;margin-bottom:1rem;">
+
+<p><strong>Academic Year :</strong> ${off.academicYear}</p>
+
+<p><strong>Year :</strong> ${off.year}</p>
+
+<p><strong>Semester :</strong> ${off.semester}</p>
+
+<p><strong>Branch :</strong> ${off.branch}</p>
+
+<p><strong>Section :</strong> ${off.section || "-"}</p>
+
 </div>
 
 `).join("")}
-<div style="text-align:center;margin-top:40px;">
-    <a href="assets/teaching/${subject.folder}/index.html"
-       target="_blank"
-       class="btn btn-primary"
-       style="padding:16px 45px;font-size:1.05rem;border-radius:10px;">
-        <i class="fas fa-folder-open"></i>
-        Access Course Materials
-    </a>
+
+<hr style="margin:30px 0;">
+
+<div style="text-align:center;">
+
+<a href="assets/teaching/${currentSubject.folder}/index.html"
+target="_blank"
+class="btn btn-primary"
+style="padding:14px 30px;font-size:1.05rem;">
+
+<i class="fas fa-folder-open"></i>
+
+Access Course Materials
+
+</a>
+
 </div>
+
 </div>
 
 </section>
