@@ -30,7 +30,7 @@
     },
     {
       "id": "engineering-graphics",
-      "title": "Engineering Graphics / CAEG",
+      "title": "Engineering Graphics / CAEG / Engineering Drawing",
       "icon": "fa-drafting-compass",
       "folder": "Engineering Graphics",
       "teaching": [
@@ -114,7 +114,7 @@
       "id": "fluid-mechanics-hydraulic-machinery",
       "title": "Fluid Mechanics and Hydraulic Machinery",
       "icon": "fa-water",
-      "folder": "Fluid Mechanics",
+      "folder": "Fluid Mechanics and Hydraulic Machinery",
       "teaching": [
         {
           "institution": "Sree Chaitanya College of Engineering",
