@@ -4,43 +4,55 @@ class EngagementsPage extends Component {
         const certs = await DataManager.getEngagements();
         const categoryParam = params && params[0];
 
-        // Unique colors, icons, and descriptions for each category
+        // Unique colors and Font Awesome icons for each category
         const categoryThemes = {
             'sttp': { 
-                theme: 'theme-navy', 
                 icon: 'fa-graduation-cap', 
                 title: 'Short Term Courses / STTPs', 
-                desc: 'Specialized technical training programs and intensive skill workshops.' 
+                desc: 'Specialized technical training programs and intensive skill workshops.',
+                color: '#1d4ed8',      // Navy Blue
+                bgColor: '#eff6ff',
+                borderColor: '#bfdbfe'
             },
             'workshops': { 
-                theme: 'theme-amber', 
                 icon: 'fa-chalkboard-teacher', 
                 title: 'Workshops / Seminars', 
-                desc: 'Interactive academic workshops, domain seminars, and collaborative forums.' 
+                desc: 'Interactive academic workshops, domain seminars, and collaborative forums.',
+                color: '#d97706',      // Warm Amber
+                bgColor: '#fffbeb',
+                borderColor: '#fde68a'
             },
             'fdp': { 
-                theme: 'theme-crimson', 
                 icon: 'fa-university', 
                 title: 'Faculty Development Programs', 
-                desc: 'Pedagogical training, research methodologies, and faculty orientation.' 
+                desc: 'Pedagogical training, research methodologies, and faculty orientation.',
+                color: '#be123c',      // Crimson Red
+                bgColor: '#fff1f2',
+                borderColor: '#fecdd3'
             },
             'webinars': { 
-                theme: 'theme-teal', 
                 icon: 'fa-laptop-house', 
                 title: 'Webinars', 
-                desc: 'Online technical lectures, virtual symposia, and web discourses.' 
+                desc: 'Online technical lectures, virtual symposia, and web discourses.',
+                color: '#0d9488',      // Teal
+                bgColor: '#f0fdfa',
+                borderColor: '#99f6e4'
             },
             'quizzes': { 
-                theme: 'theme-purple', 
                 icon: 'fa-award', 
                 title: 'Quizzes', 
-                desc: 'National-level knowledge evaluations and subject assessments.' 
+                desc: 'National-level knowledge evaluations and subject assessments.',
+                color: '#6d28d9',      // Deep Purple
+                bgColor: '#f5f3ff',
+                borderColor: '#ddd6fe'
             },
             'conferences': { 
-                theme: 'theme-emerald', 
                 icon: 'fa-users', 
                 title: 'Conferences', 
-                desc: 'International and national research presentations and proceedings.' 
+                desc: 'International and national research presentations and proceedings.',
+                color: '#047857',      // Emerald Green
+                bgColor: '#ecfdf5',
+                borderColor: '#a7f3d0'
             }
         };
 
@@ -55,7 +67,12 @@ class EngagementsPage extends Component {
             };
             
             const categoryCerts = certs.certificates.filter(c => c.category === categoryParam);
-            const themeInfo = categoryThemes[categoryParam] || { theme: 'theme-navy', icon: 'fa-certificate' };
+            const themeInfo = categoryThemes[categoryParam] || { 
+                icon: 'fa-certificate', 
+                color: '#1d4ed8', 
+                bgColor: '#eff6ff', 
+                borderColor: '#bfdbfe' 
+            };
 
             return `
                 <section class="fade-in container py-4">
@@ -67,7 +84,7 @@ class EngagementsPage extends Component {
 
                     <div class="academic-header text-start ms-0 mb-4" style="border-bottom: 2px solid #e2e8f0; padding-bottom: 1.5rem;">
                         <div class="d-flex align-items-center gap-3 mb-2">
-                            <div class="category-icon-box ${themeInfo.theme}">
+                            <div class="category-icon-box" style="background-color: ${themeInfo.bgColor}; border: 1px solid ${themeInfo.borderColor}; color: ${themeInfo.color};">
                                 <i class="fas ${themeInfo.icon}"></i>
                             </div>
                             <div>
@@ -140,17 +157,21 @@ class EngagementsPage extends Component {
                 <div class="academic-grid">
                     ${certs.categories.map(cat => {
                         const meta = categoryThemes[cat.id] || { 
-                            theme: 'theme-navy', 
                             icon: cat.icon || 'fa-certificate', 
                             title: cat.name, 
-                            desc: cat.description 
+                            desc: cat.description,
+                            color: '#1d4ed8',
+                            bgColor: '#eff6ff',
+                            borderColor: '#bfdbfe'
                         };
 
                         return `
-                            <div class="academic-card ${meta.theme}" onclick="navigateTo('#/engagements/${cat.id}')" style="cursor: pointer;">
+                            <div class="academic-card" 
+                                 onclick="navigateTo('#/engagements/${cat.id}')" 
+                                 style="cursor: pointer; border-top: 4px solid ${meta.color};">
                                 <div>
                                     <div class="card-top-row">
-                                        <div class="category-icon-box">
+                                        <div class="category-icon-box" style="background-color: ${meta.bgColor}; border: 1px solid ${meta.borderColor}; color: ${meta.color};">
                                             <i class="fas ${meta.icon}"></i>
                                         </div>
                                     </div>
@@ -159,7 +180,7 @@ class EngagementsPage extends Component {
                                     <p class="card-description">${meta.desc}</p>
                                 </div>
 
-                                <div class="card-footer-link">
+                                <div class="card-footer-link" style="color: ${meta.color};">
                                     <span>Explore Section</span>
                                     <i class="fas fa-arrow-right"></i>
                                 </div>
