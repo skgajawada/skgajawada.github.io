@@ -1,60 +1,60 @@
-// MOOCS PAGE - DISTINCT BRAND COLOR SCHEMES & LOGOS
+// MOOCS PAGE - DISTINCT PASTEL PALETTES & LOGOS
 
 class MoocsPage extends Component {
     async render(params) {
         const moocs = await DataManager.getMOOCs();
         const vendorParam = params && params[0];
 
-        // 1. Official Brand Identity & Color Schemes for Each Platform
+        // Soft, Light & Distinct Pastel Profiles for Each Platform
         const brandProfiles = {
             "matlab": {
                 name: "MATLAB",
-                primary: "#CC292B",        // MathWorks Red
-                bg: "#FEF2F2",
-                text: "#991B1B",
+                primary: "#E06A3B",        /* Soft Coral */
+                bg: "#FFF1EC",             /* Very Light Peach */
+                text: "#9A3412",
                 logo: "https://upload.wikimedia.org/wikipedia/commons/2/21/Matlab_Logo.png"
             },
             "linkedin": {
                 name: "LinkedIn Learning",
-                primary: "#0A66C2",        // LinkedIn Blue
-                bg: "#E0F2FE",
+                primary: "#0284C7",        /* Sky Blue */
+                bg: "#E0F2FE",             /* Soft Ice Blue */
                 text: "#0369A1",
                 logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"
             },
             "coursera": {
                 name: "Coursera",
-                primary: "#0056D2",        // Coursera Blue
-                bg: "#EEF2FF",
-                text: "#1E40AF",
+                primary: "#6366F1",        /* Lavender Indigo */
+                bg: "#EEF2FF",             /* Soft Lavender */
+                text: "#4338CA",
                 logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/coursera.svg"
             },
             "dataiku": {
                 name: "Dataiku Academy",
-                primary: "#2AB1AC",        // Dataiku Teal
-                bg: "#E6F8F7",
-                text: "#0D6865",
+                primary: "#0D9488",        /* Soft Teal / Sage */
+                bg: "#CCFBF1",             /* Light Mint */
+                text: "#115E59",
                 logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/dataiku.svg"
             },
             "ibm": {
                 name: "IBM SkillsBuild",
-                primary: "#1261FE",        // IBM Blue
-                bg: "#EFF6FF",
-                text: "#1D4ED8",
+                primary: "#2563EB",        /* Cobalt */
+                bg: "#EFF6FF",             /* Soft Blue Tint */
+                text: "#1E40AF",
                 logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/ibm.svg"
             },
             "cognitive": {
                 name: "Cognitive Class",
-                primary: "#8B5CF6",        // Cognitive Class Purple
-                bg: "#F5F3FF",
-                text: "#6D28D9",
-                logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/ibm.svg" // Powered by IBM AI
+                primary: "#9333EA",        /* Soft Violet */
+                bg: "#F3E8FF",             /* Soft Lilac */
+                text: "#6B21A8",
+                logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/ibm.svg" // Cognitive Class logo
             }
         };
 
         const fallbackBrand = {
-            primary: "#2563EB",
-            bg: "#EFF6FF",
-            text: "#1D4ED8",
+            primary: "#0284C7",
+            bg: "#F0F9FF",
+            text: "#0369A1",
             logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/degree.svg"
         };
 
@@ -83,9 +83,8 @@ class MoocsPage extends Component {
                                          style="--accent-color: ${brand.primary}; --badge-bg: ${brand.bg}; --badge-text: ${brand.text};">
                                          
                                         <div class="card-header-row">
-                                            <!-- Official Clean Platform Logo Box -->
                                             <div class="card-logo-wrapper">
-                                                <img src="${brand.logo}" alt="${cat.name} logo" class="brand-logo" onerror="this.src='https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/academicons.svg'">
+                                                <img src="${brand.logo}" alt="${cat.name} logo" class="brand-logo" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/academicons.svg';">
                                             </div>
 
                                             <div class="card-title-group">
