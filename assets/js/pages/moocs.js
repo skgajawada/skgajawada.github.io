@@ -1,4 +1,23 @@
 // MOOCS PAGE
+// Inside js/pages/moocs.js
+
+// 1. Overview View
+return `
+    <div class="moocs-page">
+        <section class="fade-in">
+            <!-- your content here -->
+        </section>
+    </div>
+`;
+
+// 2. Selected Category View
+return `
+    <div class="moocs-page">
+        <section class="fade-in">
+            <!-- your content here -->
+        </section>
+    </div>
+`;
 class MoocsPage extends Component {
     async render(params) {
         const moocs = await DataManager.getMOOCs();
