@@ -1,27 +1,151 @@
 /* ==========================================================
-   MOOCs
+   MOOCs & CERTIFICATIONS - MODERN PORTFOLIO DESIGN
 ========================================================== */
 
-.mooc-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:2rem;
+:root {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --dark: #0f172a;
+    --text-light: #64748b;
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
-.mooc-card{
-    background:#fff;
-    padding:2rem;
-    border-radius:16px;
-    box-shadow:var(--shadow);
+/* Typography & Layout Essentials */
+.section-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--dark);
+    letter-spacing: -0.025em;
+    margin-bottom: 2rem;
+    position: relative;
 }
 
-.mooc-provider{
-    color:var(--primary);
-    font-weight:600;
-    margin:.5rem 0;
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 2px;
+    margin-top: 8px;
 }
 
-.mooc-date{
-    color:var(--text-light);
-    font-size:.9rem;
+.lead {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-light);
+    max-width: 800px;
+}
+
+/* Dynamic Grid Layouts */
+.mooc-grid,
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Modern Elevated Cards */
+.card,
+.mooc-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid var(--card-border);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.card:hover,
+.mooc-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(37, 99, 235, 0.3);
+}
+
+/* Category Card Specifics */
+.card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+    color: var(--dark);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+/* Refined Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #ffffff;
+    border: 1px solid var(--primary);
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--dark);
+    border: 1px solid var(--card-border);
+}
+
+.btn-outline:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(37, 99, 235, 0.04);
+}
+
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: gap 0.2s ease;
+}
+
+.card-link:hover {
+    gap: 0.8rem;
+}
+
+/* Utilities */
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
