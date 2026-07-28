@@ -78,11 +78,19 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: all 0.25s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     box-shadow: var(--academic-shadow-sm);
+    will-change: transform;
+    outline: none;
 }
 
-/* Distinct Top Color Strip for Each Theme */
+/* Focused State for Keyboard Navigation */
+.academic-card:focus-visible {
+    outline: 2px solid var(--accent-color, #2563eb);
+    outline-offset: 2px;
+}
+
+/* Top Color Accent Strip */
 .academic-card::before {
     content: '';
     position: absolute;
@@ -156,49 +164,49 @@ body {
 }
 
 /* ==========================================================
-   COLOR SCHEMES PER CATEGORY
+   CATEGORY CSS THEMES
 ========================================================== */
-
-/* Navy Blue - Short Term Courses / STTPs */
-.theme-navy {
+.theme-sttp {
     --accent-color: #1d4ed8;
     --accent-bg: #eff6ff;
     --accent-border: #bfdbfe;
 }
 
-/* Warm Amber / Gold - Workshops & Seminars */
-.theme-amber {
+.theme-workshops {
     --accent-color: #d97706;
     --accent-bg: #fffbeb;
     --accent-border: #fde68a;
 }
 
-/* Crimson Red - Faculty Development Programs */
-.theme-crimson {
+.theme-fdp {
     --accent-color: #be123c;
     --accent-bg: #fff1f2;
     --accent-border: #fecdd3;
 }
 
-/* Teal - Webinars */
-.theme-teal {
+.theme-webinars {
     --accent-color: #0d9488;
     --accent-bg: #f0fdfa;
     --accent-border: #99f6e4;
 }
 
-/* Deep Purple - Quizzes */
-.theme-purple {
+.theme-quizzes {
     --accent-color: #6d28d9;
     --accent-bg: #f5f3ff;
     --accent-border: #ddd6fe;
 }
 
-/* Emerald Green - Conferences */
-.theme-emerald {
+.theme-conferences {
     --accent-color: #047857;
     --accent-bg: #ecfdf5;
     --accent-border: #a7f3d0;
+}
+
+/* Default Theme Fallback */
+.theme-default {
+    --accent-color: #2563eb;
+    --accent-bg: #eff6ff;
+    --accent-border: #bfdbfe;
 }
 
 /* Certification Cards in Detailed View */
@@ -241,9 +249,17 @@ body {
     font-weight: 500;
     text-decoration: none;
     transition: background 0.2s ease;
+    border: none;
 }
 
-.btn-download-pdf:hover {
+.btn-download-pdf:hover:not(:disabled) {
     background: #1e293b;
-    color: #fff;
+    color: #ffffff;
+}
+
+.btn-download-pdf:disabled {
+    background: #94a3b8;
+    color: #f8fafc;
+    cursor: not-allowed;
+    opacity: 0.7;
 }
