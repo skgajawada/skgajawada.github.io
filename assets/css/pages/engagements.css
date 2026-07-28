@@ -1,118 +1,221 @@
 /* ==========================================================
-   ACADEMIC DESIGN SYSTEM - ENGAGEMENT MODULE
+   ACADEMIC DESIGN SYSTEM - LIGHT & COLORFUL PALETTE
 ========================================================== */
 
 :root {
-    --academic-navy: #1a2b4c;
-    --academic-burgundy: #7a1c1c;
-    --academic-gold: #c5a059;
-    --academic-slate: #4a5568;
-    --academic-bg-light: #fdfdfd;
-    --academic-border: #e2e8f0;
+    --academic-font-serif: 'Playfair Display', 'Merriweather', 'Georgia', serif;
+    --academic-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    
+    /* Academic Base Colors */
+    --academic-bg-warm: #faf9f5;        /* Soft warm paper tone */
     --academic-card-bg: #ffffff;
-    --academic-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
-    --academic-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --font-serif: "Merriweather", "Georgia", "Times New Roman", serif;
-    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --academic-text-primary: #1e293b;
+    --academic-text-muted: #64748b;
+    --academic-border-subtle: #e2e8f0;
+    
+    /* Subtle Depth */
+    --academic-shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+    --academic-shadow-hover: 0 12px 24px -6px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.03);
 }
 
-/* Page Header Elements */
+body {
+    background-color: var(--academic-bg-warm);
+    color: var(--academic-text-primary);
+    font-family: var(--academic-font-sans);
+}
+
+/* Header Section */
 .academic-header {
-    margin-bottom: 2.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid var(--academic-border);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+    padding-top: 1rem;
 }
 
-.academic-title {
-    font-family: var(--font-serif);
-    color: var(--academic-navy);
-    font-size: 2.2rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.5rem;
-}
-
-.academic-subtitle {
-    font-family: var(--font-sans);
-    color: var(--academic-slate);
-    font-size: 1.05rem;
-    line-height: 1.6;
-}
-
-/* Overview Categories Grid */
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.75rem;
-}
-
-.academic-category-card {
-    background: var(--academic-card-bg);
-    border: 1px solid var(--academic-border);
-    border-radius: 8px;
-    padding: 1.75rem;
-    transition: all 0.25s ease;
-    box-shadow: var(--academic-shadow-sm);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-}
-
-.academic-category-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--academic-shadow-md);
-    border-color: var(--academic-gold);
-}
-
-.category-icon-wrapper {
-    width: 48px;
-    height: 48px;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-    margin-bottom: 1.25rem;
-}
-
-.category-card-title {
-    font-family: var(--font-serif);
-    font-size: 1.25rem;
-    color: var(--academic-navy);
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-}
-
-.category-card-desc {
-    font-size: 0.95rem;
-    color: var(--academic-slate);
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
-}
-
-.category-link {
-    font-family: var(--font-sans);
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--academic-navy);
-    text-decoration: none;
+.academic-badge-pill {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    transition: color 0.2s ease;
+    padding: 0.35rem 1rem;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #334155;
+    margin-bottom: 1rem;
 }
 
-.category-link:hover {
-    color: var(--academic-burgundy);
+.academic-title {
+    font-family: var(--academic-font-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
 }
 
-/* Certificate Cards (Detail View) */
-.academic-cert-card {
+.academic-subtitle {
+    font-size: 1.05rem;
+    color: var(--academic-text-muted);
+    line-height: 1.6;
+}
+
+/* Category Grid */
+.academic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.75rem;
+    padding-bottom: 3rem;
+}
+
+/* Base Category Card */
+.academic-card {
     background: var(--academic-card-bg);
-    border: 1px solid var(--academic-border);
-    border-top: 4px solid var(--academic-navy);
-    border-radius: 6px;
+    border: 1px solid var(--academic-border-subtle);
+    border-radius: 12px;
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.25s ease;
+    box-shadow: var(--academic-shadow-sm);
+}
+
+/* Top Accent Bar for subtle color emphasis */
+.academic-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent-color, #3b82f6);
+    opacity: 0.85;
+    transition: height 0.2s ease;
+}
+
+.academic-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--academic-shadow-hover);
+    border-color: rgba(0,0,0,0.12);
+}
+
+.academic-card:hover::before {
+    height: 6px;
+}
+
+/* Card Header Layout */
+.card-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+}
+
+.category-icon-box {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    background: var(--accent-bg, #eff6ff);
+    color: var(--accent-color, #2563eb);
+    border: 1px solid var(--accent-border, #bfdbfe);
+}
+
+.count-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: 20px;
+    background: var(--accent-bg, #eff6ff);
+    color: var(--accent-color, #2563eb);
+    border: 1px solid var(--accent-border, #bfdbfe);
+}
+
+.card-title {
+    font-family: var(--academic-font-serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.card-description {
+    font-size: 0.925rem;
+    color: var(--academic-text-muted);
+    line-height: 1.55;
+    margin-bottom: 1.75rem;
+}
+
+/* Interactive Action Footer */
+.card-footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-color, #2563eb);
+    text-decoration: none;
+    transition: gap 0.2s ease;
+}
+
+.academic-card:hover .card-footer-link {
+    gap: 0.75rem;
+}
+
+/* Specific Aesthetic Color Themes per Category */
+.theme-navy {
+    --accent-color: #1e3a8a;
+    --accent-bg: #eff6ff;
+    --accent-border: #dbeafe;
+}
+
+.theme-crimson {
+    --accent-color: #9f1239;
+    --accent-bg: #fff1f2;
+    --accent-border: #fecdd3;
+}
+
+.theme-emerald {
+    --accent-color: #065f46;
+    --accent-bg: #ecfdf5;
+    --accent-border: #a7f3d0;
+}
+
+.theme-amber {
+    --accent-color: #92400e;
+    --accent-bg: #fffbeb;
+    --accent-border: #fde68a;
+}
+
+.theme-purple {
+    --accent-color: #5b21b6;
+    --accent-bg: #f5f3ff;
+    --accent-border: #ddd6fe;
+}
+
+.theme-teal {
+    --accent-color: #115e59;
+    --accent-bg: #f0fdfa;
+    --accent-border: #99f6e4;
+}
+
+/* Detail Certificate Cards */
+.cert-card {
+    background: #fff;
+    border: 1px solid var(--academic-border-subtle);
+    border-radius: 10px;
     padding: 1.5rem;
     box-shadow: var(--academic-shadow-sm);
     display: flex;
@@ -120,84 +223,37 @@
     justify-content: space-between;
 }
 
-.cert-type-tag {
-    display: inline-block;
-    background: rgba(26, 43, 76, 0.06);
-    color: var(--academic-navy);
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 0.25rem 0.6rem;
-    border-radius: 4px;
-    margin-bottom: 0.75rem;
-}
-
-.cert-title {
-    font-family: var(--font-serif);
-    font-size: 1.1rem;
-    color: var(--academic-navy);
-    line-height: 1.4;
-    margin-bottom: 1rem;
-}
-
-.cert-metadata-list {
-    font-size: 0.88rem;
-    color: var(--academic-slate);
-    line-height: 1.6;
-    margin-bottom: 1.25rem;
-    border-top: 1px dashed var(--academic-border);
+.cert-meta-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.4rem 1rem;
+    font-size: 0.875rem;
+    margin: 1rem 0 1.5rem 0;
     padding-top: 0.75rem;
+    border-top: 1px dashed var(--academic-border-subtle);
 }
 
-.cert-metadata-item {
-    display: flex;
-    margin-bottom: 0.35rem;
-}
-
-.cert-metadata-label {
+.cert-meta-label {
     font-weight: 600;
-    min-width: 100px;
-    color: #2d3748;
+    color: #475569;
 }
 
-/* Action Buttons */
-.btn-academic-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: transparent;
-    border: 1px solid var(--academic-border);
-    color: var(--academic-navy);
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-weight: 500;
-    font-size: 0.9rem;
-    text-decoration: none;
-    transition: all 0.2s ease;
-}
-
-.btn-academic-back:hover {
-    background: var(--academic-navy);
-    color: #fff;
-}
-
-.btn-academic-pdf {
-    display: inline-flex;
+.btn-download-pdf {
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    background: var(--academic-navy);
+    background: #0f172a;
     color: #ffffff;
-    padding: 0.65rem 1rem;
-    border-radius: 4px;
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    font-size: 0.875rem;
     font-weight: 500;
-    font-size: 0.9rem;
     text-decoration: none;
-    transition: background-color 0.2s ease;
-    width: 100%;
+    transition: background 0.2s ease;
 }
 
-.btn-academic-pdf:hover {
-    background: var(--academic-burgundy);
+.btn-download-pdf:hover {
+    background: #1e293b;
+    color: #fff;
 }
