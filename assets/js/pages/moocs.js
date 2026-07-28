@@ -47,7 +47,7 @@ class MoocsPage extends Component {
                 primary: "#9333EA",        /* Soft Violet */
                 bg: "#F3E8FF",             /* Soft Lilac */
                 text: "#6B21A8",
-                logo: "assets/images/logo/coginitive_classai.jpg" // Cognitive Class logo
+                logo: "assets/images/logo/cognitive_classai.jpg" // Cognitive Class logo
             }
         };
 
