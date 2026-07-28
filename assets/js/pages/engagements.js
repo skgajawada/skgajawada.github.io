@@ -181,7 +181,8 @@
   // 4. Page Class (Compatible with router.js instantiated via `new EngagementsPage()`)
   class EngagementsPage extends Component {
     constructor() {
-      this.title = 'Professional Engagements & Certifications';
+        super();
+        this.title = "Professional Engagements & Certifications";
     }
 
     /**
@@ -189,31 +190,77 @@
      * @param {string|HTMLElement} container - Selector string or DOM element
      * @param {Object} dataMap - Key-Value pair of categories and item arrays
      */
-    async render(container = '#app', dataMap = {}) {
-      const targetEl = typeof container === 'string' ? document.querySelector(container) : container;
-      if (!targetEl) return;
+   async render(params = []) {
 
-      // If data is fetched dynamically via DataManager, retrieve it if not passed
-      if (Object.keys(dataMap).length === 0 && window.DataManager && window.DataManager.getEngagements) {
+    let dataMap = {};
+
+    if (window.DataManager) {
+
         dataMap = await window.DataManager.getEngagements();
-      }
 
-      const categories = Object.keys(CATEGORY_THEMES);
-      let fullHtml = '';
-      let totalCount = 0;
-
-      categories.forEach((catKey) => {
-        const items = dataMap[catKey] || [];
-        if (items.length > 0) {
-          totalCount += items.length;
-          fullHtml += UI.renderSection(catKey, items);
-        }
-      });
-
-      targetEl.innerHTML = totalCount === 0 ? UI.renderEmptyState() : fullHtml;
-      this.attachHoverEffects();
     }
 
+    const categories = Object.keys(CATEGORY_THEMES);
+
+    let fullHtml = "";
+    let totalCount = 0;
+
+    categories.forEach(catKey => {
+
+        const items = dataMap[catKey] || [];
+
+        if (items.length > 0) {
+
+            totalCount += items.length;
+
+            fullHtml += UI.renderSection(catKey, items);
+
+        }
+
+    });
+
+    return `
+
+<section class="fade-in">
+
+    <h1 class="section-title">
+
+        Professional Engagements
+
+    </h1>
+
+    <p class="section-subtitle">
+
+        Faculty Development Programmes,
+        Workshops,
+        STTPs,
+        Conferences,
+        Webinars and Academic Activities.
+
+    </p>
+
+    <div class="container">
+
+        ${
+            totalCount === 0
+                ? UI.renderEmptyState()
+                : fullHtml
+        }
+
+    </div>
+
+</section>
+
+`;
+
+}
+afterRender(params = []) {
+
+    super.afterRender();
+
+    this.attachHoverEffects();
+
+}
     /**
      * Card hover interaction listeners
      */
