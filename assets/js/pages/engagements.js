@@ -179,7 +179,7 @@
   };
 
   // 4. Page Class (Compatible with router.js instantiated via `new EngagementsPage()`)
-  class EngagementsPage {
+  class EngagementsPage extends Component {
     constructor() {
       this.title = 'Professional Engagements & Certifications';
     }
