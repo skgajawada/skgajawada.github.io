@@ -42,12 +42,12 @@ class MoocsPage extends Component {
                 text: "#1E40AF",
                 logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/ibm.svg"
             },
-            "cognitive": {
+            "cognitiveai": {
                 name: "Cognitive Class",
                 primary: "#9333EA",        /* Soft Violet */
                 bg: "#F3E8FF",             /* Soft Lilac */
                 text: "#6B21A8",
-                logo: "assets/images/logo/cognitive_classai.jpg" // Cognitive Class logo
+                logo: "/assets/images/logo/cognitive_classai.jpg" // Cognitive Class logo
             }
         };
 
@@ -84,7 +84,9 @@ class MoocsPage extends Component {
                                          
                                         <div class="card-header-row">
                                             <div class="card-logo-wrapper">
-                                                <img src="${brand.logo}" alt="${cat.name} logo" class="brand-logo" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/academicons.svg';">
+                                                <img src="${brand.logo}"
+                                                     alt="${cat.name} logo"
+                                                     class="brand-logo">
                                             </div>
 
                                             <div class="card-title-group">
