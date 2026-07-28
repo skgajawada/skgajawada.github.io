@@ -252,3 +252,6 @@
   // Expose to Global Scope / Window
   window.EngagementsModule = EngagementsModule;
 })();
+// Expose to Global Scope / Window
+  window.EngagementsPage = EngagementsModule; // Alias for router.js compatibility
+})();
