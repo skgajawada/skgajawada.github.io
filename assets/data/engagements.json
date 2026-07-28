@@ -189,6 +189,22 @@
       "certificateImage": "130.jpg"
     },
     {
+      "id": 139,
+      "category": "FDP",
+      "categoryName": "Faculty Development Programs",
+      "name": "Advanced Computational Modeling of Solids and Fluids",
+      "type": "Faculty Development Program",
+      "startDate": "05-01-2026",
+      "endDate": "08-01-2026",
+      "duration": "4 Days",
+      "department": "Department of Mechanical Engineering",
+      "organization": "Indian Institute of Technology Bhilai",
+      "venue": "Durg, Chhattisgarh",
+      "association": "Anusandhan National Research Foundation (ANRF)",
+      "certificateFile": "Bhilai_FDP.pdf",
+      "certificateImage": "Bhilai_FDP.jpg"
+    },
+    {
       "id": 132,
       "category": "FDP",
       "categoryName": "Faculty Development Programs",
