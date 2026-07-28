@@ -1,88 +1,90 @@
-// PROFESSIONAL DEVELOPMENT & ENGAGEMENTS PAGE
+// PROFESSIONAL ENGAGEMENTS & CERTIFICATIONS PAGE
 class EngagementsPage extends Component {
     async render(params) {
         const certs = await DataManager.getEngagements();
         const categoryParam = params && params[0];
 
+        // Map categories to academic themes & icons if not provided in JSON
+        const categoryThemes = {
+            'sttp': { theme: 'theme-navy', icon: 'fa-graduation-cap', title: 'Short Term Courses / STTPs', desc: 'Specialized technical training programs, national-level short-term courses, and intensive skill workshops.' },
+            'workshops': { theme: 'theme-amber', icon: 'fa-chalkboard-teacher', title: 'Workshops & Seminars', desc: 'Interactive academic workshops, domain seminars, and expert-led collaborative forums.' },
+            'fdp': { theme: 'theme-crimson', icon: 'fa-university', title: 'Faculty Development Programs', desc: 'Pedagogical training, research methodologies, and domain orientation programs.' },
+            'webinars': { theme: 'theme-teal', icon: 'fa-laptop-house', title: 'Webinars & Virtual Symposia', desc: 'Online lectures, global virtual technical sessions, and web-based academic discourses.' },
+            'quizzes': { theme: 'theme-purple', icon: 'fa-award', title: 'Academic Assessment & Quizzes', desc: 'National-level knowledge evaluations, technical competitions, and subject assessments.' },
+            'conferences': { theme: 'theme-emerald', icon: 'fa-users', title: 'Conferences & Symposia', desc: 'International and national conference papers, keynotes, and proceedings presentations.' }
+        };
+
         // -----------------------------------------------------------------
-        // 1. SUBCATEGORY DETAIL VIEW
+        // 1. DETAIL VIEW (Specific Category)
         // -----------------------------------------------------------------
         if (categoryParam) {
-            const currentCat = certs.categories.find(c => c.id === categoryParam);
-            
-            if (!currentCat) {
-                return `
-                    <div class="container text-center py-5">
-                        <h3 class="academic-title">Category Not Found</h3>
-                        <p class="academic-subtitle mb-4">The requested academic category could not be located.</p>
-                        <a href="#/engagements" class="btn-academic-back">Return to Overview</a>
-                    </div>
-                `;
-            }
+            const currentCat = certs.categories.find(c => c.id === categoryParam) || {
+                id: categoryParam,
+                name: categoryThemes[categoryParam]?.title || categoryParam.toUpperCase(),
+                description: categoryThemes[categoryParam]?.desc || 'Academic certifications and records.'
+            };
             
             const categoryCerts = certs.certificates.filter(c => c.category === categoryParam);
-            
-            return `
-                <section class="fade-in container">
-                    <!-- Academic Navigation & Section Header -->
-                    <div class="academic-header">
-                        <div style="margin-bottom: 1rem;">
-                            <a href="#/engagements" class="btn-academic-back">
-                                <i class="fas fa-arrow-left"></i> Back to Categories
-                            </a>
-                        </div>
-                        <h1 class="academic-title">${currentCat.name}</h1>
-                        <p class="academic-subtitle">${currentCat.description}</p>
-                    </div>
-                    
-                    <!-- Certificates Grid -->
-                    <div class="cards-grid">
-                        ${categoryCerts.length > 0 ? categoryCerts.map(cert => `
-                            <article class="academic-cert-card reveal">
-                                <div>
-                                    ${cert.type ? `<span class="cert-type-tag">${cert.type}</span>` : ''}
-                                    <h3 class="cert-title">${cert.name}</h3>
+            const themeInfo = categoryThemes[categoryParam] || { theme: 'theme-navy', icon: 'fa-certificate' };
 
-                                    <div class="cert-metadata-list">
-                                        <div class="cert-metadata-item">
-                                            <span class="cert-metadata-label">Organization:</span>
-                                            <span>${cert.organization || 'N/A'}</span>
-                                        </div>
+            return `
+                <section class="fade-in container py-4">
+                    <div style="margin-bottom: 2rem;">
+                        <a href="#/engagements" class="btn btn-outline-secondary btn-sm" style="border-radius: 20px; padding: 0.4rem 1rem;">
+                            <i class="fas fa-arrow-left me-1"></i> Back to Categories
+                        </a>
+                    </div>
+
+                    <div class="academic-header text-start ms-0 mb-4" style="border-bottom: 2px solid #e2e8f0; padding-bottom: 1.5rem;">
+                        <div class="d-flex align-items-center gap-3 mb-2">
+                            <div class="category-icon-box ${themeInfo.theme}">
+                                <i class="fas ${themeInfo.icon}"></i>
+                            </div>
+                            <div>
+                                <h1 class="academic-title mb-0" style="font-size: 2rem;">${currentCat.name}</h1>
+                                <span class="text-muted small">${categoryCerts.length} Verified Records</span>
+                            </div>
+                        </div>
+                        <p class="academic-subtitle mt-2">${currentCat.description}</p>
+                    </div>
+
+                    <div class="academic-grid">
+                        ${categoryCerts.length > 0 ? categoryCerts.map(cert => `
+                            <article class="cert-card">
+                                <div>
+                                    ${cert.type ? `<span class="badge bg-light text-dark border mb-2">${cert.type}</span>` : ''}
+                                    <h3 style="font-family: var(--academic-font-serif); font-size: 1.15rem; color: #0f172a; margin-bottom: 0.75rem;">
+                                        ${cert.name}
+                                    </h3>
+
+                                    <div class="cert-meta-grid">
+                                        <span class="cert-meta-label">Issuer:</span>
+                                        <span>${cert.organization || 'N/A'}</span>
+                                        
                                         ${cert.department ? `
-                                            <div class="cert-metadata-item">
-                                                <span class="cert-metadata-label">Department:</span>
-                                                <span>${cert.department}</span>
-                                            </div>
+                                            <span class="cert-meta-label">Dept:</span>
+                                            <span>${cert.department}</span>
                                         ` : ''}
-                                        <div class="cert-metadata-item">
-                                            <span class="cert-metadata-label">Duration:</span>
-                                            <span>${cert.duration}</span>
-                                        </div>
-                                        <div class="cert-metadata-item">
-                                            <span class="cert-metadata-label">Date:</span>
-                                            <span>${cert.startDate}${cert.endDate ? ' to ' + cert.endDate : ''}</span>
-                                        </div>
-                                        ${cert.association ? `
-                                            <div class="cert-metadata-item">
-                                                <span class="cert-metadata-label">Affiliation:</span>
-                                                <span>${cert.association}</span>
-                                            </div>
-                                        ` : ''}
+                                        
+                                        <span class="cert-meta-label">Duration:</span>
+                                        <span>${cert.duration || 'N/A'}</span>
+                                        
+                                        <span class="cert-meta-label">Date:</span>
+                                        <span>${cert.startDate}${cert.endDate ? ' - ' + cert.endDate : ''}</span>
                                     </div>
                                 </div>
 
                                 <a href="assets/certificates/professional-development/${cert.category}/${cert.certificateFile}"
                                    target="_blank"
                                    rel="noopener noreferrer"
-                                   class="btn-academic-pdf">
-                                    <i class="fas fa-file-pdf"></i> View Certificate (PDF)
+                                   class="btn-download-pdf">
+                                    <i class="fas fa-file-pdf"></i> View Verified PDF
                                 </a>
                             </article>
                         `).join('') : `
-                            <div class="reveal" style="background: var(--academic-bg-light); border: 1px dashed var(--academic-border); padding: 3rem; border-radius: 8px; text-align: center; grid-column: 1 / -1;">
-                                <p style="color: var(--academic-slate); margin: 0; font-size: 1.05rem;">
-                                    No records currently published under this category.
-                                </p>
+                            <div style="grid-column: 1 / -1; text-align: center; padding: 4rem; background: #fff; border: 1px dashed #cbd5e1; border-radius: 12px;">
+                                <i class="fas fa-folder-open text-muted mb-3" style="font-size: 2.5rem;"></i>
+                                <p class="text-muted mb-0">No certificates or records uploaded for this category yet.</p>
                             </div>
                         `}
                     </div>
@@ -91,33 +93,54 @@ class EngagementsPage extends Component {
         }
 
         // -----------------------------------------------------------------
-        // 2. MAIN CATEGORIES OVERVIEW VIEW
+        // 2. MAIN CATEGORIES OVERVIEW
         // -----------------------------------------------------------------
         return `
-            <section class="fade-in container">
-                <div class="academic-header">
+            <section class="fade-in container py-4">
+                <header class="academic-header">
+                    <div class="academic-badge-pill">
+                        <i class="fas fa-university"></i> Scholarly Record & Faculty Development
+                    </div>
                     <h1 class="academic-title">Professional Engagements & Certifications</h1>
                     <p class="academic-subtitle">
-                        A formal repository of faculty development programs, workshops, short-term courses, and scholarly contributions.
+                        A formal archive of academic contributions, pedagogical development programs, 
+                        specialized short-term courses, and technical symposia.
                     </p>
-                </div>
-                
-                <div class="cards-grid stagger-container">
-                    ${certs.categories.map(cat => `
-                        <div class="academic-category-card" onclick="navigateTo('#/engagements/${cat.id}')" style="cursor: pointer;">
-                            <div>
-                                <div class="category-icon-wrapper" style="background-color: ${cat.color}15; color: ${cat.color};">
-                                    <span>${cat.icon}</span>
-                                </div>
-                                <h3 class="category-card-title">${cat.name}</h3>
-                                <p class="category-card-desc">${cat.description}</p>
-                            </div>
+                </header>
 
-                            <a href="#/engagements/${cat.id}" class="category-link">
-                                Explore Section <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    `).join('')}
+                <div class="academic-grid">
+                    ${certs.categories.map(cat => {
+                        const meta = categoryThemes[cat.id] || { 
+                            theme: 'theme-navy', 
+                            icon: cat.icon || 'fa-certificate', 
+                            title: cat.name, 
+                            desc: cat.description 
+                        };
+                        
+                        // Count records per category
+                        const count = certs.certificates ? certs.certificates.filter(c => c.category === cat.id).length : 0;
+
+                        return `
+                            <div class="academic-card ${meta.theme}" onclick="navigateTo('#/engagements/${cat.id}')" style="cursor: pointer;">
+                                <div>
+                                    <div class="card-top-row">
+                                        <div class="category-icon-box">
+                                            <i class="fas ${meta.icon}"></i>
+                                        </div>
+                                        <span class="count-badge">${count} ${count === 1 ? 'Record' : 'Records'}</span>
+                                    </div>
+
+                                    <h2 class="card-title">${meta.title}</h2>
+                                    <p class="card-description">${meta.desc}</p>
+                                </div>
+
+                                <div class="card-footer-link">
+                                    <span>Explore Section</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
                 </div>
             </section>
         `;
