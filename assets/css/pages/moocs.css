@@ -1,102 +1,113 @@
 /* ==========================================================
-   ACADEMIC MOOCs & CERTIFICATIONS STYLESHEET
+   MOOCs & CERTIFICATIONS - HIGHLY PROFESSIONAL LIGHT THEME
 ========================================================== */
 
 :root {
-    --primary: #1e3a8a;          /* Academic Navy Blue */
-    --primary-light: #eff6ff;
-    --primary-hover: #1e40af;
-    --dark: #0f172a;             /* Deep Slate */
-    --text-muted: #475569;
-    --border-color: #cbd5e1;
-    --card-bg: #ffffff;
-    --shadow-academic: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+    --primary: #2563eb;           /* Professional Blue */
+    --primary-hover: #1d4ed8;     /* Darker Active Blue */
+    --primary-soft: #f0f7ff;      /* Very Light Accent Surface */
+    --text-dark: #1e293b;         /* Crisp Charcoal for Headings */
+    --text-body: #475569;         /* Readable Slate Gray for Text */
+    --text-muted: #64748b;        /* Soft Secondary Text */
+    --bg-card: #ffffff;           /* Clean White Card Background */
+    --border-subtle: #e2e8f0;     /* Light Border Gray */
+    --border-hover: #cbd5e1;      /* Hover Border Slate */
+    --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+    --shadow-md: 0 12px 24px -4px rgba(15, 23, 42, 0.08);
 }
 
-/* Page Title & Section Headers */
+/* Page Titles */
 .section-title {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    font-size: 2.25rem;
+    font-size: 2.1rem;
     font-weight: 800;
-    color: var(--dark);
-    letter-spacing: -0.03em;
+    color: var(--text-dark);
+    letter-spacing: -0.02em;
     margin-bottom: 0.5rem;
 }
 
 .lead {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     line-height: 1.6;
-    color: var(--text-muted);
-    max-width: 750px;
+    color: var(--text-body);
 }
 
-/* Grid Layouts */
+/* Responsive Grid */
 .cards-grid,
 .mooc-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
     gap: 1.75rem;
     margin-top: 2rem;
 }
 
-/* Base Card Style - Minimalist Academic Border */
+/* Card Styling - Bright, Clean, Elevated */
 .card,
 .mooc-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
     padding: 1.75rem;
-    box-shadow: var(--shadow-academic);
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.25s ease;
     position: relative;
+    overflow: hidden;
 }
 
 .card:hover,
 .mooc-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 30px -4px rgba(15, 23, 42, 0.12);
-    border-color: var(--primary);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-hover);
 }
 
-/* Category Grid - Academic Icon Badges */
+/* Category Page - Icon Badges */
 .card-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
+    border-radius: 12px;
     color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .card-title {
-    color: var(--dark);
+    color: var(--text-dark);
     font-weight: 700;
     letter-spacing: -0.01em;
 }
 
-/* Metadata Labels */
-.meta-label {
-    font-size: 0.825rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-muted);
-}
-
-.meta-value {
+.card-description {
+    color: var(--text-body);
     font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--dark);
 }
 
-/* Academic Buttons */
+/* Clean Link Button */
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.925rem;
+    text-decoration: none;
+    transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.card-link:hover {
+    gap: 0.75rem;
+    color: var(--primary-hover);
+}
+
+/* Buttons - Professional Light Design */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.6rem 1.1rem;
-    border-radius: 6px;
+    padding: 0.65rem 1.15rem;
+    border-radius: 8px;
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.01em;
@@ -109,47 +120,33 @@
     background: var(--primary);
     color: #ffffff;
     border: 1px solid var(--primary);
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.18);
 }
 
 .btn-primary:hover {
     background: var(--primary-hover);
     border-color: var(--primary-hover);
-    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.28);
 }
 
 .btn-outline {
     background: #ffffff;
-    color: var(--dark);
-    border: 1px solid var(--border-color);
+    color: var(--text-dark);
+    border: 1px solid var(--border-subtle);
 }
 
 .btn-outline:hover {
     border-color: var(--primary);
     color: var(--primary);
-    background: var(--primary-light);
+    background: var(--primary-soft);
 }
 
-.card-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    color: var(--primary);
-    font-weight: 700;
-    font-size: 0.9rem;
-    text-decoration: none;
-    transition: gap 0.2s ease;
-}
-
-.card-link:hover {
-    gap: 0.7rem;
-}
-
-/* Simple Fade Animation */
+/* Smooth Entrance Animation */
 .fade-in {
     animation: fadeIn 0.4s ease-out forwards;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
+    from { opacity: 0; transform: translateY(6px); }
     to { opacity: 1; transform: translateY(0); }
 }
