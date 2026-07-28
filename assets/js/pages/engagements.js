@@ -4,18 +4,48 @@ class EngagementsPage extends Component {
         const certs = await DataManager.getEngagements();
         const categoryParam = params && params[0];
 
-        // Map categories to academic themes & icons if not provided in JSON
+        // Unique colors, icons, and descriptions for each category
         const categoryThemes = {
-            'sttp': { theme: 'theme-navy', icon: 'fa-graduation-cap', title: 'Short Term Courses / STTPs', desc: 'Specialized technical training programs, national-level short-term courses, and intensive skill workshops.' },
-            'workshops': { theme: 'theme-amber', icon: 'fa-chalkboard-teacher', title: 'Workshops & Seminars', desc: 'Interactive academic workshops, domain seminars, and expert-led collaborative forums.' },
-            'fdp': { theme: 'theme-crimson', icon: 'fa-university', title: 'Faculty Development Programs', desc: 'Pedagogical training, research methodologies, and domain orientation programs.' },
-            'webinars': { theme: 'theme-teal', icon: 'fa-laptop-house', title: 'Webinars & Virtual Symposia', desc: 'Online lectures, global virtual technical sessions, and web-based academic discourses.' },
-            'quizzes': { theme: 'theme-purple', icon: 'fa-award', title: 'Academic Assessment & Quizzes', desc: 'National-level knowledge evaluations, technical competitions, and subject assessments.' },
-            'conferences': { theme: 'theme-emerald', icon: 'fa-users', title: 'Conferences & Symposia', desc: 'International and national conference papers, keynotes, and proceedings presentations.' }
+            'sttp': { 
+                theme: 'theme-navy', 
+                icon: 'fa-graduation-cap', 
+                title: 'Short Term Courses / STTPs', 
+                desc: 'Specialized technical training programs and intensive skill workshops.' 
+            },
+            'workshops': { 
+                theme: 'theme-amber', 
+                icon: 'fa-chalkboard-teacher', 
+                title: 'Workshops / Seminars', 
+                desc: 'Interactive academic workshops, domain seminars, and collaborative forums.' 
+            },
+            'fdp': { 
+                theme: 'theme-crimson', 
+                icon: 'fa-university', 
+                title: 'Faculty Development Programs', 
+                desc: 'Pedagogical training, research methodologies, and faculty orientation.' 
+            },
+            'webinars': { 
+                theme: 'theme-teal', 
+                icon: 'fa-laptop-house', 
+                title: 'Webinars', 
+                desc: 'Online technical lectures, virtual symposia, and web discourses.' 
+            },
+            'quizzes': { 
+                theme: 'theme-purple', 
+                icon: 'fa-award', 
+                title: 'Quizzes', 
+                desc: 'National-level knowledge evaluations and subject assessments.' 
+            },
+            'conferences': { 
+                theme: 'theme-emerald', 
+                icon: 'fa-users', 
+                title: 'Conferences', 
+                desc: 'International and national research presentations and proceedings.' 
+            }
         };
 
         // -----------------------------------------------------------------
-        // 1. DETAIL VIEW (Specific Category)
+        // 1. DETAIL VIEW (Specific Category Page)
         // -----------------------------------------------------------------
         if (categoryParam) {
             const currentCat = certs.categories.find(c => c.id === categoryParam) || {
@@ -29,7 +59,7 @@ class EngagementsPage extends Component {
 
             return `
                 <section class="fade-in container py-4">
-                    <div style="margin-bottom: 2rem;">
+                    <div class="mb-4">
                         <a href="#/engagements" class="btn btn-outline-secondary btn-sm" style="border-radius: 20px; padding: 0.4rem 1rem;">
                             <i class="fas fa-arrow-left me-1"></i> Back to Categories
                         </a>
@@ -42,7 +72,6 @@ class EngagementsPage extends Component {
                             </div>
                             <div>
                                 <h1 class="academic-title mb-0" style="font-size: 2rem;">${currentCat.name}</h1>
-                                <span class="text-muted small">${categoryCerts.length} Verified Records</span>
                             </div>
                         </div>
                         <p class="academic-subtitle mt-2">${currentCat.description}</p>
@@ -84,7 +113,7 @@ class EngagementsPage extends Component {
                         `).join('') : `
                             <div style="grid-column: 1 / -1; text-align: center; padding: 4rem; background: #fff; border: 1px dashed #cbd5e1; border-radius: 12px;">
                                 <i class="fas fa-folder-open text-muted mb-3" style="font-size: 2.5rem;"></i>
-                                <p class="text-muted mb-0">No certificates or records uploaded for this category yet.</p>
+                                <p class="text-muted mb-0">No records found for this category.</p>
                             </div>
                         `}
                     </div>
@@ -116,9 +145,6 @@ class EngagementsPage extends Component {
                             title: cat.name, 
                             desc: cat.description 
                         };
-                        
-                        // Count records per category
-                        const count = certs.certificates ? certs.certificates.filter(c => c.category === cat.id).length : 0;
 
                         return `
                             <div class="academic-card ${meta.theme}" onclick="navigateTo('#/engagements/${cat.id}')" style="cursor: pointer;">
@@ -127,7 +153,6 @@ class EngagementsPage extends Component {
                                         <div class="category-icon-box">
                                             <i class="fas ${meta.icon}"></i>
                                         </div>
-                                        <span class="count-badge">${count} ${count === 1 ? 'Record' : 'Records'}</span>
                                     </div>
 
                                     <h2 class="card-title">${meta.title}</h2>
