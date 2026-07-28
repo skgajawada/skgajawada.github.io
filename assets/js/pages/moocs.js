@@ -1,9 +1,21 @@
-// MOOCS PAGE - COMPACT & COLORFUL FORMAT
+// MOOCS PAGE - DYNAMIC SUB-CATEGORY COLORS & COMPACT CARDS
 
 class MoocsPage extends Component {
     async render(params) {
         const moocs = await DataManager.getMOOCs();
         const vendorParam = params && params[0];
+
+        // Palette of distinct colors for sub-categories
+        const categoryColors = [
+            "#E65100", // Matlab / Orange
+            "#0A66C2", // LinkedIn / Deep Blue
+            "#0056D2", // Coursera / Royal Blue
+            "#00A884", // Dataiku / Emerald Green
+            "#1261A0", // IBM / Steel Blue
+            "#7C3AED", // Cognitive / Vibrant Purple
+            "#D97706", // Amber / Warm Gold
+            "#DC2626"  // Crimson Red
+        ];
 
         // ===========================
         // CATEGORY PAGE OVERVIEW
@@ -19,33 +31,37 @@ class MoocsPage extends Component {
                         </p>
                         
                         <div class="cards-grid">
-                            ${moocs.categories.map(cat => `
-                                <div class="card fade-in"
-                                     data-vendor="${cat.id}"
-                                     onclick="navigateTo('#/moocs/${cat.id}')"
-                                     style="cursor:pointer; display:flex; flex-direction:column; min-height:175px;">
-                                     
-                                    <div class="card-header-row">
-                                        <div class="card-icon" style="background:${cat.color};">
-                                            <i class="fas ${cat.icon}"></i>
+                            ${moocs.categories.map((cat, index) => {
+                                // Assign individual color from JSON or fallback array
+                                const accentColor = cat.color || categoryColors[index % categoryColors.length];
+
+                                return `
+                                    <div class="card fade-in"
+                                         onclick="navigateTo('#/moocs/${cat.id}')"
+                                         style="cursor:pointer; display:flex; flex-direction:column; min-height:170px; border-left: 4px solid ${accentColor};">
+                                         
+                                        <div class="card-header-row">
+                                            <div class="card-icon" style="background:${accentColor};">
+                                                <i class="fas ${cat.icon || 'fa-certificate'}"></i>
+                                            </div>
+                                            <h3 class="card-title">
+                                                ${cat.name}
+                                            </h3>
                                         </div>
-                                        <h3 class="card-title">
-                                            ${cat.name}
-                                        </h3>
-                                    </div>
-                                    
-                                    <div style="display:flex; flex-direction:column; flex:1;">
-                                        <p class="card-description" style="flex:1;">
-                                            ${cat.description}
-                                        </p>
                                         
-                                        <div class="card-link">
-                                            View Directory
-                                            <i class="fas fa-arrow-right"></i>
+                                        <div style="display:flex; flex-direction:column; flex:1;">
+                                            <p class="card-description" style="flex:1;">
+                                                ${cat.description}
+                                            </p>
+                                            
+                                            <div class="card-link" style="color: ${accentColor};">
+                                                View Directory
+                                                <i class="fas fa-arrow-right"></i>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            `).join("")}
+                                `;
+                            }).join("")}
                         </div>
                     </section>
                 </div>
@@ -56,7 +72,8 @@ class MoocsPage extends Component {
         // SELECTED CATEGORY VIEW
         // ===========================
 
-        const currentVendor = moocs.categories.find(c => c.id === vendorParam);
+        const categoryIndex = moocs.categories.findIndex(c => c.id === vendorParam);
+        const currentVendor = moocs.categories[categoryIndex];
 
         if (!currentVendor) {
             return `
@@ -69,6 +86,7 @@ class MoocsPage extends Component {
             `;
         }
 
+        const vendorAccent = currentVendor.color || categoryColors[categoryIndex % categoryColors.length];
         const vendorCertificates = moocs.moocCertifications.filter(cert => cert.vendor === vendorParam);
 
         return `
@@ -91,7 +109,7 @@ class MoocsPage extends Component {
 
                     <div class="cards-grid">
                         ${vendorCertificates.map(cert => `
-                            <div class="card" style="display:flex; flex-direction:column; min-height:210px; border-top: 3px solid ${currentVendor.color};">
+                            <div class="card" style="display:flex; flex-direction:column; min-height:210px; border-top: 3px solid ${vendorAccent};">
                                 
                                 <h3 class="card-title" style="font-size:1.05rem; line-height:1.4; margin-bottom:12px;">
                                     ${cert.name}
@@ -110,7 +128,7 @@ class MoocsPage extends Component {
                                 
                                 <div style="margin-top:auto;">
                                     <div style="display:flex; gap:8px;">
-                                        <a href="assets/${cert.certificatePath}" target="_blank" class="btn btn-primary" style="flex:1;">
+                                        <a href="assets/${cert.certificatePath}" target="_blank" class="btn btn-primary" style="background:${vendorAccent}; border-color:${vendorAccent}; flex:1;">
                                             <i class="fas fa-file-pdf"></i>
                                             Certificate
                                         </a>
