@@ -1,285 +1,198 @@
-/**
- * Professional Engagements & Certifications Module
- * Path: assets/js/pages/engagements.js
- */
+// PROFESSIONAL ENGAGEMENTS & CERTIFICATIONS PAGE
+class EngagementsPage extends Component {
+    async render(params) {
+        const certs = await DataManager.getEngagements();
+        const categoryParam = params && params[0];
 
-(function () {
-  'use strict';
-
-  // 1. Category Themes & Color Configurations
-  const CATEGORY_THEMES = Object.freeze({
-    sttp: {
-      icon: 'fa-graduation-cap',
-      title: 'Short Term Courses / STTPs',
-      desc: 'Specialized technical training programs and intensive skill workshops.',
-      color: '#1d4ed8', // Navy Blue
-      bgColor: '#eff6ff',
-      borderColor: '#bfdbfe'
-    },
-    workshops: {
-      icon: 'fa-chalkboard-teacher',
-      title: 'Workshops / Seminars',
-      desc: 'Interactive academic workshops, domain seminars, and collaborative forums.',
-      color: '#d97706', // Warm Amber
-      bgColor: '#fffbeb',
-      borderColor: '#fde68a'
-    },
-    fdp: {
-      icon: 'fa-university',
-      title: 'Faculty Development Programs',
-      desc: 'Pedagogical training, research methodologies, and faculty orientation.',
-      color: '#be123c', // Crimson Red
-      bgColor: '#fff1f2',
-      borderColor: '#fecdd3'
-    },
-    webinars: {
-      icon: 'fa-laptop-house',
-      title: 'Webinars',
-      desc: 'Online technical lectures, virtual symposia, and web discourses.',
-      color: '#0d9488', // Teal
-      bgColor: '#f0fdfa',
-      borderColor: '#99f6e4'
-    },
-    quizzes: {
-      icon: 'fa-award',
-      title: 'Quizzes',
-      desc: 'National-level knowledge evaluations and subject assessments.',
-      color: '#6d28d9', // Deep Purple
-      bgColor: '#f5f3ff',
-      borderColor: '#ddd6fe'
-    },
-    conferences: {
-      icon: 'fa-users',
-      title: 'Conferences',
-      desc: 'International and national research presentations and proceedings.',
-      color: '#047857', // Emerald Green
-      bgColor: '#ecfdf5',
-      borderColor: '#a7f3d0'
-    }
-  });
-
-  // 2. Helper Utilities
-  const Utils = {
-    escapeHTML(str) {
-      if (typeof str !== 'string') return str || '';
-      return str.replace(/[&<>"']/g, (tag) => {
-        const charsToReplace = {
-          '&': '&amp;',
-          '<': '&lt;',
-          '>': '&gt;',
-          '"': '&quot;',
-          "'": '&#39;'
+        // Unique colors and Font Awesome icons for each category
+        const categoryThemes = {
+            'STC_STTPs': { 
+                icon: 'fa-graduation-cap', 
+                title: 'Short Term Courses / STTPs', 
+                desc: 'Specialized technical training programs and intensive skill workshops.',
+                color: '#1d4ed8',      // Navy Blue
+                bgColor: '#eff6ff',
+                borderColor: '#bfdbfe'
+            },
+            'Workshop': { 
+                icon: 'fa-chalkboard-teacher', 
+                title: 'Workshops / Seminars', 
+                desc: 'Interactive academic workshops, domain seminars, and collaborative forums.',
+                color: '#d97706',      // Warm Amber
+                bgColor: '#fffbeb',
+                borderColor: '#fde68a'
+            },
+            'FDP': { 
+                icon: 'fa-university', 
+                title: 'Faculty Development Programs', 
+                desc: 'Pedagogical training, research methodologies, and faculty orientation.',
+                color: '#be123c',      // Crimson Red
+                bgColor: '#fff1f2',
+                borderColor: '#fecdd3'
+            },
+            'Webinars': { 
+                icon: 'fa-laptop-house', 
+                title: 'Webinars', 
+                desc: 'Online technical lectures, virtual symposia, and web discourses.',
+                color: '#0d9488',      // Teal
+                bgColor: '#f0fdfa',
+                borderColor: '#99f6e4'
+            },
+            'Quiz': { 
+                icon: 'fa-award', 
+                title: 'Quizzes', 
+                desc: 'National-level knowledge evaluations and subject assessments.',
+                color: '#6d28d9',      // Deep Purple
+                bgColor: '#f5f3ff',
+                borderColor: '#ddd6fe'
+            },
+            'Conference': { 
+                icon: 'fa-users', 
+                title: 'Conferences', 
+                desc: 'International and national research presentations and proceedings.',
+                color: '#047857',      // Emerald Green
+                bgColor: '#ecfdf5',
+                borderColor: '#a7f3d0'
+            }
         };
-        return charsToReplace[tag] || tag;
-      });
-    },
 
-    getTheme(categoryId) {
-      return (
-        CATEGORY_THEMES[categoryId] || {
-          icon: 'fa-certificate',
-          title: 'Engagements',
-          desc: 'Professional activities and development.',
-          color: '#4b5563',
-          bgColor: '#f3f4f6',
-          borderColor: '#e5e7eb'
+        // -----------------------------------------------------------------
+        // 1. DETAIL VIEW (Specific Category Page)
+        // -----------------------------------------------------------------
+        if (categoryParam) {
+            const currentCat = certs.categories.find(c => c.id === categoryParam) || {
+                id: categoryParam,
+                name: categoryThemes[categoryParam]?.title || categoryParam.toUpperCase(),
+                description: categoryThemes[categoryParam]?.desc || 'Academic certifications and records.'
+            };
+            
+            const categoryCerts = certs.certificates.filter(c => c.category === categoryParam);
+            const themeInfo = categoryThemes[categoryParam] || { 
+                icon: 'fa-certificate', 
+                color: '#1d4ed8', 
+                bgColor: '#eff6ff', 
+                borderColor: '#bfdbfe' 
+            };
+
+            return `
+                <section class="fade-in container py-4">
+                    <div class="mb-4">
+                        <a href="#/engagements" class="btn btn-outline-secondary btn-sm" style="border-radius: 20px; padding: 0.4rem 1rem;">
+                            <i class="fas fa-arrow-left me-1"></i> Back to Categories
+                        </a>
+                    </div>
+
+                    <div class="academic-header text-start ms-0 mb-4" style="border-bottom: 2px solid #e2e8f0; padding-bottom: 1.5rem;">
+                        <div class="d-flex align-items-center gap-3 mb-2">
+                            <div class="category-icon-box" style="background-color: ${themeInfo.bgColor}; border: 1px solid ${themeInfo.borderColor}; color: ${themeInfo.color};">
+                                <i class="fas ${themeInfo.icon}"></i>
+                            </div>
+                            <div>
+                                <h1 class="academic-title mb-0" style="font-size: 2rem;">${currentCat.name}</h1>
+                            </div>
+                        </div>
+                        <p class="academic-subtitle mt-2">${currentCat.description}</p>
+                    </div>
+
+                    <div class="academic-grid">
+                        ${categoryCerts.length > 0 ? categoryCerts.map(cert => `
+                            <article class="cert-card">
+                                <div>
+                                    ${cert.type ? `<span class="badge bg-light text-dark border mb-2">${cert.type}</span>` : ''}
+                                    <h3 style="font-family: var(--academic-font-serif); font-size: 1.15rem; color: #0f172a; margin-bottom: 0.75rem;">
+                                        ${cert.name}
+                                    </h3>
+
+                                    <div class="cert-meta-grid">
+                                        <span class="cert-meta-label">Issuer:</span>
+                                        <span>${cert.organization || 'N/A'}</span>
+                                        
+                                        ${cert.department ? `
+                                            <span class="cert-meta-label">Dept:</span>
+                                            <span>${cert.department}</span>
+                                        ` : ''}
+                                        
+                                        <span class="cert-meta-label">Duration:</span>
+                                        <span>${cert.duration || 'N/A'}</span>
+                                        
+                                        <span class="cert-meta-label">Date:</span>
+                                        <span>${cert.startDate}${cert.endDate ? ' - ' + cert.endDate : ''}</span>
+                                    </div>
+                                </div>
+
+                                <a href="assets/certificates/professional-development/${cert.category}/${cert.certificateFile}"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   class="btn-download-pdf">
+                                    <i class="fas fa-file-pdf"></i> View Verified PDF
+                                </a>
+                            </article>
+                        `).join('') : `
+                            <div style="grid-column: 1 / -1; text-align: center; padding: 4rem; background: #fff; border: 1px dashed #cbd5e1; border-radius: 12px;">
+                                <i class="fas fa-folder-open text-muted mb-3" style="font-size: 2.5rem;"></i>
+                                <p class="text-muted mb-0">No records found for this category.</p>
+                            </div>
+                        `}
+                    </div>
+                </section>
+            `;
         }
-      );
-    }
-  };
 
-  // 3. UI Generator Methods
-  const UI = {
-    renderCategoryHeader(catKey) {
-      const theme = Utils.getTheme(catKey);
-      const safeTitle = Utils.escapeHTML(theme.title);
-      const safeDesc = Utils.escapeHTML(theme.desc);
+        // -----------------------------------------------------------------
+        // 2. MAIN CATEGORIES OVERVIEW
+        // -----------------------------------------------------------------
+        return `
+            <section class="fade-in container py-4">
+                <header class="academic-header">
+                    <div class="academic-badge-pill">
+                        <i class="fas fa-university"></i> Scholarly Record & Faculty Development
+                    </div>
+                    <h1 class="academic-title">Professional Engagements & Certifications</h1>
+                    <p class="academic-subtitle">
+                        A formal archive of academic contributions, pedagogical development programs, 
+                        specialized short-term courses, and technical symposia.
+                    </p>
+                </header>
 
-      return `
-        <div class="category-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom">
-          <div class="category-icon-wrapper rounded-3 d-flex align-items-center justify-content-center"
-               style="width: 48px; height: 48px; background-color: ${theme.bgColor}; border: 1px solid ${theme.borderColor}; color: ${theme.color};">
-            <i class="fas ${theme.icon} fa-lg"></i>
-          </div>
-          <div>
-            <h3 class="h4 mb-0 font-weight-bold" style="color: ${theme.color};">${safeTitle}</h3>
-            <p class="text-muted small mb-0">${safeDesc}</p>
-          </div>
-        </div>
-      `;
-    },
+                <div class="academic-grid">
+                    ${certs.categories.map(cat => {
+                        const meta = categoryThemes[cat.id] || { 
+                            icon: cat.icon || 'fa-certificate', 
+                            title: cat.name, 
+                            desc: cat.description,
+                            color: '#1d4ed8',
+                            bgColor: '#eff6ff',
+                            borderColor: '#bfdbfe'
+                        };
 
-    renderEngagementCard(item, catKey) {
-      const theme = Utils.getTheme(catKey);
+                        return `
+                            <div class="academic-card" 
+                                 onclick="navigateTo('#/engagements/${cat.id}')" 
+                                 style="cursor: pointer; border-top: 4px solid ${meta.color};">
+                                <div>
+                                    <div class="card-top-row">
+                                        <div class="category-icon-box" style="background-color: ${meta.bgColor}; border: 1px solid ${meta.borderColor}; color: ${meta.color};">
+                                            <i class="fas ${meta.icon}"></i>
+                                        </div>
+                                    </div>
 
-      const title = Utils.escapeHTML(item.title || 'Untitled Engagement');
-      const organizer = Utils.escapeHTML(item.organizer || 'Organizing Body N/A');
-      const date = Utils.escapeHTML(item.date || '');
-      const link = item.certificateUrl || item.link || '#';
-      const isExternalLink = link !== '#';
+                                    <h2 class="card-title">${meta.title}</h2>
+                                    <p class="card-description">${meta.desc}</p>
+                                </div>
 
-      return `
-        <div class="col-12 col-md-6 col-lg-4 mb-4">
-          <div class="card h-100 engagement-card shadow-sm border-0 position-relative"
-               style="border-top: 4px solid ${theme.color} !important; transition: transform 0.2s ease, box-shadow 0.2s ease;">
-            <div class="card-body d-flex flex-column justify-content-between p-4">
-              <div>
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                  <span class="badge rounded-pill px-2 py-1"
-                        style="background-color: ${theme.bgColor}; color: ${theme.color}; border: 1px solid ${theme.borderColor}; font-size: 0.75rem;">
-                    <i class="fas ${theme.icon} me-1"></i> ${Utils.escapeHTML(catKey.toUpperCase())}
-                  </span>
-                  ${date ? `<span class="text-muted extra-small"><i class="far fa-calendar-alt me-1"></i>${date}</span>` : ''}
+                                <div class="card-footer-link" style="color: ${meta.color};">
+                                    <span>Explore Section</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
                 </div>
-                <h5 class="card-title h6 fw-bold text-dark mt-2 mb-2 line-clamp-2">${title}</h5>
-                <p class="card-text text-muted small mb-3"><i class="fas fa-sitemap me-1 text-secondary"></i>${organizer}</p>
-              </div>
-
-              <div class="pt-2 border-top mt-auto">
-                <a href="${Utils.escapeHTML(link)}" 
-                   class="engagement-link text-decoration-none fw-semibold small d-inline-flex align-items-center"
-                   style="color: ${theme.color};"
-                   ${isExternalLink ? 'target="_blank" rel="noopener noreferrer"' : 'role="button"'}>
-                  <span>View Details / Certificate</span>
-                  <i class="fas ${isExternalLink ? 'fa-external-link-alt' : 'fa-chevron-right'} ms-2" style="font-size: 0.8rem;"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-    },
-
-    renderSection(catKey, items) {
-      if (!Array.isArray(items) || items.length === 0) return '';
-
-      const cardsHtml = items.map((item) => this.renderEngagementCard(item, catKey)).join('');
-
-      return `
-        <section id="section-${catKey}" class="engagement-category-section mb-5">
-          ${this.renderCategoryHeader(catKey)}
-          <div class="row g-3">
-            ${cardsHtml}
-          </div>
-        </section>
-      `;
-    },
-
-    renderEmptyState() {
-      return `
-        <div class="text-center py-5 my-4">
-          <div class="text-muted mb-3">
-            <i class="fas fa-folder-open fa-3x"></i>
-          </div>
-          <h4 class="h5 text-secondary">No engagements found</h4>
-          <p class="text-muted small">Check back later for updated activities and certifications.</p>
-        </div>
-      `;
-    }
-  };
-
-  // 4. Page Class (Compatible with router.js instantiated via `new EngagementsPage()`)
-  class EngagementsPage extends Component {
-    constructor() {
-        super();
-        this.title = "Professional Engagements & Certifications";
+            </section>
+        `;
     }
 
-    /**
-     * Called by router.js to render or mount the page
-     * @param {string|HTMLElement} container - Selector string or DOM element
-     * @param {Object} dataMap - Key-Value pair of categories and item arrays
-     */
-   async render(params = []) {
-
-    let dataMap = {};
-
-    if (window.DataManager) {
-
-        dataMap = await window.DataManager.getEngagements();
-
+    afterRender(params) {
+        super.afterRender();
     }
-
-    const categories = Object.keys(CATEGORY_THEMES);
-
-    let fullHtml = "";
-    let totalCount = 0;
-
-    categories.forEach(catKey => {
-
-        const items = dataMap[catKey] || [];
-
-        if (items.length > 0) {
-
-            totalCount += items.length;
-
-            fullHtml += UI.renderSection(catKey, items);
-
-        }
-
-    });
-
-    return `
-
-<section class="fade-in">
-
-    <h1 class="section-title">
-
-        Professional Engagements
-
-    </h1>
-
-    <p class="section-subtitle">
-
-        Faculty Development Programmes,
-        Workshops,
-        STTPs,
-        Conferences,
-        Webinars and Academic Activities.
-
-    </p>
-
-    <div class="container">
-
-        ${
-            totalCount === 0
-                ? UI.renderEmptyState()
-                : fullHtml
-        }
-
-    </div>
-
-</section>
-
-`;
-
 }
-afterRender(params = []) {
-
-    super.afterRender();
-
-    this.attachHoverEffects();
-
-}
-    /**
-     * Card hover interaction listeners
-     */
-    attachHoverEffects() {
-      const cards = document.querySelectorAll('.engagement-card');
-      cards.forEach((card) => {
-        card.addEventListener('mouseenter', () => {
-          card.style.transform = 'translateY(-4px)';
-          card.style.boxShadow = '0 0.5rem 1rem rgba(0, 0, 0, 0.12)';
-        });
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = 'translateY(0)';
-          card.style.boxShadow = '0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)';
-        });
-      });
-    }
-  }
-
-  // 5. Expose globally for router.js
-  window.EngagementsPage = EngagementsPage;
-  window.EngagementsModule = EngagementsPage; // Backward compatibility alias
-})();
