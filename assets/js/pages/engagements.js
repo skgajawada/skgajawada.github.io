@@ -6,7 +6,7 @@
 (function () {
   'use strict';
 
-  // 1. Central Configuration & Category Themes
+  // 1. Category Themes & Color Configurations
   const CATEGORY_THEMES = Object.freeze({
     sttp: {
       icon: 'fa-graduation-cap',
@@ -60,9 +60,6 @@
 
   // 2. Helper Utilities
   const Utils = {
-    /**
-     * Escape HTML string to prevent XSS attacks
-     */
     escapeHTML(str) {
       if (typeof str !== 'string') return str || '';
       return str.replace(/[&<>"']/g, (tag) => {
@@ -77,9 +74,6 @@
       });
     },
 
-    /**
-     * Safely resolve category theme metadata
-     */
     getTheme(categoryId) {
       return (
         CATEGORY_THEMES[categoryId] || {
@@ -96,9 +90,6 @@
 
   // 3. UI Generator Methods
   const UI = {
-    /**
-     * Render the Category Header Section
-     */
     renderCategoryHeader(catKey) {
       const theme = Utils.getTheme(catKey);
       const safeTitle = Utils.escapeHTML(theme.title);
@@ -118,9 +109,6 @@
       `;
     },
 
-    /**
-     * Render an Individual Engagement Card
-     */
     renderEngagementCard(item, catKey) {
       const theme = Utils.getTheme(catKey);
 
@@ -162,9 +150,6 @@
       `;
     },
 
-    /**
-     * Render Section Block with Grid
-     */
     renderSection(catKey, items) {
       if (!Array.isArray(items) || items.length === 0) return '';
 
@@ -180,9 +165,6 @@
       `;
     },
 
-    /**
-     * Empty State Renderer
-     */
     renderEmptyState() {
       return `
         <div class="text-center py-5 my-4">
@@ -196,18 +178,24 @@
     }
   };
 
-  // 4. Controller & Module Public Interface
-  const EngagementsModule = {
+  // 4. Page Class (Compatible with router.js instantiated via `new EngagementsPage()`)
+  class EngagementsPage {
+    constructor() {
+      this.title = 'Professional Engagements & Certifications';
+    }
+
     /**
-     * Initialize Module with target container and structured data
-     * @param {string} containerSelector - DOM selector string
+     * Called by router.js to render or mount the page
+     * @param {string|HTMLElement} container - Selector string or DOM element
      * @param {Object} dataMap - Key-Value pair of categories and item arrays
      */
-    init(containerSelector, dataMap = {}) {
-      const container = document.querySelector(containerSelector);
-      if (!container) {
-        console.warn(`EngagementsModule: Container '${containerSelector}' not found in DOM.`);
-        return;
+    async render(container = '#app', dataMap = {}) {
+      const targetEl = typeof container === 'string' ? document.querySelector(container) : container;
+      if (!targetEl) return;
+
+      // If data is fetched dynamically via DataManager, retrieve it if not passed
+      if (Object.keys(dataMap).length === 0 && window.DataManager && window.DataManager.getEngagements) {
+        dataMap = await window.DataManager.getEngagements();
       }
 
       const categories = Object.keys(CATEGORY_THEMES);
@@ -222,17 +210,12 @@
         }
       });
 
-      if (totalCount === 0) {
-        container.innerHTML = UI.renderEmptyState();
-      } else {
-        container.innerHTML = fullHtml;
-      }
-
+      targetEl.innerHTML = totalCount === 0 ? UI.renderEmptyState() : fullHtml;
       this.attachHoverEffects();
-    },
+    }
 
     /**
-     * Dynamic hover elevation effects for card interactions
+     * Card hover interaction listeners
      */
     attachHoverEffects() {
       const cards = document.querySelectorAll('.engagement-card');
@@ -247,11 +230,9 @@
         });
       });
     }
-  };
+  }
 
-  // Expose to Global Scope / Window
-  window.EngagementsModule = EngagementsModule;
-})();
-// Expose to Global Scope / Window
-  window.EngagementsPage = EngagementsModule; // Alias for router.js compatibility
+  // 5. Expose globally for router.js
+  window.EngagementsPage = EngagementsPage;
+  window.EngagementsModule = EngagementsPage; // Backward compatibility alias
 })();
