@@ -1,61 +1,88 @@
-// PROFESSIONAL DEVELOPMENT MAIN CATEGORIES PAGE
+// PROFESSIONAL DEVELOPMENT & ENGAGEMENTS PAGE
 class EngagementsPage extends Component {
     async render(params) {
         const certs = await DataManager.getEngagements();
         const categoryParam = params && params[0];
 
-        // If a specific subcategory parameter exists in the URL, render the certificate listings instead
+        // -----------------------------------------------------------------
+        // 1. SUBCATEGORY DETAIL VIEW
+        // -----------------------------------------------------------------
         if (categoryParam) {
             const currentCat = certs.categories.find(c => c.id === categoryParam);
-            if (!currentCat) return `<div class="container text-center"><h3>Category not found</h3><a href="#/engagements" class="btn btn-primary mt-3">Back to Overview</a></div>`;
+            
+            if (!currentCat) {
+                return `
+                    <div class="container text-center py-5">
+                        <h3 class="academic-title">Category Not Found</h3>
+                        <p class="academic-subtitle mb-4">The requested academic category could not be located.</p>
+                        <a href="#/engagements" class="btn-academic-back">Return to Overview</a>
+                    </div>
+                `;
+            }
             
             const categoryCerts = certs.certificates.filter(c => c.category === categoryParam);
             
             return `
-                <section class="fade-in">
-                    <div style="margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">
-                        <a href="#/engagements" class="btn btn-outline"  style="padding: 0.5rem 1rem;"><i class="fas fa-arrow-left"></i> Back</a>
-                        <h1 class="section-title" style="margin: 0;">${currentCat.name}</h1>
+                <section class="fade-in container">
+                    <!-- Academic Navigation & Section Header -->
+                    <div class="academic-header">
+                        <div style="margin-bottom: 1rem;">
+                            <a href="#/engagements" class="btn-academic-back">
+                                <i class="fas fa-arrow-left"></i> Back to Categories
+                            </a>
+                        </div>
+                        <h1 class="academic-title">${currentCat.name}</h1>
+                        <p class="academic-subtitle">${currentCat.description}</p>
                     </div>
-                    <p class="lead" style="color: var(--text-light); margin-bottom: 2rem;">${currentCat.description}</p>
                     
+                    <!-- Certificates Grid -->
                     <div class="cards-grid">
-
                         ${categoryCerts.length > 0 ? categoryCerts.map(cert => `
-                            <div class="card reveal" style="padding: 1.5rem;">
-                                <h3 class="card-title" style="font-size:1.1rem; margin-bottom:0.5rem;">
-                                    ${cert.name}
-                                </h3>
+                            <article class="academic-cert-card reveal">
+                                <div>
+                                    ${cert.type ? `<span class="cert-type-tag">${cert.type}</span>` : ''}
+                                    <h3 class="cert-title">${cert.name}</h3>
 
-                                <p style="font-size:0.9rem; color:#666; margin-bottom:0.4rem;">
-                                    <strong>Organization:</strong> ${cert.organization}
-                                </p>
-
-                                <p style="font-size:0.9rem; color:#666; margin-bottom:0.4rem;">
-                                    <strong>Department:</strong> ${cert.department}
-                                </p>
-
-                                <p style="font-size:0.9rem; color:#666; margin-bottom:0.4rem;">
-                                    <strong>Duration:</strong> ${cert.duration}
-                                </p>
-
-                                <p style="font-size:0.9rem; color:#666; margin-bottom:1rem;">
-                                <strong>Date:</strong>
-                                ${cert.startDate}
-                                    ${cert.endDate ? " to " + cert.endDate : ""}
-                                </p>
+                                    <div class="cert-metadata-list">
+                                        <div class="cert-metadata-item">
+                                            <span class="cert-metadata-label">Organization:</span>
+                                            <span>${cert.organization || 'N/A'}</span>
+                                        </div>
+                                        ${cert.department ? `
+                                            <div class="cert-metadata-item">
+                                                <span class="cert-metadata-label">Department:</span>
+                                                <span>${cert.department}</span>
+                                            </div>
+                                        ` : ''}
+                                        <div class="cert-metadata-item">
+                                            <span class="cert-metadata-label">Duration:</span>
+                                            <span>${cert.duration}</span>
+                                        </div>
+                                        <div class="cert-metadata-item">
+                                            <span class="cert-metadata-label">Date:</span>
+                                            <span>${cert.startDate}${cert.endDate ? ' to ' + cert.endDate : ''}</span>
+                                        </div>
+                                        ${cert.association ? `
+                                            <div class="cert-metadata-item">
+                                                <span class="cert-metadata-label">Affiliation:</span>
+                                                <span>${cert.association}</span>
+                                            </div>
+                                        ` : ''}
+                                    </div>
+                                </div>
 
                                 <a href="assets/certificates/professional-development/${cert.category}/${cert.certificateFile}"
                                    target="_blank"
-                                   class="btn btn-primary"
-                                   style="display:block;text-align:center;">
-                                   <i class="fas fa-file-pdf"></i>
-                                       View Certificate
-                                    </a>
-                            </div>
+                                   rel="noopener noreferrer"
+                                   class="btn-academic-pdf">
+                                    <i class="fas fa-file-pdf"></i> View Certificate (PDF)
+                                </a>
+                            </article>
                         `).join('') : `
-                            <div class="reveal" style="background: var(--light); padding: 2rem; border-radius: 10px; text-align: center; grid-column: 1 / -1;">
-                                <p style="color: var(--text-light);">No certificates loaded in this section yet.</p>
+                            <div class="reveal" style="background: var(--academic-bg-light); border: 1px dashed var(--academic-border); padding: 3rem; border-radius: 8px; text-align: center; grid-column: 1 / -1;">
+                                <p style="color: var(--academic-slate); margin: 0; font-size: 1.05rem;">
+                                    No records currently published under this category.
+                                </p>
                             </div>
                         `}
                     </div>
@@ -63,23 +90,32 @@ class EngagementsPage extends Component {
             `;
         }
 
-        // Default Overview Layout
+        // -----------------------------------------------------------------
+        // 2. MAIN CATEGORIES OVERVIEW VIEW
+        // -----------------------------------------------------------------
         return `
-            <section class="fade-in">
-                <h1 class="section-title">Professional Engagements</h1>
+            <section class="fade-in container">
+                <div class="academic-header">
+                    <h1 class="academic-title">Professional Engagements & Certifications</h1>
+                    <p class="academic-subtitle">
+                        A formal repository of faculty development programs, workshops, short-term courses, and scholarly contributions.
+                    </p>
+                </div>
                 
                 <div class="cards-grid stagger-container">
-                    ${certs.categories.map((cat, i) => `
-                        <div class="card fade-in" onclick="navigateTo('#/engagements/${cat.id}')" style="cursor: pointer;">
-                            <div class="card-icon" style="background: ${cat.color};">
-                                <i class="fas ${cat.icon.includes('fa-') ? cat.icon : 'fa-certificate'}"></i>
+                    ${certs.categories.map(cat => `
+                        <div class="academic-category-card" onclick="navigateTo('#/engagements/${cat.id}')" style="cursor: pointer;">
+                            <div>
+                                <div class="category-icon-wrapper" style="background-color: ${cat.color}15; color: ${cat.color};">
+                                    <span>${cat.icon}</span>
+                                </div>
+                                <h3 class="category-card-title">${cat.name}</h3>
+                                <p class="category-card-desc">${cat.description}</p>
                             </div>
-                            <div class="card-content">
-                                <h3 class="card-title">${cat.name}</h3>
-                                <p class="card-description">${cat.description}</p>
 
-                                <a href="#/engagements/${cat.id}" class="card-link">View All <i class="fas fa-arrow-right"></i></a>
-                            </div>
+                            <a href="#/engagements/${cat.id}" class="category-link">
+                                Explore Section <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     `).join('')}
                 </div>
@@ -87,7 +123,6 @@ class EngagementsPage extends Component {
         `;
     }
 
-    // Adapt layout hooks to support animations when a param view handles the rendering lifecycle
     afterRender(params) {
         super.afterRender();
     }
