@@ -1,137 +1,220 @@
 /* ==========================================================
-   ACADEMIC MOOCs & CERTIFICATIONS (SCOPED TO MOOCS PAGE ONLY)
+   ACADEMIC LIGHT THEME - SCOPED STRICTLY TO .moocs-page
 ========================================================== */
 
-/* Page Container & Spacing */
 .moocs-page {
-    --mooc-primary: #1e40af;       /* Classic Academic Royal Blue */
-    --mooc-primary-soft: #f0f5ff;  /* Soft Ice Blue Accent */
-    --mooc-title-color: #0f172a;   /* Slate Charcoal */
-    --mooc-body-color: #475569;    /* Readable Muted Slate */
-    --mooc-border: #e2e8f0;        /* Fine Academic Divider Line */
-    --mooc-card-bg: #ffffff;      /* Clean White */
-    --mooc-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+    /* Base Palette Variables */
+    --academic-primary: #1e40af;
+    --academic-hover: #1d4ed8;
+    --academic-soft-bg: #f8fafc;
+    --academic-chip-bg: #eff6ff;
+    --academic-title: #0f172a;
+    --academic-body: #475569;
+    --academic-border: #e2e8f0;
+    --academic-card-bg: #ffffff;
+    --academic-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.06);
 }
 
-/* Headers & Leads */
+/* Page Typography */
 .moocs-page .section-title {
-    font-size: 2.1rem;
+    font-size: 1.8rem;
     font-weight: 800;
-    color: var(--mooc-title-color);
+    color: var(--academic-title);
     letter-spacing: -0.025em;
     margin-bottom: 0.5rem;
 }
 
 .moocs-page .lead {
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--mooc-body-color);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--academic-body);
 }
 
-/* Base Card - Academic Gallery Box */
-.moocs-page .card,
-.moocs-page .mooc-card {
-    background: var(--mooc-card-bg);
-    border: 1px solid var(--mooc-border);
-    border-radius: 12px;
-    padding: 1.75rem;
-    box-shadow: var(--mooc-shadow);
-    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 0.2s ease;
+/* Category Cards Grid */
+.moocs-page .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+}
+
+/* Compact Card Styling */
+.moocs-page .card {
+    background: var(--academic-card-bg);
+    border: 1px solid var(--academic-border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    box-shadow: var(--academic-shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     position: relative;
+    overflow: hidden;
 }
 
-.moocs-page .card:hover,
-.moocs-page .mooc-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.1);
-    border-color: #cbd5e1;
+.moocs-page .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px -4px rgba(15, 23, 42, 0.12);
 }
 
-/* Category Grid Icons */
+/* Compact Card Header Layout */
+.moocs-page .card-header-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Compact Icon Style */
 .moocs-page .card-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
+    border-radius: 8px;
     color: #ffffff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    width: 44px;
+    height: 44px;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
 }
 
 .moocs-page .card-title {
-    color: var(--mooc-title-color);
+    color: var(--academic-title);
     font-weight: 700;
-    letter-spacing: -0.01em;
+    font-size: 1.15rem;
+    margin: 0;
+    line-height: 1.3;
 }
 
 .moocs-page .card-description {
-    color: var(--mooc-body-color);
-    font-size: 0.95rem;
+    color: var(--academic-body);
+    font-size: 0.875rem;
+    line-height: 1.45;
+    margin-bottom: 0.85rem;
 }
 
-/* Category Explore Arrow Link */
 .moocs-page .card-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    color: var(--mooc-primary);
+    gap: 0.35rem;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     text-decoration: none;
     transition: gap 0.2s ease;
 }
 
 .moocs-page .card-link:hover {
-    gap: 0.75rem;
+    gap: 0.6rem;
 }
 
-/* Buttons - Clean Academic Light Style */
+/* Dynamic Platform Accents */
+.moocs-page .card[data-vendor="matlab"] {
+    border-left: 4px solid #e65100;
+}
+.moocs-page .card[data-vendor="matlab"] .card-link {
+    color: #e65100;
+}
+
+.moocs-page .card[data-vendor="linkedin"] {
+    border-left: 4px solid #0a66c2;
+}
+.moocs-page .card[data-vendor="linkedin"] .card-link {
+    color: #0a66c2;
+}
+
+.moocs-page .card[data-vendor="coursera"] {
+    border-left: 4px solid #0056d2;
+}
+.moocs-page .card[data-vendor="coursera"] .card-link {
+    color: #0056d2;
+}
+
+.moocs-page .card[data-vendor="dataiku"] {
+    border-left: 4px solid #00a884;
+}
+.moocs-page .card[data-vendor="dataiku"] .card-link {
+    color: #00a884;
+}
+
+.moocs-page .card[data-vendor="ibm"] {
+    border-left: 4px solid #1261a0;
+}
+.moocs-page .card[data-vendor="ibm"] .card-link {
+    color: #1261a0;
+}
+
+.moocs-page .card[data-vendor="cognitive"] {
+    border-left: 4px solid #7c3aed;
+}
+.moocs-page .card[data-vendor="cognitive"] .card-link {
+    color: #7c3aed;
+}
+
+/* Metadata Block inside Selected Category View */
+.moocs-page .meta-panel {
+    background: var(--academic-chip-bg);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(30, 64, 175, 0.08);
+}
+
+.moocs-page .meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.moocs-page .meta-row:not(:last-child) {
+    margin-bottom: 4px;
+}
+
+.moocs-page .meta-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--academic-body);
+}
+
+.moocs-page .meta-value {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--academic-title);
+}
+
+/* Academic Buttons */
 .moocs-page .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    padding: 0.6rem 1.1rem;
+    gap: 0.4rem;
+    padding: 0.5rem 0.9rem;
     border-radius: 6px;
-    font-size: 0.875rem;
+    font-size: 0.825rem;
     font-weight: 600;
-    letter-spacing: 0.01em;
     transition: all 0.2s ease;
     text-decoration: none;
     cursor: pointer;
 }
 
 .moocs-page .btn-primary {
-    background: var(--mooc-primary);
+    background: var(--academic-primary);
     color: #ffffff;
-    border: 1px solid var(--mooc-primary);
+    border: 1px solid var(--academic-primary);
 }
 
 .moocs-page .btn-primary:hover {
-    background: #1d4ed8;
-    border-color: #1d4ed8;
-    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2);
+    background: var(--academic-hover);
+    border-color: var(--academic-hover);
 }
 
 .moocs-page .btn-outline {
     background: #ffffff;
-    color: var(--mooc-title-color);
-    border: 1px solid var(--mooc-border);
+    color: var(--academic-title);
+    border: 1px solid var(--academic-border);
 }
 
 .moocs-page .btn-outline:hover {
-    border-color: var(--mooc-primary);
-    color: var(--mooc-primary);
-    background: var(--mooc-primary-soft);
-}
-
-/* Entrance Animation */
-.moocs-page .fade-in {
-    animation: moocFadeIn 0.35s ease-out forwards;
-}
-
-@keyframes moocFadeIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
+    border-color: var(--academic-primary);
+    color: var(--academic-primary);
+    background: var(--academic-chip-bg);
 }
