@@ -301,6 +301,38 @@
       "certificateImage": "17.jpg"
     },
     {
+    "id": 143,
+    "category": "FDP",
+    "categoryName": "Faculty Development Programs",
+    "name": "Design Using Autodesk Fusion",
+    "type": "Faculty Development Program",
+    "startDate": "24-08-2024",
+    "endDate": "24-08-2024",
+    "duration": "1 Week",
+    "department": "",
+    "organization": "Guru Nanak Institute of Technology",
+    "venue": "Hyderabad",
+    "association": "Design Labs, Autodesk Authorized Academic Partner",
+    "certificateFile": "Autodesk_1.pdf",
+    "certificateImage": "143.jpg"
+  },
+    {
+    "id": 144,
+    "category": "FDP",
+    "categoryName": "Faculty Development Programs",
+    "name": "Transforming Education: Integrating OBE and NEP 2020",
+    "type": "Faculty Development Program (Online)",
+    "startDate": "22-07-2024",
+    "endDate": "02-08-2024",
+    "duration": "2 Weeks",
+    "department": "Department of Electronics and Communication Engineering",
+    "organization": "CVR College of Engineering",
+    "venue": "Hyderabad",
+    "association": "",
+    "certificateFile": "OBE.pdf",
+    "certificateImage": "144.jpg"
+  },
+    {
       "id": 18,
       "category": "FDP",
       "categoryName": "Faculty Development Programs",
@@ -316,6 +348,22 @@
       "certificateFile": "18.pdf",
       "certificateImage": "18.jpg"
     },
+    {
+    "id": 141,
+    "category": "FDP",
+    "categoryName": "Faculty Development Programs",
+    "name": "Advanced Python Programming",
+    "type": "Faculty Development Program",
+    "startDate": "26-12-2023",
+    "endDate": "02-01-2024",
+    "duration": "1 Week",
+    "department": "Department of Computer Science and Engineering",
+    "organization": "Guru Nanak Institutions Technical Campus (Autonomous)",
+    "venue": "Hyderabad",
+    "association": "",
+    "certificateFile": "FNI_Python.pdf",
+    "certificateImage": "141.jpg"
+  },
     {
       "id": 137,
       "category": "Webinars",
@@ -348,6 +396,22 @@
       "certificateFile": "40.pdf",
       "certificateImage": "40.jpg"
     },
+    {
+    "id": 142,
+    "category": "FDP",
+    "categoryName": "Faculty Development Programs",
+    "name": "Fundamentals, Advancements and Applications of Robotics",
+    "type": "Faculty Development Program",
+    "startDate": "12-09-2023",
+    "endDate": "16-09-2023",
+    "duration": "5 Days",
+    "department": "Department of Mechanical Engineering",
+    "organization": "Vignan Institute of Technology & Science",
+    "venue": "Hyderabad",
+    "association": "",
+    "certificateFile": "vignan.pdf",
+    "certificateImage": "142.jpg"
+  },
     {
       "id": 41,
       "category": "Webinars",
@@ -588,6 +652,22 @@
       "certificateFile": "2.pdf",
       "certificateImage": "2.jpg"
     },
+    {
+    "id": 140,
+    "category": "Conference",
+    "categoryName": "Conferences",
+    "name": "AI for Forensics and Biometric Applications (AIFB) 2025",
+    "type": "International Conference",
+    "startDate": "19-12-2025",
+    "endDate": "20-12-2025",
+    "duration": "2 Days",
+    "department": "Computer Science and Engineering",
+    "organization": "Indian Institute of Technology Bhilai",
+    "venue": "Bhilai, Chhattisgarh",
+    "association": "Indian Institute of Technology Dharwad",
+    "certificateFile": "AIFB_conference.pdf",
+    "certificateImage": "140.jpg"
+  },
     {
       "id": 113,
       "category": "Conference",
