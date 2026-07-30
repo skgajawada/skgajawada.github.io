@@ -108,6 +108,22 @@
       "certificateFile": "128.pdf",
       "certificateImage": "128.jpg"
     },
+    {
+      "id": 145,
+      "category": "Webinars",
+      "categoryName": "Webinars",
+      "name": "IEM",
+      "type": "Distinguished Lecture",
+      "startDate": "11-03-2026",
+      "endDate": "11-03-2026",
+      "duration": "1 Day",
+      "department": "Department of Mechanical Engineering",
+      "organization": "Institute of Engineering and Management (IEM)",
+      "venue": "Kolkata",
+      "association": "",
+      "certificateFile": "IEM.pdf",
+      "certificateImage": "IEM.jpg"
+    },
      {
       "id": 124,
       "category": "Workshop",
