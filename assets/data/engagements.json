@@ -573,6 +573,22 @@
       "certificateImage": "11.jpg"
     },
     {
+      "id": 146,
+      "category": "STC_STTPs",
+      "categoryName": "Short Term Courses / STTPs",
+      "name": "AMMNC",
+      "type": "AICTE Sponsored Short Term Training Programme (Online)",
+      "startDate": "21-06-2021",
+      "endDate": "25-06-2021",
+      "duration": "5 Days",
+      "department": "Department of Mechanical Engineering",
+      "organization": "Institute of Road and Transport Technology (IRTT)",
+      "venue": "Erode, Tamil Nadu",
+      "association": "AICTE Sponsored",
+      "certificateFile": "AMMNC.pdf",
+      "certificateImage": "AMMNC.jpg"
+    }
+    {
       "id": 45,
       "category": "Webinars",
       "categoryName": "Webinars",
