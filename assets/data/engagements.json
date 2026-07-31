@@ -749,6 +749,22 @@
       "certificateImage": "22.jpg"
     },
     {
+      "id": 1,
+      "category": "STC_STTPs",
+      "categoryName": "Short Term Courses / STTPs",
+      "name": "Application of Forecasting Methods in Engineering and Business Problems",
+      "type": "Short Term Course",
+      "startDate": "07-12-2020",
+      "endDate": "11-12-2020",
+      "duration": "5 Days",
+      "department": "Continuing Education & QIP",
+      "organization": "Indian Institute of Technology Kharagpur",
+      "venue": "Kharagpur",
+      "association": "AICTE-QIP",
+      "certificateFile": "1.pdf",
+      "certificateImage": "1.jpg"
+    },
+    {
       "id": 84,
       "category": "Quiz",
       "categoryName": "Quizzes",
@@ -2139,22 +2155,6 @@
       "association": "",
       "certificateFile": "108.pdf",
       "certificateImage": "108.jpg"
-    },
-    {
-      "id": 1,
-      "category": "STC_STTPs",
-      "categoryName": "Short Term Courses / STTPs",
-      "name": "Application of Forecasting Methods in Engineering and Business Problems",
-      "type": "Short Term Course",
-      "startDate": "2020-07-12",
-      "endDate": "2020-11-12",
-      "duration": "5 Days",
-      "department": "Continuing Education & QIP",
-      "organization": "Indian Institute of Technology Kharagpur",
-      "venue": "Kharagpur",
-      "association": "AICTE-QIP",
-      "certificateFile": "1.pdf",
-      "certificateImage": "1.jpg"
     },
     {
       "id": 109,
