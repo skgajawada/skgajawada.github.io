@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        PPT Presentations | Engineering Graphics
+    </title>
+
+    <meta name="description"
+          content="Engineering Graphics PPT presentations and automatically generated lecture materials.">
+
+    <meta name="author"
+          content="Gajavada Sanjeevkumar">
+
+    <!-- Favicon -->
+    <link rel="icon"
+          href="../../../../favicon.ico">
+
+    <!-- Main Portfolio CSS -->
+    <link rel="stylesheet"
+          href="../../../../assets/css/style.css">
+
+    <!-- Engineering Graphics CSS -->
+    <link rel="stylesheet"
+          href="../style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+
+        /* ==========================================
+           PPT PAGE
+        ========================================== */
+
+        .ppt-page {
+            padding: 70px 20px;
+        }
+
+        .ppt-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .ppt-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .ppt-header .section-tag {
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .ppt-header h1 {
+            margin-bottom: 15px;
+        }
+
+        .ppt-header p {
+            max-width: 750px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ==========================================
+           PRESENTATION GRID
+        ========================================== */
+
+        .ppt-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .ppt-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            transition: transform 0.25s ease,
+                        box-shadow 0.25s ease;
+        }
+
+        .ppt-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .ppt-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f1f5f9;
+            margin-bottom: 20px;
+            font-size: 26px;
+        }
+
+        .ppt-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .ppt-card p {
+            line-height: 1.6;
+            margin-bottom: 22px;
+        }
+
+        .ppt-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .ppt-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+
+        .ppt-btn-primary {
+            background: #2563eb;
+            color: #ffffff;
+        }
+
+        .ppt-btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        /* ==========================================
+           BACK BUTTON
+        ========================================== */
+
+        .back-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 25px 20px 0;
+        }
+
+        .back-button-ppt {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* ==========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 600px) {
+
+            .ppt-page {
+                padding: 45px 15px;
+            }
+
+            .ppt-card {
+                padding: 24px;
+            }
+
+            .ppt-header h1 {
+                font-size: 30px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+         BACK TO ENGINEERING GRAPHICS
+    =========================================== -->
+
+    <div class="back-section">
+
+        <a href="../"
+           class="back-button-ppt">
+
+            <i class="fas fa-arrow-left"></i>
+
+            Back to Engineering Graphics
+
+        </a>
+
+    </div>
+
+
+    <!-- ==========================================
+         MAIN CONTENT
+    =========================================== -->
+
+    <main class="ppt-page">
+
+        <div class="ppt-container">
+
+
+            <!-- HEADER -->
+
+            <div class="ppt-header">
+
+                <span class="section-tag">
+                    Engineering Graphics
+                </span>
+
+                <h1>
+                    PPT Presentations
+                </h1>
+
+                <p>
+                    Classroom presentations prepared for teaching,
+                    revision and conceptual understanding of
+                    Engineering Graphics topics.
+                </p>
+
+            </div>
+
+
+            <!-- ==================================
+                 PRESENTATION CARDS
+            =================================== -->
+
+            <div class="ppt-grid">
+
+
+                <!-- ==============================
+                     CYCLOID
+                =============================== -->
+
+                <div class="ppt-card">
+
+                    <div class="ppt-icon">
+
+                        <i class="fas fa-circle-notch"></i>
+
+                    </div>
+
+                    <h3>
+                        Cycloid
+                    </h3>
+
+                    <p>
+                        Presentation covering the construction
+                        and graphical representation of a cycloid.
+                    </p>
+
+                    <div class="ppt-actions">
+
+                        <a href="Cycloid/cycloid.pdf"
+                           target="_blank"
+                           class="ppt-btn ppt-btn-primary">
+
+                            <i class="fas fa-eye"></i>
+
+                            View Presentation
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==============================
+                     EPICYCLOID
+                =============================== -->
+
+                <div class="ppt-card">
+
+                    <div class="ppt-icon">
+
+                        <i class="fas fa-arrows-rotate"></i>
+
+                    </div>
+
+                    <h3>
+                        Epicycloid
+                    </h3>
+
+                    <p>
+                        Presentation covering the construction
+                        and graphical representation of an epicycloid.
+                    </p>
+
+                    <div class="ppt-actions">
+
+                        <a href="Epicycloid/epicycloid.pdf"
+                           target="_blank"
+                           class="ppt-btn ppt-btn-primary">
+
+                            <i class="fas fa-eye"></i>
+
+                            View Presentation
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==============================
+                     HYPOCYCLOID
+                =============================== -->
+
+                <div class="ppt-card">
+
+                    <div class="ppt-icon">
+
+                        <i class="fas fa-circle"></i>
+
+                    </div>
+
+                    <h3>
+                        Hypocycloid
+                    </h3>
+
+                    <p>
+                        Presentation covering the construction
+                        and graphical representation of a hypocycloid.
+                    </p>
+
+                    <div class="ppt-actions">
+
+                        <a href="Hypocycloid/hypocycloid.pdf"
+                           target="_blank"
+                           class="ppt-btn ppt-btn-primary">
+
+                            <i class="fas fa-eye"></i>
+
+                            View Presentation
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ==========================================
+         FOOTER
+    =========================================== -->
+
+    <footer class="course-footer">
+
+        <div class="container">
+
+            <div class="footer-bottom">
+
+                <p>
+                    © 2026 Gajavada Sanjeevkumar.
+                    All Rights Reserved.
+                </p>
+
+                <p>
+                    Engineering Graphics
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>
