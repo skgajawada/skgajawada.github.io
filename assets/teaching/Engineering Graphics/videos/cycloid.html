@@ -106,9 +106,9 @@ canvas {
 
     z-index: 10;
 
-    min-width: 230px;
+    min-width: 300px;
 
-    padding: 9px 12px;
+    padding: 12px 16px;
 
     background: rgba(255,255,255,0.96);
 
@@ -120,14 +120,14 @@ canvas {
 
     color: #17324d;
 
-    font-size: 12px;
-    line-height: 1.5;
+    font-size: 14px;
+    line-height: 1.55;
 }
 
 .info-title {
     margin-bottom: 3px;
     color: #123b63;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 700;
 }
 
@@ -250,8 +250,8 @@ input[type="range"] {
    ========================================================= */
 
 .footer {
-    height: 26px;
-    min-height: 26px;
+    height: 34px;
+    min-height: 34px;
 
     display: flex;
     align-items: center;
@@ -262,7 +262,7 @@ input[type="range"] {
 
     border-top: 1px solid #ccd6df;
 
-    font-size: 10px;
+    font-size: 13px;
     letter-spacing: 0.2px;
 
     z-index: 20;
@@ -513,11 +513,11 @@ const D = 50.0;
 const Rmm = 25.0;
 
 /*
-    1.5 × enlarged diagram
+    Enlarged diagram — 9 px/mm
 */
 
-const SCALE = 9.0;
-const FONT_SCALE = 2.25;
+const SCALE = 8.1;
+const FONT_SCALE = 2.025;
    
 const R =
     Rmm * SCALE;
@@ -549,6 +549,57 @@ let speed = 1;
 
 let trace = [];
 
+/*
+    Navigation safety:
+    Only one animation loop is allowed at a time.
+    A new direction invalidates any older animation callback.
+*/
+let animationFrameId = null;
+let animationToken = 0;
+
+function stopAnimation() {
+    playing = false;
+    pauseUntil = 0;
+    lastTimestamp = 0;
+
+    if (animationFrameId !== null) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+    }
+
+    animationToken++;
+}
+
+function startForwardAnimation() {
+    stopAnimation();
+
+    direction = 1;
+    playing = true;
+
+    const token = animationToken;
+
+    document.getElementById("playBtn").textContent = "❚❚";
+
+    animationFrameId = requestAnimationFrame(
+        timestamp => animateForward(timestamp, token)
+    );
+}
+
+function startReverseAnimation() {
+    stopAnimation();
+
+    direction = -1;
+    playing = true;
+
+    const token = animationToken;
+
+    document.getElementById("playBtn").textContent = "❚❚";
+
+    animationFrameId = requestAnimationFrame(
+        timestamp => animateReverse(timestamp, token)
+    );
+}
+
 
 /* =========================================================
    LAYOUT
@@ -566,7 +617,7 @@ function OX() {
 
 function CENTER_Y() {
 
-    return H * 0.56;
+    return H * 0.53;
 
 }
 
@@ -1330,37 +1381,13 @@ function drawDirectingLine() {
 
 
     /*
-        A′ 0′
-        No "=" symbol.
-    */
-
-    drawPoint(
-        x12,
-        y,
-        2.7,
-        "#333333"
-    );
-
-
-    drawText(
-        "A′ 0′",
-        x12,
-        primeLabelY,
-        12,
-        "#111111",
-        "center",
-        "700"
-    );
-
-
-    /*
         Development length.
     */
 
     drawDimension(
         x0,
         x12,
-        y + 68,
+        y + 78,
         "AA′ = πD = 157.08 mm"
     );
 
@@ -1587,8 +1614,8 @@ function drawRollingCircle() {
 
     drawText(
         "P",
-        px + 12,
-        py - 11,
+        px + 18,
+        py - 16,
         13,
         "#d0008f",
         "left",
@@ -1605,7 +1632,7 @@ function drawRollingCircle() {
 
     drawText(
         "R = 25 mm",
-        midX + 9,
+        midX + 18,
         midY,
         11,
         "#d0008f",
@@ -1617,7 +1644,7 @@ function drawRollingCircle() {
     drawText(
         "D = 50 mm",
         cx,
-        cy - R - 27,
+        cy - R - 40,
         12,
         "#0b6e4f",
         "center",
@@ -1775,7 +1802,7 @@ function drawRotationArrow(
     drawText(
         "CLOCKWISE",
         cx,
-        cy - radius - 10,
+        cy - radius - 18,
         10,
         "#0b6e4f",
         "center",
@@ -1985,11 +2012,11 @@ function drawAngleIndicator() {
 
 
     let textX =
-        cx + 72;
+        cx + 100;
 
 
     let textY =
-        cy - R - 47;
+        cy - R - 72;
 
 
     textX =
@@ -2007,7 +2034,7 @@ function drawAngleIndicator() {
     ) {
 
         textX =
-            cx - 72;
+            cx - 100;
 
     }
 
@@ -2059,7 +2086,10 @@ function drawDistanceIndicator() {
 
 
     const y =
-        GROUND_Y() + 91;
+        Math.min(
+            GROUND_Y() + 115,
+            H - 68
+        );
 
 
     const endX =
@@ -2182,46 +2212,6 @@ function drawWatermark() {
 
 
 /* =========================================================
-   TOP INFORMATION
-   ========================================================= */
-
-function drawConstructionTitle() {
-
-    const x =
-        Math.max(
-            285,
-            W * 0.28
-        );
-
-
-    const y = 25;
-
-
-    drawText(
-        "DIRECTING LINE",
-        x,
-        y,
-        10,
-        "#333333",
-        "left",
-        "700"
-    );
-
-
-    drawText(
-        "12 × 30° = 360°",
-        x + 118,
-        y,
-        10,
-        "#174f94",
-        "left",
-        "700"
-    );
-
-}
-
-
-/* =========================================================
    MAIN SCENE
    ========================================================= */
 
@@ -2233,9 +2223,6 @@ function drawScene() {
         W,
         H
     );
-
-
-    drawConstructionTitle();
 
     drawStaticCircle();
 
@@ -2363,10 +2350,11 @@ function rebuildTrace() {
    ========================================================= */
 
 function animateForward(
-    timestamp
+    timestamp,
+    token
 ) {
 
-    if (!playing) {
+    if (!playing || token !== animationToken) {
         return;
     }
 
@@ -2408,8 +2396,8 @@ function animateForward(
 
             updateInfo();
 
-            requestAnimationFrame(
-                animateForward
+            animationFrameId = requestAnimationFrame(
+                timestamp => animateForward(timestamp, token)
             );
 
             return;
@@ -2471,6 +2459,7 @@ function animateForward(
         } else {
 
             playing = false;
+            animationFrameId = null;
 
             document.getElementById(
                 "playBtn"
@@ -2495,8 +2484,8 @@ function animateForward(
 
     if (playing) {
 
-        requestAnimationFrame(
-            animateForward
+        animationFrameId = requestAnimationFrame(
+            timestamp => animateForward(timestamp, token)
         );
 
     }
@@ -2509,10 +2498,11 @@ function animateForward(
    ========================================================= */
 
 function animateReverse(
-    timestamp
+    timestamp,
+    token
 ) {
 
-    if (!playing) {
+    if (!playing || token !== animationToken) {
         return;
     }
 
@@ -2558,6 +2548,7 @@ function animateReverse(
         trace = [];
 
         playing = false;
+        animationFrameId = null;
 
 
         document.getElementById(
@@ -2586,8 +2577,8 @@ function animateReverse(
 
     if (playing) {
 
-        requestAnimationFrame(
-            animateReverse
+        animationFrameId = requestAnimationFrame(
+            timestamp => animateReverse(timestamp, token)
         );
 
     }
@@ -2605,9 +2596,7 @@ document.getElementById(
     "click",
     function() {
 
-        playing = false;
-
-        pauseUntil = 0;
+        stopAnimation();
 
         direction = 1;
 
@@ -2649,9 +2638,7 @@ document.getElementById(
     "click",
     function() {
 
-        playing = false;
-
-        pauseUntil = 0;
+        stopAnimation();
 
         direction = -1;
 
@@ -2704,34 +2691,11 @@ document.getElementById(
     "click",
     function() {
 
-        if (
-            currentDivision >= N
-        ) {
-
+        if (currentDivision >= N) {
             return;
-
         }
 
-
-        direction = 1;
-
-        playing = true;
-
-        pauseUntil = 0;
-
-        lastTimestamp = 0;
-
-
-        document.getElementById(
-            "playBtn"
-        ).textContent =
-            "❚❚";
-
-
-        requestAnimationFrame(
-            animateForward
-        );
-
+        startForwardAnimation();
     }
 );
 
@@ -2746,34 +2710,11 @@ document.getElementById(
     "click",
     function() {
 
-        if (
-            theta <= 0
-        ) {
-
+        if (theta <= 0) {
             return;
-
         }
 
-
-        direction = -1;
-
-        playing = true;
-
-        pauseUntil = 0;
-
-        lastTimestamp = 0;
-
-
-        document.getElementById(
-            "playBtn"
-        ).textContent =
-            "❚❚";
-
-
-        requestAnimationFrame(
-            animateReverse
-        );
-
+        startReverseAnimation();
     }
 );
 
@@ -2790,43 +2731,17 @@ document.getElementById(
 
         if (playing) {
 
-            playing = false;
+            stopAnimation();
 
-            this.textContent =
-                "▶";
-
+            this.textContent = "▶";
             return;
-
         }
 
-
-        if (
-            theta >=
-            2 * Math.PI - 1e-8
-        ) {
-
+        if (theta >= 2 * Math.PI - 1e-8) {
             return;
-
         }
 
-
-        direction = 1;
-
-        playing = true;
-
-        pauseUntil = 0;
-
-        lastTimestamp = 0;
-
-
-        this.textContent =
-            "❚❚";
-
-
-        requestAnimationFrame(
-            animateForward
-        );
-
+        startForwardAnimation();
     }
 );
 
@@ -2841,31 +2756,19 @@ document.getElementById(
     "click",
     function() {
 
+        stopAnimation();
+
         theta = 0;
-
         currentDivision = 0;
-
-        playing = false;
-
         direction = 1;
-
-        pauseUntil = 0;
-
-        lastTimestamp = 0;
-
         trace = [];
-
 
         document.getElementById(
             "playBtn"
-        ).textContent =
-            "▶";
-
+        ).textContent = "▶";
 
         drawScene();
-
         updateInfo();
-
     }
 );
 
