@@ -517,7 +517,8 @@ const Rmm = 25.0;
 */
 
 const SCALE = 9.0;
-
+const FONT_SCALE = 2.25;
+   
 const R =
     Rmm * SCALE;
 
@@ -565,7 +566,7 @@ function OX() {
 
 function CENTER_Y() {
 
-    return H * 0.6;
+    return H * 0.56;
 
 }
 
@@ -791,8 +792,11 @@ function drawText(
         rotation
     );
 
+    const scaledSize =
+        size * FONT_SCALE;
+
     ctx.font =
-        `${weight} ${size}px Arial, Helvetica, sans-serif`;
+        `${weight} ${scaledSize}px Arial, Helvetica, sans-serif`;
 
     ctx.fillStyle =
         color;
@@ -810,9 +814,7 @@ function drawText(
     );
 
     ctx.restore();
-
 }
-
 
 /* =========================================================
    DIMENSION
