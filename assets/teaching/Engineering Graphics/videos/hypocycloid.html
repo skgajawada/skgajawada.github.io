@@ -1,76 +1,1257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hypocycloid Animation</title>
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<style>
+    * { box-sizing: border-box; }
 
-    <title>Hypocycloid Curve Generation Animation</title>
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        min-height: 100%;
+        background: #ffffff;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
-    <style>
-        body {
-            margin: 0;
-            background: #ffffff;
-            font-family: Arial, Helvetica, sans-serif;
-            text-align: center;
-        }
+    .animation-page {
+        width: 100%;
+        max-width: 1500px;
+        margin: 0 auto;
+        padding: 8px 10px 12px;
+    }
 
-        .animation-container {
-            width: 100%;
-            max-width: 1400px;
-            margin: 20px auto;
-        }
+    .canvas-wrap {
+        width: 100%;
+        background: #ffffff;
+        overflow: hidden;
+    }
 
-        canvas {
-            display: block;
-            width: 100%;
-            height: auto;
-            margin: 0 auto;
-        }
+    #canvas {
+        display: block;
+        width: 100%;
+        height: auto;
+        background: #ffffff;
+        cursor: default;
+    }
 
-        .controls {
-            margin-top: 15px;
-        }
+    .controls {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 4px 4px;
+        flex-wrap: wrap;
+        user-select: none;
+    }
 
-        button {
-            padding: 8px 18px;
-            margin: 4px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 15px;
-        }
-    </style>
+    button, select {
+        height: 34px;
+        border: 1px solid #b8b8b8;
+        border-radius: 5px;
+        background: #ffffff;
+        color: #222222;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    button {
+        min-width: 38px;
+        padding: 0 10px;
+    }
+
+    button:hover, select:hover {
+        background: #f3f3f3;
+    }
+
+    button:active {
+        background: #e6e6e6;
+    }
+
+    #playButton {
+        min-width: 48px;
+        font-size: 17px;
+        font-weight: bold;
+    }
+
+    .speed-label {
+        margin-left: 8px;
+        font-size: 13px;
+        color: #444;
+    }
+
+    #progress {
+        flex: 1 1 250px;
+        min-width: 180px;
+        accent-color: #555555;
+        cursor: pointer;
+    }
+
+    .time-label {
+        min-width: 112px;
+        text-align: right;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        color: #444;
+    }
+
+    .hint {
+        width: 100%;
+        padding: 2px 4px 0;
+        font-size: 11px;
+        color: #777;
+    }
+
+    @media (max-width: 650px) {
+        .animation-page { padding: 4px; }
+        .controls { gap: 4px; }
+        button { min-width: 34px; padding: 0 7px; }
+        .speed-label { margin-left: 2px; }
+        .time-label { min-width: 95px; }
+    }
+</style>
 </head>
 
 <body>
+<div class="animation-page">
 
-    <div class="animation-container">
-
-        <canvas id="hypocycloidCanvas"></canvas>
-
-        <div class="controls">
-
-            <button onclick="playAnimation()">
-                ▶ Play
-            </button>
-
-            <button onclick="pauseAnimation()">
-                ⏸ Pause
-            </button>
-
-            <button onclick="restartAnimation()">
-                ↻ Restart
-            </button>
-
-        </div>
-
+    <div class="canvas-wrap">
+        <canvas id="canvas" width="1400" height="788"></canvas>
     </div>
 
+    <div class="controls">
+        <button id="restartButton" title="Restart">|◀</button>
+        <button id="backButton" title="Previous animation frame">◀</button>
+        <button id="reverseButton" title="Play reverse">◀▶</button>
+        <button id="playButton" title="Play / Pause">▶</button>
+        <button id="forwardButton" title="Next animation frame">▶</button>
+        <button id="endButton" title="Go to end">▶|</button>
 
-    <!-- Your actual animation code -->
-    <script src="hypocycloid.js"></script>
+        <span class="speed-label">Speed:</span>
+        <select id="speed">
+            <option value="0.25">0.25×</option>
+            <option value="0.5">0.5×</option>
+            <option value="1" selected>1×</option>
+            <option value="1.5">1.5×</option>
+            <option value="2">2×</option>
+            <option value="4">4×</option>
+        </select>
 
+        <input id="progress" type="range" min="0" max="390" value="0" step="1">
+        <span id="timeLabel" class="time-label">0 / 390</span>
+
+        <button id="fullscreenButton" title="Fullscreen">⛶</button>
+
+        <div class="hint">
+            Space = Play/Pause &nbsp; | &nbsp; Left/Right = one frame &nbsp; | &nbsp;
+            R = Reverse &nbsp; | &nbsp; Home/End = beginning/end
+        </div>
+    </div>
+</div>
+
+<script>
+"use strict";
+
+/*
+    HYPOCYCLOID HTML ANIMATION
+    ---------------------------
+    This is a browser/Canvas translation of the supplied Python/Matplotlib
+    animation. No MP4, video, library or external JavaScript file is used.
+
+    Original animation parameters:
+        SCALE = 2
+        R = 90 * SCALE = 180
+        r = 25 * SCALE = 50
+        N = 12
+        TOTAL_ARC_DEG = 100
+        START_DEG = 125
+        FPS = 30
+        ROLL_FRAMES = 20
+        PAUSE_FRAMES = 30
+        DOWN_SHIFT = -100
+*/
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+const W = 1400;
+const H = 788;
+
+const SCALE = 2;
+const R = 90.0 * SCALE;
+const r = 25.0 * SCALE;
+const N = 12;
+const TOTAL_ARC_DEG = 100.0;
+const STEP_DEG = TOTAL_ARC_DEG / N;
+
+const START_DEG = 125.0;
+const END_DEG = START_DEG - TOTAL_ARC_DEG;
+
+const FPS = 30;
+const ROLL_FRAMES = 20;
+const PAUSE_FRAMES = FPS;
+const DOWN_SHIFT = -100.0;
+
+const START = START_DEG * Math.PI / 180.0;
+const END = END_DEG * Math.PI / 180.0;
+
+const TOTAL_FRAMES = PAUSE_FRAMES + N * (ROLL_FRAMES + PAUSE_FRAMES);
+
+document.getElementById("progress").max = TOTAL_FRAMES;
+document.getElementById("timeLabel").textContent =
+    `0 / ${TOTAL_FRAMES}`;
+
+/* ------------------------------------------------------------------
+   Matplotlib-like axes region.
+
+   The original figure is 14 x 7.88 inches at 100 dpi = 1400 x 788.
+   Matplotlib's default subplot margins are approximated here so that
+   the composition remains visually similar.
+------------------------------------------------------------------ */
+
+const AX = {
+    left: 175,
+    right: 1260,
+    top: 76,
+    bottom: 704
+};
+
+const XMIN = -190;
+const XMAX = 190;
+const YMIN = -110;
+const YMAX = 110;
+
+const DATA_W = XMAX - XMIN;
+const DATA_H = YMAX - YMIN;
+
+const PIXELS_PER_UNIT = Math.min(
+    (AX.right - AX.left) / DATA_W,
+    (AX.bottom - AX.top) / DATA_H
+);
+
+const DATA_CX = (AX.left + AX.right) / 2;
+const DATA_CY = (AX.top + AX.bottom) / 2;
+
+/* Data coordinate -> canvas coordinate.
+   Matplotlib has an upward-positive y-axis; canvas has downward-positive y. */
+function sx(x) {
+    return DATA_CX + x * PIXELS_PER_UNIT;
+}
+
+function syCanvas(y) {
+    return DATA_CY - y * PIXELS_PER_UNIT;
+}
+
+function sy(y) {
+    return y + DOWN_SHIFT;
+}
+
+function point(x, y) {
+    return { x: sx(x), y: syCanvas(y) };
+}
+
+/* ------------------------------------------------------------------
+   Geometry
+------------------------------------------------------------------ */
+
+function circlePoints(cx, cy, rad, n = 360) {
+    const pts = [];
+    for (let i = 0; i < n; i++) {
+        const a = 2 * Math.PI * i / (n - 1);
+        pts.push(point(
+            cx + rad * Math.cos(a),
+            cy + rad * Math.sin(a)
+        ));
+    }
+    return pts;
+}
+
+function centreState(t) {
+    const theta = START - (STEP_DEG * Math.PI / 180.0) * t;
+    const cx = (R - r) * Math.cos(theta);
+    const cy = (R - r) * Math.sin(theta);
+    return {
+        theta: theta,
+        cx: cx,
+        cy: sy(cy)
+    };
+}
+
+function generatingState(cx, cyShifted, t) {
+    const theta = START - (STEP_DEG * Math.PI / 180.0) * t;
+    const alpha =
+        ((R - r) / r) *
+        (STEP_DEG * Math.PI / 180.0) * t;
+
+    const material = [];
+    const gx = [];
+    const gy = [];
+
+    for (let i = 0; i <= N; i++) {
+        const matAngle = START
+            - (2 * Math.PI * i / N)
+            + alpha;
+
+        material.push(matAngle);
+
+        gx.push(cx + r * Math.cos(matAngle));
+
+        const cyRaw = cyShifted - DOWN_SHIFT;
+        gy.push(sy(cyRaw + r * Math.sin(matAngle)));
+    }
+
+    return {
+        gx: gx,
+        gy: gy,
+        material: material,
+        alpha: alpha
+    };
+}
+
+function hypocycloidPoint(t) {
+    const theta =
+        START - (STEP_DEG * Math.PI / 180.0) * t;
+
+    const alpha =
+        ((R - r) / r) *
+        (STEP_DEG * Math.PI / 180.0) * t;
+
+    const hx =
+        (R - r) * Math.cos(theta)
+        + r * Math.cos(START + alpha);
+
+    const hy =
+        (R - r) * Math.sin(theta)
+        + r * Math.sin(START + alpha);
+
+    return { x: hx, y: sy(hy) };
+}
+
+function animationState(frame) {
+    if (frame < PAUSE_FRAMES) {
+        return { t: 0.0, step: 0, paused: true };
+    }
+
+    const q = frame - PAUSE_FRAMES;
+    const block = ROLL_FRAMES + PAUSE_FRAMES;
+    const step = Math.floor(q / block);
+    const local = q % block;
+
+    if (step >= N) {
+        return { t: N, step: N, paused: true };
+    }
+
+    if (local < ROLL_FRAMES) {
+        const f =
+            ROLL_FRAMES > 1
+                ? local / (ROLL_FRAMES - 1)
+                : 1.0;
+
+        return {
+            t: step + f,
+            step: step,
+            paused: false
+        };
+    }
+
+    return {
+        t: step + 1,
+        step: step + 1,
+        paused: true
+    };
+}
+
+/* ------------------------------------------------------------------
+   Static geometry
+------------------------------------------------------------------ */
+
+const directingAngles = [];
+const directingPoints = [];
+
+for (let i = 0; i <= N; i++) {
+    const a =
+        START - (STEP_DEG * Math.PI / 180.0) * i;
+
+    directingAngles.push(a);
+
+    directingPoints.push(
+        point(
+            R * Math.cos(a),
+            sy(R * Math.sin(a))
+        )
+    );
+}
+
+const initialCx =
+    (R - r) * Math.cos(START);
+
+const initialCy =
+    sy((R - r) * Math.sin(START));
+
+const initialState =
+    generatingState(initialCx, initialCy, 0.0);
+
+const initialGx = initialState.gx;
+const initialGy = initialState.gy;
+const initialMaterial = initialState.material;
+
+const O = { x: 0.0, y: DOWN_SHIFT };
+const COMMON_END_ANGLE = directingAngles[N];
+const COMMON_GUIDE_LENGTH = R;
+
+/* ------------------------------------------------------------------
+   Drawing helpers
+------------------------------------------------------------------ */
+
+function setLine(widthPt, color, alpha = 1.0, dash = []) {
+    /* 100 dpi conversion: 1 point = 100/72 canvas pixels. */
+    ctx.lineWidth = widthPt * (100 / 72);
+    ctx.strokeStyle = color;
+    ctx.globalAlpha = alpha;
+    ctx.setLineDash(dash);
+    ctx.lineCap = "butt";
+    ctx.lineJoin = "round";
+}
+
+function beginPathPoints(pts) {
+    if (!pts.length) return;
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x, pts[0].y);
+    for (let i = 1; i < pts.length; i++) {
+        ctx.lineTo(pts[i].x, pts[i].y);
+    }
+}
+
+function drawLineData(x1, y1, x2, y2) {
+    ctx.beginPath();
+    ctx.moveTo(sx(x1), syCanvas(y1));
+    ctx.lineTo(sx(x2), syCanvas(y2));
+    ctx.stroke();
+}
+
+function drawCircleData(cx, cy, rad, widthPt, color, alpha = 1.0) {
+    setLine(widthPt, color, alpha);
+    ctx.beginPath();
+
+    const p = point(cx + rad, cy);
+    ctx.moveTo(p.x, p.y);
+
+    for (let i = 1; i <= 360; i++) {
+        const a = 2 * Math.PI * i / 360;
+        const q = point(
+            cx + rad * Math.cos(a),
+            cy + rad * Math.sin(a)
+        );
+        ctx.lineTo(q.x, q.y);
+    }
+
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+    ctx.setLineDash([]);
+}
+
+function drawMarkerData(x, y, sizePt, color, alpha = 1.0) {
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = color;
+
+    /* Matplotlib markersize is approximately points in diameter. */
+    const radius =
+        sizePt * (100 / 72) / 2;
+
+    const p = point(x, y);
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, radius, 0, 2 * Math.PI);
+    ctx.fill();
+
+    ctx.globalAlpha = 1;
+}
+
+function drawTextData(text, x, y, sizePt, color,
+                      weight = "normal",
+                      align = "center",
+                      baseline = "middle",
+                      extra = "") {
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = color;
+    ctx.font =
+        `${weight} ${sizePt * (100 / 72)}px Arial, Helvetica, sans-serif`;
+    ctx.textAlign = align;
+    ctx.textBaseline = baseline;
+
+    const p = point(x, y);
+    ctx.fillText(text, p.x, p.y);
+}
+
+function drawTextAxes(text, axX, axY, sizePt, color,
+                      weight = "normal",
+                      align = "center",
+                      baseline = "middle") {
+    ctx.fillStyle = color;
+    ctx.font =
+        `${weight} ${sizePt * (100 / 72)}px Arial, Helvetica, sans-serif`;
+    ctx.textAlign = align;
+    ctx.textBaseline = baseline;
+
+    const x = AX.left + axX * (AX.right - AX.left);
+    const y = AX.bottom - axY * (AX.bottom - AX.top);
+
+    ctx.fillText(text, x, y);
+}
+
+function drawArcData(radius, a0, a1, widthPt,
+                     color, alpha = 1.0, dash = []) {
+    setLine(widthPt, color, alpha, dash);
+
+    const pts = 300;
+    ctx.beginPath();
+
+    for (let i = 0; i < pts; i++) {
+        const f = i / (pts - 1);
+        const a = a0 + (a1 - a0) * f;
+
+        const q = point(
+            radius * Math.cos(a),
+            sy(radius * Math.sin(a))
+        );
+
+        if (i === 0) ctx.moveTo(q.x, q.y);
+        else ctx.lineTo(q.x, q.y);
+    }
+
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+    ctx.setLineDash([]);
+}
+
+/* ------------------------------------------------------------------
+   Static background
+------------------------------------------------------------------ */
+
+function drawStaticBackground() {
+
+    /* Initial generating circle */
+    drawCircleData(
+        initialCx,
+        initialCy,
+        r,
+        2.5,
+        "rgb(31,119,180)",
+        0.4
+    );
+
+    drawMarkerData(
+        initialCx,
+        initialCy,
+        6,
+        "rgb(31,119,180)",
+        0.4
+    );
+
+    /* Initial generating division lines */
+    for (let i = 0; i < N; i++) {
+        setLine(0.9, "rgb(128,128,128)", 0.3);
+
+        drawLineData(
+            initialCx,
+            initialCy,
+            initialGx[i],
+            initialGy[i]
+        );
+
+        ctx.globalAlpha = 1;
+    }
+
+    /* Static circle labels */
+    for (let i = 0; i <= N; i++) {
+        if (i === 12) continue;
+
+        const a = initialMaterial[i];
+        const rr = r + 12.0;
+
+        const cyRawInit =
+            initialCy - DOWN_SHIFT;
+
+        const lx =
+            initialCx + rr * Math.cos(a);
+
+        const ly =
+            sy(cyRawInit + rr * Math.sin(a));
+
+        drawTextData(
+            i === 0 ? "0, 12" : String(i),
+            lx, ly,
+            8,
+            "rgb(128,128,128)",
+            "normal"
+        );
+    }
+
+    drawTextData(
+        "C0",
+        initialCx - 8,
+        initialCy + 8,
+        11,
+        "#000000",
+        "bold",
+        "right"
+    );
+
+    /* Directing arc */
+    drawArcData(
+        R,
+        START,
+        END,
+        2.5,
+        "#000000",
+        1.0
+    );
+
+    /* Directing points */
+    for (const p of directingPoints) {
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = "#000000";
+
+        const radius =
+            4 * (100 / 72) / 2;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, radius, 0, 2 * Math.PI);
+        ctx.fill();
+    }
+
+    /* Directing labels 0' ... 12' */
+    for (let i = 0; i <= N; i++) {
+        const a = directingAngles[i];
+        const labelR = R + 4.0;
+
+        drawTextData(
+            `${i}'`,
+            labelR * Math.cos(a),
+            sy(labelR * Math.sin(a)) + 0.5,
+            10,
+            "#000000",
+            "bold"
+        );
+    }
+
+    /* Guide lines O -> i' */
+    for (let i = 0; i <= N; i++) {
+        const a = directingAngles[i];
+
+        setLine(
+            0.65,
+            "rgb(128,128,128)",
+            0.4
+        );
+
+        drawLineData(
+            O.x,
+            O.y,
+            COMMON_GUIDE_LENGTH * Math.cos(a),
+            sy(COMMON_GUIDE_LENGTH * Math.sin(a))
+        );
+
+        ctx.globalAlpha = 1;
+    }
+
+    /* Purple construction arcs */
+    for (let i = 0; i <= N; i++) {
+        const px = initialGx[i];
+        const py = initialGy[i];
+
+        const radius =
+            Math.hypot(px - O.x, py - O.y);
+
+        const start =
+            Math.atan2(py - O.y, px - O.x);
+
+        const delta =
+            (COMMON_END_ANGLE - start + Math.PI)
+            % (2 * Math.PI) - Math.PI;
+
+        setLine(
+            0.9,
+            "purple",
+            0.4
+        );
+
+        ctx.beginPath();
+
+        for (let k = 0; k < 180; k++) {
+            const f = k / 179;
+            const aa = start + delta * f;
+
+            const q = point(
+                O.x + radius * Math.cos(aa),
+                O.y + radius * Math.sin(aa)
+            );
+
+            if (k === 0) ctx.moveTo(q.x, q.y);
+            else ctx.lineTo(q.x, q.y);
+        }
+
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+    }
+
+    /* Locus of generating-circle centre */
+    setLine(
+        1.0,
+        "rgb(128,128,128)",
+        0.8,
+        [8, 4, 2, 4]
+    );
+
+    ctx.beginPath();
+
+    for (let i = 0; i < 300; i++) {
+        const f = i / 299;
+        const a = START + (END - START) * f;
+
+        const q = point(
+            (R - r) * Math.cos(a),
+            sy((R - r) * Math.sin(a))
+        );
+
+        if (i === 0) ctx.moveTo(q.x, q.y);
+        else ctx.lineTo(q.x, q.y);
+    }
+
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+    ctx.setLineDash([]);
+
+    /* O marker and O label */
+    drawMarkerData(
+        O.x,
+        O.y,
+        6,
+        "#000000"
+    );
+
+    drawTextData(
+        "O",
+        O.x,
+        O.y - 5.0,
+        12,
+        "#000000",
+        "bold",
+        "center",
+        "top"
+    );
+}
+
+/* ------------------------------------------------------------------
+   Trace
+------------------------------------------------------------------ */
+
+/*
+   Unlike the original append-only Matplotlib list, the browser
+   recomputes the visible trace from 0 -> current t. This is necessary
+   so reverse playback correctly removes the already-traced portion.
+*/
+function drawTrace(t) {
+    const samples = Math.max(2, Math.ceil(t * 20) + 1);
+
+    setLine(
+        3.0,
+        "blue",
+        1.0
+    );
+
+    ctx.beginPath();
+
+    for (let i = 0; i < samples; i++) {
+        const tt = t * i / (samples - 1);
+        const q = hypocycloidPoint(tt);
+        const p = point(q.x, q.y);
+
+        if (i === 0) ctx.moveTo(p.x, p.y);
+        else ctx.lineTo(p.x, p.y);
+    }
+
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+}
+
+/* ------------------------------------------------------------------
+   Dynamic animation
+------------------------------------------------------------------ */
+
+function drawDynamic(frame) {
+
+    const state = animationState(frame);
+    const t = state.t;
+    const step = state.step;
+    const paused = state.paused;
+
+    const centre = centreState(t);
+    const theta = centre.theta;
+    const cx = centre.cx;
+    const cy = centre.cy;
+
+    const tracePoint = hypocycloidPoint(t);
+
+    /* Trace */
+    drawTrace(t);
+
+    /* Moving generating circle */
+    drawCircleData(
+        cx,
+        cy,
+        r,
+        2.5,
+        "rgb(255,127,14)",
+        1.0
+    );
+
+    /* Moving centre marker */
+    drawMarkerData(
+        cx,
+        cy,
+        6,
+        "rgb(255,127,14)"
+    );
+
+    /* Trace point */
+    drawMarkerData(
+        tracePoint.x,
+        tracePoint.y,
+        8,
+        "blue"
+    );
+
+    /* Contact marker */
+    const contactX =
+        R * Math.cos(theta);
+
+    const contactY =
+        sy(R * Math.sin(theta));
+
+    drawMarkerData(
+        contactX,
+        contactY,
+        7,
+        "red"
+    );
+
+    /* Moving division points and lines */
+    const gs =
+        generatingState(cx, cy, t);
+
+    for (let i = 0; i < N; i++) {
+
+        const x2 =
+            cx + r * Math.cos(gs.material[i]);
+
+        const cyRaw =
+            cy - DOWN_SHIFT;
+
+        const y2 =
+            sy(
+                cyRaw +
+                r * Math.sin(gs.material[i])
+            );
+
+        setLine(
+            0.9,
+            "rgb(255,127,14)",
+            0.7
+        );
+
+        drawLineData(
+            cx,
+            cy,
+            x2,
+            y2
+        );
+
+        ctx.globalAlpha = 1;
+    }
+
+    /* Moving division points */
+    for (let i = 0; i <= N; i++) {
+        drawMarkerData(
+            gs.gx[i],
+            gs.gy[i],
+            4,
+            "rgb(255,127,14)"
+        );
+    }
+
+    /* Moving labels */
+    for (let i = 0; i <= N; i++) {
+
+        if (i === 12) continue;
+
+        const rr = r + 12.0;
+
+        const cyRaw =
+            cy - DOWN_SHIFT;
+
+        const lx =
+            cx + rr * Math.cos(gs.material[i]);
+
+        const ly =
+            sy(
+                cyRaw +
+                rr * Math.sin(gs.material[i])
+            );
+
+        drawTextData(
+            i === 0 ? "0, 12" : String(i),
+            lx,
+            ly,
+            10,
+            "darkred",
+            "bold"
+        );
+    }
+
+    /* Centre text */
+    drawTextData(
+        paused ? `C${step}` : "C",
+        cx,
+        cy,
+        10,
+        "#000000",
+        "bold"
+    );
+
+    /* Information text */
+    const centreMovement =
+        STEP_DEG * t;
+
+    const travelled =
+        R * (centreMovement * Math.PI / 180.0);
+
+    let status;
+
+    if (step === 0) {
+        status =
+            "Initial position: 0 ≡ 0′ (Trace Start)";
+    } else if (paused) {
+        status =
+            `1s Pause at Coincidence: ${step} ↔ ${step}′`;
+    } else {
+        status =
+            `Rolling toward ${Math.min(step + 1, N)}`;
+    }
+
+    const info =
+        `Centre movement = ${centreMovement.toFixed(1)}°   |   ` +
+        `Arc distance travelled = ${travelled.toFixed(3)} mm   |   ` +
+        status;
+
+    drawTextAxes(
+        info,
+        0.50,
+        0.965,
+        11,
+        "#000000",
+        "bold",
+        "center",
+        "top"
+    );
+}
+
+/* ------------------------------------------------------------------
+   Title and footer
+------------------------------------------------------------------ */
+
+function drawTitleAndFooter() {
+
+    drawTextAxes(
+        "Hypocycloid",
+        0.50,
+        1.0,
+        15,
+        "#000000",
+        "bold",
+        "center",
+        "bottom"
+    );
+
+    drawTextAxes(
+        "Gajavada Sanjeevkumar",
+        0.025,
+        0.012,
+        11,
+        "#000000",
+        "bold",
+        "left",
+        "bottom"
+    );
+
+    drawTextAxes(
+        "Engineering Curve: Hypocycloid",
+        0.975,
+        0.012,
+        11,
+        "#000000",
+        "bold",
+        "right",
+        "bottom"
+    );
+}
+
+/* ------------------------------------------------------------------
+   Main renderer
+------------------------------------------------------------------ */
+
+function render() {
+
+    ctx.save();
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, W, H);
+
+    ctx.globalAlpha = 1;
+    ctx.setLineDash([]);
+
+    drawStaticBackground();
+    drawDynamic(currentFrame);
+    drawTitleAndFooter();
+
+    ctx.restore();
+
+    document.getElementById("progress").value =
+        currentFrame;
+
+    document.getElementById("timeLabel").textContent =
+        `${currentFrame} / ${TOTAL_FRAMES}`;
+
+    document.getElementById("playButton").textContent =
+        playing ? "❚❚" : "▶";
+}
+
+/* ------------------------------------------------------------------
+   Playback engine
+------------------------------------------------------------------ */
+
+let currentFrame = 0;
+let playing = false;
+let direction = 1;
+let speed = 1.0;
+
+let lastTime = null;
+let frameAccumulator = 0;
+
+function animationLoop(now) {
+
+    if (!playing) {
+        lastTime = now;
+        requestAnimationFrame(animationLoop);
+        return;
+    }
+
+    if (lastTime === null) {
+        lastTime = now;
+    }
+
+    const elapsed =
+        Math.min(100, now - lastTime);
+
+    lastTime = now;
+
+    frameAccumulator +=
+        elapsed * FPS * speed / 1000.0;
+
+    while (frameAccumulator >= 1.0) {
+
+        currentFrame += direction;
+        frameAccumulator -= 1.0;
+
+        if (currentFrame >= TOTAL_FRAMES - 1) {
+            currentFrame = TOTAL_FRAMES - 1;
+
+            if (direction > 0) {
+                playing = false;
+                break;
+            }
+        }
+
+        if (currentFrame <= 0) {
+            currentFrame = 0;
+
+            if (direction < 0) {
+                playing = false;
+                break;
+            }
+        }
+    }
+
+    render();
+
+    requestAnimationFrame(animationLoop);
+}
+
+function playForward() {
+    direction = 1;
+
+    if (currentFrame >= TOTAL_FRAMES - 1) {
+        currentFrame = 0;
+    }
+
+    playing = true;
+    lastTime = null;
+}
+
+function playReverse() {
+    direction = -1;
+
+    if (currentFrame <= 0) {
+        currentFrame = TOTAL_FRAMES - 1;
+    }
+
+    playing = true;
+    lastTime = null;
+}
+
+function togglePlay() {
+
+    if (playing) {
+        playing = false;
+        return;
+    }
+
+    if (direction < 0) {
+        playReverse();
+    } else {
+        playForward();
+    }
+}
+
+function stepFrame(amount) {
+
+    playing = false;
+
+    currentFrame += amount;
+
+    if (currentFrame < 0)
+        currentFrame = 0;
+
+    if (currentFrame > TOTAL_FRAMES - 1)
+        currentFrame = TOTAL_FRAMES - 1;
+
+    render();
+}
+
+/* ------------------------------------------------------------------
+   Controls
+------------------------------------------------------------------ */
+
+document.getElementById("playButton")
+    .addEventListener("click", togglePlay);
+
+document.getElementById("reverseButton")
+    .addEventListener("click", playReverse);
+
+document.getElementById("backButton")
+    .addEventListener("click", () => stepFrame(-1));
+
+document.getElementById("forwardButton")
+    .addEventListener("click", () => stepFrame(1));
+
+document.getElementById("restartButton")
+    .addEventListener("click", () => {
+        playing = false;
+        direction = 1;
+        currentFrame = 0;
+        render();
+    });
+
+document.getElementById("endButton")
+    .addEventListener("click", () => {
+        playing = false;
+        direction = 1;
+        currentFrame = TOTAL_FRAMES - 1;
+        render();
+    });
+
+document.getElementById("progress")
+    .addEventListener("input", (event) => {
+        playing = false;
+        currentFrame = Number(event.target.value);
+        render();
+    });
+
+document.getElementById("speed")
+    .addEventListener("change", (event) => {
+        speed = Number(event.target.value);
+    });
+
+document.getElementById("fullscreenButton")
+    .addEventListener("click", async () => {
+
+        const wrapper =
+            document.querySelector(".animation-page");
+
+        try {
+            if (!document.fullscreenElement) {
+                await wrapper.requestFullscreen();
+            } else {
+                await document.exitFullscreen();
+            }
+        } catch (e) {
+            /* Fullscreen can be unavailable in some embedded contexts. */
+        }
+    });
+
+/* Keyboard controls */
+document.addEventListener("keydown", (event) => {
+
+    if (event.target.tagName === "SELECT" ||
+        event.target.tagName === "INPUT") {
+        return;
+    }
+
+    if (event.code === "Space") {
+        event.preventDefault();
+        togglePlay();
+    }
+
+    else if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        stepFrame(-1);
+    }
+
+    else if (event.key === "ArrowRight") {
+        event.preventDefault();
+        stepFrame(1);
+    }
+
+    else if (event.key.toLowerCase() === "r") {
+        event.preventDefault();
+        playReverse();
+    }
+
+    else if (event.key === "Home") {
+        event.preventDefault();
+        playing = false;
+        currentFrame = 0;
+        render();
+    }
+
+    else if (event.key === "End") {
+        event.preventDefault();
+        playing = false;
+        currentFrame = TOTAL_FRAMES - 1;
+        render();
+    }
+});
+
+/* Initial render */
+render();
+requestAnimationFrame(animationLoop);
+
+</script>
 </body>
 </html>
