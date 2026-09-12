@@ -1012,13 +1012,23 @@ function startReverseAnimation() {
 function OX() {
 
     /*
-        The left edge of the static circle must remain inside
-        the canvas on every screen size.
-    */
-    const sideMargin =
-        Math.max(10, W * 0.025);
+        CENTER THE ENTIRE CONSTRUCTION
+        --------------------------------
+        The complete diagram extends from the leftmost edge
+        of the static circle (OX() - R) to A′ (APRIME_X()).
 
-    return R + sideMargin;
+        Therefore, place that complete bounding width at the
+        horizontal center of the canvas instead of anchoring
+        the static circle near the left edge.
+    */
+
+    const totalDiagramWidth =
+        R + TOTAL_DISTANCE;
+
+    return (
+        (W - totalDiagramWidth) / 2 +
+        R
+    );
 
 }
 
