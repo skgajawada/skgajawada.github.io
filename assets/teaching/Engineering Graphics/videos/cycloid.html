@@ -1135,36 +1135,65 @@ function updateResponsiveScale() {
         (Rmm + lowerAllowanceMM);
 
     SCALE =
-        Math.min(
-            MAX_SCALE,
-            horizontalScale,
-            verticalScale
-        );
-
-    /*
-        Prevent unreadably tiny geometry on normal phones,
-        while still allowing extremely narrow screens to fit.
-    */
-    SCALE =
-        Math.max(
-            MIN_SCALE,
-            SCALE
-        );
-
-    if (
-        SCALE * (Rmm + TOTAL_DISTANCE_MM) >
-        availableWidth
-    ) {
-        SCALE =
-            availableWidth /
-            (Rmm + TOTAL_DISTANCE_MM);
-    }
-
-    R =
-        Rmm * SCALE;
-
-    TOTAL_DISTANCE =
-        TOTAL_DISTANCE_MM * SCALE;
+       Math.min(
+           MAX_SCALE,
+           horizontalScale,
+           verticalScale
+       );
+   
+   /*
+       Prevent unreadably tiny geometry on normal phones,
+       while still allowing extremely narrow screens to fit.
+   */
+   SCALE =
+       Math.max(
+           MIN_SCALE,
+           SCALE
+       );
+   
+   if (
+       SCALE * (Rmm + TOTAL_DISTANCE_MM) >
+       availableWidth
+   ) {
+       SCALE =
+           availableWidth /
+           (Rmm + TOTAL_DISTANCE_MM);
+   }
+   
+   
+   /* =========================================================
+      FINAL ANIMATION SIZE
+      =========================================================
+   
+      Reduce the complete construction to 80% of the
+      previously calculated responsive size.
+   
+      This scales EVERYTHING that depends on SCALE:
+      - static circle
+      - rolling circle
+      - cycloid curve
+      - construction lines
+      - dimensions
+      - labels
+      - points
+      - radius
+      - rolling distance
+      - annotation sizes
+   
+      The canvas/iframe itself is NOT reduced.
+      ========================================================= */
+   
+   const ANIMATION_SIZE_FACTOR = 0.80;
+   
+   SCALE =
+       SCALE * ANIMATION_SIZE_FACTOR;
+   
+   
+   R =
+       Rmm * SCALE;
+   
+   TOTAL_DISTANCE =
+       TOTAL_DISTANCE_MM * SCALE;
 
     /*
         Desktop font proportion:
