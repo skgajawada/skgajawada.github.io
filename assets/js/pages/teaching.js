@@ -205,11 +205,6 @@ class TeachingPage extends Component {
                 href="assets/teaching/${subject.folder}/"
                 class="btn btn-primary course-btn">
                 
-                <i class="fas fa-folder-open"></i>
-                
-                Access Course Materials
-                
-            </a>
         
                 <i class="fas fa-folder-open"></i>
         
