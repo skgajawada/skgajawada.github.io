@@ -658,40 +658,24 @@ body{
 <!-- =========================================================
      PDF.JS CLASSIC BUILD
      ========================================================= -->
+<!-- =========================================================
+     PDF.JS
+     ========================================================= -->
 
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js">
 </script>
 
-
 <script>
 
 /* =========================================================
-   PDF.JS WORKER
+   CONFIGURATION
    ========================================================= */
 
-pdfjsLib.GlobalWorkerOptions.workerSrc =
+const PDF_URL = "./cycloid.pdf";
+
+const PDFJS_CDN =
     "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
-
-
-/* =========================================================
-   PDF LOCATION
-   =========================================================
-
-   cycloid-reader.html
-   cycloid.pdf
-
-   are in the SAME folder.
-
-   Therefore:
-
-       ./cycloid.pdf
-
-   is the correct path.
-   ========================================================= */
-
-const PDF_URL =
-    "./cycloid.pdf";
 
 
 /* =========================================================
@@ -745,16 +729,29 @@ let resizeTimer = null;
 
 
 /* =========================================================
-   STATUS HELPERS
+   PDF.JS WORKER
+   ========================================================= */
+
+if (window.pdfjsLib) {
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+        PDFJS_CDN;
+
+}
+
+
+/* =========================================================
+   STATUS
    ========================================================= */
 
 function showStatus(message){
 
     status.classList.remove("hidden");
+
     status.classList.remove("error");
 
-    status.innerHTML =
-        message;
+    status.innerHTML = message;
+
 }
 
 
@@ -764,19 +761,53 @@ function showError(message){
 
     status.classList.add("error");
 
-    status.innerHTML =
-        message;
+    status.innerHTML = message;
+
 }
 
 
 function hideStatus(){
 
     status.classList.add("hidden");
+
+}
+
+
+/* =========================================================
+   ESCAPE ERROR TEXT
+   ========================================================= */
+
+function escapeHTML(text){
+
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
 }
 
 
 /* =========================================================
    LOAD PDF
+   =========================================================
+
+   IMPORTANT:
+
+   Instead of allowing PDF.js to fetch/stream the PDF
+   itself, we first fetch the complete PDF using the
+   browser.
+
+   This eliminates problems with:
+
+   - PDF range requests
+   - PDF streaming
+   - worker communication
+   - relative PDF loading
+   - GitHub Pages PDF handling
+
+   The PDF is still rendered one page at a time.
    ========================================================= */
 
 async function loadPDF(){
@@ -788,22 +819,91 @@ async function loadPDF(){
         );
 
 
-        /*
-         * PDF.js official loading method.
-         */
+        /* ---------------------------------------------
+           STEP 1 — Check PDF.js
+           --------------------------------------------- */
+
+        if(
+            typeof pdfjsLib === "undefined"
+        ){
+
+            throw new Error(
+                "PDF.js library could not be loaded."
+            );
+
+        }
+
+
+        /* ---------------------------------------------
+           STEP 2 — Fetch PDF
+           --------------------------------------------- */
+
+        const response =
+            await fetch(
+                PDF_URL,
+                {
+                    method:"GET",
+                    cache:"no-store"
+                }
+            );
+
+
+        if(
+            !response.ok
+        ){
+
+            throw new Error(
+                "PDF request failed: HTTP " +
+                response.status +
+                " " +
+                response.statusText
+            );
+
+        }
+
+
+        /* ---------------------------------------------
+           STEP 3 — Convert PDF to binary data
+           --------------------------------------------- */
+
+        const arrayBuffer =
+            await response.arrayBuffer();
+
+
+        if(
+            !arrayBuffer ||
+            arrayBuffer.byteLength === 0
+        ){
+
+            throw new Error(
+                "cycloid.pdf is empty."
+            );
+
+        }
+
+
+        /* ---------------------------------------------
+           STEP 4 — Load PDF into PDF.js
+           --------------------------------------------- */
 
         const loadingTask =
             pdfjsLib.getDocument({
-                url:PDF_URL,
+
+                data:
+                    new Uint8Array(
+                        arrayBuffer
+                    ),
 
                 /*
-                 * Keep the PDF streamed rather than
-                 * loading/rendering all pages at once.
+                 * Disable worker deliberately.
+                 *
+                 * This makes the reader considerably
+                 * more reliable on GitHub Pages,
+                 * mobile browsers and iframe contexts.
                  */
 
-                disableAutoFetch:false,
+                disableWorker:true
 
-                disableStream:false
             });
 
 
@@ -811,16 +911,27 @@ async function loadPDF(){
             await loadingTask.promise;
 
 
+        /* ---------------------------------------------
+           STEP 5 — Verify pages
+           --------------------------------------------- */
+
         if(
             !pdf ||
-            !pdf.numPages
+            pdf.numPages < 1
         ){
 
             throw new Error(
                 "The PDF contains no readable pages."
             );
+
         }
 
+
+        /* ---------------------------------------------
+           STEP 6 — Initialize reader
+           --------------------------------------------- */
+
+        currentPage = 1;
 
         counter.textContent =
             `1 / ${pdf.numPages}`;
@@ -828,6 +939,10 @@ async function loadPDF(){
 
         hideStatus();
 
+
+        /* ---------------------------------------------
+           STEP 7 — Render first slide
+           --------------------------------------------- */
 
         await renderPage(1);
 
@@ -839,7 +954,7 @@ async function loadPDF(){
     catch(error){
 
         console.error(
-            "PDF loading error:",
+            "Cycloid PDF loading error:",
             error
         );
 
@@ -847,53 +962,39 @@ async function loadPDF(){
         showError(
             `
             <strong>
-                Presentation could not be loaded.
+                Cycloid presentation could not be loaded.
             </strong>
-
-            <br><br>
-
-            Please check that
-            <strong>cycloid.pdf</strong>
-            exists in the same folder as
-            <strong>cycloid-reader.html</strong>.
 
             <br><br>
 
             <small>
                 ${escapeHTML(
                     error.message ||
-                    "Unknown PDF.js error."
+                    "Unknown error."
                 )}
+            </small>
+
+            <br><br>
+
+            <small>
+                Expected file:
+                <strong>cycloid.pdf</strong>
             </small>
             `
         );
+
     }
 
 }
 
 
 /* =========================================================
-   SAFE ERROR TEXT
-   ========================================================= */
-
-function escapeHTML(text){
-
-    return String(text)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-}
-
-
-/* =========================================================
-   CALCULATE SLIDE SCALE
+   CALCULATE SCALE
    ========================================================= */
 
 function calculateScale(page){
 
-    const viewport =
+    const baseViewport =
         page.getViewport({
             scale:1
         });
@@ -907,19 +1008,27 @@ function calculateScale(page){
         slideArea.clientHeight;
 
 
-    /*
-     * Fit the COMPLETE slide inside the
-     * available viewport.
-     */
+    if(
+        availableWidth <= 0 ||
+        availableHeight <= 0
+    ){
+
+        return {
+            scale:1,
+            deviceRatio:1
+        };
+
+    }
+
 
     const widthScale =
         availableWidth /
-        viewport.width;
+        baseViewport.width;
 
 
     const heightScale =
         availableHeight /
-        viewport.height;
+        baseViewport.height;
 
 
     let scale =
@@ -936,60 +1045,43 @@ function calculateScale(page){
     scale *= 0.985;
 
 
-    /*
-     * Never allow an invalid scale.
-     */
-
     if(
         !Number.isFinite(scale) ||
         scale <= 0
     ){
 
         scale = 1;
+
     }
 
 
-    /*
-     * Limit device pixel ratio.
-     *
-     * This prevents excessive memory use
-     * on high-DPI phones/tablets.
-     */
-
-    const devicePixelRatio =
-        window.devicePixelRatio || 1;
-
-
-    const effectiveDPR =
+    const deviceRatio =
         Math.min(
-            devicePixelRatio,
+            window.devicePixelRatio || 1,
             2
         );
 
 
     return {
         scale,
-        effectiveDPR
+        deviceRatio
     };
 
 }
 
 
 /* =========================================================
-   RENDER ONE PAGE
+   RENDER PAGE
    ========================================================= */
 
 async function renderPage(pageNumber){
 
     if(!pdf){
+
         return;
+
     }
 
-
-    /*
-     * Prevent multiple simultaneous
-     * canvas render operations.
-     */
 
     if(rendering){
 
@@ -997,6 +1089,7 @@ async function renderPage(pageNumber){
             pageNumber;
 
         return;
+
     }
 
 
@@ -1013,7 +1106,7 @@ async function renderPage(pageNumber){
 
         const {
             scale,
-            effectiveDPR
+            deviceRatio
         } =
             calculateScale(page);
 
@@ -1024,38 +1117,38 @@ async function renderPage(pageNumber){
             });
 
 
-        /*
-         * CSS dimensions.
-         */
+        /* ---------------------------------------------
+           CSS size
+           --------------------------------------------- */
 
         canvas.style.width =
-            `${viewport.width}px`;
+            viewport.width + "px";
 
         canvas.style.height =
-            `${viewport.height}px`;
+            viewport.height + "px";
 
 
-        /*
-         * Actual canvas resolution.
-         */
+        /* ---------------------------------------------
+           Actual canvas resolution
+           --------------------------------------------- */
 
         canvas.width =
             Math.floor(
                 viewport.width *
-                effectiveDPR
+                deviceRatio
             );
 
 
         canvas.height =
             Math.floor(
                 viewport.height *
-                effectiveDPR
+                deviceRatio
             );
 
 
-        /*
-         * Clear previous page.
-         */
+        /* ---------------------------------------------
+           Clear canvas
+           --------------------------------------------- */
 
         context.setTransform(
             1,
@@ -1075,26 +1168,9 @@ async function renderPage(pageNumber){
         );
 
 
-        /*
-         * PDF.js HiDPI transform.
-         */
-
-        const transform =
-            effectiveDPR !== 1
-                ? [
-                    effectiveDPR,
-                    0,
-                    0,
-                    effectiveDPR,
-                    0,
-                    0
-                  ]
-                : null;
-
-
-        /*
-         * Render ONLY the current page.
-         */
+        /* ---------------------------------------------
+           Render
+           --------------------------------------------- */
 
         await page.render({
 
@@ -1104,8 +1180,14 @@ async function renderPage(pageNumber){
             viewport:
                 viewport,
 
-            transform:
-                transform
+            transform:[
+                deviceRatio,
+                0,
+                0,
+                deviceRatio,
+                0,
+                0
+            ]
 
         }).promise;
 
@@ -1125,7 +1207,7 @@ async function renderPage(pageNumber){
     catch(error){
 
         console.error(
-            "Page rendering error:",
+            "Slide rendering error:",
             error
         );
 
@@ -1142,7 +1224,7 @@ async function renderPage(pageNumber){
             <small>
                 ${escapeHTML(
                     error.message ||
-                    "Rendering error."
+                    "Unknown rendering error."
                 )}
             </small>
             `
@@ -1155,11 +1237,6 @@ async function renderPage(pageNumber){
         rendering = false;
 
 
-        /*
-         * If the user clicked another page
-         * while rendering, render that page next.
-         */
-
         if(
             pendingPage !== null
         ){
@@ -1167,14 +1244,13 @@ async function renderPage(pageNumber){
             const nextPage =
                 pendingPage;
 
-
             pendingPage =
                 null;
-
 
             renderPage(
                 nextPage
             );
+
         }
 
     }
@@ -1183,17 +1259,19 @@ async function renderPage(pageNumber){
 
 
 /* =========================================================
-   PAGE NAVIGATION
+   GO TO PAGE
    ========================================================= */
 
 function goToPage(pageNumber){
 
     if(!pdf){
+
         return;
+
     }
 
 
-    const safePage =
+    const target =
         Math.max(
             1,
 
@@ -1205,20 +1283,22 @@ function goToPage(pageNumber){
 
 
     renderPage(
-        safePage
+        target
     );
 
 }
 
 
 /* =========================================================
-   UPDATE BUTTONS
+   BUTTON STATE
    ========================================================= */
 
 function updateControls(){
 
     if(!pdf){
+
         return;
+
     }
 
 
@@ -1241,12 +1321,12 @@ function updateControls(){
 
 
 /* =========================================================
-   BUTTON EVENTS
+   BUTTONS
    ========================================================= */
 
 firstButton.addEventListener(
     "click",
-    function(){
+    () => {
 
         goToPage(1);
 
@@ -1256,7 +1336,7 @@ firstButton.addEventListener(
 
 previousButton.addEventListener(
     "click",
-    function(){
+    () => {
 
         goToPage(
             currentPage - 1
@@ -1268,7 +1348,7 @@ previousButton.addEventListener(
 
 nextButton.addEventListener(
     "click",
-    function(){
+    () => {
 
         goToPage(
             currentPage + 1
@@ -1280,7 +1360,7 @@ nextButton.addEventListener(
 
 lastButton.addEventListener(
     "click",
-    function(){
+    () => {
 
         if(pdf){
 
@@ -1295,16 +1375,12 @@ lastButton.addEventListener(
 
 
 /* =========================================================
-   KEYBOARD NAVIGATION
+   KEYBOARD
    ========================================================= */
 
 document.addEventListener(
     "keydown",
-    function(event){
-
-        /*
-         * Left arrow / Page Up
-         */
+    event => {
 
         if(
             event.key === "ArrowLeft" ||
@@ -1318,12 +1394,9 @@ document.addEventListener(
             );
 
             return;
+
         }
 
-
-        /*
-         * Right arrow / Page Down
-         */
 
         if(
             event.key === "ArrowRight" ||
@@ -1337,12 +1410,9 @@ document.addEventListener(
             );
 
             return;
+
         }
 
-
-        /*
-         * Home
-         */
 
         if(
             event.key === "Home"
@@ -1353,12 +1423,9 @@ document.addEventListener(
             goToPage(1);
 
             return;
+
         }
 
-
-        /*
-         * End
-         */
 
         if(
             event.key === "End"
@@ -1375,12 +1442,9 @@ document.addEventListener(
             }
 
             return;
+
         }
 
-
-        /*
-         * Spacebar
-         */
 
         if(
             event.key === " "
@@ -1404,7 +1468,7 @@ document.addEventListener(
 
 fullscreenButton.addEventListener(
     "click",
-    async function(){
+    async () => {
 
         try{
 
@@ -1412,26 +1476,15 @@ fullscreenButton.addEventListener(
                 !document.fullscreenElement
             ){
 
-                if(
+                await
                     document.documentElement
-                        .requestFullscreen
-                ){
-
-                    await
-                        document.documentElement
-                            .requestFullscreen();
-                }
+                        .requestFullscreen();
 
             }
             else{
 
-                if(
-                    document.exitFullscreen
-                ){
-
-                    await
-                        document.exitFullscreen();
-                }
+                await
+                    document.exitFullscreen();
 
             }
 
@@ -1451,12 +1504,12 @@ fullscreenButton.addEventListener(
 
 
 /* =========================================================
-   RESIZE / ROTATION
+   RESIZE
    ========================================================= */
 
 window.addEventListener(
     "resize",
-    function(){
+    () => {
 
         clearTimeout(
             resizeTimer
@@ -1465,7 +1518,7 @@ window.addEventListener(
 
         resizeTimer =
             setTimeout(
-                function(){
+                () => {
 
                     if(pdf){
 
@@ -1476,7 +1529,7 @@ window.addEventListener(
                     }
 
                 },
-                150
+                200
             );
 
     }
@@ -1484,15 +1537,15 @@ window.addEventListener(
 
 
 /* =========================================================
-   ORIENTATION CHANGE
+   ORIENTATION
    ========================================================= */
 
 window.addEventListener(
     "orientationchange",
-    function(){
+    () => {
 
         setTimeout(
-            function(){
+            () => {
 
                 if(pdf){
 
@@ -1503,7 +1556,7 @@ window.addEventListener(
                 }
 
             },
-            250
+            300
         );
 
     }
@@ -1521,7 +1574,7 @@ let touchStartY = 0;
 
 slideArea.addEventListener(
     "touchstart",
-    function(event){
+    event => {
 
         const touch =
             event.changedTouches[0];
@@ -1529,7 +1582,6 @@ slideArea.addEventListener(
 
         touchStartX =
             touch.clientX;
-
 
         touchStartY =
             touch.clientY;
@@ -1543,7 +1595,7 @@ slideArea.addEventListener(
 
 slideArea.addEventListener(
     "touchend",
-    function(event){
+    event => {
 
         const touch =
             event.changedTouches[0];
@@ -1559,35 +1611,24 @@ slideArea.addEventListener(
             touchStartY;
 
 
-        /*
-         * Ignore mostly vertical
-         * gestures.
-         */
-
         if(
             Math.abs(dx) <
             Math.abs(dy)
         ){
 
             return;
+
         }
 
-
-        /*
-         * Ignore very small movements.
-         */
 
         if(
             Math.abs(dx) < 50
         ){
 
             return;
+
         }
 
-
-        /*
-         * Swipe left = next.
-         */
 
         if(dx < 0){
 
@@ -1596,11 +1637,6 @@ slideArea.addEventListener(
             );
 
         }
-
-        /*
-         * Swipe right = previous.
-         */
-
         else{
 
             goToPage(
@@ -1617,12 +1653,12 @@ slideArea.addEventListener(
 
 
 /* =========================================================
-   BASIC DOWNLOAD / PRINT DETERRENCE
+   COPY / DOWNLOAD DETERRENCE
    ========================================================= */
 
 document.addEventListener(
     "contextmenu",
-    function(event){
+    event => {
 
         event.preventDefault();
 
@@ -1632,7 +1668,7 @@ document.addEventListener(
 
 document.addEventListener(
     "dragstart",
-    function(event){
+    event => {
 
         event.preventDefault();
 
@@ -1640,16 +1676,9 @@ document.addEventListener(
 );
 
 
-/*
- * Prevent common browser shortcuts.
- *
- * This is only a deterrent; it cannot provide
- * absolute protection for a public web resource.
- */
-
 document.addEventListener(
     "keydown",
-    function(event){
+    event => {
 
         const key =
             event.key.toLowerCase();
