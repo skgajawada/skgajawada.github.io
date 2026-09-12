@@ -1,1 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Engineering Curves | Engineering Graphics</title>
+
+<meta name="description"
+      content="Engineering Curves - Engineering Graphics">
+
+<link rel="icon"
+      href="../../../../favicon.ico">
+
+<link rel="stylesheet"
+      href="../../../../assets/css/style.css">
+
+<link rel="stylesheet"
+      href="../style.css">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f4f6f8;
+    color: #172033;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.ec-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(255,255,255,0.96);
+
+    backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid #e5eaf1;
+}
+
+.ec-header-inner {
+    max-width: 1180px;
+    margin: auto;
+
+    min-height: 70px;
+
+    padding: 12px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.ec-back {
+    text-decoration: none;
+    color: #1769aa;
+    font-weight: 700;
+}
+
+.ec-title {
+    text-align: center;
+    flex: 1;
+}
+
+.ec-title strong {
+    display: block;
+    font-size: 1.05rem;
+}
+
+.ec-title span {
+    color: #667085;
+    font-size: 0.82rem;
+}
+
+.ec-main {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 55px 20px 80px;
+}
+
+.ec-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.ec-heading .tag {
+    display: inline-block;
+    background: #e8f1ff;
+    color: #1769aa;
+    border-radius: 30px;
+    padding: 7px 15px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.ec-heading h1 {
+    margin: 0 0 12px;
+    font-size: 2.3rem;
+}
+
+.ec-heading p {
+    max-width: 720px;
+    margin: auto;
+    color: #667085;
+    line-height: 1.7;
+}
+
+.ec-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.ec-card {
+    background: #fff;
+    border: 1px solid #e1e6ed;
+    border-radius: 17px;
+    padding: 30px 25px;
+
+    text-decoration: none;
+    color: inherit;
+
+    min-height: 245px;
+
+    display: flex;
+    flex-direction: column;
+
+    box-shadow:
+        0 8px 25px rgba(15,23,42,0.06);
+
+    transition: .25s ease;
+}
+
+.ec-card:hover {
+    transform: translateY(-5px);
+
+    border-color: #9ec5fe;
+
+    box-shadow:
+        0 18px 35px rgba(15,23,42,0.11);
+}
+
+.ec-icon {
+    width: 58px;
+    height: 58px;
+
+    border-radius: 15px;
+
+    background: #edf5ff;
+    color: #1769aa;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.45rem;
+
+    margin-bottom: 20px;
+}
+
+.ec-card h2 {
+    margin: 0 0 10px;
+    font-size: 1.25rem;
+}
+
+.ec-card p {
+    margin: 0;
+    color: #667085;
+    line-height: 1.65;
+    flex: 1;
+}
+
+.ec-open {
+    margin-top: 20px;
+    color: #1769aa;
+    font-weight: 700;
+}
+
+.ec-footer {
+    text-align: center;
+    padding: 30px 20px;
+    border-top: 1px solid #e5eaf1;
+    color: #667085;
+    background: #fff;
+}
+
+@media(max-width: 800px) {
+
+    .ec-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+}
+
+@media(max-width: 520px) {
+
+    .ec-header-inner {
+        min-height: 62px;
+    }
+
+    .ec-title {
+        text-align: right;
+    }
+
+    .ec-title span {
+        display: none;
+    }
+
+    .ec-main {
+        padding: 40px 15px 60px;
+    }
+
+    .ec-heading h1 {
+        font-size: 1.8rem;
+    }
+
+    .ec-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="ec-header">
+
+    <div class="ec-header-inner">
+
+        <a href="../"
+           class="ec-back">
+
+            <i class="fas fa-arrow-left"></i>
+            Engineering Graphics
+
+        </a>
+
+        <div class="ec-title">
+
+            <strong>
+                Engineering Curves
+            </strong>
+
+            <span>
+                Engineering Graphics
+            </span>
+
+        </div>
+
+        <div>
+            Gajavada Sanjeevkumar
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="ec-main">
+
+
+<section class="ec-heading">
+
+    <span class="tag">
+        Engineering Graphics
+    </span>
+
+    <h1>
+        Engineering Curves
+    </h1>
+
+    <p>
+        Engineering curves are fundamental graphical
+        constructions used to represent the paths and
+        profiles of engineering components.
+    </p>
+
+</section>
+
+
+<section class="ec-grid">
+
+
+<a href="cycloid/"
+   class="ec-card">
+
+    <div class="ec-icon">
+        <i class="fas fa-arrows-spin"></i>
+    </div>
+
+    <h2>
+        Cycloid
+    </h2>
+
+    <p>
+        Study the generation and construction of a
+        cycloid produced by a point on the circumference
+        of a circle rolling along a straight line.
+    </p>
+
+    <span class="ec-open">
+        Open Cycloid →
+    </span>
+
+</a>
+
+
+<a href="epicycloid/"
+   class="ec-card">
+
+    <div class="ec-icon">
+        <i class="fas fa-circle-notch"></i>
+    </div>
+
+    <h2>
+        Epicycloid
+    </h2>
+
+    <p>
+        Learn the construction and generation of an
+        epicycloid formed by a circle rolling externally
+        on another circle.
+    </p>
+
+    <span class="ec-open">
+        Open Topic →
+    </span>
+
+</a>
+
+
+<a href="hypocycloid/"
+   class="ec-card">
+
+    <div class="ec-icon">
+        <i class="fas fa-circle"></i>
+    </div>
+
+    <h2>
+        Hypocycloid
+    </h2>
+
+    <p>
+        Learn the construction and generation of a
+        hypocycloid formed by a circle rolling inside
+        another circle.
+    </p>
+
+    <span class="ec-open">
+        Open Topic →
+    </span>
+
+</a>
+
+
+<a href="#"
+   class="ec-card"
+   onclick="return false;">
+
+    <div class="ec-icon">
+        <i class="fas fa-compass-drafting"></i>
+    </div>
+
+    <h2>
+        Involute
+    </h2>
+
+    <p>
+        Topic page will contain notes, construction,
+        applications and worked graphical examples.
+    </p>
+
+    <span class="ec-open">
+        Coming Soon
+    </span>
+
+</a>
+
+
+<a href="#"
+   class="ec-card"
+   onclick="return false;">
+
+    <div class="ec-icon">
+        <i class="fas fa-wave-square"></i>
+    </div>
+
+    <h2>
+        Spiral
+    </h2>
+
+    <p>
+        Topic page for spiral curves and their
+        engineering constructions.
+    </p>
+
+    <span class="ec-open">
+        Coming Soon
+    </span>
+
+</a>
+
+
+<a href="#"
+   class="ec-card"
+   onclick="return false;">
+
+    <div class="ec-icon">
+        <i class="fas fa-ellipsis"></i>
+    </div>
+
+    <h2>
+        Other Curves
+    </h2>
+
+    <p>
+        Additional Engineering Graphics curves will
+        be added as individual topic pages.
+    </p>
+
+    <span class="ec-open">
+        Coming Soon
+    </span>
+
+</a>
+
+
+</section>
+
+</main>
+
+
+<footer class="ec-footer">
+
+    © 2026 Gajavada Sanjeevkumar —
+    Engineering Graphics
+
+</footer>
+
+
+<script>
+
+document.addEventListener("contextmenu",
+    e => e.preventDefault());
+
+document.addEventListener("dragstart",
+    e => e.preventDefault());
+
+document.addEventListener("keydown", function(e) {
+
+    if (
+        (e.ctrlKey || e.metaKey) &&
+        ["c","x","s","u","p"].includes(
+            e.key.toLowerCase()
+        )
+    ) {
+        e.preventDefault();
+    }
+
+});
+
+</script>
+
+
+</body>
+</html>
