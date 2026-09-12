@@ -1,0 +1,3417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cycloid Construction – 12 Equal Divisions</title>
+
+<style>
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+    height: 58px;
+    min-height: 58px;
+
+    background: #123b63;
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 8px 18px;
+
+    z-index: 20;
+}
+
+.title-area h1 {
+    margin: 0;
+    font-size: clamp(18px, 2vw, 27px);
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.title-area p {
+    margin: 3px 0 0;
+    font-size: clamp(10px, 1vw, 13px);
+    opacity: 0.9;
+}
+
+.author {
+    font-size: clamp(11px, 1vw, 14px);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.main {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   INFORMATION PANEL
+   ========================================================= */
+
+.info-panel {
+    position: absolute;
+
+    top: 12px;
+    left: 14px;
+
+    z-index: 10;
+
+    min-width: 300px;
+
+    padding: 12px 16px;
+
+    background: rgba(255,255,255,0.96);
+
+    border: 1px solid #b7c5d3;
+    border-radius: 8px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.10);
+
+    color: #17324d;
+
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.info-title {
+    margin-bottom: 3px;
+    color: #123b63;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.value {
+    color: #111111;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   COMBINED NAVIGATION BAR
+   ========================================================= */
+
+.navigation {
+    position: absolute;
+
+    left: 50%;
+    bottom: 10px;
+
+    transform: translateX(-50%);
+
+    z-index: 15;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    padding: 7px 9px;
+
+    background: rgba(255,255,255,0.98);
+
+    border: 1px solid #b8c4cf;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 10px rgba(0,0,0,0.12);
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   NAVIGATION BUTTONS
+   ========================================================= */
+
+.nav-btn {
+    height: 32px;
+    min-width: 38px;
+
+    padding: 5px 9px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: #174f94;
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        transform 0.1s ease;
+}
+
+.nav-btn:hover {
+    background: #103d73;
+}
+
+.nav-btn:active {
+    transform: scale(0.96);
+}
+
+.nav-btn.play {
+    min-width: 48px;
+}
+
+.nav-btn.reset {
+    background: #4c6478;
+}
+
+.nav-btn.reset:hover {
+    background: #374d60;
+}
+
+
+/* =========================================================
+   SPEED CONTROL
+   ========================================================= */
+
+.speed-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    padding-left: 4px;
+
+    color: #333333;
+    font-size: 12px;
+}
+
+input[type="range"] {
+    width: 100px;
+    cursor: pointer;
+}
+
+.speed-value {
+    min-width: 24px;
+    text-align: right;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+    height: 34px;
+    min-height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eef3f7;
+    color: #52616d;
+
+    border-top: 1px solid #ccd6df;
+
+    font-size: 13px;
+    letter-spacing: 0.2px;
+
+    z-index: 20;
+}
+
+
+/* =========================================================
+   SMALL SCREEN
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .author {
+        display: none;
+    }
+
+    .navigation {
+        gap: 3px;
+        padding: 6px;
+    }
+
+    .nav-btn {
+        min-width: 32px;
+        padding: 4px 6px;
+    }
+
+    .speed-group {
+        padding-left: 2px;
+    }
+
+    input[type="range"] {
+        width: 70px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE MOBILE / TABLET PRESENTATION
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .header {
+        height: 54px;
+        min-height: 54px;
+        padding: 7px 14px;
+    }
+
+    .title-area h1 {
+        font-size: clamp(17px, 2.6vw, 24px);
+    }
+
+    .title-area p {
+        font-size: 10px;
+    }
+
+    .author {
+        font-size: 11px;
+    }
+
+    .info-panel {
+        top: 9px;
+        left: 9px;
+        min-width: 220px;
+        max-width: 245px;
+        padding: 9px 11px;
+        font-size: 11px;
+        line-height: 1.42;
+    }
+
+    .info-title {
+        font-size: 12px;
+    }
+
+    .navigation {
+        bottom: 7px;
+        gap: 4px;
+        padding: 6px 7px;
+        max-width: calc(100% - 12px);
+    }
+
+    .nav-btn {
+        height: 30px;
+        min-width: 34px;
+        padding: 4px 7px;
+        font-size: 11px;
+    }
+
+    .nav-btn.play {
+        min-width: 42px;
+    }
+
+    .speed-group {
+        font-size: 10px;
+        gap: 4px;
+    }
+
+    input[type="range"] {
+        width: 78px;
+    }
+
+    .footer {
+        height: 30px;
+        min-height: 30px;
+        font-size: 11px;
+        padding: 0 8px;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .header {
+        height: 48px;
+        min-height: 48px;
+        padding: 5px 9px;
+    }
+
+    .title-area h1 {
+        font-size: clamp(14px, 4.4vw, 19px);
+        line-height: 1.05;
+        letter-spacing: 0;
+    }
+
+    .title-area p {
+        margin-top: 2px;
+        font-size: 8px;
+    }
+
+    .author {
+        display: none;
+    }
+
+    .info-panel {
+        top: 5px;
+        left: 5px;
+        min-width: 168px;
+        max-width: 180px;
+        padding: 6px 8px;
+        border-radius: 6px;
+        font-size: 9px;
+        line-height: 1.30;
+    }
+
+    .info-title {
+        margin-bottom: 2px;
+        font-size: 10px;
+    }
+
+    .navigation {
+        left: 50%;
+        bottom: 4px;
+        width: max-content;
+        max-width: calc(100% - 6px);
+        gap: 2px;
+        padding: 3px;
+        border-radius: 7px;
+    }
+
+    .nav-btn {
+        height: 26px;
+        min-width: 27px;
+        padding: 3px 4px;
+        border-radius: 5px;
+        font-size: 9px;
+    }
+
+    .nav-btn.play {
+        min-width: 32px;
+    }
+
+    .speed-group {
+        gap: 2px;
+        padding-left: 2px;
+        font-size: 8px;
+    }
+
+    input[type="range"] {
+        width: 48px;
+    }
+
+    .speed-value {
+        min-width: 17px;
+    }
+
+    .footer {
+        height: 24px;
+        min-height: 24px;
+        font-size: 9px;
+        letter-spacing: 0;
+        padding: 0 4px;
+    }
+}
+
+
+@media (max-width: 430px) {
+
+    .header {
+        height: 44px;
+        min-height: 44px;
+        padding: 4px 7px;
+    }
+
+    .title-area h1 {
+        font-size: 13px;
+    }
+
+    .title-area p {
+        display: none;
+    }
+
+    .info-panel {
+        top: 4px;
+        left: 4px;
+        min-width: 148px;
+        max-width: 154px;
+        padding: 5px 6px;
+        font-size: 8px;
+        line-height: 1.24;
+    }
+
+    .info-title {
+        font-size: 9px;
+    }
+
+    .navigation {
+        bottom: 2px;
+        max-width: calc(100% - 4px);
+        padding: 2px;
+    }
+
+    .nav-btn {
+        height: 24px;
+        min-width: 24px;
+        padding: 2px 3px;
+        font-size: 8px;
+    }
+
+    .nav-btn.play {
+        min-width: 29px;
+    }
+
+    .speed-group {
+        font-size: 7px;
+    }
+
+    input[type="range"] {
+        width: 40px;
+    }
+
+    .speed-value {
+        min-width: 15px;
+    }
+
+    .footer {
+        height: 21px;
+        min-height: 21px;
+        font-size: 8px;
+    }
+}
+
+
+/*
+   Short landscape phones.
+   The geometry is automatically scaled by JavaScript;
+   these rules only make the surrounding UI compact.
+*/
+@media (max-width: 900px) and (max-height: 480px) {
+
+    .header {
+        height: 40px;
+        min-height: 40px;
+        padding: 3px 7px;
+    }
+
+    .title-area h1 {
+        font-size: 13px;
+    }
+
+    .title-area p {
+        display: none;
+    }
+
+    .info-panel {
+        top: 4px;
+        left: 4px;
+        min-width: 145px;
+        max-width: 150px;
+        padding: 4px 6px;
+        font-size: 7px;
+        line-height: 1.20;
+    }
+
+    .info-title {
+        font-size: 8px;
+    }
+
+    .navigation {
+        bottom: 2px;
+        padding: 2px;
+    }
+
+    .nav-btn {
+        height: 23px;
+        min-width: 23px;
+        padding: 2px 3px;
+        font-size: 8px;
+    }
+
+    .nav-btn.play {
+        min-width: 28px;
+    }
+
+    .speed-group {
+        font-size: 7px;
+    }
+
+    input[type="range"] {
+        width: 40px;
+    }
+
+    .footer {
+        height: 19px;
+        min-height: 19px;
+        font-size: 7px;
+    }
+}
+
+
+/* Extra narrow devices: keep every navigation control visible. */
+@media (max-width: 340px) {
+
+    .navigation {
+        transform: translateX(-50%) scale(0.90);
+        transform-origin: center bottom;
+    }
+
+    .info-panel {
+        min-width: 140px;
+        max-width: 145px;
+        font-size: 7.5px;
+    }
+
+    .footer {
+        font-size: 7px;
+    }
+}
+
+
+/* =========================================================
+   ACTUAL-VIEWPORT RESPONSIVE OVERRIDES
+   Also works when Chrome "Desktop site" is enabled.
+   ========================================================= */
+
+body.compact-landscape .header {
+    height: 44px;
+    min-height: 44px;
+    padding: 4px 9px;
+}
+
+body.compact-landscape .title-area h1 {
+    font-size: 15px;
+    line-height: 1.05;
+}
+
+body.compact-landscape .title-area p,
+body.compact-landscape .author {
+    display: none;
+}
+
+body.compact-landscape .info-panel {
+    top: 5px;
+    left: 5px;
+    min-width: 148px;
+    width: 158px;
+    max-width: 158px;
+    padding: 6px 8px;
+    font-size: 8px;
+    line-height: 1.28;
+}
+
+body.compact-landscape .info-title {
+    font-size: 9px;
+    margin-bottom: 2px;
+}
+
+body.compact-landscape .navigation {
+    left: 50%;
+    bottom: 24px;
+    gap: 2px;
+    padding: 3px;
+    max-width: calc(100% - 8px);
+    transform: translateX(-50%);
+}
+
+body.compact-landscape .nav-btn {
+    height: 25px;
+    min-width: 26px;
+    padding: 2px 4px;
+    font-size: 9px;
+}
+
+body.compact-landscape .nav-btn.play {
+    min-width: 31px;
+}
+
+body.compact-landscape .speed-group {
+    gap: 2px;
+    padding-left: 2px;
+    font-size: 8px;
+}
+
+body.compact-landscape input[type="range"] {
+    width: 48px;
+}
+
+body.compact-landscape .footer {
+    height: 21px;
+    min-height: 21px;
+    font-size: 9px;
+    padding: 0 5px;
+}
+
+body.compact-portrait .author {
+    display: none;
+}
+
+body.compact-portrait .navigation {
+    bottom: 25px;
+}
+
+body.compact-portrait .footer {
+    height: 22px;
+    min-height: 22px;
+    font-size: 8px;
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =======================================================
+     HEADER
+     ======================================================= -->
+
+<div class="header">
+
+    <div class="title-area">
+
+        <h1>
+            Cycloid Construction — 12 Equal Divisions
+        </h1>
+
+        <p>
+            Engineering Drawing / Engineering Graphics
+        </p>
+
+    </div>
+
+    <div class="author">
+        Gajavada Sanjeevkumar
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     MAIN ANIMATION
+     ======================================================= -->
+
+<div class="main">
+
+    <canvas id="canvas"></canvas>
+
+
+    <!-- ===================================================
+         INFORMATION PANEL
+         =================================================== -->
+
+    <div class="info-panel">
+
+        <div class="info-title">
+            Cycloid Parameters
+        </div>
+
+        <div>
+            Diameter:
+            <span class="value">50 mm</span>
+        </div>
+
+        <div>
+            Radius:
+            <span class="value">25 mm</span>
+        </div>
+
+        <div>
+            Divisions:
+            <span class="value">12 × 30°</span>
+        </div>
+
+        <div>
+            Current Division:
+            <span class="value"
+                  id="divisionValue">0</span>
+        </div>
+
+        <div>
+            Rotation Angle:
+            <span class="value"
+                  id="angleValue">0.0°</span>
+        </div>
+
+        <div>
+            Rolling Distance:
+            <span class="value"
+                  id="distanceValue">0.00 mm</span>
+        </div>
+
+        <div>
+            Direction:
+            <span class="value"
+                  id="directionValue">Forward</span>
+        </div>
+
+    </div>
+
+
+    <!-- ===================================================
+         COMBINED NAVIGATION
+         =================================================== -->
+
+    <div class="navigation">
+
+        <button
+            class="nav-btn"
+            id="backwardBtn"
+            title="Previous 30° division">
+            ◀◀
+        </button>
+
+
+        <button
+            class="nav-btn"
+            id="reverseBtn"
+            title="Run backward">
+            ◀
+        </button>
+
+
+        <button
+            class="nav-btn play"
+            id="playBtn"
+            title="Play / Pause">
+            ▶
+        </button>
+
+
+        <button
+            class="nav-btn"
+            id="forwardBtn"
+            title="Run forward">
+            ▶
+        </button>
+
+
+        <button
+            class="nav-btn"
+            id="nextBtn"
+            title="Next 30° division">
+            ▶▶
+        </button>
+
+
+        <button
+            class="nav-btn reset"
+            id="resetBtn"
+            title="Reset animation">
+            ↻ Reset
+        </button>
+
+
+        <div class="speed-group">
+
+            <span>Speed</span>
+
+            <input
+                id="speedSlider"
+                type="range"
+                min="0.25"
+                max="2"
+                step="0.25"
+                value="1">
+
+            <span
+                class="speed-value"
+                id="speedValue">
+                1×
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     FOOTER
+     ======================================================= -->
+
+<div class="footer">
+
+    Cycloid generated by one complete revolution of a
+    50 mm diameter circle
+
+</div>
+
+
+<script>
+
+
+/* =========================================================
+   CANVAS
+   ========================================================= */
+
+const canvas =
+    document.getElementById("canvas");
+
+const ctx =
+    canvas.getContext("2d");
+
+let W = 0;
+let H = 0;
+
+
+/* =========================================================
+   PARAMETERS
+   ========================================================= */
+
+const N = 12;
+
+const DIVISION_ANGLE =
+    2 * Math.PI / N;
+
+const D = 50.0;
+
+const Rmm = 25.0;
+
+/*
+    Enlarged diagram — 9 px/mm
+*/
+
+const MAX_SCALE = 8.1;
+const MIN_SCALE = 1.20;
+
+let SCALE = MAX_SCALE;
+let FONT_SCALE = 2.025;
+
+let R = Rmm * SCALE;
+
+const TOTAL_DISTANCE_MM =
+    Math.PI * D;
+
+let TOTAL_DISTANCE =
+    TOTAL_DISTANCE_MM * SCALE;
+
+
+/* =========================================================
+   ANIMATION STATE
+   ========================================================= */
+
+let theta = 0;
+
+let currentDivision = 0;
+
+let playing = false;
+
+let direction = 1;
+
+let pauseUntil = 0;
+
+let lastTimestamp = 0;
+
+let speed = 1;
+
+let trace = [];
+
+/*
+    Navigation safety:
+    Only one animation loop is allowed at a time.
+    A new direction invalidates any older animation callback.
+*/
+let animationFrameId = null;
+let animationToken = 0;
+
+function stopAnimation() {
+    playing = false;
+    pauseUntil = 0;
+    lastTimestamp = 0;
+
+    if (animationFrameId !== null) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+    }
+
+    animationToken++;
+}
+
+function startForwardAnimation() {
+    stopAnimation();
+
+    direction = 1;
+    playing = true;
+
+    const token = animationToken;
+
+    document.getElementById("playBtn").textContent = "❚❚";
+
+    animationFrameId = requestAnimationFrame(
+        timestamp => animateForward(timestamp, token)
+    );
+}
+
+function startReverseAnimation() {
+    stopAnimation();
+
+    direction = -1;
+    playing = true;
+
+    const token = animationToken;
+
+    document.getElementById("playBtn").textContent = "❚❚";
+
+    animationFrameId = requestAnimationFrame(
+        timestamp => animateReverse(timestamp, token)
+    );
+}
+
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+
+function OX() {
+
+    /*
+        CENTER THE ENTIRE CONSTRUCTION
+        --------------------------------
+        The complete diagram extends from the leftmost edge
+        of the static circle (OX() - R) to A′ (APRIME_X()).
+
+        Therefore, place that complete bounding width at the
+        horizontal center of the canvas instead of anchoring
+        the static circle near the left edge.
+    */
+
+    const totalDiagramWidth =
+        R + TOTAL_DISTANCE;
+
+    return (
+        (W - totalDiagramWidth) / 2 +
+        R
+    );
+
+}
+
+
+function CENTER_Y() {
+
+    /*
+        Portrait phones:
+        keep the construction away from the header.
+
+        Short landscape phones:
+        move it upward to leave room for the lower
+        development/distance information and controls.
+
+        Desktop/tablet:
+        preserve the established 0.53 position.
+    */
+    if (W > H * 1.45 && H < 700) {
+        return H * 0.34;
+    }
+
+    if (H <= 330) {
+        return H * 0.43;
+    }
+
+    if (H <= 480) {
+        return H * 0.46;
+    }
+
+    if (W <= 700) {
+        return H * 0.47;
+    }
+
+    return H * 0.53;
+
+}
+
+
+function GROUND_Y() {
+
+    return CENTER_Y() + R;
+
+}
+
+
+function DIRECTING_Y() {
+
+    return GROUND_Y();
+
+}
+
+
+function APRIME_X() {
+
+    return OX() + TOTAL_DISTANCE;
+
+}
+
+
+/* =========================================================
+   RESIZE
+   ========================================================= */
+
+function updateResponsiveScale() {
+
+    /*
+        The complete construction occupies approximately:
+            radius on the left + πD development on the right.
+
+        The calculation uses the actual canvas width, so a phone
+        automatically gets a smaller drawing while desktop retains
+        the large 8.1 scale.
+    */
+
+    const sideMargin =
+        Math.max(10, W * 0.025);
+
+    const availableWidth =
+        Math.max(
+            100,
+            W - 2 * sideMargin
+        );
+
+    const horizontalScale =
+        (availableWidth - 8) /
+        (Rmm + TOTAL_DISTANCE_MM);
+
+    /*
+        Keep the lower distance measurement inside the viewport.
+    */
+    const lowerAllowanceMM =
+        (W > H * 1.45 && H < 700)
+            ? 14 + 78 / 8.1
+            : 24 + 115 / 8.1;
+
+    const availableHeight =
+        Math.max(
+            100,
+            H * 0.94 - 42
+        );
+
+    const verticalScale =
+        availableHeight /
+        (Rmm + lowerAllowanceMM);
+
+    SCALE =
+        Math.min(
+            MAX_SCALE,
+            horizontalScale,
+            verticalScale
+        );
+
+    /*
+        Prevent unreadably tiny geometry on normal phones,
+        while still allowing extremely narrow screens to fit.
+    */
+    SCALE =
+        Math.max(
+            MIN_SCALE,
+            SCALE
+        );
+
+    if (
+        SCALE * (Rmm + TOTAL_DISTANCE_MM) >
+        availableWidth
+    ) {
+        SCALE =
+            availableWidth /
+            (Rmm + TOTAL_DISTANCE_MM);
+    }
+
+    R =
+        Rmm * SCALE;
+
+    TOTAL_DISTANCE =
+        TOTAL_DISTANCE_MM * SCALE;
+
+    /*
+        Desktop font proportion:
+            8.1 / 4 = 2.025
+
+        Mobile keeps a minimum readable annotation size.
+    */
+    FONT_SCALE =
+        Math.max(
+            0.78,
+            Math.min(
+                2.025,
+                SCALE / 4
+            )
+        );
+
+}
+
+
+
+function updateViewportMode() {
+
+    /*
+        Use the actual canvas aspect ratio. This bypasses the
+        unreliable CSS width used by some mobile browsers when
+        "Desktop site" is enabled.
+    */
+    const isLandscapePhoneLike =
+        W > H * 1.45 && H < 700;
+
+    const isPortraitPhoneLike =
+        H > W * 1.05 && W < 700;
+
+    document.body.classList.toggle(
+        "compact-landscape",
+        isLandscapePhoneLike
+    );
+
+    document.body.classList.toggle(
+        "compact-portrait",
+        isPortraitPhoneLike
+    );
+}
+
+function resizeCanvas() {
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+    const dpr =
+        window.devicePixelRatio || 1;
+
+
+    canvas.width =
+        Math.round(
+            rect.width * dpr
+        );
+
+    canvas.height =
+        Math.round(
+            rect.height * dpr
+        );
+
+
+    W = rect.width;
+
+    H = rect.height;
+
+    updateViewportMode();
+
+    updateResponsiveScale();
+
+    /*
+        If the viewport changes while the animation is paused
+        or partly completed, rebuild the trace using the new
+        geometry scale.
+    */
+    if (trace.length > 0) {
+        rebuildTrace();
+    }
+
+
+    ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+    );
+
+
+    drawScene();
+
+}
+
+
+window.addEventListener(
+    "resize",
+    resizeCanvas
+);
+
+
+/* =========================================================
+   BASIC LINE
+   ========================================================= */
+
+function drawLine(
+    x1,
+    y1,
+    x2,
+    y2,
+    color,
+    width = 1
+) {
+
+    ctx.save();
+
+    ctx.beginPath();
+
+    ctx.setLineDash([]);
+
+    ctx.strokeStyle =
+        color;
+
+    ctx.lineWidth =
+        width;
+
+    ctx.moveTo(
+        x1,
+        y1
+    );
+
+    ctx.lineTo(
+        x2,
+        y2
+    );
+
+    ctx.stroke();
+
+    ctx.restore();
+
+}
+
+
+/* =========================================================
+   CIRCLE
+   ========================================================= */
+
+function drawCircle(
+    x,
+    y,
+    r,
+    stroke,
+    width = 1,
+    fill = null
+) {
+
+    ctx.save();
+
+    ctx.beginPath();
+
+    ctx.arc(
+        x,
+        y,
+        r,
+        0,
+        Math.PI * 2
+    );
+
+
+    if (fill) {
+
+        ctx.fillStyle =
+            fill;
+
+        ctx.fill();
+
+    }
+
+
+    ctx.strokeStyle =
+        stroke;
+
+    ctx.lineWidth =
+        width;
+
+    ctx.stroke();
+
+    ctx.restore();
+
+}
+
+
+/* =========================================================
+   POINT
+   ========================================================= */
+
+function drawPoint(
+    x,
+    y,
+    r,
+    color
+) {
+
+    ctx.save();
+
+    ctx.beginPath();
+
+    ctx.arc(
+        x,
+        y,
+        r,
+        0,
+        Math.PI * 2
+    );
+
+    ctx.fillStyle =
+        color;
+
+    ctx.fill();
+
+    ctx.restore();
+
+}
+
+
+/* =========================================================
+   TEXT
+   ========================================================= */
+
+function drawText(
+    text,
+    x,
+    y,
+    size = 12,
+    color = "#111111",
+    align = "center",
+    weight = "normal",
+    rotation = 0
+) {
+
+    ctx.save();
+
+    ctx.translate(
+        x,
+        y
+    );
+
+    ctx.rotate(
+        rotation
+    );
+
+    const scaledSize =
+        size * FONT_SCALE;
+
+    ctx.font =
+        `${weight} ${scaledSize}px Arial, Helvetica, sans-serif`;
+
+    ctx.fillStyle =
+        color;
+
+    ctx.textAlign =
+        align;
+
+    ctx.textBaseline =
+        "middle";
+
+    ctx.fillText(
+        text,
+        0,
+        0
+    );
+
+    ctx.restore();
+}
+
+/* =========================================================
+   DIMENSION
+   ========================================================= */
+
+function drawDimension(
+    x1,
+    x2,
+    y,
+    label
+) {
+
+    const tick = Math.max(3, 6 * (SCALE / 8.1));
+
+
+    drawLine(
+        x1,
+        y,
+        x2,
+        y,
+        "#333333",
+        1
+    );
+
+
+    drawLine(
+        x1,
+        y - tick,
+        x1,
+        y + tick,
+        "#333333",
+        1
+    );
+
+    drawLine(
+        x2,
+        y - tick,
+        x2,
+        y + tick,
+        "#333333",
+        1
+    );
+
+
+    ctx.save();
+
+    ctx.fillStyle =
+        "#333333";
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        x1,
+        y
+    );
+
+    ctx.lineTo(
+        x1 + Math.max(5, 9 * (SCALE / 8.1)),
+        y - 4.5
+    );
+
+    ctx.lineTo(
+        x1 + Math.max(5, 9 * (SCALE / 8.1)),
+        y + 4.5
+    );
+
+    ctx.closePath();
+
+    ctx.fill();
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        x2,
+        y
+    );
+
+    ctx.lineTo(
+        x2 - Math.max(5, 9 * (SCALE / 8.1)),
+        y - 4.5
+    );
+
+    ctx.lineTo(
+        x2 - Math.max(5, 9 * (SCALE / 8.1)),
+        y + 4.5
+    );
+
+    ctx.closePath();
+
+    ctx.fill();
+
+    ctx.restore();
+
+
+    drawText(
+        label,
+        (x1 + x2) / 2,
+        y - 13,
+        12,
+        "#222222",
+        "center",
+        "600"
+    );
+
+}
+
+
+/* =========================================================
+   STATIC CONSTRUCTION CIRCLE
+   ========================================================= */
+
+function drawStaticCircle() {
+
+    const x0 =
+        OX();
+
+    const cy =
+        CENTER_Y();
+
+
+    drawCircle(
+        x0,
+        cy,
+        R,
+        "#174f94",
+        2.5
+    );
+
+
+    drawPoint(
+        x0,
+        cy,
+        3.5,
+        "#111111"
+    );
+
+
+    drawText(
+        "O",
+        x0 - 13,
+        cy - 10,
+        13,
+        "#111111",
+        "right",
+        "700"
+    );
+
+
+    /*
+        12 equal divisions,
+        each = 30°.
+
+        0 and 12 occupy the same
+        physical point at the bottom.
+
+        Their labels are deliberately
+        separated horizontally.
+    */
+
+    for (
+        let i = 0;
+        i <= N;
+        i++
+    ) {
+
+        const angle =
+            Math.PI / 2 -
+            i * DIVISION_ANGLE;
+
+
+        const x =
+            x0 +
+            R *
+            Math.cos(angle);
+
+
+        const y =
+            cy +
+            R *
+            Math.sin(angle);
+
+
+        drawLine(
+            x0,
+            cy,
+            x,
+            y,
+            "#174f94",
+            1.0
+        );
+
+
+        drawPoint(
+            x,
+            y,
+            3,
+            "#174f94"
+        );
+
+
+        const labelR =
+            R + Math.max(8, 18 * (SCALE / 8.1));
+
+
+        const lx =
+            x0 +
+            labelR *
+            Math.cos(angle);
+
+
+        const ly =
+            cy +
+            labelR *
+            Math.sin(angle);
+
+
+        /*
+            Special separation of
+            coincident 0 and 12 labels.
+        */
+
+        let finalLX = lx;
+        let finalLY = ly;
+
+
+        if (i === 0) {
+
+            finalLX =
+                lx - Math.max(5, 12 * (SCALE / 8.1));
+
+            finalLY =
+                ly + Math.max(1, 2 * (SCALE / 8.1));
+
+        }
+
+
+        if (i === N) {
+
+            finalLX =
+                lx + Math.max(5, 12 * (SCALE / 8.1));
+
+            finalLY =
+                ly + Math.max(1, 2 * (SCALE / 8.1));
+
+        }
+
+
+        drawText(
+            String(i),
+            finalLX,
+            finalLY,
+            12,
+            "#174f94",
+            "center",
+            "700"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CENTRE LINE + PROJECTIONS
+   ========================================================= */
+
+function drawCenterConstruction() {
+
+    const x0 =
+        OX();
+
+    const cy =
+        CENTER_Y();
+
+    const yGround =
+        GROUND_Y();
+
+    const x12 =
+        APRIME_X();
+
+
+    drawLine(
+        x0,
+        cy,
+        x12,
+        cy,
+        "#c13b3b",
+        1.8
+    );
+
+
+    /*
+        Thin solid vertical projection
+        lines C0 ... C12.
+
+        No P-point projections.
+    */
+
+    for (
+        let i = 0;
+        i <= N;
+        i++
+    ) {
+
+        const x =
+            x0 +
+            TOTAL_DISTANCE *
+            i / N;
+
+
+        drawLine(
+            x,
+            cy,
+            x,
+            yGround,
+            "#888888",
+            0.75
+        );
+
+
+        drawPoint(
+            x,
+            cy,
+            2.7,
+            "#c13b3b"
+        );
+
+
+        drawText(
+            "C" + i,
+            x,
+            cy - 14,
+            11,
+            "#c13b3b",
+            "center",
+            "600"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   HORIZONTAL CONSTRUCTION LINES
+   ========================================================= */
+
+function drawHorizontalConstructionLines() {
+
+    const x0 =
+        OX();
+
+    const cy =
+        CENTER_Y();
+
+
+    /*
+        Every horizontal line extends
+        to the projection of 12′.
+    */
+
+    const finalX =
+        x0 +
+        TOTAL_DISTANCE;
+
+
+    for (
+        let i = 0;
+        i <= N;
+        i++
+    ) {
+
+        const angle =
+            Math.PI / 2 -
+            i * DIVISION_ANGLE;
+
+
+        const startX =
+            x0 +
+            R *
+            Math.cos(angle);
+
+
+        const startY =
+            cy +
+            R *
+            Math.sin(angle);
+
+
+        drawLine(
+            startX,
+            startY,
+            finalX,
+            startY,
+            "#174f94",
+            0.8
+        );
+
+
+        drawPoint(
+            finalX,
+            startY,
+            1.5,
+            "#174f94"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   DIRECTING LINE
+   ========================================================= */
+
+function drawDirectingLine() {
+
+    const x0 =
+        OX();
+
+    const y =
+        DIRECTING_Y();
+
+    const x12 =
+        APRIME_X();
+
+
+    /*
+        Directing line only A → A′
+    */
+
+    drawLine(
+        x0,
+        y,
+        x12,
+        y,
+        "#111111",
+        2.2
+    );
+
+
+    /*
+        Prime labels all aligned
+        slightly below the directing line.
+    */
+
+    const primeLabelY =
+        y + Math.max(16, 42 * (SCALE / 8.1));
+
+
+    /*
+        Intermediate labels:
+        1′ ... 11′
+    */
+
+    for (
+        let i = 1;
+        i < N;
+        i++
+    ) {
+
+        const x =
+            x0 +
+            TOTAL_DISTANCE *
+            i / N;
+
+
+        drawPoint(
+            x,
+            y,
+            2.7,
+            "#333333"
+        );
+
+
+        drawText(
+            i + "′",
+            x,
+            primeLabelY,
+            11,
+            "#333333",
+            "center",
+            "600"
+        );
+
+    }
+
+
+    /*
+        A 0′
+        No "=" symbol.
+    */
+
+    drawPoint(
+        x0,
+        y,
+        2.7,
+        "#333333"
+    );
+
+
+    drawText(
+        "A′ 12′",
+        x12,
+        primeLabelY,
+        12,
+        "#111111",
+        "center",
+        "700"
+    );
+
+
+    /*
+        Development length.
+    */
+
+    drawDimension(
+        x0,
+        x12,
+        y + 78,
+        "AA′ = πD = 157.08 mm"
+    );
+
+}
+
+
+/* =========================================================
+   ROLLING / GENERATING CIRCLE
+   ========================================================= */
+
+function drawRollingCircle() {
+
+    const x0 =
+        OX();
+
+
+    const cx =
+        x0 +
+        R * theta;
+
+
+    const cy =
+        GROUND_Y() - R;
+
+
+    drawCircle(
+        cx,
+        cy,
+        R,
+        "#0b6e4f",
+        2.5,
+        "rgba(19,140,100,0.035)"
+    );
+
+
+    drawPoint(
+        cx,
+        cy,
+        3.5,
+        "#0b6e4f"
+    );
+
+
+    drawText(
+        "C",
+        cx,
+        cy - 13,
+        11,
+        "#0b6e4f",
+        "center",
+        "700"
+    );
+
+
+    /*
+        Rotating material divisions.
+
+        Numbers remain upright.
+    */
+
+    for (
+        let i = 0;
+        i <= N;
+        i++
+    ) {
+
+        const initialAngle =
+            Math.PI / 2 -
+            i * DIVISION_ANGLE;
+
+
+        /*
+            Clockwise material rotation.
+        */
+
+        const angle =
+            initialAngle +
+            theta;
+
+
+        const px =
+            cx +
+            R *
+            Math.cos(angle);
+
+
+        const py =
+            cy +
+            R *
+            Math.sin(angle);
+
+
+        drawLine(
+            cx,
+            cy,
+            px,
+            py,
+            "#0b6e4f",
+            0.75
+        );
+
+
+        drawPoint(
+            px,
+            py,
+            2.5,
+            "#0b6e4f"
+        );
+
+
+        const labelR =
+            R + Math.max(8, 18 * (SCALE / 8.1));
+
+
+        const lx =
+            cx +
+            labelR *
+            Math.cos(angle);
+
+
+        const ly =
+            cy +
+            labelR *
+            Math.sin(angle);
+
+
+        /*
+            Special separation of
+            rotating 0 and 12 labels.
+
+            They remain attached to their
+            material positions and upright.
+        */
+
+        let finalLX = lx;
+        let finalLY = ly;
+
+
+        if (i === 0) {
+
+            finalLX =
+                lx - Math.max(5, 12 * (SCALE / 8.1));
+
+            finalLY =
+                ly + Math.max(1, 2 * (SCALE / 8.1));
+
+        }
+
+
+        if (i === N) {
+
+            finalLX =
+                lx + Math.max(5, 12 * (SCALE / 8.1));
+
+            finalLY =
+                ly + Math.max(1, 2 * (SCALE / 8.1));
+
+        }
+
+
+        drawText(
+            String(i),
+            finalLX,
+            finalLY,
+            11,
+            "#0b6e4f",
+            "center",
+            "700"
+        );
+
+    }
+
+
+    /* =====================================================
+       GENERATING POINT P
+       ===================================================== */
+
+    const pAngle =
+        Math.PI / 2 +
+        theta;
+
+
+    const px =
+        cx +
+        R *
+        Math.cos(pAngle);
+
+
+    const py =
+        cy +
+        R *
+        Math.sin(pAngle);
+
+
+    drawLine(
+        cx,
+        cy,
+        px,
+        py,
+        "#d0008f",
+        1.2
+    );
+
+
+    ctx.save();
+
+    ctx.shadowColor =
+        "rgba(208,0,143,0.45)";
+
+    ctx.shadowBlur =
+        10;
+
+
+    drawPoint(
+        px,
+        py,
+        5.5,
+        "#d0008f"
+    );
+
+
+    ctx.restore();
+
+
+    drawText(
+        "P",
+        px + 18,
+        py - 16,
+        13,
+        "#d0008f",
+        "left",
+        "700"
+    );
+
+
+    const midX =
+        (cx + px) / 2;
+
+    const midY =
+        (cy + py) / 2;
+
+
+    drawText(
+        "R = 25 mm",
+        midX + 18,
+        midY,
+        11,
+        "#d0008f",
+        "left",
+        "600"
+    );
+
+
+    drawText(
+        "D = 50 mm",
+        cx,
+        cy - R - 40,
+        12,
+        "#0b6e4f",
+        "center",
+        "700"
+    );
+
+
+    drawRotationArrow(
+        cx,
+        cy,
+        R * 0.57
+    );
+
+}
+
+
+/* =========================================================
+   CLOCKWISE ROTATION ARROW
+   ========================================================= */
+
+function drawRotationArrow(
+    cx,
+    cy,
+    radius
+) {
+
+    ctx.save();
+
+    ctx.strokeStyle =
+        "#0b6e4f";
+
+    ctx.lineWidth =
+        1.8;
+
+    ctx.lineCap =
+        "round";
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+        cx,
+        cy,
+        radius,
+        -Math.PI * 0.82,
+        Math.PI * 0.05,
+        false
+    );
+
+    ctx.stroke();
+
+
+    /*
+        Arrowhead
+    */
+
+    const a =
+        Math.PI * 0.05;
+
+
+    const ax =
+        cx +
+        radius *
+        Math.cos(a);
+
+
+    const ay =
+        cy +
+        radius *
+        Math.sin(a);
+
+
+    const tx =
+        -Math.sin(a);
+
+    const ty =
+        Math.cos(a);
+
+
+    const headLength = Math.max(7, 13 * (SCALE / 8.1));
+
+    const headWidth = Math.max(4, 7 * (SCALE / 8.1));
+
+
+    const tipX = ax;
+
+    const tipY = ay;
+
+
+    const baseX =
+        ax -
+        tx * headLength;
+
+
+    const baseY =
+        ay -
+        ty * headLength;
+
+
+    const nx =
+        -ty;
+
+    const ny =
+        tx;
+
+
+    const leftX =
+        baseX +
+        nx * headWidth;
+
+
+    const leftY =
+        baseY +
+        ny * headWidth;
+
+
+    const rightX =
+        baseX -
+        nx * headWidth;
+
+
+    const rightY =
+        baseY -
+        ny * headWidth;
+
+
+    ctx.fillStyle =
+        "#0b6e4f";
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        tipX,
+        tipY
+    );
+
+    ctx.lineTo(
+        leftX,
+        leftY
+    );
+
+    ctx.lineTo(
+        rightX,
+        rightY
+    );
+
+    ctx.closePath();
+
+    ctx.fill();
+
+    ctx.restore();
+
+
+    drawText(
+        "CLOCKWISE",
+        cx,
+        cy - radius - 18,
+        10,
+        "#0b6e4f",
+        "center",
+        "700"
+    );
+
+}
+
+
+/* =========================================================
+   CYCLOID EQUATION
+   ========================================================= */
+
+function getCycloidPoint(t) {
+
+    const x0 =
+        OX();
+
+    const yGround =
+        GROUND_Y();
+
+
+    const x =
+        x0 +
+        R *
+        (
+            t -
+            Math.sin(t)
+        );
+
+
+    const y =
+        yGround -
+        R *
+        (
+            1 -
+            Math.cos(t)
+        );
+
+
+    return {
+        x,
+        y
+    };
+
+}
+
+
+/* =========================================================
+   ADD TRACE POINT
+   ========================================================= */
+
+function addTracePoint(t) {
+
+    const p =
+        getCycloidPoint(t);
+
+
+    const last =
+        trace[
+            trace.length - 1
+        ];
+
+
+    if (
+        !last ||
+        Math.hypot(
+            p.x - last.x,
+            p.y - last.y
+        ) > 0.8
+    ) {
+
+        trace.push(p);
+
+    }
+
+}
+
+
+/* =========================================================
+   DRAW CYCLOID TRACE
+   ========================================================= */
+
+function drawCycloidTrace() {
+
+    if (
+        trace.length < 2
+    ) {
+
+        return;
+
+    }
+
+
+    ctx.save();
+
+    ctx.beginPath();
+
+
+    ctx.moveTo(
+        trace[0].x,
+        trace[0].y
+    );
+
+
+    for (
+        let i = 1;
+        i < trace.length;
+        i++
+    ) {
+
+        ctx.lineTo(
+            trace[i].x,
+            trace[i].y
+        );
+
+    }
+
+
+    ctx.strokeStyle =
+        "#d0008f";
+
+    ctx.lineWidth =
+        3.5;
+
+    ctx.lineCap =
+        "round";
+
+    ctx.lineJoin =
+        "round";
+
+    ctx.stroke();
+
+    ctx.restore();
+
+}
+
+
+/* =========================================================
+   GENERATED POINTS
+   ========================================================= */
+
+function drawGeneratedPoints() {
+
+    /*
+        No vertical projection lines
+        from P0 ... P12.
+    */
+
+    for (
+        let i = 0;
+        i <= currentDivision;
+        i++
+    ) {
+
+        const t =
+            i *
+            DIVISION_ANGLE;
+
+
+        const p =
+            getCycloidPoint(t);
+
+
+        drawPoint(
+            p.x,
+            p.y,
+            3.2,
+            "#d0008f"
+        );
+
+
+        drawText(
+            "P" + i,
+            p.x,
+            p.y - Math.max(6, 13 * (SCALE / 8.1)),
+            10,
+            "#d0008f",
+            "center",
+            "600"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   ANGLE INDICATOR
+   ========================================================= */
+
+function drawAngleIndicator() {
+
+    const cx =
+        OX() +
+        R * theta;
+
+
+    const cy =
+        GROUND_Y() - R;
+
+
+    const degrees =
+        theta *
+        180 /
+        Math.PI;
+
+
+    let textX =
+        cx + 100;
+
+
+    let textY =
+        cy - R - 72;
+
+
+    textX =
+        Math.max(
+            145,
+            Math.min(
+                W - 120,
+                textX
+            )
+        );
+
+
+    if (
+        textX > W - 170
+    ) {
+
+        textX =
+            cx - 100;
+
+    }
+
+
+    drawText(
+        "θ = " +
+        degrees.toFixed(1) +
+        "°",
+        textX,
+        textY,
+        14,
+        "#111111",
+        "center",
+        "700"
+    );
+
+
+    drawText(
+        "Rotation",
+        textX,
+        textY + Math.max(9, 18 * (SCALE / 8.1)),
+        10,
+        "#555555",
+        "center",
+        "600"
+    );
+
+}
+
+
+/* =========================================================
+   ROLLING DISTANCE
+   ========================================================= */
+
+function drawDistanceIndicator() {
+
+    const distanceMM =
+        Rmm *
+        theta;
+
+
+    const x0 =
+        OX();
+
+
+    const currentX =
+        x0 +
+        R * theta;
+
+
+    let y;
+
+    if (W > H * 1.45 && H < 700) {
+        y = H - 78;
+    } else {
+        y = Math.min(
+            GROUND_Y() +
+                Math.max(40, 115 * (SCALE / 8.1)),
+            H -
+                (W <= 700 ? 46 : 68)
+        );
+    }
+
+
+    const endX =
+        Math.min(
+            currentX,
+            W - 20
+        );
+
+
+    if (
+        endX - x0 > 30
+    ) {
+
+        drawLine(
+            x0,
+            y,
+            endX,
+            y,
+            "#555555",
+            0.9
+        );
+
+
+        drawLine(
+            x0,
+            y - 5,
+            x0,
+            y + 5,
+            "#555555",
+            0.9
+        );
+
+
+        drawLine(
+            endX,
+            y - 5,
+            endX,
+            y + 5,
+            "#555555",
+            0.9
+        );
+
+
+        drawText(
+            "s = " +
+            distanceMM.toFixed(2) +
+            " mm",
+            (x0 + endX) / 2,
+            y - 11,
+            10,
+            "#555555",
+            "center",
+            "600"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   SINGLE WATERMARK
+   ========================================================= */
+
+function drawWatermark() {
+
+    ctx.save();
+
+
+    ctx.translate(
+        W / 2,
+        H / 2
+    );
+
+
+    ctx.rotate(
+        -Math.PI / 10
+    );
+
+
+    /*
+        Watermark:
+        unchanged on desktop/tablet/portrait.
+        Reduced only on short mobile landscape.
+    */
+    const isShortLandscape =
+        W > H * 1.35 && H < 700;
+
+    const fontSize =
+        isShortLandscape
+            ? Math.max(
+                16,
+                Math.min(
+                    28,
+                    W * 0.022
+                )
+            )
+            : Math.max(
+                55,
+                Math.min(
+                    110,
+                    W * 0.085
+                )
+            );
+
+
+    ctx.font =
+        `700 ${fontSize}px Arial, Helvetica, sans-serif`;
+
+
+    ctx.textAlign =
+        "center";
+
+    ctx.textBaseline =
+        "middle";
+
+
+    ctx.globalAlpha =
+        0.075;
+
+
+    ctx.fillStyle =
+        "#123b63";
+
+
+    ctx.fillText(
+        "Gajavada Sanjeevkumar",
+        0,
+        0
+    );
+
+
+    ctx.restore();
+
+}
+
+
+/* =========================================================
+   MAIN SCENE
+   ========================================================= */
+
+function drawScene() {
+
+    ctx.clearRect(
+        0,
+        0,
+        W,
+        H
+    );
+
+    drawStaticCircle();
+
+    drawCenterConstruction();
+
+    drawHorizontalConstructionLines();
+
+    drawDirectingLine();
+
+    drawCycloidTrace();
+
+    drawGeneratedPoints();
+
+    drawRollingCircle();
+
+    drawAngleIndicator();
+
+    drawDistanceIndicator();
+
+    drawWatermark();
+
+}
+
+
+/* =========================================================
+   INFORMATION UPDATE
+   ========================================================= */
+
+function updateInfo() {
+
+    const degrees =
+        theta *
+        180 /
+        Math.PI;
+
+
+    const distance =
+        Rmm *
+        theta;
+
+
+    document.getElementById(
+        "divisionValue"
+    ).textContent =
+        currentDivision;
+
+
+    document.getElementById(
+        "angleValue"
+    ).textContent =
+        degrees.toFixed(1) +
+        "°";
+
+
+    document.getElementById(
+        "distanceValue"
+    ).textContent =
+        distance.toFixed(2) +
+        " mm";
+
+
+    document.getElementById(
+        "directionValue"
+    ).textContent =
+        direction >= 0
+            ? "Forward"
+            : "Reverse";
+
+
+    document.getElementById(
+        "speedValue"
+    ).textContent =
+        speed
+            .toFixed(2)
+            .replace(
+                /\.00$/,
+                ""
+            ) +
+        "×";
+
+}
+
+
+/* =========================================================
+   REBUILD TRACE
+   ========================================================= */
+
+function rebuildTrace() {
+
+    trace = [];
+
+
+    const steps =
+        Math.max(
+            20,
+            Math.ceil(
+                theta * 60
+            )
+        );
+
+
+    for (
+        let i = 0;
+        i <= steps;
+        i++
+    ) {
+
+        const t =
+            theta *
+            i /
+            steps;
+
+
+        trace.push(
+            getCycloidPoint(t)
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   FORWARD ANIMATION
+   ========================================================= */
+
+function animateForward(
+    timestamp,
+    token
+) {
+
+    if (!playing || token !== animationToken) {
+        return;
+    }
+
+
+    if (!lastTimestamp) {
+        lastTimestamp =
+            timestamp;
+    }
+
+
+    const dt =
+        Math.min(
+            0.05,
+            (
+                timestamp -
+                lastTimestamp
+            ) / 1000
+        );
+
+
+    lastTimestamp =
+        timestamp;
+
+
+    /*
+        One-second pause at
+        divisions 1 ... 11.
+    */
+
+    if (
+        pauseUntil > 0
+    ) {
+
+        if (
+            timestamp < pauseUntil
+        ) {
+
+            drawScene();
+
+            updateInfo();
+
+            animationFrameId = requestAnimationFrame(
+                timestamp => animateForward(timestamp, token)
+            );
+
+            return;
+
+        }
+
+
+        pauseUntil = 0;
+
+    }
+
+
+    const nextDivision =
+        Math.min(
+            currentDivision + 1,
+            N
+        );
+
+
+    const targetTheta =
+        nextDivision *
+        DIVISION_ANGLE;
+
+
+    const angularSpeed =
+        DIVISION_ANGLE *
+        speed;
+
+
+    theta +=
+        angularSpeed *
+        dt;
+
+
+    if (
+        theta >= targetTheta
+    ) {
+
+        theta =
+            targetTheta;
+
+
+        currentDivision =
+            nextDivision;
+
+
+        addTracePoint(
+            theta
+        );
+
+
+        if (
+            currentDivision < N
+        ) {
+
+            pauseUntil =
+                timestamp + 1000;
+
+        } else {
+
+            playing = false;
+            animationFrameId = null;
+
+            document.getElementById(
+                "playBtn"
+            ).textContent =
+                "▶";
+
+        }
+
+    } else {
+
+        addTracePoint(
+            theta
+        );
+
+    }
+
+
+    drawScene();
+
+    updateInfo();
+
+
+    if (playing) {
+
+        animationFrameId = requestAnimationFrame(
+            timestamp => animateForward(timestamp, token)
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   REVERSE ANIMATION
+   ========================================================= */
+
+function animateReverse(
+    timestamp,
+    token
+) {
+
+    if (!playing || token !== animationToken) {
+        return;
+    }
+
+
+    if (!lastTimestamp) {
+        lastTimestamp =
+            timestamp;
+    }
+
+
+    const dt =
+        Math.min(
+            0.05,
+            (
+                timestamp -
+                lastTimestamp
+            ) / 1000
+        );
+
+
+    lastTimestamp =
+        timestamp;
+
+
+    const angularSpeed =
+        DIVISION_ANGLE *
+        speed;
+
+
+    theta -=
+        angularSpeed *
+        dt;
+
+
+    if (
+        theta <= 0
+    ) {
+
+        theta = 0;
+
+        currentDivision = 0;
+
+        trace = [];
+
+        playing = false;
+        animationFrameId = null;
+
+
+        document.getElementById(
+            "playBtn"
+        ).textContent =
+            "▶";
+
+    } else {
+
+        currentDivision =
+            Math.floor(
+                theta /
+                DIVISION_ANGLE
+            );
+
+
+        rebuildTrace();
+
+    }
+
+
+    drawScene();
+
+    updateInfo();
+
+
+    if (playing) {
+
+        animationFrameId = requestAnimationFrame(
+            timestamp => animateReverse(timestamp, token)
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   ONE-DIVISION FORWARD
+   ========================================================= */
+
+document.getElementById(
+    "nextBtn"
+).addEventListener(
+    "click",
+    function() {
+
+        stopAnimation();
+
+        direction = 1;
+
+
+        if (
+            currentDivision >= N
+        ) {
+
+            return;
+
+        }
+
+
+        currentDivision++;
+
+
+        theta =
+            currentDivision *
+            DIVISION_ANGLE;
+
+
+        rebuildTrace();
+
+        drawScene();
+
+        updateInfo();
+
+    }
+);
+
+
+/* =========================================================
+   ONE-DIVISION BACKWARD
+   ========================================================= */
+
+document.getElementById(
+    "backwardBtn"
+).addEventListener(
+    "click",
+    function() {
+
+        stopAnimation();
+
+        direction = -1;
+
+
+        if (
+            currentDivision <= 0
+        ) {
+
+            theta = 0;
+
+            currentDivision = 0;
+
+            trace = [];
+
+
+            drawScene();
+
+            updateInfo();
+
+            return;
+
+        }
+
+
+        currentDivision--;
+
+
+        theta =
+            currentDivision *
+            DIVISION_ANGLE;
+
+
+        rebuildTrace();
+
+        drawScene();
+
+        updateInfo();
+
+    }
+);
+
+
+/* =========================================================
+   CONTINUOUS FORWARD
+   ========================================================= */
+
+document.getElementById(
+    "forwardBtn"
+).addEventListener(
+    "click",
+    function() {
+
+        if (currentDivision >= N) {
+            return;
+        }
+
+        startForwardAnimation();
+    }
+);
+
+
+/* =========================================================
+   CONTINUOUS REVERSE
+   ========================================================= */
+
+document.getElementById(
+    "reverseBtn"
+).addEventListener(
+    "click",
+    function() {
+
+        if (theta <= 0) {
+            return;
+        }
+
+        startReverseAnimation();
+    }
+);
+
+
+/* =========================================================
+   PLAY / PAUSE
+   ========================================================= */
+
+document.getElementById(
+    "playBtn"
+).addEventListener(
+    "click",
+    function() {
+
+        if (playing) {
+
+            stopAnimation();
+
+            this.textContent = "▶";
+            return;
+        }
+
+        if (theta >= 2 * Math.PI - 1e-8) {
+            return;
+        }
+
+        startForwardAnimation();
+    }
+);
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+document.getElementById(
+    "resetBtn"
+).addEventListener(
+    "click",
+    function() {
+
+        stopAnimation();
+
+        theta = 0;
+        currentDivision = 0;
+        direction = 1;
+        trace = [];
+
+        document.getElementById(
+            "playBtn"
+        ).textContent = "▶";
+
+        drawScene();
+        updateInfo();
+    }
+);
+
+
+/* =========================================================
+   SPEED
+   ========================================================= */
+
+document.getElementById(
+    "speedSlider"
+).addEventListener(
+    "input",
+    function() {
+
+        speed =
+            parseFloat(
+                this.value
+            );
+
+
+        updateInfo();
+
+    }
+);
+
+
+/* =========================================================
+   INITIALIZATION
+   ========================================================= */
+
+resizeCanvas();
+
+updateInfo();
+
+requestAnimationFrame(
+    function() {
+
+        drawScene();
+
+        updateInfo();
+
+    }
+);
+
+</script>
+
+</body>
+</html>
