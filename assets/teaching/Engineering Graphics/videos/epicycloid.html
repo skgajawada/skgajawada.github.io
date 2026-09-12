@@ -3,179 +3,510 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epicycloid Animation</title>
+<title>Epicycloid Construction — 12 Equal Divisions</title>
 
 <style>
-    * { box-sizing: border-box; }
 
-    html, body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        min-height: 100%;
-        background: #ffffff;
-        font-family: Arial, Helvetica, sans-serif;
-    }
+/* =========================================================
+   GLOBAL
+   ========================================================= */
 
-    .animation-page {
-        width: 100%;
-        max-width: 1500px;
-        margin: 0 auto;
-        padding: 8px 10px 12px;
-    }
+* {
+    box-sizing: border-box;
+}
 
-    .canvas-wrap {
-        width: 100%;
-        background: #ffffff;
-        overflow: hidden;
-    }
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-    #canvas {
-        display: block;
-        width: 100%;
-        height: auto;
-        background: #ffffff;
-        cursor: default;
-    }
+body {
+    display: flex;
+    flex-direction: column;
+}
 
-    .controls {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 8px 4px 4px;
-        flex-wrap: wrap;
-        user-select: none;
-    }
 
-    button, select {
-        height: 34px;
-        border: 1px solid #b8b8b8;
-        border-radius: 5px;
-        background: #ffffff;
-        color: #222222;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 14px;
-        cursor: pointer;
-    }
+/* =========================================================
+   HEADER
+   ========================================================= */
 
-    button {
-        min-width: 38px;
-        padding: 0 10px;
-    }
+.header {
+    height: 58px;
+    min-height: 58px;
 
-    button:hover, select:hover { background: #f3f3f3; }
-    button:active { background: #e6e6e6; }
+    background: #123b63;
+    color: #ffffff;
 
-    #playButton {
-        min-width: 48px;
-        font-size: 17px;
-        font-weight: bold;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    .speed-label {
-        margin-left: 8px;
-        font-size: 13px;
-        color: #444;
-    }
+    padding: 8px 18px;
 
-    #progress {
-        flex: 1 1 250px;
-        min-width: 180px;
-        accent-color: #555555;
-        cursor: pointer;
-    }
+    z-index: 20;
+}
 
-    .time-label {
-        min-width: 112px;
-        text-align: right;
-        font-size: 13px;
-        color: #444;
-    }
+.title-area h1 {
+    margin: 0;
+    font-size: clamp(18px, 2vw, 27px);
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
 
-    .hint {
-        width: 100%;
-        padding: 2px 4px 0;
-        font-size: 11px;
-        color: #777;
-    }
+.title-area p {
+    margin: 3px 0 0;
+    font-size: clamp(10px, 1vw, 13px);
+    opacity: 0.9;
+}
 
-    @media (max-width: 650px) {
-        .animation-page { padding: 4px; }
-        .controls { gap: 4px; }
-        button { min-width: 34px; padding: 0 7px; }
-        .speed-label { margin-left: 2px; }
-        .time-label { min-width: 95px; }
-    }
+.author {
+    font-size: clamp(11px, 1vw, 14px);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.main {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   INFORMATION PANEL
+   ========================================================= */
+
+.info-panel {
+    position: absolute;
+
+    top: 12px;
+    left: 14px;
+
+    z-index: 10;
+
+    min-width: 280px;
+
+    padding: 12px 16px;
+
+    background: rgba(255,255,255,0.96);
+
+    border: 1px solid #b7c5d3;
+    border-radius: 8px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.10);
+
+    color: #17324d;
+
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.info-title {
+    margin-bottom: 3px;
+    color: #123b63;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.value {
+    color: #111111;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   COMBINED NAVIGATION BAR
+   ========================================================= */
+
+.navigation {
+    position: absolute;
+
+    left: 50%;
+    bottom: 10px;
+
+    transform: translateX(-50%);
+
+    z-index: 15;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    padding: 7px 9px;
+
+    background: rgba(255,255,255,0.98);
+
+    border: 1px solid #b8c4cf;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 10px rgba(0,0,0,0.12);
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   NAVIGATION BUTTONS
+   ========================================================= */
+
+.nav-btn {
+    height: 32px;
+    min-width: 38px;
+
+    padding: 5px 9px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: #174f94;
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        transform 0.1s ease;
+}
+
+.nav-btn:hover {
+    background: #103d73;
+}
+
+.nav-btn:active {
+    transform: scale(0.96);
+}
+
+.nav-btn.play {
+    min-width: 48px;
+}
+
+.nav-btn.reset {
+    background: #4c6478;
+}
+
+.nav-btn.reset:hover {
+    background: #374d60;
+}
+
+
+/* =========================================================
+   SPEED CONTROL
+   ========================================================= */
+
+.speed-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    padding-left: 4px;
+
+    color: #333333;
+    font-size: 12px;
+}
+
+input[type="range"] {
+    width: 100px;
+    cursor: pointer;
+}
+
+.speed-value {
+    min-width: 24px;
+    text-align: right;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+    height: 34px;
+    min-height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eef3f7;
+    color: #52616d;
+
+    border-top: 1px solid #ccd6df;
+
+    font-size: 13px;
+    letter-spacing: 0.2px;
+
+    z-index: 20;
+}
+
+
+/* =========================================================
+   SMALL SCREEN / RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 850px) {
+    .author { display: none; }
+    .navigation { gap: 3px; padding: 6px; }
+    .nav-btn { min-width: 32px; padding: 4px 6px; }
+    .speed-group { padding-left: 2px; }
+    input[type="range"] { width: 70px; }
+}
+
+@media (max-width: 1100px) {
+    .header { height: 54px; min-height: 54px; padding: 7px 14px; }
+    .title-area h1 { font-size: clamp(17px, 2.6vw, 24px); }
+    .title-area p { font-size: 10px; }
+    .author { font-size: 11px; }
+    .info-panel { top: 9px; left: 9px; min-width: 220px; max-width: 245px; padding: 9px 11px; font-size: 11px; line-height: 1.42; }
+    .info-title { font-size: 12px; }
+    .navigation { bottom: 7px; gap: 4px; padding: 6px 7px; max-width: calc(100% - 12px); }
+    .nav-btn { height: 30px; min-width: 34px; padding: 4px 7px; font-size: 11px; }
+    .nav-btn.play { min-width: 42px; }
+    .speed-group { font-size: 10px; gap: 4px; }
+    input[type="range"] { width: 78px; }
+    .footer { height: 30px; min-height: 30px; font-size: 11px; padding: 0 8px; }
+}
+
+@media (max-width: 700px) {
+    .header { height: 48px; min-height: 48px; padding: 5px 9px; }
+    .title-area h1 { font-size: clamp(14px, 4.4vw, 19px); line-height: 1.05; letter-spacing: 0; }
+    .title-area p { margin-top: 2px; font-size: 8px; }
+    .author { display: none; }
+    .info-panel { top: 5px; left: 5px; min-width: 168px; max-width: 180px; padding: 6px 8px; border-radius: 6px; font-size: 9px; line-height: 1.30; }
+    .info-title { margin-bottom: 2px; font-size: 10px; }
+    .navigation { left: 50%; bottom: 4px; width: max-content; max-width: calc(100% - 6px); gap: 2px; padding: 3px; border-radius: 7px; }
+    .nav-btn { height: 26px; min-width: 27px; padding: 3px 4px; border-radius: 5px; font-size: 9px; }
+    .nav-btn.play { min-width: 32px; }
+    .speed-group { gap: 2px; padding-left: 2px; font-size: 8px; }
+    input[type="range"] { width: 48px; }
+    .speed-value { min-width: 17px; }
+    .footer { height: 24px; min-height: 24px; font-size: 9px; letter-spacing: 0; padding: 0 4px; }
+}
+
+@media (max-width: 430px) {
+    .header { height: 44px; min-height: 44px; padding: 4px 7px; }
+    .title-area h1 { font-size: 13px; }
+    .title-area p { display: none; }
+    .info-panel { top: 4px; left: 4px; min-width: 148px; max-width: 154px; padding: 5px 6px; font-size: 8px; line-height: 1.24; }
+    .info-title { font-size: 9px; }
+    .navigation { bottom: 2px; max-width: calc(100% - 4px); padding: 2px; }
+    .nav-btn { height: 24px; min-width: 24px; padding: 2px 3px; font-size: 8px; }
+    .nav-btn.play { min-width: 29px; }
+    .speed-group { font-size: 7px; }
+    input[type="range"] { width: 40px; }
+    .speed-value { min-width: 15px; }
+    .footer { height: 21px; min-height: 21px; font-size: 8px; }
+}
+
+@media (max-width: 900px) and (max-height: 480px) {
+    .header { height: 40px; min-height: 40px; padding: 3px 7px; }
+    .title-area h1 { font-size: 13px; }
+    .title-area p { display: none; }
+    .info-panel { top: 4px; left: 4px; min-width: 145px; max-width: 150px; padding: 4px 6px; font-size: 7px; line-height: 1.20; }
+    .info-title { font-size: 8px; }
+    .navigation { bottom: 2px; padding: 2px; }
+    .nav-btn { height: 23px; min-width: 23px; padding: 2px 3px; font-size: 8px; }
+    .nav-btn.play { min-width: 28px; }
+    .speed-group { font-size: 7px; }
+    input[type="range"] { width: 40px; }
+    .footer { height: 19px; min-height: 19px; font-size: 7px; }
+}
+
+body.compact-landscape .header { height: 44px; min-height: 44px; padding: 4px 9px; }
+body.compact-landscape .title-area h1 { font-size: 15px; line-height: 1.05; }
+body.compact-landscape .title-area p, body.compact-landscape .author { display: none; }
+body.compact-landscape .info-panel { top: 5px; left: 5px; min-width: 148px; width: 158px; max-width: 158px; padding: 6px 8px; font-size: 8px; line-height: 1.28; }
+body.compact-landscape .info-title { font-size: 9px; margin-bottom: 2px; }
+body.compact-landscape .navigation { left: 50%; bottom: 24px; gap: 2px; padding: 3px; max-width: calc(100% - 8px); transform: translateX(-50%); }
+body.compact-landscape .nav-btn { height: 25px; min-width: 26px; padding: 2px 4px; font-size: 9px; }
+body.compact-landscape .nav-btn.play { min-width: 31px; }
+body.compact-landscape .speed-group { gap: 2px; padding-left: 2px; font-size: 8px; }
+body.compact-landscape input[type="range"] { width: 48px; }
+body.compact-landscape .footer { height: 21px; min-height: 21px; font-size: 9px; padding: 0 5px; }
+
+body.compact-portrait .author { display: none; }
+body.compact-portrait .navigation { bottom: 25px; }
+body.compact-portrait .footer { height: 22px; min-height: 22px; font-size: 8px; }
+
 </style>
 </head>
 
 <body>
-<div class="animation-page">
 
-    <div class="canvas-wrap">
-        <canvas id="canvas" width="1400" height="788"></canvas>
+<!-- =======================================================
+     HEADER
+     ======================================================= -->
+
+<div class="header">
+    <div class="title-area">
+        <h1>
+            Epicycloid Construction — 12 Equal Divisions
+        </h1>
+        <p>
+            Engineering Drawing / Engineering Graphics
+        </p>
     </div>
-
-    <div class="controls">
-        <button id="restartButton" title="Restart">|◀</button>
-        <button id="reverseButton" title="Reverse">◀◀</button>
-        <button id="backButton" title="Previous frame">◀</button>
-        <button id="playButton" title="Play / Pause">▶</button>
-        <button id="forwardButton" title="Next frame">▶</button>
-        <button id="forwardPlayButton" title="Forward">▶▶</button>
-        <button id="endButton" title="End">▶|</button>
-
-        <span class="speed-label">Speed:</span>
-        <select id="speed">
-            <option value="0.25">0.25×</option>
-            <option value="0.5">0.5×</option>
-            <option value="1" selected>1×</option>
-            <option value="1.5">1.5×</option>
-            <option value="2">2×</option>
-            <option value="4">4×</option>
-        </select>
-
-        <input id="progress" type="range" min="0" max="630" value="0" step="1">
-        <span id="timeLabel" class="time-label">0 / 630</span>
-
-        <button id="fullscreenButton" title="Fullscreen">⛶</button>
-
-        <div class="hint">
-            Space = Play/Pause &nbsp; | &nbsp; Left/Right = one frame &nbsp; |
-            R = Reverse &nbsp; | &nbsp; Home/End = beginning/end
-        </div>
+    <div class="author">
+        Gajavada Sanjeevkumar
     </div>
 </div>
+
+
+<!-- =======================================================
+     MAIN ANIMATION
+     ======================================================= -->
+
+<div class="main">
+
+    <canvas id="canvas"></canvas>
+
+    <!-- ===================================================
+         INFORMATION PANEL
+         =================================================== -->
+
+    <div class="info-panel">
+        <div class="info-title">
+            Epicycloid Parameters
+        </div>
+        <div>
+            Directing Radius (R):
+            <span class="value">180 mm</span>
+        </div>
+        <div>
+            Generating Radius (r):
+            <span class="value">50 mm</span>
+        </div>
+        <div>
+            Divisions:
+            <span class="value">12 × 8.33°</span>
+        </div>
+        <div>
+            Current Step:
+            <span class="value" id="divisionValue">C0</span>
+        </div>
+        <div>
+            Covered Arc:
+            <span class="value" id="angleValue">0.0°</span>
+        </div>
+        <div>
+            Direction:
+            <span class="value" id="directionValue">Forward</span>
+        </div>
+    </div>
+
+
+    <!-- ===================================================
+         COMBINED NAVIGATION
+         =================================================== -->
+
+    <div class="navigation">
+        <button
+            class="nav-btn"
+            id="backwardBtn"
+            title="Previous step">
+            ◀◀
+        </button>
+
+        <button
+            class="nav-btn"
+            id="reverseBtn"
+            title="Run backward">
+            ◀
+        </button>
+
+        <button
+            class="nav-btn play"
+            id="playBtn"
+            title="Play / Pause">
+            ▶
+        </button>
+
+        <button
+            class="nav-btn"
+            id="forwardBtn"
+            title="Run forward">
+            ▶
+        </button>
+
+        <button
+            class="nav-btn"
+            id="nextBtn"
+            title="Next step">
+            ▶▶
+        </button>
+
+        <button
+            class="nav-btn reset"
+            id="resetBtn"
+            title="Reset animation">
+            ↻ Reset
+        </button>
+
+        <div class="speed-group">
+            <span>Speed</span>
+            <input
+                id="speedSlider"
+                type="range"
+                min="0.25"
+                max="2"
+                step="0.25"
+                value="1">
+            <span
+                class="speed-value"
+                id="speedValue">
+                1×
+            </span>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     FOOTER
+     ======================================================= -->
+
+<div class="footer">
+    Epicycloid generated by rolling a generating circle outside a directing circle
+</div>
+
 
 <script>
 "use strict";
 
-/*
-    EPICYCLOID HTML ANIMATION
-    --------------------------
-    Browser/Canvas implementation corresponding to the supplied
-    MATLAB Engineering Graphics construction.
-
-    Dimensions:
-        Directing-circle radius  = 180 mm
-        Generating-circle radius = 50 mm
-        Directing diameter       = 360 mm
-        Generating diameter      = 100 mm
-        O above base             = 15 mm
-        Directing arc            = 100 degrees
-        START                    = 140 degrees
-        END                      = 40 degrees
-        N                        = 12
-        FPS                      = 30
-        ROLL_FRAMES              = 20
-        PAUSE_FRAMES             = 30
-*/
-
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-const W = 1400;
-const H = 788;
+let W = 0;
+let H = 0;
 
 const R = 180.0;
 const r = 50.0;
@@ -198,7 +529,6 @@ const START = START_DEG * Math.PI / 180.0;
 const END = END_DEG * Math.PI / 180.0;
 const point0Angle = START + Math.PI;
 
-/* One colour for each corresponding O-C-k and C-k-point line. */
 const lineColors = [
     "rgb(255,127,14)",
     "rgb(31,119,180)",
@@ -214,40 +544,74 @@ const lineColors = [
     "rgb(174,199,232)"
 ];
 
-const AX = {
-    left: 90,
-    right: 1320,
-    top: 58,
-    bottom: 706
-};
-
-/* Data limits are deliberately wide enough for the complete construction. */
 const XMIN = -330;
 const XMAX = 330;
 const YMIN = -10;
 const YMAX = 310;
 
-const DATA_W = XMAX - XMIN;
-const DATA_H = YMAX - YMIN;
+let SCALE = 1.0;
+let FONT_SCALE = 1.0;
 
-const PIXELS_PER_UNIT = Math.min(
-    (AX.right - AX.left) / DATA_W,
-    (AX.bottom - AX.top) / DATA_H
-);
+function getScalingMetrics() {
+    const AX = {
+        left: W * 0.065,
+        right: W * 0.935,
+        top: H * 0.07,
+        bottom: H * 0.88
+    };
+    const DATA_W = XMAX - XMIN;
+    const DATA_H = YMAX - YMIN;
 
-const DATA_CX = AX.left + (AX.right - AX.left) / 2;
-const DATA_CY = AX.bottom - (-YMIN) * PIXELS_PER_UNIT;
+    const pixelsPerUnit = Math.min(
+        (AX.right - AX.left) / DATA_W,
+        (AX.bottom - AX.top) / DATA_H
+    );
+
+    const dataCx = AX.left + (AX.right - AX.left) / 2;
+    const dataCy = AX.bottom - (-YMIN) * pixelsPerUnit;
+
+    return { pixelsPerUnit, dataCx, dataCy, AX };
+}
 
 function sx(x) {
-    return DATA_CX + x * PIXELS_PER_UNIT;
+    const m = getScalingMetrics();
+    return m.dataCx + x * m.pixelsPerUnit;
 }
 
 function syCanvas(y) {
-    return DATA_CY - y * PIXELS_PER_UNIT;
+    const m = getScalingMetrics();
+    return m.dataCy - y * m.pixelsPerUnit;
 }
 
+function updateResponsiveScale() {
+    const DATA_W = XMAX - XMIN;
+    const DATA_H = YMAX - YMIN;
+    const horizScale = (W * 0.87) / DATA_W;
+    const vertScale = (H * 0.81) / DATA_H;
+    SCALE = Math.min(horizScale, vertScale);
+    FONT_SCALE = Math.max(0.75, Math.min(1.3, SCALE));
+}
+
+function resizeCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+
+    canvas.width = Math.round(rect.width * dpr);
+    canvas.height = Math.round(rect.height * dpr);
+
+    W = rect.width;
+    H = rect.height;
+
+    updateResponsiveScale();
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    render();
+}
+
+window.addEventListener("resize", resizeCanvas);
+
 function setLine(widthPt, color, alpha = 1.0, dash = []) {
-    ctx.lineWidth = widthPt * (100 / 72);
+    ctx.lineWidth = widthPt * SCALE;
     ctx.strokeStyle = color;
     ctx.globalAlpha = alpha;
     ctx.setLineDash(dash);
@@ -297,36 +661,25 @@ function drawArc(radius, a0, a1, widthPt, color, alpha = 1.0, dash = []) {
 function drawMarker(x, y, sizePt, fill, stroke = fill) {
     const pX = sx(x);
     const pY = syCanvas(y);
-    const rad = sizePt * (100 / 72) / 2;
+    const rad = sizePt * SCALE * 0.7;
     ctx.globalAlpha = 1;
     ctx.fillStyle = fill;
     ctx.strokeStyle = stroke;
-    ctx.lineWidth = 1;
+    ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.arc(pX, pY, rad, 0, 2 * Math.PI);
     ctx.fill();
+    ctx.stroke();
 }
 
 function drawText(text, x, y, sizePt, color = "#000", weight = "normal",
                  align = "center", baseline = "middle") {
     ctx.globalAlpha = 1;
     ctx.fillStyle = color;
-    ctx.font = `${weight} ${sizePt * (100 / 72)}px Arial, Helvetica, sans-serif`;
+    ctx.font = `${weight} ${Math.max(9, sizePt * FONT_SCALE)}px Arial, Helvetica, sans-serif`;
     ctx.textAlign = align;
     ctx.textBaseline = baseline;
     ctx.fillText(text, sx(x), syCanvas(y));
-}
-
-function drawAxesText(text, fx, fy, sizePt, color = "#000",
-                     weight = "normal", align = "center", baseline = "middle") {
-    ctx.globalAlpha = 1;
-    ctx.fillStyle = color;
-    ctx.font = `${weight} ${sizePt * (100 / 72)}px Arial, Helvetica, sans-serif`;
-    ctx.textAlign = align;
-    ctx.textBaseline = baseline;
-    const x = AX.left + fx * (AX.right - AX.left);
-    const y = AX.bottom - fy * (AX.bottom - AX.top);
-    ctx.fillText(text, x, y);
 }
 
 function centreAt(t) {
@@ -338,17 +691,22 @@ function centreAt(t) {
     };
 }
 
-/*
-    External rolling:
-    point 0 is the inward tangency point from C0 toward O.
-    alpha = ((R+r)/r) * (theta-theta0).
-*/
 function epicycloidPoint(t) {
     const theta = START - (STEP_DEG * Math.PI / 180) * t;
     const alpha = ((R + r) / r) * (theta - START);
-
     const c = centreAt(t);
+    return {
+        x: c.x + r * Math.cos(point0Angle + alpha),
+        y: c.y + r * Math.sin(point0Angle + alpha)
+    };
+}
 
+// Exact point position where generating point 0 lands at exact step i
+function epicycloidPointExactStep(i) {
+    const t = i;
+    const theta = START - (STEP_DEG * Math.PI / 180) * t;
+    const alpha = ((R + r) / r) * (theta - START);
+    const c = centreAt(t);
     return {
         x: c.x + r * Math.cos(point0Angle + alpha),
         y: c.y + r * Math.sin(point0Angle + alpha)
@@ -384,8 +742,6 @@ function animationState(frame) {
 }
 
 function drawStaticBackground() {
-
-    /* O and centre cross */
     const cross = 8;
     setLine(1.2, "#000000");
     drawLine(Ox - cross, Oy, Ox + cross, Oy);
@@ -393,25 +749,9 @@ function drawStaticBackground() {
     drawMarker(Ox, Oy, 5, "#000000");
     drawText("O", Ox, Oy - 13, 12, "#000000", "bold");
 
-    /* Large diagonal watermark */
-    ctx.save();
-    ctx.fillStyle = "rgb(210,210,210)";
-    ctx.globalAlpha = 1;
-    ctx.font = "bold 32px Arial, Helvetica, sans-serif";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.translate(DATA_CX, AX.top + (AX.bottom - AX.top) * 0.52);
-    ctx.rotate(-35 * Math.PI / 180);
-    ctx.fillText("Gajavada Sanjeevkumar", 0, 0);
-    ctx.restore();
-
-    /* Required directing arc only: 100 degrees */
     drawArc(R, START, END, 2.0, "#000000");
-
-    /* Centre locus arc CD: radius R+r */
     drawArc(OC, START, END, 0.75, "rgb(80,80,80)");
 
-    /* Directing divisions and their O-to-centre-locus construction lines */
     for (let i = 0; i <= N; i++) {
         const a = START - i * STEP_DEG * Math.PI / 180;
         const px = Ox + R * Math.cos(a);
@@ -424,14 +764,14 @@ function drawStaticBackground() {
 
         drawMarker(px, py, 4, "#000000");
 
-        const labelR = R + 10;
+        // Position 1', 2', ... 12' below the directing arc curve
+        const labelR = R - 18;
         drawText(`${i}'`,
             Ox + labelR * Math.cos(a),
             Oy + labelR * Math.sin(a),
-            9, "#000000", "bold");
+            9, "#174f94", "bold");
     }
 
-    /* Final 12' line produced beyond the directing arc */
     const endLineR = R + 105;
     setLine(0.55, "#000000");
     drawLine(
@@ -440,25 +780,21 @@ function drawStaticBackground() {
         Oy + endLineR * Math.sin(END)
     );
 
-    /* C0...C12 on centre locus */
     for (let i = 0; i <= N; i++) {
         const a = START - i * STEP_DEG * Math.PI / 180;
         const cx = Ox + OC * Math.cos(a);
         const cy = Oy + OC * Math.sin(a);
 
         drawMarker(cx, cy, 4, "#000000");
-
         drawText(`C${i}`, cx, cy + 8, 7.5, "#333333", "normal");
     }
 
     const C0x = Ox + OC * Math.cos(START);
     const C0y = Oy + OC * Math.sin(START);
 
-    /* Initial generating circle */
     drawCircle(C0x, C0y, r, 2.2, "rgb(31,119,180)", 0.75);
     drawMarker(C0x, C0y, 5, "rgb(31,119,180)");
 
-    /* Initial generating-circle division points and same-colour division lines */
     for (let i = 0; i < N; i++) {
         const a = point0Angle + i * 2 * Math.PI / N;
         const px = C0x + r * Math.cos(a);
@@ -466,27 +802,22 @@ function drawStaticBackground() {
 
         setLine(0.8, lineColors[i], 0.95);
         drawLine(C0x, C0y, px, py);
+        // "Cut" style marker (white interior with colored border ring)
+        drawMarker(px, py, 4.5, "#ffffff", lineColors[i]);
 
-        drawMarker(px, py, 4, "#ffffff", lineColors[i]);
-
-        const lr = r + 10;
+        const lr = r + 12;
         drawText(String(i),
             C0x + lr * Math.cos(a),
             C0y + lr * Math.sin(a),
-            8, "#222222", "bold");
+            8.5, "#222222", "bold");
     }
 
-    /* Point 12 is the same material point as 0 */
     const p12a = point0Angle + 2 * Math.PI;
     const p12x = C0x + r * Math.cos(p12a);
     const p12y = C0y + r * Math.sin(p12a);
-    drawMarker(p12x, p12y, 4, "#ffffff", lineColors[0]);
-    drawText("12", p12x - 8, p12y - 8, 8, "#222222", "bold");
+    drawMarker(p12x, p12y, 4.5, "#ffffff", lineColors[0]);
+    drawText("12", p12x - 8, p12y - 8, 8.5, "#222222", "bold");
 
-    /*
-       Concentric transfer arcs:
-       radius = O-to-point(i), from initial point to the produced 12' line.
-    */
     for (let i = 1; i <= N; i++) {
         const a = point0Angle + i * 2 * Math.PI / N;
         const px = C0x + r * Math.cos(a);
@@ -501,7 +832,6 @@ function drawStaticBackground() {
         drawArcAboutO(rad, startA, startA + delta, 0.55, "rgb(0,0,0)", 0.8);
     }
 
-    /* Final D */
     const Dx = Ox + OC * Math.cos(END);
     const Dy = Oy + OC * Math.sin(END);
     drawMarker(Dx, Dy, 3.5, "#ffffff");
@@ -538,13 +868,19 @@ function drawTrace(t) {
         if (i === 0) ctx.moveTo(X, Y);
         else ctx.lineTo(X, Y);
     }
-
     ctx.stroke();
     ctx.globalAlpha = 1;
 }
 
-function drawDynamic(frame) {
+function drawGeneratedPoints(currentStep) {
+    for (let i = 0; i <= currentStep; i++) {
+        const pt = epicycloidPointExactStep(i);
+        drawMarker(pt.x, pt.y, 3.8, "#d0008f", "#ffffff");
+        drawText(`P${i}`, pt.x, pt.y + 14, 10, "#d0008f", "bold");
+    }
+}
 
+function drawDynamic(frame) {
     const state = animationState(frame);
     const t = state.t;
     const step = state.step;
@@ -554,27 +890,17 @@ function drawDynamic(frame) {
     const theta = c.theta;
     const p = epicycloidPoint(t);
 
-    /* Epicycloid trace */
     drawTrace(t);
+    drawGeneratedPoints(step);
 
-    /* Moving generating circle */
     const alpha = ((R + r) / r) * (theta - START);
-    drawCircle(
-        c.x, c.y, r, 2.5, "rgb(255,127,14)", 1.0
-    );
-
+    drawCircle(c.x, c.y, r, 2.5, "rgb(255,127,14)", 1.0);
     drawMarker(c.x, c.y, 6, "rgb(255,127,14)");
 
-    /* Direct contact point on directing circle */
     const contactX = Ox + R * Math.cos(theta);
     const contactY = Oy + R * Math.sin(theta);
     drawMarker(contactX, contactY, 6, "rgb(220,0,0)");
 
-    /*
-       Same-colour correspondence:
-       O -> C_k -> material point k.
-       During rolling this line remains one continuous line.
-    */
     const activeIndex = Math.min(N - 1, Math.max(0, step));
     const activeColor = lineColors[activeIndex];
 
@@ -585,7 +911,6 @@ function drawDynamic(frame) {
     const activePX = c.x + r * Math.cos(activePointAngle);
     const activePY = c.y + r * Math.sin(activePointAngle);
 
-    /* At a pause, use the exact corresponding material point. */
     if (paused && step <= N) {
         const exactAngle = point0Angle + step * 2 * Math.PI / N + alpha;
         const ex = c.x + r * Math.cos(exactAngle);
@@ -597,7 +922,6 @@ function drawDynamic(frame) {
         drawLine(c.x, c.y, activePX, activePY);
     }
 
-    /* Moving division lines: each keeps its corresponding colour. */
     for (let i = 0; i < N; i++) {
         const a = materialAngle(i, t);
         const px = c.x + r * Math.cos(a);
@@ -605,83 +929,63 @@ function drawDynamic(frame) {
 
         setLine(0.75, lineColors[i], 0.72);
         drawLine(c.x, c.y, px, py);
-        drawMarker(px, py, 3.8, "#ffffff", lineColors[i]);
+        // "Cut" style marker (white interior with colored border ring)
+        drawMarker(px, py, 4.2, "#ffffff", lineColors[i]);
 
-        const lr = r + 10;
+        const lr = r + 12;
         drawText(
             i === 0 ? "0" : String(i),
             c.x + lr * Math.cos(a),
             c.y + lr * Math.sin(a),
-            8, "#222222", "bold"
+            8.5, "#222222", "bold"
         );
     }
 
-    /* C label */
     drawText(`C${step}`, c.x, c.y - 10, 9, "#000000", "bold");
-
-    /* Dynamic trace point */
     drawMarker(p.x, p.y, 7, "rgb(0,0,255)");
-
-    /* Top-left information */
-    drawAxesText(
-        `C${step} : ${step} coincides with ${step}'`,
-        0.03, 0.965, 10.5, "#222222", "bold", "left", "top"
-    );
-
-    const coveredAngle = Math.abs((theta - START) * 180 / Math.PI);
-    drawAxesText(
-        `Directing arc covered at O: ${coveredAngle.toFixed(3)} deg`,
-        0.03, 0.925, 10.5, "#222222", "bold", "left", "top"
-    );
-
-    const revolution = Math.min(360, coveredAngle / TOTAL_ARC_DEG * 360);
-    drawAxesText(
-        `Generating circle revolution = ${revolution.toFixed(3)} deg`,
-        0.03, 0.885, 10.5, "#222222", "bold", "left", "top"
-    );
 }
 
-function drawTitleAndFooter() {
-    drawAxesText("Epicycloid", 0.50, 0.995, 15, "#000000", "bold");
-    drawAxesText(
-        "Gajavada Sanjeevkumar",
-        0.025, 0.012, 11, "#000000", "bold", "left", "bottom"
-    );
-    drawAxesText(
-        "Engineering Curve: Epicycloid",
-        0.975, 0.012, 11, "#000000", "bold", "right", "bottom"
-    );
+function drawWatermark() {
+    ctx.save();
+    ctx.translate(W / 2, H / 2);
+    ctx.rotate(-Math.PI / 10);
+    const fontSize = Math.max(40, Math.min(90, W * 0.08));
+    ctx.font = `700 ${fontSize}px Arial, Helvetica, sans-serif`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.globalAlpha = 0.075;
+    ctx.fillStyle = "#123b63";
+    ctx.fillText("Gajavada Sanjeevkumar", 0, 0);
+    ctx.restore();
 }
 
 function render() {
-    ctx.save();
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, W, H);
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, W, H);
-    ctx.globalAlpha = 1;
-    ctx.setLineDash([]);
 
     drawStaticBackground();
     drawDynamic(currentFrame);
-    drawTitleAndFooter();
-
-    ctx.restore();
-
-    document.getElementById("progress").value = currentFrame;
-    document.getElementById("timeLabel").textContent =
-        `${currentFrame} / ${TOTAL_FRAMES}`;
-    document.getElementById("playButton").textContent =
-        playing ? "❚❚" : "▶";
+    drawWatermark();
 }
 
-/* Playback */
+/* Playback & Controls */
 let currentFrame = 0;
 let playing = false;
 let direction = 1;
 let speed = 1.0;
 let lastTime = null;
 let frameAccumulator = 0;
+
+function updateInfo() {
+    const state = animationState(currentFrame);
+    document.getElementById("divisionValue").textContent = `C${state.step} (${state.step}/12)`;
+    const theta = START - (STEP_DEG * Math.PI / 180) * state.t;
+    const coveredAngle = Math.abs((theta - START) * 180 / Math.PI);
+    document.getElementById("angleValue").textContent = coveredAngle.toFixed(1) + "°";
+    document.getElementById("directionValue").textContent = direction >= 0 ? "Forward" : "Reverse";
+    document.getElementById("speedValue").textContent = speed.toFixed(2).replace(/\.00$/, "") + "×";
+}
 
 function animationLoop(now) {
     if (!playing) {
@@ -704,6 +1008,7 @@ function animationLoop(now) {
             currentFrame = TOTAL_FRAMES - 1;
             if (direction > 0) {
                 playing = false;
+                document.getElementById("playBtn").textContent = "▶";
                 break;
             }
         }
@@ -712,12 +1017,14 @@ function animationLoop(now) {
             currentFrame = 0;
             if (direction < 0) {
                 playing = false;
+                document.getElementById("playBtn").textContent = "▶";
                 break;
             }
         }
     }
 
     render();
+    updateInfo();
     requestAnimationFrame(animationLoop);
 }
 
@@ -726,6 +1033,7 @@ function playForward() {
     if (currentFrame >= TOTAL_FRAMES - 1) currentFrame = 0;
     playing = true;
     lastTime = null;
+    document.getElementById("playBtn").textContent = "❚❚";
 }
 
 function playReverse() {
@@ -733,11 +1041,13 @@ function playReverse() {
     if (currentFrame <= 0) currentFrame = TOTAL_FRAMES - 1;
     playing = true;
     lastTime = null;
+    document.getElementById("playBtn").textContent = "❚❚";
 }
 
 function togglePlay() {
     if (playing) {
         playing = false;
+        document.getElementById("playBtn").textContent = "▶";
     } else if (direction < 0) {
         playReverse();
     } else {
@@ -745,80 +1055,53 @@ function togglePlay() {
     }
 }
 
-function stepFrame(amount) {
+function stepDivision(dir) {
     playing = false;
-    currentFrame += amount;
-    currentFrame = Math.max(0, Math.min(TOTAL_FRAMES - 1, currentFrame));
+    document.getElementById("playBtn").textContent = "▶";
+    const block = ROLL_FRAMES + PAUSE_FRAMES;
+    const currentState = animationState(currentFrame);
+    let targetStep = Math.max(0, Math.min(N, currentState.step + dir));
+    currentFrame = targetStep * block;
     render();
+    updateInfo();
 }
 
-document.getElementById("playButton").addEventListener("click", togglePlay);
-document.getElementById("reverseButton").addEventListener("click", playReverse);
-document.getElementById("forwardPlayButton").addEventListener("click", playForward);
-document.getElementById("backButton").addEventListener("click", () => stepFrame(-1));
-document.getElementById("forwardButton").addEventListener("click", () => stepFrame(1));
+document.getElementById("playBtn").addEventListener("click", togglePlay);
+document.getElementById("reverseBtn").addEventListener("click", playReverse);
+document.getElementById("forwardBtn").addEventListener("click", playForward);
+document.getElementById("backwardBtn").addEventListener("click", () => stepDivision(-1));
+document.getElementById("nextBtn").addEventListener("click", () => stepDivision(1));
 
-document.getElementById("restartButton").addEventListener("click", () => {
+document.getElementById("resetBtn").addEventListener("click", () => {
     playing = false;
     direction = 1;
     currentFrame = 0;
+    document.getElementById("playBtn").textContent = "▶";
     render();
+    updateInfo();
 });
 
-document.getElementById("endButton").addEventListener("click", () => {
-    playing = false;
-    direction = 1;
-    currentFrame = TOTAL_FRAMES - 1;
-    render();
-});
-
-document.getElementById("progress").addEventListener("input", event => {
-    playing = false;
-    currentFrame = Number(event.target.value);
-    render();
-});
-
-document.getElementById("speed").addEventListener("change", event => {
-    speed = Number(event.target.value);
-});
-
-document.getElementById("fullscreenButton").addEventListener("click", async () => {
-    const wrapper = document.querySelector(".animation-page");
-    try {
-        if (!document.fullscreenElement) await wrapper.requestFullscreen();
-        else await document.exitFullscreen();
-    } catch (e) {}
+document.getElementById("speedSlider").addEventListener("input", function() {
+    speed = Number(this.value);
+    updateInfo();
 });
 
 document.addEventListener("keydown", event => {
     if (event.target.tagName === "SELECT" || event.target.tagName === "INPUT") return;
-
     if (event.code === "Space") {
         event.preventDefault();
         togglePlay();
     } else if (event.key === "ArrowLeft") {
         event.preventDefault();
-        stepFrame(-1);
+        stepDivision(-1);
     } else if (event.key === "ArrowRight") {
         event.preventDefault();
-        stepFrame(1);
-    } else if (event.key.toLowerCase() === "r") {
-        event.preventDefault();
-        playReverse();
-    } else if (event.key === "Home") {
-        event.preventDefault();
-        playing = false;
-        currentFrame = 0;
-        render();
-    } else if (event.key === "End") {
-        event.preventDefault();
-        playing = false;
-        currentFrame = TOTAL_FRAMES - 1;
-        render();
+        stepDivision(1);
     }
 });
 
-render();
+resizeCanvas();
+updateInfo();
 requestAnimationFrame(animationLoop);
 
 </script>
