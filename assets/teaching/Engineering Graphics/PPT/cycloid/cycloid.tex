@@ -72,6 +72,23 @@
   >=Stealth,
 }
 
+
+% ============================================================
+% FULL-SLIDE DIAGONAL WATERMARK
+% One large watermark on every slide
+% ============================================================
+\setbeamertemplate{background}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[
+      rotate=32,
+      text=black!12,
+      font=\fontsize{30}{36}\selectfont,
+      align=center,
+      inner sep=0pt
+    ] at (current page.center) {Gajavada Sanjeevkumar};
+  \end{tikzpicture}%
+}
+
 \newcommand{\drawLegendCard}[1]{
   \node[draw=gray!50, fill=white, rounded corners=4pt, inner sep=4pt, anchor=north east] at (21.85, 8.5) {
     \scriptsize
@@ -3066,4 +3083,36 @@
   \end{scope}
 \end{tikzpicture}
 \end{frame}
+
+% ============================================================
+% FINAL SLIDE
+% ============================================================
+\renewcommand{\stepnum}{Thank You}
+
+\begin{frame}[plain]
+  \centering
+  \vfill
+
+  {\usebeamerfont{title}\textbf{Thank You}}\\[1.2em]
+
+  {\large\textbf{Gajavada Sanjeevkumar}}\\[0.6em]
+  {\normalsize PhD Scholar}\\
+  {\normalsize Department of Mechanical Engineering}\\
+  {\normalsize IIT (ISM) Dhanbad}\\[1.2em]
+
+  {\normalsize For academic queries, teaching material,
+  or further information:}\\[0.5em]
+
+  {\large
+    \href{https://skgajawada.github.io/\#/contact}
+    {\texttt{skgajawada.github.io/\#/contact}}
+  }\\[1.2em]
+
+  {\small
+    \textit{Engineering Graphics — Cycloid Construction}
+  }
+
+  \vfill
+\end{frame}
+
 \end{document}
