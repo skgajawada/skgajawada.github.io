@@ -1,5 +1,7 @@
 name: Build Teaching Material Web Reader
 
+run-name: Build Teaching Material Web Reader
+
 on:
   push:
     branches:
