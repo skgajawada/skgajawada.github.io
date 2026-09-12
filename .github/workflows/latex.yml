@@ -13,51 +13,71 @@ on:
 permissions:
   contents: write
 
+
 jobs:
+
   build:
+
     runs-on: ubuntu-latest
 
     steps:
 
       # =========================================================
-      # 1. Checkout repository
+      # 1. CHECKOUT REPOSITORY
       # =========================================================
+
       - name: Checkout repository
         uses: actions/checkout@v4
+
         with:
           fetch-depth: 0
 
 
       # =========================================================
-      # 2. Install PDF tools
+      # 2. INSTALL PDF TOOLS
       # =========================================================
+
       - name: Install PDF tools
         run: |
+
           sudo apt-get update
+
           sudo apt-get install -y poppler-utils
 
 
       # =========================================================
-      # 3. Detect changed LaTeX files
+      # 3. DETECT CHANGED / DELETED TEX FILES
       # =========================================================
+
       - name: Detect changed LaTeX files
         shell: bash
         run: |
 
           set -e
 
+
           echo "=========================================="
-          echo "Detecting changed LaTeX files"
+          echo "Detecting LaTeX files"
           echo "=========================================="
 
+
           # -----------------------------------------------------
-          # Manual workflow run:
-          # Rebuild ALL TEX files
+          # MANUAL WORKFLOW RUN
+          #
+          # This is useful for the ONE-TIME conversion
+          # of your existing documents.
+          #
+          # It processes all existing TEX files.
           # -----------------------------------------------------
+
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
 
+
+            echo ""
             echo "Manual workflow run detected."
             echo "All teaching TEX files will be processed."
+            echo ""
+
 
             find assets/teaching \
               -type f \
@@ -65,16 +85,25 @@ jobs:
               -print \
               > tex_to_build.txt
 
-            # Nothing is deleted during manual full rebuild
+
+            # No deleted files during manual run
             : > tex_to_delete.txt
+
 
           else
 
-            echo "Automatic push detected."
 
             # ---------------------------------------------------
-            # Get changed files in this push
+            # NORMAL PUSH
+            #
+            # Only files changed in this push are considered.
             # ---------------------------------------------------
+
+            echo ""
+            echo "Automatic push detected."
+            echo ""
+
+
             git diff \
               --name-status \
               "${{ github.event.before }}" \
@@ -82,74 +111,112 @@ jobs:
               -- assets/teaching \
               > changed_teaching_files.txt
 
+
             echo ""
-            echo "===== Changed teaching files ====="
-            cat changed_teaching_files.txt || true
+            echo "=========================================="
+            echo "Changed teaching files"
+            echo "=========================================="
+
+
+            if [ -s changed_teaching_files.txt ]; then
+
+              cat changed_teaching_files.txt
+
+            else
+
+              echo "No teaching files changed."
+
+            fi
+
 
             # ---------------------------------------------------
-            # New / Modified TEX files
+            # NEW / MODIFIED TEX
             # ---------------------------------------------------
+
             awk '
-              $1 == "A" || $1 == "M" {
-                if ($2 ~ /\.tex$/) print $2
+              ($1 == "A" || $1 == "M") && ($2 ~ /\.tex$/) {
+                print $2
               }
             ' changed_teaching_files.txt \
               > tex_to_build.txt
 
+
             # ---------------------------------------------------
-            # Deleted TEX files
+            # DELETED TEX
             # ---------------------------------------------------
+
             awk '
-              $1 == "D" {
-                if ($2 ~ /\.tex$/) print $2
+              $1 == "D" && ($2 ~ /\.tex$/) {
+                print $2
               }
             ' changed_teaching_files.txt \
               > tex_to_delete.txt
 
+
           fi
 
 
           echo ""
           echo "=========================================="
-          echo "TEX files to BUILD"
+          echo "TEX FILES TO BUILD"
           echo "=========================================="
+
 
           if [ -s tex_to_build.txt ]; then
+
             cat tex_to_build.txt
+
           else
-            echo "No TEX files to build."
+
+            echo "No TEX files need to be built."
+
           fi
 
 
           echo ""
           echo "=========================================="
-          echo "TEX files DELETED"
+          echo "TEX FILES DELETED"
           echo "=========================================="
 
+
           if [ -s tex_to_delete.txt ]; then
+
             cat tex_to_delete.txt
+
           else
+
             echo "No TEX files deleted."
+
           fi
 
 
       # =========================================================
-      # 4. Compile ONLY required TEX files
+      # 4. COMPILE ONLY REQUIRED TEX FILES
       # =========================================================
+
       - name: Compile required LaTeX files
         uses: xu-cheng/texlive-action@v3
+
         with:
+
           run: |
 
             set -e
 
+
             if [ ! -s tex_to_build.txt ]; then
+
               echo "No TEX files need compilation."
+
               exit 0
+
             fi
 
+
             while IFS= read -r file
+
             do
+
 
               echo ""
               echo "=========================================="
@@ -157,10 +224,14 @@ jobs:
               echo "$file"
               echo "=========================================="
 
+
               dir=$(dirname "$file")
+
               name=$(basename "$file" .tex)
 
+
               cd "$dir"
+
 
               latexmk \
                 -pdf \
@@ -169,91 +240,146 @@ jobs:
                 -halt-on-error \
                 "$name.tex"
 
+
               cd - > /dev/null
+
 
             done < tex_to_build.txt
 
 
       # =========================================================
-      # 5. Create FIRST 4 PAGE preview PDFs
+      # 5. CREATE FIRST 4-PAGE PREVIEW
       # =========================================================
+
       - name: Create 4-page previews
         shell: bash
+
         run: |
 
           set -e
 
+
           if [ ! -s tex_to_build.txt ]; then
+
             echo "No new previews required."
+
             exit 0
+
           fi
 
+
           while IFS= read -r texfile
+
           do
 
-            dir=$(dirname "$texfile")
-            name=$(basename "$texfile" .tex)
-
-            full_pdf="$dir/$name.pdf"
-            preview_pdf="$dir/$name-preview.pdf"
 
             echo ""
             echo "=========================================="
             echo "Creating 4-page preview"
-            echo "Source:"
-            echo "$texfile"
             echo "=========================================="
 
+
+            dir=$(dirname "$texfile")
+
+            name=$(basename "$texfile" .tex)
+
+
+            full_pdf="$dir/$name.pdf"
+
+            preview_pdf="$dir/$name-preview.pdf"
+
+
+            echo "Source:"
+            echo "$texfile"
+
+            echo ""
+
+            echo "Full PDF:"
+            echo "$full_pdf"
+
+            echo ""
+
+            echo "Preview:"
+            echo "$preview_pdf"
+
+
             # ---------------------------------------------------
-            # Check that compilation produced the PDF
+            # Check generated PDF
             # ---------------------------------------------------
+
             if [ ! -f "$full_pdf" ]; then
 
-              echo "ERROR:"
-              echo "PDF was not generated:"
+              echo ""
+              echo "ERROR: PDF was not generated."
+
               echo "$full_pdf"
 
               exit 1
 
             fi
 
-            # ---------------------------------------------------
-            # Find number of pages
-            # ---------------------------------------------------
-            page_count=$(pdfinfo "$full_pdf" | \
-              awk '/^Pages:/ {print $2}')
-
-            echo "Full PDF pages: $page_count"
-
 
             # ---------------------------------------------------
-            # Remove temporary page files
+            # Count pages
             # ---------------------------------------------------
+
+            page_count=$(
+
+              pdfinfo "$full_pdf" |
+
+              awk '/^Pages:/ {print $2}'
+
+            )
+
+
+            echo ""
+
+            echo "Full PDF page count:"
+            echo "$page_count"
+
+
+            # ---------------------------------------------------
+            # Remove old temporary files
+            # ---------------------------------------------------
+
             rm -f "$dir"/__preview_page_*.pdf
 
 
             # ---------------------------------------------------
-            # If PDF has 4 pages or fewer
+            # Documents with 4 pages or fewer
             # ---------------------------------------------------
+
             if [ "$page_count" -le 4 ]; then
 
+
+              echo ""
               echo "Document has 4 or fewer pages."
+
+              echo "Copying complete document as preview."
+
 
               cp "$full_pdf" "$preview_pdf"
 
 
             # ---------------------------------------------------
-            # If PDF has more than 4 pages
+            # Documents with more than 4 pages
             # ---------------------------------------------------
+
             else
 
-              echo "Extracting pages 1-4 only."
+
+              echo ""
+              echo "Document has more than 4 pages."
+
+              echo "Extracting ONLY pages 1-4."
+
 
               pdfseparate \
                 -f 1 \
                 -l 4 \
                 "$full_pdf" \
                 "$dir/__preview_page_%d.pdf"
+
 
               pdfunite \
                 "$dir/__preview_page_1.pdf" \
@@ -262,12 +388,14 @@ jobs:
                 "$dir/__preview_page_4.pdf" \
                 "$preview_pdf"
 
+
             fi
 
 
             # ---------------------------------------------------
             # Remove temporary page files
             # ---------------------------------------------------
+
             rm -f "$dir"/__preview_page_*.pdf
 
 
@@ -275,154 +403,618 @@ jobs:
             echo "PUBLIC PREVIEW CREATED:"
             echo "$preview_pdf"
 
+
           done < tex_to_build.txt
 
 
       # =========================================================
-      # 6. Remove FULL generated PDFs
+      # 6. REMOVE FULL GENERATED PDF
       # =========================================================
+
       - name: Remove full PDFs from public repository
         shell: bash
+
         run: |
 
           set -e
 
+
           if [ ! -s tex_to_build.txt ]; then
+
             echo "No full PDFs to remove."
+
             exit 0
+
           fi
 
+
           while IFS= read -r texfile
+
           do
 
+
             dir=$(dirname "$texfile")
+
             name=$(basename "$texfile" .tex)
+
 
             full_pdf="$dir/$name.pdf"
 
+
             echo ""
-            echo "Removing full PDF from public repository:"
+            echo "Removing full PDF:"
             echo "$full_pdf"
 
-            # Remove from Git tracking if it already exists
+
+            # ---------------------------------------------------
+            # Remove from Git tracking
+            # ---------------------------------------------------
+
             git rm \
               --cached \
               --ignore-unmatch \
               "$full_pdf" || true
 
-            # Remove physical file from GitHub runner
+
+            # ---------------------------------------------------
+            # Remove physical PDF from runner
+            # ---------------------------------------------------
+
             rm -f "$full_pdf"
+
 
           done < tex_to_build.txt
 
 
       # =========================================================
-      # 7. Remove preview when TEX file is deleted
+      # 7. REMOVE PREVIEW IF TEX FILE WAS DELETED
       # =========================================================
+
       - name: Remove previews for deleted TEX files
         shell: bash
+
         run: |
 
           set -e
 
+
           if [ ! -s tex_to_delete.txt ]; then
+
             echo "No deleted TEX files."
+
             exit 0
+
           fi
 
+
           while IFS= read -r texfile
+
           do
 
+
             dir=$(dirname "$texfile")
+
             name=$(basename "$texfile" .tex)
 
+
             preview_pdf="$dir/$name-preview.pdf"
+
 
             echo ""
             echo "Removing preview:"
             echo "$preview_pdf"
+
+
+            # ---------------------------------------------------
+            # Remove preview from Git
+            # ---------------------------------------------------
 
             git rm \
               --cached \
               --ignore-unmatch \
               "$preview_pdf" || true
 
+
+            # ---------------------------------------------------
+            # Remove from runner
+            # ---------------------------------------------------
+
             rm -f "$preview_pdf"
+
 
           done < tex_to_delete.txt
 
 
       # =========================================================
-      # 8. Stage changes
+      # 8. AUTOMATICALLY GENERATE PPT INDEX.HTML
+      #
+      # ONLY FOR:
+      #
+      # assets/teaching/Engineering Graphics/PPT
+      #
+      # This scans all folders recursively and creates cards
+      # for every *-preview.pdf file.
       # =========================================================
-      - name: Stage generated previews
+
+      - name: Generate PPT index automatically
         shell: bash
+
         run: |
 
           set -e
 
-          # Stage deletions and modifications
-          git add -u -- assets/teaching
 
+          PPT_DIR="assets/teaching/Engineering Graphics/PPT"
 
-          # -----------------------------------------------------
-          # Stage newly created preview PDFs
-          # -----------------------------------------------------
-          if [ -s tex_to_build.txt ]; then
-
-            while IFS= read -r texfile
-            do
-
-              dir=$(dirname "$texfile")
-              name=$(basename "$texfile" .tex)
-
-              preview_pdf="$dir/$name-preview.pdf"
-
-              if [ -f "$preview_pdf" ]; then
-
-                git add -f "$preview_pdf"
-
-              fi
-
-            done < tex_to_build.txt
-
-          fi
+          INDEX_FILE="$PPT_DIR/index.html"
 
 
           echo ""
           echo "=========================================="
-          echo "Git status"
+
+          echo "Generating PPT index"
+
           echo "=========================================="
+
+
+          if [ ! -f "$INDEX_FILE" ]; then
+
+            echo ""
+
+            echo "ERROR: PPT/index.html not found."
+
+            exit 1
+
+          fi
+
+
+          python3 << 'PYTHON'
+
+          from pathlib import Path
+          from html import escape
+          import re
+
+
+          # -----------------------------------------------------
+          # PPT directory
+          # -----------------------------------------------------
+
+          ppt_dir = Path(
+              "assets/teaching/Engineering Graphics/PPT"
+          )
+
+
+          index_file = ppt_dir / "index.html"
+
+
+          # -----------------------------------------------------
+          # Find all preview PDFs recursively
+          # -----------------------------------------------------
+
+          previews = sorted(
+              ppt_dir.rglob("*-preview.pdf"),
+              key=lambda p: p.as_posix().lower()
+          )
+
+
+          print(
+              f"Found {len(previews)} preview PDF(s)."
+          )
+
+
+          cards = []
+
+
+          # -----------------------------------------------------
+          # Generate card for every preview
+          # -----------------------------------------------------
+
+          for pdf in previews:
+
+
+              # -----------------------------------------------
+              # Filename
+              # -----------------------------------------------
+
+              name = pdf.stem
+
+
+              # Remove "-preview"
+              name = re.sub(
+                  r"-preview$",
+                  "",
+                  name,
+                  flags=re.IGNORECASE
+              )
+
+
+              # -----------------------------------------------
+              # Convert filename to readable title
+              # -----------------------------------------------
+
+              title = re.sub(
+                  r"[-_]+",
+                  " ",
+                  name
+              ).strip()
+
+
+              title = title.title()
+
+
+              # -----------------------------------------------
+              # Relative URL
+              # -----------------------------------------------
+
+              relative_pdf = pdf.relative_to(
+                  ppt_dir
+              ).as_posix()
+
+
+              # -----------------------------------------------
+              # Escape HTML
+              # -----------------------------------------------
+
+              safe_title = escape(title)
+
+              safe_url = escape(
+                  relative_pdf,
+                  quote=True
+              )
+
+
+              # -----------------------------------------------
+              # Card HTML
+              # -----------------------------------------------
+
+              card = f"""
+                <div class="ppt-card">
+
+                    <div class="ppt-icon">
+
+                        <i class="fas fa-file-powerpoint"></i>
+
+                    </div>
+
+                    <h3>
+                        {safe_title}
+                    </h3>
+
+                    <p>
+                        Presentation covering
+                        {safe_title}
+                        in Engineering Graphics.
+                    </p>
+
+                    <div class="ppt-actions">
+
+                        <a href="{safe_url}"
+                           target="_blank"
+                           rel="noopener"
+                           class="ppt-btn ppt-btn-primary">
+
+                            <i class="fas fa-eye"></i>
+
+                            View Presentation
+
+                        </a>
+
+                    </div>
+
+                </div>
+              """
+
+
+              cards.append(card)
+
+
+          # -----------------------------------------------------
+          # Empty state
+          # -----------------------------------------------------
+
+          if cards:
+
+
+              generated = "\n".join(cards)
+
+
+          else:
+
+
+              generated = """
+                <div class="empty-message">
+
+                    <i class="fas fa-file-powerpoint"></i>
+
+                    <p>
+                        No presentations are available yet.
+                    </p>
+
+                </div>
+              """
+
+
+          # -----------------------------------------------------
+          # Read existing index
+          # -----------------------------------------------------
+
+          html = index_file.read_text(
+              encoding="utf-8"
+          )
+
+
+          # -----------------------------------------------------
+          # Markers
+          # -----------------------------------------------------
+
+          start_marker = (
+              "<!-- AUTO-GENERATED-CARDS-START -->"
+          )
+
+
+          end_marker = (
+              "<!-- AUTO-GENERATED-CARDS-END -->"
+          )
+
+
+          # -----------------------------------------------------
+          # Replace ONLY card section
+          # -----------------------------------------------------
+
+          pattern = (
+
+              re.escape(start_marker)
+
+              + r".*?"
+
+              + re.escape(end_marker)
+
+          )
+
+
+          replacement = (
+
+              start_marker
+
+              + "\n\n"
+
+              + generated
+
+              + "\n\n"
+
+              + end_marker
+
+          )
+
+
+          new_html, count = re.subn(
+
+              pattern,
+
+              replacement,
+
+              html,
+
+              flags=re.DOTALL
+
+          )
+
+
+          # -----------------------------------------------------
+          # Verify markers
+          # -----------------------------------------------------
+
+          if count != 1:
+
+
+              print("")
+
+              print(
+                  "ERROR: Could not find exactly one "
+                  "auto-generated card section."
+              )
+
+              print("")
+
+              print(
+                  "Make sure index.html contains:"
+              )
+
+              print("")
+
+              print(
+                  "<!-- AUTO-GENERATED-CARDS-START -->"
+              )
+
+              print(
+                  "<!-- AUTO-GENERATED-CARDS-END -->"
+              )
+
+              raise SystemExit(1)
+
+
+          # -----------------------------------------------------
+          # Write updated index
+          # -----------------------------------------------------
+
+          index_file.write_text(
+              new_html,
+              encoding="utf-8"
+          )
+
+
+          print("")
+
+          print(
+              f"Generated {len(cards)} presentation card(s)."
+          )
+
+          print("")
+
+
+          PYTHON
+
+
+      # =========================================================
+      # 9. STAGE GENERATED PREVIEWS AND INDEX
+      # =========================================================
+
+      - name: Stage generated previews and index
+        shell: bash
+
+        run: |
+
+          set -e
+
+
+          echo ""
+          echo "=========================================="
+
+          echo "Staging changes"
+
+          echo "=========================================="
+
+
+          # -----------------------------------------------------
+          # Stage tracked modifications/deletions
+          # -----------------------------------------------------
+
+          git add -u -- assets/teaching
+
+
+          # -----------------------------------------------------
+          # Stage newly generated preview PDFs
+          # -----------------------------------------------------
+
+          if [ -s tex_to_build.txt ]; then
+
+
+            while IFS= read -r texfile
+
+            do
+
+
+              dir=$(dirname "$texfile")
+
+              name=$(basename "$texfile" .tex)
+
+
+              preview_pdf="$dir/$name-preview.pdf"
+
+
+              if [ -f "$preview_pdf" ]; then
+
+
+                echo ""
+
+                echo "Staging preview:"
+
+                echo "$preview_pdf"
+
+
+                git add -f "$preview_pdf"
+
+
+              fi
+
+
+            done < tex_to_build.txt
+
+
+          fi
+
+
+          # -----------------------------------------------------
+          # Stage automatically generated PPT index
+          # -----------------------------------------------------
+
+          PPT_INDEX="assets/teaching/Engineering Graphics/PPT/index.html"
+
+
+          if [ -f "$PPT_INDEX" ]; then
+
+
+            echo ""
+
+            echo "Staging PPT index:"
+
+            echo "$PPT_INDEX"
+
+
+            git add "$PPT_INDEX"
+
+
+          fi
+
+
+          # -----------------------------------------------------
+          # Show final Git status
+          # -----------------------------------------------------
+
+          echo ""
+
+          echo "=========================================="
+
+          echo "Git status"
+
+          echo "=========================================="
+
 
           git status --short
 
 
       # =========================================================
-      # 9. Commit and push
+      # 10. COMMIT AND PUSH
       # =========================================================
+
       - name: Commit and push previews
         shell: bash
+
         run: |
 
           set -e
 
+
+          # -----------------------------------------------------
+          # Check whether anything changed
+          # -----------------------------------------------------
+
           if git diff --cached --quiet; then
 
+
+            echo ""
+
             echo "No changes to commit."
+
+
             exit 0
+
 
           fi
 
 
+          # -----------------------------------------------------
+          # Git identity
+          # -----------------------------------------------------
+
           git config user.name \
             "github-actions[bot]"
+
 
           git config user.email \
             "41898282+github-actions[bot]@users.noreply.github.com"
 
 
+          # -----------------------------------------------------
+          # Commit
+          # -----------------------------------------------------
+
           git commit \
             -m "Update teaching material previews [skip ci]"
 
+
+          # -----------------------------------------------------
+          # Push
+          # -----------------------------------------------------
 
           git push
