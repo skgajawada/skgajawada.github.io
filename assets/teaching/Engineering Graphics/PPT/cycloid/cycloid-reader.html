@@ -39,25 +39,32 @@ body {
 
 
 .reader {
+
+    position: relative;
+
     width: 100%;
     height: 100vh;
 
-    display: flex;
-    flex-direction: column;
+    overflow: hidden;
 
     background: #111;
 }
 
 
 /* =========================================================
-   SLIDE AREA
+   FULL-PAGE SLIDE
+   The image uses the complete viewport. Header/footer are
+   overlays and therefore do not reduce the slide area.
    ========================================================= */
 
 .slide-area {
 
-    flex: 1;
+    position: absolute;
 
-    min-height: 0;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
 
     display: flex;
 
@@ -65,21 +72,23 @@ body {
 
     justify-content: center;
 
-    padding: 10px;
+    padding: 0;
 
     overflow: hidden;
+
+    background: #111;
 }
 
 
 #slideImage {
 
+    width: 100vw;
+
+    height: 100vh;
+
     max-width: 100%;
 
     max-height: 100%;
-
-    width: auto;
-
-    height: auto;
 
     object-fit: contain;
 
@@ -96,14 +105,183 @@ body {
 
 
 /* =========================================================
-   CONTROL BAR
+   HEADER OVERLAY
+   ========================================================= */
+
+.reader-header {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    right: 0;
+
+    z-index: 30;
+
+    min-height: 52px;
+
+    display: grid;
+
+    grid-template-columns: 1fr auto 1fr;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 8px 18px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.72),
+            rgba(0,0,0,0)
+        );
+
+    pointer-events: none;
+}
+
+
+.reader-header a {
+
+    justify-self: start;
+
+    color: rgba(255,255,255,0.92);
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    pointer-events: auto;
+
+    text-shadow:
+        0 1px 3px
+        rgba(0,0,0,0.9);
+}
+
+
+.reader-header a:hover {
+    text-decoration: underline;
+}
+
+
+.reader-header-title {
+
+    justify-self: center;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    text-align: center;
+
+    text-shadow:
+        0 1px 4px
+        rgba(0,0,0,0.95);
+}
+
+
+.reader-header-author {
+
+    justify-self: end;
+
+    color: rgba(255,255,255,0.86);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    text-align: right;
+
+    text-shadow:
+        0 1px 3px
+        rgba(0,0,0,0.9);
+}
+
+
+/* =========================================================
+   FOOTER OVERLAY
+   ========================================================= */
+
+.reader-footer {
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    z-index: 30;
+
+    min-height: 68px;
+
+    display: grid;
+
+    grid-template-columns: 1fr auto 1fr;
+
+    align-items: end;
+
+    gap: 15px;
+
+    padding: 8px 18px 12px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,0.82),
+            rgba(0,0,0,0)
+        );
+}
+
+
+.reader-footer-info {
+
+    color: rgba(255,255,255,0.82);
+
+    font-size: 11px;
+
+    line-height: 1.4;
+
+    text-shadow:
+        0 1px 3px
+        rgba(0,0,0,0.9);
+}
+
+
+.reader-footer-author {
+
+    justify-self: end;
+
+    color: rgba(255,255,255,0.82);
+
+    font-size: 11px;
+
+    text-align: right;
+
+    line-height: 1.4;
+
+    text-shadow:
+        0 1px 3px
+        rgba(0,0,0,0.9);
+}
+
+
+/* =========================================================
+   FLOATING CONTROL BAR
    ========================================================= */
 
 .controls {
-
-    height: 58px;
-
-    flex-shrink: 0;
 
     display: flex;
 
@@ -111,14 +289,24 @@ body {
 
     justify-content: center;
 
-    gap: 12px;
+    gap: 8px;
 
-    padding: 8px 15px;
+    padding: 5px 8px;
 
-    background: #181818;
+    background: rgba(24,24,24,0.90);
 
-    border-top:
-        1px solid #333;
+    border:
+        1px solid rgba(255,255,255,0.14);
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 6px 20px
+        rgba(0,0,0,0.4);
+
+    backdrop-filter: blur(8px);
+
+    -webkit-backdrop-filter: blur(8px);
 }
 
 
@@ -160,6 +348,13 @@ body {
 }
 
 
+.control-button:disabled {
+    opacity: 0.38;
+
+    cursor: default;
+}
+
+
 .page-counter {
 
     color: #ddd;
@@ -175,55 +370,80 @@ body {
 
 
 /* =========================================================
-   TITLE
-   ========================================================= */
-
-.reader-title {
-
-    position: absolute;
-
-    top: 10px;
-
-    left: 15px;
-
-    z-index: 10;
-
-    color: rgba(255,255,255,0.75);
-
-    font-size: 13px;
-
-    pointer-events: none;
-}
-
-
-/* =========================================================
    MOBILE
    ========================================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
-    .slide-area {
-        padding: 4px;
+    .reader-header {
+
+        min-height: 44px;
+
+        grid-template-columns: auto 1fr;
+
+        padding: 7px 10px;
+
+        gap: 10px;
     }
 
-    .controls {
-        height: 54px;
+    .reader-header-title {
+        justify-self: end;
+
+        font-size: 12px;
+    }
+
+    .reader-header-author {
+        display: none;
+    }
+
+    .reader-header a {
+        font-size: 11px;
+    }
+
+    .reader-footer {
+
+        min-height: 58px;
+
+        grid-template-columns: 1fr auto;
+
+        padding: 5px 8px 8px;
 
         gap: 8px;
     }
 
+    .reader-footer-info {
+        display: none;
+    }
+
+    .reader-footer-author {
+        display: none;
+    }
+
+    .controls {
+
+        gap: 5px;
+
+        padding: 4px 6px;
+
+        border-radius: 9px;
+    }
+
     .control-button {
-        min-width: 38px;
 
-        height: 38px;
+        min-width: 36px;
 
-        padding: 0 10px;
+        height: 36px;
+
+        padding: 0 9px;
+
+        font-size: 17px;
     }
 
     .page-counter {
-        min-width: 75px;
 
-        font-size: 14px;
+        min-width: 70px;
+
+        font-size: 13px;
     }
 
 }
@@ -239,9 +459,29 @@ body {
 <div class="reader">
 
 
-    <div class="reader-title">
-        Cycloid
-    </div>
+    <!-- ================================================
+         HEADER
+         Overlay only: it does not reduce slide size.
+         ================================================ -->
+
+    <header class="reader-header">
+
+        <a
+            href="../../index.html"
+            title="Back to Engineering Graphics PPT presentations"
+        >
+            &#10094; Back to PPT Presentations
+        </a>
+
+        <div class="reader-header-title">
+            Cycloid
+        </div>
+
+        <div class="reader-header-author">
+            Gajavada Sanjeevkumar
+        </div>
+
+    </header>
 
 
     <div
@@ -258,7 +498,20 @@ body {
     </div>
 
 
-    <div class="controls">
+    <!-- ================================================
+         FOOTER
+         Overlay only: it does not reduce slide size.
+         ================================================ -->
+
+    <footer class="reader-footer">
+
+        <div class="reader-footer-info">
+            Engineering Graphics<br>
+            IIT (ISM) Dhanbad
+        </div>
+
+
+        <div class="controls">
 
 
         <button
@@ -299,7 +552,15 @@ body {
         </button>
 
 
-    </div>
+        </div>
+
+
+        <div class="reader-footer-author">
+            Gajavada Sanjeevkumar<br>
+            PhD Scholar | Mechanical Engineering
+        </div>
+
+    </footer>
 
 
 </div>
