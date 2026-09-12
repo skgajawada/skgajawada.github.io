@@ -1466,6 +1466,52 @@ input[type="range"] { width: 90px; }
     .speed-group { gap: 3px; font-size: 9px; }
     input[type="range"] { width: 60px; }
 }
+
+
+/* =========================================================
+   FINAL DESKTOP CARD + DIAGRAM POSITION
+   ========================================================= */
+
+@media (min-width: 1101px) {
+
+    .info-panel {
+        top: 16px;
+        left: 16px;
+        width: 360px;
+        min-width: 360px;
+        max-width: 360px;
+        padding: 15px 18px;
+        font-size: 15px;
+        line-height: 1.52;
+    }
+
+    .info-title {
+        margin-bottom: 5px;
+        font-size: 17px;
+    }
+
+    .value {
+        font-size: 15px;
+    }
+}
+
+/* Moderate enlargement on tablet-sized layouts. */
+@media (min-width: 701px) and (max-width: 1100px) {
+
+    .info-panel {
+        width: 300px;
+        min-width: 300px;
+        max-width: 300px;
+        padding: 12px 15px;
+        font-size: 13px;
+        line-height: 1.45;
+    }
+
+    .info-title {
+        font-size: 15px;
+    }
+}
+
 </style>
 </head>
 
@@ -1826,6 +1872,14 @@ function CENTER_Y() {
 
     if (W <= 700) {
         return H * 0.47;
+    }
+
+    /*
+       Desktop only: move the complete construction downward
+       slightly. Mobile and tablet positions remain unchanged.
+    */
+    if (W > 1100) {
+        return H * 0.57;
     }
 
     return H * 0.53;
@@ -3344,8 +3398,10 @@ function drawScene() {
 
     drawRollingCircle();
 
-    drawAngleIndicator();
-
+    /*
+       Rotation angle is already shown in the parameter card.
+       Do not duplicate it at the upper-right of the canvas.
+    */
     drawDistanceIndicator();
 
     drawWatermark();
