@@ -11,7 +11,22 @@
 <title>Cycloid — Presentation Reader</title>
 
 <style>
+/* =====================================================
+   BACK TO CYCLOID
+   Hidden during normal reader mode.
+   Visible only in fullscreen mode.
+   ===================================================== */
 
+.back-button {
+    display: none !important;
+}
+
+
+/* Show only when the reader is fullscreen */
+:fullscreen .back-button {
+    display: inline-flex !important;
+    align-items: center;
+}
 /* =========================================================
    GLOBAL
    ========================================================= */
@@ -549,29 +564,30 @@ body{
 
 
     <!-- =====================================================
-         TOP BAR
-         ===================================================== -->
+     TOP BAR
+     ===================================================== -->
 
-    <header class="top-bar">
+<header class="top-bar">
 
-        <a
-            class="back-button"
-            href="../../../engineering-curves/cycloid/"
-        >
-            &#10094;&nbsp; Back to Cycloid
-        </a>
-
-
-        <div class="reader-title">
-            Cycloid — Complete Presentation
-        </div>
+    <a
+        id="backButton"
+        class="back-button"
+        href="../../engineering-curves/cycloid/"
+    >
+        &#10094;&nbsp; Back to Cycloid
+    </a>
 
 
-        <div class="author">
-            Gajavada Sanjeevkumar
-        </div>
+    <div class="reader-title">
+        Cycloid — Complete Presentation
+    </div>
 
-    </header>
+
+    <div class="author">
+        Gajavada Sanjeevkumar
+    </div>
+
+</header>
 
 
     <!-- =====================================================
