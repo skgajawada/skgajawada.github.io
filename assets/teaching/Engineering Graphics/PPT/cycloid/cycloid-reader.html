@@ -17,15 +17,18 @@
    Visible only in fullscreen mode.
    ===================================================== */
 
+/* Hidden in normal reader mode */
 .back-button {
     display: none !important;
 }
 
-
-/* Show only when the reader is fullscreen */
-:fullscreen .back-button {
+/* Visible ONLY while the reader is fullscreen */
+:fullscreen .back-button,
+:-webkit-full-screen .back-button,
+html.reader-fullscreen .back-button {
     display: inline-flex !important;
     align-items: center;
+    justify-self: start;
 }
 /* =========================================================
    GLOBAL
@@ -271,7 +274,7 @@ body{
     color:
         rgba(255,255,255,.88);
 
-    font-size:12px;
+    font-size:14px;
 
     font-weight:600;
 
@@ -569,10 +572,25 @@ body{
 
 <header class="top-bar">
 
+    <!--
+        Normal mode:
+        Back button hidden.
+
+        Fullscreen mode:
+        Back button appears on the LEFT and navigates the TOP window.
+
+        CENTER:
+        Cycloid — Complete Presentation
+
+        RIGHT:
+        Gajavada Sanjeevkumar
+    -->
+
     <a
         id="backButton"
         class="back-button"
         href="../../engineering-curves/cycloid/"
+        target="_top"
     >
         &#10094;&nbsp; Back to Cycloid
     </a>
@@ -1513,6 +1531,34 @@ fullscreenButton.addEventListener(
                 error
             );
 
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   FULLSCREEN STATE
+   =========================================================
+
+   The Back to Cycloid link is hidden normally and shown only
+   while this reader is fullscreen.
+   ========================================================= */
+
+document.addEventListener(
+    "fullscreenchange",
+    () => {
+
+        if (document.fullscreenElement) {
+            document.documentElement.classList.add(
+                "reader-fullscreen"
+            );
+        }
+        else {
+            document.documentElement.classList.remove(
+                "reader-fullscreen"
+            );
         }
 
     }
