@@ -661,11 +661,11 @@ function drawArc(radius, a0, a1, widthPt, color, alpha = 1.0, dash = []) {
 function drawMarker(x, y, sizePt, fill, stroke = fill) {
     const pX = sx(x);
     const pY = syCanvas(y);
-    const rad = sizePt * SCALE * 0.7;
+    const rad = sizePt * SCALE * 0.45; // reduced size for smaller marker points
     ctx.globalAlpha = 1;
     ctx.fillStyle = fill;
     ctx.strokeStyle = stroke;
-    ctx.lineWidth = 1.5;
+    ctx.lineWidth = 1.2;
     ctx.beginPath();
     ctx.arc(pX, pY, rad, 0, 2 * Math.PI);
     ctx.fill();
@@ -701,7 +701,6 @@ function epicycloidPoint(t) {
     };
 }
 
-// Exact point position where generating point 0 lands at exact step i
 function epicycloidPointExactStep(i) {
     const t = i;
     const theta = START - (STEP_DEG * Math.PI / 180) * t;
@@ -764,7 +763,6 @@ function drawStaticBackground() {
 
         drawMarker(px, py, 4, "#000000");
 
-        // Position 1', 2', ... 12' below the directing arc curve
         const labelR = R - 18;
         drawText(`${i}'`,
             Ox + labelR * Math.cos(a),
@@ -802,8 +800,7 @@ function drawStaticBackground() {
 
         setLine(0.8, lineColors[i], 0.95);
         drawLine(C0x, C0y, px, py);
-        // "Cut" style marker (white interior with colored border ring)
-        drawMarker(px, py, 4.5, "#ffffff", lineColors[i]);
+        drawMarker(px, py, 3.8, "#ffffff", lineColors[i]);
 
         const lr = r + 12;
         drawText(String(i),
@@ -815,7 +812,7 @@ function drawStaticBackground() {
     const p12a = point0Angle + 2 * Math.PI;
     const p12x = C0x + r * Math.cos(p12a);
     const p12y = C0y + r * Math.sin(p12a);
-    drawMarker(p12x, p12y, 4.5, "#ffffff", lineColors[0]);
+    drawMarker(p12x, p12y, 3.8, "#ffffff", lineColors[0]);
     drawText("12", p12x - 8, p12y - 8, 8.5, "#222222", "bold");
 
     for (let i = 1; i <= N; i++) {
@@ -875,7 +872,7 @@ function drawTrace(t) {
 function drawGeneratedPoints(currentStep) {
     for (let i = 0; i <= currentStep; i++) {
         const pt = epicycloidPointExactStep(i);
-        drawMarker(pt.x, pt.y, 3.8, "#d0008f", "#ffffff");
+        drawMarker(pt.x, pt.y, 3.0, "#d0008f", "#ffffff");
         drawText(`P${i}`, pt.x, pt.y + 14, 10, "#d0008f", "bold");
     }
 }
@@ -895,11 +892,11 @@ function drawDynamic(frame) {
 
     const alpha = ((R + r) / r) * (theta - START);
     drawCircle(c.x, c.y, r, 2.5, "rgb(255,127,14)", 1.0);
-    drawMarker(c.x, c.y, 6, "rgb(255,127,14)");
+    drawMarker(c.x, c.y, 5, "rgb(255,127,14)");
 
     const contactX = Ox + R * Math.cos(theta);
     const contactY = Oy + R * Math.sin(theta);
-    drawMarker(contactX, contactY, 6, "rgb(220,0,0)");
+    drawMarker(contactX, contactY, 5, "rgb(220,0,0)");
 
     const activeIndex = Math.min(N - 1, Math.max(0, step));
     const activeColor = lineColors[activeIndex];
@@ -929,8 +926,7 @@ function drawDynamic(frame) {
 
         setLine(0.75, lineColors[i], 0.72);
         drawLine(c.x, c.y, px, py);
-        // "Cut" style marker (white interior with colored border ring)
-        drawMarker(px, py, 4.2, "#ffffff", lineColors[i]);
+        drawMarker(px, py, 3.8, "#ffffff", lineColors[i]);
 
         const lr = r + 12;
         drawText(
@@ -942,7 +938,7 @@ function drawDynamic(frame) {
     }
 
     drawText(`C${step}`, c.x, c.y - 10, 9, "#000000", "bold");
-    drawMarker(p.x, p.y, 7, "rgb(0,0,255)");
+    drawMarker(p.x, p.y, 5.5, "rgb(0,0,255)");
 }
 
 function drawWatermark() {
