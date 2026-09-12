@@ -1,11 +1,11 @@
-name: Build Engineering Graphics
+name: Build Teaching Material Previews
 
 on:
   push:
     branches:
       - main
     paths:
-      - '**/*.tex'
+      - 'assets/teaching/**/*.tex'
       - '.github/workflows/latex.yml'
 
   workflow_dispatch:
@@ -18,24 +18,147 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      # =========================================================
+      # 1. Checkout repository
+      # =========================================================
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Compile all LaTeX presentations
+
+      # =========================================================
+      # 2. Install PDF tools
+      # =========================================================
+      - name: Install PDF tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+
+
+      # =========================================================
+      # 3. Detect changed LaTeX files
+      # =========================================================
+      - name: Detect changed LaTeX files
+        shell: bash
+        run: |
+
+          set -e
+
+          echo "=========================================="
+          echo "Detecting changed LaTeX files"
+          echo "=========================================="
+
+          # -----------------------------------------------------
+          # Manual workflow run:
+          # Rebuild ALL TEX files
+          # -----------------------------------------------------
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+
+            echo "Manual workflow run detected."
+            echo "All teaching TEX files will be processed."
+
+            find assets/teaching \
+              -type f \
+              -name "*.tex" \
+              -print \
+              > tex_to_build.txt
+
+            # Nothing is deleted during manual full rebuild
+            : > tex_to_delete.txt
+
+          else
+
+            echo "Automatic push detected."
+
+            # ---------------------------------------------------
+            # Get changed files in this push
+            # ---------------------------------------------------
+            git diff \
+              --name-status \
+              "${{ github.event.before }}" \
+              "${{ github.sha }}" \
+              -- assets/teaching \
+              > changed_teaching_files.txt
+
+            echo ""
+            echo "===== Changed teaching files ====="
+            cat changed_teaching_files.txt || true
+
+            # ---------------------------------------------------
+            # New / Modified TEX files
+            # ---------------------------------------------------
+            awk '
+              $1 == "A" || $1 == "M" {
+                if ($2 ~ /\.tex$/) print $2
+              }
+            ' changed_teaching_files.txt \
+              > tex_to_build.txt
+
+            # ---------------------------------------------------
+            # Deleted TEX files
+            # ---------------------------------------------------
+            awk '
+              $1 == "D" {
+                if ($2 ~ /\.tex$/) print $2
+              }
+            ' changed_teaching_files.txt \
+              > tex_to_delete.txt
+
+          fi
+
+
+          echo ""
+          echo "=========================================="
+          echo "TEX files to BUILD"
+          echo "=========================================="
+
+          if [ -s tex_to_build.txt ]; then
+            cat tex_to_build.txt
+          else
+            echo "No TEX files to build."
+          fi
+
+
+          echo ""
+          echo "=========================================="
+          echo "TEX files DELETED"
+          echo "=========================================="
+
+          if [ -s tex_to_delete.txt ]; then
+            cat tex_to_delete.txt
+          else
+            echo "No TEX files deleted."
+          fi
+
+
+      # =========================================================
+      # 4. Compile ONLY required TEX files
+      # =========================================================
+      - name: Compile required LaTeX files
         uses: xu-cheng/texlive-action@v3
         with:
           run: |
-            find . -type f -name "*.tex" \
-              -not -path "./.git/*" \
-              -print0 |
-            while IFS= read -r -d '' file; do
+
+            set -e
+
+            if [ ! -s tex_to_build.txt ]; then
+              echo "No TEX files need compilation."
+              exit 0
+            fi
+
+            while IFS= read -r file
+            do
+
+              echo ""
+              echo "=========================================="
+              echo "Compiling:"
+              echo "$file"
+              echo "=========================================="
 
               dir=$(dirname "$file")
               name=$(basename "$file" .tex)
-
-              echo "========================================"
-              echo "Compiling: $file"
-              echo "========================================"
 
               cd "$dir"
 
@@ -48,29 +171,258 @@ jobs:
 
               cd - > /dev/null
 
-            done
+            done < tex_to_build.txt
 
-      - name: Show generated PDFs
+
+      # =========================================================
+      # 5. Create FIRST 4 PAGE preview PDFs
+      # =========================================================
+      - name: Create 4-page previews
+        shell: bash
         run: |
-          echo "===== Generated PDFs ====="
-          find . -type f -name "*.pdf" \
-            -not -path "./.git/*" \
-            -exec ls -lh {} \;
 
-      - name: Commit and push generated PDFs
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          set -e
 
-          git add -f -- '**/*.pdf'
-
-          echo "===== Git status ====="
-          git status --short
-
-          if git diff --cached --quiet; then
-            echo "No PDF changes to commit."
+          if [ ! -s tex_to_build.txt ]; then
+            echo "No new previews required."
             exit 0
           fi
 
-          git commit -m "Auto-compile presentation PDFs [skip ci]"
+          while IFS= read -r texfile
+          do
+
+            dir=$(dirname "$texfile")
+            name=$(basename "$texfile" .tex)
+
+            full_pdf="$dir/$name.pdf"
+            preview_pdf="$dir/$name-preview.pdf"
+
+            echo ""
+            echo "=========================================="
+            echo "Creating 4-page preview"
+            echo "Source:"
+            echo "$texfile"
+            echo "=========================================="
+
+            # ---------------------------------------------------
+            # Check that compilation produced the PDF
+            # ---------------------------------------------------
+            if [ ! -f "$full_pdf" ]; then
+
+              echo "ERROR:"
+              echo "PDF was not generated:"
+              echo "$full_pdf"
+
+              exit 1
+
+            fi
+
+            # ---------------------------------------------------
+            # Find number of pages
+            # ---------------------------------------------------
+            page_count=$(pdfinfo "$full_pdf" | \
+              awk '/^Pages:/ {print $2}')
+
+            echo "Full PDF pages: $page_count"
+
+
+            # ---------------------------------------------------
+            # Remove temporary page files
+            # ---------------------------------------------------
+            rm -f "$dir"/__preview_page_*.pdf
+
+
+            # ---------------------------------------------------
+            # If PDF has 4 pages or fewer
+            # ---------------------------------------------------
+            if [ "$page_count" -le 4 ]; then
+
+              echo "Document has 4 or fewer pages."
+
+              cp "$full_pdf" "$preview_pdf"
+
+
+            # ---------------------------------------------------
+            # If PDF has more than 4 pages
+            # ---------------------------------------------------
+            else
+
+              echo "Extracting pages 1-4 only."
+
+              pdfseparate \
+                -f 1 \
+                -l 4 \
+                "$full_pdf" \
+                "$dir/__preview_page_%d.pdf"
+
+              pdfunite \
+                "$dir/__preview_page_1.pdf" \
+                "$dir/__preview_page_2.pdf" \
+                "$dir/__preview_page_3.pdf" \
+                "$dir/__preview_page_4.pdf" \
+                "$preview_pdf"
+
+            fi
+
+
+            # ---------------------------------------------------
+            # Remove temporary page files
+            # ---------------------------------------------------
+            rm -f "$dir"/__preview_page_*.pdf
+
+
+            echo ""
+            echo "PUBLIC PREVIEW CREATED:"
+            echo "$preview_pdf"
+
+          done < tex_to_build.txt
+
+
+      # =========================================================
+      # 6. Remove FULL generated PDFs
+      # =========================================================
+      - name: Remove full PDFs from public repository
+        shell: bash
+        run: |
+
+          set -e
+
+          if [ ! -s tex_to_build.txt ]; then
+            echo "No full PDFs to remove."
+            exit 0
+          fi
+
+          while IFS= read -r texfile
+          do
+
+            dir=$(dirname "$texfile")
+            name=$(basename "$texfile" .tex)
+
+            full_pdf="$dir/$name.pdf"
+
+            echo ""
+            echo "Removing full PDF from public repository:"
+            echo "$full_pdf"
+
+            # Remove from Git tracking if it already exists
+            git rm \
+              --cached \
+              --ignore-unmatch \
+              "$full_pdf" || true
+
+            # Remove physical file from GitHub runner
+            rm -f "$full_pdf"
+
+          done < tex_to_build.txt
+
+
+      # =========================================================
+      # 7. Remove preview when TEX file is deleted
+      # =========================================================
+      - name: Remove previews for deleted TEX files
+        shell: bash
+        run: |
+
+          set -e
+
+          if [ ! -s tex_to_delete.txt ]; then
+            echo "No deleted TEX files."
+            exit 0
+          fi
+
+          while IFS= read -r texfile
+          do
+
+            dir=$(dirname "$texfile")
+            name=$(basename "$texfile" .tex)
+
+            preview_pdf="$dir/$name-preview.pdf"
+
+            echo ""
+            echo "Removing preview:"
+            echo "$preview_pdf"
+
+            git rm \
+              --cached \
+              --ignore-unmatch \
+              "$preview_pdf" || true
+
+            rm -f "$preview_pdf"
+
+          done < tex_to_delete.txt
+
+
+      # =========================================================
+      # 8. Stage changes
+      # =========================================================
+      - name: Stage generated previews
+        shell: bash
+        run: |
+
+          set -e
+
+          # Stage deletions and modifications
+          git add -u -- assets/teaching
+
+
+          # -----------------------------------------------------
+          # Stage newly created preview PDFs
+          # -----------------------------------------------------
+          if [ -s tex_to_build.txt ]; then
+
+            while IFS= read -r texfile
+            do
+
+              dir=$(dirname "$texfile")
+              name=$(basename "$texfile" .tex)
+
+              preview_pdf="$dir/$name-preview.pdf"
+
+              if [ -f "$preview_pdf" ]; then
+
+                git add -f "$preview_pdf"
+
+              fi
+
+            done < tex_to_build.txt
+
+          fi
+
+
+          echo ""
+          echo "=========================================="
+          echo "Git status"
+          echo "=========================================="
+
+          git status --short
+
+
+      # =========================================================
+      # 9. Commit and push
+      # =========================================================
+      - name: Commit and push previews
+        shell: bash
+        run: |
+
+          set -e
+
+          if git diff --cached --quiet; then
+
+            echo "No changes to commit."
+            exit 0
+
+          fi
+
+
+          git config user.name \
+            "github-actions[bot]"
+
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+
+          git commit \
+            -m "Update teaching material previews [skip ci]"
+
+
           git push
