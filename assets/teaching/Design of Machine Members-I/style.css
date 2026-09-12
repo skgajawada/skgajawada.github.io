@@ -175,13 +175,11 @@ body{
 }
 
 .hero-content h1{
-
     font-size:3.4rem;
-
     font-weight:700;
-
     margin-bottom:20px;
-
+    color:#ffffff;
+    text-shadow:0 2px 10px rgba(0,0,0,0.2);
 }
 
 .hero-content p{
