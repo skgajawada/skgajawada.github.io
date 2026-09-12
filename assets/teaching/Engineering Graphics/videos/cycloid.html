@@ -298,6 +298,408 @@ input[type="range"] {
     }
 }
 
+
+/* =========================================================
+   RESPONSIVE MOBILE / TABLET PRESENTATION
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .header {
+        height: 54px;
+        min-height: 54px;
+        padding: 7px 14px;
+    }
+
+    .title-area h1 {
+        font-size: clamp(17px, 2.6vw, 24px);
+    }
+
+    .title-area p {
+        font-size: 10px;
+    }
+
+    .author {
+        font-size: 11px;
+    }
+
+    .info-panel {
+        top: 9px;
+        left: 9px;
+        min-width: 220px;
+        max-width: 245px;
+        padding: 9px 11px;
+        font-size: 11px;
+        line-height: 1.42;
+    }
+
+    .info-title {
+        font-size: 12px;
+    }
+
+    .navigation {
+        bottom: 7px;
+        gap: 4px;
+        padding: 6px 7px;
+        max-width: calc(100% - 12px);
+    }
+
+    .nav-btn {
+        height: 30px;
+        min-width: 34px;
+        padding: 4px 7px;
+        font-size: 11px;
+    }
+
+    .nav-btn.play {
+        min-width: 42px;
+    }
+
+    .speed-group {
+        font-size: 10px;
+        gap: 4px;
+    }
+
+    input[type="range"] {
+        width: 78px;
+    }
+
+    .footer {
+        height: 30px;
+        min-height: 30px;
+        font-size: 11px;
+        padding: 0 8px;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .header {
+        height: 48px;
+        min-height: 48px;
+        padding: 5px 9px;
+    }
+
+    .title-area h1 {
+        font-size: clamp(14px, 4.4vw, 19px);
+        line-height: 1.05;
+        letter-spacing: 0;
+    }
+
+    .title-area p {
+        margin-top: 2px;
+        font-size: 8px;
+    }
+
+    .author {
+        display: none;
+    }
+
+    .info-panel {
+        top: 5px;
+        left: 5px;
+        min-width: 168px;
+        max-width: 180px;
+        padding: 6px 8px;
+        border-radius: 6px;
+        font-size: 9px;
+        line-height: 1.30;
+    }
+
+    .info-title {
+        margin-bottom: 2px;
+        font-size: 10px;
+    }
+
+    .navigation {
+        left: 50%;
+        bottom: 4px;
+        width: max-content;
+        max-width: calc(100% - 6px);
+        gap: 2px;
+        padding: 3px;
+        border-radius: 7px;
+    }
+
+    .nav-btn {
+        height: 26px;
+        min-width: 27px;
+        padding: 3px 4px;
+        border-radius: 5px;
+        font-size: 9px;
+    }
+
+    .nav-btn.play {
+        min-width: 32px;
+    }
+
+    .speed-group {
+        gap: 2px;
+        padding-left: 2px;
+        font-size: 8px;
+    }
+
+    input[type="range"] {
+        width: 48px;
+    }
+
+    .speed-value {
+        min-width: 17px;
+    }
+
+    .footer {
+        height: 24px;
+        min-height: 24px;
+        font-size: 9px;
+        letter-spacing: 0;
+        padding: 0 4px;
+    }
+}
+
+
+@media (max-width: 430px) {
+
+    .header {
+        height: 44px;
+        min-height: 44px;
+        padding: 4px 7px;
+    }
+
+    .title-area h1 {
+        font-size: 13px;
+    }
+
+    .title-area p {
+        display: none;
+    }
+
+    .info-panel {
+        top: 4px;
+        left: 4px;
+        min-width: 148px;
+        max-width: 154px;
+        padding: 5px 6px;
+        font-size: 8px;
+        line-height: 1.24;
+    }
+
+    .info-title {
+        font-size: 9px;
+    }
+
+    .navigation {
+        bottom: 2px;
+        max-width: calc(100% - 4px);
+        padding: 2px;
+    }
+
+    .nav-btn {
+        height: 24px;
+        min-width: 24px;
+        padding: 2px 3px;
+        font-size: 8px;
+    }
+
+    .nav-btn.play {
+        min-width: 29px;
+    }
+
+    .speed-group {
+        font-size: 7px;
+    }
+
+    input[type="range"] {
+        width: 40px;
+    }
+
+    .speed-value {
+        min-width: 15px;
+    }
+
+    .footer {
+        height: 21px;
+        min-height: 21px;
+        font-size: 8px;
+    }
+}
+
+
+/*
+   Short landscape phones.
+   The geometry is automatically scaled by JavaScript;
+   these rules only make the surrounding UI compact.
+*/
+@media (max-width: 900px) and (max-height: 480px) {
+
+    .header {
+        height: 40px;
+        min-height: 40px;
+        padding: 3px 7px;
+    }
+
+    .title-area h1 {
+        font-size: 13px;
+    }
+
+    .title-area p {
+        display: none;
+    }
+
+    .info-panel {
+        top: 4px;
+        left: 4px;
+        min-width: 145px;
+        max-width: 150px;
+        padding: 4px 6px;
+        font-size: 7px;
+        line-height: 1.20;
+    }
+
+    .info-title {
+        font-size: 8px;
+    }
+
+    .navigation {
+        bottom: 2px;
+        padding: 2px;
+    }
+
+    .nav-btn {
+        height: 23px;
+        min-width: 23px;
+        padding: 2px 3px;
+        font-size: 8px;
+    }
+
+    .nav-btn.play {
+        min-width: 28px;
+    }
+
+    .speed-group {
+        font-size: 7px;
+    }
+
+    input[type="range"] {
+        width: 40px;
+    }
+
+    .footer {
+        height: 19px;
+        min-height: 19px;
+        font-size: 7px;
+    }
+}
+
+
+/* Extra narrow devices: keep every navigation control visible. */
+@media (max-width: 340px) {
+
+    .navigation {
+        transform: translateX(-50%) scale(0.90);
+        transform-origin: center bottom;
+    }
+
+    .info-panel {
+        min-width: 140px;
+        max-width: 145px;
+        font-size: 7.5px;
+    }
+
+    .footer {
+        font-size: 7px;
+    }
+}
+
+
+/* =========================================================
+   ACTUAL-VIEWPORT RESPONSIVE OVERRIDES
+   Also works when Chrome "Desktop site" is enabled.
+   ========================================================= */
+
+body.compact-landscape .header {
+    height: 44px;
+    min-height: 44px;
+    padding: 4px 9px;
+}
+
+body.compact-landscape .title-area h1 {
+    font-size: 15px;
+    line-height: 1.05;
+}
+
+body.compact-landscape .title-area p,
+body.compact-landscape .author {
+    display: none;
+}
+
+body.compact-landscape .info-panel {
+    top: 5px;
+    left: 5px;
+    min-width: 148px;
+    width: 158px;
+    max-width: 158px;
+    padding: 6px 8px;
+    font-size: 8px;
+    line-height: 1.28;
+}
+
+body.compact-landscape .info-title {
+    font-size: 9px;
+    margin-bottom: 2px;
+}
+
+body.compact-landscape .navigation {
+    left: 50%;
+    bottom: 24px;
+    gap: 2px;
+    padding: 3px;
+    max-width: calc(100% - 8px);
+    transform: translateX(-50%);
+}
+
+body.compact-landscape .nav-btn {
+    height: 25px;
+    min-width: 26px;
+    padding: 2px 4px;
+    font-size: 9px;
+}
+
+body.compact-landscape .nav-btn.play {
+    min-width: 31px;
+}
+
+body.compact-landscape .speed-group {
+    gap: 2px;
+    padding-left: 2px;
+    font-size: 8px;
+}
+
+body.compact-landscape input[type="range"] {
+    width: 48px;
+}
+
+body.compact-landscape .footer {
+    height: 21px;
+    min-height: 21px;
+    font-size: 9px;
+    padding: 0 5px;
+}
+
+body.compact-portrait .author {
+    display: none;
+}
+
+body.compact-portrait .navigation {
+    bottom: 25px;
+}
+
+body.compact-portrait .footer {
+    height: 22px;
+    min-height: 22px;
+    font-size: 8px;
+}
+
 </style>
 </head>
 
@@ -516,16 +918,18 @@ const Rmm = 25.0;
     Enlarged diagram — 9 px/mm
 */
 
-const SCALE = 8.1;
-const FONT_SCALE = 2.025;
-   
-const R =
-    Rmm * SCALE;
+const MAX_SCALE = 8.1;
+const MIN_SCALE = 1.20;
+
+let SCALE = MAX_SCALE;
+let FONT_SCALE = 2.025;
+
+let R = Rmm * SCALE;
 
 const TOTAL_DISTANCE_MM =
     Math.PI * D;
 
-const TOTAL_DISTANCE =
+let TOTAL_DISTANCE =
     TOTAL_DISTANCE_MM * SCALE;
 
 
@@ -607,15 +1011,46 @@ function startReverseAnimation() {
 
 function OX() {
 
-    return Math.max(
-        190,
-        W * 0.15
-    );
+    /*
+        The left edge of the static circle must remain inside
+        the canvas on every screen size.
+    */
+    const sideMargin =
+        Math.max(10, W * 0.025);
+
+    return R + sideMargin;
 
 }
 
 
 function CENTER_Y() {
+
+    /*
+        Portrait phones:
+        keep the construction away from the header.
+
+        Short landscape phones:
+        move it upward to leave room for the lower
+        development/distance information and controls.
+
+        Desktop/tablet:
+        preserve the established 0.53 position.
+    */
+    if (W > H * 1.45 && H < 700) {
+        return H * 0.34;
+    }
+
+    if (H <= 330) {
+        return H * 0.43;
+    }
+
+    if (H <= 480) {
+        return H * 0.46;
+    }
+
+    if (W <= 700) {
+        return H * 0.47;
+    }
 
     return H * 0.53;
 
@@ -647,6 +1082,123 @@ function APRIME_X() {
    RESIZE
    ========================================================= */
 
+function updateResponsiveScale() {
+
+    /*
+        The complete construction occupies approximately:
+            radius on the left + πD development on the right.
+
+        The calculation uses the actual canvas width, so a phone
+        automatically gets a smaller drawing while desktop retains
+        the large 8.1 scale.
+    */
+
+    const sideMargin =
+        Math.max(10, W * 0.025);
+
+    const availableWidth =
+        Math.max(
+            100,
+            W - 2 * sideMargin
+        );
+
+    const horizontalScale =
+        (availableWidth - 8) /
+        (Rmm + TOTAL_DISTANCE_MM);
+
+    /*
+        Keep the lower distance measurement inside the viewport.
+    */
+    const lowerAllowanceMM =
+        (W > H * 1.45 && H < 700)
+            ? 14 + 78 / 8.1
+            : 24 + 115 / 8.1;
+
+    const availableHeight =
+        Math.max(
+            100,
+            H * 0.94 - 42
+        );
+
+    const verticalScale =
+        availableHeight /
+        (Rmm + lowerAllowanceMM);
+
+    SCALE =
+        Math.min(
+            MAX_SCALE,
+            horizontalScale,
+            verticalScale
+        );
+
+    /*
+        Prevent unreadably tiny geometry on normal phones,
+        while still allowing extremely narrow screens to fit.
+    */
+    SCALE =
+        Math.max(
+            MIN_SCALE,
+            SCALE
+        );
+
+    if (
+        SCALE * (Rmm + TOTAL_DISTANCE_MM) >
+        availableWidth
+    ) {
+        SCALE =
+            availableWidth /
+            (Rmm + TOTAL_DISTANCE_MM);
+    }
+
+    R =
+        Rmm * SCALE;
+
+    TOTAL_DISTANCE =
+        TOTAL_DISTANCE_MM * SCALE;
+
+    /*
+        Desktop font proportion:
+            8.1 / 4 = 2.025
+
+        Mobile keeps a minimum readable annotation size.
+    */
+    FONT_SCALE =
+        Math.max(
+            0.78,
+            Math.min(
+                2.025,
+                SCALE / 4
+            )
+        );
+
+}
+
+
+
+function updateViewportMode() {
+
+    /*
+        Use the actual canvas aspect ratio. This bypasses the
+        unreliable CSS width used by some mobile browsers when
+        "Desktop site" is enabled.
+    */
+    const isLandscapePhoneLike =
+        W > H * 1.45 && H < 700;
+
+    const isPortraitPhoneLike =
+        H > W * 1.05 && W < 700;
+
+    document.body.classList.toggle(
+        "compact-landscape",
+        isLandscapePhoneLike
+    );
+
+    document.body.classList.toggle(
+        "compact-portrait",
+        isPortraitPhoneLike
+    );
+}
+
 function resizeCanvas() {
 
     const rect =
@@ -670,6 +1222,19 @@ function resizeCanvas() {
     W = rect.width;
 
     H = rect.height;
+
+    updateViewportMode();
+
+    updateResponsiveScale();
+
+    /*
+        If the viewport changes while the animation is paused
+        or partly completed, rebuild the trace using the new
+        geometry scale.
+    */
+    if (trace.length > 0) {
+        rebuildTrace();
+    }
 
 
     ctx.setTransform(
@@ -878,7 +1443,7 @@ function drawDimension(
     label
 ) {
 
-    const tick = 6;
+    const tick = Math.max(3, 6 * (SCALE / 8.1));
 
 
     drawLine(
@@ -924,12 +1489,12 @@ function drawDimension(
     );
 
     ctx.lineTo(
-        x1 + 9,
+        x1 + Math.max(5, 9 * (SCALE / 8.1)),
         y - 4.5
     );
 
     ctx.lineTo(
-        x1 + 9,
+        x1 + Math.max(5, 9 * (SCALE / 8.1)),
         y + 4.5
     );
 
@@ -946,12 +1511,12 @@ function drawDimension(
     );
 
     ctx.lineTo(
-        x2 - 9,
+        x2 - Math.max(5, 9 * (SCALE / 8.1)),
         y - 4.5
     );
 
     ctx.lineTo(
-        x2 - 9,
+        x2 - Math.max(5, 9 * (SCALE / 8.1)),
         y + 4.5
     );
 
@@ -1069,7 +1634,7 @@ function drawStaticCircle() {
 
 
         const labelR =
-            R + 18;
+            R + Math.max(8, 18 * (SCALE / 8.1));
 
 
         const lx =
@@ -1096,10 +1661,10 @@ function drawStaticCircle() {
         if (i === 0) {
 
             finalLX =
-                lx - 12;
+                lx - Math.max(5, 12 * (SCALE / 8.1));
 
             finalLY =
-                ly + 2;
+                ly + Math.max(1, 2 * (SCALE / 8.1));
 
         }
 
@@ -1107,10 +1672,10 @@ function drawStaticCircle() {
         if (i === N) {
 
             finalLX =
-                lx + 12;
+                lx + Math.max(5, 12 * (SCALE / 8.1));
 
             finalLY =
-                ly + 2;
+                ly + Math.max(1, 2 * (SCALE / 8.1));
 
         }
 
@@ -1315,7 +1880,7 @@ function drawDirectingLine() {
     */
 
     const primeLabelY =
-        y + 42;
+        y + Math.max(16, 42 * (SCALE / 8.1));
 
 
     /*
@@ -1499,7 +2064,7 @@ function drawRollingCircle() {
 
 
         const labelR =
-            R + 18;
+            R + Math.max(8, 18 * (SCALE / 8.1));
 
 
         const lx =
@@ -1529,10 +2094,10 @@ function drawRollingCircle() {
         if (i === 0) {
 
             finalLX =
-                lx - 12;
+                lx - Math.max(5, 12 * (SCALE / 8.1));
 
             finalLY =
-                ly + 2;
+                ly + Math.max(1, 2 * (SCALE / 8.1));
 
         }
 
@@ -1540,10 +2105,10 @@ function drawRollingCircle() {
         if (i === N) {
 
             finalLX =
-                lx + 12;
+                lx + Math.max(5, 12 * (SCALE / 8.1));
 
             finalLY =
-                ly + 2;
+                ly + Math.max(1, 2 * (SCALE / 8.1));
 
         }
 
@@ -1724,9 +2289,9 @@ function drawRotationArrow(
         Math.cos(a);
 
 
-    const headLength = 13;
+    const headLength = Math.max(7, 13 * (SCALE / 8.1));
 
-    const headWidth = 7;
+    const headWidth = Math.max(4, 7 * (SCALE / 8.1));
 
 
     const tipX = ax;
@@ -1978,7 +2543,7 @@ function drawGeneratedPoints() {
         drawText(
             "P" + i,
             p.x,
-            p.y - 13,
+            p.y - Math.max(6, 13 * (SCALE / 8.1)),
             10,
             "#d0008f",
             "center",
@@ -2055,7 +2620,7 @@ function drawAngleIndicator() {
     drawText(
         "Rotation",
         textX,
-        textY + 18,
+        textY + Math.max(9, 18 * (SCALE / 8.1)),
         10,
         "#555555",
         "center",
@@ -2085,11 +2650,18 @@ function drawDistanceIndicator() {
         R * theta;
 
 
-    const y =
-        Math.min(
-            GROUND_Y() + 115,
-            H - 68
+    let y;
+
+    if (W > H * 1.45 && H < 700) {
+        y = H - 78;
+    } else {
+        y = Math.min(
+            GROUND_Y() +
+                Math.max(40, 115 * (SCALE / 8.1)),
+            H -
+                (W <= 700 ? 46 : 68)
         );
+    }
 
 
     const endX =
@@ -2166,18 +2738,34 @@ function drawWatermark() {
 
 
     ctx.rotate(
-        -Math.PI / 7
+        -Math.PI / 10
     );
 
 
+    /*
+        Watermark:
+        unchanged on desktop/tablet/portrait.
+        Reduced only on short mobile landscape.
+    */
+    const isShortLandscape =
+        W > H * 1.35 && H < 700;
+
     const fontSize =
-        Math.max(
-            55,
-            Math.min(
-                110,
-                W * 0.085
+        isShortLandscape
+            ? Math.max(
+                16,
+                Math.min(
+                    28,
+                    W * 0.022
+                )
             )
-        );
+            : Math.max(
+                55,
+                Math.min(
+                    110,
+                    W * 0.085
+                )
+            );
 
 
     ctx.font =
