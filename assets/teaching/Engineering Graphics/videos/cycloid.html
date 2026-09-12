@@ -2911,8 +2911,27 @@ function drawWatermark() {
 
 
 /* =========================================================
+   DESKTOP/LAPTOP DIAGRAM OFFSET
+   =========================================================
+
+   Move the COMPLETE canvas drawing UP by exactly 1 cm
+   in CSS pixels on laptop/desktop only.
+
+   1 CSS inch = 96 px
+   1 cm = 96 / 2.54 = 37.795 px
+
+   The navigation HTML controls are outside the canvas and
+   therefore are NOT moved.
+   ========================================================= */
+
+const DESKTOP_DIAGRAM_DOWN =
+    96 / 2.54;
+
+
+/* =========================================================
    MAIN SCENE
    ========================================================= */
+
 
 function drawScene() {
 
@@ -2922,6 +2941,43 @@ function drawScene() {
         W,
         H
     );
+
+
+    /*
+       -----------------------------------------------------
+       MOVE THE ENTIRE DIAGRAM UP BY 1 CM
+       ON LAPTOP/DESKTOP ONLY
+       -----------------------------------------------------
+
+       Everything drawn on the canvas moves together:
+
+       - static circle
+       - construction lines
+       - directing line
+       - cycloid
+       - generated points
+       - rolling circle
+       - dimension lines
+       - labels
+       - watermark
+
+       The navigation controls are HTML elements outside
+       the canvas, so they remain exactly where they are.
+    */
+
+    const desktopOffset =
+        (W > 900)
+            ? -DESKTOP_DIAGRAM_DOWN
+            : 0;
+
+
+    ctx.save();
+
+    ctx.translate(
+        0,
+        desktopOffset
+    );
+
 
     drawStaticCircle();
 
@@ -2940,6 +2996,9 @@ function drawScene() {
     drawDistanceIndicator();
 
     drawWatermark();
+
+
+    ctx.restore();
 
 }
 
