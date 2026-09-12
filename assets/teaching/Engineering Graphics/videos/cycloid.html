@@ -699,7 +699,671 @@ body.compact-portrait .footer {
     min-height: 22px;
     font-size: 8px;
 }
+/* =========================================================
+   FINAL RESPONSIVE UI OPTIMIZATION
+   ========================================================= */
 
+/*
+   The animation canvas remains 100% of the available area.
+
+   These rules optimize ONLY:
+   - information card
+   - navigation controls
+   - speed control
+   - spacing
+   - readability
+*/
+
+
+/* =========================================================
+   INFORMATION CARD — DESKTOP
+   ========================================================= */
+
+.info-panel {
+
+    top: 12px;
+    left: 14px;
+
+    width: clamp(
+        300px,
+        22vw,
+        360px
+    );
+
+    min-width: 0;
+    max-width: 360px;
+
+    padding:
+        13px 16px;
+
+    border-radius: 9px;
+
+    font-size:
+        clamp(
+            13px,
+            1.05vw,
+            16px
+        );
+
+    line-height: 1.48;
+
+    background:
+        rgba(255,255,255,0.97);
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,0.13);
+
+}
+
+
+.info-title {
+
+    margin-bottom: 4px;
+
+    font-size:
+        clamp(
+            14px,
+            1.15vw,
+            17px
+        );
+
+}
+
+
+/* =========================================================
+   NAVIGATION — DESKTOP
+   ========================================================= */
+
+.navigation {
+
+    /*
+       JavaScript dynamically changes this value
+       according to the distance indicator.
+
+       Default value is only a fallback.
+    */
+
+    --navigation-bottom: 14px;
+
+    bottom:
+        var(--navigation-bottom);
+
+    gap: 6px;
+
+    padding:
+        7px 9px;
+
+    border-radius: 11px;
+
+    max-width:
+        calc(100% - 20px);
+
+}
+
+
+.nav-btn {
+
+    height: 38px;
+
+    min-width: 42px;
+
+    padding:
+        6px 10px;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+.nav-btn.play {
+
+    min-width: 48px;
+
+}
+
+
+.nav-btn.reset {
+
+    min-width: 66px;
+
+}
+
+
+/* =========================================================
+   SPEED
+   ========================================================= */
+
+.speed-group {
+
+    gap: 6px;
+
+    padding-left: 5px;
+
+    font-size: 12px;
+
+}
+
+
+input[type="range"] {
+
+    width: 90px;
+
+    height: 20px;
+
+}
+
+
+.speed-value {
+
+    min-width: 25px;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .info-panel {
+
+        top: 10px;
+        left: 10px;
+
+        width: 270px;
+
+        max-width: 270px;
+
+        padding:
+            10px 13px;
+
+        font-size: 12px;
+
+        line-height: 1.42;
+
+    }
+
+
+    .info-title {
+
+        font-size: 14px;
+
+    }
+
+
+    .navigation {
+
+        gap: 5px;
+
+        padding:
+            6px 8px;
+
+    }
+
+
+    .nav-btn {
+
+        height: 36px;
+
+        min-width: 39px;
+
+        padding:
+            5px 8px;
+
+        font-size: 12px;
+
+    }
+
+
+    .nav-btn.play {
+
+        min-width: 45px;
+
+    }
+
+
+    .nav-btn.reset {
+
+        min-width: 61px;
+
+    }
+
+
+    .speed-group {
+
+        gap: 5px;
+
+        font-size: 11px;
+
+    }
+
+
+    input[type="range"] {
+
+        width: 80px;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .info-panel {
+
+        top: 7px;
+        left: 7px;
+
+        width:
+            clamp(
+                205px,
+                57vw,
+                235px
+            );
+
+        min-width: 205px;
+
+        max-width: 235px;
+
+        padding:
+            8px 10px;
+
+        border-radius: 8px;
+
+        font-size:
+            clamp(
+                10.5px,
+                2.7vw,
+                12px
+            );
+
+        line-height: 1.34;
+
+    }
+
+
+    .info-title {
+
+        margin-bottom: 3px;
+
+        font-size:
+            clamp(
+                12px,
+                3vw,
+                14px
+            );
+
+    }
+
+
+    .navigation {
+
+        gap: 4px;
+
+        padding:
+            5px 6px;
+
+        border-radius: 9px;
+
+        max-width:
+            calc(100% - 10px);
+
+    }
+
+
+    .nav-btn {
+
+        height: 36px;
+
+        min-width: 36px;
+
+        padding:
+            5px 7px;
+
+        border-radius: 6px;
+
+        font-size: 11px;
+
+    }
+
+
+    .nav-btn.play {
+
+        min-width: 42px;
+
+    }
+
+
+    .nav-btn.reset {
+
+        min-width: 57px;
+
+    }
+
+
+    .speed-group {
+
+        gap: 4px;
+
+        padding-left: 3px;
+
+        font-size: 10px;
+
+    }
+
+
+    input[type="range"] {
+
+        width: 68px;
+
+    }
+
+
+    .speed-value {
+
+        min-width: 21px;
+
+        font-size: 10px;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+    .info-panel {
+
+        top: 6px;
+        left: 6px;
+
+        width: 205px;
+
+        min-width: 205px;
+
+        max-width: 205px;
+
+        padding:
+            7px 9px;
+
+        font-size: 10.5px;
+
+        line-height: 1.32;
+
+    }
+
+
+    .info-title {
+
+        font-size: 12px;
+
+    }
+
+
+    .navigation {
+
+        gap: 3px;
+
+        padding:
+            4px 5px;
+
+        border-radius: 8px;
+
+    }
+
+
+    .nav-btn {
+
+        height: 34px;
+
+        min-width: 34px;
+
+        padding:
+            4px 6px;
+
+        font-size: 10px;
+
+    }
+
+
+    .nav-btn.play {
+
+        min-width: 40px;
+
+    }
+
+
+    .nav-btn.reset {
+
+        min-width: 53px;
+
+    }
+
+
+    .speed-group {
+
+        gap: 3px;
+
+        font-size: 9px;
+
+    }
+
+
+    input[type="range"] {
+
+        width: 60px;
+
+    }
+
+
+    .speed-value {
+
+        min-width: 19px;
+
+        font-size: 9px;
+
+    }
+
+}
+
+
+/* =========================================================
+   SHORT LANDSCAPE PHONE
+   ========================================================= */
+
+@media (
+    max-width: 900px
+) and (
+    max-height: 480px
+) {
+
+    .info-panel {
+
+        top: 5px;
+        left: 7px;
+
+        width: 205px;
+
+        min-width: 205px;
+
+        max-width: 215px;
+
+        padding:
+            6px 9px;
+
+        font-size: 10px;
+
+        line-height: 1.28;
+
+    }
+
+
+    .info-title {
+
+        font-size: 12px;
+
+    }
+
+
+    .navigation {
+
+        gap: 3px;
+
+        padding:
+            4px 5px;
+
+    }
+
+
+    .nav-btn {
+
+        height: 34px;
+
+        min-width: 34px;
+
+        padding:
+            4px 6px;
+
+        font-size: 10px;
+
+    }
+
+
+    .nav-btn.play {
+
+        min-width: 40px;
+
+    }
+
+
+    .nav-btn.reset {
+
+        min-width: 53px;
+
+    }
+
+
+    .speed-group {
+
+        gap: 3px;
+
+        font-size: 9px;
+
+    }
+
+
+    input[type="range"] {
+
+        width: 60px;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY NARROW LANDSCAPE
+   ========================================================= */
+
+@media (
+    max-width: 600px
+) and (
+    max-height: 360px
+) {
+
+    .info-panel {
+
+        width: 185px;
+
+        min-width: 185px;
+
+        max-width: 190px;
+
+        padding:
+            5px 7px;
+
+        font-size: 9px;
+
+        line-height: 1.22;
+
+    }
+
+
+    .info-title {
+
+        font-size: 10.5px;
+
+    }
+
+
+    .navigation {
+
+        gap: 2px;
+
+        padding: 3px 4px;
+
+    }
+
+
+    .nav-btn {
+
+        height: 31px;
+
+        min-width: 31px;
+
+        padding:
+            3px 5px;
+
+        font-size: 9px;
+
+    }
+
+
+    .nav-btn.play {
+
+        min-width: 36px;
+
+    }
+
+
+    .nav-btn.reset {
+
+        min-width: 48px;
+
+    }
+
+
+    .speed-group {
+
+        gap: 2px;
+
+        font-size: 8px;
+
+    }
+
+
+    input[type="range"] {
+
+        width: 48px;
+
+    }
+
+}
 </style>
 </head>
 
@@ -1246,35 +1910,21 @@ function resizeCanvas() {
     const dpr =
         window.devicePixelRatio || 1;
 
-
     canvas.width =
-        Math.round(
-            rect.width * dpr
-        );
+        Math.round(rect.width * dpr);
 
     canvas.height =
-        Math.round(
-            rect.height * dpr
-        );
-
+        Math.round(rect.height * dpr);
 
     W = rect.width;
-
     H = rect.height;
 
     updateViewportMode();
-
     updateResponsiveScale();
 
-    /*
-        If the viewport changes while the animation is paused
-        or partly completed, rebuild the trace using the new
-        geometry scale.
-    */
     if (trace.length > 0) {
         rebuildTrace();
     }
-
 
     ctx.setTransform(
         dpr,
@@ -1285,16 +1935,20 @@ function resizeCanvas() {
         0
     );
 
-
     drawScene();
 
+    /*
+       Recalculate the control position after every
+       resize/orientation change.
+    */
+    requestAnimationFrame(function() {
+        optimizeNavigationPosition(
+            GROUND_Y() + 78
+        );
+    });
 }
 
 
-window.addEventListener(
-    "resize",
-    resizeCanvas
-);
 
 
 /* =========================================================
@@ -2670,7 +3324,7 @@ function drawAngleIndicator() {
 
 
 /* =========================================================
-   ROLLING DISTANCE
+   OPTIMIZED ROLLING DISTANCE INDICATOR
    ========================================================= */
 
 function drawDistanceIndicator() {
@@ -2689,53 +3343,35 @@ function drawDistanceIndicator() {
 
 
     /*
-        -----------------------------------------------------
-        POSITION THE "s = ..." LINE RELATIVE TO THE
-        AA′ = πD DIMENSION LINE
-        -----------------------------------------------------
+       The AA′ = πD dimension line is created in
+       drawDirectingLine() at:
 
-        The total development dimension is drawn at:
-
-            DIRECTING_Y() + 78
-
-        Therefore the rolling-distance indicator is placed
-        immediately below it.
-
-        This keeps the relationship consistent on:
-
-        - Desktop
-        - Laptop
-        - Tablet
-        - Portrait mobile
-        - Landscape mobile
-        -----------------------------------------------------
+           GROUND_Y() + 78
     */
 
-    const dimensionY =
-        DIRECTING_Y() + 78;
+    const totalDimensionY =
+        GROUND_Y() + 78;
 
 
     /*
-        Adaptive gap between:
+       Adaptive gap.
 
-            AA′ = πD
-                   ↓
-            s = ... mm
+       The s-dimension is ALWAYS below the
+       AA′ dimension line.
 
-        Smaller screens get a smaller gap.
+       It is never allowed to jump above it.
     */
 
     let gap;
 
-
     if (W <= 430) {
 
-        gap = 10;
+        gap = 15;
 
     }
     else if (W <= 700) {
 
-        gap = 12;
+        gap = 17;
 
     }
     else if (
@@ -2743,176 +3379,297 @@ function drawDistanceIndicator() {
         H < 700
     ) {
 
-        gap = 10;
+        gap = 15;
 
     }
     else if (W <= 1100) {
 
-        gap = 14;
-
-    }
-    else {
-
         gap = 18;
 
     }
+    else {
+
+        gap = 22;
+
+    }
 
 
     /*
-        Position the rolling-distance line directly below
-        the total dimension line.
+       Distance dimension line.
     */
 
     let y =
-        dimensionY + gap;
+        totalDimensionY + gap;
 
 
     /*
-        -----------------------------------------------------
-        SAFETY LIMIT
-        -----------------------------------------------------
+       We want:
 
-        Keep the distance indicator above the navigation
-        controls and footer.
+       AA′ label
+       ────────────────  AA′ line
 
-        The available lower region is determined from the
-        actual viewport height.
+       s = xxx mm
+       ────────────────  s line
     */
 
-    let bottomClearance;
+
+    /*
+       Keep the s dimension safely above the
+       navigation controls.
+
+       Navigation itself is repositioned by
+       optimizeNavigationPosition().
+    */
+
+    const footerSafety =
+        W <= 430
+            ? 30
+            : W <= 700
+                ? 34
+                : 40;
 
 
-    if (W <= 430) {
+    const navigationHeight =
+        document.querySelector(
+            ".navigation"
+        )?.offsetHeight || 40;
 
-        bottomClearance = 55;
 
-    }
-    else if (W <= 700) {
-
-        bottomClearance = 60;
-
-    }
-    else if (
-        W > H * 1.45 &&
-        H < 700
-    ) {
-
-        bottomClearance = 72;
-
-    }
-    else {
-
-        bottomClearance = 82;
-
-    }
+    const minimumNavigationGap =
+        W <= 700
+            ? 14
+            : 20;
 
 
     const maximumY =
-        H - bottomClearance;
+        H -
+        footerSafety -
+        navigationHeight -
+        minimumNavigationGap;
 
 
     /*
-        If the desired position is too low, move it upward
-        only enough to remain visible.
+       If the available height is tight,
+       reduce the gap before moving the
+       distance indicator upward.
 
-        It will NEVER be placed above the AA′ dimension line.
+       This preserves the ordering.
     */
 
-    if (y > maximumY) {
+    if (
+        y > maximumY
+    ) {
 
-        y = maximumY;
+        y =
+            Math.max(
+                totalDimensionY + 10,
+                maximumY
+            );
 
     }
 
 
     /*
-        -----------------------------------------------------
-        DRAW ONLY THE DISTANCE ALREADY TRAVELLED
-        -----------------------------------------------------
+       Current rolling distance.
     */
 
     const endX =
         Math.min(
             currentX,
-            W - 20
+            W - 15
         );
 
 
-    /*
-        Do not draw a meaningless very short dimension.
-    */
-
     if (
-        endX - x0 > 30
+        endX - x0 <= 30
     ) {
 
         /*
-            Main dimension line
+           Even at the starting position there is no
+           visible s-dimension yet, but the controls should
+           still stay close to the lower construction area.
         */
-
-        drawLine(
-            x0,
-            y,
-            endX,
-            y,
-            "#555555",
-            0.9
+        optimizeNavigationPosition(
+            totalDimensionY + gap
         );
 
-
-        /*
-            Left tick
-        */
-
-        drawLine(
-            x0,
-            y - 5,
-            x0,
-            y + 5,
-            "#555555",
-            0.9
-        );
-
-
-        /*
-            Right tick
-        */
-
-        drawLine(
-            endX,
-            y - 5,
-            endX,
-            y + 5,
-            "#555555",
-            0.9
-        );
-
-
-        /*
-            Distance text
-
-            Keep text ABOVE the distance line.
-        */
-
-        drawText(
-            "s = " +
-            distanceMM.toFixed(2) +
-            " mm",
-            (x0 + endX) / 2,
-            y - 11,
-            10,
-            "#555555",
-            "center",
-            "600"
-        );
+        return;
 
     }
 
+
+    /*
+       -----------------------------------------------------
+       DISTANCE LINE
+       -----------------------------------------------------
+    */
+
+    drawLine(
+        x0,
+        y,
+        endX,
+        y,
+        "#555555",
+        1
+    );
+
+
+    /*
+       Left tick.
+    */
+
+    drawLine(
+        x0,
+        y - 5,
+        x0,
+        y + 5,
+        "#555555",
+        1
+    );
+
+
+    /*
+       Right tick.
+    */
+
+    drawLine(
+        endX,
+        y - 5,
+        endX,
+        y + 5,
+        "#555555",
+        1
+    );
+
+
+    /*
+       -----------------------------------------------------
+       DISTANCE LABEL
+       -----------------------------------------------------
+
+       IMPORTANT:
+
+       The label is now BELOW its own line.
+
+       Therefore it cannot collide with:
+
+           AA′ = πD = 157.08 mm
+
+       which is above it.
+    */
+
+    drawText(
+        "s = " +
+        distanceMM.toFixed(2) +
+        " mm",
+        (x0 + endX) / 2,
+        y + 13,
+        10,
+        "#555555",
+        "center",
+        "600"
+    );
+
+
+    /*
+       Update navigation position after the
+       distance indicator has been calculated.
+    */
+
+    optimizeNavigationPosition(
+        y
+    );
+
+}
+/* =========================================================
+   SMART NAVIGATION POSITION
+   ========================================================= */
+
+function optimizeNavigationPosition(
+    distanceLineY
+) {
+
+    const navigation =
+        document.querySelector(
+            ".navigation"
+        );
+
+    if (!navigation) {
+        return;
+    }
+
+    const navHeight =
+        navigation.offsetHeight || 40;
+
+    /*
+       Keep the controls close to the dimension
+       information, but never over the footer.
+    */
+
+    const isShortLandscape =
+        W > H * 1.35 &&
+        H < 700;
+
+    const gapBelowDimension =
+        isShortLandscape
+            ? 12
+            : W <= 700
+                ? 16
+                : 20;
+
+    let desiredTop =
+        distanceLineY +
+        gapBelowDimension;
+
+    const topSafety = 6;
+
+    const bottomSafety =
+        isShortLandscape
+            ? 5
+            : W <= 430
+                ? 6
+                : W <= 700
+                    ? 8
+                    : 10;
+
+    const maximumTop =
+        H -
+        navHeight -
+        bottomSafety;
+
+    /*
+       If the available vertical space becomes tight,
+       keep the controls inside the canvas rather than
+       pushing them far away.
+    */
+
+    desiredTop =
+        Math.max(
+            topSafety,
+            Math.min(
+                maximumTop,
+                desiredTop
+            )
+        );
+
+    const bottom =
+        Math.max(
+            bottomSafety,
+            H -
+            desiredTop -
+            navHeight
+        );
+
+    navigation.style.setProperty(
+        "--navigation-bottom",
+        `${bottom}px`
+    );
 }
 
 /* =========================================================
    SINGLE WATERMARK
    ========================================================= */
+
 
 function drawWatermark() {
 
