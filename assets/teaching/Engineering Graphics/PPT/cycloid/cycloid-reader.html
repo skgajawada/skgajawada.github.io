@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0">
+
+<title>Cycloid — Gajavada Sanjeevkumar</title>
+
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background: #111;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+.reader {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #111;
+}
+
+
+/* =========================================================
+   SLIDE AREA
+   ========================================================= */
+
+.slide-area {
+
+    flex: 1;
+
+    min-height: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 10px;
+
+    overflow: hidden;
+}
+
+
+#slideImage {
+
+    max-width: 100%;
+
+    max-height: 100%;
+
+    width: auto;
+
+    height: auto;
+
+    object-fit: contain;
+
+    display: block;
+
+    user-select: none;
+
+    -webkit-user-drag: none;
+
+    box-shadow:
+        0 4px 25px
+        rgba(0,0,0,0.5);
+}
+
+
+/* =========================================================
+   CONTROL BAR
+   ========================================================= */
+
+.controls {
+
+    height: 58px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    padding: 8px 15px;
+
+    background: #181818;
+
+    border-top:
+        1px solid #333;
+}
+
+
+.control-button {
+
+    border: none;
+
+    outline: none;
+
+    background: #2b2b2b;
+
+    color: white;
+
+    min-width: 42px;
+
+    height: 40px;
+
+    padding: 0 13px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+.control-button:hover {
+    background: #444;
+}
+
+
+.control-button:active {
+    transform: scale(0.95);
+}
+
+
+.page-counter {
+
+    color: #ddd;
+
+    min-width: 90px;
+
+    text-align: center;
+
+    font-size: 15px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.reader-title {
+
+    position: absolute;
+
+    top: 10px;
+
+    left: 15px;
+
+    z-index: 10;
+
+    color: rgba(255,255,255,0.75);
+
+    font-size: 13px;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .slide-area {
+        padding: 4px;
+    }
+
+    .controls {
+        height: 54px;
+
+        gap: 8px;
+    }
+
+    .control-button {
+        min-width: 38px;
+
+        height: 38px;
+
+        padding: 0 10px;
+    }
+
+    .page-counter {
+        min-width: 75px;
+
+        font-size: 14px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="reader">
+
+
+    <div class="reader-title">
+        Cycloid
+    </div>
+
+
+    <div
+        class="slide-area"
+        id="slideArea"
+    >
+
+        <img
+            id="slideImage"
+            alt="Presentation slide"
+            draggable="false"
+        >
+
+    </div>
+
+
+    <div class="controls">
+
+
+        <button
+            class="control-button"
+            id="previousButton"
+            title="Previous slide"
+            aria-label="Previous slide"
+        >
+            &#10094;
+        </button>
+
+
+        <div
+            class="page-counter"
+            id="pageCounter"
+        >
+            1 / 76
+        </div>
+
+
+        <button
+            class="control-button"
+            id="nextButton"
+            title="Next slide"
+            aria-label="Next slide"
+        >
+            &#10095;
+        </button>
+
+
+        <button
+            class="control-button"
+            id="fullscreenButton"
+            title="Fullscreen"
+            aria-label="Fullscreen"
+        >
+            &#x26F6;
+        </button>
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+const pages = [
+            'cycloid-pages/page-001.jpg',
+            'cycloid-pages/page-002.jpg',
+            'cycloid-pages/page-003.jpg',
+            'cycloid-pages/page-004.jpg',
+            'cycloid-pages/page-005.jpg',
+            'cycloid-pages/page-006.jpg',
+            'cycloid-pages/page-007.jpg',
+            'cycloid-pages/page-008.jpg',
+            'cycloid-pages/page-009.jpg',
+            'cycloid-pages/page-010.jpg',
+            'cycloid-pages/page-011.jpg',
+            'cycloid-pages/page-012.jpg',
+            'cycloid-pages/page-013.jpg',
+            'cycloid-pages/page-014.jpg',
+            'cycloid-pages/page-015.jpg',
+            'cycloid-pages/page-016.jpg',
+            'cycloid-pages/page-017.jpg',
+            'cycloid-pages/page-018.jpg',
+            'cycloid-pages/page-019.jpg',
+            'cycloid-pages/page-020.jpg',
+            'cycloid-pages/page-021.jpg',
+            'cycloid-pages/page-022.jpg',
+            'cycloid-pages/page-023.jpg',
+            'cycloid-pages/page-024.jpg',
+            'cycloid-pages/page-025.jpg',
+            'cycloid-pages/page-026.jpg',
+            'cycloid-pages/page-027.jpg',
+            'cycloid-pages/page-028.jpg',
+            'cycloid-pages/page-029.jpg',
+            'cycloid-pages/page-030.jpg',
+            'cycloid-pages/page-031.jpg',
+            'cycloid-pages/page-032.jpg',
+            'cycloid-pages/page-033.jpg',
+            'cycloid-pages/page-034.jpg',
+            'cycloid-pages/page-035.jpg',
+            'cycloid-pages/page-036.jpg',
+            'cycloid-pages/page-037.jpg',
+            'cycloid-pages/page-038.jpg',
+            'cycloid-pages/page-039.jpg',
+            'cycloid-pages/page-040.jpg',
+            'cycloid-pages/page-041.jpg',
+            'cycloid-pages/page-042.jpg',
+            'cycloid-pages/page-043.jpg',
+            'cycloid-pages/page-044.jpg',
+            'cycloid-pages/page-045.jpg',
+            'cycloid-pages/page-046.jpg',
+            'cycloid-pages/page-047.jpg',
+            'cycloid-pages/page-048.jpg',
+            'cycloid-pages/page-049.jpg',
+            'cycloid-pages/page-050.jpg',
+            'cycloid-pages/page-051.jpg',
+            'cycloid-pages/page-052.jpg',
+            'cycloid-pages/page-053.jpg',
+            'cycloid-pages/page-054.jpg',
+            'cycloid-pages/page-055.jpg',
+            'cycloid-pages/page-056.jpg',
+            'cycloid-pages/page-057.jpg',
+            'cycloid-pages/page-058.jpg',
+            'cycloid-pages/page-059.jpg',
+            'cycloid-pages/page-060.jpg',
+            'cycloid-pages/page-061.jpg',
+            'cycloid-pages/page-062.jpg',
+            'cycloid-pages/page-063.jpg',
+            'cycloid-pages/page-064.jpg',
+            'cycloid-pages/page-065.jpg',
+            'cycloid-pages/page-066.jpg',
+            'cycloid-pages/page-067.jpg',
+            'cycloid-pages/page-068.jpg',
+            'cycloid-pages/page-069.jpg',
+            'cycloid-pages/page-070.jpg',
+            'cycloid-pages/page-071.jpg',
+            'cycloid-pages/page-072.jpg',
+            'cycloid-pages/page-073.jpg',
+            'cycloid-pages/page-074.jpg',
+            'cycloid-pages/page-075.jpg',
+            'cycloid-pages/page-076.jpg'
+];
+
+
+let currentPage = 0;
+
+
+const image =
+    document.getElementById("slideImage");
+
+const counter =
+    document.getElementById("pageCounter");
+
+const previousButton =
+    document.getElementById("previousButton");
+
+const nextButton =
+    document.getElementById("nextButton");
+
+const fullscreenButton =
+    document.getElementById("fullscreenButton");
+
+const slideArea =
+    document.getElementById("slideArea");
+
+
+/* =========================================================
+   LOAD PAGE
+   ========================================================= */
+
+function showPage(index) {
+
+    if (index < 0) {
+        index = 0;
+    }
+
+    if (index >= pages.length) {
+        index = pages.length - 1;
+    }
+
+    currentPage = index;
+
+    image.src = pages[currentPage];
+
+    counter.textContent =
+        (currentPage + 1)
+        + " / "
+        + pages.length;
+
+
+    previousButton.disabled =
+        currentPage === 0;
+
+    nextButton.disabled =
+        currentPage === pages.length - 1;
+
+}
+
+
+/* =========================================================
+   PREVIOUS
+   ========================================================= */
+
+previousButton.addEventListener(
+    "click",
+    function() {
+
+        showPage(currentPage - 1);
+
+    }
+);
+
+
+/* =========================================================
+   NEXT
+   ========================================================= */
+
+nextButton.addEventListener(
+    "click",
+    function() {
+
+        showPage(currentPage + 1);
+
+    }
+);
+
+
+/* =========================================================
+   KEYBOARD NAVIGATION
+   ========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "ArrowLeft" ||
+            event.key === "PageUp"
+        ) {
+
+            showPage(currentPage - 1);
+
+        }
+
+
+        else if (
+            event.key === "ArrowRight" ||
+            event.key === "PageDown" ||
+            event.key === " "
+        ) {
+
+            event.preventDefault();
+
+            showPage(currentPage + 1);
+
+        }
+
+
+        else if (
+            event.key === "Home"
+        ) {
+
+            showPage(0);
+
+        }
+
+
+        else if (
+            event.key === "End"
+        ) {
+
+            showPage(pages.length - 1);
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   FULLSCREEN
+   ========================================================= */
+
+fullscreenButton.addEventListener(
+    "click",
+    function() {
+
+        if (!document.fullscreenElement) {
+
+            if (document.documentElement.requestFullscreen) {
+
+                document.documentElement.requestFullscreen();
+
+            }
+
+        }
+
+        else {
+
+            if (document.exitFullscreen) {
+
+                document.exitFullscreen();
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   DISABLE RIGHT CLICK ON SLIDE
+   ========================================================= */
+
+image.addEventListener(
+    "contextmenu",
+    function(event) {
+
+        event.preventDefault();
+
+    }
+);
+
+
+/* =========================================================
+   TOUCH / SWIPE SUPPORT
+   ========================================================= */
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+
+slideArea.addEventListener(
+    "touchstart",
+    function(event) {
+
+        touchStartX =
+            event.changedTouches[0].screenX;
+
+    },
+    { passive: true }
+);
+
+
+slideArea.addEventListener(
+    "touchend",
+    function(event) {
+
+        touchEndX =
+            event.changedTouches[0].screenX;
+
+        const distance =
+            touchEndX - touchStartX;
+
+
+        if (Math.abs(distance) < 50) {
+            return;
+        }
+
+
+        if (distance < 0) {
+
+            showPage(currentPage + 1);
+
+        }
+
+        else {
+
+            showPage(currentPage - 1);
+
+        }
+
+    },
+    { passive: true }
+);
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+showPage(0);
+
+</script>
+
+
+</body>
+
+</html>
