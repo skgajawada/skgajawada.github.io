@@ -3,28 +3,27 @@
    Gajavada Sanjeevkumar
 ========================================================== */
 
-:root{
-
-    --primary:#2563eb;
-    --primary-dark:#1d4ed8;
-    --secondary:#0f172a;
-    --accent:#3b82f6;
-
-    --background:#f4f7fc;
-    --surface:#ffffff;
-
-    --text:#1e293b;
-    --text-light:#64748b;
-
-    --border:#e2e8f0;
-
-    --shadow:
-        0 10px 35px rgba(0,0,0,.08);
-
-    --radius:18px;
-
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary: #0f172a;
+    --accent: #3b82f6;
+    --background: #f4f7fc;
+    --surface: #ffffff;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --border: #e2e8f0;
+    --shadow: 0 10px 35px rgba(0,0,0,.08);
+    --radius: 18px;
 }
-
+/* --- Theme 1: Design of Machine Members-I (Emerald / Precision) --- */
+body.theme-dmm1 {
+    --primary: #059669;
+    --primary-dark: #047857;
+    --secondary: #064e3b;
+    --accent: #10b981;
+    --background: #f0fdf4;
+}
 *{
     margin:0;
     padding:0;
