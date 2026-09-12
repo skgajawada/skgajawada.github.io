@@ -1,4 +1,4 @@
-name: Build Teaching Material Previews
+name: Build Teaching Material Web Reader
 
 on:
   push:
@@ -34,7 +34,7 @@ jobs:
 
 
       # =========================================================
-      # 2. INSTALL PDF TOOLS
+      # 2. INSTALL PDF / IMAGE TOOLS
       # =========================================================
 
       - name: Install PDF tools
@@ -42,7 +42,9 @@ jobs:
 
           sudo apt-get update
 
-          sudo apt-get install -y poppler-utils
+          sudo apt-get install -y \
+            poppler-utils \
+            imagemagick
 
 
       # =========================================================
@@ -55,29 +57,23 @@ jobs:
 
           set -e
 
-
           echo "=========================================="
           echo "Detecting LaTeX files"
           echo "=========================================="
 
-
           # -----------------------------------------------------
           # MANUAL WORKFLOW RUN
           #
-          # This is useful for the ONE-TIME conversion
-          # of your existing documents.
-          #
-          # It processes all existing TEX files.
+          # Processes ALL teaching TEX files.
+          # Useful for the first conversion of existing material.
           # -----------------------------------------------------
 
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-
 
             echo ""
             echo "Manual workflow run detected."
             echo "All teaching TEX files will be processed."
             echo ""
-
 
             find assets/teaching \
               -type f \
@@ -85,24 +81,19 @@ jobs:
               -print \
               > tex_to_build.txt
 
-
-            # No deleted files during manual run
             : > tex_to_delete.txt
 
-
           else
-
 
             # ---------------------------------------------------
             # NORMAL PUSH
             #
-            # Only files changed in this push are considered.
+            # Only changed TEX files are processed.
             # ---------------------------------------------------
 
             echo ""
             echo "Automatic push detected."
             echo ""
-
 
             git diff \
               --name-status \
@@ -111,21 +102,15 @@ jobs:
               -- assets/teaching \
               > changed_teaching_files.txt
 
-
             echo ""
             echo "=========================================="
             echo "Changed teaching files"
             echo "=========================================="
 
-
             if [ -s changed_teaching_files.txt ]; then
-
               cat changed_teaching_files.txt
-
             else
-
               echo "No teaching files changed."
-
             fi
 
 
@@ -152,7 +137,6 @@ jobs:
             ' changed_teaching_files.txt \
               > tex_to_delete.txt
 
-
           fi
 
 
@@ -161,15 +145,10 @@ jobs:
           echo "TEX FILES TO BUILD"
           echo "=========================================="
 
-
           if [ -s tex_to_build.txt ]; then
-
             cat tex_to_build.txt
-
           else
-
             echo "No TEX files need to be built."
-
           fi
 
 
@@ -178,20 +157,20 @@ jobs:
           echo "TEX FILES DELETED"
           echo "=========================================="
 
-
           if [ -s tex_to_delete.txt ]; then
-
             cat tex_to_delete.txt
-
           else
-
             echo "No TEX files deleted."
-
           fi
 
 
       # =========================================================
-      # 4. COMPILE ONLY REQUIRED TEX FILES
+      # 4. COMPILE TEX → FULL PDF
+      #
+      # The PDF exists ONLY temporarily on the GitHub Actions
+      # runner.
+      #
+      # It is NEVER published.
       # =========================================================
 
       - name: Compile required LaTeX files
@@ -202,7 +181,6 @@ jobs:
           run: |
 
             set -e
-
 
             if [ ! -s tex_to_build.txt ]; then
 
@@ -217,7 +195,6 @@ jobs:
 
             do
 
-
               echo ""
               echo "=========================================="
               echo "Compiling:"
@@ -226,12 +203,15 @@ jobs:
 
 
               dir=$(dirname "$file")
-
               name=$(basename "$file" .tex)
 
 
               cd "$dir"
 
+
+              # -------------------------------------------------
+              # Compile complete original presentation
+              # -------------------------------------------------
 
               latexmk \
                 -pdf \
@@ -248,10 +228,31 @@ jobs:
 
 
       # =========================================================
-      # 5. CREATE FIRST 4-PAGE PREVIEW
+      # 5. RENDER EVERY PDF PAGE AS AN IMAGE
+      #
+      # IMPORTANT:
+      #
+      # We do NOT create a preview PDF.
+      #
+      # Every page of the complete presentation is rendered.
+      #
+      # Example:
+      #
+      #     cycloid.pdf
+      #
+      # becomes:
+      #
+      #     cycloid-pages/
+      #       page-001.jpg
+      #       page-002.jpg
+      #       ...
+      #       page-076.jpg
+      #
+      # The watermark already exists inside the PDF because it
+      # was added in the TEX source.
       # =========================================================
 
-      - name: Create 4-page previews
+      - name: Render every PDF page
         shell: bash
 
         run: |
@@ -261,7 +262,7 @@ jobs:
 
           if [ ! -s tex_to_build.txt ]; then
 
-            echo "No new previews required."
+            echo "No TEX files need rendering."
 
             exit 0
 
@@ -272,46 +273,41 @@ jobs:
 
           do
 
-
             echo ""
             echo "=========================================="
-            echo "Creating 4-page preview"
+            echo "Rendering presentation pages"
             echo "=========================================="
 
 
             dir=$(dirname "$texfile")
-
             name=$(basename "$texfile" .tex)
 
-
             full_pdf="$dir/$name.pdf"
+            page_dir="$dir/$name-pages"
 
-            preview_pdf="$dir/$name-preview.pdf"
 
-
-            echo "Source:"
+            echo "TEX:"
             echo "$texfile"
 
             echo ""
 
-            echo "Full PDF:"
+            echo "Temporary PDF:"
             echo "$full_pdf"
 
             echo ""
 
-            echo "Preview:"
-            echo "$preview_pdf"
+            echo "Public page directory:"
+            echo "$page_dir"
 
 
             # ---------------------------------------------------
-            # Check generated PDF
+            # Verify PDF exists
             # ---------------------------------------------------
 
             if [ ! -f "$full_pdf" ]; then
 
               echo ""
               echo "ERROR: PDF was not generated."
-
               echo "$full_pdf"
 
               exit 1
@@ -320,98 +316,117 @@ jobs:
 
 
             # ---------------------------------------------------
-            # Count pages
+            # Determine number of pages
             # ---------------------------------------------------
 
             page_count=$(
-
               pdfinfo "$full_pdf" |
-
               awk '/^Pages:/ {print $2}'
-
             )
 
 
             echo ""
-
-            echo "Full PDF page count:"
+            echo "Total pages:"
             echo "$page_count"
 
 
             # ---------------------------------------------------
-            # Remove old temporary files
+            # Remove old generated page images
             # ---------------------------------------------------
 
-            rm -f "$dir"/__preview_page_*.pdf
+            rm -rf "$page_dir"
 
-
-            # ---------------------------------------------------
-            # Documents with 4 pages or fewer
-            # ---------------------------------------------------
-
-            if [ "$page_count" -le 4 ]; then
-
-
-              echo ""
-              echo "Document has 4 or fewer pages."
-
-              echo "Copying complete document as preview."
-
-
-              cp "$full_pdf" "$preview_pdf"
+            mkdir -p "$page_dir"
 
 
             # ---------------------------------------------------
-            # Documents with more than 4 pages
+            # Render ALL pages
+            #
+            # 120 DPI gives good screen quality while keeping
+            # GitHub repository size reasonable.
+            #
+            # JPEG quality = 90
             # ---------------------------------------------------
 
-            else
-
-
-              echo ""
-              echo "Document has more than 4 pages."
-
-              echo "Extracting ONLY pages 1-4."
-
-
-              pdfseparate \
-                -f 1 \
-                -l 4 \
-                "$full_pdf" \
-                "$dir/__preview_page_%d.pdf"
-
-
-              pdfunite \
-                "$dir/__preview_page_1.pdf" \
-                "$dir/__preview_page_2.pdf" \
-                "$dir/__preview_page_3.pdf" \
-                "$dir/__preview_page_4.pdf" \
-                "$preview_pdf"
-
-
-            fi
+            pdftoppm \
+              -jpeg \
+              -r 120 \
+              -jpegopt quality=90 \
+              "$full_pdf" \
+              "$page_dir/page"
 
 
             # ---------------------------------------------------
-            # Remove temporary page files
+            # Rename generated files to:
+            #
+            # page-001.jpg
+            # page-002.jpg
+            # ...
+            #
+            # instead of:
+            #
+            # page-1.jpg
+            # page-2.jpg
             # ---------------------------------------------------
 
-            rm -f "$dir"/__preview_page_*.pdf
+            python3 << PYTHON
+
+from pathlib import Path
+
+page_dir = Path(r"$page_dir")
+
+files = sorted(
+    page_dir.glob("page-*.jpg"),
+    key=lambda p: int(p.stem.split("-")[-1])
+)
+
+for i, old_file in enumerate(files, start=1):
+
+    new_file = page_dir / f"page-{i:03d}.jpg"
+
+    old_file.rename(new_file)
+
+print(f"Rendered {len(files)} page(s).")
+
+PYTHON
 
 
             echo ""
-            echo "PUBLIC PREVIEW CREATED:"
-            echo "$preview_pdf"
+            echo "Pages generated:"
+            find "$page_dir" \
+              -type f \
+              -name "*.jpg" \
+              | sort
 
 
           done < tex_to_build.txt
 
 
       # =========================================================
-      # 6. REMOVE FULL GENERATED PDF
+      # 6. GENERATE CUSTOM KINDLE-STYLE WEB READER
+      #
+      # One reader.html is generated for every presentation.
+      #
+      # The reader:
+      #
+      #   • displays one page at a time
+      #   • previous button
+      #   • next button
+      #   • page number
+      #   • fullscreen button
+      #   • keyboard navigation
+      #   • no PDF
+      #   • no PDF download button
+      #   • no browser PDF viewer
+      #
+      # IMPORTANT:
+      #
+      # This is NOT a PDF viewer.
+      #
+      # It is an IMAGE-BASED PRESENTATION READER.
       # =========================================================
 
-      - name: Remove full PDFs from public repository
+      - name: Generate custom web readers
         shell: bash
 
         run: |
@@ -421,7 +436,7 @@ jobs:
 
           if [ ! -s tex_to_build.txt ]; then
 
-            echo "No full PDFs to remove."
+            echo "No readers need to be generated."
 
             exit 0
 
@@ -432,17 +447,700 @@ jobs:
 
           do
 
+            echo ""
+            echo "=========================================="
+            echo "Generating custom web reader"
+            echo "=========================================="
+
 
             dir=$(dirname "$texfile")
-
             name=$(basename "$texfile" .tex)
 
+            page_dir="$dir/$name-pages"
+            reader="$dir/$name-reader.html"
+
+
+            if [ ! -d "$page_dir" ]; then
+
+              echo "ERROR: Page directory not found:"
+              echo "$page_dir"
+
+              exit 1
+
+            fi
+
+
+            # ---------------------------------------------------
+            # Generate JSON list of pages
+            # ---------------------------------------------------
+
+            python3 << PYTHON
+
+from pathlib import Path
+from html import escape
+
+page_dir = Path(r"$page_dir")
+reader = Path(r"$reader")
+
+pages = sorted(
+    page_dir.glob("page-*.jpg"),
+    key=lambda p: int(p.stem.split("-")[-1])
+)
+
+if not pages:
+    raise SystemExit("ERROR: No rendered pages found.")
+
+page_urls = [
+    f"{page_dir.name}/{p.name}"
+    for p in pages
+]
+
+title = "$name"
+
+title = title.replace("_", " ")
+title = title.replace("-", " ")
+
+title = " ".join(title.split()).title()
+
+pages_js = ",\n".join(
+    "            " + repr(p)
+    for p in page_urls
+)
+
+html = f'''<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0">
+
+<title>{escape(title)} — Gajavada Sanjeevkumar</title>
+
+
+<style>
+
+* {{
+    box-sizing: border-box;
+}}
+
+
+html,
+body {{
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background: #111;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}}
+
+
+.reader {{
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #111;
+}}
+
+
+/* =========================================================
+   SLIDE AREA
+   ========================================================= */
+
+.slide-area {{
+
+    flex: 1;
+
+    min-height: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 10px;
+
+    overflow: hidden;
+}}
+
+
+#slideImage {{
+
+    max-width: 100%;
+
+    max-height: 100%;
+
+    width: auto;
+
+    height: auto;
+
+    object-fit: contain;
+
+    display: block;
+
+    user-select: none;
+
+    -webkit-user-drag: none;
+
+    box-shadow:
+        0 4px 25px
+        rgba(0,0,0,0.5);
+}}
+
+
+/* =========================================================
+   CONTROL BAR
+   ========================================================= */
+
+.controls {{
+
+    height: 58px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    padding: 8px 15px;
+
+    background: #181818;
+
+    border-top:
+        1px solid #333;
+}}
+
+
+.control-button {{
+
+    border: none;
+
+    outline: none;
+
+    background: #2b2b2b;
+
+    color: white;
+
+    min-width: 42px;
+
+    height: 40px;
+
+    padding: 0 13px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}}
+
+
+.control-button:hover {{
+    background: #444;
+}}
+
+
+.control-button:active {{
+    transform: scale(0.95);
+}}
+
+
+.page-counter {{
+
+    color: #ddd;
+
+    min-width: 90px;
+
+    text-align: center;
+
+    font-size: 15px;
+
+    font-weight: 600;
+}}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.reader-title {{
+
+    position: absolute;
+
+    top: 10px;
+
+    left: 15px;
+
+    z-index: 10;
+
+    color: rgba(255,255,255,0.75);
+
+    font-size: 13px;
+
+    pointer-events: none;
+}}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {{
+
+    .slide-area {{
+        padding: 4px;
+    }}
+
+    .controls {{
+        height: 54px;
+
+        gap: 8px;
+    }}
+
+    .control-button {{
+        min-width: 38px;
+
+        height: 38px;
+
+        padding: 0 10px;
+    }}
+
+    .page-counter {{
+        min-width: 75px;
+
+        font-size: 14px;
+    }}
+
+}}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="reader">
+
+
+    <div class="reader-title">
+        {escape(title)}
+    </div>
+
+
+    <div
+        class="slide-area"
+        id="slideArea"
+    >
+
+        <img
+            id="slideImage"
+            alt="Presentation slide"
+            draggable="false"
+        >
+
+    </div>
+
+
+    <div class="controls">
+
+
+        <button
+            class="control-button"
+            id="previousButton"
+            title="Previous slide"
+            aria-label="Previous slide"
+        >
+            &#10094;
+        </button>
+
+
+        <div
+            class="page-counter"
+            id="pageCounter"
+        >
+            1 / {len(page_urls)}
+        </div>
+
+
+        <button
+            class="control-button"
+            id="nextButton"
+            title="Next slide"
+            aria-label="Next slide"
+        >
+            &#10095;
+        </button>
+
+
+        <button
+            class="control-button"
+            id="fullscreenButton"
+            title="Fullscreen"
+            aria-label="Fullscreen"
+        >
+            &#x26F6;
+        </button>
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+const pages = [
+{pages_js}
+];
+
+
+let currentPage = 0;
+
+
+const image =
+    document.getElementById("slideImage");
+
+const counter =
+    document.getElementById("pageCounter");
+
+const previousButton =
+    document.getElementById("previousButton");
+
+const nextButton =
+    document.getElementById("nextButton");
+
+const fullscreenButton =
+    document.getElementById("fullscreenButton");
+
+const slideArea =
+    document.getElementById("slideArea");
+
+
+/* =========================================================
+   LOAD PAGE
+   ========================================================= */
+
+function showPage(index) {{
+
+    if (index < 0) {{
+        index = 0;
+    }}
+
+    if (index >= pages.length) {{
+        index = pages.length - 1;
+    }}
+
+    currentPage = index;
+
+    image.src = pages[currentPage];
+
+    counter.textContent =
+        (currentPage + 1)
+        + " / "
+        + pages.length;
+
+
+    previousButton.disabled =
+        currentPage === 0;
+
+    nextButton.disabled =
+        currentPage === pages.length - 1;
+
+}}
+
+
+/* =========================================================
+   PREVIOUS
+   ========================================================= */
+
+previousButton.addEventListener(
+    "click",
+    function() {{
+
+        showPage(currentPage - 1);
+
+    }}
+);
+
+
+/* =========================================================
+   NEXT
+   ========================================================= */
+
+nextButton.addEventListener(
+    "click",
+    function() {{
+
+        showPage(currentPage + 1);
+
+    }}
+);
+
+
+/* =========================================================
+   KEYBOARD NAVIGATION
+   ========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {{
+
+        if (
+            event.key === "ArrowLeft" ||
+            event.key === "PageUp"
+        ) {{
+
+            showPage(currentPage - 1);
+
+        }}
+
+
+        else if (
+            event.key === "ArrowRight" ||
+            event.key === "PageDown" ||
+            event.key === " "
+        ) {{
+
+            event.preventDefault();
+
+            showPage(currentPage + 1);
+
+        }}
+
+
+        else if (
+            event.key === "Home"
+        ) {{
+
+            showPage(0);
+
+        }}
+
+
+        else if (
+            event.key === "End"
+        ) {{
+
+            showPage(pages.length - 1);
+
+        }}
+
+    }}
+);
+
+
+/* =========================================================
+   FULLSCREEN
+   ========================================================= */
+
+fullscreenButton.addEventListener(
+    "click",
+    function() {{
+
+        if (!document.fullscreenElement) {{
+
+            if (document.documentElement.requestFullscreen) {{
+
+                document.documentElement.requestFullscreen();
+
+            }}
+
+        }}
+
+        else {{
+
+            if (document.exitFullscreen) {{
+
+                document.exitFullscreen();
+
+            }}
+
+        }}
+
+    }}
+);
+
+
+/* =========================================================
+   DISABLE RIGHT CLICK ON SLIDE
+   ========================================================= */
+
+image.addEventListener(
+    "contextmenu",
+    function(event) {{
+
+        event.preventDefault();
+
+    }}
+);
+
+
+/* =========================================================
+   TOUCH / SWIPE SUPPORT
+   ========================================================= */
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+
+slideArea.addEventListener(
+    "touchstart",
+    function(event) {{
+
+        touchStartX =
+            event.changedTouches[0].screenX;
+
+    }},
+    {{ passive: true }}
+);
+
+
+slideArea.addEventListener(
+    "touchend",
+    function(event) {{
+
+        touchEndX =
+            event.changedTouches[0].screenX;
+
+        const distance =
+            touchEndX - touchStartX;
+
+
+        if (Math.abs(distance) < 50) {{
+            return;
+        }}
+
+
+        if (distance < 0) {{
+
+            showPage(currentPage + 1);
+
+        }}
+
+        else {{
+
+            showPage(currentPage - 1);
+
+        }}
+
+    }},
+    {{ passive: true }}
+);
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+showPage(0);
+
+</script>
+
+
+</body>
+
+</html>
+'''
+
+reader.write_text(
+    html,
+    encoding="utf-8"
+)
+
+print(
+    f"Created reader: {{reader}}"
+)
+
+print(
+    f"Pages: {{len(pages)}}"
+)
+
+PYTHON
+
+
+            echo ""
+            echo "Reader created:"
+            echo "$reader"
+
+
+          done < tex_to_build.txt
+
+
+      # =========================================================
+      # 7. REMOVE ORIGINAL FULL PDFs
+      #
+      # VERY IMPORTANT:
+      #
+      # No full PDF is allowed to remain in the repository.
+      #
+      # It is deleted from:
+      #
+      #   • Git index
+      #   • GitHub working tree
+      #   • GitHub Pages output
+      #
+      # Only JPG page images remain public.
+      # =========================================================
+
+      - name: Delete original full PDFs
+        shell: bash
+
+        run: |
+
+          set -e
+
+
+          if [ ! -s tex_to_build.txt ]; then
+
+            echo "No PDFs to remove."
+
+            exit 0
+
+          fi
+
+
+          while IFS= read -r texfile
+
+          do
+
+            dir=$(dirname "$texfile")
+            name=$(basename "$texfile" .tex)
 
             full_pdf="$dir/$name.pdf"
 
 
             echo ""
-            echo "Removing full PDF:"
+            echo "=========================================="
+            echo "Deleting original PDF"
+            echo "=========================================="
+
             echo "$full_pdf"
 
 
@@ -467,10 +1165,10 @@ jobs:
 
 
       # =========================================================
-      # 7. REMOVE PREVIEW IF TEX FILE WAS DELETED
+      # 8. REMOVE GENERATED READER / PAGES FOR DELETED TEX
       # =========================================================
 
-      - name: Remove previews for deleted TEX files
+      - name: Remove generated files for deleted TEX
         shell: bash
 
         run: |
@@ -491,49 +1189,142 @@ jobs:
 
           do
 
-
             dir=$(dirname "$texfile")
-
             name=$(basename "$texfile" .tex)
 
 
-            preview_pdf="$dir/$name-preview.pdf"
+            page_dir="$dir/$name-pages"
+            reader="$dir/$name-reader.html"
 
 
             echo ""
-            echo "Removing preview:"
-            echo "$preview_pdf"
+            echo "=========================================="
+            echo "Removing generated files"
+            echo "=========================================="
+
+
+            echo "Pages:"
+            echo "$page_dir"
+
+
+            echo "Reader:"
+            echo "$reader"
 
 
             # ---------------------------------------------------
-            # Remove preview from Git
+            # Remove page images from Git
+            # ---------------------------------------------------
+
+            git rm \
+              -r \
+              --cached \
+              --ignore-unmatch \
+              "$page_dir" || true
+
+
+            # ---------------------------------------------------
+            # Remove reader from Git
             # ---------------------------------------------------
 
             git rm \
               --cached \
               --ignore-unmatch \
-              "$preview_pdf" || true
+              "$reader" || true
 
 
             # ---------------------------------------------------
-            # Remove from runner
+            # Remove physical files
             # ---------------------------------------------------
 
-            rm -f "$preview_pdf"
+            rm -rf "$page_dir"
+
+            rm -f "$reader"
 
 
           done < tex_to_delete.txt
 
 
       # =========================================================
-      # 8. AUTOMATICALLY GENERATE PPT INDEX.HTML
+      # 9. REMOVE ANY OLD PREVIEW PDF FILES
       #
-      # ONLY FOR:
+      # This cleans up files generated by the OLD workflow.
       #
-      # assets/teaching/Engineering Graphics/PPT
+      # Examples:
       #
-      # This scans all folders recursively and creates cards
-      # for every *-preview.pdf file.
+      #     cycloid-preview.pdf
+      #     epicycloid-preview.pdf
+      #     hypocycloid-preview.pdf
+      #
+      # They must NOT remain publicly accessible.
+      # =========================================================
+
+      - name: Remove old preview PDFs
+        shell: bash
+
+        run: |
+
+          set -e
+
+
+          echo "Searching for old preview PDFs..."
+
+
+          find assets/teaching \
+            -type f \
+            \( \
+              -name "*-preview.pdf" \
+              -o \
+              -name "*-preview.PDF" \
+            \) \
+            -print \
+            > old_preview_files.txt
+
+
+          if [ ! -s old_preview_files.txt ]; then
+
+            echo "No old preview PDFs found."
+
+            exit 0
+
+          fi
+
+
+          while IFS= read -r preview
+
+          do
+
+            echo ""
+            echo "Removing old preview:"
+            echo "$preview"
+
+
+            git rm \
+              --cached \
+              --ignore-unmatch \
+              "$preview" || true
+
+
+            rm -f "$preview"
+
+
+          done < old_preview_files.txt
+
+
+      # =========================================================
+      # 10. AUTOMATICALLY GENERATE ENGINEERING GRAPHICS
+      #     PPT INDEX
+      #
+      # Cards now point to:
+      #
+      #     presentation-reader.html
+      #
+      # NOT:
+      #
+      #     presentation.pdf
+      #
+      # NOT:
+      #
+      #     presentation-preview.pdf
       # =========================================================
 
       - name: Generate PPT index automatically
@@ -551,16 +1342,13 @@ jobs:
 
           echo ""
           echo "=========================================="
-
           echo "Generating PPT index"
-
           echo "=========================================="
 
 
           if [ ! -f "$INDEX_FILE" ]; then
 
             echo ""
-
             echo "ERROR: PPT/index.html not found."
 
             exit 1
@@ -570,296 +1358,262 @@ jobs:
 
           python3 << 'PYTHON'
 
-          from pathlib import Path
-          from html import escape
-          import re
+from pathlib import Path
+from html import escape
+import re
 
 
-          # -----------------------------------------------------
-          # PPT directory
-          # -----------------------------------------------------
+# -----------------------------------------------------
+# PPT directory
+# -----------------------------------------------------
 
-          ppt_dir = Path(
-              "assets/teaching/Engineering Graphics/PPT"
-          )
+ppt_dir = Path(
+    "assets/teaching/Engineering Graphics/PPT"
+)
 
+index_file = ppt_dir / "index.html"
 
-          index_file = ppt_dir / "index.html"
 
+# -----------------------------------------------------
+# Find all custom readers
+# -----------------------------------------------------
 
-          # -----------------------------------------------------
-          # Find all preview PDFs recursively
-          # -----------------------------------------------------
+readers = sorted(
+    ppt_dir.rglob("*-reader.html"),
+    key=lambda p: p.as_posix().lower()
+)
 
-          previews = sorted(
-              ppt_dir.rglob("*-preview.pdf"),
-              key=lambda p: p.as_posix().lower()
-          )
 
+print(
+    f"Found {len(readers)} presentation reader(s)."
+)
 
-          print(
-              f"Found {len(previews)} preview PDF(s)."
-          )
 
+cards = []
 
-          cards = []
 
+# -----------------------------------------------------
+# Generate card for every presentation
+# -----------------------------------------------------
 
-          # -----------------------------------------------------
-          # Generate card for every preview
-          # -----------------------------------------------------
+for reader in readers:
 
-          for pdf in previews:
+    name = reader.stem
 
+    # Remove "-reader"
+    name = re.sub(
+        r"-reader$",
+        "",
+        name,
+        flags=re.IGNORECASE
+    )
 
-              # -----------------------------------------------
-              # Filename
-              # -----------------------------------------------
 
-              name = pdf.stem
+    # Convert filename to readable title
+    title = re.sub(
+        r"[-_]+",
+        " ",
+        name
+    ).strip()
 
 
-              # Remove "-preview"
-              name = re.sub(
-                  r"-preview$",
-                  "",
-                  name,
-                  flags=re.IGNORECASE
-              )
+    title = title.title()
 
 
-              # -----------------------------------------------
-              # Convert filename to readable title
-              # -----------------------------------------------
+    # Relative URL
+    relative_reader = reader.relative_to(
+        ppt_dir
+    ).as_posix()
 
-              title = re.sub(
-                  r"[-_]+",
-                  " ",
-                  name
-              ).strip()
 
+    safe_title = escape(title)
 
-              title = title.title()
+    safe_url = escape(
+        relative_reader,
+        quote=True
+    )
 
 
-              # -----------------------------------------------
-              # Relative URL
-              # -----------------------------------------------
+    # -------------------------------------------------
+    # Card HTML
+    # -------------------------------------------------
 
-              relative_pdf = pdf.relative_to(
-                  ppt_dir
-              ).as_posix()
+    card = f"""
+<div class="ppt-card">
 
+    <div class="ppt-icon">
+        <i class="fas fa-file-powerpoint"></i>
+    </div>
 
-              # -----------------------------------------------
-              # Escape HTML
-              # -----------------------------------------------
+    <h3>
+        {safe_title}
+    </h3>
 
-              safe_title = escape(title)
+    <p>
+        Presentation covering
+        {safe_title}
+        in Engineering Graphics.
+    </p>
 
-              safe_url = escape(
-                  relative_pdf,
-                  quote=True
-              )
+    <div class="ppt-actions">
 
+        <a
+            href="{safe_url}"
+            target="_blank"
+            rel="noopener"
+            class="ppt-btn ppt-btn-primary"
+        >
 
-              # -----------------------------------------------
-              # Card HTML
-              # -----------------------------------------------
+            <i class="fas fa-eye"></i>
 
-              card = f"""
-                <div class="ppt-card">
+            View Presentation
 
-                    <div class="ppt-icon">
+        </a>
 
-                        <i class="fas fa-file-powerpoint"></i>
+    </div>
 
-                    </div>
+</div>
+"""
 
-                    <h3>
-                        {safe_title}
-                    </h3>
 
-                    <p>
-                        Presentation covering
-                        {safe_title}
-                        in Engineering Graphics.
-                    </p>
+    cards.append(card)
 
-                    <div class="ppt-actions">
 
-                        <a href="{safe_url}"
-                           target="_blank"
-                           rel="noopener"
-                           class="ppt-btn ppt-btn-primary">
+# -----------------------------------------------------
+# Empty state
+# -----------------------------------------------------
 
-                            <i class="fas fa-eye"></i>
+if cards:
 
-                            View Presentation
+    generated = "\n".join(cards)
 
-                        </a>
+else:
 
-                    </div>
+    generated = """
+<div class="empty-message">
 
-                </div>
-              """
+    <i class="fas fa-file-powerpoint"></i>
 
+    <p>
+        No presentations are available yet.
+    </p>
 
-              cards.append(card)
+</div>
+"""
 
 
-          # -----------------------------------------------------
-          # Empty state
-          # -----------------------------------------------------
+# -----------------------------------------------------
+# Read existing index
+# -----------------------------------------------------
 
-          if cards:
+html = index_file.read_text(
+    encoding="utf-8"
+)
 
 
-              generated = "\n".join(cards)
+# -----------------------------------------------------
+# Markers
+# -----------------------------------------------------
 
+start_marker = (
+    "<!-- AUTO-GENERATED-CARDS-START -->"
+)
 
-          else:
+end_marker = (
+    "<!-- AUTO-GENERATED-CARDS-END -->"
+)
 
 
-              generated = """
-                <div class="empty-message">
+# -----------------------------------------------------
+# Replace ONLY card section
+# -----------------------------------------------------
 
-                    <i class="fas fa-file-powerpoint"></i>
+pattern = (
+    re.escape(start_marker)
+    + r".*?"
+    + re.escape(end_marker)
+)
 
-                    <p>
-                        No presentations are available yet.
-                    </p>
 
-                </div>
-              """
+replacement = (
+    start_marker
+    + "\n\n"
+    + generated
+    + "\n\n"
+    + end_marker
+)
 
 
-          # -----------------------------------------------------
-          # Read existing index
-          # -----------------------------------------------------
+new_html, count = re.subn(
+    pattern,
+    replacement,
+    html,
+    flags=re.DOTALL
+)
 
-          html = index_file.read_text(
-              encoding="utf-8"
-          )
 
+# -----------------------------------------------------
+# Verify markers
+# -----------------------------------------------------
 
-          # -----------------------------------------------------
-          # Markers
-          # -----------------------------------------------------
+if count != 1:
 
-          start_marker = (
-              "<!-- AUTO-GENERATED-CARDS-START -->"
-          )
+    print("")
 
+    print(
+        "ERROR: Could not find exactly one "
+        "auto-generated card section."
+    )
 
-          end_marker = (
-              "<!-- AUTO-GENERATED-CARDS-END -->"
-          )
+    print("")
 
+    print(
+        "Make sure index.html contains:"
+    )
 
-          # -----------------------------------------------------
-          # Replace ONLY card section
-          # -----------------------------------------------------
+    print("")
 
-          pattern = (
+    print(
+        "<!-- AUTO-GENERATED-CARDS-START -->"
+    )
 
-              re.escape(start_marker)
+    print(
+        "<!-- AUTO-GENERATED-CARDS-END -->"
+    )
 
-              + r".*?"
+    raise SystemExit(1)
 
-              + re.escape(end_marker)
 
-          )
+# -----------------------------------------------------
+# Write updated index
+# -----------------------------------------------------
 
+index_file.write_text(
+    new_html,
+    encoding="utf-8"
+)
 
-          replacement = (
 
-              start_marker
+print("")
 
-              + "\n\n"
+print(
+    f"Generated {len(cards)} presentation card(s)."
+)
 
-              + generated
+print("")
 
-              + "\n\n"
-
-              + end_marker
-
-          )
-
-
-          new_html, count = re.subn(
-
-              pattern,
-
-              replacement,
-
-              html,
-
-              flags=re.DOTALL
-
-          )
-
-
-          # -----------------------------------------------------
-          # Verify markers
-          # -----------------------------------------------------
-
-          if count != 1:
-
-
-              print("")
-
-              print(
-                  "ERROR: Could not find exactly one "
-                  "auto-generated card section."
-              )
-
-              print("")
-
-              print(
-                  "Make sure index.html contains:"
-              )
-
-              print("")
-
-              print(
-                  "<!-- AUTO-GENERATED-CARDS-START -->"
-              )
-
-              print(
-                  "<!-- AUTO-GENERATED-CARDS-END -->"
-              )
-
-              raise SystemExit(1)
-
-
-          # -----------------------------------------------------
-          # Write updated index
-          # -----------------------------------------------------
-
-          index_file.write_text(
-              new_html,
-              encoding="utf-8"
-          )
-
-
-          print("")
-
-          print(
-              f"Generated {len(cards)} presentation card(s)."
-          )
-
-          print("")
-
-
-          PYTHON
+PYTHON
 
 
       # =========================================================
-      # 9. STAGE GENERATED PREVIEWS AND INDEX
+      # 11. STAGE GENERATED PAGE IMAGES + READERS + INDEX
+      #
+      # IMPORTANT:
+      #
+      # PDF files are NOT staged.
       # =========================================================
 
-      - name: Stage generated previews and index
+      - name: Stage generated web reader files
         shell: bash
 
         run: |
@@ -869,9 +1623,7 @@ jobs:
 
           echo ""
           echo "=========================================="
-
-          echo "Staging changes"
-
+          echo "Staging generated web reader files"
           echo "=========================================="
 
 
@@ -883,7 +1635,7 @@ jobs:
 
 
           # -----------------------------------------------------
-          # Stage newly generated preview PDFs
+          # Stage generated page images
           # -----------------------------------------------------
 
           if [ -s tex_to_build.txt ]; then
@@ -893,39 +1645,53 @@ jobs:
 
             do
 
-
               dir=$(dirname "$texfile")
-
               name=$(basename "$texfile" .tex)
 
+              page_dir="$dir/$name-pages"
+              reader="$dir/$name-reader.html"
 
-              preview_pdf="$dir/$name-preview.pdf"
 
+              # -------------------------------------------------
+              # Stage ALL page images
+              # -------------------------------------------------
 
-              if [ -f "$preview_pdf" ]; then
-
+              if [ -d "$page_dir" ]; then
 
                 echo ""
-
-                echo "Staging preview:"
-
-                echo "$preview_pdf"
+                echo "Staging pages:"
+                echo "$page_dir"
 
 
-                git add -f "$preview_pdf"
+                git add -f \
+                  "$page_dir"/*.jpg
 
+              fi
+
+
+              # -------------------------------------------------
+              # Stage reader
+              # -------------------------------------------------
+
+              if [ -f "$reader" ]; then
+
+                echo ""
+                echo "Staging reader:"
+                echo "$reader"
+
+
+                git add -f "$reader"
 
               fi
 
 
             done < tex_to_build.txt
 
-
           fi
 
 
           # -----------------------------------------------------
-          # Stage automatically generated PPT index
+          # Stage PPT index
           # -----------------------------------------------------
 
           PPT_INDEX="assets/teaching/Engineering Graphics/PPT/index.html"
@@ -933,41 +1699,92 @@ jobs:
 
           if [ -f "$PPT_INDEX" ]; then
 
-
             echo ""
-
             echo "Staging PPT index:"
-
             echo "$PPT_INDEX"
 
 
             git add "$PPT_INDEX"
 
+          fi
+
+
+          # -----------------------------------------------------
+          # Safety check:
+          #
+          # DO NOT allow PDFs to be committed.
+          # -----------------------------------------------------
+
+          echo ""
+          echo "=========================================="
+          echo "Checking for staged PDF files"
+          echo "=========================================="
+
+
+          staged_pdfs=$(
+            git diff \
+              --cached \
+              --name-only \
+              -- '*.pdf' \
+              '*.PDF'
+          )
+
+
+          if [ -n "$staged_pdfs" ]; then
+
+            echo ""
+            echo "ERROR:"
+            echo "A PDF file is staged for publication:"
+            echo ""
+
+            echo "$staged_pdfs"
+
+            echo ""
+
+            echo "Removing staged PDF files..."
+
+
+            while IFS= read -r pdf
+
+            do
+
+              if [ -n "$pdf" ]; then
+
+                git restore \
+                  --staged \
+                  -- "$pdf" || true
+
+              fi
+
+            done <<< "$staged_pdfs"
+
+
+            echo ""
+            echo "PDF publication blocked."
 
           fi
 
 
           # -----------------------------------------------------
-          # Show final Git status
+          # Final Git status
           # -----------------------------------------------------
 
           echo ""
-
           echo "=========================================="
-
-          echo "Git status"
-
+          echo "Final Git status"
           echo "=========================================="
-
 
           git status --short
 
 
       # =========================================================
-      # 10. COMMIT AND PUSH
+      # 12. FINAL PDF SAFETY CHECK
+      #
+      # Absolutely no generated PDF should exist in the
+      # repository after this point.
       # =========================================================
 
-      - name: Commit and push previews
+      - name: Final PDF safety check
         shell: bash
 
         run: |
@@ -975,20 +1792,61 @@ jobs:
           set -e
 
 
-          # -----------------------------------------------------
-          # Check whether anything changed
-          # -----------------------------------------------------
+          echo ""
+          echo "=========================================="
+          echo "FINAL PDF SAFETY CHECK"
+          echo "=========================================="
+
+
+          staged_pdfs=$(
+            git diff \
+              --cached \
+              --name-only \
+              -- '*.pdf' \
+              '*.PDF'
+          )
+
+
+          if [ -n "$staged_pdfs" ]; then
+
+            echo ""
+            echo "ERROR: PDF detected in staged changes."
+            echo "$staged_pdfs"
+
+            exit 1
+
+          fi
+
+
+          echo ""
+          echo "SUCCESS:"
+          echo "No PDF files are staged for publication."
+
+
+      # =========================================================
+      # 13. COMMIT AND PUSH
+      # =========================================================
+
+      - name: Commit and push web reader
+        shell: bash
+
+        run: |
+
+          set -e
+
+
+          echo ""
+          echo "=========================================="
+          echo "Checking for changes"
+          echo "=========================================="
+
 
           if git diff --cached --quiet; then
 
-
             echo ""
-
             echo "No changes to commit."
 
-
             exit 0
-
 
           fi
 
@@ -1000,7 +1858,6 @@ jobs:
           git config user.name \
             "github-actions[bot]"
 
-
           git config user.email \
             "41898282+github-actions[bot]@users.noreply.github.com"
 
@@ -1010,7 +1867,7 @@ jobs:
           # -----------------------------------------------------
 
           git commit \
-            -m "Update teaching material previews [skip ci]"
+            -m "Update teaching material web reader [skip ci]"
 
 
           # -----------------------------------------------------
