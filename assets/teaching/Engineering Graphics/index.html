@@ -2,34 +2,26 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>
-        Engineering Graphics | Gajavada Sanjeevkumar
-    </title>
+    <title>Engineering Graphics | Gajavada Sanjeevkumar</title>
 
     <meta name="description"
-          content="Engineering Graphics course portal containing lecture notes, presentations, question banks, books, videos and downloadable learning resources.">
+          content="Engineering Graphics learning portal by Gajavada Sanjeevkumar.">
 
     <meta name="author"
           content="Gajavada Sanjeevkumar">
 
-    <meta name="robots"
-          content="index,follow">
-
-    <!-- Favicon -->
-    <link rel="icon"
-          href="../../../favicon.ico">
+    <link rel="icon" href="../../../favicon.ico">
 
     <!-- Main Portfolio CSS -->
     <link rel="stylesheet"
           href="../../../assets/css/style.css">
 
-    <!-- Course CSS -->
+    <!-- Existing Course CSS -->
     <link rel="stylesheet"
           href="style.css">
 
@@ -37,468 +29,329 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
+
+<style>
+
+/* =========================================================
+   ENGINEERING GRAPHICS TOPIC PORTAL
+   ========================================================= */
+
+.eg-topics-section {
+    padding: 70px 20px;
+    background: #f7f9fc;
+}
+
+.eg-topics-container {
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.eg-section-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.eg-section-heading .tag {
+    display: inline-block;
+    padding: 7px 16px;
+    border-radius: 30px;
+    background: #e8f1ff;
+    color: #1769aa;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.eg-section-heading h2 {
+    margin: 0 0 12px;
+    font-size: 2rem;
+    color: #172033;
+}
+
+.eg-section-heading p {
+    max-width: 720px;
+    margin: 0 auto;
+    color: #667085;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   TOPIC GRID
+   ========================================================= */
+
+.eg-topic-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.eg-topic-card {
+    background: #ffffff;
+    border: 1px solid #e5eaf1;
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-decoration: none;
+    color: inherit;
+
+    display: flex;
+    flex-direction: column;
+
+    min-height: 215px;
+
+    box-shadow:
+        0 8px 24px rgba(15, 23, 42, 0.06);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.eg-topic-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 16px 35px rgba(15, 23, 42, 0.10);
+
+    border-color: #9ec5fe;
+}
+
+.eg-topic-icon {
+    width: 54px;
+    height: 54px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #edf5ff;
+    color: #1769aa;
+
+    font-size: 1.35rem;
+
+    margin-bottom: 20px;
+}
+
+.eg-topic-card h3 {
+    margin: 0 0 10px;
+
+    font-size: 1.15rem;
+    color: #172033;
+}
+
+.eg-topic-card p {
+    margin: 0;
+
+    color: #667085;
+    font-size: 0.93rem;
+    line-height: 1.65;
+
+    flex: 1;
+}
+
+.eg-topic-link {
+    margin-top: 20px;
+
+    color: #1769aa;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+
+/* =========================================================
+   HIGHLIGHT
+   ========================================================= */
+
+.eg-learning-strip {
+    margin-top: 35px;
+
+    padding: 22px 25px;
+
+    border-radius: 15px;
+
+    background: #ffffff;
+    border: 1px solid #e5eaf1;
+
+    text-align: center;
+
+    color: #667085;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .eg-topic-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+}
+
+
+@media (max-width: 760px) {
+
+    .eg-topics-section {
+        padding: 50px 16px;
+    }
+
+    .eg-topic-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 16px;
+    }
+
+    .eg-topic-card {
+        padding: 22px 18px;
+        min-height: 205px;
+    }
+
+    .eg-section-heading h2 {
+        font-size: 1.65rem;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .eg-topic-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .eg-topic-card {
+        min-height: auto;
+    }
+}
+
+
+/* =========================================================
+   COPY / DRAG DETERRENCE
+   ========================================================= */
+
+.eg-no-copy {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+img,
+a {
+    -webkit-user-drag: none;
+}
+
+</style>
+
 </head>
 
-<body>
 
-    <!-- ===========================================
-         HERO SECTION
-    ============================================ -->
+<body class="eg-no-copy">
 
-    <header class="course-hero">
 
-        <div class="hero-overlay">
+<!-- =======================================================
+     EXISTING COURSE HERO
+     ======================================================= -->
 
-            <nav class="course-nav">
+<header class="course-hero">
 
-                <a href="../../../#/teaching"
-                   class="back-button">
+    <div class="hero-overlay">
 
-                    <i class="fas fa-arrow-left"></i>
+        <nav class="course-nav">
 
-                    Back to Teaching
+            <a href="../../../#/teaching"
+               class="back-button">
 
-                </a>
+                <i class="fas fa-arrow-left"></i>
 
-            </nav>
+                Back to Teaching
 
-            <div class="hero-content">
+            </a>
 
-                <span class="course-badge">
+        </nav>
 
-                    Mechanical Engineering
 
-                </span>
+        <div class="hero-content">
 
-                <h1>
+            <span class="course-badge">
+                Mechanical Engineering
+            </span>
 
-                    Engineering Graphics
-
-                </h1>
-
-                <p>
-
-                    Comprehensive learning resources, lecture notes,
-                    presentations, question banks, reference books,
-                    videos and downloadable materials.
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </header>
-
-    <!-- ===========================================
-         COURSE INFORMATION
-    ============================================ -->
-
-    <section class="course-information">
-
-        <div class="container">
-
-            <div class="info-grid">
-
-                <div class="info-card">
-
-                    <i class="fas fa-graduation-cap"></i>
-
-                    <h3>Programme</h3>
-
-                    <p>B.Tech</p>
-
-                </div>
-
-                <div class="info-card">
-
-                    <i class="fas fa-layer-group"></i>
-
-                    <h3>Course Type</h3>
-
-                    <p>Theory</p>
-
-                </div>
-
-                <div class="info-card">
-
-                    <i class="fas fa-star"></i>
-
-                    <h3>Credits</h3>
-
-                    <p>3</p>
-
-                </div>
-
-                <div class="info-card">
-
-                    <i class="fas fa-user"></i>
-
-                    <h3>Instructor</h3>
-
-                    <p>Gajavada Sanjeevkumar</p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- ===========================================
-         ABOUT COURSE
-    ============================================ -->
-
-    <section class="about-course">
-
-        <div class="container">
-
-            <h2>
-
-                About the Course
-
-            </h2>
+            <h1>
+                Engineering Graphics
+            </h1>
 
             <p>
-
-                Engineering Graphics introduces the principles of
-                statics and dynamics that form the foundation of
-                Mechanical Engineering. Students learn the analysis of
-                forces, equilibrium, friction, centroids, moments,
-                virtual work, kinematics and kinetics with engineering
-                applications.
-
+                A structured learning portal covering
+                engineering curves, projection methods,
+                sections, development of surfaces and
+                isometric representation.
             </p>
 
         </div>
 
-    </section>
+    </div>
 
-    <!-- ===========================================
-         COURSE STATISTICS
-    ============================================ -->
+</header>
 
-    <section class="course-stats">
 
-        <div class="container">
+<!-- =======================================================
+     COURSE INFORMATION
+     ======================================================= -->
 
-            <div class="stats-grid">
-
-                <div class="stat-card">
-
-                    <h3>12+</h3>
-
-                    <p>Lecture Notes</p>
-
-                </div>
-
-                <div class="stat-card">
-
-                    <h3>20+</h3>
-
-                    <p>PPT Presentations</p>
-
-                </div>
-
-                <div class="stat-card">
-
-                    <h3>10+</h3>
-
-                    <p>Question Banks</p>
-
-                </div>
-
-                <div class="stat-card">
-
-                    <h3>100+</h3>
-
-                    <p>Learning Resources</p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- ===========================================
-         RESOURCE SECTION
-    ============================================ -->
-  <section class="course-resources">
+<section class="course-information">
 
     <div class="container">
 
-        <div class="section-header">
+        <div class="info-grid">
 
-            <span class="section-tag">
-                Learning Resources
-            </span>
+            <div class="info-card">
 
-            <h2>
-                Course Materials
-            </h2>
+                <i class="fas fa-graduation-cap"></i>
 
-            <p>
+                <h3>Programme</h3>
 
-                Access lecture notes, presentations, assignments,
-                question banks, previous examination papers,
-                reference books, video lectures and downloadable
-                learning resources.
-
-            </p>
-
-        </div>
-
-        <!-- Search -->
-
-        <div class="resource-search">
-
-            <input
-                type="text"
-                id="resourceSearch"
-                placeholder="Search resources...">
-
-            <i class="fas fa-search"></i>
-
-        </div>
-
-        <!-- Resource Grid -->
-
-        <div class="resource-grid">
-
-            <!-- Notes -->
-
-            <div class="resource-card">
-
-                <div class="resource-icon">
-                    <i class="fas fa-book"></i>
-                </div>
-
-                <h3>Lecture Notes</h3>
-
-                <p>
-
-                    Chapter-wise lecture notes with illustrations,
-                    derivations and solved examples.
-
-                </p>
-
-                <a href="Notes/"
-                   class="resource-btn">
-
-                    Open Folder
-
-                </a>
+                <p>B.Tech</p>
 
             </div>
 
-            <!-- PPT -->
 
-            <div class="resource-card">
+            <div class="info-card">
 
-                <div class="resource-icon">
-                    <i class="fas fa-file-powerpoint"></i>
-                </div>
+                <i class="fas fa-layer-group"></i>
 
-                <h3>PPT Presentations</h3>
+                <h3>Course Type</h3>
 
-                <p>
-
-                    Classroom presentations prepared for
-                    teaching and revision.
-
-                </p>
-
-                <a href="PPT/"
-                   class="resource-btn">
-
-                    Open Folder
-
-                </a>
+                <p>Theory</p>
 
             </div>
 
-            <!-- Assignments -->
 
-            <div class="resource-card">
+            <div class="info-card">
 
-                <div class="resource-icon">
-                    <i class="fas fa-pencil-ruler"></i>
-                </div>
+                <i class="fas fa-star"></i>
 
-                <h3>Assignments</h3>
+                <h3>Credits</h3>
 
-                <p>
-
-                    Practice assignments, tutorial sheets and
-                    problem-solving exercises.
-
-                </p>
-
-                <a href="Assignments/"
-                   class="resource-btn">
-
-                    Open Folder
-
-                </a>
+                <p>3</p>
 
             </div>
 
-            <!-- Tutorials -->
 
-            <div class="resource-card">
+            <div class="info-card">
 
-                <div class="resource-icon">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                </div>
+                <i class="fas fa-user"></i>
 
-                <h3>Tutorials</h3>
+                <h3>Instructor</h3>
 
                 <p>
-
-                    Guided tutorials with worked examples
-                    and additional practice.
-
+                    Gajavada Sanjeevkumar
                 </p>
-
-                <a href="Tutorials/"
-                   class="resource-btn">
-
-                    Open Folder
-
-                </a>
-
-            </div>
-
-            <!-- Question Bank -->
-
-            <div class="resource-card">
-
-                <div class="resource-icon">
-                    <i class="fas fa-circle-question"></i>
-                </div>
-
-                <h3>Question Banks</h3>
-
-                <p>
-
-                    Unit-wise question banks covering
-                    university examinations.
-
-                </p>
-
-                <a href="QB/"
-                   class="resource-btn">
-
-                    Open Folder
-
-                </a>
-
-            </div>
-
-            <!-- Previous Papers -->
-
-            <div class="resource-card">
-
-                <div class="resource-icon">
-                    <i class="fas fa-file-lines"></i>
-                </div>
-
-                <h3>Previous Papers</h3>
-
-                <p>
-
-                    Previous semester examination papers
-                    for effective preparation.
-
-                </p>
-
-                <a href="Papers/"
-                   class="resource-btn">
-
-                    Open Folder
-
-                </a>
-
-            </div>
-
-            <!-- Books -->
-
-            <div class="resource-card">
-
-                <div class="resource-icon">
-                    <i class="fas fa-book-open"></i>
-                </div>
-
-                <h3>Reference Books</h3>
-
-                <p>
-
-                    Recommended textbooks and reference
-                    materials for deeper understanding.
-
-                </p>
-
-                <a href="Books/"
-                   class="resource-btn">
-
-                    Open Folder
-
-                </a>
-
-            </div>
-
-            <!-- Videos -->
-
-            <div class="resource-card">
-
-                <div class="resource-icon">
-                    <i class="fas fa-video"></i>
-                </div>
-
-                <h3>Video Lectures</h3>
-
-                <p>
-
-                    Recorded lectures and curated educational
-                    videos.
-
-                </p>
-
-                <a href="videos/"
-                   class="resource-btn">
-
-                    Open Folder
-
-                </a>
-
-            </div>
-
-            <!-- Downloads -->
-
-            <div class="resource-card">
-
-                <div class="resource-icon">
-                    <i class="fas fa-download"></i>
-                </div>
-
-                <h3>Downloads</h3>
-
-                <p>
-
-                    Syllabus, formula sheets,
-                    manuals and additional files.
-
-                </p>
-
-                <a href="Downloads/"
-                   class="resource-btn">
-
-                    Open Folder
-
-                </a>
 
             </div>
 
@@ -508,9 +361,290 @@
 
 </section>
 
-<!-- ===========================================
-     COURSE HIGHLIGHTS
-=========================================== -->
+
+<!-- =======================================================
+     ABOUT COURSE
+     ======================================================= -->
+
+<section class="about-course">
+
+    <div class="container">
+
+        <h2>
+            About the Course
+        </h2>
+
+        <p>
+            Engineering Graphics develops the ability to
+            communicate engineering ideas through accurate
+            graphical representation. The course covers
+            geometrical constructions, engineering curves,
+            projection of points, lines, planes and solids,
+            sections of solids, development of surfaces and
+            isometric projection.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     TOPIC PORTAL
+     ======================================================= -->
+
+<section class="eg-topics-section">
+
+    <div class="eg-topics-container">
+
+        <div class="eg-section-heading">
+
+            <span class="tag">
+                Engineering Graphics
+            </span>
+
+            <h2>
+                Explore by Topic
+            </h2>
+
+            <p>
+                Study each Engineering Graphics topic through
+                structured notes, presentations, animations,
+                worked examples and practice questions.
+            </p>
+
+        </div>
+
+
+        <div class="eg-topic-grid">
+
+
+            <!-- Engineering Curves -->
+
+            <a href="engineering-curves/"
+               class="eg-topic-card">
+
+                <div class="eg-topic-icon">
+                    <i class="fas fa-bezier-curve"></i>
+                </div>
+
+                <h3>
+                    Engineering Curves
+                </h3>
+
+                <p>
+                    Cycloid, epicycloid, hypocycloid,
+                    involute and other important
+                    engineering curves.
+                </p>
+
+                <span class="eg-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+            <!-- Projection of Points -->
+
+            <a href="projection-of-points/"
+               class="eg-topic-card">
+
+                <div class="eg-topic-icon">
+                    <i class="fas fa-location-dot"></i>
+                </div>
+
+                <h3>
+                    Projection of Points
+                </h3>
+
+                <p>
+                    Projection of points in different
+                    quadrants and reference planes.
+                </p>
+
+                <span class="eg-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+            <!-- Projection of Lines -->
+
+            <a href="projection-of-lines/"
+               class="eg-topic-card">
+
+                <div class="eg-topic-icon">
+                    <i class="fas fa-ruler"></i>
+                </div>
+
+                <h3>
+                    Projection of Lines
+                </h3>
+
+                <p>
+                    Projection of lines inclined to
+                    reference planes and related constructions.
+                </p>
+
+                <span class="eg-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+            <!-- Projection of Planes -->
+
+            <a href="projection-of-planes/"
+               class="eg-topic-card">
+
+                <div class="eg-topic-icon">
+                    <i class="fas fa-draw-polygon"></i>
+                </div>
+
+                <h3>
+                    Projection of Planes
+                </h3>
+
+                <p>
+                    Projection of plane surfaces and
+                    their inclinations to reference planes.
+                </p>
+
+                <span class="eg-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+            <!-- Projection of Solids -->
+
+            <a href="projection-of-solids/"
+               class="eg-topic-card">
+
+                <div class="eg-topic-icon">
+                    <i class="fas fa-cube"></i>
+                </div>
+
+                <h3>
+                    Projection of Solids
+                </h3>
+
+                <p>
+                    Orthographic projection of prisms,
+                    pyramids, cylinders, cones and related solids.
+                </p>
+
+                <span class="eg-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+            <!-- Sections -->
+
+            <a href="sections-of-solids/"
+               class="eg-topic-card">
+
+                <div class="eg-topic-icon">
+                    <i class="fas fa-scissors"></i>
+                </div>
+
+                <h3>
+                    Sections of Solids
+                </h3>
+
+                <p>
+                    Sectional views and true shapes of
+                    sections of engineering solids.
+                </p>
+
+                <span class="eg-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+            <!-- Development -->
+
+            <a href="development-of-surfaces/"
+               class="eg-topic-card">
+
+                <div class="eg-topic-icon">
+                    <i class="fas fa-expand"></i>
+                </div>
+
+                <h3>
+                    Development of Surfaces
+                </h3>
+
+                <p>
+                    Development of surfaces of prisms,
+                    pyramids, cylinders, cones and transition pieces.
+                </p>
+
+                <span class="eg-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+            <!-- Isometric -->
+
+            <a href="isometric-projection/"
+               class="eg-topic-card">
+
+                <div class="eg-topic-icon">
+                    <i class="fas fa-cubes"></i>
+                </div>
+
+                <h3>
+                    Isometric Projection
+                </h3>
+
+                <p>
+                    Isometric representation of engineering
+                    objects and three-dimensional forms.
+                </p>
+
+                <span class="eg-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+        </div>
+
+
+        <div class="eg-learning-strip">
+
+            <strong>
+                Topic-based learning
+            </strong>
+
+            <br>
+
+            Each topic will contain its own notes,
+            presentation reader, interactive animations,
+            worked examples and practice material.
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     LEARNING OUTCOMES
+     ======================================================= -->
 
 <section class="course-highlights">
 
@@ -519,18 +653,15 @@
         <div class="section-header">
 
             <span class="section-tag">
-
                 Why Study This Course
-
             </span>
 
             <h2>
-
                 Learning Outcomes
-
             </h2>
 
         </div>
+
 
         <div class="highlight-grid">
 
@@ -539,69 +670,60 @@
                 <i class="fas fa-check-circle"></i>
 
                 <h3>
-
                     Strong Fundamentals
-
                 </h3>
 
                 <p>
-
-                    Develop a solid understanding of engineering Graphics.
-
+                    Develop a strong foundation in
+                    engineering graphical communication.
                 </p>
 
             </div>
+
 
             <div class="highlight-card">
 
                 <i class="fas fa-lightbulb"></i>
 
                 <h3>
-
-                    Problem Solving
-
+                    Visual Thinking
                 </h3>
 
                 <p>
-
-                    Improve analytical thinking through practical engineering problems.
-
+                    Develop spatial visualization and
+                    graphical problem-solving skills.
                 </p>
 
             </div>
+
 
             <div class="highlight-card">
 
                 <i class="fas fa-gears"></i>
 
                 <h3>
-
                     Engineering Applications
-
                 </h3>
 
                 <p>
-
-                    Apply Graphics concepts to real mechanical systems.
-
+                    Apply graphical methods to practical
+                    engineering representation.
                 </p>
 
             </div>
+
 
             <div class="highlight-card">
 
                 <i class="fas fa-award"></i>
 
                 <h3>
-
                     Exam Preparation
-
                 </h3>
 
                 <p>
-
-                    Access comprehensive study materials for university examinations.
-
+                    Practice important Engineering Graphics
+                    construction and projection problems.
                 </p>
 
             </div>
@@ -612,9 +734,10 @@
 
 </section>
 
-  <!-- ===========================================
-     CONTACT / SUPPORT
-=========================================== -->
+
+<!-- =======================================================
+     CONTACT
+     ======================================================= -->
 
 <section class="course-contact">
 
@@ -625,17 +748,13 @@
             <i class="fas fa-envelope-open-text"></i>
 
             <h2>
-
                 Need Help?
-
             </h2>
 
             <p>
-
-                If you have questions regarding this course,
-                lecture materials, assignments or examinations,
-                feel free to contact the course instructor.
-
+                If you have questions regarding Engineering
+                Graphics topics or learning materials, feel
+                free to contact the instructor.
             </p>
 
             <a href="../../../#/contact"
@@ -651,9 +770,10 @@
 
 </section>
 
-<!-- ===========================================
+
+<!-- =======================================================
      FOOTER
-=========================================== -->
+     ======================================================= -->
 
 <footer class="course-footer">
 
@@ -661,166 +781,111 @@
 
         <div class="footer-grid">
 
-            <!-- Course -->
 
             <div class="footer-column">
 
                 <h3>
-
                     Engineering Graphics
-
                 </h3>
 
                 <p>
-
-                    A comprehensive collection of learning
-                    resources prepared to support students in
-                    mastering Engineering Graphics.
-
+                    A topic-based learning portal for
+                    Engineering Graphics.
                 </p>
 
             </div>
 
-            <!-- Quick Links -->
 
             <div class="footer-column">
 
                 <h3>
-
                     Quick Links
-
                 </h3>
 
                 <ul>
 
                     <li>
-
                         <a href="../../../#/home">
-
                             Home
-
                         </a>
-
                     </li>
 
                     <li>
-
                         <a href="../../../#/teaching">
-
                             Teaching
-
                         </a>
-
                     </li>
 
                     <li>
-
                         <a href="../../../#/contact">
-
                             Contact
-
                         </a>
-
                     </li>
 
                 </ul>
 
             </div>
 
-            <!-- Resources -->
 
             <div class="footer-column">
 
                 <h3>
-
-                    Resources
-
+                    Topics
                 </h3>
 
                 <ul>
 
                     <li>
-
-                        <a href="Notes/">
-
-                            Lecture Notes
-
+                        <a href="engineering-curves/">
+                            Engineering Curves
                         </a>
-
                     </li>
 
                     <li>
-
-                        <a href="PPT/">
-
-                            PPTs
-
+                        <a href="projection-of-points/">
+                            Projection of Points
                         </a>
-
                     </li>
 
                     <li>
-
-                        <a href="QB/">
-
-                            Question Banks
-
+                        <a href="projection-of-lines/">
+                            Projection of Lines
                         </a>
-
                     </li>
 
                     <li>
-
-                        <a href="Downloads/">
-
-                            Downloads
-
+                        <a href="isometric-projection/">
+                            Isometric Projection
                         </a>
-
                     </li>
 
                 </ul>
 
             </div>
 
-            <!-- Social -->
 
             <div class="footer-column">
 
                 <h3>
-
                     Connect
-
                 </h3>
 
                 <div class="social-icons">
 
-                    <a href="https://github.com/skgajawada"
-                       target="_blank">
-
+                    <a href="https://github.com/skgajawada">
                         <i class="fab fa-github"></i>
-
                     </a>
 
-                    <a href="https://linkedin.com/in/skgajawada"
-                       target="_blank">
-
+                    <a href="https://linkedin.com/in/skgajawada">
                         <i class="fab fa-linkedin"></i>
-
                     </a>
 
-                    <a href="https://scholar.google.com/citations?user=skgajawada"
-                       target="_blank">
-
+                    <a href="https://scholar.google.com/citations?user=skgajawada">
                         <i class="fas fa-graduation-cap"></i>
-
                     </a>
 
-                    <a href="https://orcid.org/0000-0002-9171-5073"
-                       target="_blank">
-
+                    <a href="https://orcid.org/0000-0002-9171-5073">
                         <i class="fab fa-orcid"></i>
-
                     </a>
 
                 </div>
@@ -829,22 +894,22 @@
 
         </div>
 
+
         <hr>
+
 
         <div class="footer-bottom">
 
             <p>
-
                 © 2026 Gajavada Sanjeevkumar.
                 All Rights Reserved.
-
             </p>
 
             <p>
-
                 Designed & Developed by
-                <strong>Gajavada Sanjeevkumar</strong>
-
+                <strong>
+                    Gajavada Sanjeevkumar
+                </strong>
             </p>
 
         </div>
@@ -853,12 +918,33 @@
 
 </footer>
 
-<!-- ===========================================
-     JAVASCRIPT
-=========================================== -->
 
-<script src="script.js"></script>
+<!-- =======================================================
+     COPY DETERRENCE
+     ======================================================= -->
+
+<script>
+
+document.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+});
+
+document.addEventListener("dragstart", function(e) {
+    e.preventDefault();
+});
+
+document.addEventListener("keydown", function(e) {
+
+    if (
+        (e.ctrlKey || e.metaKey) &&
+        ["c", "x", "s", "u", "p"].includes(e.key.toLowerCase())
+    ) {
+        e.preventDefault();
+    }
+
+});
+
+</script>
 
 </body>
-
 </html>
