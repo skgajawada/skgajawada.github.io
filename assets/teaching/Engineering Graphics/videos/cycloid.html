@@ -2676,8 +2676,7 @@ function drawAngleIndicator() {
 function drawDistanceIndicator() {
 
     const distanceMM =
-        Rmm *
-        theta;
+        Rmm * theta;
 
 
     const x0 =
@@ -2689,19 +2688,148 @@ function drawDistanceIndicator() {
         R * theta;
 
 
-    let y;
+    /*
+        -----------------------------------------------------
+        POSITION THE "s = ..." LINE RELATIVE TO THE
+        AA′ = πD DIMENSION LINE
+        -----------------------------------------------------
 
-    if (W > H * 1.45 && H < 700) {
-        y = H - 78;
-    } else {
-        y = Math.min(
-            GROUND_Y() +
-                Math.max(40, 115 * (SCALE / 8.1)),
-            H -
-                (W <= 700 ? 46 : 68)
-        );
+        The total development dimension is drawn at:
+
+            DIRECTING_Y() + 78
+
+        Therefore the rolling-distance indicator is placed
+        immediately below it.
+
+        This keeps the relationship consistent on:
+
+        - Desktop
+        - Laptop
+        - Tablet
+        - Portrait mobile
+        - Landscape mobile
+        -----------------------------------------------------
+    */
+
+    const dimensionY =
+        DIRECTING_Y() + 78;
+
+
+    /*
+        Adaptive gap between:
+
+            AA′ = πD
+                   ↓
+            s = ... mm
+
+        Smaller screens get a smaller gap.
+    */
+
+    let gap;
+
+
+    if (W <= 430) {
+
+        gap = 10;
+
+    }
+    else if (W <= 700) {
+
+        gap = 12;
+
+    }
+    else if (
+        W > H * 1.45 &&
+        H < 700
+    ) {
+
+        gap = 10;
+
+    }
+    else if (W <= 1100) {
+
+        gap = 14;
+
+    }
+    else {
+
+        gap = 18;
+
     }
 
+
+    /*
+        Position the rolling-distance line directly below
+        the total dimension line.
+    */
+
+    let y =
+        dimensionY + gap;
+
+
+    /*
+        -----------------------------------------------------
+        SAFETY LIMIT
+        -----------------------------------------------------
+
+        Keep the distance indicator above the navigation
+        controls and footer.
+
+        The available lower region is determined from the
+        actual viewport height.
+    */
+
+    let bottomClearance;
+
+
+    if (W <= 430) {
+
+        bottomClearance = 55;
+
+    }
+    else if (W <= 700) {
+
+        bottomClearance = 60;
+
+    }
+    else if (
+        W > H * 1.45 &&
+        H < 700
+    ) {
+
+        bottomClearance = 72;
+
+    }
+    else {
+
+        bottomClearance = 82;
+
+    }
+
+
+    const maximumY =
+        H - bottomClearance;
+
+
+    /*
+        If the desired position is too low, move it upward
+        only enough to remain visible.
+
+        It will NEVER be placed above the AA′ dimension line.
+    */
+
+    if (y > maximumY) {
+
+        y = maximumY;
+
+    }
+
+
+    /*
+        -----------------------------------------------------
+        DRAW ONLY THE DISTANCE ALREADY TRAVELLED
+        -----------------------------------------------------
+    */
 
     const endX =
         Math.min(
@@ -2710,10 +2838,18 @@ function drawDistanceIndicator() {
         );
 
 
+    /*
+        Do not draw a meaningless very short dimension.
+    */
+
     if (
         endX - x0 > 30
     ) {
 
+        /*
+            Main dimension line
+        */
+
         drawLine(
             x0,
             y,
@@ -2723,6 +2859,10 @@ function drawDistanceIndicator() {
             0.9
         );
 
+
+        /*
+            Left tick
+        */
 
         drawLine(
             x0,
@@ -2734,6 +2874,10 @@ function drawDistanceIndicator() {
         );
 
 
+        /*
+            Right tick
+        */
+
         drawLine(
             endX,
             y - 5,
@@ -2743,6 +2887,12 @@ function drawDistanceIndicator() {
             0.9
         );
 
+
+        /*
+            Distance text
+
+            Keep text ABOVE the distance line.
+        */
 
         drawText(
             "s = " +
@@ -2759,7 +2909,6 @@ function drawDistanceIndicator() {
     }
 
 }
-
 
 /* =========================================================
    SINGLE WATERMARK
