@@ -1,661 +1,554 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 
 <meta name="viewport"
       content="width=device-width,
-               initial-scale=1.0">
+               initial-scale=1.0,
+               viewport-fit=cover">
 
-<title>Cycloid — Gajavada Sanjeevkumar</title>
-
+<title>Cycloid — Presentation Reader</title>
 
 <style>
-
-* {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
 }
 
-
 html,
-body {
-    margin: 0;
-    padding: 0;
-
-    width: 100%;
-    height: 100%;
-
-    overflow: hidden;
-
-    background: #111;
-
+body{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#080b12;
     font-family:
+        "Segoe UI",
         Arial,
         Helvetica,
         sans-serif;
 }
 
-
-.reader {
-
-    position: relative;
-
-    width: 100%;
-    height: 100vh;
-
-    overflow: hidden;
-
-    background: #111;
+body{
+    user-select:none;
+    -webkit-user-select:none;
 }
-
 
 /* =========================================================
-   FULL-PAGE SLIDE
-   The image uses the complete viewport. Header/footer are
-   overlays and therefore do not reduce the slide area.
+   READER
    ========================================================= */
 
-.slide-area {
-
-    position: absolute;
-
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 0;
-
-    overflow: hidden;
-
-    background: #111;
+.reader{
+    position:relative;
+    width:100%;
+    height:100svh;
+    min-height:100%;
+    overflow:hidden;
+    background:#080b12;
 }
 
+/* =========================================================
+   SLIDE AREA
+   ========================================================= */
 
-#slideImage {
+.slide-area{
+    position:absolute;
+    inset:0;
 
-    width: 100vw;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    height: 100vh;
+    width:100%;
+    height:100%;
 
-    max-width: 100%;
+    overflow:hidden;
 
-    max-height: 100%;
+    background:#080b12;
+}
 
-    object-fit: contain;
+#pdfCanvas{
+    display:block;
 
-    display: block;
+    max-width:100%;
+    max-height:100%;
 
-    user-select: none;
+    width:auto;
+    height:auto;
 
-    -webkit-user-drag: none;
+    background:white;
 
     box-shadow:
-        0 4px 25px
-        rgba(0,0,0,0.5);
+        0 8px 35px rgba(0,0,0,.55);
+
+    user-select:none;
+    -webkit-user-select:none;
+    -webkit-user-drag:none;
 }
 
-
 /* =========================================================
-   HEADER OVERLAY
+   TOP OVERLAY
    ========================================================= */
 
-.reader-header {
+.top-bar{
+    position:absolute;
 
-    position: absolute;
+    top:0;
+    left:0;
+    right:0;
 
-    top: 0;
+    z-index:20;
 
-    left: 0;
+    min-height:58px;
 
-    right: 0;
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
 
-    z-index: 30;
+    align-items:center;
 
-    min-height: 52px;
-
-    display: grid;
-
-    grid-template-columns: 1fr auto 1fr;
-
-    align-items: center;
-
-    gap: 15px;
-
-    padding: 8px 18px;
-
-    color: white;
+    padding:
+        8px 18px 18px;
 
     background:
         linear-gradient(
             to bottom,
-            rgba(0,0,0,0.72),
+            rgba(0,0,0,.82),
             rgba(0,0,0,0)
         );
 
-    pointer-events: none;
+    color:white;
+
+    pointer-events:none;
 }
 
+.back-button{
+    justify-self:start;
 
-.reader-header a {
+    pointer-events:auto;
 
-    justify-self: start;
+    color:white;
+    text-decoration:none;
 
-    color: rgba(255,255,255,0.92);
-
-    text-decoration: none;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    pointer-events: auto;
+    font-size:13px;
+    font-weight:600;
 
     text-shadow:
-        0 1px 3px
-        rgba(0,0,0,0.9);
+        0 1px 4px rgba(0,0,0,.9);
 }
 
-
-.reader-header a:hover {
-    text-decoration: underline;
+.back-button:hover{
+    text-decoration:underline;
 }
 
+.reader-title{
+    justify-self:center;
 
-.reader-header-title {
+    color:white;
 
-    justify-self: center;
+    font-size:14px;
+    font-weight:700;
 
-    color: white;
-
-    font-size: 14px;
-
-    font-weight: 700;
-
-    text-align: center;
+    text-align:center;
 
     text-shadow:
-        0 1px 4px
-        rgba(0,0,0,0.95);
+        0 1px 4px rgba(0,0,0,.9);
 }
 
+.author{
+    justify-self:end;
 
-.reader-header-author {
+    color:rgba(255,255,255,.88);
 
-    justify-self: end;
+    font-size:12px;
+    font-weight:600;
 
-    color: rgba(255,255,255,0.86);
-
-    font-size: 12px;
-
-    font-weight: 600;
-
-    text-align: right;
+    text-align:right;
 
     text-shadow:
-        0 1px 3px
-        rgba(0,0,0,0.9);
+        0 1px 4px rgba(0,0,0,.9);
 }
-
 
 /* =========================================================
-   FOOTER OVERLAY
+   BOTTOM CONTROLS
    ========================================================= */
 
-.reader-footer {
+.bottom-bar{
+    position:absolute;
 
-    position: absolute;
+    left:0;
+    right:0;
+    bottom:0;
 
-    left: 0;
+    z-index:20;
 
-    right: 0;
+    display:flex;
 
-    bottom: 0;
+    justify-content:center;
+    align-items:end;
 
-    z-index: 30;
-
-    min-height: 68px;
-
-    display: grid;
-
-    grid-template-columns: 1fr auto 1fr;
-
-    align-items: end;
-
-    gap: 15px;
-
-    padding: 8px 18px 12px;
-
-    color: white;
+    padding:
+        18px 12px 14px;
 
     background:
         linear-gradient(
             to top,
-            rgba(0,0,0,0.82),
+            rgba(0,0,0,.88),
             rgba(0,0,0,0)
         );
+
+    pointer-events:none;
 }
 
+.controls{
+    pointer-events:auto;
 
-.reader-footer-info {
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    color: rgba(255,255,255,0.82);
+    gap:7px;
 
-    font-size: 11px;
+    padding:7px;
 
-    line-height: 1.4;
-
-    text-shadow:
-        0 1px 3px
-        rgba(0,0,0,0.9);
-}
-
-
-.reader-footer-author {
-
-    justify-self: end;
-
-    color: rgba(255,255,255,0.82);
-
-    font-size: 11px;
-
-    text-align: right;
-
-    line-height: 1.4;
-
-    text-shadow:
-        0 1px 3px
-        rgba(0,0,0,0.9);
-}
-
-
-/* =========================================================
-   FLOATING CONTROL BAR
-   ========================================================= */
-
-.controls {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 8px;
-
-    padding: 5px 8px;
-
-    background: rgba(24,24,24,0.90);
+    background:
+        rgba(20,24,32,.94);
 
     border:
-        1px solid rgba(255,255,255,0.14);
+        1px solid rgba(255,255,255,.14);
 
-    border-radius: 10px;
+    border-radius:12px;
 
     box-shadow:
-        0 6px 20px
-        rgba(0,0,0,0.4);
+        0 8px 28px rgba(0,0,0,.45);
 
-    backdrop-filter: blur(8px);
-
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
 }
 
+.control{
+    border:0;
 
-.control-button {
+    width:42px;
+    height:40px;
 
-    border: none;
+    border-radius:7px;
 
-    outline: none;
+    background:#2b313c;
+    color:white;
 
-    background: #2b2b2b;
+    cursor:pointer;
 
-    color: white;
-
-    min-width: 42px;
-
-    height: 40px;
-
-    padding: 0 13px;
-
-    border-radius: 6px;
-
-    cursor: pointer;
-
-    font-size: 18px;
+    font-size:18px;
 
     transition:
-        background 0.2s ease,
-        transform 0.1s ease;
+        background .15s ease,
+        transform .1s ease;
 }
 
-
-.control-button:hover {
-    background: #444;
+.control:hover{
+    background:#414956;
 }
 
-
-.control-button:active {
-    transform: scale(0.95);
+.control:active{
+    transform:scale(.94);
 }
 
-
-.control-button:disabled {
-    opacity: 0.38;
-
-    cursor: default;
+.control:disabled{
+    opacity:.35;
+    cursor:default;
 }
 
+.counter{
+    min-width:92px;
 
-.page-counter {
+    padding:0 8px;
 
-    color: #ddd;
+    color:#f1f5f9;
 
-    min-width: 90px;
+    font-size:14px;
+    font-weight:600;
 
-    text-align: center;
-
-    font-size: 15px;
-
-    font-weight: 600;
+    text-align:center;
 }
 
+/* =========================================================
+   LOADING / ERROR
+   ========================================================= */
+
+.status{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    z-index:10;
+
+    color:white;
+
+    text-align:center;
+
+    font-size:15px;
+
+    padding:20px;
+
+    max-width:90%;
+}
+
+.status.hidden{
+    display:none;
+}
 
 /* =========================================================
    MOBILE
    ========================================================= */
 
-@media (max-width: 700px) {
+@media(max-width:700px){
 
-    .reader-header {
+    .top-bar{
+        min-height:48px;
 
-        min-height: 44px;
+        grid-template-columns:auto 1fr;
 
-        grid-template-columns: auto 1fr;
-
-        padding: 7px 10px;
-
-        gap: 10px;
+        padding:
+            7px 10px 16px;
     }
 
-    .reader-header-title {
-        justify-self: end;
+    .reader-title{
+        justify-self:end;
 
-        font-size: 12px;
+        font-size:12px;
     }
 
-    .reader-header-author {
-        display: none;
+    .author{
+        display:none;
     }
 
-    .reader-header a {
-        font-size: 11px;
+    .back-button{
+        font-size:11px;
     }
 
-    .reader-footer {
-
-        min-height: 58px;
-
-        grid-template-columns: 1fr auto;
-
-        padding: 5px 8px 8px;
-
-        gap: 8px;
+    .bottom-bar{
+        padding:
+            12px 7px 9px;
     }
 
-    .reader-footer-info {
-        display: none;
+    .controls{
+        gap:4px;
+        padding:5px;
+        border-radius:10px;
     }
 
-    .reader-footer-author {
-        display: none;
+    .control{
+        width:36px;
+        height:36px;
+
+        font-size:16px;
     }
 
-    .controls {
-
-        gap: 5px;
-
-        padding: 4px 6px;
-
-        border-radius: 9px;
+    .counter{
+        min-width:70px;
+        font-size:12px;
     }
-
-    .control-button {
-
-        min-width: 36px;
-
-        height: 36px;
-
-        padding: 0 9px;
-
-        font-size: 17px;
-    }
-
-    .page-counter {
-
-        min-width: 70px;
-
-        font-size: 13px;
-    }
-
 }
 
-</style>
+/* =========================================================
+   VERY SHORT LANDSCAPE
+   ========================================================= */
 
+@media(
+    max-height:520px
+) and (
+    orientation:landscape
+){
+
+    .top-bar{
+        min-height:38px;
+        padding:4px 10px 10px;
+    }
+
+    .bottom-bar{
+        padding:8px;
+    }
+
+    .control{
+        width:34px;
+        height:34px;
+    }
+
+    .counter{
+        font-size:11px;
+    }
+}
+</style>
 </head>
 
 
 <body>
 
-
 <div class="reader">
 
+    <!-- =====================================================
+         PRESENTATION AREA
+         ===================================================== -->
 
-    <!-- ================================================
-         HEADER
-         Overlay only: it does not reduce slide size.
-         ================================================ -->
+    <div class="slide-area" id="slideArea">
 
-    <header class="reader-header">
+        <canvas
+            id="pdfCanvas"
+            aria-label="Cycloid presentation slide">
+        </canvas>
+
+    </div>
+
+
+    <!-- =====================================================
+         STATUS
+         ===================================================== -->
+
+    <div class="status" id="status">
+        Loading presentation…
+    </div>
+
+
+    <!-- =====================================================
+         TOP BAR
+         ===================================================== -->
+
+    <header class="top-bar">
 
         <a
-            href="../../index.html"
-            title="Back to Engineering Graphics PPT presentations"
+            class="back-button"
+            href="../../../engineering-curves/cycloid/"
         >
-            &#10094; Back to PPT Presentations
+            &#10094;&nbsp; Back to Cycloid
         </a>
 
-        <div class="reader-header-title">
-            Cycloid
+        <div class="reader-title">
+            Cycloid — Complete Presentation
         </div>
 
-        <div class="reader-header-author">
+        <div class="author">
             Gajavada Sanjeevkumar
         </div>
 
     </header>
 
 
-    <div
-        class="slide-area"
-        id="slideArea"
-    >
+    <!-- =====================================================
+         BOTTOM CONTROLS
+         ===================================================== -->
 
-        <img
-            id="slideImage"
-            alt="Presentation slide"
-            draggable="false"
-        >
-
-    </div>
-
-
-    <!-- ================================================
-         FOOTER
-         Overlay only: it does not reduce slide size.
-         ================================================ -->
-
-    <footer class="reader-footer">
-
-        <div class="reader-footer-info">
-            Engineering Graphics<br>
-            IIT (ISM) Dhanbad
-        </div>
-
+    <footer class="bottom-bar">
 
         <div class="controls">
 
+            <button
+                class="control"
+                id="firstButton"
+                title="First slide"
+                aria-label="First slide">
+                &#10094;&#10094;
+            </button>
 
-        <button
-            class="control-button"
-            id="previousButton"
-            title="Previous slide"
-            aria-label="Previous slide"
-        >
-            &#10094;
-        </button>
+            <button
+                class="control"
+                id="previousButton"
+                title="Previous slide"
+                aria-label="Previous slide">
+                &#10094;
+            </button>
 
+            <div
+                class="counter"
+                id="counter">
+                — / —
+            </div>
 
-        <div
-            class="page-counter"
-            id="pageCounter"
-        >
-            1 / 76
-        </div>
+            <button
+                class="control"
+                id="nextButton"
+                title="Next slide"
+                aria-label="Next slide">
+                &#10095;
+            </button>
 
+            <button
+                class="control"
+                id="lastButton"
+                title="Last slide"
+                aria-label="Last slide">
+                &#10095;&#10095;
+            </button>
 
-        <button
-            class="control-button"
-            id="nextButton"
-            title="Next slide"
-            aria-label="Next slide"
-        >
-            &#10095;
-        </button>
+            <button
+                class="control"
+                id="fullscreenButton"
+                title="Fullscreen"
+                aria-label="Fullscreen">
+                ⛶
+            </button>
 
-
-        <button
-            class="control-button"
-            id="fullscreenButton"
-            title="Fullscreen"
-            aria-label="Fullscreen"
-        >
-            &#x26F6;
-        </button>
-
-
-        </div>
-
-
-        <div class="reader-footer-author">
-            Gajavada Sanjeevkumar<br>
-            PhD Scholar | Mechanical Engineering
         </div>
 
     </footer>
 
-
 </div>
 
 
-<script>
+<!-- =========================================================
+     PDF.JS
+     ========================================================= -->
 
-const pages = [
-            'cycloid-pages/page-001.jpg',
-            'cycloid-pages/page-002.jpg',
-            'cycloid-pages/page-003.jpg',
-            'cycloid-pages/page-004.jpg',
-            'cycloid-pages/page-005.jpg',
-            'cycloid-pages/page-006.jpg',
-            'cycloid-pages/page-007.jpg',
-            'cycloid-pages/page-008.jpg',
-            'cycloid-pages/page-009.jpg',
-            'cycloid-pages/page-010.jpg',
-            'cycloid-pages/page-011.jpg',
-            'cycloid-pages/page-012.jpg',
-            'cycloid-pages/page-013.jpg',
-            'cycloid-pages/page-014.jpg',
-            'cycloid-pages/page-015.jpg',
-            'cycloid-pages/page-016.jpg',
-            'cycloid-pages/page-017.jpg',
-            'cycloid-pages/page-018.jpg',
-            'cycloid-pages/page-019.jpg',
-            'cycloid-pages/page-020.jpg',
-            'cycloid-pages/page-021.jpg',
-            'cycloid-pages/page-022.jpg',
-            'cycloid-pages/page-023.jpg',
-            'cycloid-pages/page-024.jpg',
-            'cycloid-pages/page-025.jpg',
-            'cycloid-pages/page-026.jpg',
-            'cycloid-pages/page-027.jpg',
-            'cycloid-pages/page-028.jpg',
-            'cycloid-pages/page-029.jpg',
-            'cycloid-pages/page-030.jpg',
-            'cycloid-pages/page-031.jpg',
-            'cycloid-pages/page-032.jpg',
-            'cycloid-pages/page-033.jpg',
-            'cycloid-pages/page-034.jpg',
-            'cycloid-pages/page-035.jpg',
-            'cycloid-pages/page-036.jpg',
-            'cycloid-pages/page-037.jpg',
-            'cycloid-pages/page-038.jpg',
-            'cycloid-pages/page-039.jpg',
-            'cycloid-pages/page-040.jpg',
-            'cycloid-pages/page-041.jpg',
-            'cycloid-pages/page-042.jpg',
-            'cycloid-pages/page-043.jpg',
-            'cycloid-pages/page-044.jpg',
-            'cycloid-pages/page-045.jpg',
-            'cycloid-pages/page-046.jpg',
-            'cycloid-pages/page-047.jpg',
-            'cycloid-pages/page-048.jpg',
-            'cycloid-pages/page-049.jpg',
-            'cycloid-pages/page-050.jpg',
-            'cycloid-pages/page-051.jpg',
-            'cycloid-pages/page-052.jpg',
-            'cycloid-pages/page-053.jpg',
-            'cycloid-pages/page-054.jpg',
-            'cycloid-pages/page-055.jpg',
-            'cycloid-pages/page-056.jpg',
-            'cycloid-pages/page-057.jpg',
-            'cycloid-pages/page-058.jpg',
-            'cycloid-pages/page-059.jpg',
-            'cycloid-pages/page-060.jpg',
-            'cycloid-pages/page-061.jpg',
-            'cycloid-pages/page-062.jpg',
-            'cycloid-pages/page-063.jpg',
-            'cycloid-pages/page-064.jpg',
-            'cycloid-pages/page-065.jpg',
-            'cycloid-pages/page-066.jpg',
-            'cycloid-pages/page-067.jpg',
-            'cycloid-pages/page-068.jpg',
-            'cycloid-pages/page-069.jpg',
-            'cycloid-pages/page-070.jpg',
-            'cycloid-pages/page-071.jpg',
-            'cycloid-pages/page-072.jpg',
-            'cycloid-pages/page-073.jpg',
-            'cycloid-pages/page-074.jpg',
-            'cycloid-pages/page-075.jpg',
-            'cycloid-pages/page-076.jpg'
-];
+<script type="module">
+
+import * as pdfjsLib from
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
 
 
-let currentPage = 0;
+/* =========================================================
+   PDF CONFIGURATION
+   ========================================================= */
+
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
 
 
-const image =
-    document.getElementById("slideImage");
+/*
+ * The PDF is in the SAME folder as this reader.
+ *
+ *     cycloid/
+ *       ├── cycloid.tex
+ *       ├── cycloid.pdf
+ *       └── cycloid-reader.html
+ */
+
+const PDF_URL = "cycloid.pdf";
+
+
+/* =========================================================
+   ELEMENTS
+   ========================================================= */
+
+const canvas =
+    document.getElementById("pdfCanvas");
+
+const context =
+    canvas.getContext("2d");
+
+const slideArea =
+    document.getElementById("slideArea");
+
+const status =
+    document.getElementById("status");
 
 const counter =
-    document.getElementById("pageCounter");
+    document.getElementById("counter");
+
+const firstButton =
+    document.getElementById("firstButton");
 
 const previousButton =
     document.getElementById("previousButton");
@@ -663,119 +556,436 @@ const previousButton =
 const nextButton =
     document.getElementById("nextButton");
 
+const lastButton =
+    document.getElementById("lastButton");
+
 const fullscreenButton =
     document.getElementById("fullscreenButton");
 
-const slideArea =
-    document.getElementById("slideArea");
+
+/* =========================================================
+   STATE
+   ========================================================= */
+
+let pdf = null;
+
+let currentPage = 1;
+
+let rendering = false;
+
+let pendingPage = null;
 
 
 /* =========================================================
-   LOAD PAGE
+   LOAD PDF
    ========================================================= */
 
-function showPage(index) {
+async function loadPDF(){
 
-    if (index < 0) {
-        index = 0;
+    try{
+
+        status.textContent =
+            "Loading presentation…";
+
+        const loadingTask =
+            pdfjsLib.getDocument({
+                url: PDF_URL,
+                disableAutoFetch: false,
+                disableStream: false
+            });
+
+        pdf =
+            await loadingTask.promise;
+
+
+        status.classList.add("hidden");
+
+
+        counter.textContent =
+            `1 / ${pdf.numPages}`;
+
+
+        await renderPage(1);
+
+        updateControls();
+
     }
 
-    if (index >= pages.length) {
-        index = pages.length - 1;
+    catch(error){
+
+        console.error(error);
+
+        status.classList.remove("hidden");
+
+        status.innerHTML =
+            `
+            <strong>Presentation could not be loaded.</strong>
+            <br><br>
+            Please make sure
+            <strong>cycloid.pdf</strong>
+            exists in the same folder as this reader.
+            `;
+
     }
-
-    currentPage = index;
-
-    image.src = pages[currentPage];
-
-    counter.textContent =
-        (currentPage + 1)
-        + " / "
-        + pages.length;
-
-
-    previousButton.disabled =
-        currentPage === 0;
-
-    nextButton.disabled =
-        currentPage === pages.length - 1;
 
 }
 
 
 /* =========================================================
-   PREVIOUS
+   CALCULATE BEST SCALE
    ========================================================= */
+
+function calculateScale(page){
+
+    const viewport =
+        page.getViewport({
+            scale:1
+        });
+
+
+    const availableWidth =
+        slideArea.clientWidth;
+
+    const availableHeight =
+        slideArea.clientHeight;
+
+
+    const widthScale =
+        availableWidth / viewport.width;
+
+    const heightScale =
+        availableHeight / viewport.height;
+
+
+    /*
+     * Fit the complete Beamer slide inside the available
+     * viewport while preserving its original aspect ratio.
+     */
+
+    let scale =
+        Math.min(
+            widthScale,
+            heightScale
+        );
+
+
+    /*
+     * Small safety margin prevents accidental clipping.
+     */
+
+    scale *= 0.995;
+
+
+    /*
+     * Limit device-pixel rendering to prevent excessive
+     * memory consumption on high-DPI mobile devices.
+     */
+
+    const devicePixelRatio =
+        window.devicePixelRatio || 1;
+
+
+    const effectiveDPR =
+        Math.min(
+            devicePixelRatio,
+            2
+        );
+
+
+    return {
+        scale,
+        effectiveDPR
+    };
+
+}
+
+
+/* =========================================================
+   RENDER PAGE
+   ========================================================= */
+
+async function renderPage(pageNumber){
+
+    if(!pdf){
+        return;
+    }
+
+
+    if(rendering){
+
+        pendingPage =
+            pageNumber;
+
+        return;
+    }
+
+
+    rendering = true;
+
+
+    try{
+
+        const page =
+            await pdf.getPage(pageNumber);
+
+
+        const {
+            scale,
+            effectiveDPR
+        } =
+            calculateScale(page);
+
+
+        const viewport =
+            page.getViewport({
+                scale
+            });
+
+
+        /*
+         * CSS dimensions.
+         */
+
+        canvas.style.width =
+            `${viewport.width}px`;
+
+        canvas.style.height =
+            `${viewport.height}px`;
+
+
+        /*
+         * Real drawing resolution.
+         */
+
+        canvas.width =
+            Math.floor(
+                viewport.width *
+                effectiveDPR
+            );
+
+        canvas.height =
+            Math.floor(
+                viewport.height *
+                effectiveDPR
+            );
+
+
+        context.setTransform(
+            effectiveDPR,
+            0,
+            0,
+            effectiveDPR,
+            0,
+            0
+        );
+
+
+        context.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+
+        await page.render({
+
+            canvasContext:context,
+
+            viewport:viewport
+
+        }).promise;
+
+
+        currentPage =
+            pageNumber;
+
+
+        counter.textContent =
+            `${currentPage} / ${pdf.numPages}`;
+
+
+        updateControls();
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Page rendering error:",
+            error
+        );
+
+    }
+
+    finally{
+
+        rendering = false;
+
+
+        if(pendingPage !== null){
+
+            const nextPage =
+                pendingPage;
+
+            pendingPage = null;
+
+            renderPage(nextPage);
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+function goToPage(pageNumber){
+
+    if(!pdf){
+        return;
+    }
+
+
+    pageNumber =
+        Math.max(
+            1,
+            Math.min(
+                pdf.numPages,
+                pageNumber
+            )
+        );
+
+
+    renderPage(pageNumber);
+
+}
+
+
+function updateControls(){
+
+    if(!pdf){
+        return;
+    }
+
+
+    firstButton.disabled =
+        currentPage <= 1;
+
+    previousButton.disabled =
+        currentPage <= 1;
+
+    nextButton.disabled =
+        currentPage >= pdf.numPages;
+
+    lastButton.disabled =
+        currentPage >= pdf.numPages;
+
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+firstButton.addEventListener(
+    "click",
+    () => goToPage(1)
+);
+
 
 previousButton.addEventListener(
     "click",
-    function() {
-
-        showPage(currentPage - 1);
-
-    }
+    () => goToPage(currentPage - 1)
 );
 
-
-/* =========================================================
-   NEXT
-   ========================================================= */
 
 nextButton.addEventListener(
     "click",
-    function() {
+    () => goToPage(currentPage + 1)
+);
 
-        showPage(currentPage + 1);
+
+lastButton.addEventListener(
+    "click",
+    () => {
+
+        if(pdf){
+            goToPage(pdf.numPages);
+        }
 
     }
 );
 
 
 /* =========================================================
-   KEYBOARD NAVIGATION
+   KEYBOARD
    ========================================================= */
 
 document.addEventListener(
     "keydown",
-    function(event) {
+    event => {
 
-        if (
+        if(
             event.key === "ArrowLeft" ||
             event.key === "PageUp"
-        ) {
-
-            showPage(currentPage - 1);
-
-        }
-
-
-        else if (
-            event.key === "ArrowRight" ||
-            event.key === "PageDown" ||
-            event.key === " "
-        ) {
+        ){
 
             event.preventDefault();
 
-            showPage(currentPage + 1);
+            goToPage(
+                currentPage - 1
+            );
 
         }
 
+        else if(
+            event.key === "ArrowRight" ||
+            event.key === "PageDown"
+        ){
 
-        else if (
+            event.preventDefault();
+
+            goToPage(
+                currentPage + 1
+            );
+
+        }
+
+        else if(
             event.key === "Home"
-        ) {
+        ){
 
-            showPage(0);
+            event.preventDefault();
+
+            goToPage(1);
 
         }
 
-
-        else if (
+        else if(
             event.key === "End"
-        ) {
+        ){
 
-            showPage(pages.length - 1);
+            event.preventDefault();
+
+            if(pdf){
+                goToPage(pdf.numPages);
+            }
+
+        }
+
+        else if(
+            event.key === " "
+        ){
+
+            event.preventDefault();
+
+            goToPage(
+                currentPage + 1
+            );
 
         }
 
@@ -789,25 +999,26 @@ document.addEventListener(
 
 fullscreenButton.addEventListener(
     "click",
-    function() {
+    async () => {
 
-        if (!document.fullscreenElement) {
+        try{
 
-            if (document.documentElement.requestFullscreen) {
+            if(!document.fullscreenElement){
 
-                document.documentElement.requestFullscreen();
+                await document.documentElement
+                    .requestFullscreen();
+
+            }
+            else{
+
+                await document.exitFullscreen();
 
             }
 
         }
+        catch(error){
 
-        else {
-
-            if (document.exitFullscreen) {
-
-                document.exitFullscreen();
-
-            }
+            console.error(error);
 
         }
 
@@ -816,69 +1027,151 @@ fullscreenButton.addEventListener(
 
 
 /* =========================================================
-   DISABLE RIGHT CLICK ON SLIDE
+   RESIZE / ROTATION
    ========================================================= */
 
-image.addEventListener(
-    "contextmenu",
-    function(event) {
+let resizeTimer = null;
 
-        event.preventDefault();
+window.addEventListener(
+    "resize",
+    () => {
+
+        clearTimeout(resizeTimer);
+
+        resizeTimer =
+            setTimeout(
+                () => {
+
+                    if(pdf){
+
+                        renderPage(
+                            currentPage
+                        );
+
+                    }
+
+                },
+                120
+            );
 
     }
 );
 
 
 /* =========================================================
-   TOUCH / SWIPE SUPPORT
+   TOUCH SWIPE
    ========================================================= */
 
 let touchStartX = 0;
-let touchEndX = 0;
-
+let touchStartY = 0;
 
 slideArea.addEventListener(
     "touchstart",
-    function(event) {
+    event => {
+
+        const touch =
+            event.changedTouches[0];
 
         touchStartX =
-            event.changedTouches[0].screenX;
+            touch.clientX;
+
+        touchStartY =
+            touch.clientY;
 
     },
-    { passive: true }
+    {passive:true}
 );
 
 
 slideArea.addEventListener(
     "touchend",
-    function(event) {
+    event => {
 
-        touchEndX =
-            event.changedTouches[0].screenX;
+        const touch =
+            event.changedTouches[0];
 
-        const distance =
-            touchEndX - touchStartX;
+        const dx =
+            touch.clientX -
+            touchStartX;
+
+        const dy =
+            touch.clientY -
+            touchStartY;
 
 
-        if (Math.abs(distance) < 50) {
+        /*
+         * Ignore mostly vertical gestures.
+         */
+
+        if(
+            Math.abs(dx) <
+            Math.abs(dy)
+        ){
             return;
         }
 
 
-        if (distance < 0) {
-
-            showPage(currentPage + 1);
-
+        if(Math.abs(dx) < 50){
+            return;
         }
 
-        else {
 
-            showPage(currentPage - 1);
+        if(dx < 0){
+
+            goToPage(
+                currentPage + 1
+            );
+
+        }
+        else{
+
+            goToPage(
+                currentPage - 1
+            );
 
         }
 
     },
-    { passive: true }
+    {passive:true}
+);
+
+
+/* =========================================================
+   BASIC DOWNLOAD / PRINT DETERRENCE
+   ========================================================= */
+
+document.addEventListener(
+    "contextmenu",
+    event => event.preventDefault()
+);
+
+
+document.addEventListener(
+    "dragstart",
+    event => event.preventDefault()
+);
+
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        const key =
+            event.key.toLowerCase();
+
+
+        if(
+            (event.ctrlKey ||
+             event.metaKey)
+            &&
+            ["s","p","u"].includes(key)
+        ){
+
+            event.preventDefault();
+
+        }
+
+    }
 );
 
 
@@ -886,11 +1179,9 @@ slideArea.addEventListener(
    START
    ========================================================= */
 
-showPage(0);
+loadPDF();
 
 </script>
 
-
 </body>
-
 </html>
