@@ -18,8 +18,9 @@
     <link rel="icon" href="../../../favicon.ico">
 
     <!-- Main Portfolio CSS -->
-    <link rel="stylesheet"
-          href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="https://skgajawada.github.io/assets/css/style.css">
+    <link rel="stylesheet" href="https://skgajawada.github.io/assets/css/animations.css">
+    <link rel="stylesheet" href="https://skgajawada.github.io/assets/css/dark-mode.css">
 
     <!-- Existing Course CSS -->
     <link rel="stylesheet"
@@ -177,7 +178,6 @@ body {
     margin: 0;
     color: var(--eg-text);
     background: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
 }
 
@@ -1065,46 +1065,67 @@ a {
     }
 }
 
+
+/* Preserve the portfolio site's original typography. */
+.eg-site-header,
+.eg-site-header *,
+.eg-hero,
+.eg-hero *,
+.eg-topic-nav,
+.eg-topic-nav *,
+.course-information,
+.course-information *,
+.about-course,
+.about-course *,
+.course-highlights,
+.course-highlights *,
+.course-contact,
+.course-contact *,
+.course-footer,
+.course-footer * {
+}
+
 </style>
 
 </head>
 
 
-<body class="eg-no-copy">
+<body class="light-mode eg-no-copy">
 
 
-<!-- =======================================================
-     GLOBAL PORTFOLIO HEADER
-     ======================================================= -->
-
-<header class="eg-site-header">
-    <div class="eg-site-header-inner">
-
-        <a href="../../../#/home" class="eg-site-brand" aria-label="Gajavada Sanjeevkumar Home">
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">
             <i class="fas fa-graduation-cap"></i>
             <span>Gajavada Sanjeevkumar</span>
-        </a>
+        </div>
 
-        <nav class="eg-site-nav" aria-label="Main navigation">
-            <a href="../../../#/home">Home</a>
-            <a href="../../../#/about">About</a>
-            <a href="../../../#/experience">Experience</a>
-            <a href="../../../#/teaching" class="eg-active">Teaching</a>
-            <a href="../../../#/education">Education</a>
-            <a href="../../../#/projects">Projects</a>
-            <a href="../../../#/engagements">Engagements</a>
-            <a href="../../../#/moocs">MOOCs</a>
-            <a href="../../../#/skills">Skills</a>
-            <a href="../../../#/contact">Contact</a>
+        <ul class="nav-menu">
+            <li><a href="../../../#/home" class="nav-link">Home</a></li>
+            <li><a href="../../../#/about" class="nav-link">About</a></li>
+            <li><a href="../../../#/experience" class="nav-link">Experience</a></li>
+            <li><a href="../../../#/teaching" class="nav-link active">Teaching</a></li>
+            <li><a href="../../../#/education" class="nav-link">Education</a></li>
+            <li><a href="../../../#/projects" class="nav-link">Projects</a></li>
+            <li><a href="../../../#/engagements" class="nav-link">Engagements</a></li>
+            <li><a href="../../../#/moocs" class="nav-link">MOOCs</a></li>
+            <li><a href="../../../#/skills" class="nav-link">Skills</a></li>
+            <li><a href="../../../#/contact" class="nav-link">Contact</a></li>
+            <li>
+                <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </li>
+        </ul>
 
-            <button class="eg-theme-button" type="button" aria-label="Toggle dark mode" onclick="toggleEGTheme()">
-                <i class="fas fa-moon"></i>
-            </button>
-        </nav>
-
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </div>
-</header>
-
+</nav>
 
 <!-- =======================================================
      ENGINEERING GRAPHICS HERO
@@ -1817,16 +1838,7 @@ document.addEventListener("keydown", function(e) {
 </script>
 
 
-<script>
-function toggleEGTheme() {
-    document.body.classList.toggle("eg-theme-hint");
-    const icon = document.querySelector(".eg-theme-button i");
-    if (icon) {
-        icon.classList.toggle("fa-moon");
-        icon.classList.toggle("fa-sun");
-    }
-}
-</script>
+    <script src="https://skgajawada.github.io/assets/js/dark-mode.js"></script>
 
 </body>
 </html>
