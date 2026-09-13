@@ -373,6 +373,10 @@ const YMAX = 110;
 let CANVAS_SCALE = 1.0;
 let FONT_SCALE = 1.0;
 
+const DIAGRAM_ROTATION_DEG = -15.0;
+const DIAGRAM_ROTATION = DIAGRAM_ROTATION_DEG * Math.PI / 180.0;
+
+
 function getScalingMetrics() {
     const AX = {
         left: W * 0.12,
@@ -834,8 +838,31 @@ function render() {
     ctx.globalAlpha = 1;
     ctx.setLineDash([]);
 
+    /*
+       Rotate the complete construction diagram anticlockwise.
+
+       With START_DEG = 125° and 12 divisions over 100°,
+       point 6' is at:
+           125° - 6 × (100° / 12) = 75°
+
+       Thus O–6' is 15° away from vertical.  A -15° canvas
+       rotation makes O–6' exactly vertical.
+
+       All construction geometry, rolling circle, generated
+       curve, division lines, points, labels and trace rotate
+       together.  The HTML controls remain fixed.
+    */
+    ctx.save();
+    ctx.translate(W / 2, H / 2);
+    ctx.rotate(DIAGRAM_ROTATION);
+    ctx.translate(-W / 2, -H / 2);
+
     drawStaticBackground();
     drawDynamic(currentFrame);
+
+    ctx.restore();
+
+    /* Keep the watermark independently oriented. */
     drawWatermark();
 
     ctx.restore();
