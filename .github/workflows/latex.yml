@@ -47,6 +47,14 @@ jobs:
       #
       # Workflow modification:
       #   Build all teaching TEX files.
+      #
+      # IMPORTANT:
+      # File paths may contain spaces, for example:
+      #
+      # assets/teaching/Engineering Graphics/PPT/epicycloid/epicycloid.tex
+      #
+      # Therefore git diff --name-only is used instead of
+      # git diff --name-status with awk $2.
       # =========================================================
 
       - name: Detect LaTeX files
@@ -58,6 +66,7 @@ jobs:
           echo "=================================================="
           echo "Teaching Presentation PDF Builder"
           echo "=================================================="
+
 
           # -----------------------------------------------------
           # Initialize lists
@@ -128,14 +137,19 @@ jobs:
                 | sort \
                 > tex_to_build.txt
 
+
             else
 
               # -------------------------------------------------
               # Detect changed teaching files
+              #
+              # --name-only is IMPORTANT here.
+              #
+              # It preserves complete paths containing spaces.
               # -------------------------------------------------
 
               git diff \
-                --name-status \
+                --name-only \
                 "${{ github.event.before }}" \
                 "${{ github.sha }}" \
                 -- "assets/teaching" \
@@ -159,28 +173,45 @@ jobs:
 
               # -------------------------------------------------
               # Added / Modified TEX
+              #
+              # --diff-filter=AM
+              # A = Added
+              # M = Modified
+              #
+              # --name-only preserves complete paths including
+              # spaces.
               # -------------------------------------------------
 
-              awk '
-                ($1 == "A" || $1 == "M") && ($2 ~ /\.tex$/) {
-                  print $2
-                }
-              ' changed_teaching_files.txt \
-              | sort -u \
-              > tex_to_build.txt
+              git diff \
+                --diff-filter=AM \
+                --name-only \
+                "${{ github.event.before }}" \
+                "${{ github.sha }}" \
+                -- "assets/teaching" \
+                | grep -E '\.tex$' \
+                | sort -u \
+                > tex_to_build.txt || true
 
 
               # -------------------------------------------------
               # Deleted TEX
+              #
+              # --diff-filter=D
+              # D = Deleted
+              #
+              # --name-only preserves complete paths including
+              # spaces.
               # -------------------------------------------------
 
-              awk '
-                $1 == "D" && ($2 ~ /\.tex$/) {
-                  print $2
-                }
-              ' changed_teaching_files.txt \
-              | sort -u \
-              > tex_to_delete.txt
+              git diff \
+                --diff-filter=D \
+                --name-only \
+                "${{ github.event.before }}" \
+                "${{ github.sha }}" \
+                -- "assets/teaching" \
+                | grep -E '\.tex$' \
+                | sort -u \
+                > tex_to_delete.txt || true
 
             fi
 
@@ -381,6 +412,7 @@ jobs:
 
               [ -z "$directory" ] && continue
 
+
               echo ""
               echo "Removing:"
               echo "$directory"
@@ -395,7 +427,9 @@ jobs:
 
               rm -rf "$directory"
 
+
             done < old_page_directories.txt
+
 
           else
 
@@ -426,6 +460,7 @@ jobs:
 
               [ -z "$preview" ] && continue
 
+
               echo ""
               echo "Removing old preview PDF:"
               echo "$preview"
@@ -439,7 +474,9 @@ jobs:
 
               rm -f "$preview"
 
+
             done < old_preview_files.txt
+
 
           else
 
@@ -488,6 +525,7 @@ jobs:
             directory="$(dirname "$texfile")"
             filename="$(basename "$texfile" .tex)"
 
+
             pdf_file="$directory/$filename.pdf"
 
 
@@ -495,6 +533,7 @@ jobs:
             echo "=================================================="
             echo "Removing generated PDF for deleted TEX"
             echo "=================================================="
+
 
             echo "$pdf_file"
 
@@ -506,6 +545,7 @@ jobs:
 
 
             rm -f "$pdf_file"
+
 
           done < tex_to_delete.txt
 
@@ -614,6 +654,7 @@ jobs:
               directory="$(dirname "$texfile")"
               filename="$(basename "$texfile" .tex)"
 
+
               pdf_file="$directory/$filename.pdf"
 
 
@@ -679,6 +720,7 @@ jobs:
               directory="$(dirname "$texfile")"
               filename="$(basename "$texfile" .tex)"
 
+
               pdf_file="$directory/$filename.pdf"
 
 
@@ -705,6 +747,7 @@ jobs:
 
               pdf_size=$(du -h "$pdf_file" | cut -f1)
 
+
               echo "Size: $pdf_size"
 
 
@@ -721,12 +764,14 @@ jobs:
                   awk '/^Pages:/ {print $2}'
                 )
 
+
                 echo "Pages: $page_count"
 
               fi
 
 
             done < tex_to_build.txt
+
 
           else
 
@@ -793,6 +838,7 @@ jobs:
 
           git config user.name \
             "github-actions[bot]"
+
 
           git config user.email \
             "41898282+github-actions[bot]@users.noreply.github.com"
