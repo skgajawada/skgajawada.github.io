@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hypocycloid — Engineering Graphics</title>
+
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;color:#222;background:#f7f8fa;line-height:1.6}
+body{overflow-x:hidden}
+a{color:inherit}
+.page{width:min(1180px,94%);margin:28px auto 45px}
+.header{background:#fff;border:1px solid #e1e4e8;border-radius:14px;padding:26px 30px;margin-bottom:18px;box-shadow:0 3px 12px rgba(0,0,0,.06)}
+.header-top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
+.eyebrow{font-size:13px;color:#666;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px}
+h1{margin:0;font-size:32px;line-height:1.2}
+.subtitle{margin:8px 0 0;color:#666;font-size:15px}
+.author{color:#555;font-size:14px;font-weight:600;white-space:nowrap}
+.nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid #eee}
+.nav a{text-decoration:none;padding:7px 11px;border-radius:7px;background:#f1f3f5;color:#333;font-size:13px;font-weight:600}
+.nav a:hover{background:#e6e9ed}
+.section{background:#fff;border:1px solid #e1e4e8;border-radius:14px;padding:26px 30px;margin-top:18px;box-shadow:0 3px 12px rgba(0,0,0,.045)}
+.section h2{margin:0 0 15px;font-size:23px;line-height:1.25}
+.section h3{margin:22px 0 8px;font-size:18px}
+.section p{margin:8px 0}
+.section ul,.section ol{margin:8px 0 8px 22px;padding:0}
+.section li{margin:5px 0}
+.definition{background:#f5f8fb;border-left:4px solid #174f94;padding:15px 18px;border-radius:7px;margin:14px 0}
+.formula{background:#fafafa;border:1px solid #e6e6e6;border-radius:8px;padding:12px 15px;margin:12px 0;font-family:Georgia,serif;text-align:center}
+.table-wrap{overflow-x:auto;margin-top:12px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{border:1px solid #dfe3e7;padding:9px 10px;text-align:left;vertical-align:top}
+th{background:#f1f4f7}
+.callout{background:#fff8e8;border:1px solid #ead7a5;border-radius:8px;padding:14px 16px;margin:15px 0}
+.media-section{padding:20px}
+.media-title{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:12px}
+.media-title h2{margin:0}
+.badge{font-size:12px;font-weight:700;background:#eef3f7;border:1px solid #d5dee6;padding:5px 9px;border-radius:999px;color:#52616d}
+.reader-frame,.animation-frame{display:block;width:100%;height:680px;border:1px solid #d8dde3;border-radius:10px;background:#111}
+.animation-frame{height:700px;background:#fff}
+.objectives{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.objective{border:1px solid #e1e5e9;border-radius:9px;padding:13px 15px;background:#fafbfc}
+.practice-item{border-left:3px solid #174f94;padding:9px 13px;margin:10px 0;background:#fafbfc}
+.related{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.related a{display:block;text-decoration:none;border:1px solid #e1e4e8;border-radius:9px;padding:14px;background:#fafbfc}
+.related a:hover{background:#f1f4f7}
+.contact{text-align:center}
+.contact a{display:inline-block;margin-top:8px;text-decoration:none;font-weight:700;color:#174f94}
+.footer{text-align:center;color:#888;font-size:12px;margin-top:24px;padding-top:18px;border-top:1px solid #ddd}
+
+@media(max-width:800px){
+    .page{width:min(96%,1180px);margin:15px auto 30px}
+    .header,.section{padding:20px}
+    .header-top{display:block}
+    .author{margin-top:10px}
+    h1{font-size:27px}
+    .reader-frame{height:560px}
+    .animation-frame{height:600px}
+    .objectives,.related{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+    .header,.section{padding:16px}
+    h1{font-size:23px}
+    .subtitle{font-size:13px}
+    .nav{gap:5px}
+    .nav a{font-size:12px;padding:6px 8px}
+    .reader-frame{height:500px}
+    .animation-frame{height:520px}
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+
+<header class="header">
+    <div class="header-top">
+        <div>
+            <div class="eyebrow">Engineering Graphics · Engineering Curves</div>
+            <h1>Hypocycloid</h1>
+            <p class="subtitle">Construction of a hypocycloid by the rolling-circle method</p>
+        </div>
+        <div class="author">Gajavada Sanjeevkumar</div>
+    </div>
+
+    <nav class="nav" aria-label="Hypocycloid page navigation">
+        <a href="#notes">Notes</a>
+        <a href="#construction">Construction</a>
+        <a href="#presentation">PPT</a>
+        <a href="#animation">Animation</a>
+        <a href="#objectives">Objectives</a>
+        <a href="#practice">Practice</a>
+        <a href="#related">Related Topics</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="section" id="notes">
+    <h2>Hypocycloid — Study Notes</h2>
+
+    <div class="definition">
+        <strong>Definition:</strong> A hypocycloid is the curve generated by a fixed point on the circumference of a circle that rolls without slipping on the <strong>inside</strong> of a directing circle.
+    </div>
+
+    <h3>Generation of a Hypocycloid</h3>
+    <p>
+        In the rolling-circle method, a generating circle rolls internally inside a directing circle.
+        A selected point on the circumference of the generating circle is traced as the generating
+        circle moves through the required angular interval.
+    </p>
+
+    <h3>Important Terminology</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Term</th><th>Meaning</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Directing circle</td><td>The fixed circle on whose inside the generating circle rolls.</td></tr>
+                <tr><td>Generating circle</td><td>The smaller circle that rolls internally without slipping.</td></tr>
+                <tr><td>Generating point</td><td>The fixed point on the generating circle whose locus forms the hypocycloid.</td></tr>
+                <tr><td>Centre of directing circle</td><td>The fixed centre about which the generating-circle centre moves.</td></tr>
+                <tr><td>Division points</td><td>Angular positions used to divide the required arc into equal parts for construction.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Basic Construction Principle</h3>
+    <ol>
+        <li>Draw the directing circle and mark the required starting and ending positions.</li>
+        <li>Divide the required angular arc into equal parts.</li>
+        <li>Locate the successive centres of the generating circle on the corresponding radial positions.</li>
+        <li>Draw the generating circle at each retained centre.</li>
+        <li>Transfer the equal divisions of the generating circle as it rolls without slipping.</li>
+        <li>Locate the corresponding generating points and join them with a smooth curve.</li>
+    </ol>
+
+    <h3>Construction Data Used in the Presentation</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Parameter</th><th>Value used in the animation/presentation</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Directing radius</td><td>90 mm</td></tr>
+                <tr><td>Generating radius</td><td>25 mm</td></tr>
+                <tr><td>Number of divisions</td><td>12</td></tr>
+                <tr><td>Angular interval shown in the animation</td><td>100°</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="callout">
+        <strong>Note:</strong> The values above follow the supplied Hypocycloid animation. The presentation
+        source and animation should be kept consistent if you later decide to revise the construction data.
+    </div>
+</section>
+
+<section class="section" id="construction">
+    <h2>Step-by-Step Construction</h2>
+
+    <ol>
+        <li><strong>Draw the directing circle.</strong> Draw the fixed directing circle with centre O.</li>
+        <li><strong>Mark the required angular interval.</strong> Identify the starting and ending radial positions.</li>
+        <li><strong>Divide the arc.</strong> Divide the specified angular interval into 12 equal parts.</li>
+        <li><strong>Locate successive centres.</strong> Since the generating circle rolls internally, its centre remains at a distance R − r from O.</li>
+        <li><strong>Draw the generating-circle positions.</strong> At each centre, retain the generating-circle construction as required.</li>
+        <li><strong>Transfer the divisions.</strong> Carry the material divisions around the generating circle according to the rolling condition.</li>
+        <li><strong>Locate the generated points.</strong> Mark the corresponding points P0, P1, …, P12.</li>
+        <li><strong>Draw the locus.</strong> Join the generated points with a smooth curve to obtain the hypocycloid.</li>
+    </ol>
+
+    <div class="formula">
+        For internal rolling, the centre of the generating circle moves on a circle of radius
+        <strong>R − r</strong> about the directing-circle centre.
+    </div>
+</section>
+
+<section class="section media-section" id="presentation">
+    <div class="media-title">
+        <h2>PPT — Complete Presentation</h2>
+        <span class="badge">PDF Reader</span>
+    </div>
+
+    <iframe
+        class="reader-frame"
+        src="../../PPT/hypocycloid/hypocycloid-reader.html"
+        title="Hypocycloid complete presentation"
+        allowfullscreen>
+    </iframe>
+</section>
+
+<section class="section media-section" id="animation">
+    <div class="media-title">
+        <h2>Interactive Animation</h2>
+        <span class="badge">12 Equal Divisions</span>
+    </div>
+
+    <iframe
+        class="animation-frame"
+        src="../../videos/hypocycloid.html"
+        title="Interactive hypocycloid construction animation"
+        allowfullscreen>
+    </iframe>
+</section>
+
+<section class="section" id="objectives">
+    <h2>Learning Objectives</h2>
+
+    <div class="objectives">
+        <div class="objective">Understand the generation of a hypocycloid by internal rolling.</div>
+        <div class="objective">Identify the directing circle, generating circle and generating point.</div>
+        <div class="objective">Divide the required angular interval into equal parts.</div>
+        <div class="objective">Locate successive centres of the rolling generating circle.</div>
+        <div class="objective">Transfer the generating-circle divisions while maintaining the rolling condition.</div>
+        <div class="objective">Construct and interpret the final hypocycloidal locus.</div>
+    </div>
+</section>
+
+<section class="section" id="practice">
+    <h2>Practice &amp; Worked-Example Guidance</h2>
+
+    <div class="practice-item">
+        <strong>Practice 1:</strong> A generating circle rolls inside a directing circle. Draw the first three successive positions of the generating circle and identify the corresponding generated points.
+    </div>
+
+    <div class="practice-item">
+        <strong>Practice 2:</strong> Divide a specified angular interval into 12 equal parts and construct the successive centre positions of the generating circle.
+    </div>
+
+    <div class="practice-item">
+        <strong>Practice 3:</strong> Explain why the centre of the generating circle moves on a circle of radius R − r during internal rolling.
+    </div>
+
+    <div class="practice-item">
+        <strong>Practice 4:</strong> Using the interactive animation, pause at each division and identify the current centre, contact point and generated point.
+    </div>
+</section>
+
+<section class="section" id="related">
+    <h2>Related Topics</h2>
+
+    <div class="related">
+        <a href="../cycloid/">
+            <strong>Cycloid</strong><br>
+            <span>Curve generated by a point on a circle rolling on a straight line.</span>
+        </a>
+
+        <a href="../epicycloid/">
+            <strong>Epicycloid</strong><br>
+            <span>Curve generated when a circle rolls externally around a directing circle.</span>
+        </a>
+
+        <a href="../">
+            <strong>Engineering Curves</strong><br>
+            <span>Explore the Engineering Curves section and its construction methods.</span>
+        </a>
+    </div>
+</section>
+
+<section class="section contact" id="contact">
+    <h2>Need Help?</h2>
+    <p>For questions, suggestions, or academic discussion, contact Gajavada Sanjeevkumar.</p>
+    <a href="https://skgajawada.github.io/#/contact">https://skgajawada.github.io/#/contact</a>
+</section>
+
+<footer class="footer">
+    Hypocycloid · Engineering Graphics · Gajavada Sanjeevkumar
+</footer>
+
+</div>
+</body>
+</html>
