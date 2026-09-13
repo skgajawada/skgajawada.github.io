@@ -1,884 +1,309 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width,
-               initial-scale=1.0">
-
-<title>Hypocycloid — Gajavada Sanjeevkumar</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hypocycloid — Complete Presentation</title>
 
 <style>
-
-* {
-    box-sizing: border-box;
+*{box-sizing:border-box}
+html,body{
+    margin:0;padding:0;width:100%;height:100%;
+    overflow:hidden;background:#111;
+    font-family:Arial,Helvetica,sans-serif;
 }
-
-
-html,
-body {
-    margin: 0;
-    padding: 0;
-
-    width: 100%;
-    height: 100%;
-
-    overflow: hidden;
-
-    background: #111;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+.reader{
+    position:relative;width:100%;height:100vh;
+    overflow:hidden;background:#111;
 }
-
-
-.reader {
-
-    position: relative;
-
-    width: 100%;
-    height: 100vh;
-
-    overflow: hidden;
-
-    background: #111;
+.slide-area{
+    position:absolute;inset:0;width:100%;height:100%;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;background:#111;
 }
-
-
-/* =========================================================
-   FULL-PAGE SLIDE
-   The image uses the complete viewport. Header/footer are
-   overlays and therefore do not reduce the slide area.
-   ========================================================= */
-
-.slide-area {
-
-    position: absolute;
-
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 0;
-
-    overflow: hidden;
-
-    background: #111;
+#pdfCanvas{
+    display:block;max-width:100%;max-height:100%;
+    width:auto;height:auto;user-select:none;
+    -webkit-user-select:none;
+    box-shadow:0 4px 25px rgba(0,0,0,.5);
 }
-
-
-#slideImage {
-
-    width: 100vw;
-
-    height: 100vh;
-
-    max-width: 100%;
-
-    max-height: 100%;
-
-    object-fit: contain;
-
-    display: block;
-
-    user-select: none;
-
-    -webkit-user-drag: none;
-
-    box-shadow:
-        0 4px 25px
-        rgba(0,0,0,0.5);
+.reader-header{
+    position:absolute;top:0;left:0;right:0;z-index:30;
+    min-height:52px;display:grid;
+    grid-template-columns:1fr auto 1fr;
+    align-items:center;gap:15px;padding:8px 18px;
+    color:#fff;
+    background:linear-gradient(to bottom,rgba(0,0,0,.72),rgba(0,0,0,0));
+    pointer-events:none;
 }
-
-
-/* =========================================================
-   HEADER OVERLAY
-   ========================================================= */
-
-.reader-header {
-
-    position: absolute;
-
-    top: 0;
-
-    left: 0;
-
-    right: 0;
-
-    z-index: 30;
-
-    min-height: 52px;
-
-    display: grid;
-
-    grid-template-columns: 1fr auto 1fr;
-
-    align-items: center;
-
-    gap: 15px;
-
-    padding: 8px 18px;
-
-    color: white;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(0,0,0,0.72),
-            rgba(0,0,0,0)
-        );
-
-    pointer-events: none;
+.reader-header a{
+    justify-self:start;color:rgba(255,255,255,.94);
+    text-decoration:none;font-size:13px;font-weight:600;
+    pointer-events:auto;text-shadow:0 1px 3px rgba(0,0,0,.9);
+    display:none;
 }
-
-
-.reader-header a {
-
-    justify-self: start;
-
-    color: rgba(255,255,255,0.92);
-
-    text-decoration: none;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    pointer-events: auto;
-
-    text-shadow:
-        0 1px 3px
-        rgba(0,0,0,0.9);
+.reader-header a:hover{text-decoration:underline}
+.reader-header-title{
+    justify-self:center;color:#fff;font-size:14px;font-weight:700;
+    text-align:center;text-shadow:0 1px 4px rgba(0,0,0,.95);
 }
-
-
-.reader-header a:hover {
-    text-decoration: underline;
+.reader-header-author{
+    justify-self:end;color:rgba(255,255,255,.90);
+    font-size:14px;font-weight:700;text-align:right;
+    text-shadow:0 1px 3px rgba(0,0,0,.9);
 }
-
-
-.reader-header-title {
-
-    justify-self: center;
-
-    color: white;
-
-    font-size: 14px;
-
-    font-weight: 700;
-
-    text-align: center;
-
-    text-shadow:
-        0 1px 4px
-        rgba(0,0,0,0.95);
+.controls{
+    position:absolute;left:50%;bottom:14px;transform:translateX(-50%);
+    z-index:40;display:flex;align-items:center;justify-content:center;
+    gap:8px;padding:5px 8px;background:rgba(24,24,24,.90);
+    border:1px solid rgba(255,255,255,.14);border-radius:10px;
+    box-shadow:0 6px 20px rgba(0,0,0,.4);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
 }
-
-
-.reader-header-author {
-
-    justify-self: end;
-
-    color: rgba(255,255,255,0.86);
-
-    font-size: 12px;
-
-    font-weight: 600;
-
-    text-align: right;
-
-    text-shadow:
-        0 1px 3px
-        rgba(0,0,0,0.9);
+.control-button{
+    border:none;outline:none;background:#2b2b2b;color:#fff;
+    min-width:42px;height:40px;padding:0 13px;border-radius:6px;
+    cursor:pointer;font-size:18px;
+    transition:background .2s ease,transform .1s ease;
 }
-
-
-/* =========================================================
-   FOOTER OVERLAY
-   ========================================================= */
-
-.reader-footer {
-
-    position: absolute;
-
-    left: 0;
-
-    right: 0;
-
-    bottom: 0;
-
-    z-index: 30;
-
-    min-height: 68px;
-
-    display: grid;
-
-    grid-template-columns: 1fr auto 1fr;
-
-    align-items: end;
-
-    gap: 15px;
-
-    padding: 8px 18px 12px;
-
-    color: white;
-
-    background:
-        linear-gradient(
-            to top,
-            rgba(0,0,0,0.82),
-            rgba(0,0,0,0)
-        );
+.control-button:hover{background:#444}
+.control-button:active{transform:scale(.95)}
+.control-button:disabled{opacity:.38;cursor:default}
+.page-counter{color:#ddd;min-width:90px;text-align:center;font-size:15px;font-weight:600}
+.status{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    z-index:20;color:#ddd;font-size:14px;text-align:center;padding:12px 16px;
 }
-
-
-.reader-footer-info {
-
-    color: rgba(255,255,255,0.82);
-
-    font-size: 11px;
-
-    line-height: 1.4;
-
-    text-shadow:
-        0 1px 3px
-        rgba(0,0,0,0.9);
-}
-
-
-.reader-footer-author {
-
-    justify-self: end;
-
-    color: rgba(255,255,255,0.82);
-
-    font-size: 11px;
-
-    text-align: right;
-
-    line-height: 1.4;
-
-    text-shadow:
-        0 1px 3px
-        rgba(0,0,0,0.9);
-}
-
-
-/* =========================================================
-   FLOATING CONTROL BAR
-   ========================================================= */
-
-.controls {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 8px;
-
-    padding: 5px 8px;
-
-    background: rgba(24,24,24,0.90);
-
-    border:
-        1px solid rgba(255,255,255,0.14);
-
-    border-radius: 10px;
-
-    box-shadow:
-        0 6px 20px
-        rgba(0,0,0,0.4);
-
-    backdrop-filter: blur(8px);
-
-    -webkit-backdrop-filter: blur(8px);
-}
-
-
-.control-button {
-
-    border: none;
-
-    outline: none;
-
-    background: #2b2b2b;
-
-    color: white;
-
-    min-width: 42px;
-
-    height: 40px;
-
-    padding: 0 13px;
-
-    border-radius: 6px;
-
-    cursor: pointer;
-
-    font-size: 18px;
-
-    transition:
-        background 0.2s ease,
-        transform 0.1s ease;
-}
-
-
-.control-button:hover {
-    background: #444;
-}
-
-
-.control-button:active {
-    transform: scale(0.95);
-}
-
-
-.control-button:disabled {
-    opacity: 0.38;
-
-    cursor: default;
-}
-
-
-.page-counter {
-
-    color: #ddd;
-
-    min-width: 90px;
-
-    text-align: center;
-
-    font-size: 15px;
-
-    font-weight: 600;
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 700px) {
-
-    .reader-header {
-
-        min-height: 44px;
-
-        grid-template-columns: auto 1fr;
-
-        padding: 7px 10px;
-
-        gap: 10px;
+.error{color:#ffb4b4;max-width:80%;line-height:1.5}
+@media(max-width:700px){
+    .reader-header{
+        min-height:44px;grid-template-columns:auto 1fr;
+        padding:7px 10px;gap:10px;
     }
-
-    .reader-header-title {
-        justify-self: end;
-
-        font-size: 12px;
-    }
-
-    .reader-header-author {
-        display: none;
-    }
-
-    .reader-header a {
-        font-size: 11px;
-    }
-
-    .reader-footer {
-
-        min-height: 58px;
-
-        grid-template-columns: 1fr auto;
-
-        padding: 5px 8px 8px;
-
-        gap: 8px;
-    }
-
-    .reader-footer-info {
-        display: none;
-    }
-
-    .reader-footer-author {
-        display: none;
-    }
-
-    .controls {
-
-        gap: 5px;
-
-        padding: 4px 6px;
-
-        border-radius: 9px;
-    }
-
-    .control-button {
-
-        min-width: 36px;
-
-        height: 36px;
-
-        padding: 0 9px;
-
-        font-size: 17px;
-    }
-
-    .page-counter {
-
-        min-width: 70px;
-
-        font-size: 13px;
-    }
-
+    .reader-header-title{justify-self:end;font-size:12px}
+    .reader-header-author{display:none}
+    .reader-header a{font-size:11px}
+    .controls{bottom:8px;gap:5px;padding:4px 6px;border-radius:9px}
+    .control-button{min-width:36px;height:36px;padding:0 9px;font-size:17px}
+    .page-counter{min-width:70px;font-size:13px}
 }
-
+:fullscreen .reader-header{min-height:58px}
+:fullscreen .reader-header a{display:block}
+:-webkit-full-screen .reader-header{min-height:58px}
+:-webkit-full-screen .reader-header a{display:block}
 </style>
-
 </head>
 
-
 <body>
+<div class="reader" id="reader">
 
+<header class="reader-header">
+    <a
+        href="../../engineering-curves/hypocycloid/"
+        target="_top"
+        title="Back to Hypocycloid"
+        onclick="window.top.location.href=this.href;return false;"
+    >&#10094; Back to Hypocycloid</a>
 
-<div class="reader">
+    <div class="reader-header-title">Hypocycloid — Complete Presentation</div>
+    <div class="reader-header-author">Gajavada Sanjeevkumar</div>
+</header>
 
+<main class="slide-area" id="slideArea">
+    <div class="status" id="status">Loading presentation…</div>
+    <canvas id="pdfCanvas" aria-label="Hypocycloid presentation slide"></canvas>
+</main>
 
-    <!-- ================================================
-         HEADER
-         Overlay only: it does not reduce slide size.
-         ================================================ -->
-
-    <header class="reader-header">
-
-        <a
-            href="../../index.html"
-            title="Back to Engineering Graphics PPT presentations"
-        >
-            &#10094; Back to PPT Presentations
-        </a>
-
-        <div class="reader-header-title">
-            Hypocycloid
-        </div>
-
-        <div class="reader-header-author">
-            Gajavada Sanjeevkumar
-        </div>
-
-    </header>
-
-
-    <div
-        class="slide-area"
-        id="slideArea"
-    >
-
-        <img
-            id="slideImage"
-            alt="Presentation slide"
-            draggable="false"
-        >
-
-    </div>
-
-
-    <!-- ================================================
-         FOOTER
-         Overlay only: it does not reduce slide size.
-         ================================================ -->
-
-    <footer class="reader-footer">
-
-        <div class="reader-footer-info">
-            Engineering Graphics<br>
-            IIT (ISM) Dhanbad
-        </div>
-
-
-        <div class="controls">
-
-
-        <button
-            class="control-button"
-            id="previousButton"
-            title="Previous slide"
-            aria-label="Previous slide"
-        >
-            &#10094;
-        </button>
-
-
-        <div
-            class="page-counter"
-            id="pageCounter"
-        >
-            1 / 64
-        </div>
-
-
-        <button
-            class="control-button"
-            id="nextButton"
-            title="Next slide"
-            aria-label="Next slide"
-        >
-            &#10095;
-        </button>
-
-
-        <button
-            class="control-button"
-            id="fullscreenButton"
-            title="Fullscreen"
-            aria-label="Fullscreen"
-        >
-            &#x26F6;
-        </button>
-
-
-        </div>
-
-
-        <div class="reader-footer-author">
-            Gajavada Sanjeevkumar<br>
-            PhD Scholar | Mechanical Engineering
-        </div>
-
-    </footer>
-
+<div class="controls">
+    <button class="control-button" id="firstButton" title="First slide" aria-label="First slide">&#10094;&#10094;</button>
+    <button class="control-button" id="previousButton" title="Previous slide" aria-label="Previous slide">&#10094;</button>
+    <div class="page-counter" id="pageCounter">— / —</div>
+    <button class="control-button" id="nextButton" title="Next slide" aria-label="Next slide">&#10095;</button>
+    <button class="control-button" id="lastButton" title="Last slide" aria-label="Last slide">&#10095;&#10095;</button>
+    <button class="control-button" id="fullscreenButton" title="Fullscreen" aria-label="Fullscreen">&#x26F6;</button>
+</div>
 
 </div>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
+"use strict";
 
-const pages = [
-            'hypocycloid-pages/page-001.jpg',
-            'hypocycloid-pages/page-002.jpg',
-            'hypocycloid-pages/page-003.jpg',
-            'hypocycloid-pages/page-004.jpg',
-            'hypocycloid-pages/page-005.jpg',
-            'hypocycloid-pages/page-006.jpg',
-            'hypocycloid-pages/page-007.jpg',
-            'hypocycloid-pages/page-008.jpg',
-            'hypocycloid-pages/page-009.jpg',
-            'hypocycloid-pages/page-010.jpg',
-            'hypocycloid-pages/page-011.jpg',
-            'hypocycloid-pages/page-012.jpg',
-            'hypocycloid-pages/page-013.jpg',
-            'hypocycloid-pages/page-014.jpg',
-            'hypocycloid-pages/page-015.jpg',
-            'hypocycloid-pages/page-016.jpg',
-            'hypocycloid-pages/page-017.jpg',
-            'hypocycloid-pages/page-018.jpg',
-            'hypocycloid-pages/page-019.jpg',
-            'hypocycloid-pages/page-020.jpg',
-            'hypocycloid-pages/page-021.jpg',
-            'hypocycloid-pages/page-022.jpg',
-            'hypocycloid-pages/page-023.jpg',
-            'hypocycloid-pages/page-024.jpg',
-            'hypocycloid-pages/page-025.jpg',
-            'hypocycloid-pages/page-026.jpg',
-            'hypocycloid-pages/page-027.jpg',
-            'hypocycloid-pages/page-028.jpg',
-            'hypocycloid-pages/page-029.jpg',
-            'hypocycloid-pages/page-030.jpg',
-            'hypocycloid-pages/page-031.jpg',
-            'hypocycloid-pages/page-032.jpg',
-            'hypocycloid-pages/page-033.jpg',
-            'hypocycloid-pages/page-034.jpg',
-            'hypocycloid-pages/page-035.jpg',
-            'hypocycloid-pages/page-036.jpg',
-            'hypocycloid-pages/page-037.jpg',
-            'hypocycloid-pages/page-038.jpg',
-            'hypocycloid-pages/page-039.jpg',
-            'hypocycloid-pages/page-040.jpg',
-            'hypocycloid-pages/page-041.jpg',
-            'hypocycloid-pages/page-042.jpg',
-            'hypocycloid-pages/page-043.jpg',
-            'hypocycloid-pages/page-044.jpg',
-            'hypocycloid-pages/page-045.jpg',
-            'hypocycloid-pages/page-046.jpg',
-            'hypocycloid-pages/page-047.jpg',
-            'hypocycloid-pages/page-048.jpg',
-            'hypocycloid-pages/page-049.jpg',
-            'hypocycloid-pages/page-050.jpg',
-            'hypocycloid-pages/page-051.jpg',
-            'hypocycloid-pages/page-052.jpg',
-            'hypocycloid-pages/page-053.jpg',
-            'hypocycloid-pages/page-054.jpg',
-            'hypocycloid-pages/page-055.jpg',
-            'hypocycloid-pages/page-056.jpg',
-            'hypocycloid-pages/page-057.jpg',
-            'hypocycloid-pages/page-058.jpg',
-            'hypocycloid-pages/page-059.jpg',
-            'hypocycloid-pages/page-060.jpg',
-            'hypocycloid-pages/page-061.jpg',
-            'hypocycloid-pages/page-062.jpg',
-            'hypocycloid-pages/page-063.jpg',
-            'hypocycloid-pages/page-064.jpg'
-];
+const PDF_URL="./hypocycloid.pdf";
 
+pdfjsLib.GlobalWorkerOptions.workerSrc=
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 
-let currentPage = 0;
+const reader=document.getElementById("reader");
+const slideArea=document.getElementById("slideArea");
+const canvas=document.getElementById("pdfCanvas");
+const ctx=canvas.getContext("2d");
+const status=document.getElementById("status");
+const counter=document.getElementById("pageCounter");
+const firstButton=document.getElementById("firstButton");
+const previousButton=document.getElementById("previousButton");
+const nextButton=document.getElementById("nextButton");
+const lastButton=document.getElementById("lastButton");
+const fullscreenButton=document.getElementById("fullscreenButton");
 
+let pdfDocument=null;
+let currentPage=1;
+let renderTask=null;
+let renderGeneration=0;
 
-const image =
-    document.getElementById("slideImage");
-
-const counter =
-    document.getElementById("pageCounter");
-
-const previousButton =
-    document.getElementById("previousButton");
-
-const nextButton =
-    document.getElementById("nextButton");
-
-const fullscreenButton =
-    document.getElementById("fullscreenButton");
-
-const slideArea =
-    document.getElementById("slideArea");
-
-
-/* =========================================================
-   LOAD PAGE
-   ========================================================= */
-
-function showPage(index) {
-
-    if (index < 0) {
-        index = 0;
+async function loadPDF(){
+    try{
+        status.textContent="Loading presentation…";
+        pdfDocument=await pdfjsLib.getDocument({
+            url:PDF_URL,
+            disableAutoFetch:false,
+            disableStream:false
+        }).promise;
+        status.style.display="none";
+        updateButtons();
+        await showPage(1);
+    }catch(error){
+        console.error("PDF loading error:",error);
+        status.innerHTML=
+            '<div class="error"><strong>Unable to load the presentation.</strong><br>'+
+            'Please make sure <b>hypocycloid.pdf</b> is present in the same folder as this reader.</div>';
+        status.style.display="block";
     }
-
-    if (index >= pages.length) {
-        index = pages.length - 1;
-    }
-
-    currentPage = index;
-
-    image.src = pages[currentPage];
-
-    counter.textContent =
-        (currentPage + 1)
-        + " / "
-        + pages.length;
-
-
-    previousButton.disabled =
-        currentPage === 0;
-
-    nextButton.disabled =
-        currentPage === pages.length - 1;
-
 }
 
+function calculateScale(page){
+    const availableWidth=Math.max(100,slideArea.clientWidth-10);
+    const availableHeight=Math.max(100,slideArea.clientHeight-10);
+    const viewport=page.getViewport({scale:1});
+    return Math.min(
+        availableWidth/viewport.width,
+        availableHeight/viewport.height
+    );
+}
 
-/* =========================================================
-   PREVIOUS
-   ========================================================= */
+async function showPage(pageNumber){
+    if(!pdfDocument)return;
 
-previousButton.addEventListener(
-    "click",
-    function() {
+    pageNumber=Math.max(1,Math.min(pageNumber,pdfDocument.numPages));
+    currentPage=pageNumber;
+    updateButtons();
 
-        showPage(currentPage - 1);
+    const generation=++renderGeneration;
 
+    if(renderTask){
+        try{renderTask.cancel()}catch(e){}
+        renderTask=null;
     }
-);
 
+    try{
+        const page=await pdfDocument.getPage(currentPage);
+        if(generation!==renderGeneration)return;
 
-/* =========================================================
-   NEXT
-   ========================================================= */
+        const scale=calculateScale(page);
+        const viewport=page.getViewport({scale});
+        const outputScale=window.devicePixelRatio||1;
 
-nextButton.addEventListener(
-    "click",
-    function() {
+        canvas.width=Math.floor(viewport.width*outputScale);
+        canvas.height=Math.floor(viewport.height*outputScale);
+        canvas.style.width=Math.floor(viewport.width)+"px";
+        canvas.style.height=Math.floor(viewport.height)+"px";
 
-        showPage(currentPage + 1);
+        renderTask=page.render({
+            canvasContext:ctx,
+            viewport:viewport,
+            transform:outputScale!==1
+                ? [outputScale,0,0,outputScale,0,0]
+                : null
+        });
 
+        await renderTask.promise;
+        if(generation!==renderGeneration)return;
+
+        counter.textContent=currentPage+" / "+pdfDocument.numPages;
+    }catch(error){
+        if(error&&error.name==="RenderingCancelledException")return;
+        console.error("Page rendering error:",error);
+        status.textContent="Unable to display this slide.";
+        status.style.display="block";
     }
-);
+}
 
+function updateButtons(){
+    if(!pdfDocument)return;
+    firstButton.disabled=currentPage<=1;
+    previousButton.disabled=currentPage<=1;
+    nextButton.disabled=currentPage>=pdfDocument.numPages;
+    lastButton.disabled=currentPage>=pdfDocument.numPages;
+    counter.textContent=currentPage+" / "+pdfDocument.numPages;
+}
 
-/* =========================================================
-   KEYBOARD NAVIGATION
-   ========================================================= */
+firstButton.addEventListener("click",()=>showPage(1));
+previousButton.addEventListener("click",()=>showPage(currentPage-1));
+nextButton.addEventListener("click",()=>showPage(currentPage+1));
+lastButton.addEventListener("click",()=>{
+    if(pdfDocument)showPage(pdfDocument.numPages);
+});
 
-document.addEventListener(
-    "keydown",
-    function(event) {
-
-        if (
-            event.key === "ArrowLeft" ||
-            event.key === "PageUp"
-        ) {
-
-            showPage(currentPage - 1);
-
-        }
-
-
-        else if (
-            event.key === "ArrowRight" ||
-            event.key === "PageDown" ||
-            event.key === " "
-        ) {
-
-            event.preventDefault();
-
-            showPage(currentPage + 1);
-
-        }
-
-
-        else if (
-            event.key === "Home"
-        ) {
-
-            showPage(0);
-
-        }
-
-
-        else if (
-            event.key === "End"
-        ) {
-
-            showPage(pages.length - 1);
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   FULLSCREEN
-   ========================================================= */
-
-fullscreenButton.addEventListener(
-    "click",
-    function() {
-
-        if (!document.fullscreenElement) {
-
-            if (document.documentElement.requestFullscreen) {
-
-                document.documentElement.requestFullscreen();
-
-            }
-
-        }
-
-        else {
-
-            if (document.exitFullscreen) {
-
-                document.exitFullscreen();
-
-            }
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   DISABLE RIGHT CLICK ON SLIDE
-   ========================================================= */
-
-image.addEventListener(
-    "contextmenu",
-    function(event) {
-
+document.addEventListener("keydown",event=>{
+    if(event.key==="ArrowLeft"||event.key==="PageUp"){
         event.preventDefault();
-
+        showPage(currentPage-1);
+    }else if(event.key==="ArrowRight"||event.key==="PageDown"||event.key===" "){
+        event.preventDefault();
+        showPage(currentPage+1);
+    }else if(event.key==="Home"){
+        event.preventDefault();
+        showPage(1);
+    }else if(event.key==="End"){
+        event.preventDefault();
+        if(pdfDocument)showPage(pdfDocument.numPages);
+    }else if(event.key==="Escape"&&document.fullscreenElement){
+        document.exitFullscreen();
     }
-);
+});
 
-
-/* =========================================================
-   TOUCH / SWIPE SUPPORT
-   ========================================================= */
-
-let touchStartX = 0;
-let touchEndX = 0;
-
-
-slideArea.addEventListener(
-    "touchstart",
-    function(event) {
-
-        touchStartX =
-            event.changedTouches[0].screenX;
-
-    },
-    { passive: true }
-);
-
-
-slideArea.addEventListener(
-    "touchend",
-    function(event) {
-
-        touchEndX =
-            event.changedTouches[0].screenX;
-
-        const distance =
-            touchEndX - touchStartX;
-
-
-        if (Math.abs(distance) < 50) {
-            return;
+fullscreenButton.addEventListener("click",async()=>{
+    try{
+        if(!document.fullscreenElement){
+            await reader.requestFullscreen();
+        }else{
+            await document.exitFullscreen();
         }
+    }catch(error){
+        console.error("Fullscreen error:",error);
+    }
+});
 
+let resizeTimer=null;
+window.addEventListener("resize",()=>{
+    clearTimeout(resizeTimer);
+    resizeTimer=setTimeout(()=>{
+        if(pdfDocument)showPage(currentPage);
+    },120);
+});
 
-        if (distance < 0) {
+let touchStartX=0;
+let touchStartY=0;
 
-            showPage(currentPage + 1);
+slideArea.addEventListener("touchstart",event=>{
+    const touch=event.changedTouches[0];
+    touchStartX=touch.screenX;
+    touchStartY=touch.screenY;
+},{passive:true});
 
-        }
+slideArea.addEventListener("touchend",event=>{
+    const touch=event.changedTouches[0];
+    const distanceX=touch.screenX-touchStartX;
+    const distanceY=touch.screenY-touchStartY;
 
-        else {
+    if(Math.abs(distanceX)<50)return;
+    if(Math.abs(distanceX)<Math.abs(distanceY))return;
 
-            showPage(currentPage - 1);
+    if(distanceX<0)showPage(currentPage+1);
+    else showPage(currentPage-1);
+},{passive:true});
 
-        }
-
-    },
-    { passive: true }
-);
-
-
-/* =========================================================
-   START
-   ========================================================= */
-
-showPage(0);
-
+loadPDF();
 </script>
-
-
 </body>
-
 </html>
