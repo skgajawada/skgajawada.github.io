@@ -191,6 +191,9 @@ body {
 .course-information {
     padding: 54px 20px;
     background: #ffffff;
+margin-top: 0 !important;
+    position: relative;
+    z-index: 1;
 }
 
 .about-course {
@@ -562,7 +565,7 @@ body {
 #topics,
 #learning-outcomes,
 #contact {
-    scroll-margin-top: 58px;
+    scroll-margin-top: 146px;
 }
 
 /* =========================================================
@@ -694,7 +697,7 @@ body {
 
 .eg-topic-nav {
     position: sticky;
-    top: 0;
+    top: 76px;
     z-index: 30;
     background: rgba(255,255,255,0.96);
     border-bottom: 1px solid #e5eaf1;
@@ -761,6 +764,10 @@ body {
    ========================================================= */
 
 @media (max-width: 1050px) {
+    .eg-topic-nav {
+        top: 70px;
+    }
+
     .eg-topic-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
@@ -1037,6 +1044,10 @@ a {
 }
 
 @media (max-width: 520px) {
+    .eg-topic-nav {
+        top: 58px;
+    }
+
     .eg-site-header {
         height: 58px;
         min-height: 58px;
