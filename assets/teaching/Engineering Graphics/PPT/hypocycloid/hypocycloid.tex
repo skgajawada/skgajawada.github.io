@@ -36,6 +36,22 @@
 \date{\today}
 
 % ============================================================
+% FULL-SLIDE WATERMARK
+% ============================================================
+\setbeamertemplate{background}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[
+      rotate=32,
+      text=black!12,
+      font=\fontsize{30}{36}\selectfont,
+      align=center,
+      inner sep=0pt
+    ] at (current page.center) {Gajavada Sanjeevkumar};
+  \end{tikzpicture}%
+}
+
+
+% ============================================================
 % TIKZ STYLES
 % ============================================================
 \tikzset{
@@ -892,28 +908,16 @@ AC_0 &=25\text{ mm},
 \end{tikzpicture}
 \end{frame}
 
-\begin{frame}{Step 20: Final completed hypocycloid construction}
-\centering
-\begin{tikzpicture}[scale=.075,>=stealth,rotate=0]
-    \FinalConstruction
-    \SelectedGeometry
-    \PtoCpArc
-    \draw[contact line] (O)--(M);
-    \NormalAndTangent
-    \PGeometry
-
-    \node[circle,fill=black,inner sep=0pt,minimum size=4.5pt] at(M) {};
-    \node[font=\scriptsize,black,above right,xshift=7pt,yshift=7pt] at(M) {$M$};
-
-    \pic[
-        draw=black,
-        line width=.8pt,
-        angle radius=7pt,
-        angle eccentricity=1.35
-    ] at(Psel) {right angle=T2--Psel--NNright};
-
-    \Legend{Completed hypocycloid with normal and tangent.}
-\end{tikzpicture}
+\begin{frame}[plain]
+    \centering
+    \vspace*{0.20\textheight}
+    {\fontsize{32}{38}\selectfont\bfseries Thank You\par}
+    \vspace{0.9cm}
+    {\fontsize{18}{22}\selectfont Gajavada Sanjeevkumar\par}
+    \vspace{0.45cm}
+    {\fontsize{14}{18}\selectfont
+    \href{https://skgajawada.github.io/\#/contact}
+    {https://skgajawada.github.io/\#/contact}\par}
 \end{frame}
 
 \end{document}
