@@ -878,12 +878,232 @@ a {
     -webkit-user-drag: none;
 }
 
+
+/* =========================================================
+   GLOBAL PORTFOLIO HEADER
+   Matches the main skgajawada.github.io navigation style.
+   ========================================================= */
+
+.eg-site-header {
+    position: relative;
+    z-index: 1000;
+    height: 70px;
+    min-height: 70px;
+    background: #ffffff;
+    border-bottom: 1px solid #e7ebf0;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.055);
+}
+
+.eg-site-header-inner {
+    width: min(1180px, calc(100% - 40px));
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.eg-site-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #2864d7;
+    text-decoration: none;
+    font-size: 1.22rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.eg-site-brand i {
+    font-size: 1.22rem;
+}
+
+.eg-site-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 27px;
+    height: 100%;
+}
+
+.eg-site-nav a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    color: #29313f;
+    text-decoration: none;
+    font-size: 0.91rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: color .2s ease;
+}
+
+.eg-site-nav a:hover {
+    color: #2864d7;
+}
+
+.eg-site-nav a.eg-active {
+    color: #202b3d;
+    font-weight: 600;
+}
+
+.eg-site-nav a.eg-active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 11px;
+    height: 2px;
+    border-radius: 2px;
+    background: #2864d7;
+}
+
+.eg-theme-button {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f3f5;
+    color: #29313f;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background .2s ease, transform .2s ease;
+}
+
+.eg-theme-button:hover {
+    background: #e5e9ed;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 1050px) {
+    .eg-site-header-inner {
+        width: min(100% - 28px, 1180px);
+        gap: 18px;
+    }
+
+    .eg-site-nav {
+        gap: 17px;
+    }
+
+    .eg-site-nav a {
+        font-size: .84rem;
+    }
+
+    .eg-site-brand {
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .eg-site-header {
+        height: 62px;
+        min-height: 62px;
+    }
+
+    .eg-site-header-inner {
+        width: calc(100% - 24px);
+    }
+
+    .eg-site-brand {
+        font-size: 1rem;
+    }
+
+    .eg-site-nav {
+        gap: 12px;
+        overflow: hidden;
+    }
+
+    .eg-site-nav a:nth-child(3),
+    .eg-site-nav a:nth-child(5),
+    .eg-site-nav a:nth-child(6),
+    .eg-site-nav a:nth-child(7),
+    .eg-site-nav a:nth-child(8),
+    .eg-site-nav a:nth-child(9) {
+        display: none;
+    }
+
+    .eg-theme-button {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+    }
+}
+
+@media (max-width: 520px) {
+    .eg-site-header {
+        height: 58px;
+        min-height: 58px;
+    }
+
+    .eg-site-brand {
+        font-size: .92rem;
+        gap: 7px;
+    }
+
+    .eg-site-brand i {
+        font-size: 1rem;
+    }
+
+    .eg-site-nav {
+        gap: 9px;
+    }
+
+    .eg-site-nav a {
+        font-size: .76rem;
+    }
+
+    .eg-site-nav a:nth-child(2),
+    .eg-site-nav a:nth-child(4) {
+        display: none;
+    }
+}
+
 </style>
 
 </head>
 
 
 <body class="eg-no-copy">
+
+
+<!-- =======================================================
+     GLOBAL PORTFOLIO HEADER
+     ======================================================= -->
+
+<header class="eg-site-header">
+    <div class="eg-site-header-inner">
+
+        <a href="../../../#/home" class="eg-site-brand" aria-label="Gajavada Sanjeevkumar Home">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Gajavada Sanjeevkumar</span>
+        </a>
+
+        <nav class="eg-site-nav" aria-label="Main navigation">
+            <a href="../../../#/home">Home</a>
+            <a href="../../../#/about">About</a>
+            <a href="../../../#/experience">Experience</a>
+            <a href="../../../#/teaching" class="eg-active">Teaching</a>
+            <a href="../../../#/education">Education</a>
+            <a href="../../../#/projects">Projects</a>
+            <a href="../../../#/engagements">Engagements</a>
+            <a href="../../../#/moocs">MOOCs</a>
+            <a href="../../../#/skills">Skills</a>
+            <a href="../../../#/contact">Contact</a>
+
+            <button class="eg-theme-button" type="button" aria-label="Toggle dark mode" onclick="toggleEGTheme()">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+
+    </div>
+</header>
 
 
 <!-- =======================================================
@@ -1594,6 +1814,18 @@ document.addEventListener("keydown", function(e) {
 
 });
 
+</script>
+
+
+<script>
+function toggleEGTheme() {
+    document.body.classList.toggle("eg-theme-hint");
+    const icon = document.querySelector(".eg-theme-button i");
+    if (icon) {
+        icon.classList.toggle("fa-moon");
+        icon.classList.toggle("fa-sun");
+    }
+}
 </script>
 
 </body>
