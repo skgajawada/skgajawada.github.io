@@ -16,8 +16,9 @@
 <link rel="icon"
       href="../../../../favicon.ico">
 
-<link rel="stylesheet"
-      href="../../../../assets/css/style.css">
+<link rel="stylesheet" href="https://skgajawada.github.io/assets/css/style.css">
+    <link rel="stylesheet" href="https://skgajawada.github.io/assets/css/animations.css">
+    <link rel="stylesheet" href="https://skgajawada.github.io/assets/css/dark-mode.css">
 
 <link rel="stylesheet"
       href="../style.css">
@@ -41,8 +42,8 @@ body {
 }
 
 .ec-header {
-    position: sticky;
-    top: 0;
+    position: relative;
+    top: auto;
     z-index: 1000;
 
     background: rgba(255,255,255,0.96);
@@ -237,40 +238,386 @@ body {
 
 }
 
+
+/* =========================================================
+   ENGINEERING CURVES — MATCH ENGINEERING GRAPHICS AESTHETIC
+   ========================================================= */
+
+.ec-header {
+    display: none;
+}
+
+.eg-hero {
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(120deg, #101d43 0%, #18356f 48%, #2860d4 100%);
+    color: #ffffff;
+}
+
+.eg-hero::before {
+    content: "";
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    right: -170px;
+    top: -300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.055);
+}
+
+.eg-hero::after {
+    content: "";
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    left: -210px;
+    bottom: -280px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.035);
+}
+
+.eg-hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 26px 28px 38px;
+}
+
+.eg-hero-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 31px;
+}
+
+.eg-hero-back,
+.eg-hero-topic {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 17px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 28px;
+    color: #ffffff;
+    background: rgba(255,255,255,0.08);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 600;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.eg-hero-back:hover,
+.eg-hero-topic:hover {
+    color: #ffffff;
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(255,255,255,0.42);
+    transform: translateY(-1px);
+}
+
+.eg-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 23px;
+    color: rgba(255,255,255,0.72);
+    font-size: 0.83rem;
+}
+
+.eg-breadcrumb .separator {
+    opacity: 0.55;
+}
+
+.eg-breadcrumb span:last-child {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.eg-hero-content {
+    max-width: 900px;
+}
+
+.eg-hero-content h1 {
+    margin: 0 0 10px;
+    color: #ffffff;
+    font-size: clamp(2.55rem, 5vw, 4rem);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+}
+
+.eg-hero-content p {
+    max-width: 820px;
+    margin: 0;
+    color: rgba(255,255,255,0.88);
+    font-size: clamp(.98rem, 1.4vw, 1.12rem);
+    line-height: 1.8;
+}
+
+/* =========================================================
+   ENGINEERING CURVES FOOTER — SAME AS ENGINEERING GRAPHICS
+   ========================================================= */
+
+.course-footer {
+    padding: 52px 20px 22px;
+    background: #101d43;
+    color: rgba(255,255,255,.78);
+}
+
+.course-footer .container {
+    width: min(1180px, 100%);
+    margin: 0 auto;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 40px;
+}
+
+.footer-column h3 {
+    margin: 0 0 13px;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.footer-column p {
+    margin: 0;
+    max-width: 290px;
+    font-size: .88rem;
+    line-height: 1.7;
+}
+
+.footer-column ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-column li {
+    margin-bottom: 7px;
+}
+
+.footer-column a {
+    color: rgba(255,255,255,.75);
+    text-decoration: none;
+    font-size: .87rem;
+}
+
+.footer-column a:hover {
+    color: #ffffff;
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.social-icons a {
+    display: inline-flex;
+    width: 35px;
+    height: 35px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 9px;
+    background: rgba(255,255,255,.06);
+}
+
+.course-footer hr {
+    margin: 34px 0 18px;
+    border: 0;
+    border-top: 1px solid rgba(255,255,255,.13);
+}
+
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    color: rgba(255,255,255,.58);
+    font-size: .78rem;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+.footer-bottom strong {
+    color: rgba(255,255,255,.82);
+}
+
+@media (max-width: 900px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 30px;
+    }
+}
+
+@media (max-width: 760px) {
+    .eg-hero-inner {
+        padding: 20px 16px 31px;
+    }
+
+    .eg-hero-actions {
+        margin-bottom: 25px;
+    }
+
+    .eg-hero-back,
+    .eg-hero-topic {
+        padding: 9px 13px;
+        font-size: .82rem;
+    }
+
+    .eg-hero-topic {
+        font-size: 0;
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .eg-hero-topic i {
+        font-size: .9rem;
+    }
+
+    .eg-breadcrumb {
+        margin-bottom: 18px;
+        font-size: .76rem;
+    }
+
+    .eg-hero-content h1 {
+        font-size: clamp(2.15rem, 9vw, 3rem);
+    }
+
+    .eg-hero-content p {
+        font-size: .91rem;
+        line-height: 1.65;
+    }
+
+    .course-footer {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+@media (max-width: 520px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+
+
+/* Preserve the portfolio site's original typography. */
+.eg-site-header,
+.eg-site-header *,
+.eg-hero,
+.eg-hero *,
+.eg-topic-nav,
+.eg-topic-nav *,
+.course-information,
+.course-information *,
+.about-course,
+.about-course *,
+.course-highlights,
+.course-highlights *,
+.course-contact,
+.course-contact *,
+.course-footer,
+.course-footer * {
+}
+
 </style>
 
 </head>
 
 
-<body>
+<body class="light-mode">
 
 
-<header class="ec-header">
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Gajavada Sanjeevkumar</span>
+        </div>
 
-    <div class="ec-header-inner">
+        <ul class="nav-menu">
+            <li><a href="../../../../#/home" class="nav-link">Home</a></li>
+            <li><a href="../../../../#/about" class="nav-link">About</a></li>
+            <li><a href="../../../../#/experience" class="nav-link">Experience</a></li>
+            <li><a href="../../../../#/teaching" class="nav-link active">Teaching</a></li>
+            <li><a href="../../../../#/education" class="nav-link">Education</a></li>
+            <li><a href="../../../../#/projects" class="nav-link">Projects</a></li>
+            <li><a href="../../../../#/engagements" class="nav-link">Engagements</a></li>
+            <li><a href="../../../../#/moocs" class="nav-link">MOOCs</a></li>
+            <li><a href="../../../../#/skills" class="nav-link">Skills</a></li>
+            <li><a href="../../../../#/contact" class="nav-link">Contact</a></li>
+            <li>
+                <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </li>
+        </ul>
 
-        <a href="../"
-           class="ec-back">
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
 
-            <i class="fas fa-arrow-left"></i>
-            Engineering Graphics
+<header class="eg-hero">
 
-        </a>
+    <div class="eg-hero-inner">
 
-        <div class="ec-title">
+        <div class="eg-hero-actions">
 
-            <strong>
-                Engineering Curves
-            </strong>
+            <a href="../"
+               class="eg-hero-back">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Engineering Graphics</span>
+            </a>
 
-            <span>
-                Engineering Graphics
-            </span>
+            <a href="../"
+               class="eg-hero-topic">
+                <i class="fas fa-layer-group"></i>
+                <span>Engineering Graphics</span>
+            </a>
 
         </div>
 
-        <div>
-            Gajavada Sanjeevkumar
+        <div class="eg-breadcrumb">
+            <span>Teaching</span>
+            <span class="separator">/</span>
+            <span>Engineering Graphics</span>
+            <span class="separator">/</span>
+            <span>Engineering Curves</span>
+        </div>
+
+        <div class="eg-hero-content">
+
+            <h1>Engineering Curves</h1>
+
+            <p>
+                Fundamental graphical constructions used in Engineering Graphics
+                to represent paths, profiles and geometric forms of engineering components.
+            </p>
+
         </div>
 
     </div>
@@ -452,10 +799,70 @@ body {
 </main>
 
 
-<footer class="ec-footer">
+<footer class="course-footer">
 
-    © 2026 Gajavada Sanjeevkumar —
-    Engineering Graphics
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div class="footer-column">
+                <h3>Engineering Curves</h3>
+                <p>
+                    A topic-based learning section within
+                    Engineering Graphics.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../../#/home">Home</a></li>
+                    <li><a href="../../../../#/teaching">Teaching</a></li>
+                    <li><a href="../../../../#/contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Curves</h3>
+                <ul>
+                    <li><a href="cycloid/">Cycloid</a></li>
+                    <li><a href="epicycloid/">Epicycloid</a></li>
+                    <li><a href="hypocycloid/">Hypocycloid</a></li>
+                    <li><a href="#">Involute</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Connect</h3>
+                <div class="social-icons">
+                    <a href="https://github.com/skgajawada" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/skgajawada" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=skgajawada" aria-label="Google Scholar">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                    <a href="https://orcid.org/0000-0002-9171-5073" aria-label="ORCID">
+                        <i class="fab fa-orcid"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="footer-bottom">
+            <p>© 2026 Gajavada Sanjeevkumar. All Rights Reserved.</p>
+            <p>
+                Designed &amp; Developed by
+                <strong>Gajavada Sanjeevkumar</strong>
+            </p>
+        </div>
+
+    </div>
 
 </footer>
 
@@ -483,6 +890,9 @@ document.addEventListener("keydown", function(e) {
 
 </script>
 
+
+
+    <script src="https://skgajawada.github.io/assets/js/dark-mode.js"></script>
 
 </body>
 </html>
