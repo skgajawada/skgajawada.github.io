@@ -718,7 +718,7 @@
         /* Very short landscape screens */
         @media (max-height:520px) and (orientation:landscape){
             .eg-site-header{position:relative}
-            .topic-tools{position:relative;top:0}
+            .topic-tools{position:sticky;top:58px;}
             .reader-frame{
                 height:calc(100svh - 70px);
                 min-height:260px;
@@ -935,6 +935,15 @@
         }
         .footer-bottom p { margin: 0; }
         .footer-bottom strong { color: rgba(255,255,255,.82); }
+
+        /* Keep the section navigation sticky below the portfolio header on mobile too. */
+        @media (max-width: 600px) {
+            .topic-tools {
+                position: sticky !important;
+                top: 58px !important;
+                z-index: 900;
+            }
+        }
 
         @media (max-width: 1050px) {
             .topic-tools { top: 70px; }
@@ -1404,27 +1413,18 @@
              CONTACT
         ================================================== -->
         <section class="contact-section" id="contact">
-    <div class="section-inner">
-        <h2>Contact</h2>
-        <div class="contact-icons" aria-label="Contact and professional profiles">
-            <a href="../../../../../#/contact" aria-label="Contact">
-                <i class="fas fa-envelope"></i>
-            </a>
-            <a href="https://github.com/skgajawada" aria-label="GitHub">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://linkedin.com/in/skgajawada" aria-label="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="https://scholar.google.com/citations?user=skgajawada" aria-label="Google Scholar">
-                <i class="fas fa-graduation-cap"></i>
-            </a>
-            <a href="https://orcid.org/0000-0002-9171-5073" aria-label="ORCID">
-                <i class="fab fa-orcid"></i>
-            </a>
-        </div>
-    </div>
-</section>
+            <div class="section-inner">
+                <h2>Need Help?</h2>
+                <p>
+                    For academic queries, teaching material or further information,
+                    contact the instructor through the main portfolio.
+                </p>
+                <a class="contact-button" href="../../../../../#/contact">
+                    <i class="fas fa-envelope"></i>
+                    Contact Instructor
+                </a>
+            </div>
+        </section>
 
     </main>
 
