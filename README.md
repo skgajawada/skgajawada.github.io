@@ -97,15 +97,9 @@ For **academic, research, professional, teaching, collaboration, or other releva
 
 This repository hosts the source and resources associated with my personal academic portfolio.
 
-It is an evolving project in which **academic information, teaching resources, projects, certifications, documents, and other materials** are being added and developed progressively.
-
----
-
-## 🙏 Acknowledgements
-
-- **Indian Institute of Technology (ISM) Dhanbad**
-- Open-source community and contributors
-- GitHub and GitHub Pages
+It is an evolving project in which academic information, teaching resources,
+projects, certifications, documents, and other materials are being added
+and developed progressively.
 
 ---
 
