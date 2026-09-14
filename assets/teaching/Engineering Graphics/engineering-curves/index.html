@@ -16,9 +16,9 @@
 <link rel="icon"
       href="../../../../favicon.ico">
 
-<link rel="stylesheet" href="https://skgajawada.github.io/assets/css/style.css">
-    <link rel="stylesheet" href="https://skgajawada.github.io/assets/css/animations.css">
-    <link rel="stylesheet" href="https://skgajawada.github.io/assets/css/dark-mode.css">
+<link rel="stylesheet" href="../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../assets/css/animations.css">
+    <link rel="stylesheet" href="../../../../assets/css/dark-mode.css">
 
 <link rel="stylesheet"
       href="../style.css">
@@ -194,13 +194,6 @@ body {
     font-weight: 700;
 }
 
-.ec-footer {
-    text-align: center;
-    padding: 30px 20px;
-    border-top: 1px solid #e5eaf1;
-    color: #667085;
-    background: #fff;
-}
 
 @media(max-width: 800px) {
 
@@ -430,13 +423,9 @@ body {
     background: rgba(255,255,255,.06);
 }
 
-.course-footer hr {
-    margin: 34px 0 18px;
-    border: 0;
-    border-top: 1px solid rgba(255,255,255,.13);
-}
 
 .footer-bottom {
+    padding-top: 18px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -473,18 +462,6 @@ body {
     .eg-hero-topic {
         padding: 9px 13px;
         font-size: .82rem;
-    }
-
-    .eg-hero-topic {
-        font-size: 0;
-        width: 40px;
-        height: 40px;
-        justify-content: center;
-        padding: 0;
-    }
-
-    .eg-hero-topic i {
-        font-size: .9rem;
     }
 
     .eg-breadcrumb {
@@ -537,10 +514,42 @@ body {
 .course-contact *,
 .course-footer,
 .course-footer * {
+    font-family: inherit;
 }
 
 </style>
 
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   ENGINEERING CURVES — MAIN SITE HEADER TYPOGRAPHY
+   Matches the supplied portfolio-header reference.
+   ========================================================= */
+.navbar .nav-menu .nav-link {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0 !important;
+    line-height: 1 !important;
+    text-transform: none !important;
+}
+
+.navbar .nav-logo {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
+    letter-spacing: 0 !important;
+}
+
+.navbar .theme-toggle {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+</style>
 </head>
 
 
@@ -593,12 +602,6 @@ body {
                 <span>Back to Engineering Graphics</span>
             </a>
 
-            <a href="../"
-               class="eg-hero-topic">
-                <i class="fas fa-layer-group"></i>
-                <span>Engineering Graphics</span>
-            </a>
-
         </div>
 
         <div class="eg-breadcrumb">
@@ -629,12 +632,7 @@ body {
 
 
 <section class="ec-heading">
-
-    <span class="tag">
-        Engineering Graphics
-    </span>
-
-    <h1>
+<h1>
         Engineering Curves
     </h1>
 
@@ -852,8 +850,6 @@ body {
 
         </div>
 
-        <hr>
-
         <div class="footer-bottom">
             <p>© 2026 Gajavada Sanjeevkumar. All Rights Reserved.</p>
             <p>
@@ -891,8 +887,6 @@ document.addEventListener("keydown", function(e) {
 </script>
 
 
-
-    <script src="https://skgajawada.github.io/assets/js/dark-mode.js"></script>
 
 </body>
 </html>
