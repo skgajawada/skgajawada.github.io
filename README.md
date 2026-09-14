@@ -4,15 +4,15 @@
 
 Welcome to my GitHub profile.
 
-I am **Gajavada Sanjeevkumar**, a PhD Scholar in the **Department of Mechanical Engineering at IIT (ISM) Dhanbad**.
+I am **Gajavada Sanjeevkumar**, a Research Scholar in the **Department of Mechanical Engineering at IIT (ISM) Dhanbad**.
 
-My academic and professional interests lie at the intersection of **Mechanical Engineering, Computational Methods, Artificial Intelligence, Machine Learning, Data-Driven Engineering, and Engineering Education**.
+My academic and professional interests span **Mechanical Engineering, Computational Methods, Artificial Intelligence, Machine Learning, Data-Driven Engineering, Engineering Design, and Engineering Education**.
 
 ---
 
 ## 👨‍🔬 About Me
 
-My work and interests span both **engineering research and academic teaching**.
+My work brings together engineering, computation, research, and teaching.
 
 ### 🔬 Research & Technical Interests
 
@@ -30,66 +30,87 @@ My work and interests span both **engineering research and academic teaching**.
 
 ### 👨‍🏫 Academic & Teaching Interests
 
-I am also interested in developing and organizing **engineering learning resources**, including teaching materials, presentations, demonstrations, practice resources, and other academic content for Mechanical Engineering subjects.
+I am interested in developing and organizing **engineering learning resources**, including teaching materials, presentations, demonstrations, practice resources, and other academic content for Mechanical Engineering subjects.
 
-The teaching and academic resources in this repository are being developed and added progressively.
-
----
-
-## 🌐 My Portfolio
-
-Explore my academic, professional, teaching, research, projects, certifications, and other activities through my personal portfolio:
-
-**🔗 [skgajawada.github.io](https://skgajawada.github.io)**
+Teaching and academic resources are being added and developed progressively.
 
 ---
 
-## 📄 Curriculum Vitae
+## 🌐 Academic Portfolio
 
-**📥 [View / Download my CV](https://skgajawada.github.io)**
+Explore my academic, professional, teaching, research, projects, certifications, engagements, and other activities through my personal portfolio:
+
+### 🔗 [skgajawada.github.io](https://skgajawada.github.io)
+
+---
+
+## 💻 GitHub
+
+My GitHub profile contains my academic, technical, programming, and portfolio-related work:
+
+### 🔗 [github.com/skgajawada](https://github.com/skgajawada)
 
 ---
 
 ## 🔗 Connect With Me
 
-### Professional & Academic
+### 🎓 Academic & Professional
 
-- 💼 **LinkedIn:** [linkedin.com/in/skgajawada](https://www.linkedin.com/in/skgajawada/)
-- 💻 **GitHub:** [github.com/skgajawada](https://github.com/skgajawada)
-- 🎓 **Google Scholar:** [Google Scholar](https://scholar.google.com/)
-- 🔬 **ResearchGate:** [ResearchGate](https://www.researchgate.net/)
-- 🆔 **ORCID:** [ORCID](https://orcid.org/)
-- 🧩 **LeetCode:** [LeetCode](https://leetcode.com/u/skgajawada/)
+| Platform | Profile |
+|---|---|
+| 🌐 **Portfolio** | [skgajawada.github.io](https://skgajawada.github.io) |
+| 💻 **GitHub** | [github.com/skgajawada](https://github.com/skgajawada) |
+| 💼 **LinkedIn** | [linkedin.com/in/skgajawada](https://linkedin.com/in/skgajawada) |
+| 🚀 **LeetCode** | [leetcode.com/u/skgajawada](https://leetcode.com/u/skgajawada/) |
+| 🎓 **Google Scholar** | [scholar.google.com/citations?user=skgajawada](https://scholar.google.com/citations?user=skgajawada) |
+| 📚 **ResearchGate** | [researchgate.org/profile/skgajawada](https://www.researchgate.org/profile/skgajawada) |
+| 🆔 **ORCID** | [orcid.org/0000-0002-9171-5073](https://orcid.org/0000-0002-9171-5073) |
 
-### Social & Communication
+### 🌐 Social & Communication
 
-- 𝕏 **X:** [@skgajawada](https://x.com/skgajawada)
-- 🎬 **Vimeo:** [vimeo.com/skgajawada](https://vimeo.com/skgajawada)
-- 🦋 **Bluesky:** [@skgajawada.bsky.social](https://bsky.app/profile/skgajawada.bsky.social)
-- 📷 **Instagram:** [Instagram](https://www.instagram.com/)
-- 📘 **Facebook:** [Facebook](https://www.facebook.com/)
-- ▶️ **YouTube:** [YouTube](https://www.youtube.com/)
-- 💬 **WhatsApp:** [WhatsApp](https://wa.me/)
-- ✈️ **Telegram:** [Telegram](https://t.me/)
+| Platform | Profile |
+|---|---|
+| 𝕏 **X (Twitter)** | [x.com/sk_gajawada](https://x.com/sk_gajawada) |
+| 🎬 **Vimeo** | [vimeo.com/skgajawada](https://vimeo.com/skgajawada) |
+| 🦋 **Bluesky** | [bsky.app/profile/skgajawada.bsky.social](https://bsky.app/profile/skgajawada.bsky.social) |
+| 📸 **Instagram** | [instagram.com/skgajawada](https://www.instagram.com/skgajawada/) |
+| 👥 **Facebook** | [facebook.com/skgajawada](https://www.facebook.com/skgajawada/) |
+| 🎥 **YouTube** | [youtube.com/@skgajawada](https://www.youtube.com/@skgajawada) |
+| 💬 **WhatsApp** | [wa.me/skgajawada](https://wa.me/skgajawada) |
+| ✈️ **Telegram** | [t.me/skgajawada](https://t.me/skgajawada) |
 
 ---
 
 ## 📩 Contact
 
-For academic, professional, research, teaching, collaboration, or other relevant communication:
+For **academic, research, professional, teaching, collaboration, or other relevant communication**:
 
-**📧 Email:** [sanjeevkumargajawada@gmail.com](mailto:sanjeevkumargajawada@gmail.com)
+📧 **Email:** [sanjeevkumargajawada@gmail.com](mailto:sanjeevkumargajawada@gmail.com)
 
-**🌐 Portfolio:** [skgajawada.github.io](https://skgajawada.github.io)
+🎓 **Affiliation:** Research Scholar, Department of Mechanical Engineering, IIT (ISM) Dhanbad
+
+📍 **Dhanbad, Jharkhand, India**
 
 ---
 
-## 🛠️ This Repository
+## 📂 This Repository
 
-This repository hosts the source and resources behind my personal academic portfolio.
+This repository hosts the source and resources associated with my personal academic portfolio.
 
-It is an evolving project, with new **academic information, teaching resources, projects, certifications, documents, and other materials** being added progressively.
+It is an evolving project in which **academic information, teaching resources, projects, certifications, documents, and other materials** are being added and developed progressively.
+
+---
+
+## 🙏 Acknowledgements
+
+- **Indian Institute of Technology (ISM) Dhanbad**
+- Open-source community and contributors
+- GitHub and GitHub Pages
 
 ---
 
 > **Learning • Teaching • Research • Engineering • Innovation**
+
+**Designed, Developed, and Maintained by Gajavada Sanjeevkumar**
+
+© 2026 Gajavada Sanjeevkumar. All Rights Reserved.
