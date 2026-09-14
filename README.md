@@ -326,7 +326,7 @@ The layout architecture, underlying component injection framework, styling model
 | 🚀 **LeetCode** | [https://leetcode.com/u/skgajawada/](https://leetcode.com/u/skgajawada/) |
 | 🎓 **Google Scholar** | [https://scholar.google.com/citations?user=skgajawada](https://scholar.google.com/citations?user=skgajawada) |
 | 📚 **ResearchGate** | [https://www.researchgate.org/profile/skgajawada](https://www.researchgate.org/profile/skgajawada) |
-| 🆔 **ORCID** | [https://orcid.org/0000-0000-0000-0000](https://orcid.org/0000-0000-0000-0000) |
+| 🆔 **ORCID** | [https://orcid.org/0000-0002-9171-5073](https://orcid.org/0000-0002-9171-5073) |
 | 🐦 **X (Twitter)** | [https://x.com/sk_gajawada](https://x.com/sk_gajawada) |
 | 📸 **Instagram** | [https://www.instagram.com/skgajawada/](https://www.instagram.com/skgajawada/) |
 | 👥 **Facebook** | [https://www.facebook.com/skgajawada/](https://www.facebook.com/skgajawada/) |
