@@ -501,6 +501,61 @@ body {
 
 
 
+
+<style>
+/* =========================================================
+   ENGINEERING CURVES — EXACT ROOT PORTFOLIO HEADER TYPOGRAPHY
+   Do not use Poppins here. The root portfolio header uses the
+   narrower system/Arial-style sans-serif appearance.
+   ========================================================= */
+
+.navbar,
+.navbar .nav-container,
+.navbar .nav-menu,
+.navbar .nav-link,
+.navbar .nav-logo,
+.navbar .nav-logo span,
+.navbar .theme-toggle {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+/* Preserve the root header's compact desktop height. */
+.navbar {
+    min-height: 76px !important;
+}
+
+.navbar .nav-container {
+    min-height: 76px !important;
+}
+
+/* Root navigation typography */
+.navbar .nav-logo span {
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0 !important;
+}
+
+.navbar .nav-link {
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0 !important;
+    line-height: 1 !important;
+    text-transform: none !important;
+}
+
+/* The active item is NOT bold; the root header distinguishes it by underline/color. */
+.navbar .nav-link.active {
+    font-weight: 500 !important;
+}
+
+/* Keep Font Awesome icons completely independent of the text font. */
+.navbar .nav-logo i,
+.navbar .theme-toggle i {
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
+}
+</style>
+
 </head>
 
 
