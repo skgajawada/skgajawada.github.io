@@ -39,7 +39,8 @@ body {
     color: #172033;
     user-select: none;
     -webkit-user-select: none;
-}
+
+    font-family: 'Poppins', sans-serif;}
 
 .ec-header {
     position: relative;
@@ -526,27 +527,51 @@ body {
 
 <style>
 
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+
 /* =========================================================
-   ENGINEERING CURVES — MAIN SITE HEADER TYPOGRAPHY
-   Matches the supplied portfolio-header reference.
+   ENGINEERING CURVES — ROOT HEADER MATCH
+   Uses the same root portfolio typography.
+   Font Awesome <i> elements are intentionally excluded.
    ========================================================= */
-.navbar .nav-menu .nav-link {
+.navbar .nav-link,
+.navbar .nav-logo span,
+.navbar .theme-toggle {
     font-family: 'Poppins', sans-serif !important;
+}
+
+.navbar .nav-link {
     font-size: 15px !important;
     font-weight: 500 !important;
     letter-spacing: 0 !important;
-    line-height: 1 !important;
     text-transform: none !important;
 }
 
 .navbar .nav-logo {
     font-family: 'Poppins', sans-serif !important;
     font-weight: 700 !important;
-    letter-spacing: 0 !important;
 }
 
-.navbar .theme-toggle {
-    font-family: 'Poppins', sans-serif !important;
+.navbar .nav-logo i,
+.navbar .theme-toggle i,
+.eg-hero-back i,
+.social-icons i {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+}
+
+.navbar .nav-logo i,
+.navbar .theme-toggle i,
+.eg-hero-back i {
+    font-weight: 900 !important;
+}
+
+.social-icons .fab,
+.social-icons .fa-brands {
+    font-family: "Font Awesome 6 Brands" !important;
+    font-weight: 400 !important;
 }
 
 </style>
