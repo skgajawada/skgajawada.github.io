@@ -1,0 +1,3871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Force Systems — Notes | Engineering Mechanics
+    </title>
+
+    <meta name="description"
+          content="Detailed notes on Force Systems for Engineering Mechanics — force vectors, force components, resultant force, resolution of forces, classification of force systems and engineering applications.">
+
+    <meta name="author"
+          content="Gajavada Sanjeevkumar">
+
+
+    <!-- =========================================================
+         COMMON WEBSITE STYLES
+         ========================================================= -->
+
+    <link rel="stylesheet"
+          href="../../assets/css/style.css">
+
+    <link rel="stylesheet"
+          href="../../assets/css/animations.css">
+
+
+    <!-- =========================================================
+         PAGE-SPECIFIC STYLE
+         ========================================================= -->
+
+    <style>
+
+        /* =====================================================
+           ROOT VARIABLES
+           ===================================================== */
+
+        :root {
+
+            --primary: #0b1f3a;
+            --primary-light: #163b68;
+
+            --accent: #f28c28;
+            --accent-light: #ffb45c;
+
+            --background: #f5f7fa;
+            --surface: #ffffff;
+
+            --text: #1e293b;
+            --text-light: #475569;
+            --muted: #64748b;
+
+            --border: #e2e8f0;
+
+            --success: #16803c;
+
+            --shadow:
+                0 10px 30px
+                rgba(15, 23, 42, 0.08);
+
+            --radius: 16px;
+        }
+
+
+        /* =====================================================
+           GLOBAL
+           ===================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                Inter,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
+
+            background: var(--background);
+
+            color: var(--text);
+
+            line-height: 1.75;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ::selection {
+
+            background:
+                rgba(242, 140, 40, 0.25);
+        }
+
+
+        /* =====================================================
+           NAVIGATION
+           ===================================================== */
+
+        .top-nav {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            background:
+                rgba(11, 31, 58, 0.97);
+
+            backdrop-filter: blur(10px);
+
+            box-shadow:
+                0 4px 20px
+                rgba(0, 0, 0, 0.15);
+        }
+
+
+        .nav-container {
+
+            max-width: 1250px;
+
+            margin: auto;
+
+            padding:
+                13px 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+
+        .brand {
+
+            color: white;
+
+            font-size: 1rem;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+        }
+
+
+        .brand span {
+
+            color:
+                var(--accent-light);
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            list-style: none;
+
+            margin: 0;
+
+            padding: 0;
+        }
+
+
+        .nav-links a {
+
+            color: #dce7f3;
+
+            font-size: 0.86rem;
+
+            padding:
+                7px 11px;
+
+            border-radius: 7px;
+
+            transition:
+                0.2s ease;
+        }
+
+
+        .nav-links a:hover {
+
+            background:
+                rgba(255,255,255,0.1);
+
+            color: white;
+        }
+
+
+        /* =====================================================
+           HERO
+           ===================================================== */
+
+        .hero {
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #07182e 0%,
+                    #0b1f3a 58%,
+                    #163b68 100%
+                );
+
+            color: white;
+
+            padding:
+                62px 20px 58px;
+        }
+
+
+        .hero::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 420px;
+            height: 420px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.07);
+
+            border-radius: 50%;
+
+            right: -150px;
+            top: -180px;
+        }
+
+
+        .hero::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 260px;
+            height: 260px;
+
+            border:
+                1px solid
+                rgba(242,140,40,0.18);
+
+            border-radius: 50%;
+
+            right: 120px;
+            bottom: -190px;
+        }
+
+
+        .hero-container {
+
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 1250px;
+
+            margin: auto;
+        }
+
+
+        .breadcrumb {
+
+            color:
+                #b8c8da;
+
+            font-size:
+                0.84rem;
+
+            margin-bottom:
+                15px;
+        }
+
+
+        .breadcrumb a {
+
+            color:
+                var(--accent-light);
+        }
+
+
+        .hero h1 {
+
+            margin:
+                0 0 12px;
+
+            font-size:
+                clamp(2.2rem, 5vw, 3.8rem);
+
+            line-height:
+                1.1;
+
+            letter-spacing:
+                -1px;
+        }
+
+
+        .hero h1 span {
+
+            color:
+                var(--accent-light);
+        }
+
+
+        .hero-description {
+
+            max-width:
+                850px;
+
+            margin:
+                0 0 22px;
+
+            color:
+                #d6e1ed;
+
+            font-size:
+                1.03rem;
+        }
+
+
+        .note-meta {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                9px;
+        }
+
+
+        .meta-item {
+
+            padding:
+                6px 12px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.15);
+
+            border-radius:
+                20px;
+
+            color:
+                #dce7f3;
+
+            background:
+                rgba(255,255,255,0.04);
+
+            font-size:
+                0.78rem;
+        }
+
+
+        /* =====================================================
+           CONTENT LAYOUT
+           ===================================================== */
+
+        .page-layout {
+
+            max-width:
+                1250px;
+
+            margin:
+                0 auto;
+
+            padding:
+                42px 20px 70px;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                270px 1fr;
+
+            gap:
+                32px;
+
+            align-items:
+                start;
+        }
+
+
+        /* =====================================================
+           TABLE OF CONTENTS
+           ===================================================== */
+
+        .toc {
+
+            position:
+                sticky;
+
+            top:
+                78px;
+
+            background:
+                white;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                14px;
+
+            box-shadow:
+                var(--shadow);
+
+            overflow:
+                hidden;
+        }
+
+
+        .toc-header {
+
+            padding:
+                17px 18px;
+
+            background:
+                var(--primary);
+
+            color:
+                white;
+
+            font-weight:
+                700;
+
+            font-size:
+                0.92rem;
+        }
+
+
+        .toc-list {
+
+            list-style:
+                none;
+
+            margin:
+                0;
+
+            padding:
+                9px;
+        }
+
+
+        .toc-list li {
+            margin:
+                2px 0;
+        }
+
+
+        .toc-list a {
+
+            display:
+                block;
+
+            padding:
+                7px 9px;
+
+            border-radius:
+                7px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                0.8rem;
+
+            transition:
+                0.2s ease;
+        }
+
+
+        .toc-list a:hover {
+
+            background:
+                #fff4e8;
+
+            color:
+                var(--accent);
+        }
+
+
+        /* =====================================================
+           NOTES CONTENT
+           ===================================================== */
+
+        .notes-content {
+            min-width: 0;
+        }
+
+
+        .note-section {
+
+            scroll-margin-top:
+                90px;
+
+            margin-bottom:
+                55px;
+        }
+
+
+        .section-heading {
+
+            display:
+                flex;
+
+            align-items:
+                flex-start;
+
+            gap:
+                13px;
+
+            margin-bottom:
+                20px;
+        }
+
+
+        .section-number {
+
+            flex-shrink:
+                0;
+
+            width:
+                38px;
+
+            height:
+                38px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border-radius:
+                10px;
+
+            background:
+                var(--primary);
+
+            color:
+                white;
+
+            font-size:
+                0.82rem;
+
+            font-weight:
+                800;
+        }
+
+
+        .section-heading h2 {
+
+            margin:
+                0;
+
+            color:
+                var(--primary);
+
+            font-size:
+                clamp(1.55rem, 3vw, 2rem);
+
+            line-height:
+                1.25;
+        }
+
+
+        .section-heading p {
+
+            margin:
+                4px 0 0;
+
+            color:
+                var(--muted);
+
+            font-size:
+                0.86rem;
+        }
+
+
+        .note-card {
+
+            background:
+                white;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                var(--radius);
+
+            padding:
+                27px;
+
+            box-shadow:
+                var(--shadow);
+
+            margin-bottom:
+                20px;
+        }
+
+
+        .note-card h3 {
+
+            margin:
+                0 0 12px;
+
+            color:
+                var(--primary-light);
+
+            font-size:
+                1.15rem;
+        }
+
+
+        .note-card h4 {
+
+            color:
+                var(--primary);
+
+            margin:
+                22px 0 8px;
+
+            font-size:
+                1rem;
+        }
+
+
+        .note-card p {
+
+            color:
+                var(--text-light);
+
+            margin:
+                8px 0 14px;
+        }
+
+
+        .note-card ul,
+        .note-card ol {
+
+            color:
+                var(--text-light);
+
+            padding-left:
+                23px;
+        }
+
+
+        .note-card li {
+
+            margin-bottom:
+                6px;
+        }
+
+
+        /* =====================================================
+           DEFINITION BOX
+           ===================================================== */
+
+        .definition-box {
+
+            background:
+                #eef4fb;
+
+            border-left:
+                5px solid
+                var(--primary-light);
+
+            border-radius:
+                9px;
+
+            padding:
+                18px 20px;
+
+            margin:
+                18px 0;
+        }
+
+
+        .definition-box strong {
+
+            display:
+                block;
+
+            color:
+                var(--primary);
+
+            margin-bottom:
+                5px;
+        }
+
+
+        .definition-box p {
+
+            margin:
+                0;
+
+            color:
+                #475569;
+        }
+
+
+        /* =====================================================
+           IMPORTANT BOX
+           ===================================================== */
+
+        .important-box {
+
+            background:
+                #fff8ef;
+
+            border-left:
+                5px solid
+                var(--accent);
+
+            border-radius:
+                9px;
+
+            padding:
+                18px 20px;
+
+            margin:
+                20px 0;
+        }
+
+
+        .important-box strong {
+
+            color:
+                #9a4f00;
+        }
+
+
+        /* =====================================================
+           EQUATION
+           ===================================================== */
+
+        .equation-box {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f1f5f9,
+                    #f8fafc
+                );
+
+            border:
+                1px solid
+                #dbe5f0;
+
+            border-radius:
+                11px;
+
+            padding:
+                18px 20px;
+
+            margin:
+                20px 0;
+
+            text-align:
+                center;
+
+            overflow-x:
+                auto;
+        }
+
+
+        .equation {
+
+            font-family:
+                "Times New Roman",
+                Georgia,
+                serif;
+
+            color:
+                var(--primary);
+
+            font-size:
+                1.3rem;
+
+            font-weight:
+                600;
+
+            white-space:
+                nowrap;
+        }
+
+
+        .equation-small {
+
+            margin-top:
+                7px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                0.78rem;
+        }
+
+
+        /* =====================================================
+           TABLES
+           ===================================================== */
+
+        .table-wrapper {
+
+            overflow-x:
+                auto;
+
+            margin:
+                20px 0;
+        }
+
+
+        table {
+
+            width:
+                100%;
+
+            border-collapse:
+                collapse;
+
+            min-width:
+                580px;
+
+            background:
+                white;
+        }
+
+
+        th {
+
+            background:
+                var(--primary);
+
+            color:
+                white;
+
+            padding:
+                12px 14px;
+
+            text-align:
+                left;
+
+            font-size:
+                0.85rem;
+        }
+
+
+        td {
+
+            padding:
+                11px 14px;
+
+            border:
+                1px solid
+                var(--border);
+
+            color:
+                var(--text-light);
+
+            font-size:
+                0.84rem;
+        }
+
+
+        tr:nth-child(even) td {
+
+            background:
+                #f8fafc;
+        }
+
+
+        /* =====================================================
+           TWO COLUMN CONCEPT GRID
+           ===================================================== */
+
+        .concept-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap:
+                18px;
+        }
+
+
+        .concept-card {
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                13px;
+
+            padding:
+                20px;
+
+            background:
+                white;
+
+            box-shadow:
+                0 6px 20px
+                rgba(15,23,42,0.05);
+        }
+
+
+        .concept-card h3 {
+
+            margin:
+                0 0 8px;
+
+            color:
+                var(--primary);
+        }
+
+
+        .concept-card p {
+
+            margin:
+                0;
+
+            color:
+                var(--muted);
+
+            font-size:
+                0.9rem;
+        }
+
+
+        /* =====================================================
+           VECTOR COMPONENT BOX
+           ===================================================== */
+
+        .vector-components {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap:
+                14px;
+
+            margin:
+                20px 0;
+        }
+
+
+        .component {
+
+            text-align:
+                center;
+
+            background:
+                #f8fafc;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                10px;
+
+            padding:
+                17px;
+        }
+
+
+        .component strong {
+
+            display:
+                block;
+
+            font-family:
+                "Times New Roman",
+                Georgia,
+                serif;
+
+            color:
+                var(--primary);
+
+            font-size:
+                1.25rem;
+
+            margin-bottom:
+                5px;
+        }
+
+
+        .component span {
+
+            color:
+                var(--muted);
+
+            font-size:
+                0.78rem;
+        }
+
+
+        /* =====================================================
+           PROCEDURE
+           ===================================================== */
+
+        .procedure {
+
+            counter-reset:
+                procedure;
+        }
+
+
+        .procedure-step {
+
+            position:
+                relative;
+
+            padding:
+                17px 18px 17px 58px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                10px;
+
+            background:
+                white;
+
+            margin-bottom:
+                11px;
+        }
+
+
+        .procedure-step::before {
+
+            counter-increment:
+                procedure;
+
+            content:
+                counter(procedure);
+
+            position:
+                absolute;
+
+            left:
+                17px;
+
+            top:
+                16px;
+
+            width:
+                27px;
+
+            height:
+                27px;
+
+            border-radius:
+                50%;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            background:
+                var(--accent);
+
+            color:
+                white;
+
+            font-size:
+                0.75rem;
+
+            font-weight:
+                800;
+        }
+
+
+        .procedure-step strong {
+
+            color:
+                var(--primary);
+        }
+
+
+        .procedure-step p {
+
+            margin:
+                4px 0 0;
+
+            color:
+                var(--muted);
+
+            font-size:
+                0.88rem;
+        }
+
+
+        /* =====================================================
+           EXAMPLE
+           ===================================================== */
+
+        .example {
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                13px;
+
+            overflow:
+                hidden;
+
+            background:
+                white;
+
+            box-shadow:
+                var(--shadow);
+
+            margin:
+                20px 0;
+        }
+
+
+        .example-title {
+
+            padding:
+                14px 20px;
+
+            background:
+                var(--primary);
+
+            color:
+                white;
+
+            font-weight:
+                700;
+
+            font-size:
+                0.92rem;
+        }
+
+
+        .example-body {
+
+            padding:
+                23px;
+        }
+
+
+        .example-body p {
+
+            color:
+                var(--text-light);
+        }
+
+
+        .solution {
+
+            padding:
+                12px 0;
+
+            border-bottom:
+                1px dashed
+                var(--border);
+        }
+
+
+        .solution:last-child {
+            border-bottom:
+                none;
+        }
+
+
+        .solution strong {
+
+            color:
+                var(--primary);
+        }
+
+
+        /* =====================================================
+           KEY TAKEAWAYS
+           ===================================================== */
+
+        .takeaways {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap:
+                13px;
+        }
+
+
+        .takeaway {
+
+            display:
+                flex;
+
+            gap:
+                11px;
+
+            padding:
+                15px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                10px;
+
+            background:
+                white;
+        }
+
+
+        .takeaway-icon {
+
+            flex-shrink:
+                0;
+
+            width:
+                27px;
+
+            height:
+                27px;
+
+            border-radius:
+                50%;
+
+            background:
+                #eaf7ef;
+
+            color:
+                var(--success);
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            font-weight:
+                800;
+        }
+
+
+        .takeaway p {
+
+            margin:
+                0;
+
+            color:
+                var(--text-light);
+
+            font-size:
+                0.86rem;
+        }
+
+
+        /* =====================================================
+           FOOTER
+           ===================================================== */
+
+        footer {
+
+            background:
+                #07182e;
+
+            color:
+                #cbd5e1;
+
+            padding:
+                50px 20px 24px;
+        }
+
+
+        .footer-container {
+
+            max-width:
+                1250px;
+
+            margin:
+                auto;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                2fr 1fr 1fr 1fr;
+
+            gap:
+                35px;
+        }
+
+
+        .footer-column h3 {
+
+            color:
+                white;
+
+            margin:
+                0 0 13px;
+
+            font-size:
+                0.98rem;
+        }
+
+
+        .footer-column p {
+
+            color:
+                #94a3b8;
+
+            font-size:
+                0.84rem;
+        }
+
+
+        .footer-column a {
+
+            display:
+                block;
+
+            color:
+                #94a3b8;
+
+            margin-bottom:
+                7px;
+
+            font-size:
+                0.82rem;
+
+            transition:
+                0.2s ease;
+        }
+
+
+        .footer-column a:hover {
+
+            color:
+                var(--accent-light);
+        }
+
+
+        .copyright {
+
+            max-width:
+                1250px;
+
+            margin:
+                35px auto 0;
+
+            padding-top:
+                18px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,0.1);
+
+            text-align:
+                center;
+
+            color:
+                #64748b;
+
+            font-size:
+                0.76rem;
+        }
+
+
+        /* =====================================================
+           DARK MODE
+           ===================================================== */
+
+        body.dark-mode {
+
+            --background:
+                #0b1220;
+
+            --surface:
+                #111827;
+
+            --text:
+                #e5e7eb;
+
+            --text-light:
+                #cbd5e1;
+
+            --muted:
+                #94a3b8;
+
+            --border:
+                #263244;
+
+            background:
+                var(--background);
+
+            color:
+                var(--text);
+        }
+
+
+        body.dark-mode .toc,
+        body.dark-mode .note-card,
+        body.dark-mode .concept-card,
+        body.dark-mode .procedure-step,
+        body.dark-mode .example,
+        body.dark-mode .takeaway,
+        body.dark-mode table {
+
+            background:
+                #111827;
+
+            border-color:
+                #263244;
+        }
+
+
+        body.dark-mode .section-heading h2,
+        body.dark-mode .note-card h3,
+        body.dark-mode .note-card h4,
+        body.dark-mode .concept-card h3,
+        body.dark-mode .procedure-step strong,
+        body.dark-mode .takeaway p {
+
+            color:
+                #e5e7eb;
+        }
+
+
+        body.dark-mode .definition-box,
+        body.dark-mode .equation-box,
+        body.dark-mode .component {
+
+            background:
+                #0f172a;
+
+            border-color:
+                #263244;
+        }
+
+
+        body.dark-mode .definition-box p,
+        body.dark-mode .note-card p,
+        body.dark-mode .note-card li,
+        body.dark-mode .concept-card p,
+        body.dark-mode .procedure-step p,
+        body.dark-mode .takeaway p,
+        body.dark-mode td {
+
+            color:
+                #aebccd;
+        }
+
+
+        body.dark-mode tr:nth-child(even) td {
+
+            background:
+                #0f172a;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+           ===================================================== */
+
+        @media (max-width: 950px) {
+
+            .page-layout {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .toc {
+
+                position:
+                    relative;
+
+                top:
+                    auto;
+            }
+
+
+            .toc-list {
+
+                display:
+                    grid;
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .concept-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .vector-components {
+
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+
+            .footer-container {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        @media (max-width: 650px) {
+
+            .nav-links {
+                display:
+                    none;
+            }
+
+
+            .hero {
+
+                padding:
+                    45px 17px;
+            }
+
+
+            .page-layout {
+
+                padding:
+                    30px 15px 50px;
+            }
+
+
+            .toc-list {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .note-card {
+
+                padding:
+                    21px;
+            }
+
+
+            .vector-components {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .takeaways {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .footer-container {
+
+                grid-template-columns:
+                    1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVIGATION
+     ========================================================= -->
+
+<nav class="top-nav">
+
+    <div class="nav-container">
+
+        <a href="../../index.html"
+           class="brand">
+
+            Engineering
+            <span>Mechanics</span>
+
+        </a>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="../index.html">
+                    Force Systems
+                </a>
+            </li>
+
+            <li>
+                <a href="#introduction">
+                    Introduction
+                </a>
+            </li>
+
+            <li>
+                <a href="#vectors">
+                    Vectors
+                </a>
+            </li>
+
+            <li>
+                <a href="#resultant">
+                    Resultant
+                </a>
+            </li>
+
+            <li>
+                <a href="#examples">
+                    Examples
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+
+<header class="hero">
+
+    <div class="hero-container">
+
+        <div class="breadcrumb">
+
+            <a href="../../index.html">
+                Engineering Mechanics
+            </a>
+
+            &nbsp; / &nbsp;
+
+            <a href="../index.html">
+                Force Systems
+            </a>
+
+            &nbsp; / &nbsp;
+
+            Notes
+
+        </div>
+
+
+        <h1>
+
+            Force Systems
+            <span>Notes</span>
+
+        </h1>
+
+
+        <p class="hero-description">
+
+            Comprehensive notes covering the fundamentals,
+            mathematical representation, classification,
+            resolution and resultant of force systems in
+            Engineering Mechanics.
+
+        </p>
+
+
+        <div class="note-meta">
+
+            <span class="meta-item">
+                Engineering Mechanics
+            </span>
+
+            <span class="meta-item">
+                Theory + Mathematics
+            </span>
+
+            <span class="meta-item">
+                Problem Solving
+            </span>
+
+            <span class="meta-item">
+                Undergraduate Level
+            </span>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     PAGE LAYOUT
+     ========================================================= -->
+
+<div class="page-layout">
+
+
+    <!-- =====================================================
+         TABLE OF CONTENTS
+         ===================================================== -->
+
+    <aside class="toc">
+
+        <div class="toc-header">
+            Contents
+        </div>
+
+
+        <ul class="toc-list">
+
+            <li>
+                <a href="#introduction">
+                    1. Introduction
+                </a>
+            </li>
+
+            <li>
+                <a href="#force">
+                    2. Force
+                </a>
+            </li>
+
+            <li>
+                <a href="#characteristics">
+                    3. Characteristics
+                </a>
+            </li>
+
+            <li>
+                <a href="#classification">
+                    4. Force Systems
+                </a>
+            </li>
+
+            <li>
+                <a href="#vectors">
+                    5. Force Vectors
+                </a>
+            </li>
+
+            <li>
+                <a href="#components">
+                    6. Components
+                </a>
+            </li>
+
+            <li>
+                <a href="#resolution">
+                    7. Resolution
+                </a>
+            </li>
+
+            <li>
+                <a href="#resultant">
+                    8. Resultant
+                </a>
+            </li>
+
+            <li>
+                <a href="#equivalent">
+                    9. Equivalent Systems
+                </a>
+            </li>
+
+            <li>
+                <a href="#procedure">
+                    10. Procedure
+                </a>
+            </li>
+
+            <li>
+                <a href="#examples">
+                    11. Worked Examples
+                </a>
+            </li>
+
+            <li>
+                <a href="#takeaways">
+                    12. Key Takeaways
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         NOTES CONTENT
+         ===================================================== -->
+
+    <main class="notes-content">
+
+
+
+        <!-- =================================================
+             SECTION 1
+             ================================================= -->
+
+        <section class="note-section"
+                 id="introduction">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    01
+                </div>
+
+                <div>
+
+                    <h2>
+                        Introduction to Force Systems
+                    </h2>
+
+                    <p>
+                        Fundamental concept
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="note-card">
+
+                <div class="definition-box">
+
+                    <strong>
+                        Definition
+                    </strong>
+
+                    <p>
+
+                        A force system is a collection of two or
+                        more forces acting simultaneously on a
+                        particle or rigid body.
+
+                    </p>
+
+                </div>
+
+
+                <p>
+
+                    In engineering mechanics, a body is frequently
+                    subjected to several external forces. These
+                    forces may have different magnitudes,
+                    directions and points of application.
+
+                </p>
+
+
+                <p>
+
+                    Instead of analyzing every force independently,
+                    the complete system can often be replaced by
+                    an equivalent simpler force system.
+
+                </p>
+
+
+                <div class="important-box">
+
+                    <strong>
+                        Engineering idea:
+                    </strong>
+
+                    <p>
+
+                        The objective of force-system analysis is
+                        to determine the combined mechanical effect
+                        of several forces.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SECTION 2
+             ================================================= -->
+
+        <section class="note-section"
+                 id="force">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    02
+                </div>
+
+                <div>
+
+                    <h2>
+                        Force
+                    </h2>
+
+                    <p>
+                        Meaning and physical interpretation
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="note-card">
+
+                <p>
+
+                    A force is an interaction that tends to change
+                    the state of motion of a body or deform the body.
+
+                </p>
+
+
+                <p>
+
+                    Force is a <strong>vector quantity</strong>.
+                    Therefore, its complete description requires
+                    both magnitude and direction.
+
+                </p>
+
+
+                <div class="equation-box">
+
+                    <div class="equation">
+
+                        F = magnitude + direction
+
+                    </div>
+
+                    <div class="equation-small">
+
+                        A force cannot be completely specified by
+                        magnitude alone.
+
+                    </div>
+
+                </div>
+
+
+                <h4>
+                    SI Unit
+                </h4>
+
+                <p>
+
+                    The SI unit of force is the
+                    <strong>newton (N)</strong>.
+
+                </p>
+
+
+                <h4>
+                    Newton's Second Law
+                </h4>
+
+                <div class="equation-box">
+
+                    <div class="equation">
+
+                        F = ma
+
+                    </div>
+
+                    <div class="equation-small">
+
+                        Force = mass × acceleration
+
+                    </div>
+
+                </div>
+
+
+                <p>
+
+                    This equation establishes the connection
+                    between the applied force and the resulting
+                    acceleration of a body.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SECTION 3
+             ================================================= -->
+
+        <section class="note-section"
+                 id="characteristics">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    03
+                </div>
+
+                <div>
+
+                    <h2>
+                        Characteristics of a Force
+                    </h2>
+
+                    <p>
+                        What completely defines a force?
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="concept-grid">
+
+
+                <div class="concept-card">
+
+                    <h3>
+                        Magnitude
+                    </h3>
+
+                    <p>
+
+                        Indicates the strength or intensity of
+                        the applied force and is measured in
+                        newtons.
+
+                    </p>
+
+                </div>
+
+
+                <div class="concept-card">
+
+                    <h3>
+                        Direction
+                    </h3>
+
+                    <p>
+
+                        Specifies the orientation of the force
+                        vector relative to a reference axis.
+
+                    </p>
+
+                </div>
+
+
+                <div class="concept-card">
+
+                    <h3>
+                        Line of Action
+                    </h3>
+
+                    <p>
+
+                        The infinite straight line along which
+                        the force acts.
+
+                    </p>
+
+                </div>
+
+
+                <div class="concept-card">
+
+                    <h3>
+                        Point of Application
+                    </h3>
+
+                    <p>
+
+                        The location on the body where the force
+                        is applied.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="important-box">
+
+                <strong>
+                    Important distinction:
+                </strong>
+
+                <p>
+
+                    For a particle, the point of application is
+                    effectively the particle itself. For a rigid
+                    body, the location and line of action can
+                    influence the rotational effect of a force.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SECTION 4
+             ================================================= -->
+
+        <section class="note-section"
+                 id="classification">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    04
+                </div>
+
+                <div>
+
+                    <h2>
+                        Classification of Force Systems
+                    </h2>
+
+                    <p>
+                        Based on lines of action and geometry
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="note-card">
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Type
+                                </th>
+
+                                <th>
+                                    Description
+                                </th>
+
+                                <th>
+                                    Typical Analysis
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    Collinear
+                                </td>
+
+                                <td>
+                                    All forces act along the
+                                    same straight line.
+                                </td>
+
+                                <td>
+                                    Algebraic addition
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Concurrent
+                                </td>
+
+                                <td>
+                                    Lines of action intersect
+                                    at one point.
+                                </td>
+
+                                <td>
+                                    Vector addition
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Parallel
+                                </td>
+
+                                <td>
+                                    Lines of action are parallel.
+                                </td>
+
+                                <td>
+                                    Resultant + location
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Coplanar
+                                </td>
+
+                                <td>
+                                    Forces lie in one plane.
+                                </td>
+
+                                <td>
+                                    2-D force analysis
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Non-coplanar
+                                </td>
+
+                                <td>
+                                    Forces act in three-dimensional
+                                    space.
+                                </td>
+
+                                <td>
+                                    3-D vector analysis
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    General
+                                </td>
+
+                                <td>
+                                    Forces have arbitrary
+                                    directions and locations.
+                                </td>
+
+                                <td>
+                                    Force + moment system
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SECTION 5
+             ================================================= -->
+
+        <section class="note-section"
+                 id="vectors">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    05
+                </div>
+
+                <div>
+
+                    <h2>
+                        Force as a Vector
+                    </h2>
+
+                    <p>
+                        Mathematical representation
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="note-card">
+
+                <p>
+
+                    Since force is a vector quantity, it can be
+                    represented using unit vectors.
+
+                </p>
+
+
+                <h3>
+                    Two-Dimensional Representation
+                </h3>
+
+
+                <div class="equation-box">
+
+                    <div class="equation">
+
+                        F = F<sub>x</sub> i
+                        + F<sub>y</sub> j
+
+                    </div>
+
+                </div>
+
+
+                <p>
+
+                    Here,
+
+                    <strong>i</strong> and
+                    <strong>j</strong> are unit vectors along
+                    the x and y directions.
+
+                </p>
+
+
+                <h3>
+                    Three-Dimensional Representation
+                </h3>
+
+
+                <div class="equation-box">
+
+                    <div class="equation">
+
+                        F = F<sub>x</sub>i
+                        + F<sub>y</sub>j
+                        + F<sub>z</sub>k
+
+                    </div>
+
+                </div>
+
+
+                <p>
+
+                    The vectors i, j and k represent unit vectors
+                    along the x, y and z axes respectively.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SECTION 6
+             ================================================= -->
+
+        <section class="note-section"
+                 id="components">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    06
+                </div>
+
+                <div>
+
+                    <h2>
+                        Cartesian Components of Force
+                    </h2>
+
+                    <p>
+                        Resolving a force into perpendicular directions
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="note-card">
+
+                <p>
+
+                    A force acting at an angle can be replaced by
+                    two or more mutually perpendicular components.
+                    This process is called <strong>resolution of
+                    force</strong>.
+
+                </p>
+
+
+                <div class="vector-components">
+
+                    <div class="component">
+
+                        <strong>
+                            F<sub>x</sub>
+                        </strong>
+
+                        <span>
+                            Component along x-axis
+                        </span>
+
+                    </div>
+
+
+                    <div class="component">
+
+                        <strong>
+                            F<sub>y</sub>
+                        </strong>
+
+                        <span>
+                            Component along y-axis
+                        </span>
+
+                    </div>
+
+
+                    <div class="component">
+
+                        <strong>
+                            F<sub>z</sub>
+                        </strong>
+
+                        <span>
+                            Component along z-axis
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <h4>
+                    For a force F making angle θ with the
+                    positive x-axis:
+                </h4>
+
+
+                <div class="equation-box">
+
+                    <div class="equation">
+
+                        F<sub>x</sub> = F cos θ
+
+                    </div>
+
+                </div>
+
+
+                <div class="equation-box">
+
+                    <div class="equation">
+
+                        F<sub>y</sub> = F sin θ
+
+                    </div>
+
+                </div>
+
+
+                <h4>
+                    Magnitude from Components
+                </h4>
+
+
+                <div class="equation-box">
+
+                    <div class="equation">
+
+                        F =
+                        √(F<sub>x</sub><sup>2</sup>
+                        +
+                        F<sub>y</sub><sup>2</sup>)
+
+                    </div>
+
+                </div>
+
+
+                <h4>
+                    Direction
+                </h4>
+
+
+                <div class="equation-box">
+
+                    <div class="equation">
+
+                        θ =
+                        tan<sup>−1</sup>
+                        (F<sub>y</sub>/F<sub>x</sub>)
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SECTION 7
+             ================================================= -->
+
+        <section class="note-section"
+                 id="resolution">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    07
+                </div>
+
+                <div>
+
+                    <h2>
+                        Resolution of Forces
+                    </h2>
+
+                    <p>
+                        From one force to components
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="note-card">
+
+                <p>
+
+                    Resolution is the reverse mathematical operation
+                    of vector addition.
+
+                </p>
+
+
+                <div class="concept-grid">
+
+
+                    <div class="concept-card">
+
+                        <h3>
+                            Composition
+                        </h3>
+
+                        <p>
+
+                            Components are combined to obtain
+                            the resultant force.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="concept-card">
+
+                        <h3>
+                            Resolution
+                        </h3>
+
+                        <p>
+
+                            A single force is decomposed into
+                            convenient components.
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="equation-box">
+
+                    <div class="equation">
+
+                        F = F<sub>x</sub>i
+                        + F<sub>y</sub>j
+
+                    </div>
+
+                </div>
+
+
+                <p>
+
+                    The choice of components is not arbitrary in
+                    engineering analysis. Components are usually
+                    selected along convenient coordinate directions,
+                    such as horizontal and vertical axes.
+
+                </p>
+
+
+                <div class="important-box">
+
+                    <strong>
+                        Physical interpretation:
+                    </strong>
+
+                    <p>
+
+                        Resolution does not create additional forces.
+                        It is a mathematical representation of the
+                        same original force using convenient
+                        directions.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SECTION 8
+             ================================================= -->
+
+        <section class="note-section"
+                 id="resultant">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    08
+                </div>
+
+                <div>
+
+                    <h2>
+                        Resultant Force
+                    </h2>
+
+                    <p>
+                        Combining multiple forces
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="note-card">
+
+                <p>
+
+                    The resultant force is a single vector that
+                    represents the vector sum of a system of forces.
+
+                </p>
+
+
+                <div class="equation-box">
+
+                    <div class="equation">
+
+                        R = Σ F
+
+                    </div>
+
+                </div>
+
+
+                <h4>
+                    Cartesian Form
+                </h4>
+
+
+                <div class="equation-box">
+
+                    <div class="equation">
+
+                        R<sub>x</sub> = ΣF<sub>x</sub>
+
+                        <br><br>
+
+                        R<sub>y</sub> = ΣF<sub>y</sub>
+
+                    </div>
+
+                </div>
+
+
+                <h4>
+                    Magnitude
+                </h4>
+
+
+                <div class="equation-box">
+
+                    <div class="equation">
+
+                        R =
+                        √(R<sub>x</sub><sup>2</sup>
+                        +
+                        R<sub>y</sub><sup>2</sup>)
+
+                    </div>
+
+                </div>
+
+
+                <h4>
+                    Direction
+                </h4>
+
+
+                <div class="equation-box">
+
+                    <div class="equation">
+
+                        θ<sub>R</sub>
+                        =
+                        tan<sup>−1</sup>
+                        (R<sub>y</sub>/R<sub>x</sub>)
+
+                    </div>
+
+                </div>
+
+
+                <div class="important-box">
+
+                    <strong>
+                        Important:
+                    </strong>
+
+                    <p>
+
+                        The signs of the x- and y-components must
+                        be retained during summation. The final
+                        quadrant of the resultant must be checked
+                        before reporting its direction.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SECTION 9
+             ================================================= -->
+
+        <section class="note-section"
+                 id="equivalent">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    09
+                </div>
+
+                <div>
+
+                    <h2>
+                        Equivalent Force Systems
+                    </h2>
+
+                    <p>
+                        Same mechanical effect
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="note-card">
+
+                <p>
+
+                    Two force systems are said to be equivalent when
+                    they produce the same external mechanical effect
+                    on a rigid body.
+
+                </p>
+
+
+                <h4>
+                    For a general rigid-body system
+                </h4>
+
+
+                <p>
+
+                    The combined effect may be represented by a
+                    resultant force together with a resultant moment
+                    about a selected reference point.
+
+                </p>
+
+
+                <div class="equation-box">
+
+                    <div class="equation">
+
+                        System
+                        →
+                        Resultant Force + Resultant Moment
+
+                    </div>
+
+                </div>
+
+
+                <p>
+
+                    This concept is fundamental in simplifying
+                    complicated loading conditions in structural,
+                    mechanical and aerospace systems.
+
+                </p>
+
+
+                <h4>
+                    Why is equivalence useful?
+                </h4>
+
+
+                <ul>
+
+                    <li>
+                        Simplifies engineering calculations.
+                    </li>
+
+                    <li>
+                        Reduces multiple loads to a manageable
+                        representation.
+                    </li>
+
+                    <li>
+                        Makes equilibrium analysis easier.
+                    </li>
+
+                    <li>
+                        Helps determine support reactions.
+                    </li>
+
+                    <li>
+                        Provides a convenient representation for
+                        computational models.
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SECTION 10
+             ================================================= -->
+
+        <section class="note-section"
+                 id="procedure">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    10
+                </div>
+
+                <div>
+
+                    <h2>
+                        General Problem-Solving Procedure
+                    </h2>
+
+                    <p>
+                        A systematic approach
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="note-card">
+
+                <div class="procedure">
+
+
+                    <div class="procedure-step">
+
+                        <strong>
+                            Identify the body
+                        </strong>
+
+                        <p>
+
+                            Clearly identify the particle or
+                            rigid body being analyzed.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="procedure-step">
+
+                        <strong>
+                            Identify all external forces
+                        </strong>
+
+                        <p>
+
+                            List applied forces, reactions and
+                            other relevant loads.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="procedure-step">
+
+                        <strong>
+                            Establish coordinate axes
+                        </strong>
+
+                        <p>
+
+                            Select convenient x-y or x-y-z
+                            reference directions.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="procedure-step">
+
+                        <strong>
+                            Resolve inclined forces
+                        </strong>
+
+                        <p>
+
+                            Convert inclined forces into Cartesian
+                            components where appropriate.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="procedure-step">
+
+                        <strong>
+                            Sum the components
+                        </strong>
+
+                        <p>
+
+                            Calculate the algebraic sum of the
+                            components in each direction.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="procedure-step">
+
+                        <strong>
+                            Calculate resultant
+                        </strong>
+
+                        <p>
+
+                            Determine magnitude and direction of
+                            the resultant vector.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="procedure-step">
+
+                        <strong>
+                            Check physical meaning
+                        </strong>
+
+                        <p>
+
+                            Verify signs, units, direction and
+                            whether the result is physically
+                            reasonable.
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SECTION 11
+             ================================================= -->
+
+        <section class="note-section"
+                 id="examples">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    11
+                </div>
+
+                <div>
+
+                    <h2>
+                        Worked Examples
+                    </h2>
+
+                    <p>
+                        Applying the theory
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- EXAMPLE 1 -->
+
+            <div class="example">
+
+                <div class="example-title">
+
+                    Example 1 — Two Perpendicular Forces
+
+                </div>
+
+
+                <div class="example-body">
+
+                    <p>
+
+                        Two forces of 30 N and 40 N act
+                        perpendicular to each other.
+                        Determine their resultant.
+
+                    </p>
+
+
+                    <div class="solution">
+
+                        <strong>
+                            Step 1: Resolve into components
+                        </strong>
+
+                        <p>
+
+                            Since the forces are already
+                            perpendicular:
+
+                            <br>
+
+                            R<sub>x</sub> = 30 N
+
+                            <br>
+
+                            R<sub>y</sub> = 40 N
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="solution">
+
+                        <strong>
+                            Step 2: Calculate resultant
+                        </strong>
+
+                        <div class="equation-box">
+
+                            <div class="equation">
+
+                                R =
+                                √(30² + 40²)
+
+                                = 50 N
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="solution">
+
+                        <strong>
+                            Step 3: Calculate direction
+                        </strong>
+
+                        <div class="equation-box">
+
+                            <div class="equation">
+
+                                θ =
+                                tan<sup>−1</sup>(40/30)
+
+                                ≈ 53.13°
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="important-box">
+
+                        <strong>
+                            Answer:
+                        </strong>
+
+                        <p>
+
+                            Resultant = <strong>50 N</strong>,
+                            acting at approximately
+                            <strong>53.13°</strong> from the
+                            30 N force direction.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- EXAMPLE 2 -->
+
+            <div class="example">
+
+                <div class="example-title">
+
+                    Example 2 — Force at an Angle
+
+                </div>
+
+
+                <div class="example-body">
+
+                    <p>
+
+                        A force of 100 N acts at 30° above the
+                        positive x-axis. Determine its Cartesian
+                        components.
+
+                    </p>
+
+
+                    <div class="solution">
+
+                        <strong>
+                            x-component
+                        </strong>
+
+                        <div class="equation-box">
+
+                            <div class="equation">
+
+                                F<sub>x</sub>
+                                =
+                                100 cos 30°
+
+                                ≈ 86.60 N
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="solution">
+
+                        <strong>
+                            y-component
+                        </strong>
+
+                        <div class="equation-box">
+
+                            <div class="equation">
+
+                                F<sub>y</sub>
+                                =
+                                100 sin 30°
+
+                                = 50 N
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="solution">
+
+                        <strong>
+                            Vector representation
+                        </strong>
+
+                        <div class="equation-box">
+
+                            <div class="equation">
+
+                                F
+                                =
+                                86.60 i
+                                +
+                                50 j
+                                N
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- EXAMPLE 3 -->
+
+            <div class="example">
+
+                <div class="example-title">
+
+                    Example 3 — Multiple Forces
+
+                </div>
+
+
+                <div class="example-body">
+
+                    <p>
+
+                        For a system containing several forces,
+                        each force is first resolved into x and y
+                        components.
+
+                    </p>
+
+
+                    <div class="equation-box">
+
+                        <div class="equation">
+
+                            R<sub>x</sub>
+                            =
+                            F<sub>1x</sub>
+                            +
+                            F<sub>2x</sub>
+                            +
+                            F<sub>3x</sub>
+                            + ···
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="equation-box">
+
+                        <div class="equation">
+
+                            R<sub>y</sub>
+                            =
+                            F<sub>1y</sub>
+                            +
+                            F<sub>2y</sub>
+                            +
+                            F<sub>3y</sub>
+                            + ···
+
+                        </div>
+
+                    </div>
+
+
+                    <p>
+
+                        The resultant magnitude is then obtained
+                        from the Cartesian components.
+
+                    </p>
+
+
+                    <div class="equation-box">
+
+                        <div class="equation">
+
+                            R =
+                            √(R<sub>x</sub><sup>2</sup>
+                            +
+                            R<sub>y</sub><sup>2</sup>)
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SECTION 12
+             ================================================= -->
+
+        <section class="note-section"
+                 id="takeaways">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    12
+                </div>
+
+                <div>
+
+                    <h2>
+                        Key Takeaways
+                    </h2>
+
+                    <p>
+                        Concepts to remember
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="takeaways">
+
+
+                <div class="takeaway">
+
+                    <div class="takeaway-icon">
+                        ✓
+                    </div>
+
+                    <p>
+
+                        Force is a vector quantity and requires
+                        magnitude and direction.
+
+                    </p>
+
+                </div>
+
+
+                <div class="takeaway">
+
+                    <div class="takeaway-icon">
+                        ✓
+                    </div>
+
+                    <p>
+
+                        The line of action is important when
+                        analyzing rigid-body effects.
+
+                    </p>
+
+                </div>
+
+
+                <div class="takeaway">
+
+                    <div class="takeaway-icon">
+                        ✓
+                    </div>
+
+                    <p>
+
+                        A force can be resolved into convenient
+                        Cartesian components.
+
+                    </p>
+
+                </div>
+
+
+                <div class="takeaway">
+
+                    <div class="takeaway-icon">
+                        ✓
+                    </div>
+
+                    <p>
+
+                        Resultant force is obtained through vector
+                        addition of the forces.
+
+                    </p>
+
+                </div>
+
+
+                <div class="takeaway">
+
+                    <div class="takeaway-icon">
+                        ✓
+                    </div>
+
+                    <p>
+
+                        Signs of force components must be retained
+                        during calculations.
+
+                    </p>
+
+                </div>
+
+
+                <div class="takeaway">
+
+                    <div class="takeaway-icon">
+                        ✓
+                    </div>
+
+                    <p>
+
+                        Equivalent force systems simplify
+                        engineering analysis while preserving the
+                        relevant mechanical effect.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             NAVIGATION
+             ================================================= -->
+
+        <div style="
+            display:flex;
+            justify-content:space-between;
+            gap:15px;
+            margin-top:55px;
+            flex-wrap:wrap;
+        ">
+
+
+            <a href="../index.html"
+               style="
+                   padding:11px 17px;
+                   background:white;
+                   border:1px solid #e2e8f0;
+                   border-radius:9px;
+                   color:#0b1f3a;
+                   font-weight:600;
+               ">
+
+                ← Force Systems
+
+            </a>
+
+
+            <a href="../animations/"
+               style="
+                   padding:11px 17px;
+                   background:#0b1f3a;
+                   border-radius:9px;
+                   color:white;
+                   font-weight:600;
+               ">
+
+                Interactive Animations →
+
+            </a>
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer>
+
+    <div class="footer-container">
+
+
+        <div class="footer-column">
+
+            <h3>
+                Engineering Mechanics
+            </h3>
+
+            <p>
+
+                Structured learning resources covering fundamental
+                mechanics concepts, mathematical formulations,
+                interactive visualizations, worked examples and
+                practice material.
+
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Force Systems
+            </h3>
+
+            <a href="../index.html">
+                Topic Home
+            </a>
+
+            <a href="#introduction">
+                Introduction
+            </a>
+
+            <a href="#vectors">
+                Force Vectors
+            </a>
+
+            <a href="#resultant">
+                Resultant Force
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Resources
+            </h3>
+
+            <a href="../presentation/">
+                Presentation
+            </a>
+
+            <a href="../animations/">
+                Animations
+            </a>
+
+            <a href="../examples/">
+                Worked Examples
+            </a>
+
+            <a href="../practice/">
+                Practice
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Engineering Mechanics
+            </h3>
+
+            <a href="../../index.html">
+                Main Page
+            </a>
+
+            <a href="../../moment-of-force/">
+                Moment of Force
+            </a>
+
+            <a href="../../equilibrium/">
+                Equilibrium
+            </a>
+
+            <a href="../../friction/">
+                Friction
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 Gajavada Sanjeevkumar.
+        Engineering Mechanics — Force Systems Notes.
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
+<script>
+
+
+    /* =====================================================
+       ACTIVE TABLE OF CONTENTS
+       ===================================================== */
+
+    const sections =
+        document.querySelectorAll(".note-section");
+
+    const tocLinks =
+        document.querySelectorAll(".toc-list a");
+
+
+    window.addEventListener("scroll", () => {
+
+        let current = "";
+
+        sections.forEach(section => {
+
+            const top =
+                section.offsetTop - 130;
+
+            if (
+                window.scrollY >= top
+            ) {
+
+                current =
+                    section.getAttribute("id");
+
+            }
+
+        });
+
+
+        tocLinks.forEach(link => {
+
+            link.style.background =
+                "";
+
+            link.style.color =
+                "";
+
+
+            if (
+                link.getAttribute("href") ===
+                "#" + current
+            ) {
+
+                link.style.background =
+                    "#fff4e8";
+
+                link.style.color =
+                    "#f28c28";
+
+            }
+
+        });
+
+    });
+
+
+
+    /* =====================================================
+       BASIC COPY / CONTEXT-MENU DETERRENCE
+       ===================================================== */
+
+    document.addEventListener(
+        "contextmenu",
+        function(event) {
+
+            event.preventDefault();
+
+        }
+    );
+
+
+    document.addEventListener(
+        "keydown",
+        function(event) {
+
+            const key =
+                event.key.toLowerCase();
+
+
+            if (
+                (event.ctrlKey ||
+                 event.metaKey)
+                &&
+                ["c", "u", "s"].includes(key)
+            ) {
+
+                event.preventDefault();
+
+            }
+
+        }
+    );
+
+</script>
+
+
+<!-- Existing dark-mode support -->
+<script src="../../assets/js/dark-mode.js"></script>
+
+
+</body>
+</html>
