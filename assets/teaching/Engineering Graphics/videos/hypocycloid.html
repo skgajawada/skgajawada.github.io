@@ -99,7 +99,7 @@ canvas {
     font-weight: 700;
 }
 
-/* PARAMETERS PANEL (TOP RIGHT) */
+/* PARAMETERS PANEL (TOP RIGHT) - ALWAYS VISIBLE NOW */
 .params-panel {
     position: absolute;
     top: 12px;
@@ -229,11 +229,6 @@ canvas {
     font-size: 13px;
     z-index: 20;
 }
-
-@media (max-width: 1050px) {
-    .params-panel { display: none; }
-    .author { display: none; }
-}
 </style>
 </head>
 
@@ -332,7 +327,7 @@ const ctx = canvas.getContext("2d");
 let W = 0;
 let H = 0;
 
-/* Adjustable Parameters - Default zoom set to 4.0 (400% - double the previous size) */
+/* Adjustable Parameters - Default zoom set to 4.0 (400%) */
 let R = 45.0;
 let r = 30.0;
 let startDeg = 140.0;
