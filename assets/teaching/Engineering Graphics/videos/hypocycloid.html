@@ -827,6 +827,420 @@ function drawWatermark() {
    Main renderer
 ------------------------------------------------------------------ */
 
+
+/* =========================================================
+   MOBILE MODE — USE THE SAME EPICYCLOID PRESENTATION
+   AS epicycloid(3).html
+
+   The desktop layout/geometry remains Hypocycloid.
+   On phones (portrait or landscape), the canvas renderer
+   switches to the epicycloid construction so the mobile
+   presentation remains compact and readable.
+   ========================================================= */
+
+const MOBILE_BREAKPOINT = 850;
+
+const mobileEpi = (() => {
+    const R = 180.0;
+    const r = 50.0;
+    const N = 12;
+    const OC = R + r;
+
+    const START_DEG = 140.0;
+    const TOTAL_ARC_DEG = 100.0;
+    const STEP_DEG = TOTAL_ARC_DEG / N;
+
+    const Ox = 0.0;
+    const Oy = 15.0;
+    const START = START_DEG * Math.PI / 180.0;
+    const END = (START_DEG - TOTAL_ARC_DEG) * Math.PI / 180.0;
+    const point0Angle = START + Math.PI;
+
+    const XMIN = -330;
+    const XMAX = 330;
+    const YMIN = -10;
+    const YMAX = 310;
+
+    const colors = [
+        "rgb(255,127,14)", "rgb(31,119,180)", "rgb(148,103,189)",
+        "rgb(44,160,44)", "rgb(214,39,40)", "rgb(23,190,207)",
+        "rgb(227,119,194)", "rgb(188,189,34)", "rgb(140,86,75)",
+        "rgb(127,127,127)", "rgb(255,187,120)", "rgb(174,199,232)"
+    ];
+
+    function metrics() {
+        const left = W * 0.065;
+        const right = W * 0.935;
+        const top = H * 0.07;
+        const bottom = H * 0.88;
+
+        const pp = Math.min(
+            (right - left) / (XMAX - XMIN),
+            (bottom - top) / (YMAX - YMIN)
+        );
+
+        return {
+            pp,
+            cx: left + (right - left) / 2,
+            cy: bottom - (-YMIN) * pp
+        };
+    }
+
+    function sx(x) {
+        const m = metrics();
+        return m.cx + x * m.pp;
+    }
+
+    function sy(y) {
+        const m = metrics();
+        return m.cy - y * m.pp;
+    }
+
+    function setLine(width, color, alpha = 1, dash = []) {
+        const m = metrics();
+        ctx.lineWidth = Math.max(0.7, width * m.pp);
+        ctx.strokeStyle = color;
+        ctx.globalAlpha = alpha;
+        ctx.setLineDash(dash);
+        ctx.lineCap = "butt";
+        ctx.lineJoin = "round";
+    }
+
+    function line(x1, y1, x2, y2) {
+        ctx.beginPath();
+        ctx.moveTo(sx(x1), sy(y1));
+        ctx.lineTo(sx(x2), sy(y2));
+        ctx.stroke();
+    }
+
+    function circle(cx, cy, rad, width, color, alpha = 1) {
+        setLine(width, color, alpha);
+        ctx.beginPath();
+        const p = 360;
+        for (let i = 0; i <= p; i++) {
+            const a = 2 * Math.PI * i / p;
+            const x = sx(cx + rad * Math.cos(a));
+            const y = sy(cy + rad * Math.sin(a));
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+        ctx.setLineDash([]);
+    }
+
+    function marker(x, y, size, fill, stroke = fill) {
+        const m = metrics();
+        const rad = Math.max(1.5, size * m.pp * 0.45);
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = fill;
+        ctx.strokeStyle = stroke;
+        ctx.lineWidth = 1.2;
+
+        ctx.beginPath();
+        ctx.arc(sx(x), sy(y), rad, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.stroke();
+    }
+
+    function text(txt, x, y, size, color = "#000", weight = "normal",
+                 align = "center", baseline = "middle") {
+        const m = metrics();
+        const fs = Math.max(8, size * Math.max(0.75, Math.min(1.3, m.pp)));
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = color;
+        ctx.font = `${weight} ${fs}px Arial, Helvetica, sans-serif`;
+        ctx.textAlign = align;
+        ctx.textBaseline = baseline;
+        ctx.fillText(txt, sx(x), sy(y));
+    }
+
+    function arc(radius, a0, a1, width, color, alpha = 1, dash = []) {
+        setLine(width, color, alpha, dash);
+        ctx.beginPath();
+        const n = 400;
+        for (let i = 0; i < n; i++) {
+            const f = i / (n - 1);
+            const a = a0 + (a1 - a0) * f;
+            const x = sx(Ox + radius * Math.cos(a));
+            const y = sy(Oy + radius * Math.sin(a));
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+        ctx.setLineDash([]);
+    }
+
+    function center(t) {
+        const theta = START - (STEP_DEG * Math.PI / 180) * t;
+        return {
+            theta,
+            x: Ox + OC * Math.cos(theta),
+            y: Oy + OC * Math.sin(theta)
+        };
+    }
+
+    function pointOnCurve(t) {
+        const theta = START - (STEP_DEG * Math.PI / 180) * t;
+        const alpha = ((R + r) / r) * (theta - START);
+        const c = center(t);
+
+        return {
+            x: c.x + r * Math.cos(point0Angle + alpha),
+            y: c.y + r * Math.sin(point0Angle + alpha)
+        };
+    }
+
+    function materialAngle(i, t) {
+        const alpha = ((R + r) / r) *
+            ((START - (STEP_DEG * Math.PI / 180) * t) - START);
+        return point0Angle + i * 2 * Math.PI / N + alpha;
+    }
+
+    function drawArcAboutO(radius, a0, a1, width, color, alpha = 1) {
+        setLine(width, color, alpha);
+        ctx.beginPath();
+
+        const n = 180;
+        for (let i = 0; i < n; i++) {
+            const f = i / (n - 1);
+            const a = a0 + (a1 - a0) * f;
+            const x = sx(Ox + radius * Math.cos(a));
+            const y = sy(Oy + radius * Math.sin(a));
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        }
+
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+        ctx.setLineDash([]);
+    }
+
+    function drawStatic() {
+        const C0 = center(0);
+
+        circle(C0.x, C0.y, r, 2.5, "rgb(31,119,180)", 0.75);
+        marker(C0.x, C0.y, 5, "rgb(31,119,180)");
+
+        const initialMaterial = [];
+        const initialG = [];
+
+        for (let i = 0; i <= N; i++) {
+            const a = point0Angle + i * 2 * Math.PI / N;
+            initialMaterial.push(a);
+
+            const px = C0.x + r * Math.cos(a);
+            const py = C0.y + r * Math.sin(a);
+            initialG.push({ x: px, y: py });
+
+            if (i < N) {
+                setLine(0.8, colors[i], 0.95);
+                line(C0.x, C0.y, px, py);
+                marker(px, py, 3.8, "#ffffff", colors[i]);
+            }
+
+            const lr = r + 12;
+            text(i === 0 ? "0" : String(i),
+                 C0.x + lr * Math.cos(a),
+                 C0.y + lr * Math.sin(a),
+                 8.5, "#222", "bold");
+        }
+
+        const p12a = point0Angle + 2 * Math.PI;
+        const p12x = C0.x + r * Math.cos(p12a);
+        const p12y = C0.y + r * Math.sin(p12a);
+        marker(p12x, p12y, 3.8, "#fff", colors[0]);
+        text("12", p12x - 8, p12y - 8, 8.5, "#222", "bold");
+
+        arc(R, START, END, 2.0, "#000");
+        arc(OC, START, END, 0.75, "rgb(80,80,80)");
+
+        for (let i = 0; i <= N; i++) {
+            const a = START - i * STEP_DEG * Math.PI / 180;
+            const px = Ox + R * Math.cos(a);
+            const py = Oy + R * Math.sin(a);
+            const cx = Ox + OC * Math.cos(a);
+            const cy = Oy + OC * Math.sin(a);
+
+            setLine(0.55, "rgb(60,60,60)", 0.8);
+            line(Ox, Oy, cx, cy);
+            marker(px, py, 4, "#000");
+            marker(cx, cy, 4, "#000");
+
+            text(`${i}'`,
+                 Ox + (R - 18) * Math.cos(a),
+                 Oy + (R - 18) * Math.sin(a),
+                 9, "#174f94", "bold");
+
+            text(`C${i}`, cx, cy + 8, 7.5, "#333");
+        }
+
+        const endLineR = R + 105;
+        setLine(0.55, "#000");
+        line(
+            Ox, Oy,
+            Ox + endLineR * Math.cos(END),
+            Oy + endLineR * Math.sin(END)
+        );
+
+        for (let i = 1; i <= N; i++) {
+            const a = point0Angle + i * 2 * Math.PI / N;
+            const px = C0.x + r * Math.cos(a);
+            const py = C0.y + r * Math.sin(a);
+            const radius = Math.hypot(px - Ox, py - Oy);
+            const startA = Math.atan2(py - Oy, px - Ox);
+
+            let delta = END - startA;
+            while (delta > 0) delta -= 2 * Math.PI;
+            while (delta < -2 * Math.PI) delta += 2 * Math.PI;
+
+            drawArcAboutO(radius, startA, startA + delta,
+                          0.55, "#000", 0.8);
+        }
+
+        const Dx = Ox + OC * Math.cos(END);
+        const Dy = Oy + OC * Math.sin(END);
+        marker(Dx, Dy, 3.5, "#fff");
+        text("D", Dx + 8, Dy - 5, 9, "#000", "bold");
+
+        marker(Ox, Oy, 5, "#000");
+        text("O", Ox, Oy - 13, 12, "#000", "bold");
+    }
+
+    function drawTrace(t) {
+        const samples = Math.max(2, Math.ceil(t * 24) + 1);
+
+        setLine(2.8, "rgb(0,0,255)");
+        ctx.beginPath();
+
+        for (let i = 0; i < samples; i++) {
+            const q = t * i / (samples - 1);
+            const p = pointOnCurve(q);
+
+            if (i === 0) ctx.moveTo(sx(p.x), sy(p.y));
+            else ctx.lineTo(sx(p.x), sy(p.y));
+        }
+
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+    }
+
+    function drawGeneratedPoints(step) {
+        for (let i = 0; i <= step; i++) {
+            const p = pointOnCurve(i);
+            marker(p.x, p.y, 3.0, "#d0008f", "#fff");
+            text(`P${i}`, p.x, p.y + 14, 10, "#d0008f", "bold");
+        }
+    }
+
+    function drawDynamic(frame) {
+        const state = animationState(frame);
+        const t = state.t;
+        const step = state.step;
+        const paused = state.paused;
+
+        const c = center(t);
+        const p = pointOnCurve(t);
+
+        drawTrace(t);
+        drawGeneratedPoints(step);
+
+        const alpha = ((R + r) / r) * (c.theta - START);
+
+        circle(c.x, c.y, r, 2.5, "rgb(255,127,14)");
+        marker(c.x, c.y, 5, "rgb(255,127,14)");
+
+        const contactX = Ox + R * Math.cos(c.theta);
+        const contactY = Oy + R * Math.sin(c.theta);
+        marker(contactX, contactY, 5, "rgb(220,0,0)");
+
+        const activeIndex = Math.min(N - 1, Math.max(0, step));
+        const activeColor = colors[activeIndex];
+
+        setLine(1.15, activeColor);
+        line(Ox, Oy, c.x, c.y);
+
+        for (let i = 0; i < N; i++) {
+            const a = materialAngle(i, t);
+            const px = c.x + r * Math.cos(a);
+            const py = c.y + r * Math.sin(a);
+
+            setLine(0.75, colors[i], 0.72);
+            line(c.x, c.y, px, py);
+            marker(px, py, 3.8, "#fff", colors[i]);
+
+            const lr = r + 12;
+            text(i === 0 ? "0" : String(i),
+                 c.x + lr * Math.cos(a),
+                 c.y + lr * Math.sin(a),
+                 8.5, "#222", "bold");
+        }
+
+        const activePointAngle =
+            point0Angle + activeIndex * 2 * Math.PI / N + alpha;
+
+        let activePX = c.x + r * Math.cos(activePointAngle);
+        let activePY = c.y + r * Math.sin(activePointAngle);
+
+        if (paused && step <= N) {
+            const exactAngle =
+                point0Angle + step * 2 * Math.PI / N + alpha;
+            activePX = c.x + r * Math.cos(exactAngle);
+            activePY = c.y + r * Math.sin(exactAngle);
+        }
+
+        setLine(1.15, activeColor);
+        line(c.x, c.y, activePX, activePY);
+
+        text(`C${step}`, c.x, c.y - 10, 9, "#000", "bold");
+        marker(p.x, p.y, 5.5, "rgb(0,0,255)");
+    }
+
+    function drawWatermark() {
+        ctx.save();
+        ctx.translate(W / 2, H / 2);
+        ctx.rotate(-Math.PI / 10);
+
+        const fontSize = Math.max(40, Math.min(90, W * 0.08));
+        ctx.font = `700 ${fontSize}px Arial, Helvetica, sans-serif`;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.globalAlpha = 0.075;
+        ctx.fillStyle = "#123b63";
+        ctx.fillText("Gajavada Sanjeevkumar", 0, 0);
+
+        ctx.restore();
+    }
+
+    function render(frame) {
+        drawStatic();
+        drawDynamic(frame);
+        drawWatermark();
+    }
+
+    return { render };
+})();
+
+function isMobileLayout() {
+    /*
+       width <= 850 catches phones in both portrait and
+       landscape.  Desktop View on a phone can report a
+       larger CSS viewport, so additionally use the coarse
+       pointer/hover combination to identify a touch device.
+    */
+    const touchDevice =
+        ("ontouchstart" in window) ||
+        (navigator.maxTouchPoints && navigator.maxTouchPoints > 0);
+
+    const coarsePointer =
+        window.matchMedia &&
+        window.matchMedia("(pointer: coarse)").matches;
+
+    return window.innerWidth <= MOBILE_BREAKPOINT ||
+           (touchDevice && coarsePointer && window.innerWidth <= 1200);
+}
+
 function render() {
     ctx.save();
     ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -838,35 +1252,37 @@ function render() {
     ctx.globalAlpha = 1;
     ctx.setLineDash([]);
 
-    /*
-       Rotate the complete construction diagram anticlockwise.
+    if (isMobileLayout()) {
+        /*
+           MOBILE:
+           Use the epicycloid presentation from epicycloid(3).html.
+           This is intentionally independent of the desktop
+           hypocycloid coordinate system, so portrait and landscape
+           remain compact instead of stretching/cropping the
+           hypocycloid drawing.
+        */
+        mobileEpi.render(currentFrame);
+    } else {
+        /*
+           DESKTOP / LAPTOP:
+           Keep the existing hypocycloid construction exactly as
+           supplied in the original hypocycloid file.
+        */
+        ctx.save();
+        ctx.translate(W / 2, H / 2);
+        ctx.rotate(DIAGRAM_ROTATION);
+        ctx.translate(-W / 2, -H / 2);
 
-       With START_DEG = 125° and 12 divisions over 100°,
-       point 6' is at:
-           125° - 6 × (100° / 12) = 75°
+        drawStaticBackground();
+        drawDynamic(currentFrame);
 
-       Thus O–6' is 15° away from vertical.  A -15° canvas
-       rotation makes O–6' exactly vertical.
-
-       All construction geometry, rolling circle, generated
-       curve, division lines, points, labels and trace rotate
-       together.  The HTML controls remain fixed.
-    */
-    ctx.save();
-    ctx.translate(W / 2, H / 2);
-    ctx.rotate(DIAGRAM_ROTATION);
-    ctx.translate(-W / 2, -H / 2);
-
-    drawStaticBackground();
-    drawDynamic(currentFrame);
-
-    ctx.restore();
-
-    /* Keep the watermark independently oriented. */
-    drawWatermark();
+        ctx.restore();
+        drawWatermark();
+    }
 
     ctx.restore();
 }
+
 
 /* ------------------------------------------------------------------
    Playback & Control Engine
