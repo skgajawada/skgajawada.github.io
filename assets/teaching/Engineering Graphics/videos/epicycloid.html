@@ -6,17 +6,11 @@
 <title>Epicycloid Construction — 12 Equal Divisions</title>
 
 <style>
-
-/* =========================================================
-   GLOBAL
-   ========================================================= */
-
 * {
     box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -31,50 +25,34 @@ body {
     flex-direction: column;
 }
 
-
-/* =========================================================
-   HEADER
-   ========================================================= */
-
 .header {
     height: 58px;
     min-height: 58px;
-
     background: #123b63;
     color: #ffffff;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     padding: 8px 18px;
-
     z-index: 20;
 }
 
 .title-area h1 {
     margin: 0;
-    font-size: clamp(18px, 2vw, 27px);
+    font-size: clamp(16px, 2vw, 24px);
     font-weight: 700;
-    letter-spacing: 0.3px;
 }
 
 .title-area p {
-    margin: 3px 0 0;
-    font-size: clamp(10px, 1vw, 13px);
+    margin: 2px 0 0;
+    font-size: clamp(10px, 1vw, 12px);
     opacity: 0.9;
 }
 
 .author {
     font-size: clamp(11px, 1vw, 14px);
     font-weight: 600;
-    white-space: nowrap;
 }
-
-
-/* =========================================================
-   MAIN
-   ========================================================= */
 
 .main {
     position: relative;
@@ -92,34 +70,20 @@ canvas {
     background: #ffffff;
 }
 
-
-/* =========================================================
-   INFORMATION PANEL
-   ========================================================= */
-
+/* INFORMATION PANEL (TOP LEFT) */
 .info-panel {
     position: absolute;
-
     top: 12px;
     left: 14px;
-
     z-index: 10;
-
-    min-width: 280px;
-
+    width: 270px;
     padding: 12px 16px;
-
     background: rgba(255,255,255,0.96);
-
     border: 1px solid #b7c5d3;
     border-radius: 8px;
-
-    box-shadow:
-        0 2px 8px rgba(0,0,0,0.10);
-
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
     color: #17324d;
-
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.55;
 }
 
@@ -135,369 +99,229 @@ canvas {
     font-weight: 700;
 }
 
+/* PARAMETERS PANEL (TOP RIGHT) */
+.params-panel {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    z-index: 10;
+    width: 320px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.96);
+    border: 1px solid #b7c5d3;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    color: #17324d;
+    font-size: 13px;
+    line-height: 1.45;
+}
 
-/* =========================================================
-   COMBINED NAVIGATION BAR
-   ========================================================= */
+.params-title {
+    margin-bottom: 6px;
+    color: #123b63;
+    font-size: 15px;
+    font-weight: 700;
+    border-bottom: 1px solid #d0dbe5;
+    padding-bottom: 4px;
+}
 
+.param-group {
+    margin-top: 8px;
+    padding-top: 6px;
+    border-top: 1px dashed #d0dbe5;
+}
+
+.param-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.param-row label {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.param-row input[type="range"] {
+    width: 120px;
+    cursor: pointer;
+}
+
+.param-row span {
+    font-weight: 700;
+    font-size: 12px;
+    min-width: 42px;
+    text-align: right;
+}
+
+.desc-text {
+    font-size: 11px;
+    color: #555;
+    margin-top: 3px;
+    line-height: 1.35;
+}
+
+/* NAVIGATION BAR */
 .navigation {
     position: absolute;
-
     left: 50%;
     bottom: 10px;
-
     transform: translateX(-50%);
-
     z-index: 15;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     gap: 5px;
-
     padding: 7px 9px;
-
     background: rgba(255,255,255,0.98);
-
     border: 1px solid #b8c4cf;
-
     border-radius: 10px;
-
-    box-shadow:
-        0 2px 10px rgba(0,0,0,0.12);
-
+    box-shadow: 0 2px 10px rgba(0,0,0,0.12);
     white-space: nowrap;
 }
-
-
-/* =========================================================
-   NAVIGATION BUTTONS
-   ========================================================= */
 
 .nav-btn {
     height: 32px;
     min-width: 38px;
-
     padding: 5px 9px;
-
     border: none;
     border-radius: 6px;
-
     background: #174f94;
     color: #ffffff;
-
     font-size: 12px;
     font-weight: 700;
-
     cursor: pointer;
-
-    transition:
-        background 0.15s ease,
-        transform 0.1s ease;
+    transition: background 0.15s ease, transform 0.1s ease;
 }
 
-.nav-btn:hover {
-    background: #103d73;
-}
-
-.nav-btn:active {
-    transform: scale(0.96);
-}
-
-.nav-btn.play {
-    min-width: 48px;
-}
-
-.nav-btn.reset {
-    background: #4c6478;
-}
-
-.nav-btn.reset:hover {
-    background: #374d60;
-}
-
-
-/* =========================================================
-   SPEED CONTROL
-   ========================================================= */
+.nav-btn:hover { background: #103d73; }
+.nav-btn:active { transform: scale(0.96); }
+.nav-btn.play { min-width: 48px; }
+.nav-btn.reset { background: #4c6478; }
+.nav-btn.reset:hover { background: #374d60; }
 
 .speed-group {
     display: flex;
     align-items: center;
     gap: 5px;
-
     padding-left: 4px;
-
     color: #333333;
     font-size: 12px;
 }
 
-input[type="range"] {
-    width: 100px;
+.speed-group input[type="range"] {
+    width: 80px;
     cursor: pointer;
 }
-
-.speed-value {
-    min-width: 24px;
-    text-align: right;
-}
-
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
 
 .footer {
     height: 34px;
     min-height: 34px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     background: #eef3f7;
     color: #52616d;
-
     border-top: 1px solid #ccd6df;
-
     font-size: 13px;
-    letter-spacing: 0.2px;
-
     z-index: 20;
 }
 
-
-/* =========================================================
-   SMALL SCREEN / RESPONSIVE
-   ========================================================= */
-
-@media (max-width: 850px) {
+@media (max-width: 1050px) {
+    .params-panel { display: none; }
     .author { display: none; }
-    .navigation { gap: 3px; padding: 6px; }
-    .nav-btn { min-width: 32px; padding: 4px 6px; }
-    .speed-group { padding-left: 2px; }
-    input[type="range"] { width: 70px; }
 }
-
-@media (max-width: 1100px) {
-    .header { height: 54px; min-height: 54px; padding: 7px 14px; }
-    .title-area h1 { font-size: clamp(17px, 2.6vw, 24px); }
-    .title-area p { font-size: 10px; }
-    .author { font-size: 11px; }
-    .info-panel { top: 9px; left: 9px; min-width: 220px; max-width: 245px; padding: 9px 11px; font-size: 11px; line-height: 1.42; }
-    .info-title { font-size: 12px; }
-    .navigation { bottom: 7px; gap: 4px; padding: 6px 7px; max-width: calc(100% - 12px); }
-    .nav-btn { height: 30px; min-width: 34px; padding: 4px 7px; font-size: 11px; }
-    .nav-btn.play { min-width: 42px; }
-    .speed-group { font-size: 10px; gap: 4px; }
-    input[type="range"] { width: 78px; }
-    .footer { height: 30px; min-height: 30px; font-size: 11px; padding: 0 8px; }
-}
-
-@media (max-width: 700px) {
-    .header { height: 48px; min-height: 48px; padding: 5px 9px; }
-    .title-area h1 { font-size: clamp(14px, 4.4vw, 19px); line-height: 1.05; letter-spacing: 0; }
-    .title-area p { margin-top: 2px; font-size: 8px; }
-    .author { display: none; }
-    .info-panel { top: 5px; left: 5px; min-width: 168px; max-width: 180px; padding: 6px 8px; border-radius: 6px; font-size: 9px; line-height: 1.30; }
-    .info-title { margin-bottom: 2px; font-size: 10px; }
-    .navigation { left: 50%; bottom: 4px; width: max-content; max-width: calc(100% - 6px); gap: 2px; padding: 3px; border-radius: 7px; }
-    .nav-btn { height: 26px; min-width: 27px; padding: 3px 4px; border-radius: 5px; font-size: 9px; }
-    .nav-btn.play { min-width: 32px; }
-    .speed-group { gap: 2px; padding-left: 2px; font-size: 8px; }
-    input[type="range"] { width: 48px; }
-    .speed-value { min-width: 17px; }
-    .footer { height: 24px; min-height: 24px; font-size: 9px; letter-spacing: 0; padding: 0 4px; }
-}
-
-@media (max-width: 430px) {
-    .header { height: 44px; min-height: 44px; padding: 4px 7px; }
-    .title-area h1 { font-size: 13px; }
-    .title-area p { display: none; }
-    .info-panel { top: 4px; left: 4px; min-width: 148px; max-width: 154px; padding: 5px 6px; font-size: 8px; line-height: 1.24; }
-    .info-title { font-size: 9px; }
-    .navigation { bottom: 2px; max-width: calc(100% - 4px); padding: 2px; }
-    .nav-btn { height: 24px; min-width: 24px; padding: 2px 3px; font-size: 8px; }
-    .nav-btn.play { min-width: 29px; }
-    .speed-group { font-size: 7px; }
-    input[type="range"] { width: 40px; }
-    .speed-value { min-width: 15px; }
-    .footer { height: 21px; min-height: 21px; font-size: 8px; }
-}
-
-@media (max-width: 900px) and (max-height: 480px) {
-    .header { height: 40px; min-height: 40px; padding: 3px 7px; }
-    .title-area h1 { font-size: 13px; }
-    .title-area p { display: none; }
-    .info-panel { top: 4px; left: 4px; min-width: 145px; max-width: 150px; padding: 4px 6px; font-size: 7px; line-height: 1.20; }
-    .info-title { font-size: 8px; }
-    .navigation { bottom: 2px; padding: 2px; }
-    .nav-btn { height: 23px; min-width: 23px; padding: 2px 3px; font-size: 8px; }
-    .nav-btn.play { min-width: 28px; }
-    .speed-group { font-size: 7px; }
-    input[type="range"] { width: 40px; }
-    .footer { height: 19px; min-height: 19px; font-size: 7px; }
-}
-
-body.compact-landscape .header { height: 44px; min-height: 44px; padding: 4px 9px; }
-body.compact-landscape .title-area h1 { font-size: 15px; line-height: 1.05; }
-body.compact-landscape .title-area p, body.compact-landscape .author { display: none; }
-body.compact-landscape .info-panel { top: 5px; left: 5px; min-width: 148px; width: 158px; max-width: 158px; padding: 6px 8px; font-size: 8px; line-height: 1.28; }
-body.compact-landscape .info-title { font-size: 9px; margin-bottom: 2px; }
-body.compact-landscape .navigation { left: 50%; bottom: 24px; gap: 2px; padding: 3px; max-width: calc(100% - 8px); transform: translateX(-50%); }
-body.compact-landscape .nav-btn { height: 25px; min-width: 26px; padding: 2px 4px; font-size: 9px; }
-body.compact-landscape .nav-btn.play { min-width: 31px; }
-body.compact-landscape .speed-group { gap: 2px; padding-left: 2px; font-size: 8px; }
-body.compact-landscape input[type="range"] { width: 48px; }
-body.compact-landscape .footer { height: 21px; min-height: 21px; font-size: 9px; padding: 0 5px; }
-
-body.compact-portrait .author { display: none; }
-body.compact-portrait .navigation { bottom: 25px; }
-body.compact-portrait .footer { height: 22px; min-height: 22px; font-size: 8px; }
-
 </style>
 </head>
 
 <body>
 
-<!-- =======================================================
-     HEADER
-     ======================================================= -->
-
 <div class="header">
     <div class="title-area">
-        <h1>
-            Epicycloid Construction — 12 Equal Divisions
-        </h1>
-        <p>
-            Engineering Drawing / Engineering Graphics
-        </p>
+        <h1>Epicycloid Construction — Interactive Simulation</h1>
+        <p>Engineering Drawing / Engineering Graphics</p>
     </div>
-    <div class="author">
-        Gajavada Sanjeevkumar
-    </div>
+    <div class="author">Gajavada Sanjeevkumar</div>
 </div>
 
-
-<!-- =======================================================
-     MAIN ANIMATION
-     ======================================================= -->
-
 <div class="main">
-
     <canvas id="canvas"></canvas>
 
-    <!-- ===================================================
-         INFORMATION PANEL
-         =================================================== -->
-
+    <!-- INFORMATION PANEL (TOP LEFT) -->
     <div class="info-panel">
-        <div class="info-title">
-            Epicycloid Parameters
+        <div class="info-title">Epicycloid Parameters</div>
+        <div>Directing Radius (R): <span class="value" id="infoR">45 mm</span></div>
+        <div>Generating Radius (r): <span class="value" id="infoRGen">30 mm</span></div>
+        <div>Angle at O: <span class="value" id="infoAngleO">240.0°</span></div>
+        <div>Divisions: <span class="value">12</span></div>
+        <div>Current Step: <span class="value" id="divisionValue">C0</span></div>
+        <div>Covered Arc: <span class="value" id="angleValue">0.0°</span></div>
+        <div>Direction: <span class="value" id="directionValue">Forward</span></div>
+    </div>
+
+    <!-- CONTROLS & SLIDER PANEL (TOP RIGHT) -->
+    <div class="params-panel">
+        <div class="params-title">Geometry Controls</div>
+
+        <div class="param-group">
+            <div class="param-row">
+                <label>Directing R:</label>
+                <input id="rSlider" type="range" min="15" max="60" step="1" value="45">
+                <span id="rVal">45</span>
+            </div>
+            <div class="desc-text">Radius of the fixed directing circle.</div>
         </div>
-        <div>
-            Directing Radius (R):
-            <span class="value">180 mm</span>
+
+        <div class="param-group">
+            <div class="param-row">
+                <label>Generating r:</label>
+                <input id="genSlider" type="range" min="15" max="60" step="1" value="30">
+                <span id="genVal">30</span>
+            </div>
+            <div class="desc-text">Rolling circle radius. Calculated Angle at O: <strong id="cardAngleO" style="color:#123b63;">240.0°</strong></div>
         </div>
-        <div>
-            Generating Radius (r):
-            <span class="value">50 mm</span>
+
+        <div class="param-group">
+            <div class="param-row">
+                <label>Orientation (°):</label>
+                <input id="orientSlider" type="range" min="0" max="360" step="5" value="140">
+                <span id="orientVal">140°</span>
+            </div>
+            <div class="desc-text">Rotation angle of initial center position.</div>
         </div>
-        <div>
-            Divisions:
-            <span class="value">12 × 8.33°</span>
-        </div>
-        <div>
-            Current Step:
-            <span class="value" id="divisionValue">C0</span>
-        </div>
-        <div>
-            Covered Arc:
-            <span class="value" id="angleValue">0.0°</span>
-        </div>
-        <div>
-            Direction:
-            <span class="value" id="directionValue">Forward</span>
+
+        <div class="param-group">
+            <div class="param-row">
+                <label>Zoom Level (%):</label>
+                <input id="zoomSlider" type="range" min="50" max="400" step="5" value="200">
+                <span id="zoomVal">200%</span>
+            </div>
         </div>
     </div>
 
-
-    <!-- ===================================================
-         COMBINED NAVIGATION
-         =================================================== -->
-
+    <!-- NAVIGATION BAR -->
     <div class="navigation">
-        <button
-            class="nav-btn"
-            id="backwardBtn"
-            title="Previous step">
-            ◀◀
-        </button>
-
-        <button
-            class="nav-btn"
-            id="reverseBtn"
-            title="Run backward">
-            ◀
-        </button>
-
-        <button
-            class="nav-btn play"
-            id="playBtn"
-            title="Play / Pause">
-            ▶
-        </button>
-
-        <button
-            class="nav-btn"
-            id="forwardBtn"
-            title="Run forward">
-            ▶
-        </button>
-
-        <button
-            class="nav-btn"
-            id="nextBtn"
-            title="Next step">
-            ▶▶
-        </button>
-
-        <button
-            class="nav-btn reset"
-            id="resetBtn"
-            title="Reset animation">
-            ↻ Reset
-        </button>
+        <button class="nav-btn" id="backwardBtn" title="Previous step">◀◀</button>
+        <button class="nav-btn" id="reverseBtn" title="Run backward">◀</button>
+        <button class="nav-btn play" id="playBtn" title="Play / Pause">▶</button>
+        <button class="nav-btn" id="forwardBtn" title="Run forward">▶</button>
+        <button class="nav-btn" id="nextBtn" title="Next step">▶▶</button>
+        <button class="nav-btn reset" id="resetBtn" title="Reset animation">↻ Reset</button>
 
         <div class="speed-group">
             <span>Speed</span>
-            <input
-                id="speedSlider"
-                type="range"
-                min="0.25"
-                max="2"
-                step="0.25"
-                value="1">
-            <span
-                class="speed-value"
-                id="speedValue">
-                1×
-            </span>
+            <input id="speedSlider" type="range" min="0.25" max="3" step="0.25" value="1">
+            <span class="speed-value" id="speedValue">1×</span>
         </div>
     </div>
-
 </div>
-
-
-<!-- =======================================================
-     FOOTER
-     ======================================================= -->
 
 <div class="footer">
     Epicycloid generated by rolling a generating circle outside a directing circle
 </div>
-
 
 <script>
 "use strict";
@@ -508,84 +332,93 @@ const ctx = canvas.getContext("2d");
 let W = 0;
 let H = 0;
 
-const R = 180.0;
-const r = 50.0;
-const N = 12;
-const OC = R + r;
+/* Adjustable Parameters - Default zoom set to 2.0 (200%) */
+let R = 45.0;
+let r = 30.0;
+let startDeg = 140.0;
+let userZoom = 2.0;
 
-const START_DEG = 140.0;
-const TOTAL_ARC_DEG = 100.0;
-const END_DEG = START_DEG - TOTAL_ARC_DEG;
-const STEP_DEG = TOTAL_ARC_DEG / N;
+const N = 12;
+
+function getTotalArcDeg() {
+    return 360.0 * (r / R);
+}
 
 const FPS = 30;
 const ROLL_FRAMES = 20;
 const PAUSE_FRAMES = FPS;
 const TOTAL_FRAMES = PAUSE_FRAMES + N * (ROLL_FRAMES + PAUSE_FRAMES);
 
-const Ox = 0.0;
-const Oy = 15.0;
-const START = START_DEG * Math.PI / 180.0;
-const END = END_DEG * Math.PI / 180.0;
-const point0Angle = START + Math.PI;
-
 const lineColors = [
-    "rgb(255,127,14)",
-    "rgb(31,119,180)",
-    "rgb(148,103,189)",
-    "rgb(44,160,44)",
-    "rgb(214,39,40)",
-    "rgb(23,190,207)",
-    "rgb(227,119,194)",
-    "rgb(188,189,34)",
-    "rgb(140,86,75)",
-    "rgb(127,127,127)",
-    "rgb(255,187,120)",
-    "rgb(174,199,232)"
+    "rgb(255,127,14)", "rgb(31,119,180)", "rgb(148,103,189)", "rgb(44,160,44)",
+    "rgb(214,39,40)", "rgb(23,190,207)", "rgb(227,119,194)", "rgb(188,189,34)",
+    "rgb(140,86,75)", "rgb(127,127,127)", "rgb(255,187,120)", "rgb(174,199,232)"
 ];
-
-const XMIN = -330;
-const XMAX = 330;
-const YMIN = -10;
-const YMAX = 310;
 
 let SCALE = 1.0;
 let FONT_SCALE = 1.0;
 
+function getLayoutBounds() {
+    const totalArcDeg = getTotalArcDeg();
+    let f = Math.max(0, Math.min(1, (totalArcDeg - 180.0) / 180.0));
+    
+    let maxSpread = R + 2.0 * r;
+    let yMin = -20 - f * (maxSpread + 20.0);
+    let yMax = 310.0 + f * (maxSpread - 130.0);
+    
+    let oy = 15.0 * (1.0 - f);
+    let xSpan = Math.max(330.0, maxSpread + 80.0);
+    let autoZoomMultiplier = 1.0 - f * 0.35;
+
+    return {
+        XMIN: -xSpan,
+        XMAX: xSpan,
+        YMIN: yMin,
+        YMAX: yMax,
+        Oy: oy,
+        zoom: userZoom * autoZoomMultiplier,
+        f: f
+    };
+}
+
 function getScalingMetrics() {
+    const bounds = getLayoutBounds();
     const AX = {
         left: W * 0.065,
         right: W * 0.935,
         top: H * 0.07,
         bottom: H * 0.88
     };
-    const DATA_W = XMAX - XMIN;
-    const DATA_H = YMAX - YMIN;
+    const DATA_W = bounds.XMAX - bounds.XMIN;
+    const DATA_H = bounds.YMAX - bounds.YMIN;
 
     const pixelsPerUnit = Math.min(
         (AX.right - AX.left) / DATA_W,
         (AX.bottom - AX.top) / DATA_H
-    );
+    ) * bounds.zoom;
 
     const dataCx = AX.left + (AX.right - AX.left) / 2;
-    const dataCy = AX.bottom - (-YMIN) * pixelsPerUnit;
+    const viewportCenterY = AX.top + (AX.bottom - AX.top) / 2;
+    const bottomWeightedCy = AX.bottom - (-bounds.YMIN) * pixelsPerUnit;
+    const dataCy = bottomWeightedCy * (1.0 - bounds.f) + viewportCenterY * bounds.f;
 
-    return { pixelsPerUnit, dataCx, dataCy, AX };
+    return { pixelsPerUnit, dataCx, dataCy, AX, bounds };
 }
 
 function sx(x) {
     const m = getScalingMetrics();
-    return m.dataCx + x * m.pixelsPerUnit;
+    return m.dataCx + (x - (m.bounds.XMIN + m.bounds.XMAX) / 2) * m.pixelsPerUnit;
 }
 
 function syCanvas(y) {
     const m = getScalingMetrics();
-    return m.dataCy - y * m.pixelsPerUnit;
+    return m.dataCy - (y - m.bounds.Oy) * m.pixelsPerUnit;
 }
 
 function updateResponsiveScale() {
-    const DATA_W = XMAX - XMIN;
-    const DATA_H = YMAX - YMIN;
+    const bounds = getLayoutBounds();
+    const DATA_W = bounds.XMAX - bounds.XMIN;
+    const DATA_H = bounds.YMAX - bounds.YMIN;
     const horizScale = (W * 0.87) / DATA_W;
     const vertScale = (H * 0.81) / DATA_H;
     SCALE = Math.min(horizScale, vertScale);
@@ -603,7 +436,6 @@ function resizeCanvas() {
     H = rect.height;
 
     updateResponsiveScale();
-
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     render();
 }
@@ -645,6 +477,9 @@ function drawArc(radius, a0, a1, widthPt, color, alpha = 1.0, dash = []) {
     setLine(widthPt, color, alpha, dash);
     ctx.beginPath();
     const n = 400;
+    const Ox = 0.0;
+    const bounds = getLayoutBounds();
+    const Oy = bounds.Oy;
     for (let i = 0; i < n; i++) {
         const f = i / (n - 1);
         const a = a0 + (a1 - a0) * f;
@@ -661,7 +496,7 @@ function drawArc(radius, a0, a1, widthPt, color, alpha = 1.0, dash = []) {
 function drawMarker(x, y, sizePt, fill, stroke = fill) {
     const pX = sx(x);
     const pY = syCanvas(y);
-    const rad = sizePt * SCALE * 0.45; // reduced size for smaller marker points
+    const rad = sizePt * SCALE * 0.45;
     ctx.globalAlpha = 1;
     ctx.fillStyle = fill;
     ctx.strokeStyle = stroke;
@@ -672,8 +507,7 @@ function drawMarker(x, y, sizePt, fill, stroke = fill) {
     ctx.stroke();
 }
 
-function drawText(text, x, y, sizePt, color = "#000", weight = "normal",
-                 align = "center", baseline = "middle") {
+function drawText(text, x, y, sizePt, color = "#000", weight = "normal", align = "center", baseline = "middle") {
     ctx.globalAlpha = 1;
     ctx.fillStyle = color;
     ctx.font = `${weight} ${Math.max(9, sizePt * FONT_SCALE)}px Arial, Helvetica, sans-serif`;
@@ -683,7 +517,14 @@ function drawText(text, x, y, sizePt, color = "#000", weight = "normal",
 }
 
 function centreAt(t) {
-    const theta = START - (STEP_DEG * Math.PI / 180) * t;
+    const OC = R + r;
+    const START = startDeg * Math.PI / 180.0;
+    const totalArcDeg = getTotalArcDeg();
+    const stepDeg = totalArcDeg / N;
+    const theta = START - (stepDeg * Math.PI / 180) * t;
+    const Ox = 0.0;
+    const bounds = getLayoutBounds();
+    const Oy = bounds.Oy;
     return {
         theta,
         x: Ox + OC * Math.cos(theta),
@@ -692,7 +533,11 @@ function centreAt(t) {
 }
 
 function epicycloidPoint(t) {
-    const theta = START - (STEP_DEG * Math.PI / 180) * t;
+    const START = startDeg * Math.PI / 180.0;
+    const point0Angle = START + Math.PI;
+    const totalArcDeg = getTotalArcDeg();
+    const stepDeg = totalArcDeg / N;
+    const theta = START - (stepDeg * Math.PI / 180) * t;
     const alpha = ((R + r) / r) * (theta - START);
     const c = centreAt(t);
     return {
@@ -702,8 +547,12 @@ function epicycloidPoint(t) {
 }
 
 function epicycloidPointExactStep(i) {
+    const START = startDeg * Math.PI / 180.0;
+    const point0Angle = START + Math.PI;
     const t = i;
-    const theta = START - (STEP_DEG * Math.PI / 180) * t;
+    const totalArcDeg = getTotalArcDeg();
+    const stepDeg = totalArcDeg / N;
+    const theta = START - (stepDeg * Math.PI / 180) * t;
     const alpha = ((R + r) / r) * (theta - START);
     const c = centreAt(t);
     return {
@@ -713,34 +562,40 @@ function epicycloidPointExactStep(i) {
 }
 
 function materialAngle(i, t) {
-    const alpha = ((R + r) / r) *
-                  ((START - (STEP_DEG * Math.PI / 180) * t) - START);
+    const START = startDeg * Math.PI / 180.0;
+    const point0Angle = START + Math.PI;
+    const totalArcDeg = getTotalArcDeg();
+    const stepDeg = totalArcDeg / N;
+    const alpha = ((R + r) / r) * ((START - (stepDeg * Math.PI / 180) * t) - START);
     return point0Angle + i * 2 * Math.PI / N + alpha;
 }
 
 function animationState(frame) {
-    if (frame < PAUSE_FRAMES) {
-        return { t: 0, step: 0, paused: true };
-    }
-
+    if (frame < PAUSE_FRAMES) return { t: 0, step: 0, paused: true };
     const q = frame - PAUSE_FRAMES;
     const block = ROLL_FRAMES + PAUSE_FRAMES;
     const step = Math.floor(q / block);
     const local = q % block;
-
-    if (step >= N) {
-        return { t: N, step: N, paused: true };
-    }
-
+    if (step >= N) return { t: N, step: N, paused: true };
     if (local < ROLL_FRAMES) {
         const f = ROLL_FRAMES > 1 ? local / (ROLL_FRAMES - 1) : 1;
         return { t: step + f, step, paused: false };
     }
-
     return { t: step + 1, step: step + 1, paused: true };
 }
 
 function drawStaticBackground() {
+    const Ox = 0.0;
+    const bounds = getLayoutBounds();
+    const Oy = bounds.Oy;
+    const START = startDeg * Math.PI / 180.0;
+    const totalArcDeg = getTotalArcDeg();
+    const stepDeg = totalArcDeg / N;
+    const END_DEG = startDeg - totalArcDeg;
+    const END = END_DEG * Math.PI / 180.0;
+    const point0Angle = START + Math.PI;
+    const OC = R + r;
+
     const cross = 8;
     setLine(1.2, "#000000");
     drawLine(Ox - cross, Oy, Ox + cross, Oy);
@@ -752,7 +607,7 @@ function drawStaticBackground() {
     drawArc(OC, START, END, 0.75, "rgb(80,80,80)");
 
     for (let i = 0; i <= N; i++) {
-        const a = START - i * STEP_DEG * Math.PI / 180;
+        const a = START - i * stepDeg * Math.PI / 180;
         const px = Ox + R * Math.cos(a);
         const py = Oy + R * Math.sin(a);
         const cx = Ox + OC * Math.cos(a);
@@ -760,29 +615,20 @@ function drawStaticBackground() {
 
         setLine(0.55, "rgb(60,60,60)", 0.8);
         drawLine(Ox, Oy, cx, cy);
-
         drawMarker(px, py, 4, "#000000");
 
-        const labelR = R - 18;
-        drawText(`${i}'`,
-            Ox + labelR * Math.cos(a),
-            Oy + labelR * Math.sin(a),
-            9, "#174f94", "bold");
+        const labelR = R - 8;
+        drawText(`${i}'`, Ox + labelR * Math.cos(a), Oy + labelR * Math.sin(a), 9, "#174f94", "bold");
     }
 
     const endLineR = R + 105;
     setLine(0.55, "#000000");
-    drawLine(
-        Ox, Oy,
-        Ox + endLineR * Math.cos(END),
-        Oy + endLineR * Math.sin(END)
-    );
+    drawLine(Ox, Oy, Ox + endLineR * Math.cos(END), Oy + endLineR * Math.sin(END));
 
     for (let i = 0; i <= N; i++) {
-        const a = START - i * STEP_DEG * Math.PI / 180;
+        const a = START - i * stepDeg * Math.PI / 180;
         const cx = Ox + OC * Math.cos(a);
         const cy = Oy + OC * Math.sin(a);
-
         drawMarker(cx, cy, 4, "#000000");
         drawText(`C${i}`, cx, cy + 8, 7.5, "#333333", "normal");
     }
@@ -802,11 +648,8 @@ function drawStaticBackground() {
         drawLine(C0x, C0y, px, py);
         drawMarker(px, py, 3.8, "#ffffff", lineColors[i]);
 
-        const lr = r + 12;
-        drawText(String(i),
-            C0x + lr * Math.cos(a),
-            C0y + lr * Math.sin(a),
-            8.5, "#222222", "bold");
+        const lr = r + 6;
+        drawText(String(i), C0x + lr * Math.cos(a), C0y + lr * Math.sin(a), 8.5, "#222222", "bold");
     }
 
     const p12a = point0Angle + 2 * Math.PI;
@@ -814,49 +657,12 @@ function drawStaticBackground() {
     const p12y = C0y + r * Math.sin(p12a);
     drawMarker(p12x, p12y, 3.8, "#ffffff", lineColors[0]);
     drawText("12", p12x - 8, p12y - 8, 8.5, "#222222", "bold");
-
-    for (let i = 1; i <= N; i++) {
-        const a = point0Angle + i * 2 * Math.PI / N;
-        const px = C0x + r * Math.cos(a);
-        const py = C0y + r * Math.sin(a);
-        const rad = Math.hypot(px - Ox, py - Oy);
-        const startA = Math.atan2(py - Oy, px - Ox);
-
-        let delta = END - startA;
-        while (delta > 0) delta -= 2 * Math.PI;
-        while (delta < -2 * Math.PI) delta += 2 * Math.PI;
-
-        drawArcAboutO(rad, startA, startA + delta, 0.55, "rgb(0,0,0)", 0.8);
-    }
-
-    const Dx = Ox + OC * Math.cos(END);
-    const Dy = Oy + OC * Math.sin(END);
-    drawMarker(Dx, Dy, 3.5, "#ffffff");
-    drawText("D", Dx + 8, Dy - 5, 9, "#000000", "bold");
-}
-
-function drawArcAboutO(radius, a0, a1, widthPt, color, alpha = 1.0) {
-    setLine(widthPt, color, alpha);
-    ctx.beginPath();
-    const n = 180;
-    for (let i = 0; i < n; i++) {
-        const f = i / (n - 1);
-        const a = a0 + (a1 - a0) * f;
-        const x = sx(Ox + radius * Math.cos(a));
-        const y = syCanvas(Oy + radius * Math.sin(a));
-        if (i === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-    }
-    ctx.stroke();
-    ctx.globalAlpha = 1;
-    ctx.setLineDash([]);
 }
 
 function drawTrace(t) {
     const samples = Math.max(2, Math.ceil(t * 24) + 1);
     setLine(2.8, "rgb(0,0,255)", 1.0);
     ctx.beginPath();
-
     for (let i = 0; i < samples; i++) {
         const q = t * i / (samples - 1);
         const p = epicycloidPoint(q);
@@ -873,7 +679,7 @@ function drawGeneratedPoints(currentStep) {
     for (let i = 0; i <= currentStep; i++) {
         const pt = epicycloidPointExactStep(i);
         drawMarker(pt.x, pt.y, 3.0, "#d0008f", "#ffffff");
-        drawText(`P${i}`, pt.x, pt.y + 14, 10, "#d0008f", "bold");
+        drawText(`P${i}`, pt.x, pt.y + 8, 10, "#d0008f", "bold");
     }
 }
 
@@ -890,10 +696,16 @@ function drawDynamic(frame) {
     drawTrace(t);
     drawGeneratedPoints(step);
 
+    const START = startDeg * Math.PI / 180.0;
+    const point0Angle = START + Math.PI;
     const alpha = ((R + r) / r) * (theta - START);
+
     drawCircle(c.x, c.y, r, 2.5, "rgb(255,127,14)", 1.0);
     drawMarker(c.x, c.y, 5, "rgb(255,127,14)");
 
+    const Ox = 0.0;
+    const bounds = getLayoutBounds();
+    const Oy = bounds.Oy;
     const contactX = Ox + R * Math.cos(theta);
     const contactY = Oy + R * Math.sin(theta);
     drawMarker(contactX, contactY, 5, "rgb(220,0,0)");
@@ -928,31 +740,12 @@ function drawDynamic(frame) {
         drawLine(c.x, c.y, px, py);
         drawMarker(px, py, 3.8, "#ffffff", lineColors[i]);
 
-        const lr = r + 12;
-        drawText(
-            i === 0 ? "0" : String(i),
-            c.x + lr * Math.cos(a),
-            c.y + lr * Math.sin(a),
-            8.5, "#222222", "bold"
-        );
+        const lr = r + 6;
+        drawText(i === 0 ? "0" : String(i), c.x + lr * Math.cos(a), c.y + lr * Math.sin(a), 8.5, "#222222", "bold");
     }
 
     drawText(`C${step}`, c.x, c.y - 10, 9, "#000000", "bold");
     drawMarker(p.x, p.y, 5.5, "rgb(0,0,255)");
-}
-
-function drawWatermark() {
-    ctx.save();
-    ctx.translate(W / 2, H / 2);
-    ctx.rotate(-Math.PI / 10);
-    const fontSize = Math.max(40, Math.min(90, W * 0.08));
-    ctx.font = `700 ${fontSize}px Arial, Helvetica, sans-serif`;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.globalAlpha = 0.075;
-    ctx.fillStyle = "#123b63";
-    ctx.fillText("Gajavada Sanjeevkumar", 0, 0);
-    ctx.restore();
 }
 
 function render() {
@@ -962,7 +755,6 @@ function render() {
 
     drawStaticBackground();
     drawDynamic(currentFrame);
-    drawWatermark();
 }
 
 /* Playback & Controls */
@@ -976,11 +768,20 @@ let frameAccumulator = 0;
 function updateInfo() {
     const state = animationState(currentFrame);
     document.getElementById("divisionValue").textContent = `C${state.step} (${state.step}/12)`;
-    const theta = START - (STEP_DEG * Math.PI / 180) * state.t;
+    const START = startDeg * Math.PI / 180.0;
+    const totalArcDeg = getTotalArcDeg();
+    const stepDeg = totalArcDeg / N;
+    const theta = START - (stepDeg * Math.PI / 180) * state.t;
     const coveredAngle = Math.abs((theta - START) * 180 / Math.PI);
     document.getElementById("angleValue").textContent = coveredAngle.toFixed(1) + "°";
     document.getElementById("directionValue").textContent = direction >= 0 ? "Forward" : "Reverse";
     document.getElementById("speedValue").textContent = speed.toFixed(2).replace(/\.00$/, "") + "×";
+    
+    const angleOStr = totalArcDeg.toFixed(1) + "°";
+    document.getElementById("infoR").textContent = R + " mm";
+    document.getElementById("infoRGen").textContent = r + " mm";
+    document.getElementById("infoAngleO").textContent = angleOStr;
+    document.getElementById("cardAngleO").textContent = angleOStr;
 }
 
 function animationLoop(now) {
@@ -989,9 +790,7 @@ function animationLoop(now) {
         requestAnimationFrame(animationLoop);
         return;
     }
-
     if (lastTime === null) lastTime = now;
-
     const elapsed = Math.min(100, now - lastTime);
     lastTime = now;
     frameAccumulator += elapsed * FPS * speed / 1000.0;
@@ -1008,7 +807,6 @@ function animationLoop(now) {
                 break;
             }
         }
-
         if (currentFrame <= 0) {
             currentFrame = 0;
             if (direction < 0) {
@@ -1024,57 +822,104 @@ function animationLoop(now) {
     requestAnimationFrame(animationLoop);
 }
 
-function playForward() {
-    direction = 1;
-    if (currentFrame >= TOTAL_FRAMES - 1) currentFrame = 0;
-    playing = true;
+document.getElementById("playBtn").addEventListener("click", () => {
+    playing = !playing;
+    document.getElementById("playBtn").textContent = playing ? "❚❚" : "▶";
     lastTime = null;
-    document.getElementById("playBtn").textContent = "❚❚";
-}
+});
 
-function playReverse() {
+document.getElementById("reverseBtn").addEventListener("click", () => {
     direction = -1;
-    if (currentFrame <= 0) currentFrame = TOTAL_FRAMES - 1;
     playing = true;
-    lastTime = null;
     document.getElementById("playBtn").textContent = "❚❚";
-}
+    lastTime = null;
+});
 
-function togglePlay() {
-    if (playing) {
-        playing = false;
-        document.getElementById("playBtn").textContent = "▶";
-    } else if (direction < 0) {
-        playReverse();
-    } else {
-        playForward();
-    }
-}
+document.getElementById("forwardBtn").addEventListener("click", () => {
+    direction = 1;
+    playing = true;
+    document.getElementById("playBtn").textContent = "❚❚";
+    lastTime = null;
+});
 
-function stepDivision(dir) {
+document.getElementById("backwardBtn").addEventListener("click", () => {
     playing = false;
     document.getElementById("playBtn").textContent = "▶";
     const block = ROLL_FRAMES + PAUSE_FRAMES;
     const currentState = animationState(currentFrame);
-    let targetStep = Math.max(0, Math.min(N, currentState.step + dir));
-    currentFrame = targetStep * block;
+    currentFrame = Math.max(0, (currentState.step - 1) * block);
     render();
     updateInfo();
-}
+});
 
-document.getElementById("playBtn").addEventListener("click", togglePlay);
-document.getElementById("reverseBtn").addEventListener("click", playReverse);
-document.getElementById("forwardBtn").addEventListener("click", playForward);
-document.getElementById("backwardBtn").addEventListener("click", () => stepDivision(-1));
-document.getElementById("nextBtn").addEventListener("click", () => stepDivision(1));
+document.getElementById("nextBtn").addEventListener("click", () => {
+    playing = false;
+    document.getElementById("playBtn").textContent = "▶";
+    const block = ROLL_FRAMES + PAUSE_FRAMES;
+    const currentState = animationState(currentFrame);
+    currentFrame = Math.min(TOTAL_FRAMES - 1, (currentState.step + 1) * block);
+    render();
+    updateInfo();
+});
 
 document.getElementById("resetBtn").addEventListener("click", () => {
     playing = false;
     direction = 1;
     currentFrame = 0;
+    R = 45.0;
+    r = 30.0;
+    startDeg = 140.0;
+    userZoom = 2.0;
+    speed = 1.0;
+
+    document.getElementById("rSlider").value = R;
+    document.getElementById("rVal").textContent = R;
+    document.getElementById("genSlider").value = r;
+    document.getElementById("genVal").textContent = r;
+    document.getElementById("orientSlider").value = startDeg;
+    document.getElementById("orientVal").textContent = startDeg + "°";
+    document.getElementById("zoomSlider").value = 200;
+    document.getElementById("zoomVal").textContent = "200%";
+    document.getElementById("speedSlider").value = 1;
+
     document.getElementById("playBtn").textContent = "▶";
+    resizeCanvas();
+    updateInfo();
+});
+
+/* Parameter Sliders Wiring */
+document.getElementById("rSlider").addEventListener("input", function() {
+    R = Number(this.value);
+    document.getElementById("rVal").textContent = R;
+    if (r > R) {
+        r = R;
+        document.getElementById("genSlider").value = r;
+        document.getElementById("genVal").textContent = r;
+    }
+    document.getElementById("genSlider").max = R;
     render();
     updateInfo();
+});
+
+document.getElementById("genSlider").addEventListener("input", function() {
+    let val = Number(this.value);
+    if (val > R) val = R;
+    r = val;
+    document.getElementById("genVal").textContent = r;
+    render();
+    updateInfo();
+});
+
+document.getElementById("orientSlider").addEventListener("input", function() {
+    startDeg = Number(this.value);
+    document.getElementById("orientVal").textContent = startDeg + "°";
+    render();
+});
+
+document.getElementById("zoomSlider").addEventListener("input", function() {
+    userZoom = Number(this.value) / 100.0;
+    document.getElementById("zoomVal").textContent = this.value + "%";
+    render();
 });
 
 document.getElementById("speedSlider").addEventListener("input", function() {
@@ -1082,24 +927,9 @@ document.getElementById("speedSlider").addEventListener("input", function() {
     updateInfo();
 });
 
-document.addEventListener("keydown", event => {
-    if (event.target.tagName === "SELECT" || event.target.tagName === "INPUT") return;
-    if (event.code === "Space") {
-        event.preventDefault();
-        togglePlay();
-    } else if (event.key === "ArrowLeft") {
-        event.preventDefault();
-        stepDivision(-1);
-    } else if (event.key === "ArrowRight") {
-        event.preventDefault();
-        stepDivision(1);
-    }
-});
-
 resizeCanvas();
 updateInfo();
 requestAnimationFrame(animationLoop);
-
 </script>
 </body>
 </html>
