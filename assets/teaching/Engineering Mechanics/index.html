@@ -8,499 +8,1997 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>
-        Engineering Mechanics | Gajavada Sanjeevkumar
-    </title>
+    <title>Engineering Mechanics | Gajavada Sanjeevkumar</title>
 
     <meta name="description"
-          content="Engineering Mechanics course portal containing lecture notes, presentations, question banks, books, videos and downloadable learning resources.">
+          content="Engineering Mechanics learning portal by Gajavada Sanjeevkumar.">
 
     <meta name="author"
           content="Gajavada Sanjeevkumar">
 
-    <meta name="robots"
-          content="index,follow">
-
-    <!-- Favicon -->
-    <link rel="icon"
-          href="../../../favicon.ico">
+    <link rel="icon" href="../../../favicon.ico">
 
     <!-- Main Portfolio CSS -->
     <link rel="stylesheet"
-          href="../../../assets/css/style.css">
+          href="https://skgajawada.github.io/assets/css/style.css">
 
-    <!-- Course CSS -->
     <link rel="stylesheet"
-          href="style.css">
+          href="https://skgajawada.github.io/assets/css/animations.css">
+
+    <link rel="stylesheet"
+          href="https://skgajawada.github.io/assets/css/dark-mode.css">
 
     <!-- Font Awesome -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
+
+<style>
+
+/* =========================================================
+   ENGINEERING MECHANICS
+   COURSE PAGE
+   ========================================================= */
+
+:root {
+
+    --em-navy: #101d43;
+    --em-blue: #2563c7;
+    --em-blue-dark: #1d56ad;
+    --em-blue-light: #edf5ff;
+
+    --em-text: #172033;
+    --em-muted: #667085;
+
+    --em-border: #e5eaf1;
+    --em-section: #f7f9fc;
+    --em-white: #ffffff;
+
+}
+
+
+/* =========================================================
+   BASIC
+   ========================================================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    margin: 0;
+
+    color: var(--em-text);
+
+    background: #ffffff;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================================================
+   GLOBAL HEADER
+   ========================================================= */
+
+.em-site-header {
+
+    position: relative;
+
+    z-index: 1000;
+
+    height: 70px;
+
+    min-height: 70px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e7ebf0;
+
+    box-shadow:
+        0 2px 10px rgba(15,23,42,.055);
+}
+
+.em-site-header-inner {
+
+    width:
+        min(1180px, calc(100% - 40px));
+
+    height: 100%;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.em-site-brand {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #2864d7;
+
+    text-decoration: none;
+
+    font-size: 1.22rem;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+.em-site-brand i {
+
+    font-size: 1.2rem;
+}
+
+.em-site-nav {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 27px;
+
+    height: 100%;
+}
+
+.em-site-nav a {
+
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    height: 100%;
+
+    color: #29313f;
+
+    text-decoration: none;
+
+    font-size: .91rem;
+
+    font-weight: 500;
+
+    white-space: nowrap;
+
+    transition: color .2s ease;
+}
+
+.em-site-nav a:hover {
+
+    color: #2864d7;
+}
+
+.em-site-nav a.active {
+
+    color: #202b3d;
+
+    font-weight: 600;
+}
+
+.em-site-nav a.active::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 11px;
+
+    height: 2px;
+
+    border-radius: 2px;
+
+    background: #2864d7;
+}
+
+.em-theme-button {
+
+    width: 42px;
+
+    height: 42px;
+
+    min-width: 42px;
+
+    padding: 0;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #f0f3f5;
+
+    color: #29313f;
+
+    cursor: pointer;
+
+    font-size: 1rem;
+
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.em-hero {
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            120deg,
+            #101d43 0%,
+            #18356f 48%,
+            #2860d4 100%
+        );
+
+    color: #ffffff;
+}
+
+.em-hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 520px;
+
+    height: 520px;
+
+    right: -170px;
+
+    top: -300px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.055);
+}
+
+.em-hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 380px;
+
+    height: 380px;
+
+    left: -210px;
+
+    bottom: -280px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.035);
+}
+
+.em-hero-inner {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 1240px;
+
+    margin: auto;
+
+    padding:
+        26px 28px 42px;
+}
+
+.em-hero-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 18px;
+
+    margin-bottom: 31px;
+}
+
+.em-hero-back,
+.em-hero-topic {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding:
+        11px 17px;
+
+    border:
+        1px solid rgba(255,255,255,.25);
+
+    border-radius: 28px;
+
+    color: #ffffff;
+
+    background:
+        rgba(255,255,255,.08);
+
+    text-decoration: none;
+
+    font-size: .92rem;
+
+    font-weight: 600;
+
+    backdrop-filter: blur(8px);
+
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
+}
+
+.em-hero-back:hover,
+.em-hero-topic:hover {
+
+    color: #ffffff;
+
+    background:
+        rgba(255,255,255,.15);
+
+    border-color:
+        rgba(255,255,255,.42);
+
+    transform:
+        translateY(-1px);
+}
+
+.em-breadcrumb {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 23px;
+
+    color:
+        rgba(255,255,255,.72);
+
+    font-size: .83rem;
+}
+
+.em-breadcrumb span:last-child {
+
+    color: #ffffff;
+
+    font-weight: 700;
+}
+
+.em-breadcrumb .separator {
+
+    opacity: .55;
+}
+
+.em-hero-content {
+
+    max-width: 920px;
+}
+
+.em-hero-content h1 {
+
+    margin: 0 0 13px;
+
+    color: #ffffff;
+
+    font-size:
+        clamp(2.55rem, 5vw, 4rem);
+
+    line-height: 1.04;
+
+    letter-spacing:
+        -.035em;
+
+    font-weight: 800;
+}
+
+.em-hero-content p {
+
+    max-width: 850px;
+
+    margin: 0;
+
+    color:
+        rgba(255,255,255,.88);
+
+    font-size:
+        clamp(.98rem,1.4vw,1.12rem);
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   STICKY TOPIC NAVIGATION
+   ========================================================= */
+
+.em-topic-nav {
+
+    position: sticky;
+
+    top: 70px;
+
+    z-index: 900;
+
+    background:
+        rgba(255,255,255,.97);
+
+    border-bottom:
+        1px solid #e5eaf1;
+
+    box-shadow:
+        0 3px 14px rgba(15,23,42,.045);
+
+    backdrop-filter:
+        blur(10px);
+}
+
+.em-topic-nav-inner {
+
+    max-width: 1240px;
+
+    min-height: 56px;
+
+    margin: auto;
+
+    padding:
+        0 24px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 28px;
+
+    overflow-x: auto;
+
+    scrollbar-width: none;
+}
+
+.em-topic-nav-inner::-webkit-scrollbar {
+
+    display: none;
+}
+
+.em-topic-nav a {
+
+    position: relative;
+
+    flex: 0 0 auto;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    min-height: 56px;
+
+    color: #536174;
+
+    text-decoration: none;
+
+    font-size: .88rem;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    transition:
+        color .2s ease;
+}
+
+.em-topic-nav a::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    height: 2px;
+
+    border-radius:
+        2px 2px 0 0;
+
+    background:
+        #2563c7;
+
+    transform:
+        scaleX(0);
+
+    transition:
+        transform .2s ease;
+}
+
+.em-topic-nav a:hover {
+
+    color:
+        #1769aa;
+}
+
+.em-topic-nav a:hover::after {
+
+    transform:
+        scaleX(1);
+}
+
+
+/* =========================================================
+   COMMON SECTION
+   ========================================================= */
+
+section {
+
+    width: 100%;
+}
+
+.container {
+
+    width:
+        min(1180px, calc(100% - 40px));
+
+    margin: auto;
+}
+
+
+/* =========================================================
+   COURSE INFORMATION
+   ========================================================= */
+
+.course-information {
+
+    padding:
+        54px 20px;
+
+    background:
+        #ffffff;
+}
+
+.info-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap: 18px;
+}
+
+.info-card {
+
+    min-height: 145px;
+
+    padding:
+        24px 20px;
+
+    border:
+        1px solid var(--em-border);
+
+    border-radius: 16px;
+
+    background:
+        #ffffff;
+
+    box-shadow:
+        0 8px 24px
+        rgba(15,23,42,.055);
+
+    text-align: center;
+
+    transition:
+        transform .22s ease,
+        box-shadow .22s ease;
+}
+
+.info-card:hover {
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 14px 30px
+        rgba(15,23,42,.09);
+}
+
+.info-card i {
+
+    display: inline-flex;
+
+    width: 48px;
+
+    height: 48px;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 12px;
+
+    border-radius: 13px;
+
+    background:
+        var(--em-blue-light);
+
+    color:
+        var(--em-blue);
+
+    font-size: 1.15rem;
+}
+
+.info-card h3 {
+
+    margin: 0 0 4px;
+
+    color:
+        var(--em-text);
+
+    font-size: 1rem;
+
+    font-weight: 700;
+}
+
+.info-card p {
+
+    margin: 0;
+
+    color:
+        var(--em-muted);
+
+    font-size: .92rem;
+}
+
+
+/* =========================================================
+   ABOUT COURSE
+   ========================================================= */
+
+.about-course {
+
+    padding:
+        70px 20px;
+
+    background:
+        #f7f9fc;
+}
+
+.about-course .container {
+
+    max-width: 900px;
+
+    text-align: center;
+}
+
+.about-course h2 {
+
+    margin: 0 0 14px;
+
+    color:
+        var(--em-text);
+
+    font-size:
+        clamp(1.7rem,3vw,2.15rem);
+
+    line-height: 1.2;
+}
+
+.about-course h2::after {
+
+    content: "";
+
+    display: block;
+
+    width: 46px;
+
+    height: 3px;
+
+    margin:
+        13px auto 0;
+
+    border-radius: 3px;
+
+    background:
+        var(--em-blue);
+}
+
+.about-course p {
+
+    max-width: 850px;
+
+    margin:
+        24px auto 0;
+
+    color:
+        var(--em-muted);
+
+    font-size: 1rem;
+
+    line-height: 1.85;
+}
+
+
+/* =========================================================
+   TOPICS
+   ========================================================= */
+
+.em-topics-section {
+
+    padding:
+        75px 20px;
+
+    background:
+        #ffffff;
+}
+
+.em-section-heading {
+
+    text-align: center;
+
+    margin-bottom: 45px;
+}
+
+.em-section-heading .tag {
+
+    display: inline-block;
+
+    padding:
+        7px 16px;
+
+    border-radius: 30px;
+
+    background:
+        #e8f1ff;
+
+    color:
+        #1769aa;
+
+    font-size: .85rem;
+
+    font-weight: 700;
+
+    margin-bottom: 12px;
+}
+
+.em-section-heading h2 {
+
+    margin:
+        0 0 12px;
+
+    font-size: 2rem;
+
+    color:
+        #172033;
+}
+
+.em-section-heading p {
+
+    max-width: 760px;
+
+    margin:
+        0 auto;
+
+    color:
+        #667085;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   TOPIC GRID
+   ========================================================= */
+
+.em-topic-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap: 22px;
+}
+
+.em-topic-card {
+
+    position: relative;
+
+    background:
+        #ffffff;
+
+    border:
+        1px solid #e5eaf1;
+
+    border-radius: 16px;
+
+    padding:
+        28px 24px;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-height: 225px;
+
+    box-shadow:
+        0 8px 24px
+        rgba(15,23,42,.06);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+
+    overflow: hidden;
+}
+
+.em-topic-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    right: 0;
+
+    height: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563c7,
+            #5b8fe8
+        );
+
+    transform:
+        scaleX(0);
+
+    transform-origin:
+        left;
+
+    transition:
+        transform .25s ease;
+}
+
+.em-topic-card:hover {
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 16px 35px
+        rgba(15,23,42,.10);
+
+    border-color:
+        #9ec5fe;
+}
+
+.em-topic-card:hover::before {
+
+    transform:
+        scaleX(1);
+}
+
+.em-topic-icon {
+
+    width: 54px;
+
+    height: 54px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background:
+        #edf5ff;
+
+    color:
+        #1769aa;
+
+    font-size: 1.35rem;
+
+    margin-bottom: 20px;
+}
+
+.em-topic-card h3 {
+
+    margin:
+        0 0 10px;
+
+    font-size: 1.12rem;
+
+    color:
+        #172033;
+}
+
+.em-topic-card p {
+
+    margin: 0;
+
+    color:
+        #667085;
+
+    font-size: .93rem;
+
+    line-height: 1.65;
+
+    flex: 1;
+}
+
+.em-topic-link {
+
+    margin-top: 20px;
+
+    color:
+        #1769aa;
+
+    font-weight: 700;
+
+    font-size: .9rem;
+}
+
+
+/* =========================================================
+   LEARNING STRIP
+   ========================================================= */
+
+.em-learning-strip {
+
+    margin-top: 35px;
+
+    padding:
+        22px 25px;
+
+    border-radius: 15px;
+
+    background:
+        #f7f9fc;
+
+    border:
+        1px solid #e5eaf1;
+
+    text-align: center;
+
+    color:
+        #667085;
+
+    line-height: 1.7;
+}
+
+.em-learning-strip strong {
+
+    color:
+        #172033;
+}
+
+
+/* =========================================================
+   LEARNING OUTCOMES
+   ========================================================= */
+
+.course-highlights {
+
+    padding:
+        75px 20px;
+
+    background:
+        #f7f9fc;
+}
+
+.section-header {
+
+    margin-bottom: 40px;
+
+    text-align: center;
+}
+
+.section-tag {
+
+    display: inline-block;
+
+    padding:
+        6px 14px;
+
+    border-radius: 30px;
+
+    background:
+        #edf5ff;
+
+    color:
+        #2563c7;
+
+    font-size: .82rem;
+
+    font-weight: 700;
+}
+
+.section-header h2 {
+
+    margin:
+        12px 0 0;
+
+    color:
+        #172033;
+
+    font-size:
+        clamp(1.7rem,3vw,2.15rem);
+}
+
+.highlight-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap: 20px;
+}
+
+.highlight-card {
+
+    padding:
+        28px 23px;
+
+    border:
+        1px solid var(--em-border);
+
+    border-radius: 16px;
+
+    background:
+        #ffffff;
+
+    box-shadow:
+        0 7px 22px
+        rgba(15,23,42,.05);
+
+    text-align: center;
+
+    transition:
+        transform .22s ease,
+        box-shadow .22s ease;
+}
+
+.highlight-card:hover {
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 14px 30px
+        rgba(15,23,42,.085);
+}
+
+.highlight-card i {
+
+    display: inline-flex;
+
+    width: 50px;
+
+    height: 50px;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 14px;
+
+    border-radius: 14px;
+
+    background:
+        var(--em-blue-light);
+
+    color:
+        var(--em-blue);
+
+    font-size: 1.15rem;
+}
+
+.highlight-card h3 {
+
+    margin:
+        0 0 8px;
+
+    color:
+        var(--em-text);
+
+    font-size: 1.04rem;
+}
+
+.highlight-card p {
+
+    margin: 0;
+
+    color:
+        var(--em-muted);
+
+    font-size: .9rem;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   CONTACT
+   ========================================================= */
+
+.course-contact {
+
+    padding:
+        70px 20px;
+
+    background:
+        #ffffff;
+}
+
+.contact-box {
+
+    max-width: 760px;
+
+    margin:
+        0 auto;
+
+    padding:
+        44px 30px;
+
+    border:
+        1px solid var(--em-border);
+
+    border-radius: 20px;
+
+    background:
+        #ffffff;
+
+    box-shadow:
+        0 12px 32px
+        rgba(15,23,42,.07);
+
+    text-align: center;
+}
+
+.contact-box > i {
+
+    display: inline-flex;
+
+    width: 58px;
+
+    height: 58px;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 13px;
+
+    border-radius: 16px;
+
+    background:
+        var(--em-blue-light);
+
+    color:
+        var(--em-blue);
+
+    font-size: 1.35rem;
+}
+
+.contact-box h2 {
+
+    margin:
+        0 0 9px;
+
+    color:
+        var(--em-text);
+
+    font-size: 1.8rem;
+}
+
+.contact-box p {
+
+    max-width: 610px;
+
+    margin:
+        0 auto 22px;
+
+    color:
+        var(--em-muted);
+
+    line-height: 1.7;
+}
+
+.contact-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        11px 21px;
+
+    border-radius: 9px;
+
+    background:
+        var(--em-blue);
+
+    color:
+        #ffffff;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+    font-size: .9rem;
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+}
+
+.contact-button:hover {
+
+    color: #ffffff;
+
+    background:
+        var(--em-blue-dark);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.course-footer {
+
+    padding:
+        52px 20px 22px;
+
+    background:
+        #101d43;
+
+    color:
+        rgba(255,255,255,.78);
+}
+
+.course-footer .container {
+
+    width:
+        min(1180px,100%);
+
+    margin: auto;
+}
+
+.footer-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1.5fr 1fr 1fr 1fr;
+
+    gap: 40px;
+}
+
+.footer-column h3 {
+
+    margin:
+        0 0 13px;
+
+    color:
+        #ffffff;
+
+    font-size: 1rem;
+}
+
+.footer-column p {
+
+    margin: 0;
+
+    max-width: 290px;
+
+    font-size: .88rem;
+
+    line-height: 1.7;
+}
+
+.footer-column ul {
+
+    margin: 0;
+
+    padding: 0;
+
+    list-style: none;
+}
+
+.footer-column li {
+
+    margin-bottom: 7px;
+}
+
+.footer-column a {
+
+    color:
+        rgba(255,255,255,.75);
+
+    text-decoration: none;
+
+    font-size: .87rem;
+
+    transition:
+        color .2s ease;
+}
+
+.footer-column a:hover {
+
+    color:
+        #ffffff;
+}
+
+.social-icons {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.social-icons a {
+
+    display: inline-flex;
+
+    width: 35px;
+
+    height: 35px;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border:
+        1px solid rgba(255,255,255,.16);
+
+    border-radius: 9px;
+
+    background:
+        rgba(255,255,255,.06);
+}
+
+.course-footer hr {
+
+    margin:
+        34px 0 18px;
+
+    border: 0;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.13);
+}
+
+.footer-bottom {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    color:
+        rgba(255,255,255,.58);
+
+    font-size: .78rem;
+}
+
+.footer-bottom p {
+
+    margin: 0;
+}
+
+.footer-bottom strong {
+
+    color:
+        rgba(255,255,255,.82);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .em-topic-grid {
+
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
+    }
+
+    .em-site-nav {
+
+        gap: 17px;
+    }
+
+    .em-site-nav a {
+
+        font-size: .84rem;
+    }
+
+    .em-site-brand {
+
+        font-size: 1.05rem;
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .info-grid,
+    .highlight-grid {
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+    .footer-grid {
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+}
+
+
+@media (max-width: 760px) {
+
+    .em-topic-grid {
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
+        gap: 16px;
+    }
+
+    .em-hero-inner {
+
+        padding:
+            20px 16px 31px;
+    }
+
+    .em-hero-actions {
+
+        margin-bottom: 25px;
+    }
+
+    .em-hero-back,
+    .em-hero-topic {
+
+        padding:
+            9px 13px;
+
+        font-size: .82rem;
+    }
+
+    .em-hero-content h1 {
+
+        font-size:
+            clamp(2.15rem,9vw,3rem);
+    }
+
+    .em-hero-content p {
+
+        font-size: .91rem;
+
+        line-height: 1.65;
+    }
+
+    .em-topic-nav-inner {
+
+        justify-content:
+            flex-start;
+
+        gap: 22px;
+
+        padding:
+            0 16px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .container {
+
+        width:
+            calc(100% - 32px);
+    }
+
+    .info-grid,
+    .highlight-grid,
+    .footer-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .em-topic-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .info-card {
+
+        min-height:
+            auto;
+    }
+
+    .contact-box {
+
+        padding:
+            34px 20px;
+    }
+
+    .footer-bottom {
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .em-site-header {
+
+        height: 58px;
+
+        min-height: 58px;
+    }
+
+    .em-site-header-inner {
+
+        width:
+            calc(100% - 24px);
+    }
+
+    .em-site-brand {
+
+        font-size: .92rem;
+
+        gap: 7px;
+    }
+
+    .em-site-nav {
+
+        gap: 9px;
+    }
+
+    .em-site-nav a {
+
+        font-size: .76rem;
+    }
+
+    .em-site-nav a:nth-child(2),
+    .em-site-nav a:nth-child(4),
+    .em-site-nav a:nth-child(5),
+    .em-site-nav a:nth-child(6),
+    .em-site-nav a:nth-child(7),
+    .em-site-nav a:nth-child(8),
+    .em-site-nav a:nth-child(9) {
+
+        display: none;
+    }
+
+    .em-topic-nav {
+
+        top: 58px;
+    }
+
+    .em-topic-nav-inner {
+
+        gap: 18px;
+    }
+
+    .em-topic-nav a {
+
+        font-size: .81rem;
+    }
+
+}
+
+
+/* =========================================================
+   COPY / DRAG DETERRENCE
+   ========================================================= */
+
+.em-no-copy {
+
+    user-select: none;
+
+    -webkit-user-select: none;
+}
+
+img,
+a {
+
+    -webkit-user-drag: none;
+}
+
+</style>
+
 </head>
 
-<body>
 
-    <!-- ===========================================
-         HERO SECTION
-    ============================================ -->
+<body class="light-mode em-no-copy">
 
-    <header class="course-hero">
 
-        <div class="hero-overlay">
+<!-- =======================================================
+     MAIN PORTFOLIO NAVIGATION
+     ======================================================= -->
 
-            <nav class="course-nav">
+<nav class="navbar">
 
-                <a href="../../../#/teaching"
-                   class="back-button">
+    <div class="nav-container">
 
-                    <i class="fas fa-arrow-left"></i>
+        <div class="nav-logo">
 
-                    Back to Teaching
+            <i class="fas fa-graduation-cap"></i>
 
+            <span>
+                Gajavada Sanjeevkumar
+            </span>
+
+        </div>
+
+
+        <ul class="nav-menu">
+
+            <li>
+                <a href="../../../#/home"
+                   class="nav-link">
+                    Home
                 </a>
+            </li>
 
-            </nav>
+            <li>
+                <a href="../../../#/about"
+                   class="nav-link">
+                    About
+                </a>
+            </li>
 
-            <div class="hero-content">
+            <li>
+                <a href="../../../#/experience"
+                   class="nav-link">
+                    Experience
+                </a>
+            </li>
 
-                <span class="course-badge">
+            <li>
+                <a href="../../../#/teaching"
+                   class="nav-link active">
+                    Teaching
+                </a>
+            </li>
 
-                    Mechanical Engineering
+            <li>
+                <a href="../../../#/education"
+                   class="nav-link">
+                    Education
+                </a>
+            </li>
 
+            <li>
+                <a href="../../../#/projects"
+                   class="nav-link">
+                    Projects
+                </a>
+            </li>
+
+            <li>
+                <a href="../../../#/engagements"
+                   class="nav-link">
+                    Engagements
+                </a>
+            </li>
+
+            <li>
+                <a href="../../../#/moocs"
+                   class="nav-link">
+                    MOOCs
+                </a>
+            </li>
+
+            <li>
+                <a href="../../../#/skills"
+                   class="nav-link">
+                    Skills
+                </a>
+            </li>
+
+            <li>
+                <a href="../../../#/contact"
+                   class="nav-link">
+                    Contact
+                </a>
+            </li>
+
+            <li>
+
+                <button
+                    class="theme-toggle"
+                    id="themeToggle"
+                    title="Toggle Dark Mode">
+
+                    <i class="fas fa-moon"></i>
+
+                </button>
+
+            </li>
+
+        </ul>
+
+
+        <div class="hamburger">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =======================================================
+     ENGINEERING MECHANICS HERO
+     ======================================================= -->
+
+<header class="em-hero">
+
+    <div class="em-hero-inner">
+
+
+        <div class="em-hero-actions">
+
+
+            <a href="../../../#/teaching"
+               class="em-hero-back">
+
+                <i class="fas fa-arrow-left"></i>
+
+                <span>
+                    Back to Teaching
                 </span>
 
-                <h1>
+            </a>
 
+
+            <a href="engineering-mechanics/"
+               class="em-hero-topic">
+
+                <i class="fas fa-compass-drafting"></i>
+
+                <span>
                     Engineering Mechanics
+                </span>
 
-                </h1>
+            </a>
 
-                <p>
-
-                    Comprehensive learning resources, lecture notes,
-                    presentations, question banks, reference books,
-                    videos and downloadable materials.
-
-                </p>
-
-            </div>
 
         </div>
 
-    </header>
 
-    <!-- ===========================================
-         COURSE INFORMATION
-    ============================================ -->
+        <div class="em-breadcrumb">
 
-    <section class="course-information">
+            <span>
+                Teaching
+            </span>
 
-        <div class="container">
+            <span class="separator">
+                /
+            </span>
 
-            <div class="info-grid">
-
-                <div class="info-card">
-
-                    <i class="fas fa-graduation-cap"></i>
-
-                    <h3>Programme</h3>
-
-                    <p>B.Tech</p>
-
-                </div>
-
-                <div class="info-card">
-
-                    <i class="fas fa-layer-group"></i>
-
-                    <h3>Course Type</h3>
-
-                    <p>Theory</p>
-
-                </div>
-
-                <div class="info-card">
-
-                    <i class="fas fa-star"></i>
-
-                    <h3>Credits</h3>
-
-                    <p>3</p>
-
-                </div>
-
-                <div class="info-card">
-
-                    <i class="fas fa-user"></i>
-
-                    <h3>Instructor</h3>
-
-                    <p>Gajavada Sanjeevkumar</p>
-
-                </div>
-
-            </div>
+            <span>
+                Engineering Mechanics
+            </span>
 
         </div>
 
-    </section>
 
-    <!-- ===========================================
-         ABOUT COURSE
-    ============================================ -->
+        <div class="em-hero-content">
 
-    <section class="about-course">
-
-        <div class="container">
-
-            <h2>
-
-                About the Course
-
-            </h2>
+            <h1>
+                Engineering Mechanics
+            </h1>
 
             <p>
 
-                Engineering Mechanics introduces the principles of
-                statics and dynamics that form the foundation of
-                Mechanical Engineering. Students learn the analysis of
-                forces, equilibrium, friction, centroids, moments,
-                virtual work, kinematics and kinetics with engineering
-                applications.
+                Fundamental principles of force systems,
+                equilibrium, free-body diagrams, friction,
+                centroid and moment of inertia, structural
+                analysis, kinematics, kinetics, work-energy
+                and impulse-momentum.
 
             </p>
 
         </div>
 
-    </section>
+    </div>
 
-    <!-- ===========================================
-         COURSE STATISTICS
-    ============================================ -->
+</header>
 
-    <section class="course-stats">
 
-        <div class="container">
 
-            <div class="stats-grid">
+<!-- =======================================================
+     TOPIC NAVIGATION
+     ======================================================= -->
 
-                <div class="stat-card">
+<nav class="em-topic-nav"
+     aria-label="Engineering Mechanics sections">
 
-                    <h3>12+</h3>
+    <div class="em-topic-nav-inner">
 
-                    <p>Lecture Notes</p>
+        <a href="#course-overview">
+            Overview
+        </a>
 
-                </div>
+        <a href="#topics">
+            Topics
+        </a>
 
-                <div class="stat-card">
+        <a href="#learning-outcomes">
+            Learning Outcomes
+        </a>
 
-                    <h3>20+</h3>
+        <a href="#contact">
+            Contact
+        </a>
 
-                    <p>PPT Presentations</p>
+    </div>
 
-                </div>
+</nav>
 
-                <div class="stat-card">
 
-                    <h3>10+</h3>
 
-                    <p>Question Banks</p>
+<!-- =======================================================
+     COURSE INFORMATION
+     ======================================================= -->
 
-                </div>
-
-                <div class="stat-card">
-
-                    <h3>100+</h3>
-
-                    <p>Learning Resources</p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- ===========================================
-         RESOURCE SECTION
-    ============================================ -->
-  <section class="course-resources">
+<section
+    class="course-information"
+    id="course-overview">
 
     <div class="container">
 
-        <div class="section-header">
+        <div class="info-grid">
 
-            <span class="section-tag">
-                Learning Resources
-            </span>
 
-            <h2>
-                Course Materials
-            </h2>
+            <div class="info-card">
 
-            <p>
+                <i class="fas fa-graduation-cap"></i>
 
-                Access lecture notes, presentations, assignments,
-                question banks, previous examination papers,
-                reference books, video lectures and downloadable
-                learning resources.
-
-            </p>
-
-        </div>
-
-        <!-- Search -->
-
-        <div class="resource-search">
-
-            <input
-                type="text"
-                id="resourceSearch"
-                placeholder="Search resources...">
-
-            <i class="fas fa-search"></i>
-
-        </div>
-
-        <!-- Resource Grid -->
-
-        <div class="resource-grid">
-
-            <!-- Notes -->
-
-            <div class="resource-card">
-
-                <div class="resource-icon">
-                    <i class="fas fa-book"></i>
-                </div>
-
-                <h3>Lecture Notes</h3>
+                <h3>
+                    Programme
+                </h3>
 
                 <p>
-
-                    Chapter-wise lecture notes with illustrations,
-                    derivations and solved examples.
-
+                    B.Tech
                 </p>
-
-                <a href="Notes/"
-                   class="resource-btn">
-
-                    Open Folder
-
-                </a>
 
             </div>
 
-            <!-- PPT -->
 
-            <div class="resource-card">
+            <div class="info-card">
 
-                <div class="resource-icon">
-                    <i class="fas fa-file-powerpoint"></i>
-                </div>
+                <i class="fas fa-book-open"></i>
 
-                <h3>PPT Presentations</h3>
+                <h3>
+                    Course Type
+                </h3>
 
                 <p>
-
-                    Classroom presentations prepared for
-                    teaching and revision.
-
+                    Theory
                 </p>
-
-                <a href="PPT/"
-                   class="resource-btn">
-
-                    Open Folder
-
-                </a>
 
             </div>
 
-            <!-- Assignments -->
 
-            <div class="resource-card">
+            <div class="info-card">
 
-                <div class="resource-icon">
-                    <i class="fas fa-pencil-ruler"></i>
-                </div>
+                <i class="fas fa-star"></i>
 
-                <h3>Assignments</h3>
+                <h3>
+                    Credits
+                </h3>
 
                 <p>
-
-                    Practice assignments, tutorial sheets and
-                    problem-solving exercises.
-
+                    4
                 </p>
-
-                <a href="Assignments/"
-                   class="resource-btn">
-
-                    Open Folder
-
-                </a>
 
             </div>
 
-            <!-- Tutorials -->
 
-            <div class="resource-card">
+            <div class="info-card">
 
-                <div class="resource-icon">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                </div>
+                <i class="fas fa-user"></i>
 
-                <h3>Tutorials</h3>
+                <h3>
+                    Instructor
+                </h3>
 
                 <p>
-
-                    Guided tutorials with worked examples
-                    and additional practice.
-
+                    Gajavada Sanjeevkumar
                 </p>
-
-                <a href="Tutorials/"
-                   class="resource-btn">
-
-                    Open Folder
-
-                </a>
 
             </div>
 
-            <!-- Question Bank -->
-
-            <div class="resource-card">
-
-                <div class="resource-icon">
-                    <i class="fas fa-circle-question"></i>
-                </div>
-
-                <h3>Question Banks</h3>
-
-                <p>
-
-                    Unit-wise question banks covering
-                    university examinations.
-
-                </p>
-
-                <a href="QB/"
-                   class="resource-btn">
-
-                    Open Folder
-
-                </a>
-
-            </div>
-
-            <!-- Previous Papers -->
-
-            <div class="resource-card">
-
-                <div class="resource-icon">
-                    <i class="fas fa-file-lines"></i>
-                </div>
-
-                <h3>Previous Papers</h3>
-
-                <p>
-
-                    Previous semester examination papers
-                    for effective preparation.
-
-                </p>
-
-                <a href="Papers/"
-                   class="resource-btn">
-
-                    Open Folder
-
-                </a>
-
-            </div>
-
-            <!-- Books -->
-
-            <div class="resource-card">
-
-                <div class="resource-icon">
-                    <i class="fas fa-book-open"></i>
-                </div>
-
-                <h3>Reference Books</h3>
-
-                <p>
-
-                    Recommended textbooks and reference
-                    materials for deeper understanding.
-
-                </p>
-
-                <a href="Books/"
-                   class="resource-btn">
-
-                    Open Folder
-
-                </a>
-
-            </div>
-
-            <!-- Videos -->
-
-            <div class="resource-card">
-
-                <div class="resource-icon">
-                    <i class="fas fa-video"></i>
-                </div>
-
-                <h3>Video Lectures</h3>
-
-                <p>
-
-                    Recorded lectures and curated educational
-                    videos.
-
-                </p>
-
-                <a href="Videos/"
-                   class="resource-btn">
-
-                    Open Folder
-
-                </a>
-
-            </div>
-
-            <!-- Downloads -->
-
-            <div class="resource-card">
-
-                <div class="resource-icon">
-                    <i class="fas fa-download"></i>
-                </div>
-
-                <h3>Downloads</h3>
-
-                <p>
-
-                    Syllabus, formula sheets,
-                    manuals and additional files.
-
-                </p>
-
-                <a href="Downloads/"
-                   class="resource-btn">
-
-                    Open Folder
-
-                </a>
-
-            </div>
 
         </div>
 
@@ -508,103 +2006,732 @@
 
 </section>
 
-<!-- ===========================================
-     COURSE HIGHLIGHTS
-=========================================== -->
 
-<section class="course-highlights">
+
+<!-- =======================================================
+     ABOUT COURSE
+     ======================================================= -->
+
+<section class="about-course">
 
     <div class="container">
+
+        <h2>
+            About the Course
+        </h2>
+
+        <p>
+
+            Engineering Mechanics provides the fundamental
+            principles required to understand the behavior of
+            engineering systems under the action of forces and
+            motion. The course develops a systematic approach
+            to force analysis, equilibrium, friction, geometric
+            properties of areas, structural systems and
+            particle and rigid-body dynamics.
+
+            Through mathematical derivations, free-body diagrams,
+            worked examples and interactive visualizations,
+            students can connect physical phenomena with their
+            mathematical representation.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     TOPICS
+     ======================================================= -->
+
+<section
+    class="em-topics-section"
+    id="topics">
+
+    <div class="container">
+
+
+        <div class="em-section-heading">
+
+            <span class="tag">
+                Engineering Mechanics
+            </span>
+
+            <h2>
+                Explore by Topic
+            </h2>
+
+            <p>
+
+                Study Engineering Mechanics through structured
+                notes, presentations, interactive animations,
+                worked examples, numerical problems and
+                practice questions.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="em-topic-grid">
+
+
+            <!-- =================================================
+                 01 FORCE SYSTEMS
+                 ================================================= -->
+
+            <a href="force-systems/"
+               class="em-topic-card">
+
+                <div class="em-topic-icon">
+
+                    <i class="fas fa-arrows-to-circle"></i>
+
+                </div>
+
+                <h3>
+                    Force Systems
+                </h3>
+
+                <p>
+
+                    Scalars and vectors, force representation,
+                    vector operations, components, resultant
+                    forces and moments.
+
+                </p>
+
+                <span class="em-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+
+            <!-- =================================================
+                 02 MOMENT OF FORCE
+                 ================================================= -->
+
+            <a href="moment-of-force/"
+               class="em-topic-card">
+
+                <div class="em-topic-icon">
+
+                    <i class="fas fa-rotate"></i>
+
+                </div>
+
+                <h3>
+                    Moment of Force
+                </h3>
+
+                <p>
+
+                    Moment about a point and axis, Varignon's
+                    theorem, couples and equivalent force-couple
+                    systems.
+
+                </p>
+
+                <span class="em-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+
+            <!-- =================================================
+                 03 EQUILIBRIUM
+                 ================================================= -->
+
+            <a href="equilibrium/"
+               class="em-topic-card">
+
+                <div class="em-topic-icon">
+
+                    <i class="fas fa-scale-balanced"></i>
+
+                </div>
+
+                <h3>
+                    Equilibrium
+                </h3>
+
+                <p>
+
+                    Conditions of equilibrium, equations of
+                    equilibrium, reactions and equilibrium of
+                    engineering systems.
+
+                </p>
+
+                <span class="em-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+
+            <!-- =================================================
+                 04 FREE BODY DIAGRAMS
+                 ================================================= -->
+
+            <a href="free-body-diagrams/"
+               class="em-topic-card">
+
+                <div class="em-topic-icon">
+
+                    <i class="fas fa-diagram-project"></i>
+
+                </div>
+
+                <h3>
+                    Free-Body Diagrams
+                </h3>
+
+                <p>
+
+                    Isolation of bodies, support reactions,
+                    external forces, internal forces and
+                    systematic FBD construction.
+
+                </p>
+
+                <span class="em-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+
+            <!-- =================================================
+                 05 FRICTION
+                 ================================================= -->
+
+            <a href="friction/"
+               class="em-topic-card">
+
+                <div class="em-topic-icon">
+
+                    <i class="fas fa-grip-lines"></i>
+
+                </div>
+
+                <h3>
+                    Friction
+                </h3>
+
+                <p>
+
+                    Static and kinetic friction, limiting
+                    equilibrium, angle of friction, wedges,
+                    ladders and belt friction.
+
+                </p>
+
+                <span class="em-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+
+            <!-- =================================================
+                 06 CENTROID
+                 ================================================= -->
+
+            <a href="centroid/"
+               class="em-topic-card">
+
+                <div class="em-topic-icon">
+
+                    <i class="fas fa-crosshairs"></i>
+
+                </div>
+
+                <h3>
+                    Centroid & Centre of Gravity
+                </h3>
+
+                <p>
+
+                    Centroids of areas, composite sections,
+                    centre of gravity and practical geometric
+                    applications.
+
+                </p>
+
+                <span class="em-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+
+            <!-- =================================================
+                 07 MOMENT OF INERTIA
+                 ================================================= -->
+
+            <a href="moment-of-inertia/"
+               class="em-topic-card">
+
+                <div class="em-topic-icon">
+
+                    <i class="fas fa-circle-notch"></i>
+
+                </div>
+
+                <h3>
+                    Moment of Inertia
+                </h3>
+
+                <p>
+
+                    Area moment of inertia, mass moment of
+                    inertia, parallel-axis theorem and
+                    perpendicular-axis theorem.
+
+                </p>
+
+                <span class="em-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+
+            <!-- =================================================
+                 08 TRUSSES
+                 ================================================= -->
+
+            <a href="trusses/"
+               class="em-topic-card">
+
+                <div class="em-topic-icon">
+
+                    <i class="fas fa-network-wired"></i>
+
+                </div>
+
+                <h3>
+                    Trusses
+                </h3>
+
+                <p>
+
+                    Perfect trusses, assumptions, method of
+                    joints, method of sections and member-force
+                    determination.
+
+                </p>
+
+                <span class="em-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+
+            <!-- =================================================
+                 09 BEAMS
+                 ================================================= -->
+
+            <a href="beams/"
+               class="em-topic-card">
+
+                <div class="em-topic-icon">
+
+                    <i class="fas fa-ruler-horizontal"></i>
+
+                </div>
+
+                <h3>
+                    Beams & Loading
+                </h3>
+
+                <p>
+
+                    Types of beams, supports, concentrated loads,
+                    distributed loads and structural force
+                    analysis.
+
+                </p>
+
+                <span class="em-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+
+            <!-- =================================================
+                 10 KINEMATICS
+                 ================================================= -->
+
+            <a href="kinematics/"
+               class="em-topic-card">
+
+                <div class="em-topic-icon">
+
+                    <i class="fas fa-person-running"></i>
+
+                </div>
+
+                <h3>
+                    Kinematics
+                </h3>
+
+                <p>
+
+                    Position, displacement, velocity,
+                    acceleration, rectilinear motion and
+                    curvilinear motion.
+
+                </p>
+
+                <span class="em-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+
+            <!-- =================================================
+                 11 KINETICS
+                 ================================================= -->
+
+            <a href="kinetics/"
+               class="em-topic-card">
+
+                <div class="em-topic-icon">
+
+                    <i class="fas fa-rocket"></i>
+
+                </div>
+
+                <h3>
+                    Kinetics
+                </h3>
+
+                <p>
+
+                    Newton's laws, equations of motion and
+                    relationships between force, mass and
+                    acceleration.
+
+                </p>
+
+                <span class="em-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+
+            <!-- =================================================
+                 12 WORK ENERGY
+                 ================================================= -->
+
+            <a href="work-energy/"
+               class="em-topic-card">
+
+                <div class="em-topic-icon">
+
+                    <i class="fas fa-bolt"></i>
+
+                </div>
+
+                <h3>
+                    Work & Energy
+                </h3>
+
+                <p>
+
+                    Work of forces, kinetic energy, potential
+                    energy, conservation of energy and
+                    work-energy methods.
+
+                </p>
+
+                <span class="em-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+
+            <!-- =================================================
+                 13 IMPULSE MOMENTUM
+                 ================================================= -->
+
+            <a href="impulse-momentum/"
+               class="em-topic-card">
+
+                <div class="em-topic-icon">
+
+                    <i class="fas fa-arrows-left-right"></i>
+
+                </div>
+
+                <h3>
+                    Impulse & Momentum
+                </h3>
+
+                <p>
+
+                    Linear momentum, impulse, conservation of
+                    momentum, impact and collision analysis.
+
+                </p>
+
+                <span class="em-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+
+            <!-- =================================================
+                 14 COLLISION
+                 ================================================= -->
+
+            <a href="collision/"
+               class="em-topic-card">
+
+                <div class="em-topic-icon">
+
+                    <i class="fas fa-burst"></i>
+
+                </div>
+
+                <h3>
+                    Impact & Collision
+                </h3>
+
+                <p>
+
+                    Direct and oblique impact, coefficient of
+                    restitution and interactive collision
+                    simulations.
+
+                </p>
+
+                <span class="em-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+
+            <!-- =================================================
+                 15 ROTATIONAL MOTION
+                 ================================================= -->
+
+            <a href="rotational-motion/"
+               class="em-topic-card">
+
+                <div class="em-topic-icon">
+
+                    <i class="fas fa-arrows-spin"></i>
+
+                </div>
+
+                <h3>
+                    Rotational Motion
+                </h3>
+
+                <p>
+
+                    Angular displacement, angular velocity,
+                    angular acceleration and rotational
+                    kinematics.
+
+                </p>
+
+                <span class="em-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+
+            <!-- =================================================
+                 16 RIGID BODY DYNAMICS
+                 ================================================= -->
+
+            <a href="rigid-body-dynamics/"
+               class="em-topic-card">
+
+                <div class="em-topic-icon">
+
+                    <i class="fas fa-gear"></i>
+
+                </div>
+
+                <h3>
+                    Rigid Body Dynamics
+                </h3>
+
+                <p>
+
+                    Translation, rotation, plane motion and
+                    dynamic analysis of rigid engineering bodies.
+
+                </p>
+
+                <span class="em-topic-link">
+                    Explore Topic →
+                </span>
+
+            </a>
+
+
+        </div>
+
+
+
+        <div class="em-learning-strip">
+
+            <strong>
+                Topic-based learning
+            </strong>
+
+            <br>
+
+            Each topic can contain its own notes,
+            presentation reader, interactive animations,
+            worked examples, numerical problems,
+            simulations and practice questions.
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     LEARNING OUTCOMES
+     ======================================================= -->
+
+<section
+    class="course-highlights"
+    id="learning-outcomes">
+
+    <div class="container">
+
 
         <div class="section-header">
 
             <span class="section-tag">
-
                 Why Study This Course
-
             </span>
 
             <h2>
-
                 Learning Outcomes
-
             </h2>
 
         </div>
 
+
         <div class="highlight-grid">
 
+
             <div class="highlight-card">
 
-                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-brain"></i>
 
                 <h3>
-
                     Strong Fundamentals
-
                 </h3>
 
                 <p>
 
-                    Develop a solid understanding of engineering mechanics.
+                    Develop a strong foundation in
+                    mechanics, forces, equilibrium
+                    and motion.
 
                 </p>
 
             </div>
+
 
             <div class="highlight-card">
 
-                <i class="fas fa-lightbulb"></i>
+                <i class="fas fa-diagram-project"></i>
 
                 <h3>
-
-                    Problem Solving
-
+                    Physical Understanding
                 </h3>
 
                 <p>
 
-                    Improve analytical thinking through practical engineering problems.
+                    Connect physical engineering systems
+                    with mathematical models and
+                    free-body diagrams.
 
                 </p>
 
             </div>
+
 
             <div class="highlight-card">
 
                 <i class="fas fa-gears"></i>
 
                 <h3>
-
                     Engineering Applications
-
                 </h3>
 
                 <p>
 
-                    Apply mechanics concepts to real mechanical systems.
+                    Apply mechanics principles to structures,
+                    machines and real engineering systems.
 
                 </p>
 
             </div>
+
 
             <div class="highlight-card">
 
                 <i class="fas fa-award"></i>
 
                 <h3>
-
-                    Exam Preparation
-
+                    Problem Solving
                 </h3>
 
                 <p>
 
-                    Access comprehensive study materials for university examinations.
+                    Develop systematic approaches for
+                    analytical, numerical and examination
+                    problems.
 
                 </p>
 
             </div>
+
 
         </div>
 
@@ -612,11 +2739,15 @@
 
 </section>
 
-  <!-- ===========================================
-     CONTACT / SUPPORT
-=========================================== -->
 
-<section class="course-contact">
+
+<!-- =======================================================
+     CONTACT
+     ======================================================= -->
+
+<section
+    class="course-contact"
+    id="contact">
 
     <div class="container">
 
@@ -625,16 +2756,15 @@
             <i class="fas fa-envelope-open-text"></i>
 
             <h2>
-
                 Need Help?
-
             </h2>
 
             <p>
 
-                If you have questions regarding this course,
-                lecture materials, assignments or examinations,
-                feel free to contact the course instructor.
+                If you have questions regarding Engineering
+                Mechanics topics, numerical problems,
+                animations or learning materials, feel free
+                to contact the instructor.
 
             </p>
 
@@ -651,173 +2781,148 @@
 
 </section>
 
-<!-- ===========================================
+
+
+<!-- =======================================================
      FOOTER
-=========================================== -->
+     ======================================================= -->
 
 <footer class="course-footer">
 
     <div class="container">
 
+
         <div class="footer-grid">
 
-            <!-- Course -->
+
+            <!-- COURSE -->
 
             <div class="footer-column">
 
                 <h3>
-
                     Engineering Mechanics
-
                 </h3>
 
                 <p>
 
-                    A comprehensive collection of learning
-                    resources prepared to support students in
-                    mastering Engineering Mechanics.
+                    A topic-based learning portal for
+                    Engineering Mechanics with notes,
+                    visualizations, worked examples and
+                    interactive learning resources.
 
                 </p>
 
             </div>
 
-            <!-- Quick Links -->
+
+
+            <!-- QUICK LINKS -->
 
             <div class="footer-column">
 
                 <h3>
-
                     Quick Links
-
                 </h3>
 
                 <ul>
 
                     <li>
-
                         <a href="../../../#/home">
-
                             Home
-
                         </a>
-
                     </li>
 
                     <li>
-
                         <a href="../../../#/teaching">
-
                             Teaching
-
                         </a>
-
                     </li>
 
                     <li>
-
                         <a href="../../../#/contact">
-
                             Contact
-
                         </a>
-
                     </li>
 
                 </ul>
 
             </div>
 
-            <!-- Resources -->
+
+
+            <!-- TOPICS -->
 
             <div class="footer-column">
 
                 <h3>
-
-                    Resources
-
+                    Topics
                 </h3>
 
                 <ul>
 
                     <li>
-
-                        <a href="Notes/">
-
-                            Lecture Notes
-
+                        <a href="force-systems/">
+                            Force Systems
                         </a>
-
                     </li>
 
                     <li>
-
-                        <a href="PPT/">
-
-                            PPTs
-
+                        <a href="equilibrium/">
+                            Equilibrium
                         </a>
-
                     </li>
 
                     <li>
-
-                        <a href="QB/">
-
-                            Question Banks
-
+                        <a href="friction/">
+                            Friction
                         </a>
-
                     </li>
 
                     <li>
-
-                        <a href="Downloads/">
-
-                            Downloads
-
+                        <a href="kinematics/">
+                            Kinematics
                         </a>
-
                     </li>
 
                 </ul>
 
             </div>
 
-            <!-- Social -->
+
+
+            <!-- CONNECT -->
 
             <div class="footer-column">
 
                 <h3>
-
                     Connect
-
                 </h3>
 
                 <div class="social-icons">
 
                     <a href="https://github.com/skgajawada"
-                       target="_blank">
+                       aria-label="GitHub">
 
                         <i class="fab fa-github"></i>
 
                     </a>
 
                     <a href="https://linkedin.com/in/skgajawada"
-                       target="_blank">
+                       aria-label="LinkedIn">
 
                         <i class="fab fa-linkedin"></i>
 
                     </a>
 
                     <a href="https://scholar.google.com/citations?user=skgajawada"
-                       target="_blank">
+                       aria-label="Google Scholar">
 
                         <i class="fas fa-graduation-cap"></i>
 
                     </a>
 
                     <a href="https://orcid.org/0000-0002-9171-5073"
-                       target="_blank">
+                       aria-label="ORCID">
 
                         <i class="fab fa-orcid"></i>
 
@@ -827,9 +2932,12 @@
 
             </div>
 
+
         </div>
 
+
         <hr>
+
 
         <div class="footer-bottom">
 
@@ -843,21 +2951,77 @@
             <p>
 
                 Designed & Developed by
-                <strong>Gajavada Sanjeevkumar</strong>
+
+                <strong>
+                    Gajavada Sanjeevkumar
+                </strong>
 
             </p>
 
         </div>
 
+
     </div>
 
 </footer>
 
-<!-- ===========================================
-     JAVASCRIPT
-=========================================== -->
 
-<script src="script.js"></script>
+
+<!-- =======================================================
+     COPY DETERRENCE
+     ======================================================= -->
+
+<script>
+
+document.addEventListener(
+    "contextmenu",
+    function(e) {
+
+        e.preventDefault();
+
+    }
+);
+
+
+document.addEventListener(
+    "dragstart",
+    function(e) {
+
+        e.preventDefault();
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    function(e) {
+
+        if (
+            (e.ctrlKey || e.metaKey) &&
+            ["c","x","s","u","p"]
+            .includes(
+                e.key.toLowerCase()
+            )
+        ) {
+
+            e.preventDefault();
+
+        }
+
+    }
+);
+
+</script>
+
+
+
+<!-- =======================================================
+     DARK MODE
+     ======================================================= -->
+
+<script src="https://skgajawada.github.io/assets/js/dark-mode.js"></script>
+
 
 </body>
 
