@@ -297,6 +297,18 @@ body.compact-portrait .author { display: none; }
 body.compact-portrait .navigation { bottom: 25px; }
 body.compact-portrait .footer { height: 22px; min-height: 22px; font-size: 8px; }
 
+
+/* =========================================================
+   MOBILE CANVAS VIEWPORT FIX
+   Desktop geometry/layout is intentionally untouched.
+   ========================================================= */
+@media (max-width: 850px) {
+    .main.mobile-canvas-mode canvas {
+        width: 100%;
+        height: 100%;
+    }
+}
+
 </style>
 </head>
 
@@ -488,6 +500,107 @@ function resizeCanvas() {
 }
 
 window.addEventListener("resize", resizeCanvas);
+
+/* =========================================================
+   MOBILE-ONLY DRAWING VIEWPORT
+   The construction is enlarged and centered on small screens.
+   All hypocycloid geometry/equations remain unchanged.
+   Desktop uses the original coordinate system.
+   ========================================================= */
+
+function isMobileViewport() {
+    return window.matchMedia("(max-width: 850px)").matches;
+}
+
+function getMobileViewportMetrics() {
+    /*
+       Original data limits:
+       X: -190 .. +190
+       Y: -110 .. +110
+
+       On mobile we use almost the entire available canvas,
+       while reserving space for the information panel and controls.
+    */
+    const left = W * 0.045;
+    const right = W * 0.955;
+
+    const top = Math.max(52, H * 0.075);
+    const bottom = Math.min(H * 0.84, H - 52);
+
+    const dataW = XMAX - XMIN;
+    const dataH = YMAX - YMIN;
+
+    let ppu = Math.min(
+        (right - left) / dataW,
+        (bottom - top) / dataH
+    );
+
+    /*
+       Portrait screens need a larger useful drawing area.
+       The hypocycloid drawing is horizontally compact, so use
+       the vertical space intelligently without changing geometry.
+    */
+    if (H > W) {
+        ppu *= 1.12;
+    } else {
+        ppu *= 1.04;
+    }
+
+    const cx = (left + right) / 2;
+
+    /*
+       Keep the drawing vertically centered in the useful region.
+       This is a viewport translation only.
+    */
+    const cy = (top + bottom) / 2;
+
+    return {
+        pixelsPerUnit: ppu,
+        dataCx: cx,
+        dataCy: cy
+    };
+}
+
+/*
+   Save the original functions.
+*/
+const originalGetScalingMetrics = getScalingMetrics;
+
+/*
+   Mobile override:
+   - Desktop: exact original scaling.
+   - Mobile: enlarged, centered construction.
+*/
+getScalingMetrics = function() {
+    if (!isMobileViewport()) {
+        return originalGetScalingMetrics();
+    }
+
+    const m = getMobileViewportMetrics();
+
+    return {
+        pixelsPerUnit: m.pixelsPerUnit,
+        dataCx: m.dataCx,
+        dataCy: m.dataCy,
+        AX: {
+            left: 0,
+            right: W,
+            top: 0,
+            bottom: H
+        }
+    };
+};
+
+function applyMobileCanvasMode() {
+    const main = document.querySelector(".main");
+    if (!main) return;
+
+    main.classList.toggle("mobile-canvas-mode", isMobileViewport());
+}
+
+window.addEventListener("resize", applyMobileCanvasMode);
+document.addEventListener("DOMContentLoaded", applyMobileCanvasMode);
+
 
 /* ------------------------------------------------------------------
    Geometry Functions
