@@ -276,8 +276,8 @@ canvas {
     <!-- INFORMATION PANEL (TOP LEFT) -->
     <div class="info-panel">
         <div class="info-title">Hypocycloid Parameters</div>
-        <div>Directing Radius (R): <span class="value" id="infoR">45 mm</span></div>
-        <div>Generating Radius (r): <span class="value" id="infoRGen">30 mm</span></div>
+        <div>Directing Radius (R): <span class="value" id="infoR">60 mm</span></div>
+        <div>Generating Radius (r): <span class="value" id="infoRGen">20 mm</span></div>
         <div>Angle at O: <span class="value" id="infoAngleO">240.0°</span></div>
         <div>Divisions: <span class="value">12</span></div>
         <div>Current Step: <span class="value" id="divisionValue">C0</span></div>
@@ -292,8 +292,8 @@ canvas {
         <div class="param-group">
             <div class="param-row">
                 <label>Directing R:</label>
-                <input id="rSlider" type="range" min="15" max="60" step="1" value="45">
-                <span id="rVal">45</span>
+                <input id="rSlider" type="range" min="15" max="100" step="1" value="60">
+                <span id="rVal">60</span>
             </div>
             <div class="desc-text">Radius of the fixed directing circle.</div>
         </div>
@@ -301,8 +301,8 @@ canvas {
         <div class="param-group">
             <div class="param-row">
                 <label>Generating r:</label>
-                <input id="genSlider" type="range" min="15" max="60" step="1" value="30">
-                <span id="genVal">30</span>
+                <input id="genSlider" type="range" min="5" max="100" step="1" value="20">
+                <span id="genVal">20</span>
             </div>
             <div class="desc-text">Rolling circle radius. Calculated Angle at O: <strong id="cardAngleO" style="color:#123b63;">240.0°</strong></div>
         </div>
@@ -356,8 +356,8 @@ let W = 0;
 let H = 0;
 
 /* Adjustable Parameters - Default zoom set to 4.0 (400%) */
-let R = 45.0;
-let r = 30.0;
+let R = 60.0;
+let r = 20.0;
 let startDeg = 140.0;
 let userZoom = 4.0;
 
@@ -908,8 +908,8 @@ document.getElementById("resetBtn").addEventListener("click", () => {
     playing = false;
     direction = 1;
     currentFrame = 0;
-    R = 45.0;
-    r = 30.0;
+    R = 60.0;
+    r = 20.0;
     startDeg = 140.0;
     userZoom = 4.0;
     speed = 1.0;
