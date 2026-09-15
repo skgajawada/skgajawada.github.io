@@ -100,7 +100,7 @@ canvas {
     font-weight: 700;
 }
 
-/* PARAMETERS PANEL (STACKED BELOW INFO PANEL ON MOBILE/NARROW, OR TOP RIGHT ON WIDE SCREENS) */
+/* PARAMETERS PANEL (TOP RIGHT) */
 .params-panel {
     position: absolute;
     top: 12px;
@@ -257,6 +257,235 @@ canvas {
     font-size: 13px;
     z-index: 20;
 }
+
+/* =========================================================
+   MOBILE LAYOUT — MATCH EPICYCLOID
+   ========================================================= */
+
+@media (max-width: 1050px) {
+    .header {
+        height: 52px;
+        min-height: 52px;
+        padding: 6px 10px;
+    }
+
+    .title-area h1 {
+        font-size: clamp(14px, 4.2vw, 20px);
+        white-space: nowrap;
+    }
+
+    .title-area p {
+        display: none;
+    }
+
+    .author {
+        display: none;
+    }
+
+    .info-panel {
+        position: absolute;
+        top: 7px;
+        left: 7px;
+        width: auto;
+        max-width: min(220px, calc(100vw - 14px));
+        padding: 7px 9px;
+        font-size: 10px;
+        line-height: 1.35;
+        border-radius: 6px;
+    }
+
+    .info-title {
+        font-size: 12px;
+        margin-bottom: 2px;
+    }
+
+    .params-panel {
+        display: flex;
+        position: absolute;
+        top: auto;
+        right: 7px;
+        left: 7px;
+        bottom: 53px;
+        width: auto;
+        max-height: none;
+        overflow: visible;
+        padding: 6px 7px;
+        gap: 5px;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        border-radius: 7px;
+        font-size: 10px;
+    }
+
+    .params-title {
+        display: none;
+    }
+
+    .param-group {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .param-group .desc-text {
+        display: none;
+    }
+
+    .param-row {
+        margin: 0;
+        gap: 3px;
+    }
+
+    .param-row label {
+        font-size: 10px;
+    }
+
+    .param-row input[type="range"] {
+        width: clamp(55px, 17vw, 100px);
+        height: 18px;
+    }
+
+    .param-row span {
+        min-width: 30px;
+        font-size: 10px;
+    }
+
+    .navigation {
+        left: 7px;
+        right: 7px;
+        bottom: 7px;
+        transform: none;
+        width: auto;
+        padding: 5px 5px;
+        gap: 3px;
+        flex-wrap: nowrap;
+        overflow: hidden;
+        border-radius: 7px;
+    }
+
+    .nav-btn {
+        flex: 1 1 auto;
+        min-width: 0;
+        height: 30px;
+        padding: 4px 5px;
+        font-size: 11px;
+    }
+
+    .nav-btn.play {
+        min-width: 0;
+    }
+
+    .speed-group {
+        flex: 0 0 auto;
+        gap: 3px;
+        padding-left: 2px;
+        font-size: 10px;
+    }
+
+    .speed-group input[type="range"] {
+        width: clamp(50px, 15vw, 80px);
+    }
+
+    .footer {
+        height: 30px;
+        min-height: 30px;
+        font-size: 10px;
+        padding: 0 6px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .main {
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    .info-panel {
+        max-width: 178px;
+        font-size: 9px;
+        padding: 5px 7px;
+    }
+
+    .info-title {
+        font-size: 11px;
+    }
+
+    .params-panel {
+        bottom: 48px;
+        padding: 4px 5px;
+        gap: 2px 5px;
+    }
+
+    .param-row label {
+        font-size: 9px;
+    }
+
+    .param-row input[type="range"] {
+        width: 52px;
+    }
+
+    .param-row span {
+        min-width: 26px;
+        font-size: 9px;
+    }
+
+    .navigation {
+        bottom: 5px;
+        padding: 4px;
+    }
+
+    .nav-btn {
+        height: 28px;
+        font-size: 10px;
+        padding: 3px 3px;
+    }
+
+    .speed-group span:first-child {
+        display: none;
+    }
+
+    .speed-group input[type="range"] {
+        width: 52px;
+    }
+
+    .speed-value {
+        min-width: 22px;
+    }
+}
+
+@media (max-width: 380px) {
+    .info-panel {
+        max-width: 160px;
+        font-size: 8.5px;
+    }
+
+    .params-panel {
+        left: 4px;
+        right: 4px;
+    }
+
+    .param-row label {
+        display: none;
+    }
+
+    .param-row input[type="range"] {
+        width: 48px;
+    }
+
+    .navigation {
+        left: 4px;
+        right: 4px;
+    }
+
+    .nav-btn {
+        font-size: 9px;
+    }
+}
+
 </style>
 </head>
 
@@ -295,7 +524,7 @@ canvas {
                 <input id="rSlider" type="range" min="15" max="100" step="1" value="60">
                 <span id="rVal">60</span>
             </div>
-            <div class="desc-text">Radius of the fixed directing circle.</div>
+            <div class="desc-text">Radius of the fixed directing circle (15 to 100).</div>
         </div>
 
         <div class="param-group">
@@ -304,7 +533,7 @@ canvas {
                 <input id="genSlider" type="range" min="5" max="100" step="1" value="20">
                 <span id="genVal">20</span>
             </div>
-            <div class="desc-text">Rolling circle radius. Calculated Angle at O: <strong id="cardAngleO" style="color:#123b63;">240.0°</strong></div>
+            <div class="desc-text">Rolling circle radius (5 to 100). Calculated Angle at O: <strong id="cardAngleO" style="color:#123b63;">240.0°</strong></div>
         </div>
 
         <div class="param-group">
@@ -355,7 +584,7 @@ const ctx = canvas.getContext("2d");
 let W = 0;
 let H = 0;
 
-/* Adjustable Parameters - Default zoom set to 4.0 (400%) */
+/* Adjustable Parameters - Defaults: R=60, r=20, startDeg=140 */
 let R = 60.0;
 let r = 20.0;
 let startDeg = 140.0;
