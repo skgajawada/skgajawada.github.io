@@ -230,10 +230,235 @@ canvas {
     z-index: 20;
 }
 
+/* Desktop-only author visibility rule is handled in the responsive rules above. */
+
+/* MOBILE RESPONSIVE LAYOUT
+   Desktop geometry/defaults are preserved. Mobile only changes the UI
+   arrangement and automatically fits the drawing into the viewport. */
 @media (max-width: 1050px) {
-    .params-panel { display: none; }
-    .author { display: none; }
+    .header {
+        height: 52px;
+        min-height: 52px;
+        padding: 6px 10px;
+    }
+
+    .title-area h1 {
+        font-size: clamp(14px, 4.2vw, 20px);
+        white-space: nowrap;
+    }
+
+    .title-area p {
+        display: none;
+    }
+
+    .author {
+        display: none;
+    }
+
+    .info-panel {
+        top: 7px;
+        left: 7px;
+        width: auto;
+        max-width: min(220px, calc(100vw - 14px));
+        padding: 7px 9px;
+        font-size: 10px;
+        line-height: 1.35;
+        border-radius: 6px;
+    }
+
+    .info-title {
+        font-size: 12px;
+        margin-bottom: 2px;
+    }
+
+    .params-panel {
+        display: flex;
+        position: absolute;
+        top: auto;
+        right: 7px;
+        left: 7px;
+        bottom: 53px;
+        width: auto;
+        max-height: none;
+        overflow: visible;
+        padding: 6px 7px;
+        gap: 5px;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        border-radius: 7px;
+        font-size: 10px;
+    }
+
+    .params-title {
+        display: none;
+    }
+
+    .param-group {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .param-group .desc-text {
+        display: none;
+    }
+
+    .param-row {
+        margin: 0;
+        gap: 3px;
+    }
+
+    .param-row label {
+        font-size: 10px;
+    }
+
+    .param-row input[type="range"] {
+        width: clamp(55px, 17vw, 100px);
+        height: 18px;
+    }
+
+    .param-row span {
+        min-width: 30px;
+        font-size: 10px;
+    }
+
+    .navigation {
+        left: 7px;
+        right: 7px;
+        bottom: 7px;
+        transform: none;
+        width: auto;
+        padding: 5px 5px;
+        gap: 3px;
+        flex-wrap: nowrap;
+        overflow: hidden;
+        border-radius: 7px;
+    }
+
+    .nav-btn {
+        flex: 1 1 auto;
+        min-width: 0;
+        height: 30px;
+        padding: 4px 5px;
+        font-size: 11px;
+    }
+
+    .nav-btn.play {
+        min-width: 0;
+    }
+
+    .speed-group {
+        flex: 0 0 auto;
+        gap: 3px;
+        padding-left: 2px;
+        font-size: 10px;
+    }
+
+    .speed-group input[type="range"] {
+        width: clamp(50px, 15vw, 80px);
+    }
+
+    .footer {
+        height: 30px;
+        min-height: 30px;
+        font-size: 10px;
+        padding: 0 6px;
+        text-align: center;
+    }
 }
+
+/* Portrait phones: keep controls compact and give the canvas maximum room. */
+@media (max-width: 600px) {
+    .main {
+        min-height: 0;
+    }
+
+    .info-panel {
+        max-width: 178px;
+        font-size: 9px;
+        padding: 5px 7px;
+    }
+
+    .info-title {
+        font-size: 11px;
+    }
+
+    .params-panel {
+        bottom: 48px;
+        padding: 4px 5px;
+        gap: 2px 5px;
+    }
+
+    .param-row label {
+        font-size: 9px;
+    }
+
+    .param-row input[type="range"] {
+        width: 52px;
+    }
+
+    .param-row span {
+        min-width: 26px;
+        font-size: 9px;
+    }
+
+    .navigation {
+        bottom: 5px;
+        padding: 4px;
+    }
+
+    .nav-btn {
+        height: 28px;
+        font-size: 10px;
+        padding: 3px 3px;
+    }
+
+    .speed-group span:first-child {
+        display: none;
+    }
+
+    .speed-group input[type="range"] {
+        width: 52px;
+    }
+
+    .speed-value {
+        min-width: 22px;
+    }
+}
+
+/* Very narrow portrait phones */
+@media (max-width: 380px) {
+    .info-panel {
+        max-width: 160px;
+        font-size: 8.5px;
+    }
+
+    .params-panel {
+        left: 4px;
+        right: 4px;
+    }
+
+    .param-row label {
+        display: none;
+    }
+
+    .param-row input[type="range"] {
+        width: 48px;
+    }
+
+    .navigation {
+        left: 4px;
+        right: 4px;
+    }
+
+    .nav-btn {
+        font-size: 9px;
+    }
+}
+
 </style>
 </head>
 
@@ -419,9 +644,26 @@ function updateResponsiveScale() {
     const bounds = getLayoutBounds();
     const DATA_W = bounds.XMAX - bounds.XMIN;
     const DATA_H = bounds.YMAX - bounds.YMIN;
-    const horizScale = (W * 0.87) / DATA_W;
-    const vertScale = (H * 0.81) / DATA_H;
-    SCALE = Math.min(horizScale, vertScale);
+
+    const isMobile = W <= 1050;
+
+    if (!isMobile) {
+        const horizScale = (W * 0.87) / DATA_W;
+        const vertScale = (H * 0.81) / DATA_H;
+        SCALE = Math.min(horizScale, vertScale);
+    } else {
+        /* Mobile: preserve the user's selected zoom value conceptually,
+           but automatically fit the complete construction in the viewport. */
+        const mobileW = Math.max(0, W - 16);
+        const mobileH = Math.max(0, H - 82);
+        const fitScale = Math.min(mobileW / DATA_W, mobileH / DATA_H);
+
+        /* 200% remains the selected/default zoom in the control.
+           The drawing itself is constrained only when 200% would overflow. */
+        const requested = fitScale * userZoom;
+        SCALE = Math.min(requested, fitScale);
+    }
+
     FONT_SCALE = Math.max(0.75, Math.min(1.3, SCALE));
 }
 
@@ -617,20 +859,35 @@ function drawStaticBackground() {
         drawLine(Ox, Oy, cx, cy);
         drawMarker(px, py, 4, "#000000");
 
-        const labelR = R - 8;
+        /* Keep directing-circle division labels very close to the arc */
+        const labelR = R - 3;
         drawText(`${i}'`, Ox + labelR * Math.cos(a), Oy + labelR * Math.sin(a), 9, "#174f94", "bold");
     }
 
-    const endLineR = R + 105;
+    /* O–12′ construction line: stop exactly at C12 */
+    const C12x = Ox + OC * Math.cos(END);
+    const C12y = Oy + OC * Math.sin(END);
     setLine(0.55, "#000000");
-    drawLine(Ox, Oy, Ox + endLineR * Math.cos(END), Oy + endLineR * Math.sin(END));
+    drawLine(Ox, Oy, C12x, C12y);
 
     for (let i = 0; i <= N; i++) {
         const a = START - i * stepDeg * Math.PI / 180;
         const cx = Ox + OC * Math.cos(a);
         const cy = Oy + OC * Math.sin(a);
         drawMarker(cx, cy, 4, "#000000");
-        drawText(`C${i}`, cx, cy + 8, 7.5, "#333333", "normal");
+
+        /* C0–C12 are exactly on the thin centre-path arc OC = R + r.
+           Labels are offset radially outward from each corresponding C point. */
+        /* Keep C labels very close to the centre-path arc */
+        const labelOffset = 4;
+        drawText(
+            `C${i}`,
+            cx + labelOffset * Math.cos(a),
+            cy + labelOffset * Math.sin(a),
+            7.5,
+            "#333333",
+            "normal"
+        );
     }
 
     const C0x = Ox + OC * Math.cos(START);
@@ -648,7 +905,8 @@ function drawStaticBackground() {
         drawLine(C0x, C0y, px, py);
         drawMarker(px, py, 3.8, "#ffffff", lineColors[i]);
 
-        const lr = r + 6;
+        /* Keep material division labels close to the generating circle */
+        const lr = r + 2;
         drawText(String(i), C0x + lr * Math.cos(a), C0y + lr * Math.sin(a), 8.5, "#222222", "bold");
     }
 
@@ -656,7 +914,7 @@ function drawStaticBackground() {
     const p12x = C0x + r * Math.cos(p12a);
     const p12y = C0y + r * Math.sin(p12a);
     drawMarker(p12x, p12y, 3.8, "#ffffff", lineColors[0]);
-    drawText("12", p12x - 8, p12y - 8, 8.5, "#222222", "bold");
+    drawText("12", p12x - 4, p12y - 4, 8.5, "#222222", "bold");
 }
 
 function drawTrace(t) {
@@ -676,11 +934,10 @@ function drawTrace(t) {
 }
 
 function drawGeneratedPoints(currentStep) {
-    for (let i = 0; i <= currentStep; i++) {
-        const pt = epicycloidPointExactStep(i);
-        drawMarker(pt.x, pt.y, 3.0, "#d0008f", "#ffffff");
-        drawText(`P${i}`, pt.x, pt.y + 8, 10, "#d0008f", "bold");
-    }
+    const state = animationState(currentFrame);
+    const pt = epicycloidPoint(state.t);
+    drawMarker(pt.x, pt.y, 3.0, "#d0008f", "#ffffff");
+    drawText("P", pt.x, pt.y + 4, 10, "#d0008f", "bold");
 }
 
 function drawDynamic(frame) {
@@ -740,12 +997,31 @@ function drawDynamic(frame) {
         drawLine(c.x, c.y, px, py);
         drawMarker(px, py, 3.8, "#ffffff", lineColors[i]);
 
-        const lr = r + 6;
+        /* Keep moving material-point labels close to the generating circle */
+        const lr = r + 2;
         drawText(i === 0 ? "0" : String(i), c.x + lr * Math.cos(a), c.y + lr * Math.sin(a), 8.5, "#222222", "bold");
     }
 
-    drawText(`C${step}`, c.x, c.y - 10, 9, "#000000", "bold");
+    drawText(`C${step}`, c.x, c.y - 5, 9, "#000000", "bold");
     drawMarker(p.x, p.y, 5.5, "rgb(0,0,255)");
+}
+
+
+function drawWatermark() {
+    ctx.save();
+    ctx.globalAlpha = 0.075;
+    ctx.fillStyle = "#123b63";
+    ctx.font = `bold ${Math.max(18, 34 * FONT_SCALE)}px Arial, Helvetica, sans-serif`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    const cx = W * 0.50;
+    const cy = H * 0.50;
+
+    ctx.translate(cx, cy);
+    ctx.rotate(-Math.PI / 6);
+    ctx.fillText("Gajavada Sanjeevkumar", 0, 0);
+    ctx.restore();
 }
 
 function render() {
@@ -755,6 +1031,7 @@ function render() {
 
     drawStaticBackground();
     drawDynamic(currentFrame);
+    drawWatermark();
 }
 
 /* Playback & Controls */
