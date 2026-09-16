@@ -486,6 +486,47 @@ canvas {
     }
 }
 
+
+/* Full screen mode */
+.main:fullscreen {
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    background: #ffffff;
+}
+
+.main:fullscreen canvas {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Back to Hypocycloid — visible only in Full Screen */
+.fullscreen-back {
+    display: none;
+    position: fixed;
+    top: 6px;
+    left: 8px;
+    z-index: 10000;
+    color: #ffffff;
+    background: #174f94;
+    border: 1px solid #103d73;
+    border-radius: 6px;
+    padding: 5px 9px;
+    font: 700 13px Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.18);
+}
+
+.main:fullscreen .fullscreen-back {
+    display: block;
+}
+
+.main:fullscreen .fullscreen-back:hover {
+    background: #103d73;
+}
+
 </style>
 </head>
 
@@ -500,6 +541,7 @@ canvas {
 </div>
 
 <div class="main">
+    <a class="fullscreen-back" id="fullscreenBack" href="../../../../../#/teaching/Engineering%20Curves/Hypocycloid/" title="Back to Hypocycloid">‹ Back to Hypocycloid</a>
     <canvas id="canvas"></canvas>
 
     <!-- INFORMATION PANEL (TOP LEFT) -->
@@ -562,6 +604,7 @@ canvas {
         <button class="nav-btn" id="forwardBtn" title="Run forward">▶</button>
         <button class="nav-btn" id="nextBtn" title="Next step">▶▶</button>
         <button class="nav-btn reset" id="resetBtn" title="Reset animation">↻ Reset</button>
+        <button class="nav-btn" id="fullscreenBtn" title="Enter Full Screen">⛶ Full Screen</button>
 
         <div class="speed-group">
             <span>Speed</span>
@@ -1196,6 +1239,38 @@ document.getElementById("zoomSlider").addEventListener("input", function() {
 document.getElementById("speedSlider").addEventListener("input", function() {
     speed = Number(this.value);
     updateInfo();
+});
+
+
+/* Full Screen / Normal Mode */
+const fullscreenBtn = document.getElementById("fullscreenBtn");
+const animationArea = document.querySelector(".main");
+
+function updateFullscreenButton() {
+    if (document.fullscreenElement === animationArea) {
+        fullscreenBtn.textContent = "⛶ Normal Mode";
+        fullscreenBtn.title = "Exit Full Screen";
+    } else {
+        fullscreenBtn.textContent = "⛶ Full Screen";
+        fullscreenBtn.title = "Enter Full Screen";
+    }
+}
+
+fullscreenBtn.addEventListener("click", async () => {
+    try {
+        if (document.fullscreenElement === animationArea) {
+            await document.exitFullscreen();
+        } else {
+            await animationArea.requestFullscreen();
+        }
+    } catch (error) {
+        console.warn("Full screen mode is not available:", error);
+    }
+});
+
+document.addEventListener("fullscreenchange", () => {
+    updateFullscreenButton();
+    resizeCanvas();
 });
 
 resizeCanvas();
