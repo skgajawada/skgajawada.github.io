@@ -522,7 +522,7 @@ body.phone-desktop-site .footer { height:30px; min-height:30px; font-size:10px; 
     .main:fullscreen .navigation { bottom:5px; }
 }
 
-/* Full Screen — Back to Hypocycloid */
+/* Full Screen — Back to Epicycloid */
 .fullscreen-back {
     display: none;
     position: fixed;
@@ -661,7 +661,7 @@ body.phone-desktop-site .footer { height:30px; min-height:30px; font-size:10px; 
 </div>
 
 <div class="main">
-    <a class="fullscreen-back" href="../../../../../#/teaching/Engineering%20Curves/Hypocycloid/" title="Back to Hypocycloid" id="backToHypocycloid">‹ Back to Hypocycloid</a>
+    <a class="fullscreen-back" href="https://skgajawada.github.io/assets/teaching/Engineering%20Graphics/engineering-curves/epicycloid/" title="Back to Hypocycloid" id="backToEpicycloid">‹ Back to Hypocycloid</a>
     <canvas id="canvas"></canvas>
 
     <!-- INFORMATION PANEL (TOP LEFT) -->
@@ -801,6 +801,16 @@ const lineColors = [
 let SCALE = 1.0;
 let FONT_SCALE = 1.0;
 
+/* Manual drawing-position control.  Drag the construction directly on the
+   canvas to place O wherever it is most convenient. */
+let panX = 0.0;
+let panY = 0.0;
+let isPanning = false;
+let panStartX = 0.0;
+let panStartY = 0.0;
+let panOriginX = 0.0;
+let panOriginY = 0.0;
+
 function getLayoutBounds() {
     /* One complete generating-circle revolution corresponds to the
        arc 360°(r/R) at O. Therefore 2, 3, ... revolutions accumulate
@@ -903,7 +913,9 @@ function getScalingMetrics() {
         pixelsPerUnit = Math.min(requested, fit * (isMobile ? 1.0 : 1.35));
 
         dataCx = (AX.left + AX.right) / 2;
-        dataCy = (AX.top + AX.bottom) / 2;
+        /* Fullscreen starts in a convenient upper position rather than forcing
+           O to the exact centre.  The user can drag the construction freely. */
+        dataCy = AX.top + (AX.bottom - AX.top) * (isMobile ? 0.38 : 0.30);
     } else {
         /* Normal mode.  Desktop keeps the requested 15 mm footer relation
            for the <=150° construction; mobile uses the unobstructed space
@@ -951,6 +963,9 @@ function getScalingMetrics() {
             dataCy = bottomWeightedCy * (1.0 - f) + viewportCenterY * f;
         }
     }
+
+    dataCx += panX;
+    dataCy += panY;
 
     return { pixelsPerUnit, dataCx, dataCy, AX, bounds };
 }
@@ -1505,6 +1520,8 @@ document.getElementById("resetBtn").addEventListener("click", () => {
     startDeg = 150.0;
     userZoom = 2.0;
     speed = 1.0;
+    panX = 0.0;
+    panY = 0.0;
     selectedPoint = 0;
     selectedPoints = [0];
     rotationReps = 1;
@@ -1575,22 +1592,44 @@ document.getElementById("speedSlider").addEventListener("input", function() {
 });
 
 
-/* Back to Hypocycloid — use the same relative route as the working
-   Hypocycloid animation.  Do not rely on a hash-only URL when this file is
-   opened directly from its animations folder. */
-const backToHypocycloid = document.getElementById("backToHypocycloid");
-backToHypocycloid.addEventListener("click", function(event) {
+/* Back to Epicycloid — use the exact live Engineering Graphics URL. */
+const backToEpicycloid = document.getElementById("backToEpicycloid");
+backToEpicycloid.addEventListener("click", function(event) {
     event.preventDefault();
-    const target = "https://skgajawada.github.io/#/teaching/Engineering%20Curves/Hypocycloid/";
-    try {
-        if (window.top && window.top !== window) {
-            window.top.location.href = target;
-        } else {
-            window.location.href = target;
-        }
-    } catch (error) {
-        window.location.href = target;
-    }
+    const target = "https://skgajawada.github.io/assets/teaching/Engineering%20Graphics/engineering-curves/epicycloid/";
+    window.location.href = target;
+});
+
+/* Drag the construction to any convenient position.  This works in normal
+   mode and fullscreen; controls remain clickable because dragging is attached
+   only to the canvas. */
+canvas.style.cursor = "grab";
+canvas.addEventListener("pointerdown", function(event) {
+    if (event.button !== 0) return;
+    isPanning = true;
+    panStartX = event.clientX;
+    panStartY = event.clientY;
+    panOriginX = panX;
+    panOriginY = panY;
+    canvas.style.cursor = "grabbing";
+    canvas.setPointerCapture?.(event.pointerId);
+});
+canvas.addEventListener("pointermove", function(event) {
+    if (!isPanning) return;
+    panX = panOriginX + (event.clientX - panStartX);
+    panY = panOriginY + (event.clientY - panStartY);
+    render();
+});
+function stopPanning(event) {
+    if (!isPanning) return;
+    isPanning = false;
+    canvas.style.cursor = "grab";
+    try { canvas.releasePointerCapture?.(event.pointerId); } catch (_) {}
+}
+canvas.addEventListener("pointerup", stopPanning);
+canvas.addEventListener("pointercancel", stopPanning);
+canvas.addEventListener("pointerleave", function(event) {
+    if (isPanning && !canvas.hasPointerCapture?.(event.pointerId)) stopPanning(event);
 });
 
 /* Full Screen / Normal Mode */
