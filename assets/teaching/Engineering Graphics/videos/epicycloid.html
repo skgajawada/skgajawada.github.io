@@ -1439,33 +1439,46 @@ function drawDynamic(frame) {
 
 
 function drawWatermark() {
-    /* FIXED SINGLE WATERMARK — PAGE DIAGONAL.
-       One large name only. It is fixed to the canvas/page, not to the
-       construction, so animation, zoom and panning never move it. */
+    /* TWO FIXED WATERMARK LINES.
+       Each complete name follows the actual page diagonal from
+       bottom-left to top-right.  The two lines are parallel and use
+       the available page diagonal without changing the Arial font shape. */
     ctx.save();
-    ctx.translate(W / 2, H / 2);
-    ctx.rotate(-Math.PI / 4);                 // bottom-left -> top-right
-    ctx.globalAlpha = 0.085;
-    ctx.fillStyle = "#123b63";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
 
+    const text = "Gajavada Sanjeevkumar";
     const diagonal = Math.hypot(W, H);
-    const targetWidth = diagonal * 0.88;      // nearly corner-to-corner
-    let fontSize = Math.max(48, Math.min(220, diagonal / 5));
-    ctx.font = `bold ${fontSize}px Arial, Helvetica, sans-serif`;
+    const angle = Math.atan2(-H, W);
 
-    /* Scale the font so the name appears once and spans most of the
-       bottom-left to top-right page diagonal. */
-    const measured = ctx.measureText("Gajavada Sanjeevkumar").width || 1;
-    fontSize *= targetWidth / measured;
-    fontSize = Math.max(42, Math.min(220, fontSize));
-    ctx.font = `bold ${fontSize}px Arial, Helvetica, sans-serif`;
+    ctx.translate(W / 2, H / 2);
+    ctx.rotate(angle);
+    ctx.globalAlpha = 0.075;
+    ctx.fillStyle = "#123b63";
+    ctx.textBaseline = "middle";
+    ctx.textAlign = "left";
 
-    ctx.fillText("Gajavada Sanjeevkumar", 0, 0);
+    /* Fit the COMPLETE name to the page diagonal using font size only.
+       No horizontal/vertical scaling is applied, so Arial keeps its
+       original appearance. */
+    const targetWidth = diagonal * 0.78;
+    const referenceSize = 100;
+    ctx.font = `700 ${referenceSize}px Arial, Helvetica, sans-serif`;
+    const referenceWidth = Math.max(1, ctx.measureText(text).width);
+    const fontSize = Math.max(14, targetWidth * referenceSize / referenceWidth);
+    ctx.font = `700 ${fontSize}px Arial, Helvetica, sans-serif`;
+
+    const actualWidth = ctx.measureText(text).width;
+    const startX = -actualWidth / 2;
+
+    /* Large parallel separation; the second line is slightly indented
+       like a tab, while both lines retain the same diagonal direction. */
+    const gap = Math.max(fontSize * 2.2, Math.min(H * 0.16, fontSize * 3.0));
+    const indent = Math.min(actualWidth * 0.06, W * 0.045);
+
+    ctx.fillText(text, startX, -gap / 2);
+    ctx.fillText(text, startX + indent, gap / 2);
+
     ctx.restore();
 }
-
 function render() {
     ctx.clearRect(0, 0, W, H);
     ctx.fillStyle = "#ffffff";
