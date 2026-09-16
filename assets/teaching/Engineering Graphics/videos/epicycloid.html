@@ -637,7 +637,7 @@ canvas {
 </div>
 
 <div class="main">
-    <a class="fullscreen-back" href="../../../../../#/teaching/Engineering%20Curves/Epicycloid/" title="Back to Epicycloid">‹ Back to Epicycloid</a>
+    <a class="fullscreen-back" id="fullscreenBack" href="#/teaching/Engineering%20Curves/Epicycloid/" title="Back to Epicycloid">‹ Back to Epicycloid</a>
     <canvas id="canvas"></canvas>
 
     <!-- INFORMATION PANEL (TOP LEFT) -->
@@ -689,7 +689,7 @@ canvas {
                 <label>Trace Points (max 4):</label>
             </div>
             <div class="point-checkboxes" id="pointCheckboxes" aria-label="Select up to four generating-circle points to trace">
-                <label class="point-check"><input type="checkbox" value="0">0</label>
+                <label class="point-check"><input type="checkbox" value="0" checked>0</label>
                 <label class="point-check"><input type="checkbox" value="1" checked>1</label>
                 <label class="point-check"><input type="checkbox" value="2">2</label>
                 <label class="point-check"><input type="checkbox" value="3">3</label>
@@ -766,7 +766,7 @@ let userZoom = 2.65;
 
 const N = 12;
 let selectedPoint = 1;
-let selectedPoints = [1];
+let selectedPoints=[0];
 let rotationReps = 1;
 
 function getTotalArcDeg() {
@@ -1477,6 +1477,27 @@ fullscreenBtn.addEventListener("click", async () => {
         console.warn("Full screen mode is not available:", error);
     }
 });
+
+
+/* Fullscreen Back: return to the parent Epicycloid teaching page.
+   The animation is normally embedded from /videos/epicycloid.html,
+   so a multi-level relative URL is unreliable here. */
+const fullscreenBack = document.getElementById("fullscreenBack");
+if (fullscreenBack) {
+    fullscreenBack.addEventListener("click", function (event) {
+        event.preventDefault();
+        try {
+            const target = new URL("/#/teaching/Engineering%20Curves/Epicycloid/", window.location.origin);
+            if (window.top && window.top !== window) {
+                window.top.location.href = target.href;
+            } else {
+                window.location.href = target.href;
+            }
+        } catch (e) {
+            window.location.href = "/#/teaching/Engineering%20Curves/Epicycloid/";
+        }
+    });
+}
 
 document.addEventListener("fullscreenchange", () => {
     updateFullscreenButton();
