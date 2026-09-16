@@ -8,6 +8,9 @@
 <style>
 * {
     box-sizing: border-box;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
 }
 
 html, body {
@@ -68,6 +71,9 @@ canvas {
     width: 100%;
     height: 100%;
     background: #ffffff;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 /* INFORMATION PANEL (TOP LEFT) */
@@ -846,6 +852,61 @@ function getLayoutBounds() {
     };
 }
 
+function getConstructionBoundsData() {
+    /* Visual bounds of the complete construction.  This is deliberately
+       independent of O: the watermark and the automatic placement are based
+       on the actual visible diagram, so multi-revolution constructions remain
+       centred about the watermark instead of about the origin. */
+    const bounds = getLayoutBounds();
+    const pts = [];
+    const add = (x, y) => pts.push({x, y});
+    const START = startDeg * Math.PI / 180;
+    const totalSteps = N * rotationReps;
+    const totalArc = getTotalArcDeg() * rotationReps * Math.PI / 180;
+    const END = START - totalArc;
+
+    /* Directing-circle construction arc. */
+    const arcSamples = Math.max(240, Math.ceil(Math.abs(totalArc) * 90));
+    for (let i = 0; i <= arcSamples; i++) {
+        const f = i / arcSamples;
+        const a = START + (END - START) * f;
+        add(R * Math.cos(a), bounds.Oy + R * Math.sin(a));
+    }
+
+    /* Complete epicycloidal trace envelope for the selected material points.
+       Sampling the whole requested construction makes the automatic centre
+       stable during animation, including 2, 3, ... revolutions. */
+    const tracePoints = selectedPoints.length ? selectedPoints : [0];
+    const samples = Math.max(240, totalSteps * 24);
+    for (const pointIndex of tracePoints) {
+        for (let i = 0; i <= samples; i++) {
+            const t = totalSteps * i / samples;
+            const pt = epicycloidPoint(t, pointIndex);
+            add(pt.x, pt.y);
+        }
+    }
+
+    /* Also include the generating-circle envelope along its complete path. */
+    for (let i = 0; i <= samples; i++) {
+        const t = totalSteps * i / samples;
+        const c = centreAt(t);
+        add(c.x - r, c.y - r);
+        add(c.x + r, c.y + r);
+    }
+
+    let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    for (const pt of pts) {
+        minX = Math.min(minX, pt.x); maxX = Math.max(maxX, pt.x);
+        minY = Math.min(minY, pt.y); maxY = Math.max(maxY, pt.y);
+    }
+
+    return {
+        minX, maxX, minY, maxY,
+        centerX: (minX + maxX) / 2,
+        centerY: (minY + maxY) / 2
+    };
+}
+
 function getScalingMetrics() {
     const bounds = getLayoutBounds();
     const isNarrowDevice = window.screen && window.screen.width <= 600;
@@ -912,10 +973,14 @@ function getScalingMetrics() {
            the drag gesture to position the construction exactly where wanted. */
         pixelsPerUnit = fit * userZoom;
 
-        dataCx = (AX.left + AX.right) / 2;
-        /* Fullscreen starts in a convenient upper position rather than forcing
-           O to the exact centre.  The user can drag the construction freely. */
-        dataCy = AX.top + (AX.bottom - AX.top) * (isMobile ? 0.38 : 0.30);
+        const visual = getConstructionBoundsData();
+        const targetX = (AX.left + AX.right) / 2;
+        const targetY = (AX.top + AX.bottom) / 2;
+        /* Centre the COMPLETE visual construction, not O.  Thus the watermark
+           sits at the true diagram centre and a two-revolution construction is
+           balanced about it.  Dragging still adds panX/panY afterwards. */
+        dataCx = targetX - (visual.centerX - (bounds.XMIN + bounds.XMAX) / 2) * pixelsPerUnit;
+        dataCy = targetY + (visual.centerY - bounds.Oy) * pixelsPerUnit;
     } else {
         /* Normal mode.  Desktop keeps the requested 15 mm footer relation
            for the <=150° construction; mobile uses the unobstructed space
@@ -933,8 +998,11 @@ function getScalingMetrics() {
             (AX.bottom - AX.top) / DATA_H
         ) * bounds.zoom;
 
-        dataCx = AX.left + (AX.right - AX.left) / 2;
+        const visual = getConstructionBoundsData();
+        const targetX = AX.left + (AX.right - AX.left) / 2;
         const viewportCenterY = AX.top + (AX.bottom - AX.top) / 2;
+        dataCx = targetX - (visual.centerX - (bounds.XMIN + bounds.XMAX) / 2) * pixelsPerUnit;
+        dataCy = viewportCenterY + (visual.centerY - bounds.Oy) * pixelsPerUnit;
 
         if (isMobile) {
             const mainRect = document.querySelector('.main')?.getBoundingClientRect();
@@ -951,16 +1019,13 @@ function getScalingMetrics() {
             );
             const safeBottom = Math.max(safeTop + 40, controlsTop - 8);
             const freeHeight = Math.max(40, safeBottom - safeTop);
-            dataCy = safeTop + freeHeight * 0.60;
+            /* Keep the visual diagram centred in the unobstructed mobile area. */
+            const targetMobileY = safeTop + freeHeight / 2;
+            dataCy = targetMobileY + (visual.centerY - bounds.Oy) * pixelsPerUnit;
         } else {
-            const f = bounds.f;
-            const footerEl = document.querySelector('.footer');
-            const canvasRect = canvas.getBoundingClientRect();
-            const footerRect = footerEl ? footerEl.getBoundingClientRect() : null;
-            const footerTopCanvas = footerRect ? footerRect.top - canvasRect.top : H;
-            const footerGapMm = 15.0;
-            const bottomWeightedCy = footerTopCanvas - footerGapMm * pixelsPerUnit;
-            dataCy = bottomWeightedCy * (1.0 - f) + viewportCenterY * f;
+            /* Desktop: centre the visual construction in the available canvas.
+               This replaces centring O; the entire diagram is what is balanced. */
+            dataCy = viewportCenterY + (visual.centerY - bounds.Oy) * pixelsPerUnit;
         }
     }
 
@@ -1374,23 +1439,29 @@ function drawDynamic(frame) {
 
 
 function drawWatermark() {
-    /* Keep the watermark attached to the animated construction instead of
-       the browser viewport.  It therefore follows both animation motion and
-       manual dragging/positioning in normal and fullscreen modes. */
-    const state = animationState(currentFrame);
-    const c = centreAt(state.t);
-    const wmX = c.x;
-    const wmY = c.y + r + 24;
-
+    /* FIXED SINGLE WATERMARK — PAGE DIAGONAL.
+       One large name only. It is fixed to the canvas/page, not to the
+       construction, so animation, zoom and panning never move it. */
     ctx.save();
-    ctx.globalAlpha = 0.075;
+    ctx.translate(W / 2, H / 2);
+    ctx.rotate(-Math.PI / 4);                 // bottom-left -> top-right
+    ctx.globalAlpha = 0.085;
     ctx.fillStyle = "#123b63";
-    ctx.font = `bold ${Math.max(18, 34 * FONT_SCALE)}px Arial, Helvetica, sans-serif`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
 
-    ctx.translate(sx(wmX), syCanvas(wmY));
-    ctx.rotate(-Math.PI / 6);
+    const diagonal = Math.hypot(W, H);
+    const targetWidth = diagonal * 0.88;      // nearly corner-to-corner
+    let fontSize = Math.max(48, Math.min(220, diagonal / 5));
+    ctx.font = `bold ${fontSize}px Arial, Helvetica, sans-serif`;
+
+    /* Scale the font so the name appears once and spans most of the
+       bottom-left to top-right page diagonal. */
+    const measured = ctx.measureText("Gajavada Sanjeevkumar").width || 1;
+    fontSize *= targetWidth / measured;
+    fontSize = Math.max(42, Math.min(220, fontSize));
+    ctx.font = `bold ${fontSize}px Arial, Helvetica, sans-serif`;
+
     ctx.fillText("Gajavada Sanjeevkumar", 0, 0);
     ctx.restore();
 }
@@ -1597,12 +1668,23 @@ document.getElementById("speedSlider").addEventListener("input", function() {
 });
 
 
-/* Back to Epicycloid — use the exact live Engineering Graphics URL. */
+/* Back to the Epicycloid Engineering Graphics page.
+   Always leave fullscreen first, then navigate the top-level page so the
+   animation cannot remain embedded inside the current document. */
 const backToEpicycloid = document.getElementById("backToEpicycloid");
-backToEpicycloid.addEventListener("click", function(event) {
+backToEpicycloid.addEventListener("click", async function(event) {
     event.preventDefault();
     const target = "https://skgajawada.github.io/assets/teaching/Engineering%20Graphics/engineering-curves/epicycloid/";
-    window.location.href = target;
+    try {
+        if (document.fullscreenElement) {
+            await document.exitFullscreen();
+        }
+    } catch (_) {}
+    try {
+        window.top.location.href = target;
+    } catch (_) {
+        window.location.href = target;
+    }
 });
 
 /* Drag the construction to any convenient position.  This works in normal
@@ -1652,29 +1734,56 @@ canvas.addEventListener("wheel", function(event) {
     render();
 }, { passive: false });
 
-/* Content-protection shortcuts.  These are deterrents for ordinary browser
-   interactions; they cannot provide cryptographic protection of client-side
-   HTML/JavaScript. */
+/* Content-protection deterrents for ordinary browser actions.
+   Client-side HTML can never be made impossible to inspect/save, but these
+   handlers disable the normal copy/select/drag/context-menu paths. */
 document.addEventListener("contextmenu", function(event) {
     event.preventDefault();
+    event.stopPropagation();
+    return false;
+}, true);
+
+["copy", "cut", "dragstart", "selectstart"].forEach(function(type) {
+    document.addEventListener(type, function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }, true);
 });
-document.addEventListener("dragstart", function(event) {
-    event.preventDefault();
-});
-document.addEventListener("selectstart", function(event) {
-    event.preventDefault();
-});
-document.addEventListener("keydown", function(event) {
-    const key = String(event.key || "").toLowerCase();
-    const blocked =
-        key === "f12" ||
-        (event.ctrlKey && ["u", "s", "p"].includes(key)) ||
-        (event.ctrlKey && event.shiftKey && ["i", "j", "c"].includes(key));
-    if (blocked) {
+
+document.addEventListener("mousedown", function(event) {
+    if (event.button === 2) {
         event.preventDefault();
         event.stopPropagation();
     }
-});
+}, true);
+
+document.addEventListener("auxclick", function(event) {
+    if (event.button !== 0) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+}, true);
+
+document.addEventListener("keydown", function(event) {
+    const key = String(event.key || "").toLowerCase();
+    const ctrlOrMeta = event.ctrlKey || event.metaKey;
+    const blocked =
+        key === "f12" ||
+        (ctrlOrMeta && ["u", "s", "p", "c", "x", "a"].includes(key)) ||
+        (ctrlOrMeta && event.shiftKey && ["i", "j", "c", "k"].includes(key)) ||
+        (ctrlOrMeta && event.altKey && ["i", "j"].includes(key));
+    if (blocked) {
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+    }
+}, true);
+
+/* Disable browser image/text dragging and text selection at the CSS level. */
+document.documentElement.style.userSelect = "none";
+document.body.style.userSelect = "none";
+document.body.style.webkitUserSelect = "none";
+document.body.style.webkitTouchCallout = "none";
 
 /* Full Screen / Normal Mode */
 const fullscreenBtn = document.getElementById("fullscreenBtn");
