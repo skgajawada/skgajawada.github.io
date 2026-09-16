@@ -486,6 +486,42 @@ canvas {
 }
 
 
+/* Android/Chrome "Desktop site" on a narrow phone: keep the mobile UI
+   proportions even when the browser reports a wide layout viewport. */
+body.phone-desktop-site .header { height:52px; min-height:52px; padding:6px 10px; }
+body.phone-desktop-site .title-area h1 { font-size:clamp(14px,4.2vw,20px); white-space:nowrap; }
+body.phone-desktop-site .title-area p,
+body.phone-desktop-site .author { display:none; }
+body.phone-desktop-site .info-panel { top:7px; left:7px; width:auto; max-width:178px; padding:5px 7px; font-size:9px; line-height:1.35; }
+body.phone-desktop-site .info-title { font-size:11px; }
+body.phone-desktop-site .params-panel { top:auto; right:7px; left:7px; bottom:48px; width:auto; max-height:none; overflow:visible; padding:4px 5px; gap:2px 5px; display:flex; align-items:center; justify-content:center; flex-wrap:wrap; }
+body.phone-desktop-site .params-title,
+body.phone-desktop-site .param-group .desc-text { display:none; }
+body.phone-desktop-site .param-group { margin:0; padding:0; border:0; display:flex; align-items:center; }
+body.phone-desktop-site .param-row { margin:0; gap:3px; }
+body.phone-desktop-site .param-row label { font-size:9px; }
+body.phone-desktop-site .param-row input[type="range"] { width:52px; height:18px; }
+body.phone-desktop-site .param-row span { min-width:26px; font-size:9px; }
+body.phone-desktop-site .point-checks { grid-template-columns:repeat(7,minmax(0,1fr)); }
+body.phone-desktop-site .point-check { font-size:9px; }
+body.phone-desktop-site .point-check input { width:12px; height:12px; }
+body.phone-desktop-site .rotation-btn { font-size:8.5px; padding:4px 1px; }
+body.phone-desktop-site .navigation { left:4px; right:4px; bottom:5px; width:auto; transform:none; padding:4px; gap:3px; }
+body.phone-desktop-site .nav-btn { height:28px; font-size:10px; padding:3px 3px; }
+body.phone-desktop-site .speed-group span:first-child { display:none; }
+body.phone-desktop-site .speed-group input[type="range"] { width:52px; }
+body.phone-desktop-site .footer { height:30px; min-height:30px; font-size:10px; padding:0 6px; }
+
+/* In fullscreen the Back button occupies the upper-left corner.  The canvas
+   remains a clean drawing area; controls stay at the bottom. */
+.main:fullscreen .info-panel { z-index:10; }
+.main:fullscreen .params-panel { z-index:15; }
+.main:fullscreen .navigation { z-index:16; }
+@media (max-width:1050px) {
+    .main:fullscreen .params-panel { bottom:48px; }
+    .main:fullscreen .navigation { bottom:5px; }
+}
+
 /* Full Screen — Back to Epicycloid */
 .fullscreen-back {
     display: none;
@@ -521,108 +557,59 @@ canvas {
 }
 
 
-/* Trace-point and generating-circle rotation controls */
-/* Mobile-friendly multiple-answer point selection */
-.point-checkboxes {
-    display: grid;
-    grid-template-columns: repeat(7, minmax(22px, 1fr));
-    gap: 4px 5px;
-    margin-top: 2px;
+/* Trace-point and generating-circle rotation controls — matched to Hypocycloid */
+.point-checks{
+    display:grid;
+    grid-template-columns:repeat(7,minmax(0,1fr));
+    gap:3px 4px;
+    margin-top:3px;
 }
-
-.point-check {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2px;
-    font-size: 11px;
-    font-weight: 700;
-    color: #17324d;
-    cursor: pointer;
-    user-select: none;
+.point-check{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:2px;
+    min-width:0;
+    font-size:10px;
+    cursor:pointer;
 }
-
-.point-check input {
-    width: 13px;
-    height: 13px;
-    margin: 0;
-    accent-color: #174f94;
+.point-check input{
+    margin:0;
+    width:13px;
+    height:13px;
+    accent-color:#174f94;
 }
-
-.rotation-options {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(48px, 1fr));
-    gap: 4px;
-    width: 100%;
+.rotation-choices{
+    display:grid;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:4px;
+    margin-top:3px;
 }
-
-.rotation-option {
-    border: 1px solid #9fb4c8;
-    border-radius: 5px;
-    background: #ffffff;
-    color: #17324d;
-    min-height: 30px;
-    padding: 3px 2px;
-    font: 700 10px Arial, Helvetica, sans-serif;
-    cursor: pointer;
-    line-height: 1.05;
+.rotation-btn{
+    border:1px solid #9fb1c2;
+    border-radius:5px;
+    background:#f7fafc;
+    color:#17324d;
+    font:700 10px Arial,Helvetica,sans-serif;
+    padding:5px 2px;
+    cursor:pointer;
 }
-
-.rotation-option:hover {
-    background: #edf4fa;
+.rotation-btn.active{
+    background:#174f94;
+    color:#fff;
+    border-color:#174f94;
 }
-
-.rotation-option.active {
-    background: #174f94;
-    color: #ffffff;
-    border-color: #174f94;
+.rotation-btn:active{transform:scale(.97);}
+@media(max-width:1050px){
+    .point-checks{grid-template-columns:repeat(13,minmax(0,1fr));}
 }
-
-.rotation-option .rot-n {
-    display: block;
-    font-size: 11px;
+@media(max-width:600px){
+    .point-checks{grid-template-columns:repeat(7,minmax(0,1fr));}
+    .point-check{font-size:9px;}
+    .point-check input{width:12px;height:12px;}
+    .rotation-btn{font-size:8.5px;padding:4px 1px;}
+    .params-panel{max-height:none;overflow:visible;}
 }
-
-.rotation-option .rot-deg {
-    display: block;
-    font-size: 8px;
-    font-weight: 600;
-}
-
-@media (max-width: 1050px) {
-    .point-checkboxes {
-        grid-template-columns: repeat(7, minmax(20px, 1fr));
-        gap: 3px 3px;
-    }
-
-    .point-check {
-        font-size: 9px;
-    }
-
-    .point-check input {
-        width: 12px;
-        height: 12px;
-    }
-
-    .rotation-options {
-        grid-template-columns: repeat(5, minmax(42px, 1fr));
-        gap: 3px;
-    }
-
-    .rotation-option {
-        min-height: 26px;
-        font-size: 8px;
-    }
-
-    .rotation-option .rot-n {
-        font-size: 9px;
-    }
-
-    .rotation-option .rot-deg {
-        font-size: 7px;
-    }
-}
-
 </style>
 </head>
 
@@ -637,7 +624,7 @@ canvas {
 </div>
 
 <div class="main">
-    <a class="fullscreen-back" id="fullscreenBack" href="#/teaching/Engineering%20Curves/Epicycloid/" title="Back to Epicycloid">‹ Back to Epicycloid</a>
+    <a class="fullscreen-back" href="#/teaching/Engineering%20Curves/Epicycloid/" title="Back to Epicycloid" id="backToEpicycloid">‹ Back to Epicycloid</a>
     <canvas id="canvas"></canvas>
 
     <!-- INFORMATION PANEL (TOP LEFT) -->
@@ -661,7 +648,7 @@ canvas {
         <div class="param-group">
             <div class="param-row">
                 <label>Directing R:</label>
-                <input id="rSlider" type="range" min="15" max="60" step="1" value="60">
+                <input id="rSlider" type="range" min="15" max="100" step="1" value="60">
                 <span id="rVal">60</span>
             </div>
             <div class="desc-text">Radius of the fixed directing circle.</div>
@@ -670,7 +657,7 @@ canvas {
         <div class="param-group">
             <div class="param-row">
                 <label>Generating r:</label>
-                <input id="genSlider" type="range" min="15" max="60" step="1" value="20">
+                <input id="genSlider" type="range" min="5" max="60" step="1" value="20">
                 <span id="genVal">20</span>
             </div>
             <div class="desc-text">Rolling circle radius. Calculated Angle at O: <strong id="cardAngleO" style="color:#123b63;">120.0°</strong></div>
@@ -685,44 +672,28 @@ canvas {
             <div class="desc-text">Rotation angle of initial center position.</div>
         </div>
         <div class="param-group">
-            <div class="param-row">
-                <label>Trace Points (max 4):</label>
-            </div>
-            <div class="point-checkboxes" id="pointCheckboxes" aria-label="Select up to four generating-circle points to trace">
-                <label class="point-check"><input type="checkbox" value="0" checked>0</label>
-                <label class="point-check"><input type="checkbox" value="1" checked>1</label>
-                <label class="point-check"><input type="checkbox" value="2">2</label>
-                <label class="point-check"><input type="checkbox" value="3">3</label>
-                <label class="point-check"><input type="checkbox" value="4">4</label>
-                <label class="point-check"><input type="checkbox" value="5">5</label>
-                <label class="point-check"><input type="checkbox" value="6">6</label>
-                <label class="point-check"><input type="checkbox" value="7">7</label>
-                <label class="point-check"><input type="checkbox" value="8">8</label>
-                <label class="point-check"><input type="checkbox" value="9">9</label>
-                <label class="point-check"><input type="checkbox" value="10">10</label>
-                <label class="point-check"><input type="checkbox" value="11">11</label>
-                <label class="point-check"><input type="checkbox" value="12">12</label>
-            </div>
-            <div class="desc-text">Select 1–4 points. Curves are labelled P, Q, R, S with P0–P12, Q0–Q12, etc.</div>
+            <div class="param-row"><label>Trace Points:</label></div>
+            <div id="pointChecks" class="point-checks" aria-label="Trace points"></div>
+            <div class="desc-text">Select 1–4 points to generate P, Q, R, S curves simultaneously.</div>
         </div>
 
-        <div class="param-group rotation-control-group">
-            <div class="param-row"><label>Circle Rotations:</label></div>
-            <div class="rotation-options" id="rotationOptions" aria-label="Generating circle rotations">
-                <button type="button" class="rotation-option active" data-rot="1"><span class="rot-n">1 rotation</span><span class="rot-deg">360°</span></button>
-                <button type="button" class="rotation-option" data-rot="2"><span class="rot-n">2 rotations</span><span class="rot-deg">720°</span></button>
-                <button type="button" class="rotation-option" data-rot="3"><span class="rot-n">3 rotations</span><span class="rot-deg">1080°</span></button>
-                <button type="button" class="rotation-option" data-rot="4"><span class="rot-n">4 rotations</span><span class="rot-deg">1440°</span></button>
-                <button type="button" class="rotation-option" data-rot="5"><span class="rot-n">5 rotations</span><span class="rot-deg">1800°</span></button>
+        <div class="param-group">
+            <div class="param-row"><label>Generating Circle Rotations:</label></div>
+            <div id="rotationChoices" class="rotation-choices" aria-label="Generating circle rotations">
+                <button type="button" class="rotation-btn active" data-rot="1">1 × 360°</button>
+                <button type="button" class="rotation-btn" data-rot="2">2 × 360°</button>
+                <button type="button" class="rotation-btn" data-rot="3">3 × 360°</button>
+                <button type="button" class="rotation-btn" data-rot="4">4 × 360°</button>
+                <button type="button" class="rotation-btn" data-rot="5">5 × 360°</button>
             </div>
-            <div class="desc-text">Each pause advances the generating circle by <strong>30°</strong> (12 points = 360°).</div>
+            <div class="desc-text">Each revolution has 12 divisions; each division rotates the generating circle by 30°.</div>
         </div>
 
         <div class="param-group">
             <div class="param-row">
                 <label>Zoom Level (%):</label>
-                <input id="zoomSlider" type="range" min="50" max="400" step="5" value="265">
-                <span id="zoomVal">265%</span>
+                <input id="zoomSlider" type="range" min="50" max="400" step="5" value="200">
+                <span id="zoomVal">200%</span>
             </div>
         </div>
     </div>
@@ -762,11 +733,11 @@ let H = 0;
 let R = 60.0;
 let r = 20.0;
 let startDeg = 150.0;
-let userZoom = 2.65;
+let userZoom = 2.0;
 
 const N = 12;
-let selectedPoint = 1;
-let selectedPoints=[0];
+let selectedPoint = 0;
+let selectedPoints = [0];
 let rotationReps = 1;
 
 function getTotalArcDeg() {
@@ -800,16 +771,17 @@ function getLayoutBounds() {
     const totalArcDeg = getTotalAngleAtO();
 
     /* Position O according to the requested construction layout:
-       - below 180°: O stays 5 mm above the footer
-       - 180° or more: O is moved to the vertical centre of the canvas
+       - total angle <= 150°: O is placed above the footer
+         (15 mm on desktop, 25 mm on mobile)
+       - total angle > 150°: O is placed at the vertical centre.
        Do not interpolate between the two positions. */
-    const f = totalArcDeg >= 180.0 ? 1.0 : 0.0;
+    const f = totalArcDeg > 150.0 ? 1.0 : 0.0;
 
     const maxSpread = R + 2.0 * r;
     const lift = Math.max(0, totalArcDeg - 180.0) / 180.0;
 
     /* Oy is a local geometry reference; its screen position is controlled
-       by dataCy below so that the 5 mm / centre rule is exact. */
+       by dataCy below so that the requested footer gap is exact. */
     const oy = 0.0;
     let yMin = -20.0;
     let yMax = 310.0 + lift * (maxSpread * 0.55 + 35.0);
@@ -829,14 +801,28 @@ function getLayoutBounds() {
 
 function getScalingMetrics() {
     const bounds = getLayoutBounds();
-    const AX = {
-        left: W * 0.065,
-        right: W * 0.935,
-        top: H * 0.07,
-        bottom: H * 0.88
-    };
+    const isNarrowDevice = window.screen && window.screen.width <= 600;
+    const isDesktopSiteOnPhone = isNarrowDevice && window.innerWidth > window.screen.width * 1.35;
+    const isMobile = W <= 1050 || isNarrowDevice;
+    const isFullScreen = !!document.fullscreenElement;
+
+    /* Treat Chrome/Android "Desktop site" on a phone as a mobile drawing
+       area too.  This prevents the complete desktop page from being shrunk
+       to phone width and makes the construction use the real available area. */
+    document.body.classList.toggle('phone-desktop-site', isDesktopSiteOnPhone);
+
     const DATA_W = bounds.XMAX - bounds.XMIN;
     const DATA_H = bounds.YMAX - bounds.YMIN;
+
+    /* Keep the drawing comfortably inside the visible canvas.  The scale is
+       deliberately fitted to the actual canvas, not to the page footer. */
+    const side = isMobile ? Math.max(8, Math.min(28, W * 0.04)) : W * 0.065;
+    const AX = {
+        left: side,
+        right: W - side,
+        top: isMobile ? 12 : H * 0.07,
+        bottom: isMobile ? H - 12 : H * 0.88
+    };
 
     const pixelsPerUnit = Math.min(
         (AX.right - AX.left) / DATA_W,
@@ -845,10 +831,58 @@ function getScalingMetrics() {
 
     const dataCx = AX.left + (AX.right - AX.left) / 2;
     const viewportCenterY = AX.top + (AX.bottom - AX.top) / 2;
-    /* For angles below 180°, place O exactly 5 mm above the footer.
-       For 180° and above, place O at the canvas vertical centre. */
-    const bottomWeightedCy = AX.bottom - 5.0 * pixelsPerUnit;
-    const dataCy = bottomWeightedCy * (1.0 - bounds.f) + viewportCenterY * bounds.f;
+
+    /* BEST-FIT O POSITION
+       --------------------
+       Do not anchor O to the document footer.  The footer is outside the
+       fullscreen element, and on a phone it can also be visually separated
+       from the canvas by the browser UI.  Instead, find the unobstructed
+       drawing zone between the header/info area and the parameter/navigation
+       controls.
+
+       Normal phone: O is placed in the lower part of the free drawing zone
+       so the construction remains clearly above the controls.
+       Fullscreen phone: O is placed around the middle of the free viewport,
+       safely below the Back button.
+       Desktop: retain the requested <=150° / >150° behaviour, but use the
+       actual visible control boundary rather than the footer box. */
+    let dataCy;
+
+    if (isMobile) {
+        const mainRect = document.querySelector('.main')?.getBoundingClientRect();
+        const infoRect = document.querySelector('.info-panel')?.getBoundingClientRect();
+        const paramsRect = document.querySelector('.params-panel')?.getBoundingClientRect();
+        const navRect = document.querySelector('.navigation')?.getBoundingClientRect();
+
+        const mainTop = mainRect ? mainRect.top : 0;
+        const relTop = r => r ? Math.max(0, r.top - mainTop) : 0;
+        const relBottom = r => r ? Math.min(H, r.bottom - mainTop) : H;
+
+        const safeTop = Math.max(10, infoRect ? relBottom(infoRect) + 12 : 12);
+        const controlsTop = Math.min(
+            paramsRect ? relTop(paramsRect) : H - 150,
+            navRect ? relTop(navRect) : H - 45
+        );
+        const safeBottom = Math.max(safeTop + 40, controlsTop - 8);
+        const freeHeight = Math.max(40, safeBottom - safeTop);
+
+        if (isFullScreen) {
+            /* Fullscreen: centre the drawing in the usable viewport. */
+            dataCy = safeTop + freeHeight * 0.54;
+        } else {
+            /* Normal phone: slightly below the free-zone centre. */
+            dataCy = safeTop + freeHeight * 0.62;
+        }
+    } else {
+        const f = bounds.f;
+        const footerEl = document.querySelector('.footer');
+        const canvasRect = canvas.getBoundingClientRect();
+        const footerRect = footerEl ? footerEl.getBoundingClientRect() : null;
+        const footerTopCanvas = footerRect ? footerRect.top - canvasRect.top : H;
+        const footerGapMm = 15.0;
+        const bottomWeightedCy = footerTopCanvas - footerGapMm * pixelsPerUnit;
+        dataCy = bottomWeightedCy * (1.0 - f) + viewportCenterY * f;
+    }
 
     return { pixelsPerUnit, dataCx, dataCy, AX, bounds };
 }
@@ -1062,8 +1096,8 @@ function drawStaticBackground() {
 
     /* Directing-circle divisions are grouped into blocks of 12.
        Each block represents one complete 360° rotation of the generating
-       circle.  The numbering restarts after 12′: 1′...12′, then again
-       1′...12′.  Every 12th division is highlighted in a distinct color. */
+       circle.  The numbering restarts after O12′: O1′...O12′, then again
+       O1′...O12′.  Every 12th division is highlighted in a distinct color. */
     const revolutionColors = [
         "#174f94", "#d62728", "#2ca02c", "#9467bd", "#ff7f0e",
         "#008b8b", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22"
@@ -1086,8 +1120,8 @@ function drawStaticBackground() {
         drawMarker(px, py, isBoundary ? 5.2 : 3.8, isBoundary ? boundaryColor : "#000000",
                    isBoundary ? "#ffffff" : null);
 
-        /* First point is 0′.  Thereafter each 12-division block is
-           explicitly numbered 1′...12′ and then restarted. */
+        /* First point is O0′.  Thereafter each 12-division block is
+           explicitly numbered O1′...O12′ and then restarted. */
         let label;
         if (i === 0) {
             label = "0′";
@@ -1104,7 +1138,7 @@ function drawStaticBackground() {
         if (isBoundary) {
             /* Make every O12′ division unmistakable. */
             setLine(1.6, boundaryColor, 0.95);
-            drawLine(Ox, Oy, cx, cy);
+            drawLine(Ox, Oy, px, py);
             drawText(`12′  •  Rev.${rev + 1}`,
                      Ox + (R + 10) * Math.cos(a),
                      Oy + (R + 10) * Math.sin(a),
@@ -1167,7 +1201,8 @@ function drawGeneratedPoints(currentStep) {
             const cAt = centreAt(k);
             const a = materialAngle(pointIndex, k);
             const labelRadius = r + 5;
-            drawText(`${prefix}${k}`, cAt.x + labelRadius * Math.cos(a), cAt.y + labelRadius * Math.sin(a), 8.5, curveColor, "bold");
+            const localK = k % N;
+            drawText(`${prefix}${localK}`, cAt.x + labelRadius * Math.cos(a), cAt.y + labelRadius * Math.sin(a), 8.5, curveColor, "bold");
         }
 
         /* Current tracing point is the active P/Q/R/S point. */
@@ -1175,7 +1210,8 @@ function drawGeneratedPoints(currentStep) {
         drawMarker(tracedPoint.x, tracedPoint.y, 4.8, curveColor, "#ffffff");
         const c = centreAt(state.t);
         const a = materialAngle(pointIndex, state.t);
-        drawText(`${prefix}${Math.floor(state.t + 1e-9)}`, c.x + (r + 5) * Math.cos(a), c.y + (r + 5) * Math.sin(a), 9.5, curveColor, "bold");
+        const currentLocal = Math.floor(state.t + 1e-9) % N;
+        drawText(`${prefix}${currentLocal}`, c.x + (r + 5) * Math.cos(a), c.y + (r + 5) * Math.sin(a), 9.5, curveColor, "bold");
     });
 }
 
@@ -1194,8 +1230,13 @@ function drawDynamic(frame) {
     const point0Angle = START + Math.PI;
     const alpha = ((R + r) / r) * (theta - START);
 
-    drawCircle(c.x, c.y, r, 2.5, "rgb(255,127,14)", 1.0);
-    drawMarker(c.x, c.y, 5, "rgb(255,127,14)");
+    /* At the initial paused frame the static construction already shows
+       the generating circle. Do not draw it a second time. As soon as
+       rotation starts (t > 0), show the moving generating circle. */
+    if (t > 1e-9) {
+        drawCircle(c.x, c.y, r, 2.5, "rgb(255,127,14)", 1.0);
+        drawMarker(c.x, c.y, 5, "rgb(255,127,14)");
+    }
 
     const Ox = 0.0;
     const bounds = getLayoutBounds();
@@ -1205,6 +1246,13 @@ function drawDynamic(frame) {
     drawMarker(contactX, contactY, 5, "rgb(220,0,0)");
 
     const activeColor = lineColors[selectedPoint % lineColors.length];
+
+    /* The initial frame already contains the complete static construction.
+       Avoid drawing a second copy of the rolling-circle construction at
+       t = 0; it appears as soon as the animation starts. */
+    if (t <= 1e-9) {
+        return;
+    }
 
     setLine(1.15, activeColor, 1.0);
     drawLine(Ox, Oy, c.x, c.y);
@@ -1286,9 +1334,8 @@ function updateInfo() {
 
     const anglePerRotation = getTotalArcDeg();
     const coveredAngle = Math.min(getTotalAngleAtO(), Math.max(0, state.t) * anglePerRotation / N);
-    const generatingRotationAngle = Math.min(360 * rotationReps, Math.max(0, state.t) * 30.0);
     document.getElementById("angleValue").textContent = coveredAngle.toFixed(1) + "°";
-    document.getElementById("rotationAngleValue").textContent = generatingRotationAngle.toFixed(0) + "°";
+    document.getElementById("rotationAngleValue").textContent = coveredAngle.toFixed(0) + "°";
     document.getElementById("directionValue").textContent = direction >= 0 ? "Forward" : "Reverse";
 
     const prefixes = ["P", "Q", "R", "S"];
@@ -1388,10 +1435,10 @@ document.getElementById("resetBtn").addEventListener("click", () => {
     R = 60.0;
     r = 20.0;
     startDeg = 150.0;
-    userZoom = 2.65;
+    userZoom = 2.0;
     speed = 1.0;
-    selectedPoint = 1;
-    selectedPoints = [1];
+    selectedPoint = 0;
+    selectedPoints = [0];
     rotationReps = 1;
 
     document.getElementById("rSlider").value = R;
@@ -1400,11 +1447,19 @@ document.getElementById("resetBtn").addEventListener("click", () => {
     document.getElementById("genVal").textContent = r;
     document.getElementById("orientSlider").value = startDeg;
     document.getElementById("orientVal").textContent = startDeg + "°";
-    document.getElementById("zoomSlider").value = 265;
-    document.getElementById("zoomVal").textContent = "265%";
+    document.getElementById("zoomSlider").value = 200;
+    document.getElementById("zoomVal").textContent = "200%";
     document.getElementById("speedSlider").value = 1;
-    document.querySelectorAll("#pointCheckboxes input[type=checkbox]").forEach(cb => cb.checked = Number(cb.value) === 1);
-    document.querySelectorAll(".rotation-option").forEach(btn => btn.classList.toggle("active", Number(btn.dataset.rot) === 1));
+    if (pointChecks) {
+        Array.from(pointChecks.querySelectorAll("input")).forEach(cb => {
+            cb.checked = Number(cb.value) === 0;
+        });
+    }
+    if (rotationChoices) {
+        Array.from(rotationChoices.querySelectorAll(".rotation-btn")).forEach(btn => {
+            btn.classList.toggle("active", btn.dataset.rot === "1");
+        });
+    }
 
     document.getElementById("playBtn").textContent = "▶";
     resizeCanvas();
@@ -1452,6 +1507,23 @@ document.getElementById("speedSlider").addEventListener("input", function() {
 });
 
 
+/* Back to Epicycloid — return through the parent/top page when this
+   animation is embedded in the Epicycloid teaching page. */
+const backToEpicycloid = document.getElementById("backToEpicycloid");
+backToEpicycloid.addEventListener("click", function(event) {
+    event.preventDefault();
+    try {
+        const target = "#/teaching/Engineering%20Curves/Epicycloid/";
+        if (window.top && window.top !== window) {
+            window.top.location.hash = target.substring(1);
+        } else {
+            window.location.hash = target.substring(1);
+        }
+    } catch (error) {
+        window.location.hash = "#/teaching/Engineering%20Curves/Epicycloid/";
+    }
+});
+
 /* Full Screen / Normal Mode */
 const fullscreenBtn = document.getElementById("fullscreenBtn");
 const animationArea = document.querySelector(".main");
@@ -1478,63 +1550,55 @@ fullscreenBtn.addEventListener("click", async () => {
     }
 });
 
-
-/* Fullscreen Back: return to the parent Epicycloid teaching page.
-   The animation is normally embedded from /videos/epicycloid.html,
-   so a multi-level relative URL is unreliable here. */
-const fullscreenBack = document.getElementById("fullscreenBack");
-if (fullscreenBack) {
-    fullscreenBack.addEventListener("click", function (event) {
-        event.preventDefault();
-        try {
-            const target = new URL("/#/teaching/Engineering%20Curves/Epicycloid/", window.location.origin);
-            if (window.top && window.top !== window) {
-                window.top.location.href = target.href;
-            } else {
-                window.location.href = target.href;
-            }
-        } catch (e) {
-            window.location.href = "/#/teaching/Engineering%20Curves/Epicycloid/";
-        }
-    });
-}
-
 document.addEventListener("fullscreenchange", () => {
     updateFullscreenButton();
     resizeCanvas();
 });
 
 
-/* Multiple simultaneous trace points: checkbox selection, maximum 4. */
-document.querySelectorAll("#pointCheckboxes input[type=checkbox]").forEach(cb => {
-    cb.addEventListener("change", function() {
-        const boxes = Array.from(document.querySelectorAll("#pointCheckboxes input[type=checkbox]"));
-        let values = boxes.filter(x => x.checked).map(x => Number(x.value));
+/* Multiple simultaneous trace points: maximum 4. */
+const pointChecks = document.getElementById("pointChecks");
+const rotationChoices = document.getElementById("rotationChoices");
 
-        if (values.length > 4) {
-            this.checked = false;
-            values = boxes.filter(x => x.checked).map(x => Number(x.value));
-        }
-        if (!values.length) {
-            this.checked = true;
-            values = [Number(this.value)];
-        }
+function buildPointChecks() {
+    pointChecks.innerHTML = "";
+    for (let i = 0; i <= N; i++) {
+        const label = document.createElement("label");
+        label.className = "point-check";
+        const cb = document.createElement("input");
+        cb.type = "checkbox";
+        cb.value = String(i);
+        cb.checked = selectedPoints.includes(i);
+        cb.addEventListener("change", () => {
+            let values = Array.from(pointChecks.querySelectorAll("input:checked"), el => Number(el.value));
+            if (values.length > 4) {
+                cb.checked = false;
+                return;
+            }
+            if (!values.length) {
+                cb.checked = true;
+                values = [i];
+            }
+            selectedPoints = values;
+            selectedPoint = selectedPoints[0];
+            currentFrame = 0;
+            playing = false;
+            document.getElementById("playBtn").textContent = "▶";
+            render();
+            updateInfo();
+        });
+        label.appendChild(cb);
+        label.appendChild(document.createTextNode(String(i)));
+        pointChecks.appendChild(label);
+    }
+}
 
-        selectedPoints = values.slice(0, 4);
-        selectedPoint = selectedPoints[0];
-        currentFrame = 0;
-        playing = false;
-        document.getElementById("playBtn").textContent = "▶";
-        render();
-        updateInfo();
-    });
-});
-
-/* Generating-circle rotations: fixed choices 1–5, no slider. */
 function setRotationReps(value) {
-    const v = Math.max(1, Math.min(5, Math.round(Number(value) || 1)));
+    let v = Number(value);
+    if (!Number.isFinite(v)) v = 1;
+    v = Math.max(1, Math.min(5, Math.round(v)));
     rotationReps = v;
-    document.querySelectorAll(".rotation-option").forEach(btn => {
+    Array.from(rotationChoices.querySelectorAll(".rotation-btn")).forEach(btn => {
         btn.classList.toggle("active", Number(btn.dataset.rot) === v);
     });
     currentFrame = 0;
@@ -1544,9 +1608,11 @@ function setRotationReps(value) {
     updateInfo();
 }
 
-document.querySelectorAll(".rotation-option").forEach(btn => {
+Array.from(rotationChoices.querySelectorAll(".rotation-btn")).forEach(btn => {
     btn.addEventListener("click", () => setRotationReps(btn.dataset.rot));
 });
+
+buildPointChecks();
 
 resizeCanvas();
 updateInfo();
