@@ -522,7 +522,7 @@ body.phone-desktop-site .footer { height:30px; min-height:30px; font-size:10px; 
     .main:fullscreen .navigation { bottom:5px; }
 }
 
-/* Full Screen — Back to Epicycloid */
+/* Full Screen — Back to Hypocycloid */
 .fullscreen-back {
     display: none;
     position: fixed;
@@ -554,6 +554,43 @@ body.phone-desktop-site .footer { height:30px; min-height:30px; font-size:10px; 
 .main:fullscreen canvas {
     width: 100%;
     height: 100%;
+}
+
+/* Fullscreen is a separate workspace.  Keep the drawing clear of the
+   controls and let JavaScript fit the complete construction to the viewport. */
+.main:fullscreen .params-panel {
+    top: 12px;
+    right: 14px;
+    left: auto;
+    bottom: auto;
+    width: 320px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+.main:fullscreen .navigation {
+    left: 50%;
+    right: auto;
+    bottom: 10px;
+    width: auto;
+    transform: translateX(-50%);
+}
+@media (max-width:1050px) {
+    .main:fullscreen .params-panel {
+        top: auto;
+        right: 7px;
+        left: 7px;
+        bottom: 53px;
+        width: auto;
+        max-height: none;
+        overflow: visible;
+    }
+    .main:fullscreen .navigation {
+        left: 7px;
+        right: 7px;
+        bottom: 7px;
+        width: auto;
+        transform: none;
+    }
 }
 
 
@@ -624,7 +661,7 @@ body.phone-desktop-site .footer { height:30px; min-height:30px; font-size:10px; 
 </div>
 
 <div class="main">
-    <a class="fullscreen-back" href="#/teaching/Engineering%20Curves/Epicycloid/" title="Back to Epicycloid" id="backToEpicycloid">‹ Back to Epicycloid</a>
+    <a class="fullscreen-back" href="../../../../../#/teaching/Engineering%20Curves/Hypocycloid/" title="Back to Hypocycloid" id="backToHypocycloid">‹ Back to Hypocycloid</a>
     <canvas id="canvas"></canvas>
 
     <!-- INFORMATION PANEL (TOP LEFT) -->
@@ -804,84 +841,115 @@ function getScalingMetrics() {
     const isNarrowDevice = window.screen && window.screen.width <= 600;
     const isDesktopSiteOnPhone = isNarrowDevice && window.innerWidth > window.screen.width * 1.35;
     const isMobile = W <= 1050 || isNarrowDevice;
-    const isFullScreen = !!document.fullscreenElement;
+    const isFullScreen = document.fullscreenElement === document.querySelector('.main');
 
-    /* Treat Chrome/Android "Desktop site" on a phone as a mobile drawing
-       area too.  This prevents the complete desktop page from being shrunk
-       to phone width and makes the construction use the real available area. */
     document.body.classList.toggle('phone-desktop-site', isDesktopSiteOnPhone);
 
     const DATA_W = bounds.XMAX - bounds.XMIN;
     const DATA_H = bounds.YMAX - bounds.YMIN;
 
-    /* Keep the drawing comfortably inside the visible canvas.  The scale is
-       deliberately fitted to the actual canvas, not to the page footer. */
-    const side = isMobile ? Math.max(8, Math.min(28, W * 0.04)) : W * 0.065;
-    const AX = {
-        left: side,
-        right: W - side,
-        top: isMobile ? 12 : H * 0.07,
-        bottom: isMobile ? H - 12 : H * 0.88
-    };
-
-    const pixelsPerUnit = Math.min(
-        (AX.right - AX.left) / DATA_W,
-        (AX.bottom - AX.top) / DATA_H
-    ) * bounds.zoom;
-
-    const dataCx = AX.left + (AX.right - AX.left) / 2;
-    const viewportCenterY = AX.top + (AX.bottom - AX.top) / 2;
-
-    /* BEST-FIT O POSITION
-       --------------------
-       Do not anchor O to the document footer.  The footer is outside the
-       fullscreen element, and on a phone it can also be visually separated
-       from the canvas by the browser UI.  Instead, find the unobstructed
-       drawing zone between the header/info area and the parameter/navigation
-       controls.
-
-       Normal phone: O is placed in the lower part of the free drawing zone
-       so the construction remains clearly above the controls.
-       Fullscreen phone: O is placed around the middle of the free viewport,
-       safely below the Back button.
-       Desktop: retain the requested <=150° / >150° behaviour, but use the
-       actual visible control boundary rather than the footer box. */
+    /* The canvas coordinate system is fitted differently in normal and
+       fullscreen modes.  Fullscreen is an independent drawing workspace:
+       NEVER use the document footer there. */
+    let AX;
+    let pixelsPerUnit;
+    let dataCx;
     let dataCy;
 
-    if (isMobile) {
-        const mainRect = document.querySelector('.main')?.getBoundingClientRect();
-        const infoRect = document.querySelector('.info-panel')?.getBoundingClientRect();
+    if (isFullScreen) {
+        /*
+         * Laptop/desktop fullscreen:
+         * - use the whole fullscreen viewport
+         * - reserve the bottom band for the navigation/controls
+         * - keep O in the visual centre of the free drawing area
+         * - fit the complete construction first, then apply only a gentle
+         *   zoom cap so the construction cannot disappear off-screen.
+         */
         const paramsRect = document.querySelector('.params-panel')?.getBoundingClientRect();
         const navRect = document.querySelector('.navigation')?.getBoundingClientRect();
+        const infoRect = document.querySelector('.info-panel')?.getBoundingClientRect();
 
-        const mainTop = mainRect ? mainRect.top : 0;
-        const relTop = r => r ? Math.max(0, r.top - mainTop) : 0;
-        const relBottom = r => r ? Math.min(H, r.bottom - mainTop) : H;
-
-        const safeTop = Math.max(10, infoRect ? relBottom(infoRect) + 12 : 12);
-        const controlsTop = Math.min(
-            paramsRect ? relTop(paramsRect) : H - 150,
-            navRect ? relTop(navRect) : H - 45
-        );
-        const safeBottom = Math.max(safeTop + 40, controlsTop - 8);
-        const freeHeight = Math.max(40, safeBottom - safeTop);
-
-        if (isFullScreen) {
-            /* Fullscreen: centre the drawing in the usable viewport. */
-            dataCy = safeTop + freeHeight * 0.54;
+        let topPad;
+        let controlTop;
+        if (isMobile) {
+            /* Phone fullscreen: both panels occupy the bottom. */
+            topPad = Math.max(18, infoRect ? (infoRect.bottom + 18) : 18);
+            controlTop = Math.min(
+                paramsRect ? paramsRect.top : H - 150,
+                navRect ? navRect.top : H - 45
+            );
         } else {
-            /* Normal phone: slightly below the free-zone centre. */
-            dataCy = safeTop + freeHeight * 0.62;
+            /* Laptop/desktop fullscreen: the parameter panel is on the
+               right, so it must NOT reduce the vertical drawing area. */
+            topPad = 22;
+            controlTop = navRect ? navRect.top : H - 55;
         }
+
+        AX = {
+            left: isMobile ? 10 : W * 0.035,
+            right: isMobile ? W - 10 : W * 0.965,
+            top: topPad,
+            bottom: Math.max(topPad + 120, controlTop - 20)
+        };
+
+        const fit = Math.min(
+            (AX.right - AX.left) / DATA_W,
+            (AX.bottom - AX.top) / DATA_H
+        );
+
+        /* Fullscreen must show the entire construction.  A modest multiplier
+           is used on wide desktop screens; never allow it to clip vertically. */
+        const requested = fit * Math.min(userZoom, isMobile ? 1.0 : 1.35);
+        pixelsPerUnit = Math.min(requested, fit * (isMobile ? 1.0 : 1.35));
+
+        dataCx = (AX.left + AX.right) / 2;
+        dataCy = (AX.top + AX.bottom) / 2;
     } else {
-        const f = bounds.f;
-        const footerEl = document.querySelector('.footer');
-        const canvasRect = canvas.getBoundingClientRect();
-        const footerRect = footerEl ? footerEl.getBoundingClientRect() : null;
-        const footerTopCanvas = footerRect ? footerRect.top - canvasRect.top : H;
-        const footerGapMm = 15.0;
-        const bottomWeightedCy = footerTopCanvas - footerGapMm * pixelsPerUnit;
-        dataCy = bottomWeightedCy * (1.0 - f) + viewportCenterY * f;
+        /* Normal mode.  Desktop keeps the requested 15 mm footer relation
+           for the <=150° construction; mobile uses the unobstructed space
+           above the bottom controls. */
+        const side = isMobile ? Math.max(8, Math.min(28, W * 0.04)) : W * 0.065;
+        AX = {
+            left: side,
+            right: W - side,
+            top: isMobile ? 12 : H * 0.07,
+            bottom: isMobile ? H - 12 : H * 0.88
+        };
+
+        pixelsPerUnit = Math.min(
+            (AX.right - AX.left) / DATA_W,
+            (AX.bottom - AX.top) / DATA_H
+        ) * bounds.zoom;
+
+        dataCx = AX.left + (AX.right - AX.left) / 2;
+        const viewportCenterY = AX.top + (AX.bottom - AX.top) / 2;
+
+        if (isMobile) {
+            const mainRect = document.querySelector('.main')?.getBoundingClientRect();
+            const infoRect = document.querySelector('.info-panel')?.getBoundingClientRect();
+            const paramsRect = document.querySelector('.params-panel')?.getBoundingClientRect();
+            const navRect = document.querySelector('.navigation')?.getBoundingClientRect();
+            const mainTop = mainRect ? mainRect.top : 0;
+            const relTop = r => r ? Math.max(0, r.top - mainTop) : 0;
+            const relBottom = r => r ? Math.min(H, r.bottom - mainTop) : H;
+            const safeTop = Math.max(10, infoRect ? relBottom(infoRect) + 12 : 12);
+            const controlsTop = Math.min(
+                paramsRect ? relTop(paramsRect) : H - 150,
+                navRect ? relTop(navRect) : H - 45
+            );
+            const safeBottom = Math.max(safeTop + 40, controlsTop - 8);
+            const freeHeight = Math.max(40, safeBottom - safeTop);
+            dataCy = safeTop + freeHeight * 0.60;
+        } else {
+            const f = bounds.f;
+            const footerEl = document.querySelector('.footer');
+            const canvasRect = canvas.getBoundingClientRect();
+            const footerRect = footerEl ? footerEl.getBoundingClientRect() : null;
+            const footerTopCanvas = footerRect ? footerRect.top - canvasRect.top : H;
+            const footerGapMm = 15.0;
+            const bottomWeightedCy = footerTopCanvas - footerGapMm * pixelsPerUnit;
+            dataCy = bottomWeightedCy * (1.0 - f) + viewportCenterY * f;
+        }
     }
 
     return { pixelsPerUnit, dataCx, dataCy, AX, bounds };
@@ -1507,20 +1575,21 @@ document.getElementById("speedSlider").addEventListener("input", function() {
 });
 
 
-/* Back to Epicycloid — return through the parent/top page when this
-   animation is embedded in the Epicycloid teaching page. */
-const backToEpicycloid = document.getElementById("backToEpicycloid");
-backToEpicycloid.addEventListener("click", function(event) {
+/* Back to Hypocycloid — use the same relative route as the working
+   Hypocycloid animation.  Do not rely on a hash-only URL when this file is
+   opened directly from its animations folder. */
+const backToHypocycloid = document.getElementById("backToHypocycloid");
+backToHypocycloid.addEventListener("click", function(event) {
     event.preventDefault();
+    const target = "https://skgajawada.github.io/#/teaching/Engineering%20Curves/Hypocycloid/";
     try {
-        const target = "#/teaching/Engineering%20Curves/Epicycloid/";
         if (window.top && window.top !== window) {
-            window.top.location.hash = target.substring(1);
+            window.top.location.href = target;
         } else {
-            window.location.hash = target.substring(1);
+            window.location.href = target;
         }
     } catch (error) {
-        window.location.hash = "#/teaching/Engineering%20Curves/Epicycloid/";
+        window.location.href = target;
     }
 });
 
