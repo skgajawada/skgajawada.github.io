@@ -1271,7 +1271,39 @@
 </footer>
 
     <script>
-        document.addEventListener("contextmenu", e => e.preventDefault());
+        /* Disable right-click on the entire page, including embedded same-origin frames. */
+        document.addEventListener("contextmenu", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }, true);
+
+        window.addEventListener("contextmenu", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }, true);
+
+        document.querySelectorAll("iframe").forEach(function(frame) {
+            frame.addEventListener("load", function() {
+                try {
+                    frame.contentDocument.addEventListener("contextmenu", function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return false;
+                    }, true);
+
+                    frame.contentWindow.addEventListener("contextmenu", function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return false;
+                    }, true);
+                } catch (err) {
+                    /* Cross-origin frames cannot be accessed by the parent page. */
+                }
+            });
+        });
+
         document.addEventListener("dragstart", e => e.preventDefault());
         document.addEventListener("keydown", e => {
             if ((e.ctrlKey || e.metaKey) && ["c","x","u","s","p"].includes(e.key.toLowerCase())) {
