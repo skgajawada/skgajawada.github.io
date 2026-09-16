@@ -589,6 +589,13 @@ body.phone-desktop-site .footer { height:30px; min-height:30px; font-size:10px; 
         width: auto;
         max-height: none;
         overflow: visible;
+        z-index: 10001;
+        pointer-events: auto;
+    }
+    .main:fullscreen .params-panel input[type="range"],
+    .main:fullscreen .params-panel button,
+    .main:fullscreen .params-panel label {
+        touch-action: manipulation;
     }
     .main:fullscreen .navigation {
         left: 7px;
@@ -894,6 +901,12 @@ function getConstructionBoundsData() {
         add(c.x + r, c.y + r);
     }
 
+    /* IMPORTANT: O is part of the visible construction.  Include a small
+       envelope around O so automatic fitting/centering never places the
+       origin or its label outside the drawing area. */
+    add(0, bounds.Oy - 28);
+    add(0, bounds.Oy + 10);
+
     let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
     for (const pt of pts) {
         minX = Math.min(minX, pt.x); maxX = Math.max(maxX, pt.x);
@@ -1028,6 +1041,21 @@ function getScalingMetrics() {
             dataCy = viewportCenterY + (visual.centerY - bounds.Oy) * pixelsPerUnit;
         }
     }
+
+    /* Keep O and the complete O label safely inside the active drawing
+       rectangle in every mode.  This is applied only to the automatic
+       placement; the user's manual pan remains available afterwards. */
+    const oLabelDataOffset = 30;
+    const minOX = AX.left + 14;
+    const maxOX = AX.right - 14;
+    const minOY = AX.top + 14;
+    const maxOY = AX.bottom - 14;
+    const oScreenX = dataCx;
+    const oScreenY = dataCy + oLabelDataOffset * pixelsPerUnit;
+    if (oScreenX < minOX) dataCx += minOX - oScreenX;
+    if (oScreenX > maxOX) dataCx -= oScreenX - maxOX;
+    if (oScreenY < minOY) dataCy += minOY - oScreenY;
+    if (oScreenY > maxOY) dataCy -= oScreenY - maxOY;
 
     dataCx += panX;
     dataCy += panY;
@@ -1234,7 +1262,9 @@ function drawStaticBackground() {
     drawLine(Ox - cross, Oy, Ox + cross, Oy);
     drawLine(Ox, Oy - cross, Ox, Oy + cross);
     drawMarker(Ox, Oy, 5, "#000000");
-    drawText("O", Ox, Oy - 13, 12, "#000000", "bold");
+    /* O is drawn below the origin with a generous gap so the marker and
+       label never overlap, while getScalingMetrics keeps both visible. */
+    drawText("O", Ox, Oy - 17, 12, "#000000", "bold");
 
     /* Directing-circle construction: 12 divisions are added for every
        complete generating-circle revolution.  For R=60, r=20 this is
@@ -1672,7 +1702,13 @@ document.getElementById("orientSlider").addEventListener("input", function() {
 document.getElementById("zoomSlider").addEventListener("input", function() {
     userZoom = Number(this.value) / 100.0;
     document.getElementById("zoomVal").textContent = this.value + "%";
-    render();
+    /* Repaint immediately.  In mobile fullscreen the canvas size can change
+       independently of the document layout, so force a fresh metric pass. */
+    if (document.fullscreenElement === animationArea) {
+        resizeCanvas();
+    } else {
+        render();
+    }
 });
 
 document.getElementById("speedSlider").addEventListener("input", function() {
@@ -1746,6 +1782,47 @@ canvas.addEventListener("wheel", function(event) {
     document.getElementById("zoomVal").textContent = zoomValue + "%";
     render();
 }, { passive: false });
+
+/* Two-finger pinch zoom for phones/tablets, including mobile fullscreen.
+   A one-finger gesture remains the existing pan gesture. */
+const activePointers = new Map();
+let pinchStartDistance = 0;
+let pinchStartZoom = 1;
+
+canvas.addEventListener("pointerdown", function(event) {
+    activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+    if (activePointers.size === 2) {
+        const pts = Array.from(activePointers.values());
+        pinchStartDistance = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+        pinchStartZoom = userZoom;
+        isPanning = false;
+    }
+});
+
+canvas.addEventListener("pointermove", function(event) {
+    if (!activePointers.has(event.pointerId)) return;
+    activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+    if (activePointers.size !== 2 || pinchStartDistance <= 0) return;
+
+    const pts = Array.from(activePointers.values());
+    const distance = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+    const factor = distance / pinchStartDistance;
+    userZoom = Math.max(0.5, Math.min(4.0, pinchStartZoom * factor));
+    const zoomValue = Math.round(userZoom * 100 / 5) * 5;
+    userZoom = zoomValue / 100;
+    const zoomSlider = document.getElementById("zoomSlider");
+    zoomSlider.value = zoomValue;
+    document.getElementById("zoomVal").textContent = zoomValue + "%";
+    render();
+});
+
+function clearPointer(event) {
+    activePointers.delete(event.pointerId);
+    if (activePointers.size < 2) pinchStartDistance = 0;
+}
+canvas.addEventListener("pointerup", clearPointer);
+canvas.addEventListener("pointercancel", clearPointer);
+
 
 /* Content-protection deterrents for ordinary browser actions.
    Client-side HTML can never be made impossible to inspect/save, but these
