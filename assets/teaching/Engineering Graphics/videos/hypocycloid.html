@@ -698,6 +698,24 @@ canvas {
 </div>
 
 <script>
+/* Disable common browser context-menu and developer-tool shortcuts. */
+document.addEventListener("contextmenu", function(e){ e.preventDefault(); }, {capture:true});
+document.addEventListener("dragstart", function(e){ e.preventDefault(); }, {capture:true});
+document.addEventListener("selectstart", function(e){
+    if (e.target && e.target.matches && e.target.matches("input, button, a, textarea, select")) return;
+    e.preventDefault();
+}, {capture:true});
+document.addEventListener("keydown", function(e){
+    const k=e.key.toLowerCase();
+    if (e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && ["i","j","c"].includes(k)) ||
+        (e.ctrlKey && k === "u")) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    }
+}, {capture:true});
+
 "use strict";
 
 const canvas=document.getElementById("canvas");
