@@ -596,7 +596,7 @@ canvas {
 </div>
 
 <div class="main">
-    <a class="fullscreen-back" id="fullscreenBack" href="../../../../../#/teaching/Engineering%20Curves/Hypocycloid/" title="Back to Hypocycloid">‹ Back to Hypocycloid</a>
+    <a class="fullscreen-back" id="fullscreenBack" href="#" title="Back to Hypocycloid">‹ Back to Hypocycloid</a>
     <canvas id="canvas"></canvas>
 
     <!-- INFORMATION PANEL (TOP LEFT) -->
@@ -737,7 +737,7 @@ function getLayoutBounds(){
     // screen position is controlled by getScalingMetrics().
     // Up to 150° keep O about 5 mm above the footer; after 150° move O
     // to the centre of the drawing area.
-    const centerMode=getTotalConstructionDeg()>150;
+    const centerMode=getTotalConstructionDeg()>=150;
     const maxSpread=R+2*r;
     const xSpan=Math.max(330,maxSpread+80);
     return {
@@ -761,10 +761,14 @@ function getScalingMetrics(){
     const dataCx=AX.left+(AX.right-AX.left)/2;
     const centerY=AX.top+(AX.bottom-AX.top)/2;
 
-    /* <180°: O is exactly 5 mm above the footer.
-       >=180°: O is at the center of the drawing area. */
-    const footerGapY=H-5*pixelsPerUnit;
-    const dataCy=b.centerMode?centerY:footerGapY;
+    /* When O is below the centre and the construction angle is <150°,
+       place O a small physical distance above the footer.  Use CSS pixels
+       here so the distance is a true screen distance, independent of zoom. */
+    const mmPx=96/25.4;
+    const isMobile=window.matchMedia('(max-width: 700px)').matches;
+    const oAboveFooterMm=isMobile?20:15;
+    const footerY=AX.bottom;
+    const dataCy=b.centerMode ? centerY : footerY-oAboveFooterMm*mmPx;
 
     return {pixelsPerUnit,dataCx,dataCy,AX,bounds:b};
 }
@@ -1181,6 +1185,25 @@ fullscreenBtn.addEventListener("click",async()=>{
     }catch(error){console.warn("Full screen mode is not available:",error);}
 });
 document.addEventListener("fullscreenchange",()=>{updateFullscreenButton();resizeCanvas();});
+
+/* Full-screen back button: return to the page that embedded this animation.
+   This is more reliable than a fixed relative URL when the animation is
+   opened from GitHub Pages or another nested route. */
+const fullscreenBack=document.getElementById("fullscreenBack");
+fullscreenBack.addEventListener("click",(e)=>{
+    e.preventDefault();
+    try{
+        if(window.top!==window.self && document.referrer){
+            window.top.location.href=document.referrer;
+        }else if(history.length>1){
+            history.back();
+        }else{
+            window.location.href="../../../../../#/teaching/Engineering%20Curves/Hypocycloid/";
+        }
+    }catch(error){
+        window.location.href="../../../../../#/teaching/Engineering%20Curves/Hypocycloid/";
+    }
+});
 
 resizeCanvas();
 updateInfo();
