@@ -275,6 +275,30 @@ canvas {
 .nav-btn.reset { background: #4c6478; }
 .nav-btn.reset:hover { background: #374d60; }
 
+.fullscreen-back-btn {
+    display: none;
+    position: absolute;
+    top: 12px;
+    left: 14px;
+    z-index: 30;
+    height: 34px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    background: #174f94;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.fullscreen-back-btn:hover { background: #103d73; }
+
+.main:fullscreen .fullscreen-back-btn {
+    display: block;
+}
+
 .fullscreen-btn {
     min-width: 105px;
 }
@@ -423,6 +447,215 @@ canvas {
     font-size: 13px;
     z-index: 20;
 }
+
+/* Mobile control-card styling — matched to Hypocycloid mobile layout.
+   Style only; no geometry, animation, or control logic changes. */
+@media (max-width: 1050px) {
+    .params-panel {
+        position: absolute;
+        top: auto;
+        right: 7px;
+        left: 7px;
+        bottom: 53px;
+        width: auto;
+        max-width: none;
+        max-height: none;
+        overflow: visible;
+        padding: 6px 7px;
+        gap: 5px;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        border-radius: 7px;
+        font-size: 10px;
+    }
+
+    .params-title {
+        display: none;
+    }
+
+    .param-group {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .param-group .desc-text {
+        display: none;
+    }
+
+    .param-row {
+        margin: 0;
+        gap: 3px;
+    }
+
+    .param-row label {
+        font-size: 10px;
+    }
+
+    .param-row input[type="range"] {
+        width: clamp(55px, 17vw, 100px);
+        height: 18px;
+    }
+
+    .value-input {
+        width: 48px;
+        height: 24px;
+        font-size: 10px;
+    }
+
+    .param-row span {
+        min-width: 30px;
+        font-size: 10px;
+    }
+
+    .trace-points {
+        max-width: none;
+        justify-content: center;
+    }
+
+    .navigation {
+        left: 7px;
+        right: 7px;
+        bottom: 7px;
+        transform: none;
+        width: auto;
+        padding: 5px 5px;
+        gap: 3px;
+        flex-wrap: nowrap;
+        overflow: hidden;
+        border-radius: 7px;
+    }
+
+    .nav-btn {
+        flex: 1 1 auto;
+        min-width: 0;
+        height: 30px;
+        padding: 4px 5px;
+        font-size: 11px;
+    }
+
+    .nav-btn.play {
+        min-width: 0;
+    }
+
+    .speed-group {
+        flex: 0 0 auto;
+        gap: 3px;
+        padding-left: 2px;
+        font-size: 10px;
+    }
+
+    .speed-group input[type="range"] {
+        width: clamp(50px, 15vw, 80px);
+    }
+
+    .fullscreen-btn {
+        min-width: 0;
+    }
+
+    .footer {
+        height: 30px;
+        min-height: 30px;
+        font-size: 10px;
+        padding: 0 6px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .params-panel {
+        bottom: 48px;
+        padding: 4px 5px;
+        gap: 2px 5px;
+    }
+
+    .param-row label {
+        font-size: 9px;
+    }
+
+    .param-row input[type="range"] {
+        width: 52px;
+    }
+
+    .value-input {
+        width: 44px;
+        height: 22px;
+        font-size: 9px;
+    }
+
+    .param-row span {
+        min-width: 26px;
+        font-size: 9px;
+    }
+
+    .trace-points {
+        grid-template-columns: repeat(7, 24px);
+        max-width: 175px;
+    }
+
+    .navigation {
+        bottom: 5px;
+        padding: 4px;
+    }
+
+    .nav-btn {
+        height: 28px;
+        font-size: 10px;
+        padding: 3px 3px;
+    }
+
+    .speed-group span:first-child {
+        display: none;
+    }
+
+    .speed-group input[type="range"] {
+        width: 52px;
+    }
+
+    .speed-value {
+        min-width: 22px;
+    }
+}
+
+@media (max-width: 380px) {
+    .params-panel {
+        left: 4px;
+        right: 4px;
+    }
+
+    .param-row label {
+        display: none;
+    }
+
+    .param-row input[type="range"] {
+        width: 48px;
+    }
+
+    .navigation {
+        left: 4px;
+        right: 4px;
+    }
+
+    .nav-btn {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 700px) and (orientation: landscape) {
+    .params-panel {
+        top: 6px;
+        bottom: auto;
+        right: 6px;
+        left: auto;
+        width: 245px;
+        max-height: calc(100vh - 58px);
+        overflow: visible;
+    }
+}
+
 </style>
 </head>
 
@@ -437,6 +670,7 @@ canvas {
 </div>
 
 <div class="main">
+    <button class="fullscreen-back-btn" id="fullscreenBackBtn" title="Back to Cycloid">← Back to Cycloid</button>
     <canvas id="canvas"></canvas>
 
     <!-- INFORMATION PANEL (TOP LEFT) -->
@@ -487,9 +721,9 @@ canvas {
         <div class="param-group">
             <div class="param-row">
                 <label>Zoom Level (%):</label>
-                <input id="zoomSlider" type="range" min="50" max="800" step="10" value="150">
-                <input id="zoomInput" class="value-input" type="number" min="50" max="800" step="10" value="150" aria-label="Zoom percentage">
-                <span id="zoomVal">150%</span>
+                <input id="zoomSlider" type="range" min="50" max="800" step="10" value="120">
+                <input id="zoomInput" class="value-input" type="number" min="50" max="800" step="10" value="120" aria-label="Zoom percentage">
+                <span id="zoomVal">120%</span>
             </div>
         </div>
     </div>
@@ -526,7 +760,7 @@ let W = 0;
 let H = 0;
 
 let r = 20.0;
-let userZoom = 1.5; /* Default zoom set to 150% */
+let userZoom = 1.2; /* Default zoom set to 120% */
 
 const N = 12;
 let rotationReps = 1;
@@ -572,8 +806,21 @@ function getScalingMetrics() {
         (AX.bottom - AX.top) / DATA_H
     ) * bounds.zoom;
 
-    const dataCx = AX.left;
-    const dataCy = AX.bottom;
+    /* Mobile only: center the complete Cycloid drawing in the available canvas.
+       Desktop/laptop positioning remains exactly as before. */
+    /* Treat a phone/tablet using browser "Desktop site" as mobile too.
+       Do not alter normal laptop/desktop positioning. */
+    const mobileUA = /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+    const touchMobileViewport = navigator.maxTouchPoints > 0 &&
+        Math.min(window.screen.width, window.screen.height) <= 1400;
+    const isMobile = window.matchMedia("(max-width: 700px)").matches || mobileUA || touchMobileViewport;
+    const isMobileFullscreen = isMobile && !!document.fullscreenElement;
+    const dataCx = isMobile
+        ? (AX.left + AX.right) / 2 - ((bounds.XMIN + bounds.XMAX) / 2) * pixelsPerUnit - (AX.right - AX.left) * 0.03
+        : AX.left;
+    const dataCy = isMobile
+        ? (AX.top + AX.bottom) / 2 + ((bounds.YMIN + bounds.YMAX) / 2) * pixelsPerUnit
+        : AX.bottom;
 
     return { pixelsPerUnit, dataCx, dataCy, AX, bounds };
 }
@@ -1107,14 +1354,14 @@ document.getElementById("resetBtn").addEventListener("click", () => {
     direction = 1;
     currentFrame = 0;
     r = 20.0;
-    userZoom = 1.5;
+    userZoom = 1.2;
     speed = 1.0;
 
     document.getElementById("genSlider").value = r;
     document.getElementById("genInput").value = r;
-    document.getElementById("zoomSlider").value = 150;
-    document.getElementById("zoomVal").textContent = "150%";
-    document.getElementById("zoomInput").value = 150;
+    document.getElementById("zoomSlider").value = 120;
+    document.getElementById("zoomVal").textContent = "120%";
+    document.getElementById("zoomInput").value = 120;
     document.getElementById("speedSlider").value = 1;
 
     document.getElementById("playBtn").textContent = "▶";
@@ -1166,6 +1413,17 @@ zoomInput.addEventListener("change", function(){
 document.getElementById("speedSlider").addEventListener("input", function() {
     speed = Number(this.value);
     updateInfo();
+});
+
+/* Full-screen back button: return from full-screen to the normal Cycloid view. */
+const fullscreenBackBtn = document.getElementById("fullscreenBackBtn");
+fullscreenBackBtn.addEventListener("click", async () => {
+    try {
+        if (document.fullscreenElement) {
+            await document.exitFullscreen();
+        }
+    } catch (e) {}
+    resizeCanvas();
 });
 
 /* Full-screen support; the drawing/animation itself remains unchanged. */
