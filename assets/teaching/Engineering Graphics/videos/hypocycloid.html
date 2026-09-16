@@ -158,6 +158,9 @@ canvas {
     min-width: 35px;
     text-align: right;
 }
+.value-input{width:48px;height:24px;border:1px solid #174f94;border-radius:4px;text-align:center;font-weight:700;background:#fff;color:#17324d;}
+.value-input:focus{outline:2px solid rgba(23,79,148,.2);border-color:#174f94;}
+@media(max-width:600px){.value-input{width:44px;height:22px;font-size:10px;}}
 
 .desc-text {
     font-size: 10px;
@@ -622,7 +625,7 @@ canvas {
             <div class="param-row">
                 <label>Directing R:</label>
                 <input id="rSlider" type="range" min="15" max="100" step="1" value="60">
-                <span id="rVal">60</span>
+                <input id="rInput" class="value-input" type="number" min="15" max="100" step="1" value="60">
             </div>
             <div class="desc-text">Radius of the fixed directing circle.</div>
         </div>
@@ -631,7 +634,7 @@ canvas {
             <div class="param-row">
                 <label>Generating r:</label>
                 <input id="genSlider" type="range" min="5" max="60" step="1" value="20">
-                <span id="genVal">20</span>
+                <input id="genInput" class="value-input" type="number" min="5" max="60" step="1" value="20">
             </div>
             <div class="desc-text">Rolling circle radius. Calculated Angle at O: <strong id="cardAngleO" style="color:#123b63;">120.0°</strong></div>
         </div>
@@ -640,7 +643,7 @@ canvas {
             <div class="param-row">
                 <label>Orientation (°):</label>
                 <input id="orientSlider" type="range" min="0" max="360" step="5" value="140">
-                <span id="orientVal">140°</span>
+                <input id="orientInput" class="value-input" type="number" min="0" max="360" step="5" value="140">
             </div>
             <div class="desc-text">Initial center position.</div>
         </div>
@@ -667,7 +670,7 @@ canvas {
             <div class="param-row">
                 <label>Zoom Level (%):</label>
                 <input id="zoomSlider" type="range" min="50" max="800" step="5" value="400">
-                <span id="zoomVal">400%</span>
+                <input id="zoomInput" class="value-input" type="number" min="50" max="800" step="5" value="400">
             </div>
         </div>
     </div>
@@ -768,7 +771,7 @@ function getScalingMetrics(){
     const isMobile=window.matchMedia('(max-width: 700px)').matches;
     const oAboveFooterMm=isMobile?20:15;
     const footerY=AX.bottom;
-    const dataCy=b.centerMode ? centerY : footerY-oAboveFooterMm*mmPx;
+    const dataCy=isMobile ? centerY : (b.centerMode ? centerY : footerY-oAboveFooterMm*mmPx);
 
     return {pixelsPerUnit,dataCx,dataCy,AX,bounds:b};
 }
@@ -1123,29 +1126,19 @@ document.querySelectorAll(".rotation-btn").forEach(btn=>{
     });
 });
 
-document.getElementById("rSlider").addEventListener("input",function(){
-    R=Number(this.value);
-    if(r>R)r=R;
-    document.getElementById("rVal").textContent=R;
-    document.getElementById("genSlider").max=R;
-    document.getElementById("genSlider").value=r;
-    currentFrame=0;render();updateInfo();
-});
-document.getElementById("genSlider").addEventListener("input",function(){
-    r=Math.min(R,Number(this.value));
-    document.getElementById("genVal").textContent=r;
-    currentFrame=0;render();updateInfo();
-});
-document.getElementById("orientSlider").addEventListener("input",function(){
-    startDeg=Number(this.value);
-    document.getElementById("orientVal").textContent=startDeg+"°";
-    currentFrame=0;render();updateInfo();
-});
-document.getElementById("zoomSlider").addEventListener("input",function(){
-    userZoom=Number(this.value)/100;
-    document.getElementById("zoomVal").textContent=this.value+"%";
-    render();updateInfo();
-});
+function clampValue(value,min,max,step){let v=Number(value);if(!Number.isFinite(v))v=min;v=Math.max(min,Math.min(max,v));if(step)v=Math.round(v/step)*step;return v;}
+const rSlider=document.getElementById("rSlider"),rInput=document.getElementById("rInput");
+const genSlider=document.getElementById("genSlider"),genInput=document.getElementById("genInput");
+const orientSlider=document.getElementById("orientSlider"),orientInput=document.getElementById("orientInput");
+const zoomSlider=document.getElementById("zoomSlider"),zoomInput=document.getElementById("zoomInput");
+rSlider.addEventListener("input",function(){R=clampValue(this.value,15,100,1);this.value=R;rInput.value=R;if(r>R){r=R;genSlider.value=r;genInput.value=r;}genSlider.max=R;genInput.max=R;currentFrame=0;render();updateInfo();});
+rInput.addEventListener("change",function(){R=clampValue(this.value,15,100,1);this.value=R;rSlider.value=R;if(r>R){r=R;genSlider.value=r;genInput.value=r;}genSlider.max=R;genInput.max=R;currentFrame=0;render();updateInfo();});
+genSlider.addEventListener("input",function(){r=clampValue(this.value,5,R,1);this.value=r;genInput.value=r;currentFrame=0;render();updateInfo();});
+genInput.addEventListener("change",function(){r=clampValue(this.value,5,R,1);this.value=r;genSlider.value=r;currentFrame=0;render();updateInfo();});
+orientSlider.addEventListener("input",function(){startDeg=clampValue(this.value,0,360,5);this.value=startDeg;orientInput.value=startDeg;currentFrame=0;render();updateInfo();});
+orientInput.addEventListener("change",function(){startDeg=clampValue(this.value,0,360,5);this.value=startDeg;orientSlider.value=startDeg;currentFrame=0;render();updateInfo();});
+zoomSlider.addEventListener("input",function(){const z=clampValue(this.value,50,800,5);this.value=z;zoomInput.value=z;userZoom=z/100;render();updateInfo();});
+zoomInput.addEventListener("change",function(){const z=clampValue(this.value,50,800,5);this.value=z;zoomSlider.value=z;userZoom=z/100;render();updateInfo();});
 document.getElementById("speedSlider").addEventListener("input",function(){
     speed=Number(this.value);updateInfo();
 });
