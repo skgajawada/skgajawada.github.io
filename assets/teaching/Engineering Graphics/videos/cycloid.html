@@ -1191,6 +1191,19 @@ document.addEventListener("fullscreenchange", () => {
 resizeCanvas();
 updateInfo();
 requestAnimationFrame(animationLoop);
+
+/* Disable common context-menu and developer shortcuts */
+document.addEventListener("contextmenu", function(e){ e.preventDefault(); });
+document.addEventListener("dragstart", function(e){ e.preventDefault(); });
+document.addEventListener("keydown", function(e){
+    const k=e.key.toLowerCase();
+    if(e.key === "F12" ||
+       (e.ctrlKey && e.shiftKey && (k === "i" || k === "j" || k === "c")) ||
+       (e.ctrlKey && k === "u")){
+        e.preventDefault();
+        e.stopPropagation();
+    }
+}, true);
 </script>
 </body>
 </html>
