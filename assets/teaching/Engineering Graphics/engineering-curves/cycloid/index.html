@@ -962,7 +962,47 @@
             .footer-grid { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
         }
-    </style>
+    
+
+        /* Cycloid animation area — matched to the Engineering Curves animation layout. */
+        .animation-resource-section .section-inner{
+            width:min(1500px,96%);
+        }
+
+        .animation-resource-section .animation-shell{
+            width:100%;
+        }
+
+        .animation-resource-section .animation-frame{
+            width:100%;
+            height:min(82vh,900px);
+            min-height:520px;
+        }
+
+        @media (max-width:900px) and (orientation:landscape){
+            .animation-resource-section .animation-frame{
+                height:calc(100svh - 120px);
+                min-height:300px;
+            }
+        }
+
+        @media (max-width:600px){
+            .animation-resource-section .section-inner{
+                width:calc(100% - 12px);
+            }
+            .animation-resource-section .animation-frame{
+                height:72vh;
+                min-height:430px;
+            }
+        }
+
+        @media (max-width:600px) and (orientation:portrait){
+            .animation-resource-section .animation-frame{
+                height:72vh;
+                min-height:430px;
+            }
+        }
+</style>
 </head>
 
 <body class="light-mode protected-content">
@@ -1287,7 +1327,7 @@
         <!-- =================================================
              ANIMATION
         ================================================== -->
-        <section class="resource-section" id="animation">
+        <section class="resource-section animation-resource-section" id="animation">
             <div class="section-inner">
                 <div class="section-heading">
                     <span class="tag">Interactive Learning</span>
