@@ -800,9 +800,16 @@ function getTotalAngleAtO() {
 
 const FPS = 30;
 const ROLL_FRAMES = 20;
-const PAUSE_FRAMES = FPS;
+const PAUSE_SECONDS = 1.0;
+/* The pause is one real second after every 30° division.  It is kept
+   independent of the animation-speed slider; speed changes the rolling
+   motion, not the dwell time at each construction division. */
+function getPauseFrames() {
+    return Math.max(1, Math.round(FPS * PAUSE_SECONDS * speed));
+}
 function getTotalFrames() {
-    return PAUSE_FRAMES + N * rotationReps * (ROLL_FRAMES + PAUSE_FRAMES);
+    const pauseFrames = getPauseFrames();
+    return pauseFrames + N * rotationReps * (ROLL_FRAMES + pauseFrames);
 }
 
 const lineColors = [
@@ -814,15 +821,6 @@ const lineColors = [
 let SCALE = 1.0;
 let FONT_SCALE = 1.0;
 
-/* Manual drawing-position control.  Drag the construction directly on the
-   canvas to place O wherever it is most convenient. */
-let panX = 0.0;
-let panY = 0.0;
-let isPanning = false;
-let panStartX = 0.0;
-let panStartY = 0.0;
-let panOriginX = 0.0;
-let panOriginY = 0.0;
 
 function getLayoutBounds() {
     /* One complete generating-circle revolution corresponds to the
@@ -932,23 +930,12 @@ function getScalingMetrics() {
     const DATA_W = bounds.XMAX - bounds.XMIN;
     const DATA_H = bounds.YMAX - bounds.YMIN;
 
-    /* The canvas coordinate system is fitted differently in normal and
-       fullscreen modes.  Fullscreen is an independent drawing workspace:
-       NEVER use the document footer there. */
     let AX;
     let pixelsPerUnit;
     let dataCx;
     let dataCy;
 
     if (isFullScreen) {
-        /*
-         * Laptop/desktop fullscreen:
-         * - use the whole fullscreen viewport
-         * - reserve the bottom band for the navigation/controls
-         * - keep O in the visual centre of the free drawing area
-         * - fit the complete construction first, then apply only a gentle
-         *   zoom cap so the construction cannot disappear off-screen.
-         */
         const paramsRect = document.querySelector('.params-panel')?.getBoundingClientRect();
         const navRect = document.querySelector('.navigation')?.getBoundingClientRect();
         const infoRect = document.querySelector('.info-panel')?.getBoundingClientRect();
@@ -956,48 +943,50 @@ function getScalingMetrics() {
         let topPad;
         let controlTop;
         if (isMobile) {
-            /* Phone fullscreen: both panels occupy the bottom. */
-            topPad = Math.max(18, infoRect ? (infoRect.bottom + 18) : 18);
+            topPad = Math.max(12, infoRect ? infoRect.bottom + 12 : 12);
             controlTop = Math.min(
                 paramsRect ? paramsRect.top : H - 150,
                 navRect ? navRect.top : H - 45
             );
         } else {
-            /* Laptop/desktop fullscreen: the parameter panel is on the
-               right, so it must NOT reduce the vertical drawing area. */
-            topPad = 22;
+            topPad = 18;
             controlTop = navRect ? navRect.top : H - 55;
         }
 
+        /* AX is the genuinely usable drawing rectangle.  On desktop fullscreen
+           the right parameter card is excluded; on phones the bottom controls
+           are excluded. */
+        const rightSafe = (!isMobile && paramsRect)
+            ? Math.max(40, paramsRect.left - 18)
+            : W - 10;
+
         AX = {
             left: isMobile ? 10 : W * 0.035,
-            right: isMobile ? W - 10 : W * 0.965,
+            right: rightSafe,
             top: topPad,
-            bottom: Math.max(topPad + 120, controlTop - 20)
+            bottom: Math.max(topPad + 120, controlTop - 16)
         };
 
         const fit = Math.min(
-            (AX.right - AX.left) / DATA_W,
-            (AX.bottom - AX.top) / DATA_H
+            Math.max(1, (AX.right - AX.left) / DATA_W),
+            Math.max(1, (AX.bottom - AX.top) / DATA_H)
         );
-
-        /* In fullscreen, the Zoom slider is a real zoom control.  Do not cap
-           it back to the fit scale: at higher zoom levels the user can use
-           the drag gesture to position the construction exactly where wanted. */
         pixelsPerUnit = fit * userZoom;
 
-        const visual = getConstructionBoundsData();
-        const targetX = (AX.left + AX.right) / 2;
-        const targetY = (AX.top + AX.bottom) / 2;
-        /* Centre the COMPLETE visual construction, not O.  Thus the watermark
-           sits at the true diagram centre and a two-revolution construction is
-           balanced about it.  Dragging still adds panX/panY afterwards. */
-        dataCx = targetX - (visual.centerX - (bounds.XMIN + bounds.XMAX) / 2) * pixelsPerUnit;
-        dataCy = targetY + (visual.centerY - bounds.Oy) * pixelsPerUnit;
+        /* IMPORTANT: O is the fixed anchor.  The whole construction is NOT
+           automatically moved as a single diagram.  Zoom therefore keeps O
+           in a predictable place instead of allowing the origin to disappear. */
+        dataCx = (AX.left + AX.right) / 2;
+        if (isMobile) {
+            /* Keep O below the upper information card and above the controls. */
+            const freeTop = AX.top;
+            const freeBottom = AX.bottom;
+            dataCy = freeTop + (freeBottom - freeTop) * 0.70;
+        } else {
+            /* Desktop fullscreen: O sits near the centre of the usable canvas. */
+            dataCy = AX.top + (AX.bottom - AX.top) * 0.60;
+        }
     } else {
-        /* Normal mode.  Desktop keeps the requested 15 mm footer relation
-           for the <=150° construction; mobile uses the unobstructed space
-           above the bottom controls. */
         const side = isMobile ? Math.max(8, Math.min(28, W * 0.04)) : W * 0.065;
         AX = {
             left: side,
@@ -1011,54 +1000,50 @@ function getScalingMetrics() {
             (AX.bottom - AX.top) / DATA_H
         ) * bounds.zoom;
 
-        const visual = getConstructionBoundsData();
-        const targetX = AX.left + (AX.right - AX.left) / 2;
-        const viewportCenterY = AX.top + (AX.bottom - AX.top) / 2;
-        dataCx = targetX - (visual.centerX - (bounds.XMIN + bounds.XMAX) / 2) * pixelsPerUnit;
-        dataCy = viewportCenterY + (visual.centerY - bounds.Oy) * pixelsPerUnit;
-
+        /* Exclude the bottom controls from the mobile drawing area. */
         if (isMobile) {
             const mainRect = document.querySelector('.main')?.getBoundingClientRect();
             const infoRect = document.querySelector('.info-panel')?.getBoundingClientRect();
             const paramsRect = document.querySelector('.params-panel')?.getBoundingClientRect();
             const navRect = document.querySelector('.navigation')?.getBoundingClientRect();
             const mainTop = mainRect ? mainRect.top : 0;
-            const relTop = r => r ? Math.max(0, r.top - mainTop) : 0;
-            const relBottom = r => r ? Math.min(H, r.bottom - mainTop) : H;
-            const safeTop = Math.max(10, infoRect ? relBottom(infoRect) + 12 : 12);
+            const relTop = rr => rr ? Math.max(0, rr.top - mainTop) : 0;
+            const relBottom = rr => rr ? Math.min(H, rr.bottom - mainTop) : H;
+            const safeTop = Math.max(10, infoRect ? relBottom(infoRect) + 10 : 10);
             const controlsTop = Math.min(
                 paramsRect ? relTop(paramsRect) : H - 150,
                 navRect ? relTop(navRect) : H - 45
             );
-            const safeBottom = Math.max(safeTop + 40, controlsTop - 8);
-            const freeHeight = Math.max(40, safeBottom - safeTop);
-            /* Keep the visual diagram centred in the unobstructed mobile area. */
-            const targetMobileY = safeTop + freeHeight / 2;
-            dataCy = targetMobileY + (visual.centerY - bounds.Oy) * pixelsPerUnit;
+            const safeBottom = Math.max(safeTop + 50, controlsTop - 8);
+            AX.top = safeTop;
+            AX.bottom = safeBottom;
+            dataCx = (AX.left + AX.right) / 2;
+            dataCy = AX.top + (AX.bottom - AX.top) * 0.72;
         } else {
-            /* Desktop: centre the visual construction in the available canvas.
-               This replaces centring O; the entire diagram is what is balanced. */
-            dataCy = viewportCenterY + (visual.centerY - bounds.Oy) * pixelsPerUnit;
+            dataCx = (AX.left + AX.right) / 2;
+
+            /* Normal desktop: <=150° keeps O 15 mm above the footer; larger
+               constructions place O in the centre of the usable canvas. */
+            if (bounds.f === 0) {
+                const pxPerMm = 96 / 25.4;
+                dataCy = H - 15 * pxPerMm;
+            } else {
+                dataCy = AX.top + (AX.bottom - AX.top) * 0.60;
+            }
         }
     }
 
-    /* Keep O and the complete O label safely inside the active drawing
-       rectangle in every mode.  This is applied only to the automatic
-       placement; the user's manual pan remains available afterwards. */
-    const oLabelDataOffset = 30;
-    const minOX = AX.left + 14;
-    const maxOX = AX.right - 14;
-    const minOY = AX.top + 14;
-    const maxOY = AX.bottom - 14;
-    const oScreenX = dataCx;
-    const oScreenY = dataCy + oLabelDataOffset * pixelsPerUnit;
-    if (oScreenX < minOX) dataCx += minOX - oScreenX;
-    if (oScreenX > maxOX) dataCx -= oScreenX - maxOX;
-    if (oScreenY < minOY) dataCy += minOY - oScreenY;
-    if (oScreenY > maxOY) dataCy -= oScreenY - maxOY;
+    /* O and its label are the non-negotiable safe anchor.  The label is drawn
+       17 data units below O, so reserve that space as well as the marker. */
+    const oLabelGapPx = Math.max(17 * pixelsPerUnit, 14);
+    const markerMargin = Math.max(10, 6 * pixelsPerUnit);
+    const minX = AX.left + markerMargin;
+    const maxX = AX.right - markerMargin;
+    const minY = AX.top + markerMargin;
+    const maxY = AX.bottom - oLabelGapPx - markerMargin;
 
-    dataCx += panX;
-    dataCy += panY;
+    dataCx = Math.max(minX, Math.min(maxX, dataCx));
+    dataCy = Math.max(minY, Math.min(maxY, dataCy));
 
     return { pixelsPerUnit, dataCx, dataCy, AX, bounds };
 }
@@ -1231,6 +1216,7 @@ function materialAngle(i, t) {
 }
 
 function animationState(frame) {
+    const PAUSE_FRAMES = getPauseFrames();
     if (frame < PAUSE_FRAMES) return { t: 0, step: 0, paused: true };
     const q = frame - PAUSE_FRAMES;
     const block = ROLL_FRAMES + PAUSE_FRAMES;
@@ -1613,7 +1599,7 @@ document.getElementById("forwardBtn").addEventListener("click", () => {
 document.getElementById("backwardBtn").addEventListener("click", () => {
     playing = false;
     document.getElementById("playBtn").textContent = "▶";
-    const block = ROLL_FRAMES + PAUSE_FRAMES;
+    const block = ROLL_FRAMES + getPauseFrames();
     const currentState = animationState(currentFrame);
     currentFrame = Math.max(0, (currentState.step - 1) * block);
     render();
@@ -1623,7 +1609,7 @@ document.getElementById("backwardBtn").addEventListener("click", () => {
 document.getElementById("nextBtn").addEventListener("click", () => {
     playing = false;
     document.getElementById("playBtn").textContent = "▶";
-    const block = ROLL_FRAMES + PAUSE_FRAMES;
+    const block = ROLL_FRAMES + getPauseFrames();
     const currentState = animationState(currentFrame);
     currentFrame = Math.min(getTotalFrames() - 1, (currentState.step + 1) * block);
     render();
@@ -1639,8 +1625,6 @@ document.getElementById("resetBtn").addEventListener("click", () => {
     startDeg = 150.0;
     userZoom = 2.0;
     speed = 1.0;
-    panX = 0.0;
-    panY = 0.0;
     selectedPoint = 0;
     selectedPoints = [0];
     rotationReps = 1;
@@ -1700,15 +1684,12 @@ document.getElementById("orientSlider").addEventListener("input", function() {
 });
 
 document.getElementById("zoomSlider").addEventListener("input", function() {
+    /* Do NOT resize the canvas while the finger is dragging the slider.
+       Recreating the canvas backing store during a mobile fullscreen touch
+       can interrupt the range input and makes zoom appear not to work. */
     userZoom = Number(this.value) / 100.0;
     document.getElementById("zoomVal").textContent = this.value + "%";
-    /* Repaint immediately.  In mobile fullscreen the canvas size can change
-       independently of the document layout, so force a fresh metric pass. */
-    if (document.fullscreenElement === animationArea) {
-        resizeCanvas();
-    } else {
-        render();
-    }
+    render();
 });
 
 document.getElementById("speedSlider").addEventListener("input", function() {
@@ -1736,37 +1717,9 @@ backToEpicycloid.addEventListener("click", async function(event) {
     }
 });
 
-/* Drag the construction to any convenient position.  This works in normal
-   mode and fullscreen; controls remain clickable because dragging is attached
-   only to the canvas. */
-canvas.style.cursor = "grab";
-canvas.addEventListener("pointerdown", function(event) {
-    if (event.button !== 0) return;
-    isPanning = true;
-    panStartX = event.clientX;
-    panStartY = event.clientY;
-    panOriginX = panX;
-    panOriginY = panY;
-    canvas.style.cursor = "grabbing";
-    canvas.setPointerCapture?.(event.pointerId);
-});
-canvas.addEventListener("pointermove", function(event) {
-    if (!isPanning) return;
-    panX = panOriginX + (event.clientX - panStartX);
-    panY = panOriginY + (event.clientY - panStartY);
-    render();
-});
-function stopPanning(event) {
-    if (!isPanning) return;
-    isPanning = false;
-    canvas.style.cursor = "grab";
-    try { canvas.releasePointerCapture?.(event.pointerId); } catch (_) {}
-}
-canvas.addEventListener("pointerup", stopPanning);
-canvas.addEventListener("pointercancel", stopPanning);
-canvas.addEventListener("pointerleave", function(event) {
-    if (isPanning && !canvas.hasPointerCapture?.(event.pointerId)) stopPanning(event);
-});
+/* The complete diagram is intentionally NOT draggable.  O remains a stable
+   reference point in every screen mode; zoom changes the construction scale
+   without moving the whole drawing as a block. */
 
 /* Mouse-wheel zoom: works in normal and fullscreen modes and keeps the
    Zoom slider synchronized.  This avoids relying only on a small slider
@@ -1795,7 +1748,6 @@ canvas.addEventListener("pointerdown", function(event) {
         const pts = Array.from(activePointers.values());
         pinchStartDistance = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
         pinchStartZoom = userZoom;
-        isPanning = false;
     }
 });
 
@@ -1903,8 +1855,18 @@ fullscreenBtn.addEventListener("click", async () => {
 
 document.addEventListener("fullscreenchange", () => {
     updateFullscreenButton();
-    resizeCanvas();
+    /* Mobile browsers may update the fullscreen viewport one or two frames
+       after fullscreenchange.  Re-measure after the viewport settles. */
+    requestAnimationFrame(resizeCanvas);
+    setTimeout(resizeCanvas, 120);
+    setTimeout(resizeCanvas, 300);
 });
+
+if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", () => {
+        if (document.fullscreenElement === animationArea) resizeCanvas();
+    });
+}
 
 
 /* Multiple simultaneous trace points: maximum 4. */
