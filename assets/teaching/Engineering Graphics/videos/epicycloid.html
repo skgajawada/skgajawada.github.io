@@ -376,6 +376,10 @@ canvas {
     }
 }
 
+.value-input{width:48px;height:24px;border:1px solid #174f94;border-radius:4px;text-align:center;font-weight:700;background:#fff;color:#17324d;}
+.value-input:focus{outline:2px solid rgba(23,79,148,.2);border-color:#174f94;}
+@media(max-width:600px){.value-input{width:44px;height:22px;font-size:10px;}}
+
 .rotation-control-group {
     border: 1px solid #174f94;
     border-radius: 6px;
@@ -699,7 +703,7 @@ body.phone-desktop-site .footer { height:30px; min-height:30px; font-size:10px; 
             <div class="param-row">
                 <label>Directing R:</label>
                 <input id="rSlider" type="range" min="15" max="100" step="1" value="60">
-                <span id="rVal">60</span>
+                <input id="rInput" class="value-input" type="number" min="15" max="100" step="1" value="60" aria-label="Directing radius R">
             </div>
             <div class="desc-text">Radius of the fixed directing circle.</div>
         </div>
@@ -708,7 +712,7 @@ body.phone-desktop-site .footer { height:30px; min-height:30px; font-size:10px; 
             <div class="param-row">
                 <label>Generating r:</label>
                 <input id="genSlider" type="range" min="5" max="60" step="1" value="20">
-                <span id="genVal">20</span>
+                <input id="genInput" class="value-input" type="number" min="5" max="60" step="1" value="20" aria-label="Generating radius r">
             </div>
             <div class="desc-text">Rolling circle radius. Calculated Angle at O: <strong id="cardAngleO" style="color:#123b63;">120.0°</strong></div>
         </div>
@@ -717,7 +721,7 @@ body.phone-desktop-site .footer { height:30px; min-height:30px; font-size:10px; 
             <div class="param-row">
                 <label>Orientation (°):</label>
                 <input id="orientSlider" type="range" min="0" max="360" step="5" value="150">
-                <span id="orientVal">150°</span>
+                <input id="orientInput" class="value-input" type="number" min="0" max="360" step="5" value="150" aria-label="Orientation in degrees">
             </div>
             <div class="desc-text">Rotation angle of initial center position.</div>
         </div>
@@ -743,7 +747,7 @@ body.phone-desktop-site .footer { height:30px; min-height:30px; font-size:10px; 
             <div class="param-row">
                 <label>Zoom Level (%):</label>
                 <input id="zoomSlider" type="range" min="50" max="400" step="5" value="200">
-                <span id="zoomVal">200%</span>
+                <input id="zoomInput" class="value-input" type="number" min="50" max="400" step="5" value="200" aria-label="Zoom percentage">
             </div>
         </div>
     </div>
@@ -1630,13 +1634,13 @@ document.getElementById("resetBtn").addEventListener("click", () => {
     rotationReps = 1;
 
     document.getElementById("rSlider").value = R;
-    document.getElementById("rVal").textContent = R;
+    document.getElementById("rInput").value = R;
     document.getElementById("genSlider").value = r;
-    document.getElementById("genVal").textContent = r;
+    document.getElementById("genInput").value = r;
     document.getElementById("orientSlider").value = startDeg;
-    document.getElementById("orientVal").textContent = startDeg + "°";
+    document.getElementById("orientInput").value = startDeg;
     document.getElementById("zoomSlider").value = 200;
-    document.getElementById("zoomVal").textContent = "200%";
+    document.getElementById("zoomInput").value = 200;
     document.getElementById("speedSlider").value = 1;
     if (pointChecks) {
         Array.from(pointChecks.querySelectorAll("input")).forEach(cb => {
@@ -1654,43 +1658,27 @@ document.getElementById("resetBtn").addEventListener("click", () => {
     updateInfo();
 });
 
-/* Parameter Sliders Wiring */
-document.getElementById("rSlider").addEventListener("input", function() {
-    R = Number(this.value);
-    document.getElementById("rVal").textContent = R;
-    if (r > R) {
-        r = R;
-        document.getElementById("genSlider").value = r;
-        document.getElementById("genVal").textContent = r;
-    }
-    document.getElementById("genSlider").max = R;
-    render();
-    updateInfo();
-});
+/* Parameter Sliders + Manual Entry Wiring */
+function clampValue(value, min, max, step) {
+    let v = Number(value);
+    if (!Number.isFinite(v)) v = min;
+    v = Math.max(min, Math.min(max, v));
+    if (step) v = Math.round(v / step) * step;
+    return v;
+}
+const rSlider=document.getElementById("rSlider"), rInput=document.getElementById("rInput");
+const genSlider=document.getElementById("genSlider"), genInput=document.getElementById("genInput");
+const orientSlider=document.getElementById("orientSlider"), orientInput=document.getElementById("orientInput");
+const zoomSlider=document.getElementById("zoomSlider"), zoomInput=document.getElementById("zoomInput");
 
-document.getElementById("genSlider").addEventListener("input", function() {
-    let val = Number(this.value);
-    if (val > R) val = R;
-    r = val;
-    document.getElementById("genVal").textContent = r;
-    render();
-    updateInfo();
-});
-
-document.getElementById("orientSlider").addEventListener("input", function() {
-    startDeg = Number(this.value);
-    document.getElementById("orientVal").textContent = startDeg + "°";
-    render();
-});
-
-document.getElementById("zoomSlider").addEventListener("input", function() {
-    /* Do NOT resize the canvas while the finger is dragging the slider.
-       Recreating the canvas backing store during a mobile fullscreen touch
-       can interrupt the range input and makes zoom appear not to work. */
-    userZoom = Number(this.value) / 100.0;
-    document.getElementById("zoomVal").textContent = this.value + "%";
-    render();
-});
+rSlider.addEventListener("input",function(){ R=clampValue(this.value,15,100,1); this.value=R; rInput.value=R; if(r>R){r=R;genSlider.value=r;genInput.value=r;} genSlider.max=R;genInput.max=R; render();updateInfo(); });
+rInput.addEventListener("change",function(){ R=clampValue(this.value,15,100,1); this.value=R;rSlider.value=R;if(r>R){r=R;genSlider.value=r;genInput.value=r;}genSlider.max=R;genInput.max=R;render();updateInfo(); });
+genSlider.addEventListener("input",function(){ r=clampValue(this.value,5,R,1);this.value=r;genInput.value=r;render();updateInfo(); });
+genInput.addEventListener("change",function(){ r=clampValue(this.value,5,R,1);this.value=r;genSlider.value=r;render();updateInfo(); });
+orientSlider.addEventListener("input",function(){ startDeg=clampValue(this.value,0,360,5);this.value=startDeg;orientInput.value=startDeg;render(); });
+orientInput.addEventListener("change",function(){ startDeg=clampValue(this.value,0,360,5);this.value=startDeg;orientSlider.value=startDeg;render(); });
+zoomSlider.addEventListener("input",function(){ const z=clampValue(this.value,50,400,5);this.value=z;zoomInput.value=z;userZoom=z/100;render(); });
+zoomInput.addEventListener("change",function(){ const z=clampValue(this.value,50,400,5);this.value=z;zoomSlider.value=z;userZoom=z/100;render(); });
 
 document.getElementById("speedSlider").addEventListener("input", function() {
     speed = Number(this.value);
@@ -1732,7 +1720,7 @@ canvas.addEventListener("wheel", function(event) {
     userZoom = zoomValue / 100;
     const zoomSlider = document.getElementById("zoomSlider");
     zoomSlider.value = zoomValue;
-    document.getElementById("zoomVal").textContent = zoomValue + "%";
+    document.getElementById("zoomInput").value = zoomValue;
     render();
 }, { passive: false });
 
@@ -1764,7 +1752,7 @@ canvas.addEventListener("pointermove", function(event) {
     userZoom = zoomValue / 100;
     const zoomSlider = document.getElementById("zoomSlider");
     zoomSlider.value = zoomValue;
-    document.getElementById("zoomVal").textContent = zoomValue + "%";
+    document.getElementById("zoomInput").value = zoomValue;
     render();
 });
 
