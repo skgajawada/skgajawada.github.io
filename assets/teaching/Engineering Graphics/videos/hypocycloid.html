@@ -527,6 +527,61 @@ canvas {
     background: #103d73;
 }
 
+
+/* Multi-point trace and rotation controls */
+.point-checks{
+    display:grid;
+    grid-template-columns:repeat(7,minmax(0,1fr));
+    gap:3px 4px;
+    margin-top:3px;
+}
+.point-check{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:2px;
+    min-width:0;
+    font-size:10px;
+    cursor:pointer;
+}
+.point-check input{
+    margin:0;
+    width:13px;
+    height:13px;
+    accent-color:#174f94;
+}
+.rotation-choices{
+    display:grid;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:4px;
+    margin-top:3px;
+}
+.rotation-btn{
+    border:1px solid #9fb1c2;
+    border-radius:5px;
+    background:#f7fafc;
+    color:#17324d;
+    font:700 10px Arial,Helvetica,sans-serif;
+    padding:5px 2px;
+    cursor:pointer;
+}
+.rotation-btn.active{
+    background:#174f94;
+    color:#fff;
+    border-color:#174f94;
+}
+.rotation-btn:active{transform:scale(.97);}
+@media(max-width:1050px){
+    .point-checks{grid-template-columns:repeat(13,minmax(0,1fr));}
+}
+@media(max-width:600px){
+    .point-checks{grid-template-columns:repeat(7,minmax(0,1fr));}
+    .point-check{font-size:9px;}
+    .point-check input{width:12px;height:12px;}
+    .rotation-btn{font-size:8.5px;padding:4px 1px;}
+    .params-panel{max-height:none;overflow:visible;}
+}
+
 </style>
 </head>
 
@@ -549,11 +604,14 @@ canvas {
         <div class="info-title">Hypocycloid Parameters</div>
         <div>Directing Radius (R): <span class="value" id="infoR">60 mm</span></div>
         <div>Generating Radius (r): <span class="value" id="infoRGen">20 mm</span></div>
-        <div>Angle at O: <span class="value" id="infoAngleO">240.0°</span></div>
-        <div>Divisions: <span class="value">12</span></div>
-        <div>Current Step: <span class="value" id="divisionValue">C0</span></div>
+        <div>Angle at O: <span class="value" id="infoAngleO">120.0°</span></div>
+        <div>Divisions: <span class="value" id="divisionsInfoValue">12</span></div>
+        <div>Current Step: <span class="value" id="divisionValue">0' (0/12)</span></div>
         <div>Covered Arc: <span class="value" id="angleValue">0.0°</span></div>
         <div>Direction: <span class="value" id="directionValue">Forward</span></div>
+        <div>Trace: <span class="value" id="tracePointValue">P0</span></div>
+        <div>Generating Circle Rotation: <span class="value" id="genRotationValue">0°</span></div>
+        <div>Rotations: <span class="value" id="rotationInfoValue">1 × 360°</span></div>
     </div>
 
     <!-- CONTROLS & SLIDER PANEL (TOP RIGHT) -->
@@ -566,16 +624,16 @@ canvas {
                 <input id="rSlider" type="range" min="15" max="100" step="1" value="60">
                 <span id="rVal">60</span>
             </div>
-            <div class="desc-text">Radius of the fixed directing circle (15 to 100).</div>
+            <div class="desc-text">Radius of the fixed directing circle.</div>
         </div>
 
         <div class="param-group">
             <div class="param-row">
                 <label>Generating r:</label>
-                <input id="genSlider" type="range" min="5" max="100" step="1" value="20">
+                <input id="genSlider" type="range" min="5" max="60" step="1" value="20">
                 <span id="genVal">20</span>
             </div>
-            <div class="desc-text">Rolling circle radius (5 to 100). Calculated Angle at O: <strong id="cardAngleO" style="color:#123b63;">240.0°</strong></div>
+            <div class="desc-text">Rolling circle radius. Calculated Angle at O: <strong id="cardAngleO" style="color:#123b63;">120.0°</strong></div>
         </div>
 
         <div class="param-group">
@@ -584,7 +642,25 @@ canvas {
                 <input id="orientSlider" type="range" min="0" max="360" step="5" value="140">
                 <span id="orientVal">140°</span>
             </div>
-            <div class="desc-text">Rotation angle of initial center position.</div>
+            <div class="desc-text">Initial center position.</div>
+        </div>
+
+        <div class="param-group">
+            <div class="param-row"><label>Trace Points:</label></div>
+            <div id="pointChecks" class="point-checks" aria-label="Trace points"></div>
+            <div class="desc-text">Select 1–4 points to generate P, Q, R, S curves simultaneously.</div>
+        </div>
+
+        <div class="param-group">
+            <div class="param-row"><label>Generating Circle Rotations:</label></div>
+            <div id="rotationChoices" class="rotation-choices" aria-label="Generating circle rotations">
+                <button type="button" class="rotation-btn active" data-rot="1">1 × 360°</button>
+                <button type="button" class="rotation-btn" data-rot="2">2 × 360°</button>
+                <button type="button" class="rotation-btn" data-rot="3">3 × 360°</button>
+                <button type="button" class="rotation-btn" data-rot="4">4 × 360°</button>
+                <button type="button" class="rotation-btn" data-rot="5">5 × 360°</button>
+            </div>
+            <div class="desc-text">Each revolution has 12 divisions; each division rotates the generating circle by 30°.</div>
         </div>
 
         <div class="param-group">
@@ -621,657 +697,490 @@ canvas {
 <script>
 "use strict";
 
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+const canvas=document.getElementById("canvas");
+const ctx=canvas.getContext("2d");
+let W=0,H=0;
 
-let W = 0;
-let H = 0;
+const N=12;
+const FPS=30;
+const ROLL_FRAMES=20;
+const PAUSE_FRAMES=FPS;
 
-/* Adjustable Parameters - Defaults: R=60, r=20, startDeg=140 */
-let R = 60.0;
-let r = 20.0;
-let startDeg = 140.0;
-let userZoom = 4.0;
+let R=60.0;
+let r=20.0;
+let startDeg=140.0;
+let userZoom=4.0;
+let rotationCount=1;
+let selectedPoints=[0];
 
-const N = 12;
+let SCALE=1.0,FONT_SCALE=1.0;
 
-function getTotalArcDeg() {
-    return 360.0 * (r / R);
-}
-
-const FPS = 30;
-const ROLL_FRAMES = 20;
-const PAUSE_FRAMES = FPS;
-const TOTAL_FRAMES = PAUSE_FRAMES + N * (ROLL_FRAMES + PAUSE_FRAMES);
-
-const lineColors = [
-    "rgb(255,127,14)", "rgb(31,119,180)", "rgb(148,103,189)", "rgb(44,160,44)",
-    "rgb(214,39,40)", "rgb(23,190,207)", "rgb(227,119,194)", "rgb(188,189,34)",
-    "rgb(140,86,75)", "rgb(127,127,127)", "rgb(255,187,120)", "rgb(174,199,232)"
+const curveColors=[
+    "rgb(255,127,14)",
+    "rgb(31,119,180)",
+    "rgb(148,103,189)",
+    "rgb(44,160,44)"
+];
+const traceColorNames=["Orange","Blue","Purple","Green"];
+const lineColors=[
+    "rgb(255,127,14)","rgb(31,119,180)","rgb(148,103,189)","rgb(44,160,44)",
+    "rgb(214,39,40)","rgb(23,190,207)","rgb(227,119,194)","rgb(188,189,34)",
+    "rgb(140,86,75)","rgb(127,127,127)","rgb(255,187,120)","rgb(174,199,232)"
 ];
 
-let SCALE = 1.0;
-let FONT_SCALE = 1.0;
+function getTotalArcDeg(){ return 360*(r/R); }
+function getTotalConstructionDeg(){ return getTotalArcDeg()*rotationCount; }
+function getTotalDivisions(){ return N*rotationCount; }
 
-function getLayoutBounds() {
-    const totalArcDeg = getTotalArcDeg();
-    let f = 0.0;
-    if (totalArcDeg > 90.0 && totalArcDeg <= 180.0) {
-        f = (totalArcDeg - 90.0) / 90.0;
-    } else if (totalArcDeg > 180.0) {
-        f = 1.0;
-    }
-    
-    let maxSpread = R + 2.0 * r;
-    let yMin = -20 - f * (maxSpread + 20.0);
-    let yMax = 310.0 + f * (maxSpread - 130.0);
-    
-    let oy = 0.0;
-    let xSpan = Math.max(330.0, maxSpread + 80.0);
-    let autoZoomMultiplier = 1.0 - f * 0.35;
-
+function getLayoutBounds(){
+    // Keep the original data-coordinate system.  O is at y = 0; its
+    // screen position is controlled by getScalingMetrics().
+    // Up to 150° keep O about 5 mm above the footer; after 150° move O
+    // to the centre of the drawing area.
+    const centerMode=getTotalConstructionDeg()>150;
+    const maxSpread=R+2*r;
+    const xSpan=Math.max(330,maxSpread+80);
     return {
-        XMIN: -xSpan,
-        XMAX: xSpan,
-        YMIN: yMin,
-        YMAX: yMax,
-        Oy: oy,
-        zoom: userZoom * autoZoomMultiplier,
-        f: f
+        XMIN:-xSpan,XMAX:xSpan,
+        YMIN:centerMode?(-maxSpread-30):-20,
+        YMAX:centerMode?(maxSpread+30):310,
+        Oy:0,
+        zoom:userZoom*(centerMode?0.92:1),
+        centerMode
     };
 }
 
-function getScalingMetrics() {
-    const bounds = getLayoutBounds();
-    const AX = {
-        left: W * 0.065,
-        right: W * 0.935,
-        top: H * 0.07,
-        bottom: H * 0.88
-    };
-    const DATA_W = bounds.XMAX - bounds.XMIN;
-    const DATA_H = bounds.YMAX - bounds.YMIN;
+function getScalingMetrics(){
+    const b=getLayoutBounds();
+    const AX={left:W*.065,right:W*.935,top:H*.07,bottom:H*.88};
+    const dataW=b.XMAX-b.XMIN,dataH=b.YMAX-b.YMIN;
+    const pixelsPerUnit=Math.min(
+        (AX.right-AX.left)/dataW,
+        (AX.bottom-AX.top)/dataH
+    )*b.zoom;
+    const dataCx=AX.left+(AX.right-AX.left)/2;
+    const centerY=AX.top+(AX.bottom-AX.top)/2;
 
-    const pixelsPerUnit = Math.min(
-        (AX.right - AX.left) / DATA_W,
-        (AX.bottom - AX.top) / DATA_H
-    ) * bounds.zoom;
+    /* <180°: O is exactly 5 mm above the footer.
+       >=180°: O is at the center of the drawing area. */
+    const footerGapY=H-5*pixelsPerUnit;
+    const dataCy=b.centerMode?centerY:footerGapY;
 
-    const dataCx = AX.left + (AX.right - AX.left) / 2;
-    const viewportCenterY = AX.top + (AX.bottom - AX.top) / 2;
-    
-    const bottomFixedCy = H - 53;
-    const dataCy = bottomFixedCy * (1.0 - bounds.f) + viewportCenterY * bounds.f;
-
-    return { pixelsPerUnit, dataCx, dataCy, AX, bounds };
+    return {pixelsPerUnit,dataCx,dataCy,AX,bounds:b};
 }
 
-function sx(x) {
-    const m = getScalingMetrics();
-    return m.dataCx + (x - (m.bounds.XMIN + m.bounds.XMAX) / 2) * m.pixelsPerUnit;
+function sx(x){
+    const m=getScalingMetrics();
+    return m.dataCx+(x-(m.bounds.XMIN+m.bounds.XMAX)/2)*m.pixelsPerUnit;
 }
-
-function syCanvas(y) {
-    const m = getScalingMetrics();
-    return m.dataCy - (y - m.bounds.Oy) * m.pixelsPerUnit;
+function syCanvas(y){
+    const m=getScalingMetrics();
+    return m.dataCy-(y-m.bounds.Oy)*m.pixelsPerUnit;
 }
-
-function updateResponsiveScale() {
-    const bounds = getLayoutBounds();
-    const DATA_W = bounds.XMAX - bounds.XMIN;
-    const DATA_H = bounds.YMAX - bounds.YMIN;
-    const horizScale = (W * 0.87) / DATA_W;
-    const vertScale = (H * 0.81) / DATA_H;
-    SCALE = Math.min(horizScale, vertScale);
-    FONT_SCALE = Math.max(0.75, Math.min(1.3, SCALE));
+function updateResponsiveScale(){
+    const b=getLayoutBounds();
+    SCALE=Math.min((W*.87)/(b.XMAX-b.XMIN),(H*.81)/(b.YMAX-b.YMIN));
+    FONT_SCALE=Math.max(.75,Math.min(1.3,SCALE));
 }
-
-function resizeCanvas() {
-    const rect = canvas.getBoundingClientRect();
-    const dpr = window.devicePixelRatio || 1;
-
-    canvas.width = Math.round(rect.width * dpr);
-    canvas.height = Math.round(rect.height * dpr);
-
-    W = rect.width;
-    H = rect.height;
-
+function resizeCanvas(){
+    const rect=canvas.getBoundingClientRect();
+    const dpr=window.devicePixelRatio||1;
+    canvas.width=Math.round(rect.width*dpr);
+    canvas.height=Math.round(rect.height*dpr);
+    W=rect.width;H=rect.height;
     updateResponsiveScale();
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    render();
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    render();updateInfo();
 }
+window.addEventListener("resize",resizeCanvas);
 
-window.addEventListener("resize", resizeCanvas);
-
-function setLine(widthPt, color, alpha = 1.0, dash = []) {
-    ctx.lineWidth = widthPt * SCALE;
-    ctx.strokeStyle = color;
-    ctx.globalAlpha = alpha;
+function setLine(widthPt,color,alpha=1,dash=[]){
+    ctx.lineWidth=widthPt*SCALE;
+    ctx.strokeStyle=color;
+    ctx.globalAlpha=alpha;
     ctx.setLineDash(dash);
-    ctx.lineCap = "butt";
-    ctx.lineJoin = "round";
+    ctx.lineCap="butt";ctx.lineJoin="round";
 }
-
-function drawLine(x1, y1, x2, y2) {
-    ctx.beginPath();
-    ctx.moveTo(sx(x1), syCanvas(y1));
-    ctx.lineTo(sx(x2), syCanvas(y2));
-    ctx.stroke();
+function drawLine(x1,y1,x2,y2){
+    ctx.beginPath();ctx.moveTo(sx(x1),syCanvas(y1));ctx.lineTo(sx(x2),syCanvas(y2));ctx.stroke();
 }
-
-function drawCircle(cx, cy, rad, widthPt, color, alpha = 1.0) {
-    setLine(widthPt, color, alpha);
-    ctx.beginPath();
-    for (let i = 0; i <= 360; i++) {
-        const a = 2 * Math.PI * i / 360;
-        const x = sx(cx + rad * Math.cos(a));
-        const y = syCanvas(cy + rad * Math.sin(a));
-        if (i === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
+function drawCircle(cx,cy,rad,widthPt,color,alpha=1){
+    setLine(widthPt,color,alpha);ctx.beginPath();
+    for(let i=0;i<=360;i++){
+        const a=2*Math.PI*i/360;
+        const x=sx(cx+rad*Math.cos(a)),y=syCanvas(cy+rad*Math.sin(a));
+        if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
     }
-    ctx.stroke();
-    ctx.globalAlpha = 1;
-    ctx.setLineDash([]);
+    ctx.stroke();ctx.globalAlpha=1;ctx.setLineDash([]);
 }
-
-function drawArc(radius, a0, a1, widthPt, color, alpha = 1.0, dash = []) {
-    setLine(widthPt, color, alpha, dash);
-    ctx.beginPath();
-    const n = 400;
-    const Ox = 0.0;
-    const bounds = getLayoutBounds();
-    const Oy = bounds.Oy;
-    for (let i = 0; i < n; i++) {
-        const f = i / (n - 1);
-        const a = a0 + (a1 - a0) * f;
-        const x = sx(Ox + radius * Math.cos(a));
-        const y = syCanvas(Oy + radius * Math.sin(a));
-        if (i === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
+function drawArc(radius,a0,a1,widthPt,color,alpha=1){
+    setLine(widthPt,color,alpha);ctx.beginPath();
+    const Oy=getLayoutBounds().Oy,n=600;
+    for(let i=0;i<n;i++){
+        const f=i/(n-1),a=a0+(a1-a0)*f;
+        const x=sx(radius*Math.cos(a)),y=syCanvas(Oy+radius*Math.sin(a));
+        if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
     }
-    ctx.stroke();
-    ctx.globalAlpha = 1;
-    ctx.setLineDash([]);
+    ctx.stroke();ctx.globalAlpha=1;ctx.setLineDash([]);
+}
+function drawMarker(x,y,sizePt,fill,stroke=fill){
+    const px=sx(x),py=syCanvas(y),rad=sizePt*SCALE*.45;
+    ctx.globalAlpha=1;ctx.fillStyle=fill;ctx.strokeStyle=stroke;ctx.lineWidth=1.2;
+    ctx.beginPath();ctx.arc(px,py,rad,0,2*Math.PI);ctx.fill();ctx.stroke();
+}
+function drawText(text,x,y,sizePt,color="#000",weight="normal",align="center",baseline="middle"){
+    ctx.globalAlpha=1;ctx.fillStyle=color;
+    ctx.font=`${weight} ${Math.max(9,sizePt*FONT_SCALE)}px Arial,Helvetica,sans-serif`;
+    ctx.textAlign=align;ctx.textBaseline=baseline;ctx.fillText(text,sx(x),syCanvas(y));
+}
+function drawWatermark(){
+    ctx.save();ctx.translate(W/2,H/2);ctx.rotate(-Math.PI/10);
+    ctx.font=`700 ${Math.max(40,Math.min(90,W*.08))}px Arial,Helvetica,sans-serif`;
+    ctx.textAlign="center";ctx.textBaseline="middle";ctx.globalAlpha=.075;ctx.fillStyle="#123b63";
+    ctx.fillText("Gajavada Sanjeevkumar",0,0);ctx.restore();
 }
 
-function drawMarker(x, y, sizePt, fill, stroke = fill) {
-    const pX = sx(x);
-    const pY = syCanvas(y);
-    const rad = sizePt * SCALE * 0.45;
-    ctx.globalAlpha = 1;
-    ctx.fillStyle = fill;
-    ctx.strokeStyle = stroke;
-    ctx.lineWidth = 1.2;
-    ctx.beginPath();
-    ctx.arc(pX, pY, rad, 0, 2 * Math.PI);
-    ctx.fill();
-    ctx.stroke();
+/* One generating-circle revolution = 12 steps = 360°.
+   For R=60, r=20, the directing-circle angle is 120° per revolution. */
+function thetaAt(t){
+    const oneArc=getTotalArcDeg();
+    return startDeg*Math.PI/180-(oneArc/N)*Math.PI/180*t;
 }
-
-function drawText(text, x, y, sizePt, color = "#000", weight = "normal", align = "center", baseline = "middle") {
-    ctx.globalAlpha = 1;
-    ctx.fillStyle = color;
-    ctx.font = `${weight} ${Math.max(9, sizePt * FONT_SCALE)}px Arial, Helvetica, sans-serif`;
-    ctx.textAlign = align;
-    ctx.textBaseline = baseline;
-    ctx.fillText(text, sx(x), syCanvas(y));
+function centreAt(t){
+    const theta=thetaAt(t),OC=R-r,Oy=getLayoutBounds().Oy;
+    return {theta,x:OC*Math.cos(theta),y:Oy+OC*Math.sin(theta)};
 }
-
-function drawWatermark() {
-    ctx.save();
-    ctx.translate(W / 2, H / 2);
-    ctx.rotate(-Math.PI / 10);
-    const fontSize = Math.max(40, Math.min(90, W * 0.08));
-    ctx.font = `700 ${fontSize}px Arial, Helvetica, sans-serif`;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.globalAlpha = 0.075;
-    ctx.fillStyle = "#123b63";
-    ctx.fillText("Gajavada Sanjeevkumar", 0, 0);
-    ctx.restore();
+function materialAngle(pointIndex,t){
+    const theta=thetaAt(t);
+    const alpha=((R-r)/r)*(theta-startDeg*Math.PI/180);
+    return startDeg*Math.PI/180-alpha-pointIndex*2*Math.PI/N;
 }
-
-function centreAt(t) {
-    const OC = R - r;
-    const START = startDeg * Math.PI / 180.0;
-    const totalArcDeg = getTotalArcDeg();
-    const stepDeg = totalArcDeg / N;
-    const theta = START - (stepDeg * Math.PI / 180) * t;
-    const Ox = 0.0;
-    const bounds = getLayoutBounds();
-    const Oy = bounds.Oy;
-    return {
-        theta,
-        x: Ox + OC * Math.cos(theta),
-        y: Oy + OC * Math.sin(theta)
-    };
+function hypocycloidPoint(t,pointIndex){
+    const c=centreAt(t),a=materialAngle(pointIndex,t);
+    return {x:c.x+r*Math.cos(a),y:c.y+r*Math.sin(a)};
 }
-
-function hypocycloidPoint(t) {
-    const START = startDeg * Math.PI / 180.0;
-    const point0Angle = START;
-    const totalArcDeg = getTotalArcDeg();
-    const stepDeg = totalArcDeg / N;
-    const theta = START - (stepDeg * Math.PI / 180) * t;
-    const alpha = ((R - r) / r) * (theta - START);
-    const c = centreAt(t);
-    return {
-        x: c.x + r * Math.cos(point0Angle - alpha),
-        y: c.y + r * Math.sin(point0Angle - alpha)
-    };
-}
-
-function hypocycloidPointExactStep(i) {
-    const START = startDeg * Math.PI / 180.0;
-    const point0Angle = START;
-    const t = i;
-    const totalArcDeg = getTotalArcDeg();
-    const stepDeg = totalArcDeg / N;
-    const theta = START - (stepDeg * Math.PI / 180) * t;
-    const alpha = ((R - r) / r) * (theta - START);
-    const c = centreAt(t);
-    return {
-        x: c.x + r * Math.cos(point0Angle - alpha),
-        y: c.y + r * Math.sin(point0Angle - alpha)
-    };
-}
-
-function materialAngle(i, t) {
-    const START = startDeg * Math.PI / 180.0;
-    const point0Angle = START;
-    const totalArcDeg = getTotalArcDeg();
-    const stepDeg = totalArcDeg / N;
-    const alpha = ((R - r) / r) * ((START - (stepDeg * Math.PI / 180) * t) - START);
-    return point0Angle - alpha - i * 2 * Math.PI / N;
-}
-
-function animationState(frame) {
-    if (frame < PAUSE_FRAMES) return { t: 0, step: 0, paused: true };
-    const q = frame - PAUSE_FRAMES;
-    const block = ROLL_FRAMES + PAUSE_FRAMES;
-    const step = Math.floor(q / block);
-    const local = q % block;
-    if (step >= N) return { t: N, step: N, paused: true };
-    if (local < ROLL_FRAMES) {
-        const f = ROLL_FRAMES > 1 ? local / (ROLL_FRAMES - 1) : 1;
-        return { t: step + f, step, paused: false };
+function animationState(frame){
+    const totalSteps=getTotalDivisions();
+    const block=ROLL_FRAMES+PAUSE_FRAMES;
+    if(frame<PAUSE_FRAMES)return {t:0,step:0,paused:true};
+    const q=frame-PAUSE_FRAMES;
+    const step=Math.floor(q/block),local=q%block;
+    if(step>=totalSteps)return {t:totalSteps,step:totalSteps,paused:true};
+    if(local<ROLL_FRAMES){
+        const f=ROLL_FRAMES>1?local/(ROLL_FRAMES-1):1;
+        return {t:step+f,step,paused:false};
     }
-    return { t: step + 1, step: step + 1, paused: true };
+    return {t:step+1,step:step+1,paused:true};
+}
+function totalFrames(){
+    return PAUSE_FRAMES+getTotalDivisions()*(ROLL_FRAMES+PAUSE_FRAMES);
 }
 
-function drawStaticBackground() {
-    const Ox = 0.0;
-    const bounds = getLayoutBounds();
-    const Oy = bounds.Oy;
-    const START = startDeg * Math.PI / 180.0;
-    const totalArcDeg = getTotalArcDeg();
-    const stepDeg = totalArcDeg / N;
-    const END_DEG = startDeg - totalArcDeg;
-    const END = END_DEG * Math.PI / 180.0;
-    const point0Angle = START;
-    const OC = R - r;
+/* Static directing-circle construction. Labels restart 0'...12'
+   after every generating-circle revolution. */
+function drawStaticBackground(){
+    const Ox=0,Oy=getLayoutBounds().Oy;
+    const START=startDeg*Math.PI/180;
+    const oneArc=getTotalArcDeg();
+    const totalArc=oneArc*rotationCount;
+    const stepDeg=oneArc/N;
+    const END=START-totalArc*Math.PI/180;
 
-    const cross = 8;
-    setLine(1.2, "#000000");
-    drawLine(Ox - cross, Oy, Ox + cross, Oy);
-    drawLine(Ox, Oy - cross, Ox, Oy + cross);
-    drawMarker(Ox, Oy, 5, "#000000");
-    drawText("O", Ox, Oy - 13, 12, "#000000", "bold");
+    setLine(1.2,"#000");
+    drawLine(-8,Oy,8,Oy);drawLine(Ox,Oy-8,Ox,Oy+8);
+    drawMarker(Ox,Oy,5,"#000");drawText("O",Ox,Oy-13,12,"#000","bold");
 
-    drawArc(R, START, END, 2.0, "#000000");
-    drawArc(OC, START, END, 0.75, "rgb(80,80,80)");
+    drawArc(R,START,END,2,"#000");
+    drawArc(R-r,START,END,.75,"rgb(80,80,80)");
 
-    for (let i = 0; i <= N; i++) {
-        const a = START - i * stepDeg * Math.PI / 180;
-        const px = Ox + R * Math.cos(a);
-        const py = Oy + R * Math.sin(a);
-        const cx = Ox + OC * Math.cos(a);
-        const cy = Oy + OC * Math.sin(a);
+    for(let k=0;k<rotationCount;k++){
+        const groupStart=START-k*oneArc*Math.PI/180;
+        const groupEnd=groupStart-oneArc*Math.PI/180;
+        const groupColor=curveColors[k%curveColors.length];
 
-        setLine(0.55, "rgb(60,60,60)", 0.8);
-        drawLine(Ox, Oy, cx, cy);
-        drawMarker(px, py, 4, "#000000");
+        for(let j=0;j<=N;j++){
+            const a=groupStart-j*stepDeg*Math.PI/180;
+            const px=R*Math.cos(a),py=Oy+R*Math.sin(a);
+            const cx=(R-r)*Math.cos(a),cy=Oy+(R-r)*Math.sin(a);
 
-        const labelR = R - 3;
-        drawText(`${i}'`, Ox + labelR * Math.cos(a), Oy + labelR * Math.sin(a), 9, "#174f94", "bold");
-    }
+            /* Radial construction: normally O→Cj; for each 12′ division
+               continue the same line all the way to the corresponding 12′
+               point on the directing circle. */
+            setLine(j===N?1.6:.55,groupColor,j===N?1:.72);
+            drawLine(Ox,Oy,j===N?px:cx,j===N?py:cy);
+            drawMarker(px,py,j===N?5.3:4,"#000");
 
-    const endX = Ox + R * Math.cos(END);
-    const endY = Oy + R * Math.sin(END);
-    setLine(0.55, "#000000");
-    drawLine(Ox, Oy, endX, endY);
+            const labelColor=j===N?groupColor:"#174f94";
+            drawText(`${j}'`,Ox+(R-3)*Math.cos(a),Oy+(R-3)*Math.sin(a),9,labelColor,"bold");
 
-    for (let i = 0; i <= N; i++) {
-        const a = START - i * stepDeg * Math.PI / 180;
-        const cx = Ox + OC * Math.cos(a);
-        const cy = Oy + OC * Math.sin(a);
-        
-        drawMarker(cx, cy, 4, "#000000");
-        
-        const cLabelDist = OC + 3;
-        drawText(`C${i}`, Ox + cLabelDist * Math.cos(a), Oy + cLabelDist * Math.sin(a), 7.5, "#333333", "normal");
-    }
-
-    const C0x = Ox + OC * Math.cos(START);
-    const C0y = Oy + OC * Math.sin(START);
-
-    drawCircle(C0x, C0y, r, 2.2, "rgb(31,119,180)", 0.75);
-    drawMarker(C0x, C0y, 5, "rgb(31,119,180)");
-
-    for (let i = 0; i < N; i++) {
-        const a = point0Angle - i * 2 * Math.PI / N;
-        const px = C0x + r * Math.cos(a);
-        const py = C0y + r * Math.sin(a);
-
-        setLine(0.8, lineColors[i], 0.95);
-        drawLine(C0x, C0y, px, py);
-        drawMarker(px, py, 3.8, "#ffffff", lineColors[i]);
-
-        const lr = r - 3;
-        drawText(String(i), C0x + lr * Math.cos(a), C0y + lr * Math.sin(a), 8.5, "#222222", "bold");
-    }
-}
-
-function drawTrace(t) {
-    const samples = Math.max(2, Math.ceil(t * 24) + 1);
-    setLine(2.8, "rgb(0,0,255)", 1.0);
-    ctx.beginPath();
-    for (let i = 0; i < samples; i++) {
-        const q = t * i / (samples - 1);
-        const p = hypocycloidPoint(q);
-        const X = sx(p.x);
-        const Y = syCanvas(p.y);
-        if (i === 0) ctx.moveTo(X, Y);
-        else ctx.lineTo(X, Y);
-    }
-    ctx.stroke();
-    ctx.globalAlpha = 1;
-}
-
-function drawGeneratedPoints(currentStep) {
-    for (let i = 0; i <= currentStep; i++) {
-        const pt = hypocycloidPointExactStep(i);
-        drawMarker(pt.x, pt.y, 3.0, "#d0008f", "#ffffff");
-        drawText(`P${i}`, pt.x, pt.y + 4, 10, "#d0008f", "bold");
-    }
-}
-
-function drawDynamic(frame) {
-    const state = animationState(frame);
-    const t = state.t;
-    const step = state.step;
-    const paused = state.paused;
-
-    const c = centreAt(t);
-    const theta = c.theta;
-    const p = hypocycloidPoint(t);
-
-    drawTrace(t);
-    drawGeneratedPoints(step);
-
-    const START = startDeg * Math.PI / 180.0;
-    const point0Angle = START;
-    const alpha = ((R - r) / r) * (theta - START);
-
-    drawCircle(c.x, c.y, r, 2.5, "rgb(255,127,14)", 1.0);
-    drawMarker(c.x, c.y, 5, "rgb(255,127,14)");
-
-    const Ox = 0.0;
-    const bounds = getLayoutBounds();
-    const Oy = bounds.Oy;
-    const contactX = Ox + R * Math.cos(theta);
-    const contactY = Oy + R * Math.sin(theta);
-    drawMarker(contactX, contactY, 5, "rgb(220,0,0)");
-
-    const activeIndex = Math.min(N - 1, Math.max(0, step));
-    const activeColor = lineColors[activeIndex];
-
-    setLine(1.15, activeColor, 1.0);
-    drawLine(Ox, Oy, c.x, c.y);
-
-    const activePointAngle = point0Angle - alpha - activeIndex * 2 * Math.PI / N;
-    const activePX = c.x + r * Math.cos(activePointAngle);
-    const activePY = c.y + r * Math.sin(activePointAngle);
-
-    if (paused && step <= N) {
-        const exactAngle = point0Angle - alpha - step * 2 * Math.PI / N;
-        const ex = c.x + r * Math.cos(exactAngle);
-        const ey = c.y + r * Math.sin(exactAngle);
-        setLine(1.15, activeColor, 1.0);
-        drawLine(c.x, c.y, ex, ey);
-    } else {
-        setLine(1.15, activeColor, 1.0);
-        drawLine(c.x, c.y, activePX, activePY);
-    }
-
-    for (let i = 0; i < N; i++) {
-        const a = materialAngle(i, t);
-        const px = c.x + r * Math.cos(a);
-        const py = c.y + r * Math.sin(a);
-
-        setLine(0.75, lineColors[i], 0.72);
-        drawLine(c.x, c.y, px, py);
-        drawMarker(px, py, 3.8, "#ffffff", lineColors[i]);
-
-        const lr = r - 3;
-        drawText(i === 0 ? "0" : String(i), c.x + lr * Math.cos(a), c.y + lr * Math.sin(a), 8.5, "#222222", "bold");
-    }
-
-    drawText(`C${step}`, c.x, c.y - 10, 9, "#000000", "bold");
-    drawMarker(p.x, p.y, 5.5, "rgb(0,0,255)");
-}
-
-function render() {
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0, 0, W, H);
-
-    drawStaticBackground();
-    drawDynamic(currentFrame);
-    drawWatermark();
-}
-
-/* Playback & Controls */
-let currentFrame = 0;
-let playing = false;
-let direction = 1;
-let speed = 1.0;
-let lastTime = null;
-let frameAccumulator = 0;
-
-function updateInfo() {
-    const state = animationState(currentFrame);
-    document.getElementById("divisionValue").textContent = `C${state.step} (${state.step}/12)`;
-    const START = startDeg * Math.PI / 180.0;
-    const totalArcDeg = getTotalArcDeg();
-    const stepDeg = totalArcDeg / N;
-    const theta = START - (stepDeg * Math.PI / 180) * state.t;
-    const coveredAngle = Math.abs((theta - START) * 180 / Math.PI);
-    document.getElementById("angleValue").textContent = coveredAngle.toFixed(1) + "°";
-    document.getElementById("directionValue").textContent = direction >= 0 ? "Forward" : "Reverse";
-    document.getElementById("speedValue").textContent = speed.toFixed(2).replace(/\.00$/, "") + "×";
-    
-    const angleOStr = totalArcDeg.toFixed(1) + "°";
-    document.getElementById("infoR").textContent = R + " mm";
-    document.getElementById("infoRGen").textContent = r + " mm";
-    document.getElementById("infoAngleO").textContent = angleOStr;
-    document.getElementById("cardAngleO").textContent = angleOStr;
-}
-
-function animationLoop(now) {
-    if (!playing) {
-        lastTime = now;
-        requestAnimationFrame(animationLoop);
-        return;
-    }
-    if (lastTime === null) lastTime = now;
-    const elapsed = Math.min(100, now - lastTime);
-    lastTime = now;
-    frameAccumulator += elapsed * FPS * speed / 1000.0;
-
-    while (frameAccumulator >= 1.0) {
-        currentFrame += direction;
-        frameAccumulator -= 1.0;
-
-        if (currentFrame >= TOTAL_FRAMES - 1) {
-            currentFrame = TOTAL_FRAMES - 1;
-            if (direction > 0) {
-                playing = false;
-                document.getElementById("playBtn").textContent = "▶";
-                break;
-            }
+            drawMarker(cx,cy,3.5,j===N?groupColor:"#000");
+            drawText(`C${j}`,cx + 2.2*Math.cos(a), cy + 2.2*Math.sin(a),
+                     7.5,j===N?groupColor:"#333","normal");
         }
-        if (currentFrame <= 0) {
-            currentFrame = 0;
-            if (direction < 0) {
-                playing = false;
-                document.getElementById("playBtn").textContent = "▶";
-                break;
-            }
+
+        /* Clearly emphasize every 12th division. */
+        const a12=groupEnd;
+        const cx12=(R-r)*Math.cos(a12),cy12=Oy+(R-r)*Math.sin(a12);
+        const px12=R*Math.cos(a12),py12=Oy+R*Math.sin(a12);
+        setLine(1.6,groupColor,1);
+        drawMarker(px12,py12,5.3,groupColor,"#fff");
+        drawText("12'",Ox+(R-3)*Math.cos(a12),Oy+(R-3)*Math.sin(a12),9,groupColor,"bold");
+    }
+
+    /* Generating circle always has exactly 12 material points. */
+    const C0x=(R-r)*Math.cos(START),C0y=Oy+(R-r)*Math.sin(START);
+    drawCircle(C0x,C0y,r,2.2,"rgb(31,119,180)",.75);
+    drawMarker(C0x,C0y,5,"rgb(31,119,180)");
+
+    for(let i=0;i<N;i++){
+        const a=START-i*2*Math.PI/N;
+        const px=C0x+r*Math.cos(a),py=C0y+r*Math.sin(a);
+        setLine(.8,lineColors[i],.95);
+        drawLine(C0x,C0y,px,py);
+        drawMarker(px,py,3.8,"#fff",lineColors[i]);
+        drawText(String(i),C0x+(r+2)*Math.cos(a),C0y+(r+2)*Math.sin(a),8.5,"#222","bold");
+    }
+    /* Point 12 coincides with point 0 geometrically. */
+    drawText("12",C0x+(r+2)*Math.cos(START),C0y+(r+2)*Math.sin(START),8.5,"#222","bold");
+}
+
+function drawTrace(pointIndex,t,color){
+    const samples=Math.max(2,Math.ceil(t*24)+1);
+    setLine(2.8,color,1);ctx.beginPath();
+    for(let i=0;i<samples;i++){
+        const q=t*i/(samples-1),p=hypocycloidPoint(q,pointIndex);
+        const X=sx(p.x),Y=syCanvas(p.y);
+        if(i===0)ctx.moveTo(X,Y);else ctx.lineTo(X,Y);
+    }
+    ctx.stroke();ctx.globalAlpha=1;
+}
+
+/* Only reached positions are retained; selected material point is
+   represented by P/Q/R/S according to selection order. */
+function drawGeneratedPoints(pointIndex,step,color,letter){
+    for(let i=0;i<=step;i++){
+        const pt=hypocycloidPoint(i,pointIndex);
+        drawMarker(pt.x,pt.y,5.0,color,"#fff");
+
+        /* The trace label is offset slightly from the actual curve point.
+           Use the radius from the rolling-circle centre, rather than pt-pt,
+           so the label sits just outside the traced curve. */
+        const cc=centreAt(i);
+        const vx=pt.x-cc.x,vy=pt.y-cc.y;
+        const vl=Math.hypot(vx,vy)||1;
+        const labelGap=2.0;
+        drawText(`${letter}${i}`,pt.x+(vx/vl)*labelGap,pt.y+(vy/vl)*labelGap,
+                 9,color,"bold");
+    }
+}
+
+function drawDynamic(frame){
+    const state=animationState(frame),t=state.t,step=state.step;
+    const c=centreAt(t),theta=c.theta,Oy=getLayoutBounds().Oy;
+
+    selectedPoints.forEach((pointIndex,idx)=>{
+        const color=curveColors[idx],letter=String.fromCharCode(80+idx);
+        drawTrace(pointIndex,t,color);
+        drawGeneratedPoints(pointIndex,step,color,letter);
+    });
+
+    /* Rotating generating circle: always 12 material points, 30° apart. */
+    drawCircle(c.x,c.y,r,2.5,"rgb(255,127,14)",1);
+    drawMarker(c.x,c.y,5,"rgb(255,127,14)");
+
+    const showRollingPoints = (currentFrame > 0);
+    if(showRollingPoints){
+        for(let i=0;i<N;i++){
+            const a=materialAngle(i,t);
+            const px=c.x+r*Math.cos(a),py=c.y+r*Math.sin(a);
+            setLine(.75,lineColors[i],.72);
+            drawLine(c.x,c.y,px,py);
+            drawMarker(px,py,3.8,"#fff",lineColors[i]);
+            drawText(String(i),c.x+(r-3)*Math.cos(a),c.y+(r-3)*Math.sin(a),8.5,"#222","bold");
         }
     }
 
-    render();
-    updateInfo();
-    requestAnimationFrame(animationLoop);
+    /* Current directing-circle radial line and contact point. */
+    const activeIndex=Math.min(N-1,Math.max(0,step%N));
+    setLine(1.15,lineColors[activeIndex],1);
+    drawLine(0,Oy,c.x,c.y);
+
+    const contactX=R*Math.cos(theta),contactY=Oy+R*Math.sin(theta);
+    drawMarker(contactX,contactY,5,"rgb(220,0,0)");
+
+    drawText(`C${step%N}`,c.x+5*Math.cos(theta),c.y+5*Math.sin(theta),9,"#000","bold");
+
+    selectedPoints.forEach((pointIndex,idx)=>{
+        const p=hypocycloidPoint(t,pointIndex);
+        drawMarker(p.x,p.y,5.5,curveColors[idx],"#fff");
+    });
 }
 
-document.getElementById("playBtn").addEventListener("click", () => {
-    playing = !playing;
-    document.getElementById("playBtn").textContent = playing ? "❚❚" : "▶";
-    lastTime = null;
-});
-
-document.getElementById("reverseBtn").addEventListener("click", () => {
-    direction = -1;
-    playing = true;
-    document.getElementById("playBtn").textContent = "❚❚";
-    lastTime = null;
-});
-
-document.getElementById("forwardBtn").addEventListener("click", () => {
-    direction = 1;
-    playing = true;
-    document.getElementById("playBtn").textContent = "❚❚";
-    lastTime = null;
-});
-
-document.getElementById("backwardBtn").addEventListener("click", () => {
-    playing = false;
-    document.getElementById("playBtn").textContent = "▶";
-    const block = ROLL_FRAMES + PAUSE_FRAMES;
-    const currentState = animationState(currentFrame);
-    currentFrame = Math.max(0, (currentState.step - 1) * block);
-    render();
-    updateInfo();
-});
-
-document.getElementById("nextBtn").addEventListener("click", () => {
-    playing = false;
-    document.getElementById("playBtn").textContent = "▶";
-    const block = ROLL_FRAMES + PAUSE_FRAMES;
-    const currentState = animationState(currentFrame);
-    currentFrame = Math.min(TOTAL_FRAMES - 1, (currentState.step + 1) * block);
-    render();
-    updateInfo();
-});
-
-document.getElementById("resetBtn").addEventListener("click", () => {
-    playing = false;
-    direction = 1;
-    currentFrame = 0;
-    R = 60.0;
-    r = 20.0;
-    startDeg = 140.0;
-    userZoom = 4.0;
-    speed = 1.0;
-
-    document.getElementById("rSlider").value = R;
-    document.getElementById("rVal").textContent = R;
-    document.getElementById("genSlider").value = r;
-    document.getElementById("genVal").textContent = r;
-    document.getElementById("orientSlider").value = startDeg;
-    document.getElementById("orientVal").textContent = startDeg + "°";
-    document.getElementById("zoomSlider").value = 400;
-    document.getElementById("zoomVal").textContent = "400%";
-    document.getElementById("speedSlider").value = 1;
-
-    document.getElementById("playBtn").textContent = "▶";
-    resizeCanvas();
-    updateInfo();
-});
-
-/* Parameter Sliders Wiring */
-document.getElementById("rSlider").addEventListener("input", function() {
-    R = Number(this.value);
-    document.getElementById("rVal").textContent = R;
-    if (r > R) {
-        r = R;
-        document.getElementById("genSlider").value = r;
-        document.getElementById("genVal").textContent = r;
-    }
-    document.getElementById("genSlider").max = R;
-    render();
-    updateInfo();
-});
-
-document.getElementById("genSlider").addEventListener("input", function() {
-    let val = Number(this.value);
-    if (val > R) val = R;
-    r = val;
-    document.getElementById("genVal").textContent = r;
-    render();
-    updateInfo();
-});
-
-document.getElementById("orientSlider").addEventListener("input", function() {
-    startDeg = Number(this.value);
-    document.getElementById("orientVal").textContent = startDeg + "°";
-    render();
-});
-
-document.getElementById("zoomSlider").addEventListener("input", function() {
-    userZoom = Number(this.value) / 100.0;
-    document.getElementById("zoomVal").textContent = this.value + "%";
-    render();
-});
-
-document.getElementById("speedSlider").addEventListener("input", function() {
-    speed = Number(this.value);
-    updateInfo();
-});
-
-
-/* Full Screen / Normal Mode */
-const fullscreenBtn = document.getElementById("fullscreenBtn");
-const animationArea = document.querySelector(".main");
-
-function updateFullscreenButton() {
-    if (document.fullscreenElement === animationArea) {
-        fullscreenBtn.textContent = "⛶ Normal Mode";
-        fullscreenBtn.title = "Exit Full Screen";
-    } else {
-        fullscreenBtn.textContent = "⛶ Full Screen";
-        fullscreenBtn.title = "Enter Full Screen";
-    }
+function render(){
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle="#fff";ctx.fillRect(0,0,W,H);
+    drawStaticBackground();drawDynamic(currentFrame);drawWatermark();
 }
 
-fullscreenBtn.addEventListener("click", async () => {
-    try {
-        if (document.fullscreenElement === animationArea) {
-            await document.exitFullscreen();
-        } else {
-            await animationArea.requestFullscreen();
+let currentFrame=0,playing=false,direction=1,speed=1,lastTime=null,frameAccumulator=0;
+
+function updateInfo(){
+    const s=animationState(currentFrame);
+    const totalDiv=getTotalDivisions();
+    const totalO=getTotalConstructionDeg();
+    const currentO=getTotalArcDeg()*Math.min(rotationCount,s.t/N);
+    const currentGen=Math.max(0,Math.min(360*rotationCount,s.t*30));
+
+    document.getElementById("divisionValue").textContent=`${s.step%N}' (${s.step}/${totalDiv})`;
+    document.getElementById("angleValue").textContent=currentO.toFixed(1)+"°";
+    document.getElementById("directionValue").textContent=direction>=0?"Forward":"Reverse";
+    document.getElementById("speedValue").textContent=speed.toFixed(2).replace(/\.00$/,"")+"×";
+    document.getElementById("infoR").textContent=R+" mm";
+    document.getElementById("infoRGen").textContent=r+" mm";
+    document.getElementById("infoAngleO").textContent=totalO.toFixed(1)+"°";
+    document.getElementById("cardAngleO").textContent=totalO.toFixed(1)+"°";
+    document.getElementById("divisionsInfoValue").textContent=String(totalDiv);
+    document.getElementById("tracePointValue").textContent=selectedPoints.length
+        ? selectedPoints.map((p,i)=>`${String.fromCharCode(80+i)} (Point ${p}, ${traceColorNames[i]})`).join(", ")
+        : "None";
+    document.getElementById("genRotationValue").textContent=currentGen.toFixed(0)+"°";
+    document.getElementById("rotationInfoValue").textContent=`${rotationCount} × 360°`;
+}
+
+function animationLoop(now){
+    if(!playing){lastTime=now;requestAnimationFrame(animationLoop);return;}
+    if(lastTime===null)lastTime=now;
+    const elapsed=Math.min(100,now-lastTime);
+    lastTime=now;
+    frameAccumulator+=elapsed*FPS*speed/1000;
+
+    while(frameAccumulator>=1){
+        currentFrame+=direction;frameAccumulator-=1;
+        const max=totalFrames()-1;
+        if(currentFrame>=max){
+            currentFrame=max;
+            if(direction>0){playing=false;document.getElementById("playBtn").textContent="▶";break;}
         }
-    } catch (error) {
-        console.warn("Full screen mode is not available:", error);
+        if(currentFrame<=0){
+            currentFrame=0;
+            if(direction<0){playing=false;document.getElementById("playBtn").textContent="▶";break;}
+        }
     }
+    render();updateInfo();requestAnimationFrame(animationLoop);
+}
+
+document.getElementById("playBtn").addEventListener("click",()=>{
+    playing=!playing;document.getElementById("playBtn").textContent=playing?"❚❚":"▶";lastTime=null;
+});
+document.getElementById("reverseBtn").addEventListener("click",()=>{
+    direction=-1;playing=true;document.getElementById("playBtn").textContent="❚❚";lastTime=null;
+});
+document.getElementById("forwardBtn").addEventListener("click",()=>{
+    direction=1;playing=true;document.getElementById("playBtn").textContent="❚❚";lastTime=null;
+});
+document.getElementById("backwardBtn").addEventListener("click",()=>{
+    playing=false;document.getElementById("playBtn").textContent="▶";
+    const block=ROLL_FRAMES+PAUSE_FRAMES,s=animationState(currentFrame);
+    currentFrame=Math.max(0,(s.step-1)*block);render();updateInfo();
+});
+document.getElementById("nextBtn").addEventListener("click",()=>{
+    playing=false;document.getElementById("playBtn").textContent="▶";
+    const block=ROLL_FRAMES+PAUSE_FRAMES,s=animationState(currentFrame);
+    currentFrame=Math.min(totalFrames()-1,(s.step+1)*block);render();updateInfo();
 });
 
-document.addEventListener("fullscreenchange", () => {
-    updateFullscreenButton();
-    resizeCanvas();
+/* Mobile-friendly multiple selection: 1–4 points. */
+const pointChecks=document.getElementById("pointChecks");
+for(let i=0;i<=N;i++){
+    const label=document.createElement("label");
+    label.className="point-check";
+    label.innerHTML=`<input type="checkbox" value="${i}"><span>${i}</span>`;
+    const input=label.querySelector("input");
+    input.checked=(i===0);
+    input.addEventListener("change",()=>{
+        const checked=[...pointChecks.querySelectorAll("input:checked")]
+            .map(x=>Number(x.value)).sort((a,b)=>a-b);
+        if(checked.length>4){input.checked=false;return;}
+        selectedPoints=checked;
+        currentFrame=0;render();updateInfo();
+    });
+    pointChecks.appendChild(label);
+}
+
+/* Direct rotation choices, 1–5 only. */
+document.querySelectorAll(".rotation-btn").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+        rotationCount=Number(btn.dataset.rot);
+        document.querySelectorAll(".rotation-btn").forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        currentFrame=0;playing=false;
+        document.getElementById("playBtn").textContent="▶";
+        render();updateInfo();
+    });
 });
+
+document.getElementById("rSlider").addEventListener("input",function(){
+    R=Number(this.value);
+    if(r>R)r=R;
+    document.getElementById("rVal").textContent=R;
+    document.getElementById("genSlider").max=R;
+    document.getElementById("genSlider").value=r;
+    currentFrame=0;render();updateInfo();
+});
+document.getElementById("genSlider").addEventListener("input",function(){
+    r=Math.min(R,Number(this.value));
+    document.getElementById("genVal").textContent=r;
+    currentFrame=0;render();updateInfo();
+});
+document.getElementById("orientSlider").addEventListener("input",function(){
+    startDeg=Number(this.value);
+    document.getElementById("orientVal").textContent=startDeg+"°";
+    currentFrame=0;render();updateInfo();
+});
+document.getElementById("zoomSlider").addEventListener("input",function(){
+    userZoom=Number(this.value)/100;
+    document.getElementById("zoomVal").textContent=this.value+"%";
+    render();updateInfo();
+});
+document.getElementById("speedSlider").addEventListener("input",function(){
+    speed=Number(this.value);updateInfo();
+});
+
+document.getElementById("resetBtn").addEventListener("click",()=>{
+    playing=false;direction=1;currentFrame=0;
+    R=60;r=20;startDeg=140;userZoom=4;speed=1;rotationCount=1;selectedPoints=[0];
+
+    document.getElementById("rSlider").value=R;
+    document.getElementById("rVal").textContent=R;
+    document.getElementById("genSlider").max=R;
+    document.getElementById("genSlider").value=r;
+    document.getElementById("genVal").textContent=r;
+    document.getElementById("orientSlider").value=startDeg;
+    document.getElementById("orientVal").textContent=startDeg+"°";
+    document.getElementById("zoomSlider").value=400;
+    document.getElementById("zoomVal").textContent="400%";
+    document.getElementById("speedSlider").value=1;
+    pointChecks.querySelectorAll("input").forEach(x=>x.checked=(Number(x.value)===0));
+    document.querySelectorAll(".rotation-btn").forEach(b=>b.classList.toggle("active",Number(b.dataset.rot)===1));
+    document.getElementById("playBtn").textContent="▶";
+    resizeCanvas();updateInfo();
+});
+
+/* Full Screen / Normal Mode. */
+const fullscreenBtn=document.getElementById("fullscreenBtn");
+const animationArea=document.querySelector(".main");
+function updateFullscreenButton(){
+    const fs=document.fullscreenElement===animationArea;
+    fullscreenBtn.textContent=fs?"⛶ Normal Mode":"⛶ Full Screen";
+    fullscreenBtn.title=fs?"Exit Full Screen":"Enter Full Screen";
+}
+fullscreenBtn.addEventListener("click",async()=>{
+    try{
+        if(document.fullscreenElement===animationArea)await document.exitFullscreen();
+        else await animationArea.requestFullscreen();
+    }catch(error){console.warn("Full screen mode is not available:",error);}
+});
+document.addEventListener("fullscreenchange",()=>{updateFullscreenButton();resizeCanvas();});
 
 resizeCanvas();
 updateInfo();
