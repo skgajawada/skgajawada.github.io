@@ -370,6 +370,32 @@ canvas {
     }
 }
 
+.rotation-control-group {
+    border: 1px solid #174f94;
+    border-radius: 6px;
+    padding: 4px 6px;
+    background: rgba(23,79,148,0.06);
+}
+.rotation-control-group .param-row {
+    align-items: center;
+}
+.rotation-control-group input[type="range"] {
+    accent-color: #174f94;
+}
+.rotation-control-group input[type="number"] {
+    width: 48px;
+    height: 24px;
+    border: 1px solid #174f94;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: 700;
+}
+.rotation-control-group #rotationVal {
+    min-width: 62px;
+    color: #174f94;
+    font-weight: 700;
+}
+
 /* Portrait phones: keep controls compact and give the canvas maximum room. */
 @media (max-width: 600px) {
     .main {
@@ -459,6 +485,144 @@ canvas {
     }
 }
 
+
+/* Full Screen — Back to Epicycloid */
+.fullscreen-back {
+    display: none;
+    position: fixed;
+    top: 6px;
+    left: 8px;
+    z-index: 10000;
+    color: #ffffff;
+    background: #174f94;
+    border: 1px solid #103d73;
+    border-radius: 6px;
+    padding: 5px 9px;
+    font: 700 13px Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.18);
+}
+.main:fullscreen .fullscreen-back {
+    display: block;
+}
+.main:fullscreen .fullscreen-back:hover {
+    background: #103d73;
+}
+.main:fullscreen {
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    background: #ffffff;
+}
+.main:fullscreen canvas {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Trace-point and generating-circle rotation controls */
+/* Mobile-friendly multiple-answer point selection */
+.point-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(22px, 1fr));
+    gap: 4px 5px;
+    margin-top: 2px;
+}
+
+.point-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #17324d;
+    cursor: pointer;
+    user-select: none;
+}
+
+.point-check input {
+    width: 13px;
+    height: 13px;
+    margin: 0;
+    accent-color: #174f94;
+}
+
+.rotation-options {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(48px, 1fr));
+    gap: 4px;
+    width: 100%;
+}
+
+.rotation-option {
+    border: 1px solid #9fb4c8;
+    border-radius: 5px;
+    background: #ffffff;
+    color: #17324d;
+    min-height: 30px;
+    padding: 3px 2px;
+    font: 700 10px Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    line-height: 1.05;
+}
+
+.rotation-option:hover {
+    background: #edf4fa;
+}
+
+.rotation-option.active {
+    background: #174f94;
+    color: #ffffff;
+    border-color: #174f94;
+}
+
+.rotation-option .rot-n {
+    display: block;
+    font-size: 11px;
+}
+
+.rotation-option .rot-deg {
+    display: block;
+    font-size: 8px;
+    font-weight: 600;
+}
+
+@media (max-width: 1050px) {
+    .point-checkboxes {
+        grid-template-columns: repeat(7, minmax(20px, 1fr));
+        gap: 3px 3px;
+    }
+
+    .point-check {
+        font-size: 9px;
+    }
+
+    .point-check input {
+        width: 12px;
+        height: 12px;
+    }
+
+    .rotation-options {
+        grid-template-columns: repeat(5, minmax(42px, 1fr));
+        gap: 3px;
+    }
+
+    .rotation-option {
+        min-height: 26px;
+        font-size: 8px;
+    }
+
+    .rotation-option .rot-n {
+        font-size: 9px;
+    }
+
+    .rotation-option .rot-deg {
+        font-size: 7px;
+    }
+}
+
 </style>
 </head>
 
@@ -473,16 +637,19 @@ canvas {
 </div>
 
 <div class="main">
+    <a class="fullscreen-back" href="../../../../../#/teaching/Engineering%20Curves/Epicycloid/" title="Back to Epicycloid">‹ Back to Epicycloid</a>
     <canvas id="canvas"></canvas>
 
     <!-- INFORMATION PANEL (TOP LEFT) -->
     <div class="info-panel">
         <div class="info-title">Epicycloid Parameters</div>
-        <div>Directing Radius (R): <span class="value" id="infoR">45 mm</span></div>
-        <div>Generating Radius (r): <span class="value" id="infoRGen">30 mm</span></div>
-        <div>Angle at O: <span class="value" id="infoAngleO">240.0°</span></div>
+        <div>Directing Radius (R): <span class="value" id="infoR">60 mm</span></div>
+        <div>Generating Radius (r): <span class="value" id="infoRGen">20 mm</span></div>
+        <div>Angle at O: <span class="value" id="infoAngleO">120.0°</span></div>
         <div>Divisions: <span class="value">12</span></div>
         <div>Current Step: <span class="value" id="divisionValue">C0</span></div>
+        <div>Trace Point: <span class="value" id="tracePointValue">P0</span></div>
+        <div>Generating Circle Angle: <span class="value" id="rotationAngleValue">0°</span></div>
         <div>Covered Arc: <span class="value" id="angleValue">0.0°</span></div>
         <div>Direction: <span class="value" id="directionValue">Forward</span></div>
     </div>
@@ -494,8 +661,8 @@ canvas {
         <div class="param-group">
             <div class="param-row">
                 <label>Directing R:</label>
-                <input id="rSlider" type="range" min="15" max="60" step="1" value="45">
-                <span id="rVal">45</span>
+                <input id="rSlider" type="range" min="15" max="60" step="1" value="60">
+                <span id="rVal">60</span>
             </div>
             <div class="desc-text">Radius of the fixed directing circle.</div>
         </div>
@@ -503,26 +670,59 @@ canvas {
         <div class="param-group">
             <div class="param-row">
                 <label>Generating r:</label>
-                <input id="genSlider" type="range" min="15" max="60" step="1" value="30">
-                <span id="genVal">30</span>
+                <input id="genSlider" type="range" min="15" max="60" step="1" value="20">
+                <span id="genVal">20</span>
             </div>
-            <div class="desc-text">Rolling circle radius. Calculated Angle at O: <strong id="cardAngleO" style="color:#123b63;">240.0°</strong></div>
+            <div class="desc-text">Rolling circle radius. Calculated Angle at O: <strong id="cardAngleO" style="color:#123b63;">120.0°</strong></div>
         </div>
 
         <div class="param-group">
             <div class="param-row">
                 <label>Orientation (°):</label>
-                <input id="orientSlider" type="range" min="0" max="360" step="5" value="140">
-                <span id="orientVal">140°</span>
+                <input id="orientSlider" type="range" min="0" max="360" step="5" value="150">
+                <span id="orientVal">150°</span>
             </div>
             <div class="desc-text">Rotation angle of initial center position.</div>
+        </div>
+        <div class="param-group">
+            <div class="param-row">
+                <label>Trace Points (max 4):</label>
+            </div>
+            <div class="point-checkboxes" id="pointCheckboxes" aria-label="Select up to four generating-circle points to trace">
+                <label class="point-check"><input type="checkbox" value="0">0</label>
+                <label class="point-check"><input type="checkbox" value="1" checked>1</label>
+                <label class="point-check"><input type="checkbox" value="2">2</label>
+                <label class="point-check"><input type="checkbox" value="3">3</label>
+                <label class="point-check"><input type="checkbox" value="4">4</label>
+                <label class="point-check"><input type="checkbox" value="5">5</label>
+                <label class="point-check"><input type="checkbox" value="6">6</label>
+                <label class="point-check"><input type="checkbox" value="7">7</label>
+                <label class="point-check"><input type="checkbox" value="8">8</label>
+                <label class="point-check"><input type="checkbox" value="9">9</label>
+                <label class="point-check"><input type="checkbox" value="10">10</label>
+                <label class="point-check"><input type="checkbox" value="11">11</label>
+                <label class="point-check"><input type="checkbox" value="12">12</label>
+            </div>
+            <div class="desc-text">Select 1–4 points. Curves are labelled P, Q, R, S with P0–P12, Q0–Q12, etc.</div>
+        </div>
+
+        <div class="param-group rotation-control-group">
+            <div class="param-row"><label>Circle Rotations:</label></div>
+            <div class="rotation-options" id="rotationOptions" aria-label="Generating circle rotations">
+                <button type="button" class="rotation-option active" data-rot="1"><span class="rot-n">1 rotation</span><span class="rot-deg">360°</span></button>
+                <button type="button" class="rotation-option" data-rot="2"><span class="rot-n">2 rotations</span><span class="rot-deg">720°</span></button>
+                <button type="button" class="rotation-option" data-rot="3"><span class="rot-n">3 rotations</span><span class="rot-deg">1080°</span></button>
+                <button type="button" class="rotation-option" data-rot="4"><span class="rot-n">4 rotations</span><span class="rot-deg">1440°</span></button>
+                <button type="button" class="rotation-option" data-rot="5"><span class="rot-n">5 rotations</span><span class="rot-deg">1800°</span></button>
+            </div>
+            <div class="desc-text">Each pause advances the generating circle by <strong>30°</strong> (12 points = 360°).</div>
         </div>
 
         <div class="param-group">
             <div class="param-row">
                 <label>Zoom Level (%):</label>
-                <input id="zoomSlider" type="range" min="50" max="400" step="5" value="200">
-                <span id="zoomVal">200%</span>
+                <input id="zoomSlider" type="range" min="50" max="400" step="5" value="265">
+                <span id="zoomVal">265%</span>
             </div>
         </div>
     </div>
@@ -535,6 +735,7 @@ canvas {
         <button class="nav-btn" id="forwardBtn" title="Run forward">▶</button>
         <button class="nav-btn" id="nextBtn" title="Next step">▶▶</button>
         <button class="nav-btn reset" id="resetBtn" title="Reset animation">↻ Reset</button>
+        <button class="nav-btn" id="fullscreenBtn" title="Enter Full Screen">⛶ Full Screen</button>
 
         <div class="speed-group">
             <span>Speed</span>
@@ -558,21 +759,30 @@ let W = 0;
 let H = 0;
 
 /* Adjustable Parameters - Default zoom set to 2.0 (200%) */
-let R = 45.0;
-let r = 30.0;
-let startDeg = 140.0;
-let userZoom = 2.0;
+let R = 60.0;
+let r = 20.0;
+let startDeg = 150.0;
+let userZoom = 2.65;
 
 const N = 12;
+let selectedPoint = 1;
+let selectedPoints = [1];
+let rotationReps = 1;
 
 function getTotalArcDeg() {
     return 360.0 * (r / R);
 }
 
+function getTotalAngleAtO() {
+    return getTotalArcDeg() * rotationReps;
+}
+
 const FPS = 30;
 const ROLL_FRAMES = 20;
 const PAUSE_FRAMES = FPS;
-const TOTAL_FRAMES = PAUSE_FRAMES + N * (ROLL_FRAMES + PAUSE_FRAMES);
+function getTotalFrames() {
+    return PAUSE_FRAMES + N * rotationReps * (ROLL_FRAMES + PAUSE_FRAMES);
+}
 
 const lineColors = [
     "rgb(255,127,14)", "rgb(31,119,180)", "rgb(148,103,189)", "rgb(44,160,44)",
@@ -584,16 +794,27 @@ let SCALE = 1.0;
 let FONT_SCALE = 1.0;
 
 function getLayoutBounds() {
-    const totalArcDeg = getTotalArcDeg();
-    let f = Math.max(0, Math.min(1, (totalArcDeg - 180.0) / 180.0));
-    
-    let maxSpread = R + 2.0 * r;
-    let yMin = -20 - f * (maxSpread + 20.0);
-    let yMax = 310.0 + f * (maxSpread - 130.0);
-    
-    let oy = 15.0 * (1.0 - f);
+    /* One complete generating-circle revolution corresponds to the
+       arc 360°(r/R) at O. Therefore 2, 3, ... revolutions accumulate
+       2×, 3×, ... this angle at O. */
+    const totalArcDeg = getTotalAngleAtO();
+
+    /* Position O according to the requested construction layout:
+       - below 180°: O stays 5 mm above the footer
+       - 180° or more: O is moved to the vertical centre of the canvas
+       Do not interpolate between the two positions. */
+    const f = totalArcDeg >= 180.0 ? 1.0 : 0.0;
+
+    const maxSpread = R + 2.0 * r;
+    const lift = Math.max(0, totalArcDeg - 180.0) / 180.0;
+
+    /* Oy is a local geometry reference; its screen position is controlled
+       by dataCy below so that the 5 mm / centre rule is exact. */
+    const oy = 0.0;
+    let yMin = -20.0;
+    let yMax = 310.0 + lift * (maxSpread * 0.55 + 35.0);
     let xSpan = Math.max(330.0, maxSpread + 80.0);
-    let autoZoomMultiplier = 1.0 - f * 0.35;
+    let autoZoomMultiplier = 1.0 - Math.min(0.30, lift * 0.12);
 
     return {
         XMIN: -xSpan,
@@ -624,7 +845,9 @@ function getScalingMetrics() {
 
     const dataCx = AX.left + (AX.right - AX.left) / 2;
     const viewportCenterY = AX.top + (AX.bottom - AX.top) / 2;
-    const bottomWeightedCy = AX.bottom - (-bounds.YMIN) * pixelsPerUnit;
+    /* For angles below 180°, place O exactly 5 mm above the footer.
+       For 180° and above, place O at the canvas vertical centre. */
+    const bottomWeightedCy = AX.bottom - 5.0 * pixelsPerUnit;
     const dataCy = bottomWeightedCy * (1.0 - bounds.f) + viewportCenterY * bounds.f;
 
     return { pixelsPerUnit, dataCx, dataCy, AX, bounds };
@@ -761,9 +984,9 @@ function drawText(text, x, y, sizePt, color = "#000", weight = "normal", align =
 function centreAt(t) {
     const OC = R + r;
     const START = startDeg * Math.PI / 180.0;
-    const totalArcDeg = getTotalArcDeg();
-    const stepDeg = totalArcDeg / N;
-    const theta = START - (stepDeg * Math.PI / 180) * t;
+    /* t is counted in generating-circle divisions. 12 divisions = 360°
+       of the generating circle, but only 360°(r/R) at O. */
+    const theta = START - (2 * Math.PI * r / R) * (t / N);
     const Ox = 0.0;
     const bounds = getLayoutBounds();
     const Oy = bounds.Oy;
@@ -774,42 +997,27 @@ function centreAt(t) {
     };
 }
 
-function epicycloidPoint(t) {
-    const START = startDeg * Math.PI / 180.0;
-    const point0Angle = START + Math.PI;
-    const totalArcDeg = getTotalArcDeg();
-    const stepDeg = totalArcDeg / N;
-    const theta = START - (stepDeg * Math.PI / 180) * t;
-    const alpha = ((R + r) / r) * (theta - START);
+function epicycloidPoint(t, pointIndex = selectedPoint) {
     const c = centreAt(t);
+    const a = materialAngle(pointIndex, t);
     return {
-        x: c.x + r * Math.cos(point0Angle + alpha),
-        y: c.y + r * Math.sin(point0Angle + alpha)
+        x: c.x + r * Math.cos(a),
+        y: c.y + r * Math.sin(a)
     };
 }
 
-function epicycloidPointExactStep(i) {
-    const START = startDeg * Math.PI / 180.0;
-    const point0Angle = START + Math.PI;
-    const t = i;
-    const totalArcDeg = getTotalArcDeg();
-    const stepDeg = totalArcDeg / N;
-    const theta = START - (stepDeg * Math.PI / 180) * t;
-    const alpha = ((R + r) / r) * (theta - START);
-    const c = centreAt(t);
-    return {
-        x: c.x + r * Math.cos(point0Angle + alpha),
-        y: c.y + r * Math.sin(point0Angle + alpha)
-    };
+function epicycloidPointExactStep(i, pointIndex = selectedPoint) {
+    return epicycloidPoint(i, pointIndex);
 }
 
 function materialAngle(i, t) {
     const START = startDeg * Math.PI / 180.0;
     const point0Angle = START + Math.PI;
-    const totalArcDeg = getTotalArcDeg();
-    const stepDeg = totalArcDeg / N;
-    const alpha = ((R + r) / r) * ((START - (stepDeg * Math.PI / 180) * t) - START);
-    return point0Angle + i * 2 * Math.PI / N + alpha;
+    const theta = centreAt(t).theta;
+    /* No artificial extra rotation is added here. The rolling relation
+       itself supplies the generating-circle rotation as O advances. */
+    const alpha = ((R + r) / r) * (theta - START);
+    return point0Angle + (i % N) * 2 * Math.PI / N + alpha;
 }
 
 function animationState(frame) {
@@ -818,7 +1026,8 @@ function animationState(frame) {
     const block = ROLL_FRAMES + PAUSE_FRAMES;
     const step = Math.floor(q / block);
     const local = q % block;
-    if (step >= N) return { t: N, step: N, paused: true };
+    const maxStep = N * rotationReps;
+    if (step >= maxStep) return { t: maxStep, step: maxStep, paused: true };
     if (local < ROLL_FRAMES) {
         const f = ROLL_FRAMES > 1 ? local / (ROLL_FRAMES - 1) : 1;
         return { t: step + f, step, paused: false };
@@ -831,10 +1040,10 @@ function drawStaticBackground() {
     const bounds = getLayoutBounds();
     const Oy = bounds.Oy;
     const START = startDeg * Math.PI / 180.0;
-    const totalArcDeg = getTotalArcDeg();
-    const stepDeg = totalArcDeg / N;
-    const END_DEG = startDeg - totalArcDeg;
-    const END = END_DEG * Math.PI / 180.0;
+    const totalDivisions = N * rotationReps;
+    const generatingStep = 2 * Math.PI / N;
+    const centreStep = generatingStep * r / R;
+    const END = START - centreStep * totalDivisions;
     const point0Angle = START + Math.PI;
     const OC = R + r;
 
@@ -845,11 +1054,23 @@ function drawStaticBackground() {
     drawMarker(Ox, Oy, 5, "#000000");
     drawText("O", Ox, Oy - 13, 12, "#000000", "bold");
 
+    /* Directing-circle construction: 12 divisions are added for every
+       complete generating-circle revolution.  For R=60, r=20 this is
+       120° at O per revolution: 120°, 240°, 360° ... */
     drawArc(R, START, END, 2.0, "#000000");
     drawArc(OC, START, END, 0.75, "rgb(80,80,80)");
 
-    for (let i = 0; i <= N; i++) {
-        const a = START - i * stepDeg * Math.PI / 180;
+    /* Directing-circle divisions are grouped into blocks of 12.
+       Each block represents one complete 360° rotation of the generating
+       circle.  The numbering restarts after 12′: 1′...12′, then again
+       1′...12′.  Every 12th division is highlighted in a distinct color. */
+    const revolutionColors = [
+        "#174f94", "#d62728", "#2ca02c", "#9467bd", "#ff7f0e",
+        "#008b8b", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22"
+    ];
+
+    for (let i = 0; i <= totalDivisions; i++) {
+        const a = START - i * centreStep;
         const px = Ox + R * Math.cos(a);
         const py = Oy + R * Math.sin(a);
         const cx = Ox + OC * Math.cos(a);
@@ -857,76 +1078,70 @@ function drawStaticBackground() {
 
         setLine(0.55, "rgb(60,60,60)", 0.8);
         drawLine(Ox, Oy, cx, cy);
-        drawMarker(px, py, 4, "#000000");
 
-        /* Keep directing-circle division labels very close to the arc */
-        const labelR = R - 3;
-        drawText(`${i}'`, Ox + labelR * Math.cos(a), Oy + labelR * Math.sin(a), 9, "#174f94", "bold");
+        const isBoundary = (i > 0 && i % N === 0);
+        const rev = Math.floor((i - 1) / N);
+        const boundaryColor = revolutionColors[Math.max(0, rev) % revolutionColors.length];
+
+        drawMarker(px, py, isBoundary ? 5.2 : 3.8, isBoundary ? boundaryColor : "#000000",
+                   isBoundary ? "#ffffff" : null);
+
+        /* First point is 0′.  Thereafter each 12-division block is
+           explicitly numbered 1′...12′ and then restarted. */
+        let label;
+        if (i === 0) {
+            label = "0′";
+        } else {
+            const local = ((i - 1) % N) + 1;
+            label = `${local}′`;
+        }
+
+        const labelColor = isBoundary ? boundaryColor : "#174f94";
+        const labelRadius = R - 3;
+        drawText(label, Ox + labelRadius * Math.cos(a), Oy + labelRadius * Math.sin(a),
+                 isBoundary ? 9.5 : 8.5, labelColor, "bold");
+
+        if (isBoundary) {
+            /* Make every O12′ division unmistakable. */
+            setLine(1.6, boundaryColor, 0.95);
+            drawLine(Ox, Oy, cx, cy);
+            drawText(`12′  •  Rev.${rev + 1}`,
+                     Ox + (R + 10) * Math.cos(a),
+                     Oy + (R + 10) * Math.sin(a),
+                     8.5, boundaryColor, "bold");
+        }
     }
 
-    /* O–12′ construction line: stop exactly at C12 */
-    const C12x = Ox + OC * Math.cos(END);
-    const C12y = Oy + OC * Math.sin(END);
-    setLine(0.55, "#000000");
-    drawLine(Ox, Oy, C12x, C12y);
-
-    for (let i = 0; i <= N; i++) {
-        const a = START - i * stepDeg * Math.PI / 180;
-        const cx = Ox + OC * Math.cos(a);
-        const cy = Oy + OC * Math.sin(a);
-        drawMarker(cx, cy, 4, "#000000");
-
-        /* C0–C12 are exactly on the thin centre-path arc OC = R + r.
-           Labels are offset radially outward from each corresponding C point. */
-        /* Keep C labels very close to the centre-path arc */
-        const labelOffset = 4;
-        drawText(
-            `C${i}`,
-            cx + labelOffset * Math.cos(a),
-            cy + labelOffset * Math.sin(a),
-            7.5,
-            "#333333",
-            "normal"
-        );
-    }
-
+    /* The generating circle ALWAYS has exactly 12 divisions (0...12),
+       irrespective of how many complete rotations are requested. */
     const C0x = Ox + OC * Math.cos(START);
     const C0y = Oy + OC * Math.sin(START);
-
     drawCircle(C0x, C0y, r, 2.2, "rgb(31,119,180)", 0.75);
     drawMarker(C0x, C0y, 5, "rgb(31,119,180)");
 
-    for (let i = 0; i < N; i++) {
+    for (let i = 0; i <= N; i++) {
         const a = point0Angle + i * 2 * Math.PI / N;
         const px = C0x + r * Math.cos(a);
         const py = C0y + r * Math.sin(a);
-
-        setLine(0.8, lineColors[i], 0.95);
-        drawLine(C0x, C0y, px, py);
-        drawMarker(px, py, 3.8, "#ffffff", lineColors[i]);
-
-        /* Keep material division labels close to the generating circle */
-        const lr = r + 2;
-        drawText(String(i), C0x + lr * Math.cos(a), C0y + lr * Math.sin(a), 8.5, "#222222", "bold");
+        if (i < N) {
+            setLine(0.8, lineColors[i], 0.95);
+            drawLine(C0x, C0y, px, py);
+        }
+        drawMarker(px, py, 3.8, "#ffffff", lineColors[i % lineColors.length]);
+        drawText(String(i), C0x + (r + 2) * Math.cos(a), C0y + (r + 2) * Math.sin(a), 8.5, "#222222", "bold");
     }
-
-    const p12a = point0Angle + 2 * Math.PI;
-    const p12x = C0x + r * Math.cos(p12a);
-    const p12y = C0y + r * Math.sin(p12a);
-    drawMarker(p12x, p12y, 3.8, "#ffffff", lineColors[0]);
-    drawText("12", p12x - 4, p12y - 4, 8.5, "#222222", "bold");
 }
 
-function drawTrace(t) {
+function drawTrace(t, pointIndex) {
     const samples = Math.max(2, Math.ceil(t * 24) + 1);
-    setLine(2.8, "rgb(0,0,255)", 1.0);
+    setLine(2.8, lineColors[pointIndex % lineColors.length], 1.0);
     ctx.beginPath();
-    for (let i = 0; i < samples; i++) {
-        const q = t * i / (samples - 1);
-        const p = epicycloidPoint(q);
+    for (let j = 0; j < samples; j++) {
+        const q = t * j / (samples - 1);
+        const p = epicycloidPoint(q, pointIndex);
         const X = sx(p.x);
         const Y = syCanvas(p.y);
-        if (i === 0) ctx.moveTo(X, Y);
+        if (j === 0) ctx.moveTo(X, Y);
         else ctx.lineTo(X, Y);
     }
     ctx.stroke();
@@ -935,9 +1150,33 @@ function drawTrace(t) {
 
 function drawGeneratedPoints(currentStep) {
     const state = animationState(currentFrame);
-    const pt = epicycloidPoint(state.t);
-    drawMarker(pt.x, pt.y, 3.0, "#d0008f", "#ffffff");
-    drawText("P", pt.x, pt.y + 4, 10, "#d0008f", "bold");
+    const reached = Math.max(0, Math.min(N * rotationReps, Math.floor(state.t + 1e-9)));
+    const prefixes = ["P", "Q", "R", "S"];
+
+    selectedPoints.slice(0, 4).forEach((pointIndex, curveIndex) => {
+        const curveColor = lineColors[pointIndex % lineColors.length];
+        const prefix = prefixes[curveIndex];
+
+        /* Keep only positions already reached by this tracing operation.
+           The labels advance through the accumulated directing-circle
+           divisions: P0...P12, P13...P24, etc. */
+        for (let k = 0; k <= reached; k++) {
+            const pp = epicycloidPointExactStep(k, pointIndex);
+            drawMarker(pp.x, pp.y, 4.3, "#ffffff", curveColor);
+
+            const cAt = centreAt(k);
+            const a = materialAngle(pointIndex, k);
+            const labelRadius = r + 5;
+            drawText(`${prefix}${k}`, cAt.x + labelRadius * Math.cos(a), cAt.y + labelRadius * Math.sin(a), 8.5, curveColor, "bold");
+        }
+
+        /* Current tracing point is the active P/Q/R/S point. */
+        const tracedPoint = epicycloidPoint(state.t, pointIndex);
+        drawMarker(tracedPoint.x, tracedPoint.y, 4.8, curveColor, "#ffffff");
+        const c = centreAt(state.t);
+        const a = materialAngle(pointIndex, state.t);
+        drawText(`${prefix}${Math.floor(state.t + 1e-9)}`, c.x + (r + 5) * Math.cos(a), c.y + (r + 5) * Math.sin(a), 9.5, curveColor, "bold");
+    });
 }
 
 function drawDynamic(frame) {
@@ -948,9 +1187,7 @@ function drawDynamic(frame) {
 
     const c = centreAt(t);
     const theta = c.theta;
-    const p = epicycloidPoint(t);
-
-    drawTrace(t);
+    selectedPoints.forEach(pointIndex => drawTrace(t, pointIndex));
     drawGeneratedPoints(step);
 
     const START = startDeg * Math.PI / 180.0;
@@ -967,18 +1204,17 @@ function drawDynamic(frame) {
     const contactY = Oy + R * Math.sin(theta);
     drawMarker(contactX, contactY, 5, "rgb(220,0,0)");
 
-    const activeIndex = Math.min(N - 1, Math.max(0, step));
-    const activeColor = lineColors[activeIndex];
+    const activeColor = lineColors[selectedPoint % lineColors.length];
 
     setLine(1.15, activeColor, 1.0);
     drawLine(Ox, Oy, c.x, c.y);
 
-    const activePointAngle = point0Angle + activeIndex * 2 * Math.PI / N + alpha;
+    const activePointAngle = materialAngle(selectedPoint, t);
     const activePX = c.x + r * Math.cos(activePointAngle);
     const activePY = c.y + r * Math.sin(activePointAngle);
 
     if (paused && step <= N) {
-        const exactAngle = point0Angle + step * 2 * Math.PI / N + alpha;
+        const exactAngle = materialAngle(selectedPoint, t);
         const ex = c.x + r * Math.cos(exactAngle);
         const ey = c.y + r * Math.sin(exactAngle);
         setLine(1.15, activeColor, 1.0);
@@ -1003,7 +1239,6 @@ function drawDynamic(frame) {
     }
 
     drawText(`C${step}`, c.x, c.y - 5, 9, "#000000", "bold");
-    drawMarker(p.x, p.y, 5.5, "rgb(0,0,255)");
 }
 
 
@@ -1044,17 +1279,24 @@ let frameAccumulator = 0;
 
 function updateInfo() {
     const state = animationState(currentFrame);
-    document.getElementById("divisionValue").textContent = `C${state.step} (${state.step}/12)`;
-    const START = startDeg * Math.PI / 180.0;
-    const totalArcDeg = getTotalArcDeg();
-    const stepDeg = totalArcDeg / N;
-    const theta = START - (stepDeg * Math.PI / 180) * state.t;
-    const coveredAngle = Math.abs((theta - START) * 180 / Math.PI);
+    const totalDivisions = N * rotationReps;
+    const localDivision = state.step % N;
+    const revolution = Math.min(Math.floor(state.step / N) + 1, rotationReps);
+    document.getElementById("divisionValue").textContent = `C${state.step} (${state.step}/${totalDivisions}) — Rev. ${revolution}`;
+
+    const anglePerRotation = getTotalArcDeg();
+    const coveredAngle = Math.min(getTotalAngleAtO(), Math.max(0, state.t) * anglePerRotation / N);
+    const generatingRotationAngle = Math.min(360 * rotationReps, Math.max(0, state.t) * 30.0);
     document.getElementById("angleValue").textContent = coveredAngle.toFixed(1) + "°";
+    document.getElementById("rotationAngleValue").textContent = generatingRotationAngle.toFixed(0) + "°";
     document.getElementById("directionValue").textContent = direction >= 0 ? "Forward" : "Reverse";
+
+    const prefixes = ["P", "Q", "R", "S"];
+    const traceText = selectedPoints.slice(0,4).map((pt,i) => `${prefixes[i]} (point ${pt})`).join(", ");
+    document.getElementById("tracePointValue").textContent = traceText;
     document.getElementById("speedValue").textContent = speed.toFixed(2).replace(/\.00$/, "") + "×";
-    
-    const angleOStr = totalArcDeg.toFixed(1) + "°";
+
+    const angleOStr = getTotalAngleAtO().toFixed(0) + "°";
     document.getElementById("infoR").textContent = R + " mm";
     document.getElementById("infoRGen").textContent = r + " mm";
     document.getElementById("infoAngleO").textContent = angleOStr;
@@ -1076,8 +1318,8 @@ function animationLoop(now) {
         currentFrame += direction;
         frameAccumulator -= 1.0;
 
-        if (currentFrame >= TOTAL_FRAMES - 1) {
-            currentFrame = TOTAL_FRAMES - 1;
+        if (currentFrame >= getTotalFrames() - 1) {
+            currentFrame = getTotalFrames() - 1;
             if (direction > 0) {
                 playing = false;
                 document.getElementById("playBtn").textContent = "▶";
@@ -1134,7 +1376,7 @@ document.getElementById("nextBtn").addEventListener("click", () => {
     document.getElementById("playBtn").textContent = "▶";
     const block = ROLL_FRAMES + PAUSE_FRAMES;
     const currentState = animationState(currentFrame);
-    currentFrame = Math.min(TOTAL_FRAMES - 1, (currentState.step + 1) * block);
+    currentFrame = Math.min(getTotalFrames() - 1, (currentState.step + 1) * block);
     render();
     updateInfo();
 });
@@ -1143,11 +1385,14 @@ document.getElementById("resetBtn").addEventListener("click", () => {
     playing = false;
     direction = 1;
     currentFrame = 0;
-    R = 45.0;
-    r = 30.0;
-    startDeg = 140.0;
-    userZoom = 2.0;
+    R = 60.0;
+    r = 20.0;
+    startDeg = 150.0;
+    userZoom = 2.65;
     speed = 1.0;
+    selectedPoint = 1;
+    selectedPoints = [1];
+    rotationReps = 1;
 
     document.getElementById("rSlider").value = R;
     document.getElementById("rVal").textContent = R;
@@ -1155,9 +1400,11 @@ document.getElementById("resetBtn").addEventListener("click", () => {
     document.getElementById("genVal").textContent = r;
     document.getElementById("orientSlider").value = startDeg;
     document.getElementById("orientVal").textContent = startDeg + "°";
-    document.getElementById("zoomSlider").value = 200;
-    document.getElementById("zoomVal").textContent = "200%";
+    document.getElementById("zoomSlider").value = 265;
+    document.getElementById("zoomVal").textContent = "265%";
     document.getElementById("speedSlider").value = 1;
+    document.querySelectorAll("#pointCheckboxes input[type=checkbox]").forEach(cb => cb.checked = Number(cb.value) === 1);
+    document.querySelectorAll(".rotation-option").forEach(btn => btn.classList.toggle("active", Number(btn.dataset.rot) === 1));
 
     document.getElementById("playBtn").textContent = "▶";
     resizeCanvas();
@@ -1202,6 +1449,82 @@ document.getElementById("zoomSlider").addEventListener("input", function() {
 document.getElementById("speedSlider").addEventListener("input", function() {
     speed = Number(this.value);
     updateInfo();
+});
+
+
+/* Full Screen / Normal Mode */
+const fullscreenBtn = document.getElementById("fullscreenBtn");
+const animationArea = document.querySelector(".main");
+
+function updateFullscreenButton() {
+    if (document.fullscreenElement === animationArea) {
+        fullscreenBtn.textContent = "⛶ Normal Mode";
+        fullscreenBtn.title = "Exit Full Screen";
+    } else {
+        fullscreenBtn.textContent = "⛶ Full Screen";
+        fullscreenBtn.title = "Enter Full Screen";
+    }
+}
+
+fullscreenBtn.addEventListener("click", async () => {
+    try {
+        if (document.fullscreenElement === animationArea) {
+            await document.exitFullscreen();
+        } else {
+            await animationArea.requestFullscreen();
+        }
+    } catch (error) {
+        console.warn("Full screen mode is not available:", error);
+    }
+});
+
+document.addEventListener("fullscreenchange", () => {
+    updateFullscreenButton();
+    resizeCanvas();
+});
+
+
+/* Multiple simultaneous trace points: checkbox selection, maximum 4. */
+document.querySelectorAll("#pointCheckboxes input[type=checkbox]").forEach(cb => {
+    cb.addEventListener("change", function() {
+        const boxes = Array.from(document.querySelectorAll("#pointCheckboxes input[type=checkbox]"));
+        let values = boxes.filter(x => x.checked).map(x => Number(x.value));
+
+        if (values.length > 4) {
+            this.checked = false;
+            values = boxes.filter(x => x.checked).map(x => Number(x.value));
+        }
+        if (!values.length) {
+            this.checked = true;
+            values = [Number(this.value)];
+        }
+
+        selectedPoints = values.slice(0, 4);
+        selectedPoint = selectedPoints[0];
+        currentFrame = 0;
+        playing = false;
+        document.getElementById("playBtn").textContent = "▶";
+        render();
+        updateInfo();
+    });
+});
+
+/* Generating-circle rotations: fixed choices 1–5, no slider. */
+function setRotationReps(value) {
+    const v = Math.max(1, Math.min(5, Math.round(Number(value) || 1)));
+    rotationReps = v;
+    document.querySelectorAll(".rotation-option").forEach(btn => {
+        btn.classList.toggle("active", Number(btn.dataset.rot) === v);
+    });
+    currentFrame = 0;
+    playing = false;
+    document.getElementById("playBtn").textContent = "▶";
+    render();
+    updateInfo();
+}
+
+document.querySelectorAll(".rotation-option").forEach(btn => {
+    btn.addEventListener("click", () => setRotationReps(btn.dataset.rot));
 });
 
 resizeCanvas();
