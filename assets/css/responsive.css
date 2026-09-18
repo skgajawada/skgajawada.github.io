@@ -2,90 +2,93 @@
    RESPONSIVE
 ========================================================== */
 
-@media (max-width:768px){
+@media (max-width: 768px) {
 
-.nav-container{
+    .nav-container {
+        padding: 15px 20px;
+    }
 
-padding:15px 20px;
+    .nav-logo {
+        font-size: 22px;
+    }
 
-}
+    .nav-logo span {
+        font-size: 18px;
+    }
 
-.nav-logo{
+    .hamburger {
+        display: flex;
+    }
 
-font-size:22px;
+    .nav-menu {
+        position: fixed;
+        top: 72px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 72px);
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
+        padding: 40px 20px;
+        transition: left .35s ease;
+        overflow-y: auto;
+        box-shadow: 0 10px 20px rgba(0,0,0,.08);
+        z-index: 999;
+    }
 
-}
+    .nav-menu.open {
+        left: 0;
+    }
 
-.nav-logo span{
 
-font-size:18px;
+    /* ======================================================
+       HERO
+    ====================================================== */
 
-}
+    .hero {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "image"
+            "content";
+        gap: 2rem;
+    }
 
-.hamburger{
+    .hero-image {
+        grid-area: image;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-display:flex;
+    .profile-image {
+        display: block;
+        width: 100%;
+        max-width: 380px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        margin: 0 auto;
 
-}
+        /* Prevent dragging */
+        -webkit-user-drag: none;
+        user-drag: none;
+    }
 
-.nav-menu{
+    .hero-content {
+        grid-area: content;
+    }
 
-position:fixed;
+    .hero-content h1 {
+        font-size: 2rem;
+    }
 
-top:72px;
-
-left:-100%;
-
-width:100%;
-
-height:calc(100vh - 72px);
-
-background:#fff;
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:flex-start;
-
-align-items:center;
-
-gap:20px;
-
-padding:40px 20px;
-
-transition:left .35s ease;
-
-overflow-y:auto;
-
-box-shadow:0 10px 20px rgba(0,0,0,.08);
-
-z-index:999;
-
-}
-
-.nav-menu.open{
-
-left:0;
-
-}
-
-.hero{
-
-grid-template-columns:1fr;
-
-}
-
-.hero-content h1{
-
-font-size:2rem;
-
-}
-
-.section-title{
-
-font-size:2rem;
-
-}
-
+    .section-title {
+        font-size: 2rem;
+    }
 }
