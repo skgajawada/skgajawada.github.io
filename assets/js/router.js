@@ -67,6 +67,7 @@ const router = new Router(false);
 
 // Register base paths
 router.register('/home', new HomePage());
+router.register('/resume', new ResumePage());
 router.register('/about', new AboutPage());
 router.register('/experience', new ExperiencePage());
 router.register('/teaching',new TeachingPage());
