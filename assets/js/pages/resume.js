@@ -1,21 +1,37 @@
 // ============================================================
 // RESUME PAGE
-// PPT-STYLE DOCUMENT VIEWER
-// One portrait PDF page at a time
+// PPT-STYLE VIEWER
+// Portrait PDF page displayed one page at a time
 // ============================================================
 
 class ResumePage extends Component {
 
+    constructor() {
+        super();
+
+        this.pdf = null;
+        this.currentPage = 1;
+        this.rendering = false;
+        this.pendingPage = null;
+        this.resizeTimer = null;
+    }
+
+
+    // =========================================================
+    // PAGE HTML
+    // =========================================================
+
     async render() {
 
         return `
+
             <div class="resume-viewer-page">
 
                 <div class="resume-presentation">
 
-                    <!-- ========================================
+                    <!-- ======================================
                          TOP BAR
-                    ========================================= -->
+                    ======================================= -->
 
                     <div class="resume-topbar">
 
@@ -28,17 +44,19 @@ class ResumePage extends Component {
                         </div>
 
                         <div class="resume-topbar-right">
+
                             <span id="resume-total-pages">
-                                Loading...
+                                --
                             </span>
+
                         </div>
 
                     </div>
 
 
-                    <!-- ========================================
-                         DOCUMENT DISPLAY
-                    ========================================= -->
+                    <!-- ======================================
+                         PAGE DISPLAY AREA
+                    ======================================= -->
 
                     <div
                         id="resume-stage"
@@ -67,9 +85,9 @@ class ResumePage extends Component {
                     </div>
 
 
-                    <!-- ========================================
-                         BOTTOM CONTROL BAR
-                    ========================================= -->
+                    <!-- ======================================
+                         BOTTOM BAR
+                    ======================================= -->
 
                     <div class="resume-controls">
 
@@ -140,9 +158,71 @@ class ResumePage extends Component {
 
     async afterRender() {
 
-        await this.loadPDFJS();
+        try {
 
-        await this.initializeViewer();
+            await this.loadPDFJS();
+
+            this.cacheElements();
+
+            await this.loadDocument();
+
+            this.setupControls();
+
+            this.setupKeyboard();
+
+            this.setupWheel();
+
+            this.setupFullscreen();
+
+            this.setupResize();
+
+            this.disableContextMenu();
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Resume initialization error:",
+                error
+            );
+
+        }
+
+    }
+
+
+    // =========================================================
+    // CACHE DOM ELEMENTS
+    // =========================================================
+
+    cacheElements() {
+
+        this.stage =
+            document.getElementById(
+                "resume-stage"
+            );
+
+
+        this.canvas =
+            document.getElementById(
+                "resume-canvas"
+            );
+
+
+        this.loading =
+            document.getElementById(
+                "resume-loading"
+            );
+
+
+        this.context =
+            this.canvas.getContext(
+                "2d",
+                {
+                    alpha: false
+                }
+            );
 
     }
 
@@ -158,27 +238,33 @@ class ResumePage extends Component {
         }
 
 
-        await new Promise((resolve, reject) => {
+        await new Promise(
+            (resolve, reject) => {
 
-            const script =
-                document.createElement("script");
-
-
-            script.src =
-                "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
-
-
-            script.onload =
-                resolve;
+                const script =
+                    document.createElement(
+                        "script"
+                    );
 
 
-            script.onerror =
-                reject;
+                script.src =
+                    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
 
 
-            document.head.appendChild(script);
+                script.onload =
+                    resolve;
 
-        });
+
+                script.onerror =
+                    reject;
+
+
+                document.head.appendChild(
+                    script
+                );
+
+            }
+        );
 
 
         window.pdfjsLib.GlobalWorkerOptions.workerSrc =
@@ -188,64 +274,7 @@ class ResumePage extends Component {
 
 
     // =========================================================
-    // INITIALIZE
-    // =========================================================
-
-    async initializeViewer() {
-
-        this.pdf = null;
-
-        this.currentPage = 1;
-
-        this.rendering = false;
-
-        this.pendingPage = null;
-
-
-        this.canvas =
-            document.getElementById(
-                "resume-canvas"
-            );
-
-
-        this.context =
-            this.canvas.getContext(
-                "2d",
-                {
-                    alpha: false
-                }
-            );
-
-
-        this.stage =
-            document.getElementById(
-                "resume-stage"
-            );
-
-
-        this.loading =
-            document.getElementById(
-                "resume-loading"
-            );
-
-
-        await this.loadDocument();
-
-        this.setupControls();
-
-        this.setupKeyboard();
-
-        this.setupWheel();
-
-        this.setupFullscreen();
-
-        this.disableContextMenu();
-
-    }
-
-
-    // =========================================================
-    // LOAD DOCUMENT
+    // LOAD RESUME
     // =========================================================
 
     async loadDocument() {
@@ -281,16 +310,19 @@ class ResumePage extends Component {
         catch (error) {
 
             console.error(
-                "Resume loading error:",
+                "PDF loading error:",
                 error
             );
 
 
             this.loading.innerHTML = `
+
                 <i class="fas fa-exclamation-circle"></i>
+
                 <span>
                     Unable to load Curriculum Vitae.
                 </span>
+
             `;
 
         }
@@ -299,7 +331,7 @@ class ResumePage extends Component {
 
 
     // =========================================================
-    // SHOW PAGE
+    // SHOW ONE PAGE
     // =========================================================
 
     async showPage(pageNumber) {
@@ -309,13 +341,20 @@ class ResumePage extends Component {
         }
 
 
-        if (
-            pageNumber < 1 ||
-            pageNumber > this.pdf.numPages
-        ) {
-            return;
-        }
+        // Keep page inside valid range
 
+        pageNumber =
+            Math.max(
+                1,
+                Math.min(
+                    pageNumber,
+                    this.pdf.numPages
+                )
+            );
+
+
+        // If another render is active,
+        // remember requested page
 
         if (this.rendering) {
 
@@ -342,7 +381,17 @@ class ResumePage extends Component {
 
 
             // ==============================================
-            // AVAILABLE VIEWER SIZE
+            // ORIGINAL PDF DIMENSIONS
+            // ==============================================
+
+            const baseViewport =
+                page.getViewport({
+                    scale: 1
+                });
+
+
+            // ==============================================
+            // VIEWER DIMENSIONS
             // ==============================================
 
             const stageWidth =
@@ -353,41 +402,59 @@ class ResumePage extends Component {
                 this.stage.clientHeight;
 
 
-            const baseViewport =
-                page.getViewport({
-                    scale: 1
-                });
+            // ==============================================
+            // PADDING AROUND PORTRAIT PAGE
+            // ==============================================
+
+            const horizontalPadding =
+                window.innerWidth <= 700
+                    ? 20
+                    : 70;
+
+
+            const verticalPadding =
+                window.innerWidth <= 700
+                    ? 20
+                    : 45;
+
+
+            const availableWidth =
+                stageWidth -
+                horizontalPadding;
+
+
+            const availableHeight =
+                stageHeight -
+                verticalPadding;
 
 
             // ==============================================
-            // FIT PAGE INSIDE VIEWER
+            // FIT PAGE
             // ==============================================
-
-            const horizontalPadding = 60;
-
-            const verticalPadding = 50;
-
 
             const widthScale =
-                (
-                    stageWidth -
-                    horizontalPadding
-                ) /
+                availableWidth /
                 baseViewport.width;
 
 
             const heightScale =
-                (
-                    stageHeight -
-                    verticalPadding
-                ) /
+                availableHeight /
                 baseViewport.height;
 
 
-            const scale =
+            let scale =
                 Math.min(
                     widthScale,
                     heightScale
+                );
+
+
+            // Avoid tiny pages
+
+            scale =
+                Math.max(
+                    scale,
+                    0.1
                 );
 
 
@@ -398,23 +465,41 @@ class ResumePage extends Component {
 
 
             // ==============================================
-            // CANVAS
+            // HIGH DPI DISPLAY
             // ==============================================
+
+            const devicePixelRatio =
+                Math.min(
+                    window.devicePixelRatio ||
+                    1,
+                    2
+                );
+
 
             this.canvas.width =
                 Math.floor(
-                    viewport.width
+                    viewport.width *
+                    devicePixelRatio
                 );
 
 
             this.canvas.height =
                 Math.floor(
-                    viewport.height
+                    viewport.height *
+                    devicePixelRatio
                 );
 
 
+            this.canvas.style.width =
+                `${Math.floor(viewport.width)}px`;
+
+
+            this.canvas.style.height =
+                `${Math.floor(viewport.height)}px`;
+
+
             // ==============================================
-            // RENDER PAGE
+            // RENDER
             // ==============================================
 
             await page.render({
@@ -423,13 +508,25 @@ class ResumePage extends Component {
                     this.context,
 
                 viewport:
-                    viewport
+                    viewport,
+
+                transform:
+                    devicePixelRatio !== 1
+                        ? [
+                            devicePixelRatio,
+                            0,
+                            0,
+                            devicePixelRatio,
+                            0,
+                            0
+                        ]
+                        : null
 
             }).promise;
 
 
             // ==============================================
-            // PAGE COUNTER
+            // PAGE NUMBER
             // ==============================================
 
             document.getElementById(
@@ -456,10 +553,12 @@ class ResumePage extends Component {
 
 
         // ==============================================
-        // RENDER PENDING PAGE
+        // RENDER LATEST REQUEST
         // ==============================================
 
-        if (this.pendingPage !== null) {
+        if (
+            this.pendingPage !== null
+        ) {
 
             const nextPage =
                 this.pendingPage;
@@ -479,7 +578,7 @@ class ResumePage extends Component {
 
 
     // =========================================================
-    // BUTTON CONTROLS
+    // BUTTONS
     // =========================================================
 
     setupControls() {
@@ -528,7 +627,7 @@ class ResumePage extends Component {
 
 
     // =========================================================
-    // ENABLE / DISABLE BUTTONS
+    // BUTTON STATES
     // =========================================================
 
     updateButtons() {
@@ -557,28 +656,35 @@ class ResumePage extends Component {
             );
 
 
-        first.disabled =
+        const atFirst =
             this.currentPage === 1;
+
+
+        const atLast =
+            this.currentPage ===
+            this.pdf.numPages;
+
+
+        first.disabled =
+            atFirst;
 
 
         prev.disabled =
-            this.currentPage === 1;
+            atFirst;
 
 
         next.disabled =
-            this.currentPage ===
-            this.pdf.numPages;
+            atLast;
 
 
         last.disabled =
-            this.currentPage ===
-            this.pdf.numPages;
+            atLast;
 
     }
 
 
     // =========================================================
-    // KEYBOARD
+    // KEYBOARD NAVIGATION
     // =========================================================
 
     setupKeyboard() {
@@ -588,7 +694,7 @@ class ResumePage extends Component {
 
                 if (
                     !document.querySelector(
-                        ".resume-viewer-page"
+                        ".resume-presentation"
                     )
                 ) {
                     return;
@@ -598,6 +704,7 @@ class ResumePage extends Component {
                 switch (event.key) {
 
                     case "ArrowLeft":
+                    case "ArrowUp":
                     case "PageUp":
 
                         event.preventDefault();
@@ -610,8 +717,8 @@ class ResumePage extends Component {
 
 
                     case "ArrowRight":
+                    case "ArrowDown":
                     case "PageDown":
-                    case " ":
 
                         event.preventDefault();
 
@@ -664,14 +771,6 @@ class ResumePage extends Component {
             "wheel",
             (event) => {
 
-                if (
-                    Math.abs(event.deltaY) <
-                    20
-                ) {
-                    return;
-                }
-
-
                 event.preventDefault();
 
 
@@ -685,7 +784,9 @@ class ResumePage extends Component {
 
                 }
 
-                else {
+                else if (
+                    event.deltaY < 0
+                ) {
 
                     this.showPage(
                         this.currentPage - 1
@@ -724,17 +825,30 @@ class ResumePage extends Component {
             "click",
             async () => {
 
-                if (
-                    !document.fullscreenElement
-                ) {
+                try {
 
-                    await viewer.requestFullscreen();
+                    if (
+                        !document.fullscreenElement
+                    ) {
+
+                        await viewer.requestFullscreen();
+
+                    }
+
+                    else {
+
+                        await document.exitFullscreen();
+
+                    }
 
                 }
 
-                else {
+                catch (error) {
 
-                    await document.exitFullscreen();
+                    console.error(
+                        "Fullscreen error:",
+                        error
+                    );
 
                 }
 
@@ -769,8 +883,6 @@ class ResumePage extends Component {
                 }
 
 
-                // Recalculate page size
-
                 setTimeout(
                     () => {
 
@@ -783,7 +895,7 @@ class ResumePage extends Component {
                         }
 
                     },
-                    150
+                    200
                 );
 
             }
@@ -798,26 +910,45 @@ class ResumePage extends Component {
 
     setupResize() {
 
-        window.addEventListener(
-            "resize",
+        this.resizeHandler =
             () => {
 
-                if (this.pdf) {
+                clearTimeout(
+                    this.resizeTimer
+                );
 
-                    this.showPage(
-                        this.currentPage
+
+                this.resizeTimer =
+                    setTimeout(
+                        () => {
+
+                            if (
+                                this.pdf
+                            ) {
+
+                                this.showPage(
+                                    this.currentPage
+                                );
+
+                            }
+
+                        },
+                        150
                     );
 
-                }
+            };
 
-            }
+
+        window.addEventListener(
+            "resize",
+            this.resizeHandler
         );
 
     }
 
 
     // =========================================================
-    // DISABLE RIGHT CLICK
+    // DISABLE CONTEXT MENU
     // =========================================================
 
     disableContextMenu() {
@@ -825,7 +956,9 @@ class ResumePage extends Component {
         this.stage.addEventListener(
             "contextmenu",
             event => {
+
                 event.preventDefault();
+
             }
         );
 
@@ -833,7 +966,9 @@ class ResumePage extends Component {
         this.canvas.addEventListener(
             "dragstart",
             event => {
+
                 event.preventDefault();
+
             }
         );
 
