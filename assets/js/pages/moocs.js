@@ -7,6 +7,7 @@ class MoocsPage extends Component {
 
         // Soft, Light & Distinct Pastel Profiles for Each Platform
         const brandProfiles = {
+
             "matlab": {
                 name: "MATLAB",
                 primary: "#E06A3B",        /* Soft Coral */
@@ -14,6 +15,7 @@ class MoocsPage extends Component {
                 text: "#9A3412",
                 logo: "https://upload.wikimedia.org/wikipedia/commons/2/21/Matlab_Logo.png"
             },
+
             "linkedin": {
                 name: "LinkedIn Learning",
                 primary: "#0284C7",        /* Sky Blue */
@@ -21,6 +23,7 @@ class MoocsPage extends Component {
                 text: "#0369A1",
                 logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"
             },
+
             "coursera": {
                 name: "Coursera",
                 primary: "#6366F1",        /* Lavender Indigo */
@@ -28,13 +31,15 @@ class MoocsPage extends Component {
                 text: "#4338CA",
                 logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/coursera.svg"
             },
+
             "dataiku": {
                 name: "Dataiku Academy",
-                primary: "#0D9488",        /* Soft Teal / Sage */
+                primary: "#0D9488",        /* Soft Teal */
                 bg: "#CCFBF1",             /* Light Mint */
                 text: "#115E59",
                 logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/dataiku.svg"
             },
+
             "ibm": {
                 name: "IBM SkillsBuild",
                 primary: "#2563EB",        /* Cobalt */
@@ -42,57 +47,139 @@ class MoocsPage extends Component {
                 text: "#1E40AF",
                 logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/ibm.svg"
             },
+
             "cognitiveai": {
                 name: "Cognitive Class",
                 primary: "#9333EA",        /* Soft Violet */
                 bg: "#F3E8FF",             /* Soft Lilac */
                 text: "#6B21A8",
-                logo: "/assets/images/logo/cognitive_classai.jpg" // Cognitive Class logo
+                logo: "/assets/images/logo/cognitive_classai.jpg"
+            },
+
+            // =====================================================
+            // ELSEVIER RESEARCHER ACADEMY
+            // =====================================================
+            "elsevier": {
+                name: "Elsevier Researcher Academy",
+                primary: "#F15A29",        /* Elsevier Orange */
+                bg: "#FFF3ED",
+                text: "#B93815",
+                logo: "/assets/images/logo/elsevier.png"
+            },
+
+            // =====================================================
+            // ISRO - IIRS
+            // =====================================================
+            "isro-iirs": {
+                name: "ISRO–IIRS",
+                primary: "#F97316",        /* ISRO-inspired Orange */
+                bg: "#FFF7ED",
+                text: "#C2410C",
+                logo: "/assets/images/logo/isro.png"
+            },
+
+            // =====================================================
+            // KAGGLE
+            // =====================================================
+            "kaggle": {
+                name: "Kaggle",
+                primary: "#20BEFF",        /* Kaggle Blue */
+                bg: "#EAF9FF",
+                text: "#087EA4",
+                logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/kaggle.svg"
             }
         };
 
+        // Fallback style for unknown/new platforms
         const fallbackBrand = {
             primary: "#0284C7",
             bg: "#F0F9FF",
             text: "#0369A1",
-            logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/degree.svg"
+            logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/academia.svg"
         };
 
-        // ===========================
+        // =========================================================
         // DIRECTORY OVERVIEW
-        // ===========================
+        // =========================================================
         if (!vendorParam) {
             return `
                 <div class="moocs-page">
                     <section class="fade-in">
+
                         <header class="page-header">
-                            <span class="academic-kicker">Academic Qualifications</span>
-                            <h1 class="section-title">MOOC Certifications</h1>
+
+                            <span class="academic-kicker">
+                                Academic Qualifications
+                            </span>
+
+                            <h1 class="section-title">
+                                MOOC Certifications
+                            </h1>
+
                             <p class="lead">
-                                Verified certifications and specialized coursework completed across leading global education platforms.
+                                Verified certifications, digital badges and
+                                specialized coursework completed across
+                                leading global education, research and
+                                professional learning platforms.
                             </p>
+
                         </header>
                         
                         <div class="cards-grid">
+
                             ${moocs.categories.map((cat) => {
-                                const brand = brandProfiles[cat.id] || fallbackBrand;
+
+                                const brand =
+                                    brandProfiles[cat.id] ||
+                                    fallbackBrand;
 
                                 return `
-                                    <div class="card fade-in"
-                                         onclick="navigateTo('#/moocs/${cat.id}')"
-                                         style="--accent-color: ${brand.primary}; --badge-bg: ${brand.bg}; --badge-text: ${brand.text};">
+                                    <div
+                                        class="card fade-in"
+
+                                        onclick="
+                                            navigateTo(
+                                                '#/moocs/${cat.id}'
+                                            )
+                                        "
+
+                                        style="
+                                            --accent-color:
+                                                ${brand.primary};
+
+                                            --badge-bg:
+                                                ${brand.bg};
+
+                                            --badge-text:
+                                                ${brand.text};
+                                        "
+                                    >
                                          
                                         <div class="card-header-row">
+
                                             <div class="card-logo-wrapper">
-                                                <img src="${brand.logo}"
-                                                     alt="${cat.name} logo"
-                                                     class="brand-logo">
+
+                                                <img
+                                                    src="${brand.logo}"
+                                                    alt="${cat.name} logo"
+                                                    class="brand-logo"
+                                                    loading="lazy"
+                                                >
+
                                             </div>
 
                                             <div class="card-title-group">
-                                                <h3 class="card-title">${cat.name}</h3>
-                                                <span class="category-pill">Verified Platform</span>
+
+                                                <h3 class="card-title">
+                                                    ${cat.name}
+                                                </h3>
+
+                                                <span class="category-pill">
+                                                    Verified Platform
+                                                </span>
+
                                             </div>
+
                                         </div>
                                         
                                         <p class="card-description">
@@ -100,86 +187,284 @@ class MoocsPage extends Component {
                                         </p>
                                         
                                         <div class="card-link">
-                                            <span>Explore Certifications</span>
-                                            <i class="fas fa-arrow-right"></i>
+
+                                            <span>
+                                                Explore Certifications
+                                            </span>
+
+                                            <i
+                                                class="
+                                                    fas
+                                                    fa-arrow-right
+                                                "
+                                            ></i>
+
                                         </div>
+
                                     </div>
                                 `;
+
                             }).join("")}
+
                         </div>
+
                     </section>
                 </div>
             `;
         }
 
-        // ===========================
+        // =========================================================
         // CATEGORY DETAIL VIEW
-        // ===========================
-        const categoryIndex = moocs.categories.findIndex(c => c.id === vendorParam);
-        const currentVendor = moocs.categories[categoryIndex];
+        // =========================================================
 
+        const categoryIndex =
+            moocs.categories.findIndex(
+                c => c.id === vendorParam
+            );
+
+        const currentVendor =
+            moocs.categories[categoryIndex];
+
+        // Category does not exist
         if (!currentVendor) {
+
             return `
                 <div class="moocs-page">
+
                     <section class="fade-in">
-                        <h2 style="margin-bottom:1rem;">Category Not Found</h2>
-                        <a href="#/moocs" class="btn btn-outline">Return to Directory</a>
+
+                        <h2
+                            style="
+                                margin-bottom:1rem;
+                            "
+                        >
+                            Category Not Found
+                        </h2>
+
+                        <a
+                            href="#/moocs"
+                            class="btn btn-outline"
+                        >
+                            Return to Directory
+                        </a>
+
                     </section>
+
                 </div>
             `;
         }
 
-        const brand = brandProfiles[currentVendor.id] || fallbackBrand;
-        const vendorCertificates = moocs.moocCertifications.filter(cert => cert.vendor === vendorParam);
+        const brand =
+            brandProfiles[currentVendor.id] ||
+            fallbackBrand;
+
+        // Find all certificates belonging to this platform
+        const vendorCertificates =
+            moocs.moocCertifications.filter(
+                cert =>
+                    cert.vendor === vendorParam
+            );
 
         return `
             <div class="moocs-page">
+
                 <section class="fade-in">
-                    <div style="margin-bottom:2rem;">
-                        <a href="#/moocs" class="btn btn-outline" style="margin-bottom:1.5rem;">
+
+                    <div
+                        style="
+                            margin-bottom:2rem;
+                        "
+                    >
+
+                        <a
+                            href="#/moocs"
+                            class="btn btn-outline"
+                            style="
+                                margin-bottom:1.5rem;
+                            "
+                        >
+
                             <i class="fas fa-arrow-left"></i>
+
                             Back to Categories
+
                         </a>
-                        <span class="academic-kicker">Certification Registry</span>
-                        <h1 class="section-title">${currentVendor.name}</h1>
-                        <p class="lead">${currentVendor.description}</p>
+
+                        <span class="academic-kicker">
+                            Certification Registry
+                        </span>
+
+                        <h1 class="section-title">
+                            ${currentVendor.name}
+                        </h1>
+
+                        <p class="lead">
+                            ${currentVendor.description}
+                        </p>
+
                     </div>
 
                     <div class="cards-grid">
+
                         ${vendorCertificates.map(cert => `
-                            <div class="card" style="--accent-color: ${brand.primary}; --badge-bg: ${brand.bg}; --badge-text: ${brand.text};">
-                                <h3 class="card-title" style="font-size:1.05rem; margin-bottom:12px;">
+
+                            <div
+                                class="card"
+
+                                style="
+                                    --accent-color:
+                                        ${brand.primary};
+
+                                    --badge-bg:
+                                        ${brand.bg};
+
+                                    --badge-text:
+                                        ${brand.text};
+                                "
+                            >
+
+                                <h3
+                                    class="card-title"
+                                    style="
+                                        font-size:1.05rem;
+                                        margin-bottom:12px;
+                                    "
+                                >
                                     ${cert.name}
                                 </h3>
                                 
                                 <div class="meta-panel">
+
                                     <div class="meta-row">
-                                        <span class="meta-label">Issuer</span>
-                                        <span class="meta-value">${cert.issuer}</span>
+
+                                        <span class="meta-label">
+                                            Issuer
+                                        </span>
+
+                                        <span class="meta-value">
+                                            ${cert.issuer}
+                                        </span>
+
                                     </div>
+
                                     <div class="meta-row">
-                                        <span class="meta-label">Platform</span>
-                                        <span class="meta-value">${cert.vendor.toUpperCase()}</span>
+
+                                        <span class="meta-label">
+                                            Platform
+                                        </span>
+
+                                        <span class="meta-value">
+                                            ${currentVendor.name}
+                                        </span>
+
                                     </div>
+
+                                    ${
+                                        cert.date
+                                        ? `
+                                            <div class="meta-row">
+
+                                                <span class="meta-label">
+                                                    Date
+                                                </span>
+
+                                                <span class="meta-value">
+                                                    ${cert.date}
+                                                </span>
+
+                                            </div>
+                                        `
+                                        : ""
+                                    }
+
                                 </div>
                                 
-                                <div style="margin-top:auto; display:flex; gap:8px;">
-                                    <a href="assets/${cert.certificatePath}" target="_blank" class="btn btn-primary" style="flex:1;">
+                                <div
+                                    style="
+                                        margin-top:auto;
+                                        display:flex;
+                                        gap:8px;
+                                    "
+                                >
+
+                                    <a
+                                        href="assets/${cert.certificatePath}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="btn btn-primary"
+                                        style="flex:1;"
+                                    >
+
                                         <i class="fas fa-file-pdf"></i>
+
                                         Certificate
+
                                     </a>
                                     
-                                    ${cert.verifyUrl ? `
-                                        <a href="${cert.verifyUrl}" target="_blank" class="btn btn-outline" style="flex:1;">
-                                            <i class="fas fa-external-link-alt"></i>
-                                            Verify
-                                        </a>
-                                    ` : ''}
+                                    ${
+                                        cert.verifyUrl
+                                        ? `
+                                            <a
+                                                href="${cert.verifyUrl}"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="btn btn-outline"
+                                                style="flex:1;"
+                                            >
+
+                                                <i
+                                                    class="
+                                                        fas
+                                                        fa-external-link-alt
+                                                    "
+                                                ></i>
+
+                                                Verify
+
+                                            </a>
+                                        `
+                                        : ""
+                                    }
+
                                 </div>
+
                             </div>
+
                         `).join("")}
+
                     </div>
+
+                    ${
+                        vendorCertificates.length === 0
+                        ? `
+                            <div
+                                style="
+                                    text-align:center;
+                                    padding:3rem 1rem;
+                                    color:#64748b;
+                                "
+                            >
+
+                                <i
+                                    class="fas fa-certificate"
+                                    style="
+                                        font-size:2rem;
+                                        margin-bottom:1rem;
+                                    "
+                                ></i>
+
+                                <p>
+                                    No certificates have been added
+                                    to this platform yet.
+                                </p>
+
+                            </div>
+                        `
+                        : ""
+                    }
+
                 </section>
+
             </div>
         `;
     }
