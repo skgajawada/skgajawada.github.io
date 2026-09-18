@@ -1,7 +1,7 @@
 /* ============================================================
    RESUME VIEWER
    PPT-STYLE SINGLE PAGE PDF VIEWER
-   Portrait PDF page
+   COMPLETE A4 PORTRAIT PAGE
 ============================================================ */
 
 .resume-viewer-page {
@@ -105,42 +105,11 @@
 
     overflow: hidden;
 
-    padding: 12px;
+    padding: 15px;
 
     box-sizing: border-box;
 
     background: #e5e7eb;
-}
-
-
-/* ============================================================
-   COMPLETE A4 PORTRAIT PDF PAGE
-============================================================ */
-
-.resume-canvas {
-    display: block;
-
-    width: auto;
-    height: auto;
-
-    max-width: 100%;
-    max-height: 100%;
-
-    /* A4 portrait ratio */
-    aspect-ratio: 210 / 297;
-
-    object-fit: contain;
-
-    background: #ffffff;
-
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.20);
-
-    user-select: none;
-
-    -webkit-user-select: none;
-
-    -webkit-user-drag: none;
 }
 
 
@@ -175,17 +144,25 @@
 
 
 /* ============================================================
-   PORTRAIT RESUME CANVAS
+   COMPLETE A4 PORTRAIT PDF PAGE
 ============================================================ */
 
 .resume-canvas {
     display: block;
 
+    /*
+       Width and height are calculated by resume.js.
+
+       The JavaScript uses the original PDF dimensions
+       and scales the page so the COMPLETE page fits
+       inside the viewer.
+    */
+
     width: auto;
     height: auto;
 
-    max-width: calc(100% - 70px);
-    max-height: calc(100% - 45px);
+    max-width: 100%;
+    max-height: 100%;
 
     background: #ffffff;
 
@@ -193,7 +170,9 @@
         0 8px 25px rgba(0, 0, 0, 0.20);
 
     user-select: none;
+
     -webkit-user-select: none;
+
     -webkit-user-drag: none;
 
     pointer-events: auto;
@@ -277,7 +256,6 @@
 
 /* ============================================================
    CONTROL ICON
-   Scoped only to resume viewer
 ============================================================ */
 
 .resume-control-btn i,
@@ -328,13 +306,15 @@
 
 .resume-presentation:fullscreen .resume-stage {
     background: #111827;
+
+    padding: 20px;
 }
 
 
-.resume-presentation:fullscreen .resume-canvas {
-    max-width: calc(100% - 100px);
-    max-height: calc(100% - 60px);
-}
+/*
+   Do not force a different PDF size in fullscreen.
+   resume.js will recalculate the correct A4 fit.
+*/
 
 
 /* ============================================================
@@ -344,6 +324,7 @@
 @media (max-width: 700px) {
 
     .resume-viewer-page {
+
         width: 100%;
 
         height: calc(100vh - 65px);
@@ -355,7 +336,9 @@
 
 
     .resume-presentation {
+
         width: 100%;
+
         height: calc(100vh - 80px);
 
         border-radius: 9px;
@@ -363,7 +346,9 @@
 
 
     .resume-topbar {
+
         height: 46px;
+
         min-height: 46px;
 
         padding: 0 10px;
@@ -373,23 +358,29 @@
 
 
     .resume-topbar-right {
+
         font-size: 0.62rem;
     }
 
 
     .resume-stage {
-        padding: 5px;
+
+        padding: 8px;
     }
 
 
     .resume-canvas {
-        max-width: calc(100% - 20px);
-        max-height: calc(100% - 20px);
+
+        max-width: 100%;
+
+        max-height: 100%;
     }
 
 
     .resume-controls {
+
         height: 50px;
+
         min-height: 50px;
 
         gap: 4px;
@@ -397,7 +388,9 @@
 
 
     .resume-control-btn {
+
         width: 35px;
+
         height: 35px;
 
         font-size: 0.72rem;
@@ -406,15 +399,18 @@
 
     .resume-control-btn i,
     .resume-control-btn svg {
+
         font-size: 0.75rem;
     }
 
 
     .resume-page-number {
+
         min-width: 55px;
 
         font-size: 0.72rem;
     }
+
 }
 
 
@@ -424,7 +420,20 @@
 
 @media (max-width: 420px) {
 
+    .resume-viewer-page {
+
+        padding: 3px;
+    }
+
+
+    .resume-presentation {
+
+        border-radius: 7px;
+    }
+
+
     .resume-topbar {
+
         grid-template-columns:
             1fr
             1fr
@@ -437,31 +446,42 @@
 
 
     .resume-topbar-right {
+
         font-size: 0.56rem;
     }
 
 
+    .resume-stage {
+
+        padding: 5px;
+    }
+
+
     .resume-control-btn {
+
         width: 32px;
+
         height: 32px;
     }
 
 
     .resume-page-number {
+
         min-width: 48px;
     }
+
 }
 
 
 /* ============================================================
    PRINT
-   Prevent resume viewer controls from being printed
 ============================================================ */
 
 @media print {
 
     .resume-controls,
     .resume-topbar {
+
         display: none !important;
     }
 
@@ -469,10 +489,16 @@
     .resume-viewer-page,
     .resume-presentation,
     .resume-stage {
+
         width: 100%;
+
         height: auto;
 
+        min-height: 0;
+
         background: #ffffff;
+
         box-shadow: none;
     }
+
 }
