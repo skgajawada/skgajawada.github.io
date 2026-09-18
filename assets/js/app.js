@@ -57,3 +57,18 @@ setupMobileMenu() {
 document.addEventListener('DOMContentLoaded', () => {
     new App();
 });
+/* ==========================================================
+   PROFILE IMAGE PROTECTION
+========================================================== */
+
+document.addEventListener("contextmenu", function (event) {
+    if (event.target.closest(".profile-image")) {
+        event.preventDefault();
+    }
+});
+
+document.addEventListener("dragstart", function (event) {
+    if (event.target.closest(".profile-image")) {
+        event.preventDefault();
+    }
+});
