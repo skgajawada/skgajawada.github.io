@@ -41,9 +41,30 @@
       "description": "Cognitive AI certifications",
       "icon": "fa-brain",
       "color": "#8E44AD"
+    },
+    {
+        "id": "elsevier",
+        "name": "Elsevier Researcher Academy",
+        "description": "Research methodology, academic publishing, proposal writing and scholarly development",
+        "icon": "fa-book-open",
+        "color": "#F15A29"
+    },
+    {
+        "id": "isro-iirs",
+        "name": "ISRO–IIRS",
+        "description": "Remote sensing, geospatial technologies, AI/ML and space applications",
+        "icon": "fa-satellite",
+        "color": "#F97316"
+    },
+    {
+        "id": "kaggle",
+        "name": "Kaggle",
+        "description": "Data Science, Python, Machine Learning and community achievement badges",
+        "icon": "fa-k",
+        "color": "#20BEFF"
     }
-  ],
-
+],
+  
   "moocCertifications": [
     {
       "id": 125,
@@ -332,6 +353,42 @@
       "name": "Data Fundamentals",
       "certificatePath": "certificates/moocs/IBM/Data Fundamentals.pdf",
       "verifyUrl": "https://www.credly.com/badges/9fa664e5-7bb0-43c8-b93d-5f85a9a10ee7/public_url"
+    },
+    {
+        "id": 36,
+        "vendor": "elsevier",
+        "issuer": "Elsevier Researcher Academy",
+        "name": "Unlocking Opportunities: Crafting Award-Winning Proposals – Insights for Early Career Researchers",
+        "certificatePath": "certificates/moocs/Elsevier Researcher Academy/elsvr_crafting.pdf",
+        "verifyUrl": "",
+        "date": "25 July 2026"
+    },
+    {
+        "id": 37,
+        "vendor": "isro-iirs",
+        "issuer": "Indian Institute of Remote Sensing (IIRS), ISRO",
+        "name": "AIML for Geodata Analytics",
+        "certificatePath": "certificates/moocs/ISRO-IIRS/Geodata_IIRS_Certificate.pdf",
+        "verifyUrl": "https://isrolms.iirs.gov.in/mod/customcert/verify_certificate.php",
+        "date": "03–14 August 2026"
+    },
+    {
+        "id": 38,
+        "vendor": "kaggle",
+        "issuer": "Kaggle",
+        "name": "Kaggle Community Member",
+        "certificatePath": "certificates/moocs/Kaggle/Kaggle Community Member.png",
+        "verifyUrl": "",
+        "date": "10 March 2026"
+    },
+    {
+        "id": 39,
+        "vendor": "kaggle",
+        "issuer": "Kaggle",
+        "name": "Python Coder",
+        "certificatePath": "certificates/moocs/Kaggle/Python Coder.png",
+        "verifyUrl": "",
+        "date": "26 June 2026"
     }
   ]
 }
