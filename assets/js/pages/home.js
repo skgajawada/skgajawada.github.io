@@ -26,8 +26,8 @@ class HomePage extends Component {
                         <a href="#/contact" class="btn btn-outline">
                             <i class="fas fa-envelope"></i> Get In Touch
                         </a>
-                        <a href="assets/documents/SANJEEVKUMAR_RESUME.pdf" class="btn btn-secondary" download>
-                            <i class="fas fa-download"></i> Download CV
+                        <a href="#/resume" class="btn btn-secondary">
+                            <i class="fas fa-file-alt"></i> View CV
                         </a>
                     </div>
                 </div>
