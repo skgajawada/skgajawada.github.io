@@ -1,49 +1,72 @@
 /* ============================================================
-   RESUME / CV VIEWER
-   PPT-STYLE — ONE PORTRAIT PAGE AT A TIME
-   ============================================================ */
+   RESUME VIEWER
+   Same interaction model as PPT viewer
+   Portrait PDF page
+============================================================ */
+
 
 .resume-viewer-page {
+
     width: 100%;
-    min-height: calc(100vh - 80px);
+
+    height: calc(100vh - 80px);
+
+    min-height: 600px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
-    padding: 20px;
+    padding: 15px;
 
     background: #f1f3f5;
+
 }
 
 
 /* ============================================================
-   MAIN VIEWER
-   ============================================================ */
+   MAIN PRESENTATION FRAME
+============================================================ */
 
 .resume-presentation {
-    width: min(1200px, 96vw);
-    height: min(90vh, 850px);
+
+    width: min(
+        1200px,
+        96vw
+    );
+
+    height: min(
+        90vh,
+        850px
+    );
 
     display: flex;
+
     flex-direction: column;
 
     background: #05070b;
 
-    border-radius: 18px;
+    border-radius: 16px;
+
     overflow: hidden;
 
     box-shadow:
-        0 20px 55px rgba(0, 0, 0, 0.22);
+        0 20px 55px
+        rgba(0, 0, 0, 0.22);
+
 }
 
 
 /* ============================================================
    TOP BAR
-   ============================================================ */
+============================================================ */
 
 .resume-topbar {
-    height: 58px;
+
+    height: 56px;
+
     flex-shrink: 0;
 
     display: grid;
@@ -55,14 +78,17 @@
 
     align-items: center;
 
-    padding: 0 28px;
+    padding:
+        0 25px;
 
     background: #05070b;
 
     color: #f8fafc;
 
     font-size: 0.9rem;
+
     font-weight: 600;
+
 }
 
 
@@ -77,19 +103,22 @@
 
 
 .resume-topbar-right {
+
     text-align: right;
 
     color: #cbd5e1;
 
-    font-size: 0.8rem;
+    font-size: 0.78rem;
+
 }
 
 
 /* ============================================================
-   DOCUMENT STAGE
-   ============================================================ */
+   PAGE STAGE
+============================================================ */
 
 .resume-stage {
+
     position: relative;
 
     flex: 1;
@@ -99,31 +128,37 @@
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     overflow: hidden;
 
-    background: #eef0f2;
+    background: #e5e7eb;
+
 }
 
 
 /* ============================================================
-   RESUME PDF PAGE
-   ============================================================ */
+   PORTRAIT RESUME PAGE
+============================================================ */
 
 .resume-canvas {
+
     display: block;
 
-    max-width: calc(100% - 50px);
-    max-height: calc(100% - 40px);
-
     width: auto;
+
     height: auto;
 
-    background: white;
+    max-width: calc(100% - 70px);
+
+    max-height: calc(100% - 45px);
+
+    background: #ffffff;
 
     box-shadow:
-        0 5px 20px rgba(0, 0, 0, 0.20);
+        0 8px 25px
+        rgba(0, 0, 0, 0.20);
 
     user-select: none;
 
@@ -131,44 +166,47 @@
 
     -webkit-user-drag: none;
 
-    pointer-events: auto;
 }
 
 
 /* ============================================================
    LOADING
-   ============================================================ */
+============================================================ */
 
 .resume-loading {
+
     position: absolute;
 
     inset: 0;
 
     display: flex;
 
-    align-items: center;
-    justify-content: center;
-
     flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
 
     gap: 12px;
 
     color: #475569;
 
-    font-size: 0.95rem;
 }
 
 
 .resume-loading i {
-    font-size: 1.7rem;
+
+    font-size: 1.6rem;
+
 }
 
 
 /* ============================================================
-   BOTTOM CONTROL BAR
-   ============================================================ */
+   BOTTOM CONTROLS
+============================================================ */
 
 .resume-controls {
+
     height: 58px;
 
     flex-shrink: 0;
@@ -176,173 +214,203 @@
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
-    gap: 8px;
+    gap: 7px;
 
     background: #05070b;
+
 }
 
 
 /* ============================================================
-   CONTROL BUTTONS
-   ============================================================ */
+   CONTROL BUTTON
+============================================================ */
 
 .resume-control-btn {
-    width: 42px;
-    height: 42px;
 
-    border: 0;
+    width: 40px;
 
-    border-radius: 7px;
+    height: 40px;
 
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
-    color: #e2e8f0;
+    border: none;
+
+    border-radius: 7px;
 
     background: #1f2937;
 
+    color: #e2e8f0;
+
     cursor: pointer;
 
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 
     transition:
         background 0.2s ease,
         transform 0.15s ease;
+
 }
 
 
 .resume-control-btn:hover {
+
     background: #374151;
 
-    transform: translateY(-1px);
-}
+    transform:
+        translateY(-1px);
 
-
-.resume-control-btn:active {
-    transform: translateY(0);
 }
 
 
 .resume-control-btn:disabled {
-    opacity: 0.35;
+
+    opacity: 0.30;
 
     cursor: default;
 
     transform: none;
+
 }
 
 
 /* ============================================================
-   PAGE NUMBER
-   ============================================================ */
+   PAGE COUNTER
+============================================================ */
 
 .resume-page-number {
-    min-width: 72px;
 
-    height: 42px;
+    min-width: 70px;
+
+    height: 40px;
 
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     color: #f8fafc;
 
-    font-size: 0.85rem;
+    font-size: 0.84rem;
 
     font-weight: 600;
+
 }
 
 
 /* ============================================================
    FULLSCREEN
-   ============================================================ */
+============================================================ */
 
 .resume-presentation:fullscreen {
+
     width: 100vw;
+
     height: 100vh;
 
     max-width: none;
 
     border-radius: 0;
+
 }
 
 
 /* ============================================================
    MOBILE
-   ============================================================ */
+============================================================ */
 
 @media (max-width: 700px) {
 
     .resume-viewer-page {
-        padding: 8px;
 
-        min-height:
-            calc(100vh - 70px);
+        height: calc(100vh - 65px);
+
+        min-height: 500px;
+
+        padding: 6px;
+
     }
 
 
     .resume-presentation {
+
         width: 100%;
 
-        height:
-            calc(100vh - 90px);
+        height: calc(100vh - 80px);
 
-        border-radius: 10px;
+        border-radius: 9px;
+
     }
 
 
     .resume-topbar {
-        height: 48px;
+
+        height: 46px;
 
         padding:
-            0 12px;
+            0 10px;
 
         font-size:
-            0.72rem;
+            0.70rem;
+
     }
 
 
     .resume-topbar-right {
+
         font-size:
-            0.65rem;
+            0.62rem;
+
     }
 
 
     .resume-canvas {
+
         max-width:
             calc(100% - 20px);
 
         max-height:
             calc(100% - 20px);
+
     }
 
 
     .resume-controls {
-        height: 52px;
+
+        height: 50px;
 
         gap: 4px;
+
     }
 
 
     .resume-control-btn {
-        width: 36px;
-        height: 36px;
+
+        width: 35px;
+
+        height: 35px;
 
         font-size:
-            0.75rem;
+            0.72rem;
+
     }
 
 
     .resume-page-number {
+
         min-width:
             55px;
 
         font-size:
             0.72rem;
+
     }
+
 }
