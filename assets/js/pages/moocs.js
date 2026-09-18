@@ -5,53 +5,56 @@ class MoocsPage extends Component {
         const moocs = await DataManager.getMOOCs();
         const vendorParam = params && params[0];
 
-        // Soft, Light & Distinct Pastel Profiles for Each Platform
+        // =========================================================
+        // BRAND PROFILES
+        // =========================================================
+
         const brandProfiles = {
 
             "matlab": {
                 name: "MATLAB",
-                primary: "#E06A3B",        /* Soft Coral */
-                bg: "#FFF1EC",             /* Very Light Peach */
+                primary: "#E06A3B",
+                bg: "#FFF1EC",
                 text: "#9A3412",
                 logo: "https://upload.wikimedia.org/wikipedia/commons/2/21/Matlab_Logo.png"
             },
 
             "linkedin": {
                 name: "LinkedIn Learning",
-                primary: "#0284C7",        /* Sky Blue */
-                bg: "#E0F2FE",             /* Soft Ice Blue */
+                primary: "#0284C7",
+                bg: "#E0F2FE",
                 text: "#0369A1",
                 logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"
             },
 
             "coursera": {
                 name: "Coursera",
-                primary: "#6366F1",        /* Lavender Indigo */
-                bg: "#EEF2FF",             /* Soft Lavender */
+                primary: "#6366F1",
+                bg: "#EEF2FF",
                 text: "#4338CA",
                 logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/coursera.svg"
             },
 
             "dataiku": {
                 name: "Dataiku Academy",
-                primary: "#0D9488",        /* Soft Teal */
-                bg: "#CCFBF1",             /* Light Mint */
+                primary: "#0D9488",
+                bg: "#CCFBF1",
                 text: "#115E59",
                 logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/dataiku.svg"
             },
 
             "ibm": {
                 name: "IBM SkillsBuild",
-                primary: "#2563EB",        /* Cobalt */
-                bg: "#EFF6FF",             /* Soft Blue Tint */
+                primary: "#2563EB",
+                bg: "#EFF6FF",
                 text: "#1E40AF",
                 logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/ibm.svg"
             },
 
             "cognitiveai": {
                 name: "Cognitive Class",
-                primary: "#9333EA",        /* Soft Violet */
-                bg: "#F3E8FF",             /* Soft Lilac */
+                primary: "#9333EA",
+                bg: "#F3E8FF",
                 text: "#6B21A8",
                 logo: "/assets/images/logo/cognitive_classai.jpg"
             },
@@ -59,38 +62,48 @@ class MoocsPage extends Component {
             // =====================================================
             // ELSEVIER RESEARCHER ACADEMY
             // =====================================================
+
             "elsevier": {
                 name: "Elsevier Researcher Academy",
-                primary: "#F15A29",        /* Elsevier Orange */
+                primary: "#F15A29",
                 bg: "#FFF3ED",
                 text: "#B93815",
-                logo: "/assets/images/logo/elsevier.png"
+
+                // SVG logo - no local file required
+                logo: "https://cdn.jsdelivr.net/npm/simple-icons@v15/icons/elsevier.svg"
             },
 
             // =====================================================
             // ISRO - IIRS
             // =====================================================
+
             "isro-iirs": {
                 name: "ISRO–IIRS",
-                primary: "#F97316",        /* ISRO-inspired Orange */
+                primary: "#F97316",
                 bg: "#FFF7ED",
                 text: "#C2410C",
-                logo: "/assets/images/logo/isro.png"
+
+                // ISRO logo from Wikimedia Commons
+                logo: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Indian%20Space%20Research%20Organisation%20Logo.svg"
             },
 
             // =====================================================
             // KAGGLE
             // =====================================================
+
             "kaggle": {
                 name: "Kaggle",
-                primary: "#20BEFF",        /* Kaggle Blue */
+                primary: "#20BEFF",
                 bg: "#EAF9FF",
                 text: "#087EA4",
                 logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/kaggle.svg"
             }
         };
 
-        // Fallback style for unknown/new platforms
+        // =========================================================
+        // FALLBACK BRAND
+        // =========================================================
+
         const fallbackBrand = {
             primary: "#0284C7",
             bg: "#F0F9FF",
@@ -101,9 +114,12 @@ class MoocsPage extends Component {
         // =========================================================
         // DIRECTORY OVERVIEW
         // =========================================================
+
         if (!vendorParam) {
+
             return `
                 <div class="moocs-page">
+
                     <section class="fade-in">
 
                         <header class="page-header">
@@ -117,14 +133,14 @@ class MoocsPage extends Component {
                             </h1>
 
                             <p class="lead">
-                                Verified certifications, digital badges and
-                                specialized coursework completed across
-                                leading global education, research and
-                                professional learning platforms.
+                                Verified certifications and specialized
+                                coursework completed across leading global
+                                education, research and professional
+                                learning platforms.
                             </p>
 
                         </header>
-                        
+
                         <div class="cards-grid">
 
                             ${moocs.categories.map((cat) => {
@@ -136,25 +152,18 @@ class MoocsPage extends Component {
                                 return `
                                     <div
                                         class="card fade-in"
-
                                         onclick="
                                             navigateTo(
                                                 '#/moocs/${cat.id}'
                                             )
                                         "
-
                                         style="
-                                            --accent-color:
-                                                ${brand.primary};
-
-                                            --badge-bg:
-                                                ${brand.bg};
-
-                                            --badge-text:
-                                                ${brand.text};
+                                            --accent-color:${brand.primary};
+                                            --badge-bg:${brand.bg};
+                                            --badge-text:${brand.text};
                                         "
                                     >
-                                         
+
                                         <div class="card-header-row">
 
                                             <div class="card-logo-wrapper">
@@ -164,6 +173,10 @@ class MoocsPage extends Component {
                                                     alt="${cat.name} logo"
                                                     class="brand-logo"
                                                     loading="lazy"
+                                                    onerror="
+                                                        this.style.display='none';
+                                                        this.parentElement.innerHTML='<i class=\\'fas fa-certificate\\' style=\\'font-size:1.4rem;color:${brand.primary}\\'></i>';
+                                                    "
                                                 >
 
                                             </div>
@@ -181,23 +194,18 @@ class MoocsPage extends Component {
                                             </div>
 
                                         </div>
-                                        
+
                                         <p class="card-description">
                                             ${cat.description}
                                         </p>
-                                        
+
                                         <div class="card-link">
 
                                             <span>
                                                 Explore Certifications
                                             </span>
 
-                                            <i
-                                                class="
-                                                    fas
-                                                    fa-arrow-right
-                                                "
-                                            ></i>
+                                            <i class="fas fa-arrow-right"></i>
 
                                         </div>
 
@@ -209,6 +217,7 @@ class MoocsPage extends Component {
                         </div>
 
                     </section>
+
                 </div>
             `;
         }
@@ -225,7 +234,10 @@ class MoocsPage extends Component {
         const currentVendor =
             moocs.categories[categoryIndex];
 
-        // Category does not exist
+        // =========================================================
+        // CATEGORY NOT FOUND
+        // =========================================================
+
         if (!currentVendor) {
 
             return `
@@ -233,11 +245,7 @@ class MoocsPage extends Component {
 
                     <section class="fade-in">
 
-                        <h2
-                            style="
-                                margin-bottom:1rem;
-                            "
-                        >
+                        <h2 style="margin-bottom:1rem;">
                             Category Not Found
                         </h2>
 
@@ -258,11 +266,13 @@ class MoocsPage extends Component {
             brandProfiles[currentVendor.id] ||
             fallbackBrand;
 
-        // Find all certificates belonging to this platform
+        // =========================================================
+        // GET CERTIFICATES
+        // =========================================================
+
         const vendorCertificates =
             moocs.moocCertifications.filter(
-                cert =>
-                    cert.vendor === vendorParam
+                cert => cert.vendor === vendorParam
             );
 
         return `
@@ -270,18 +280,12 @@ class MoocsPage extends Component {
 
                 <section class="fade-in">
 
-                    <div
-                        style="
-                            margin-bottom:2rem;
-                        "
-                    >
+                    <div style="margin-bottom:2rem;">
 
                         <a
                             href="#/moocs"
                             class="btn btn-outline"
-                            style="
-                                margin-bottom:1.5rem;
-                            "
+                            style="margin-bottom:1.5rem;"
                         >
 
                             <i class="fas fa-arrow-left"></i>
@@ -310,16 +314,10 @@ class MoocsPage extends Component {
 
                             <div
                                 class="card"
-
                                 style="
-                                    --accent-color:
-                                        ${brand.primary};
-
-                                    --badge-bg:
-                                        ${brand.bg};
-
-                                    --badge-text:
-                                        ${brand.text};
+                                    --accent-color:${brand.primary};
+                                    --badge-bg:${brand.bg};
+                                    --badge-text:${brand.text};
                                 "
                             >
 
@@ -332,7 +330,7 @@ class MoocsPage extends Component {
                                 >
                                     ${cert.name}
                                 </h3>
-                                
+
                                 <div class="meta-panel">
 
                                     <div class="meta-row">
@@ -378,7 +376,7 @@ class MoocsPage extends Component {
                                     }
 
                                 </div>
-                                
+
                                 <div
                                     style="
                                         margin-top:auto;
@@ -395,12 +393,17 @@ class MoocsPage extends Component {
                                         style="flex:1;"
                                     >
 
-                                        <i class="fas fa-file-pdf"></i>
+                                        <i
+                                            class="
+                                                fas
+                                                fa-certificate
+                                            "
+                                        ></i>
 
                                         Certificate
 
                                     </a>
-                                    
+
                                     ${
                                         cert.verifyUrl
                                         ? `
