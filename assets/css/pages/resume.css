@@ -105,7 +105,42 @@
 
     overflow: hidden;
 
+    padding: 12px;
+
+    box-sizing: border-box;
+
     background: #e5e7eb;
+}
+
+
+/* ============================================================
+   COMPLETE A4 PORTRAIT PDF PAGE
+============================================================ */
+
+.resume-canvas {
+    display: block;
+
+    width: auto;
+    height: auto;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    /* A4 portrait ratio */
+    aspect-ratio: 210 / 297;
+
+    object-fit: contain;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.20);
+
+    user-select: none;
+
+    -webkit-user-select: none;
+
+    -webkit-user-drag: none;
 }
 
 
