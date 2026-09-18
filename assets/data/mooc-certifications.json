@@ -363,6 +363,7 @@
         "verifyUrl": "",
         "date": "25 July 2026"
     },
+    
     {
         "id": 37,
         "vendor": "isro-iirs",
@@ -372,22 +373,24 @@
         "verifyUrl": "https://isrolms.iirs.gov.in/mod/customcert/verify_certificate.php",
         "date": "03–14 August 2026"
     },
+    
     {
         "id": 38,
         "vendor": "kaggle",
         "issuer": "Kaggle",
         "name": "Kaggle Community Member",
         "certificatePath": "certificates/moocs/Kaggle/Kaggle Community Member.png",
-        "verifyUrl": "",
+        "verifyUrl": "https://www.kaggle.com/certification/badges/gajavadasanjeevkumar/101",
         "date": "10 March 2026"
     },
+    
     {
         "id": 39,
         "vendor": "kaggle",
         "issuer": "Kaggle",
         "name": "Python Coder",
         "certificatePath": "certificates/moocs/Kaggle/Python Coder.png",
-        "verifyUrl": "",
+        "verifyUrl": "https://www.kaggle.com/certification/badges/gajavadasanjeevkumar/30",
         "date": "26 June 2026"
     }
   ]
