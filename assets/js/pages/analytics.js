@@ -4,21 +4,23 @@
 
 class AnalyticsDashboard extends Component {
 
-
     // =========================================================
     // RENDER
     // =========================================================
 
     async render() {
 
-
         // -----------------------------------------------------
-        // LOAD DATA
+        // Load Professional Engagements / Certifications
         // -----------------------------------------------------
 
         this.certs =
             await DataManager.getEngagements();
 
+
+        // -----------------------------------------------------
+        // Load MOOCs separately
+        // -----------------------------------------------------
 
         this.moocs =
             await DataManager.getMOOCs();
@@ -26,6 +28,12 @@ class AnalyticsDashboard extends Component {
 
         // -----------------------------------------------------
         // PROFESSIONAL CERTIFICATES
+        //
+        // IMPORTANT:
+        // This is the TOTAL shown as
+        // "Professional Engagements & Certifications".
+        //
+        // MOOCs are NOT included here.
         // -----------------------------------------------------
 
         const professionalCertificates =
@@ -36,14 +44,12 @@ class AnalyticsDashboard extends Component {
                 : [];
 
 
+        const professionalCount =
+            professionalCertificates.length;
+
+
         // -----------------------------------------------------
         // MOOC CERTIFICATES
-        //
-        // This automatically includes every certificate
-        // present in moocCertifications.
-        //
-        // Therefore Elsevier, Kaggle, ISRO-IIRS, etc.
-        // are counted automatically.
         // -----------------------------------------------------
 
         const moocCertificates =
@@ -54,25 +60,17 @@ class AnalyticsDashboard extends Component {
                 : [];
 
 
-        // -----------------------------------------------------
-        // EXACT COUNTS
-        // -----------------------------------------------------
-
-        const professionalCount =
-            professionalCertificates.length;
-
-
         const moocCount =
             moocCertificates.length;
 
 
-        const totalCount =
-            professionalCount +
-            moocCount;
-
-
         // -----------------------------------------------------
         // CATEGORY COUNTS
+        //
+        // ONLY PROFESSIONAL ENGAGEMENTS/CERTIFICATIONS
+        // are included here.
+        //
+        // MOOCs are deliberately NOT added as a category.
         // -----------------------------------------------------
 
         this.certsByCategory = {};
@@ -102,21 +100,8 @@ class AnalyticsDashboard extends Component {
         }
 
 
-        // -----------------------------------------------------
-        // MOOC CATEGORY
-        // -----------------------------------------------------
-
-        if (moocCount > 0) {
-
-            this.certsByCategory[
-                "MOOC Certifications"
-            ] = moocCount;
-
-        }
-
-
         // =====================================================
-        // RETURN PAGE
+        // PAGE
         // =====================================================
 
         return `
@@ -142,7 +127,7 @@ class AnalyticsDashboard extends Component {
 
                 <i class="fas fa-chart-pie"></i>
 
-                Certificate Distribution
+                Professional Certificate Distribution
 
             </h3>
 
@@ -152,9 +137,7 @@ class AnalyticsDashboard extends Component {
                 style="height:350px;"
             >
 
-                <canvas
-                    id="certChart"
-                ></canvas>
+                <canvas id="certChart"></canvas>
 
             </div>
 
@@ -171,7 +154,7 @@ class AnalyticsDashboard extends Component {
 
                 <i class="fas fa-chart-bar"></i>
 
-                Certificates by Category
+                Professional Certificates by Category
 
             </h3>
 
@@ -181,9 +164,7 @@ class AnalyticsDashboard extends Component {
                 style="height:350px;"
             >
 
-                <canvas
-                    id="categoryChart"
-                ></canvas>
+                <canvas id="categoryChart"></canvas>
 
             </div>
 
@@ -210,9 +191,7 @@ class AnalyticsDashboard extends Component {
                 style="height:350px;"
             >
 
-                <canvas
-                    id="growthChart"
-                ></canvas>
+                <canvas id="growthChart"></canvas>
 
             </div>
 
@@ -238,27 +217,27 @@ class AnalyticsDashboard extends Component {
 
 
                 <!-- =========================================
-                     TOTAL CERTIFICATIONS
+                     PROFESSIONAL ENGAGEMENTS & CERTIFICATIONS
                 ========================================== -->
 
                 <div class="metric-box">
 
                     <i
-                        class="fas fa-certificate
-                               metric-icon blue"
+                        class="fas fa-certificate metric-icon blue"
                     ></i>
 
 
                     <div class="metric-number blue">
 
-                        ${totalCount}+
+                        ${professionalCount}+
 
                     </div>
 
 
                     <div class="metric-title">
 
-                        Total Certifications
+                        Professional Engagements<br>
+                        & Certifications
 
                     </div>
 
@@ -272,8 +251,7 @@ class AnalyticsDashboard extends Component {
                 <div class="metric-box">
 
                     <i
-                        class="fas fa-chalkboard-teacher
-                               metric-icon green"
+                        class="fas fa-chalkboard-teacher metric-icon green"
                     ></i>
 
 
@@ -300,8 +278,7 @@ class AnalyticsDashboard extends Component {
                 <div class="metric-box">
 
                     <i
-                        class="fas fa-laptop-code
-                               metric-icon purple"
+                        class="fas fa-laptop-code metric-icon purple"
                     ></i>
 
 
@@ -328,8 +305,7 @@ class AnalyticsDashboard extends Component {
                 <div class="metric-box">
 
                     <i
-                        class="fas fa-heart
-                               metric-icon red"
+                        class="fas fa-heart metric-icon red"
                     ></i>
 
 
@@ -381,7 +357,6 @@ class AnalyticsDashboard extends Component {
 
     drawCharts() {
 
-
         if (
             typeof Chart === "undefined"
         ) {
@@ -396,7 +371,7 @@ class AnalyticsDashboard extends Component {
 
 
         // -----------------------------------------------------
-        // CATEGORY DATA
+        // PROFESSIONAL CATEGORY DATA ONLY
         // -----------------------------------------------------
 
         const labels =
@@ -412,7 +387,7 @@ class AnalyticsDashboard extends Component {
 
 
         // =====================================================
-        // DOUGHNUT
+        // DOUGHNUT CHART
         // =====================================================
 
         const pie =
@@ -443,21 +418,13 @@ class AnalyticsDashboard extends Component {
                             backgroundColor: [
 
                                 "#3498db",
-
                                 "#2ecc71",
-
                                 "#e74c3c",
-
                                 "#f39c12",
-
                                 "#9b59b6",
-
                                 "#1abc9c",
-
                                 "#6366f1",
-
                                 "#f97316",
-
                                 "#14b8a6"
 
                             ],
@@ -523,7 +490,7 @@ class AnalyticsDashboard extends Component {
                         datasets: [{
 
                             label:
-                                "Certificates",
+                                "Professional Certifications",
 
 
                             data:
@@ -572,52 +539,15 @@ class AnalyticsDashboard extends Component {
 
         // =====================================================
         // PROFESSIONAL GROWTH
+        //
+        // IMPORTANT:
+        // MOOCs are NOT included.
         // =====================================================
 
         const years = {};
 
 
-        // -----------------------------------------------------
-        // Professional certificates
-        // -----------------------------------------------------
-
         this.certs.certificates.forEach(
-            certificate => {
-
-                const date =
-                    certificate.startDate;
-
-
-                if (!date) {
-
-                    return;
-
-                }
-
-
-                const year =
-                    this.extractYear(date);
-
-
-                if (!year) {
-
-                    return;
-
-                }
-
-
-                years[year] =
-                    (years[year] || 0) + 1;
-
-            }
-        );
-
-
-        // -----------------------------------------------------
-        // MOOC certificates
-        // -----------------------------------------------------
-
-        this.moocs.moocCertifications.forEach(
             certificate => {
 
                 const date =
@@ -663,7 +593,7 @@ class AnalyticsDashboard extends Component {
 
 
         // -----------------------------------------------------
-        // Cumulative count
+        // Cumulative professional certificates
         // -----------------------------------------------------
 
         let cumulative = 0;
@@ -710,7 +640,7 @@ class AnalyticsDashboard extends Component {
                         datasets: [{
 
                             label:
-                                "Total Certifications",
+                                "Professional Certifications",
 
 
                             data:
