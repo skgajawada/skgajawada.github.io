@@ -1,28 +1,22 @@
 /* ============================================================
    RESUME VIEWER
-   Same interaction model as PPT viewer
+   PPT-STYLE SINGLE PAGE PDF VIEWER
    Portrait PDF page
 ============================================================ */
 
-
 .resume-viewer-page {
-
     width: 100%;
-
     height: calc(100vh - 80px);
-
     min-height: 600px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     padding: 15px;
+    box-sizing: border-box;
 
     background: #f1f3f5;
-
 }
 
 
@@ -31,31 +25,19 @@
 ============================================================ */
 
 .resume-presentation {
-
-    width: min(
-        1200px,
-        96vw
-    );
-
-    height: min(
-        90vh,
-        850px
-    );
+    width: min(1200px, 96vw);
+    height: min(90vh, 850px);
 
     display: flex;
-
     flex-direction: column;
 
     background: #05070b;
 
     border-radius: 16px;
-
     overflow: hidden;
 
     box-shadow:
-        0 20px 55px
-        rgba(0, 0, 0, 0.22);
-
+        0 20px 55px rgba(0, 0, 0, 0.22);
 }
 
 
@@ -64,9 +46,8 @@
 ============================================================ */
 
 .resume-topbar {
-
     height: 56px;
-
+    min-height: 56px;
     flex-shrink: 0;
 
     display: grid;
@@ -78,17 +59,14 @@
 
     align-items: center;
 
-    padding:
-        0 25px;
+    padding: 0 25px;
+    box-sizing: border-box;
 
     background: #05070b;
-
     color: #f8fafc;
 
     font-size: 0.9rem;
-
     font-weight: 600;
-
 }
 
 
@@ -103,124 +81,107 @@
 
 
 .resume-topbar-right {
-
     text-align: right;
 
     color: #cbd5e1;
 
     font-size: 0.78rem;
-
 }
 
 
 /* ============================================================
-   PAGE STAGE
+   PDF PAGE STAGE
 ============================================================ */
 
 .resume-stage {
-
     position: relative;
 
     flex: 1;
-
     min-height: 0;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     overflow: hidden;
 
     background: #e5e7eb;
-
 }
 
 
 /* ============================================================
-   PORTRAIT RESUME PAGE
-============================================================ */
-
-.resume-canvas {
-
-    display: block;
-
-    width: auto;
-
-    height: auto;
-
-    max-width: calc(100% - 70px);
-
-    max-height: calc(100% - 45px);
-
-    background: #ffffff;
-
-    box-shadow:
-        0 8px 25px
-        rgba(0, 0, 0, 0.20);
-
-    user-select: none;
-
-    -webkit-user-select: none;
-
-    -webkit-user-drag: none;
-
-}
-
-
-/* ============================================================
-   LOADING
+   LOADING MESSAGE
 ============================================================ */
 
 .resume-loading {
-
     position: absolute;
 
     inset: 0;
 
-    display: flex;
+    z-index: 5;
 
+    display: flex;
     flex-direction: column;
 
     align-items: center;
-
     justify-content: center;
 
     gap: 12px;
 
     color: #475569;
 
+    background: #e5e7eb;
 }
 
 
 .resume-loading i {
-
     font-size: 1.6rem;
-
 }
 
 
 /* ============================================================
-   BOTTOM CONTROLS
+   PORTRAIT RESUME CANVAS
+============================================================ */
+
+.resume-canvas {
+    display: block;
+
+    width: auto;
+    height: auto;
+
+    max-width: calc(100% - 70px);
+    max-height: calc(100% - 45px);
+
+    background: #ffffff;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.20);
+
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+
+    pointer-events: auto;
+}
+
+
+/* ============================================================
+   BOTTOM PPT-STYLE CONTROLS
 ============================================================ */
 
 .resume-controls {
-
     height: 58px;
-
+    min-height: 58px;
     flex-shrink: 0;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     gap: 7px;
 
     background: #05070b;
-
 }
 
 
@@ -229,23 +190,21 @@
 ============================================================ */
 
 .resume-control-btn {
-
     width: 40px;
-
     height: 40px;
 
+    flex-shrink: 0;
+
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
-    border: none;
+    padding: 0;
 
+    border: none;
     border-radius: 7px;
 
     background: #1f2937;
-
     color: #e2e8f0;
 
     cursor: pointer;
@@ -254,29 +213,42 @@
 
     transition:
         background 0.2s ease,
-        transform 0.15s ease;
-
+        transform 0.15s ease,
+        opacity 0.2s ease;
 }
 
 
 .resume-control-btn:hover {
-
     background: #374151;
 
     transform:
         translateY(-1px);
+}
 
+
+.resume-control-btn:active {
+    transform: translateY(0);
 }
 
 
 .resume-control-btn:disabled {
-
     opacity: 0.30;
 
     cursor: default;
 
     transform: none;
+}
 
+
+/* ============================================================
+   CONTROL ICON
+   Scoped only to resume viewer
+============================================================ */
+
+.resume-control-btn i,
+.resume-control-btn svg {
+    font-size: 0.9rem;
+    line-height: 1;
 }
 
 
@@ -285,23 +257,19 @@
 ============================================================ */
 
 .resume-page-number {
-
     min-width: 70px;
-
     height: 40px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     color: #f8fafc;
 
     font-size: 0.84rem;
-
     font-weight: 600;
 
+    user-select: none;
 }
 
 
@@ -310,15 +278,27 @@
 ============================================================ */
 
 .resume-presentation:fullscreen {
-
     width: 100vw;
-
     height: 100vh;
 
     max-width: none;
 
     border-radius: 0;
+}
 
+
+/* ============================================================
+   FULLSCREEN STAGE
+============================================================ */
+
+.resume-presentation:fullscreen .resume-stage {
+    background: #111827;
+}
+
+
+.resume-presentation:fullscreen .resume-canvas {
+    max-width: calc(100% - 100px);
+    max-height: calc(100% - 60px);
 }
 
 
@@ -329,88 +309,135 @@
 @media (max-width: 700px) {
 
     .resume-viewer-page {
+        width: 100%;
 
         height: calc(100vh - 65px);
 
         min-height: 500px;
 
         padding: 6px;
-
     }
 
 
     .resume-presentation {
-
         width: 100%;
-
         height: calc(100vh - 80px);
 
         border-radius: 9px;
-
     }
 
 
     .resume-topbar {
-
         height: 46px;
+        min-height: 46px;
 
-        padding:
-            0 10px;
+        padding: 0 10px;
 
-        font-size:
-            0.70rem;
-
+        font-size: 0.70rem;
     }
 
 
     .resume-topbar-right {
+        font-size: 0.62rem;
+    }
 
-        font-size:
-            0.62rem;
 
+    .resume-stage {
+        padding: 5px;
     }
 
 
     .resume-canvas {
-
-        max-width:
-            calc(100% - 20px);
-
-        max-height:
-            calc(100% - 20px);
-
+        max-width: calc(100% - 20px);
+        max-height: calc(100% - 20px);
     }
 
 
     .resume-controls {
-
         height: 50px;
+        min-height: 50px;
 
         gap: 4px;
-
     }
 
 
     .resume-control-btn {
-
         width: 35px;
-
         height: 35px;
 
-        font-size:
-            0.72rem;
+        font-size: 0.72rem;
+    }
 
+
+    .resume-control-btn i,
+    .resume-control-btn svg {
+        font-size: 0.75rem;
     }
 
 
     .resume-page-number {
+        min-width: 55px;
 
-        min-width:
-            55px;
+        font-size: 0.72rem;
+    }
+}
 
-        font-size:
-            0.72rem;
 
+/* ============================================================
+   VERY SMALL SCREENS
+============================================================ */
+
+@media (max-width: 420px) {
+
+    .resume-topbar {
+        grid-template-columns:
+            1fr
+            1fr
+            1fr;
+
+        padding: 0 7px;
+
+        font-size: 0.62rem;
     }
 
+
+    .resume-topbar-right {
+        font-size: 0.56rem;
+    }
+
+
+    .resume-control-btn {
+        width: 32px;
+        height: 32px;
+    }
+
+
+    .resume-page-number {
+        min-width: 48px;
+    }
+}
+
+
+/* ============================================================
+   PRINT
+   Prevent resume viewer controls from being printed
+============================================================ */
+
+@media print {
+
+    .resume-controls,
+    .resume-topbar {
+        display: none !important;
+    }
+
+
+    .resume-viewer-page,
+    .resume-presentation,
+    .resume-stage {
+        width: 100%;
+        height: auto;
+
+        background: #ffffff;
+        box-shadow: none;
+    }
 }
