@@ -4,45 +4,58 @@
 
 class AnalyticsDashboard extends Component {
 
+
     // =========================================================
     // RENDER
     // =========================================================
 
     async render() {
 
+
         // -----------------------------------------------------
-        // Load data
+        // LOAD DATA
         // -----------------------------------------------------
 
         this.certs =
             await DataManager.getEngagements();
+
 
         this.moocs =
             await DataManager.getMOOCs();
 
 
         // -----------------------------------------------------
-        // Professional Development Certificates
+        // PROFESSIONAL CERTIFICATES
         // -----------------------------------------------------
 
         const professionalCertificates =
-            this.certs?.certificates || [];
+            Array.isArray(
+                this.certs?.certificates
+            )
+                ? this.certs.certificates
+                : [];
 
 
         // -----------------------------------------------------
-        // MOOC Certificates
+        // MOOC CERTIFICATES
         //
-        // This includes all certificates present in
-        // moocCertifications, including Elsevier, Kaggle,
-        // ISRO-IIRS, etc.
+        // This automatically includes every certificate
+        // present in moocCertifications.
+        //
+        // Therefore Elsevier, Kaggle, ISRO-IIRS, etc.
+        // are counted automatically.
         // -----------------------------------------------------
 
         const moocCertificates =
-            this.moocs?.moocCertifications || [];
+            Array.isArray(
+                this.moocs?.moocCertifications
+            )
+                ? this.moocs.moocCertifications
+                : [];
 
 
         // -----------------------------------------------------
-        // COUNTS
+        // EXACT COUNTS
         // -----------------------------------------------------
 
         const professionalCount =
@@ -54,37 +67,43 @@ class AnalyticsDashboard extends Component {
 
 
         const totalCount =
-            professionalCount + moocCount;
+            professionalCount +
+            moocCount;
 
 
         // -----------------------------------------------------
-        // Category counts
+        // CATEGORY COUNTS
         // -----------------------------------------------------
 
         this.certsByCategory = {};
 
 
-        if (this.certs?.categories) {
+        if (
+            Array.isArray(
+                this.certs?.categories
+            )
+        ) {
 
-            this.certs.categories.forEach(cat => {
+            this.certs.categories.forEach(
+                category => {
 
-                this.certsByCategory[cat.name] =
-                    professionalCertificates.filter(
-                        certificate =>
-                            certificate.category === cat.id
-                    ).length;
+                    this.certsByCategory[
+                        category.name
+                    ] =
+                        professionalCertificates.filter(
+                            certificate =>
+                                certificate.category ===
+                                category.id
+                        ).length;
 
-            });
+                }
+            );
 
         }
 
 
         // -----------------------------------------------------
-        // Add MOOC category
-        //
-        // IMPORTANT:
-        // MOOC is added here ONLY for chart distribution.
-        // It is NOT added again to professionalCount.
+        // MOOC CATEGORY
         // -----------------------------------------------------
 
         if (moocCount > 0) {
@@ -96,40 +115,19 @@ class AnalyticsDashboard extends Component {
         }
 
 
-        // -----------------------------------------------------
-        // Rounded display values
-        // -----------------------------------------------------
-
-        const roundedTotal =
-            DataManager.getRoundedCount(
-                totalCount,
-                100
-            );
-
-
-        const roundedMoocs =
-            DataManager.getRoundedCount(
-                moocCount,
-                10
-            );
-
-
         // =====================================================
-        // PAGE
+        // RETURN PAGE
         // =====================================================
 
         return `
 
 <section class="fade-in">
 
+
     <h1 class="section-title">
         Analytics Dashboard
     </h1>
 
-
-    <!-- =====================================================
-         DASHBOARD GRID
-    ====================================================== -->
 
     <div class="dashboard-grid">
 
@@ -154,7 +152,9 @@ class AnalyticsDashboard extends Component {
                 style="height:350px;"
             >
 
-                <canvas id="certChart"></canvas>
+                <canvas
+                    id="certChart"
+                ></canvas>
 
             </div>
 
@@ -181,7 +181,9 @@ class AnalyticsDashboard extends Component {
                 style="height:350px;"
             >
 
-                <canvas id="categoryChart"></canvas>
+                <canvas
+                    id="categoryChart"
+                ></canvas>
 
             </div>
 
@@ -208,7 +210,9 @@ class AnalyticsDashboard extends Component {
                 style="height:350px;"
             >
 
-                <canvas id="growthChart"></canvas>
+                <canvas
+                    id="growthChart"
+                ></canvas>
 
             </div>
 
@@ -247,7 +251,7 @@ class AnalyticsDashboard extends Component {
 
                     <div class="metric-number blue">
 
-                        ${roundedTotal}+
+                        ${totalCount}+
 
                     </div>
 
@@ -303,7 +307,7 @@ class AnalyticsDashboard extends Component {
 
                     <div class="metric-number purple">
 
-                        ${roundedMoocs}+
+                        ${moocCount}+
 
                     </div>
 
@@ -377,7 +381,10 @@ class AnalyticsDashboard extends Component {
 
     drawCharts() {
 
-        if (typeof Chart === "undefined") {
+
+        if (
+            typeof Chart === "undefined"
+        ) {
 
             return;
 
@@ -405,7 +412,7 @@ class AnalyticsDashboard extends Component {
 
 
         // =====================================================
-        // DOUGHNUT CHART
+        // DOUGHNUT
         // =====================================================
 
         const pie =
@@ -436,13 +443,21 @@ class AnalyticsDashboard extends Component {
                             backgroundColor: [
 
                                 "#3498db",
+
                                 "#2ecc71",
+
                                 "#e74c3c",
+
                                 "#f39c12",
+
                                 "#9b59b6",
+
                                 "#1abc9c",
+
                                 "#6366f1",
+
                                 "#f97316",
+
                                 "#14b8a6"
 
                             ],
@@ -510,8 +525,10 @@ class AnalyticsDashboard extends Component {
                             label:
                                 "Certificates",
 
+
                             data:
                                 values,
+
 
                             backgroundColor:
                                 "#2563eb"
@@ -567,24 +584,19 @@ class AnalyticsDashboard extends Component {
         this.certs.certificates.forEach(
             certificate => {
 
-                let year = "";
+                const date =
+                    certificate.startDate;
 
 
-                if (
-                    certificate.startDate
-                ) {
+                if (!date) {
 
-                    const parts =
-                        certificate.startDate
-                            .split("-");
-
-
-                    year =
-                        parts[
-                            parts.length - 1
-                        ];
+                    return;
 
                 }
+
+
+                const year =
+                    this.extractYear(date);
 
 
                 if (!year) {
@@ -608,24 +620,19 @@ class AnalyticsDashboard extends Component {
         this.moocs.moocCertifications.forEach(
             certificate => {
 
-                let year = "";
+                const date =
+                    certificate.startDate;
 
 
-                if (
-                    certificate.startDate
-                ) {
+                if (!date) {
 
-                    const parts =
-                        certificate.startDate
-                            .split("-");
-
-
-                    year =
-                        parts[
-                            parts.length - 1
-                        ];
+                    return;
 
                 }
+
+
+                const year =
+                    this.extractYear(date);
 
 
                 if (!year) {
@@ -650,12 +657,13 @@ class AnalyticsDashboard extends Component {
             Object.keys(years)
                 .sort(
                     (a, b) =>
-                        Number(a) - Number(b)
+                        Number(a) -
+                        Number(b)
                 );
 
 
         // -----------------------------------------------------
-        // Cumulative growth
+        // Cumulative count
         // -----------------------------------------------------
 
         let cumulative = 0;
@@ -703,6 +711,7 @@ class AnalyticsDashboard extends Component {
 
                             label:
                                 "Total Certifications",
+
 
                             data:
                                 growth,
@@ -757,6 +766,33 @@ class AnalyticsDashboard extends Component {
             );
 
         }
+
+    }
+
+
+    // =========================================================
+    // EXTRACT YEAR
+    // =========================================================
+
+    extractYear(dateValue) {
+
+        if (!dateValue) {
+
+            return "";
+
+        }
+
+
+        const match =
+            String(dateValue)
+                .match(
+                    /\b(19|20)\d{2}\b/
+                );
+
+
+        return match
+            ? match[0]
+            : "";
 
     }
 
