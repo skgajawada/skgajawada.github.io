@@ -1,7 +1,11 @@
 /* ==========================================================
    HOME
 ========================================================== */
-/* Hero Section */
+
+/* ==========================================================
+   HERO SECTION
+========================================================== */
+
 .hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -17,6 +21,8 @@
 
 .hero-image {
     grid-area: image;
+    position: relative;
+    height: 500px;
 }
 
 .hero-content h1 {
@@ -50,6 +56,11 @@
     color: var(--text-light);
     margin-bottom: 1.5rem;
 }
+
+
+/* ==========================================================
+   BUTTONS
+========================================================== */
 
 .btn {
     padding: 0.8rem 2rem;
@@ -98,25 +109,131 @@
     color: white;
 }
 
-.hero-image {
-    position: relative;
-    height: 500px;
-}
+
+/* ==========================================================
+   PROFILE IMAGE
+========================================================== */
 
 .profile-image {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 24px;
     box-shadow: var(--shadow-lg);
     transition: transform 0.4s ease;
+
+    /* Prevent image dragging */
+    -webkit-user-drag: none;
+    user-drag: none;
 }
 
 .profile-image:hover {
     transform: scale(1.02);
 }
 
-/* Statistics Section */
+
+/* ==========================================================
+   MOBILE HERO
+========================================================== */
+
+@media (max-width: 768px) {
+
+    .hero {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "image"
+            "content";
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .hero-image {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .profile-image {
+        width: 100%;
+        max-width: 380px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        margin: 0 auto;
+        border-radius: 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-content .subtitle {
+        font-size: 1.1rem;
+    }
+
+    .hero-content .description {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width: 480px) {
+
+    .hero {
+        gap: 1.5rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .hero-image {
+        width: 100%;
+        height: auto;
+    }
+
+    .profile-image {
+        width: 90%;
+        max-width: 320px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        border-radius: 18px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-content .subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-content .description {
+        font-size: 0.9rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+
+/* ==========================================================
+   STATISTICS SECTION
+========================================================== */
+
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -151,5 +268,3 @@
     color: var(--text-light);
     text-transform: uppercase;
 }
-
-
