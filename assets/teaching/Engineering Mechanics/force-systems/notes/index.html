@@ -23,10 +23,10 @@
          ========================================================= -->
 
     <link rel="stylesheet"
-          href="../../assets/css/style.css">
+          href="https://skgajawada.github.io/assets/css/style.css">
 
     <link rel="stylesheet"
-          href="../../assets/css/animations.css">
+          href="https://skgajawada.github.io/assets/css/animations.css">
 
 
     <!-- =========================================================
@@ -1629,67 +1629,450 @@
             }
         }
 
-    </style>
+    
 
+/* Portfolio course footer shell */
+.course-footer { background:#101d43; color:rgba(255,255,255,.75); padding:55px 20px 25px; }
+.course-footer .container { width:min(1180px,100%); margin:0 auto; }
+.course-footer .footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; }
+.course-footer .footer-column h3 { margin:0 0 13px; color:#fff; font-size:1rem; }
+.course-footer .footer-column p { margin:0; max-width:290px; font-size:.88rem; line-height:1.7; }
+.course-footer .footer-column ul { margin:0; padding:0; list-style:none; }
+.course-footer .footer-column li { margin-bottom:7px; }
+.course-footer .footer-column a { color:rgba(255,255,255,.75); text-decoration:none; font-size:.87rem; transition:color .2s ease; }
+.course-footer .footer-column a:hover { color:#fff; }
+.course-footer .social-icons { display:flex; align-items:center; gap:10px; }
+.course-footer .social-icons a { display:inline-flex; width:35px; height:35px; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,.16); border-radius:9px; background:rgba(255,255,255,.06); }
+.course-footer hr { margin:34px 0 18px; border:0; border-top:1px solid rgba(255,255,255,.13); }
+.course-footer .footer-bottom { display:flex; align-items:center; justify-content:space-between; gap:20px; color:rgba(255,255,255,.58); font-size:.78rem; }
+.course-footer .footer-bottom p { margin:0; }
+.course-footer .footer-bottom strong { color:rgba(255,255,255,.82); }
+.course-footer .footer-nav-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:24px; row-gap:4px; }
+.course-footer .footer-nav-list li { margin-bottom:0; }
+.course-footer .footer-nav-list a { display:inline-flex; align-items:center; min-height:30px; font-size:.91rem; font-weight:500; }
+.course-footer .footer-nav-list a.footer-contact-link { color:#fff; font-weight:700; }
+.course-footer .footer-topic-list a { font-size:.91rem; font-weight:500; }
+@media(max-width:900px){.course-footer .footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px;}}
+@media(max-width:600px){.course-footer .footer-grid{grid-template-columns:1fr;}.course-footer .footer-nav-list{grid-template-columns:1fr;}.course-footer .footer-bottom{flex-direction:column;align-items:flex-start;gap:8px;}}
+
+/* =======================================================
+   MOBILE HAMBURGER MENU — FINAL FIX
+   The actual page header uses .navbar / .nav-container /
+   .nav-menu / .hamburger. Keep it above the sticky page tabs.
+   ======================================================= */
+@media (max-width: 800px) {
+
+    /* Keep the entire header above the Engineering Graphics tabs. */
+    .navbar {
+        position: relative !important;
+        z-index: 2000 !important;
+    }
+
+    .nav-container {
+        position: relative !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        width: 100%;
+    }
+
+    /* Three horizontal lines — always visible on mobile. */
+    .hamburger {
+        display: flex !important;
+        flex: 0 0 42px !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 5px !important;
+        width: 42px !important;
+        height: 42px !important;
+        margin-left: auto !important;
+        padding: 7px !important;
+        border: 0 !important;
+        outline: 0 !important;
+        background: transparent !important;
+        color: #29313f !important;
+        cursor: pointer !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        z-index: 2100 !important;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .hamburger span {
+        display: block !important;
+        width: 25px !important;
+        height: 3px !important;
+        margin: 0 !important;
+        border-radius: 3px !important;
+        background: #29313f !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transition: transform .25s ease, opacity .2s ease;
+    }
+
+    /* Mobile dropdown. It is attached to the header, not the page tabs. */
+    .nav-menu {
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        display: none !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        max-height: calc(100vh - 58px) !important;
+        overflow-y: auto !important;
+        padding: 10px 20px 16px !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+        border-top: 1px solid #e7ebf0 !important;
+        box-shadow: 0 12px 28px rgba(15, 23, 42, .16) !important;
+        z-index: 2050 !important;
+    }
+
+    .nav-menu.active {
+        display: flex !important;
+    }
+
+    .nav-menu li {
+        width: 100% !important;
+        display: block !important;
+    }
+
+    .nav-menu .nav-link {
+        display: flex !important;
+        align-items: center !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 44px !important;
+        padding: 10px 4px !important;
+        font-size: .95rem !important;
+    }
+
+    .nav-menu .nav-link.active::after {
+        bottom: 4px !important;
+    }
+
+    .nav-menu .theme-toggle {
+        margin: 8px 0 2px !important;
+    }
+
+    /* Hamburger → X */
+    .hamburger.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg) !important;
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0 !important;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg) !important;
+    }
+
+    /* Page tabs must stay underneath the open header menu. */
+    .eg-topic-nav {
+        z-index: 100 !important;
+    }
+}
+
+@media (min-width: 801px) {
+    .hamburger {
+        display: none !important;
+    }
+}
+
+
+
+
+/* Engineering Graphics-style footer */
+.course-footer { padding: 52px 20px 22px; background: #101d43; color: rgba(255,255,255,.78); }
+.course-footer .container { width: min(1180px,100%); margin: 0 auto; }
+.footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; }
+.footer-column h3 { margin:0 0 13px; color:#fff; font-size:1rem; }
+.footer-column p { margin:0; max-width:290px; font-size:.88rem; line-height:1.7; }
+.footer-column ul { margin:0; padding:0; list-style:none; }
+.footer-column li { margin-bottom:7px; }
+.footer-column a { color:rgba(255,255,255,.75); text-decoration:none; font-size:.87rem; transition:color .2s ease; }
+.footer-column a:hover { color:#fff; }
+.social-icons { display:flex; align-items:center; gap:10px; }
+.social-icons a { display:inline-flex; width:35px; height:35px; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,.16); border-radius:9px; background:rgba(255,255,255,.06); }
+.course-footer hr { margin:34px 0 18px; border:0; border-top:1px solid rgba(255,255,255,.13); }
+.footer-bottom { display:flex; align-items:center; justify-content:space-between; gap:20px; color:rgba(255,255,255,.58); font-size:.78rem; }
+.footer-bottom p { margin:0; }
+.footer-bottom strong { color:rgba(255,255,255,.82); }
+@media(max-width:900px){ .footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px;} }
+@media(max-width:600px){ .footer-grid{grid-template-columns:1fr;} .footer-bottom{flex-direction:column;align-items:flex-start;gap:8px;} }
+
+/* Same mobile portfolio header/menu treatment as Engineering Graphics */
+@media(max-width:800px){
+ .navbar{position:relative!important;z-index:2000!important;}
+ .nav-container{position:relative!important;display:flex!important;align-items:center!important;justify-content:space-between!important;width:100%;}
+ .hamburger{display:flex!important;flex:0 0 42px!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;gap:5px!important;width:42px!important;height:42px!important;margin-left:auto!important;padding:7px!important;border:0!important;background:transparent!important;color:#29313f!important;cursor:pointer!important;visibility:visible!important;opacity:1!important;position:relative!important;z-index:2100!important;}
+ .hamburger span{display:block!important;width:25px!important;height:3px!important;margin:0!important;border-radius:3px!important;background:#29313f!important;opacity:1!important;visibility:visible!important;}
+ .nav-menu{position:absolute!important;top:100%!important;left:0!important;right:0!important;display:none!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;width:100%!important;height:auto!important;max-height:calc(100vh - 58px)!important;overflow-y:auto!important;padding:10px 20px 16px!important;margin:0!important;background:#fff!important;border-top:1px solid #e7ebf0!important;box-shadow:0 12px 28px rgba(15,23,42,.16)!important;z-index:2050!important;}
+ .nav-menu.active{display:flex!important;}
+ .nav-menu li{width:100%!important;display:block!important;}
+ .nav-menu .nav-link{display:flex!important;align-items:center!important;width:100%!important;height:auto!important;min-height:44px!important;padding:10px 4px!important;font-size:.95rem!important;}
+ .topic-bar{z-index:100!important;}
+}
+@media(min-width:801px){.hamburger{display:none!important;}}
+</style>
+
+<link rel="stylesheet" href="https://skgajawada.github.io/assets/css/dark-mode.css">
+
+<style>
+/* =========================================================
+   FINAL PORTFOLIO HEADER / STICKY NAV / CONTACT FIX
+   Matches the Engineering Graphics page shell.
+   ========================================================= */
+.navbar {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 2000 !important;
+    width: 100% !important;
+    min-height: 76px !important;
+    background: #ffffff !important;
+    border-bottom: 1px solid #e7ebf0 !important;
+    box-shadow: 0 2px 10px rgba(15,23,42,.055) !important;
+}
+.nav-container {
+    width: min(1180px, calc(100% - 40px)) !important;
+    min-height: 76px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 26px !important;
+}
+.nav-logo {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+    color: #2864d7 !important;
+    font-size: 1.08rem !important;
+    font-weight: 800 !important;
+    line-height: 1 !important;
+}
+.nav-logo i { color:#2864d7 !important; }
+.nav-menu {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    flex-wrap: nowrap !important;
+    gap: 21px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+.nav-menu > li {
+    display: flex !important;
+    align-items: center !important;
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.nav-menu .nav-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    min-height: 76px !important;
+    padding: 0 !important;
+    white-space: nowrap !important;
+    font-size: .91rem !important;
+    font-weight: 500 !important;
+    color: #29313f !important;
+}
+.nav-menu .theme-toggle {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 50% !important;
+    background: #f0f3f5 !important;
+    color: #29313f !important;
+    line-height: 1 !important;
+}
+.nav-menu .theme-toggle i {
+    display: inline-block !important;
+    font-size: 1rem !important;
+    line-height: 1 !important;
+}
+.topic-bar {
+    position: sticky !important;
+    top: 76px !important;
+    z-index: 900 !important;
+}
+.toc {
+    position: sticky !important;
+    top: 96px !important;
+}
+
+/* Wide Need Help ribbon above the footer */
+.course-contact-ribbon {
+    padding: 34px 20px !important;
+    background: #f5f7fa !important;
+}
+.course-contact-ribbon .contact-ribbon-inner {
+    width: min(1180px, 100%) !important;
+    margin: 0 auto !important;
+    padding: 26px 30px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 24px !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 16px !important;
+    background: #ffffff !important;
+    box-shadow: 0 10px 28px rgba(15,23,42,.07) !important;
+}
+.course-contact-ribbon .contact-ribbon-copy {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    min-width: 0 !important;
+}
+.course-contact-ribbon .contact-ribbon-icon {
+    width: 50px !important;
+    height: 50px !important;
+    flex: 0 0 50px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 13px !important;
+    background: #fff4e8 !important;
+    color: #f28c28 !important;
+    font-size: 1.2rem !important;
+}
+.course-contact-ribbon h2 {
+    margin: 0 0 3px !important;
+    color: #0b1f3a !important;
+    font-size: 1.22rem !important;
+}
+.course-contact-ribbon p {
+    margin: 0 !important;
+    color: #64748b !important;
+    font-size: .91rem !important;
+}
+.course-contact-ribbon .contact-ribbon-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    flex: 0 0 auto !important;
+    padding: 12px 19px !important;
+    border-radius: 9px !important;
+    background: #0b1f3a !important;
+    color: #ffffff !important;
+    font-size: .9rem !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+}
+
+/* Make Font Awesome icons explicit in the footer. */
+.course-footer .social-icons a i {
+    display: inline-block !important;
+    color: #ffffff !important;
+    font-size: 1rem !important;
+    line-height: 1 !important;
+}
+
+@media (max-width: 1120px) and (min-width: 801px) {
+    .nav-container { width: calc(100% - 28px) !important; gap: 16px !important; }
+    .nav-menu { gap: 13px !important; }
+    .nav-menu .nav-link { font-size: .82rem !important; }
+    .nav-logo { font-size: 1rem !important; }
+    .nav-menu .theme-toggle { width: 38px !important; height: 38px !important; min-width:38px !important; }
+}
+@media (max-width: 800px) {
+    .navbar { min-height: 62px !important; }
+    .nav-container { width: calc(100% - 24px) !important; min-height: 62px !important; }
+    .nav-logo { font-size: 1rem !important; }
+    .nav-menu {
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        display: none !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0 !important;
+        width: 100% !important;
+        padding: 10px 20px 16px !important;
+        background: #ffffff !important;
+        box-shadow: 0 12px 28px rgba(15,23,42,.16) !important;
+    }
+    .nav-menu.active { display: flex !important; }
+    .nav-menu > li { width: 100% !important; display: block !important; }
+    .nav-menu .nav-link { min-height: 44px !important; width:100% !important; }
+    .nav-menu .theme-toggle { margin: 8px 0 2px !important; }
+    .topic-bar { top: 62px !important; }
+    .toc { top: 80px !important; }
+}
+@media (max-width: 520px) {
+    .navbar { min-height: 58px !important; }
+    .nav-container { min-height: 58px !important; }
+    .topic-bar { top: 58px !important; }
+    .course-contact-ribbon .contact-ribbon-inner {
+        padding: 22px 18px !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+    .course-contact-ribbon .contact-ribbon-button { width: 100% !important; }
+}
+</style>
 </head>
 
 
-<body>
+<body class="light-mode">
 
 
 <!-- =========================================================
      NAVIGATION
      ========================================================= -->
 
-<nav class="top-nav">
-
+<nav class="navbar">
     <div class="nav-container">
+        <div class="nav-logo">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Gajavada Sanjeevkumar</span>
+        </div>
 
-        <a href="../../index.html"
-           class="brand">
-
-            Engineering
-            <span>Mechanics</span>
-
-        </a>
-
-
-        <ul class="nav-links">
-
+        <ul class="nav-menu">
+            <li><a href="../../../../#/home" class="nav-link">Home</a></li>
+            <li><a href="../../../../#/about" class="nav-link">About</a></li>
+            <li><a href="../../../../#/experience" class="nav-link">Experience</a></li>
+            <li><a href="../../../../#/teaching" class="nav-link active">Teaching</a></li>
+            <li><a href="../../../../#/education" class="nav-link">Education</a></li>
+            <li><a href="../../../../#/projects" class="nav-link">Projects</a></li>
+            <li><a href="../../../../#/engagements" class="nav-link">Engagements</a></li>
+            <li><a href="../../../../#/moocs" class="nav-link">MOOCs</a></li>
+            <li><a href="../../../../#/skills" class="nav-link">Skills</a></li>
+            <li><a href="../../../../#/contact" class="nav-link">Contact</a></li>
             <li>
-                <a href="../index.html">
-                    Force Systems
-                </a>
+                <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
             </li>
-
-            <li>
-                <a href="#introduction">
-                    Introduction
-                </a>
-            </li>
-
-            <li>
-                <a href="#vectors">
-                    Vectors
-                </a>
-            </li>
-
-            <li>
-                <a href="#resultant">
-                    Resultant
-                </a>
-            </li>
-
-            <li>
-                <a href="#examples">
-                    Examples
-                </a>
-            </li>
-
         </ul>
 
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </div>
-
 </nav>
 
 
@@ -3642,119 +4025,82 @@
 
 
 
-<!-- =========================================================
+<!-- =======================================================
      FOOTER
+     ======================================================= -->
+
+
+
+<!-- =========================================================
+     NEED HELP / CONTACT INSTRUCTOR
      ========================================================= -->
-
-<footer>
-
-    <div class="footer-container">
-
-
-        <div class="footer-column">
-
-            <h3>
-                Engineering Mechanics
-            </h3>
-
-            <p>
-
-                Structured learning resources covering fundamental
-                mechanics concepts, mathematical formulations,
-                interactive visualizations, worked examples and
-                practice material.
-
-            </p>
-
+<section class="course-contact-ribbon" id="contact">
+    <div class="contact-ribbon-inner">
+        <div class="contact-ribbon-copy">
+            <span class="contact-ribbon-icon" aria-hidden="true"><i class="fas fa-envelope-open-text"></i></span>
+            <div>
+                <h2>Need Help?</h2>
+                <p>Questions about Force Systems, worked examples, notes or learning materials?</p>
+            </div>
         </div>
-
-
-        <div class="footer-column">
-
-            <h3>
-                Force Systems
-            </h3>
-
-            <a href="../index.html">
-                Topic Home
-            </a>
-
-            <a href="#introduction">
-                Introduction
-            </a>
-
-            <a href="#vectors">
-                Force Vectors
-            </a>
-
-            <a href="#resultant">
-                Resultant Force
-            </a>
-
-        </div>
-
-
-        <div class="footer-column">
-
-            <h3>
-                Resources
-            </h3>
-
-            <a href="../presentation/">
-                Presentation
-            </a>
-
-            <a href="../animations/">
-                Animations
-            </a>
-
-            <a href="../examples/">
-                Worked Examples
-            </a>
-
-            <a href="../practice/">
-                Practice
-            </a>
-
-        </div>
-
-
-        <div class="footer-column">
-
-            <h3>
-                Engineering Mechanics
-            </h3>
-
-            <a href="../../index.html">
-                Main Page
-            </a>
-
-            <a href="../../moment-of-force/">
-                Moment of Force
-            </a>
-
-            <a href="../../equilibrium/">
-                Equilibrium
-            </a>
-
-            <a href="../../friction/">
-                Friction
-            </a>
-
-        </div>
-
+        <a class="contact-ribbon-button" href="../../../../#/contact">
+            <i class="fas fa-envelope"></i>
+            <span>Contact Instructor</span>
+        </a>
     </div>
+</section>
 
+<footer class="course-footer">
 
-    <div class="copyright">
+    <div class="container">
 
-        © 2026 Gajavada Sanjeevkumar.
-        Engineering Mechanics — Force Systems Notes.
+        <div class="footer-grid">
+
+            <div class="footer-column">
+                <h3>Engineering Mechanics</h3>
+                <p>A topic-based learning portal for Engineering Mechanics.</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../../#/home">Home</a></li>
+                    <li><a href="../../../../#/teaching">Teaching</a></li>
+                    <li><a href="../../../../#/contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Topics</h3>
+                <ul>
+                    <li><a href="../index.html">Force Systems</a></li>
+                    <li><a href="../../moment-of-force/">Moment of Force</a></li>
+                    <li><a href="../../equilibrium/">Equilibrium</a></li>
+                    <li><a href="../../friction/">Friction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Connect</h3>
+                <div class="social-icons">
+                    <a href="https://linkedin.com/in/skgajawada" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://scholar.google.com/citations?user=skgajawada" aria-label="Google Scholar" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                    <a href="https://orcid.org/0000-0002-9171-5073" aria-label="ORCID" title="ORCID"><i class="fab fa-orcid"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="footer-bottom">
+            <p>© 2026 Gajavada Sanjeevkumar. All Rights Reserved.</p>
+            <p>Designed &amp; Developed by <strong>Gajavada Sanjeevkumar</strong></p>
+        </div>
 
     </div>
 
 </footer>
-
 
 
 <!-- =========================================================
@@ -3867,5 +4213,8 @@
 <script src="../../assets/js/dark-mode.js"></script>
 
 
+<script>
+document.addEventListener("DOMContentLoaded",function(){const h=document.querySelector(".hamburger"),m=document.querySelector(".nav-menu");if(!h||!m)return;h.setAttribute("role","button");h.setAttribute("tabindex","0");h.setAttribute("aria-label","Open navigation menu");h.setAttribute("aria-expanded","false");function t(f){const o=typeof f==="boolean"?f:!m.classList.contains("active");m.classList.toggle("active",o);h.classList.toggle("active",o);h.setAttribute("aria-expanded",String(o));h.setAttribute("aria-label",o?"Close navigation menu":"Open navigation menu")}h.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();t()});h.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();t()}});m.querySelectorAll(".nav-link").forEach(a=>a.addEventListener("click",()=>t(false)));document.addEventListener("click",e=>{if(innerWidth<=800&&m.classList.contains("active")&&!m.contains(e.target)&&!h.contains(e.target))t(false)});addEventListener("resize",()=>{if(innerWidth>800)t(false)})});
+</script>
 </body>
 </html>
