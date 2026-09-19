@@ -1081,13 +1081,29 @@
    ========================================================= */
 
 /* Use the portfolio header exactly as supplied by the shared portfolio CSS. */
-.navbar { position: relative !important; z-index: 2000 !important; }
+.navbar { position: sticky !important; top: 0 !important; z-index: 2000 !important; }
+
+/* Two-level sticky navigation: portfolio header remains at the top;
+   Force Systems sub-navigation sticks directly underneath it when reached. */
+.navbar {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 2000 !important;
+}
+.topic-bar {
+    position: sticky !important;
+    top: 76px !important;
+    z-index: 1900 !important;
+}
+section[id], .section[id] {
+    scroll-margin-top: 140px !important;
+}
 
 /* Force Systems section tabs: same sticky behavior as Engineering Graphics. */
 .topic-bar {
     position: sticky !important;
     top: 76px !important;
-    z-index: 100 !important;
+    z-index: 1900 !important;
     background: #ffffff !important;
     border-bottom: 1px solid #e5eaf1 !important;
     box-shadow: 0 3px 14px rgba(15,23,42,0.045) !important;
@@ -1180,14 +1196,15 @@
 
 /* Keep the portfolio hamburger/header geometry untouched. */
 @media (max-width:800px) {
-    .navbar { position:relative !important; z-index:2000 !important; }
+    .navbar { position: sticky !important; top: 0 !important; z-index: 2000 !important; }
     .nav-menu { z-index:2050 !important; }
     .hamburger { z-index:2100 !important; }
     .topic-bar { top:62px !important; z-index:100 !important; }
     .topic-bar-inner { justify-content:flex-start; gap:22px; padding:0 16px; }
 }
-@media (max-width:1050px) { .topic-bar { top:70px !important; } }
-@media (max-width:520px) { .topic-bar { top:58px !important; } }
+@media (max-width:1050px) { .topic-bar { top:70px !important; } section[id], .section[id] { scroll-margin-top:130px !important; } }
+@media (max-width:800px) { .topic-bar { top:62px !important; } section[id], .section[id] { scroll-margin-top:122px !important; } }
+@media (max-width:520px) { .topic-bar { top:58px !important; } section[id], .section[id] { scroll-margin-top:118px !important; } }
 </style>
 
 
