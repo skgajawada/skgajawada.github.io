@@ -1027,3 +1027,80 @@ section{
     }
 
 }
+@media (max-width: 800px) {
+
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 40px;
+        height: 40px;
+        padding: 7px;
+        cursor: pointer;
+        z-index: 1100;
+    }
+
+    .hamburger span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        border-radius: 3px;
+        background: #29313f;
+        transition: all 0.25s ease;
+    }
+
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+
+        padding: 12px 20px 18px;
+        gap: 0;
+
+        background: #ffffff;
+        border-top: 1px solid #e7ebf0;
+        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+
+        z-index: 1050;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu li {
+        width: 100%;
+    }
+
+    .nav-menu .nav-link {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        padding: 13px 5px;
+        font-size: 0.95rem;
+    }
+
+    .nav-menu .theme-toggle {
+        margin-top: 8px;
+    }
+
+    /* Hamburger → X */
+    .hamburger.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
