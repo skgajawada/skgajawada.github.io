@@ -1,6 +1,6 @@
 // Online Learning PAGE - DISTINCT PASTEL PALETTES & LOGOS
 
-class Online LearningPage extends Component {
+class MoocsPage extends Component {
     async render(params) {
         const Online Learning = await DataManager.getOnline Learning();
         const vendorParam = params && params[0];
