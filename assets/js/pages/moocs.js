@@ -1,8 +1,8 @@
-// MOOCS PAGE - DISTINCT PASTEL PALETTES & LOGOS
+// Online Learning PAGE - DISTINCT PASTEL PALETTES & LOGOS
 
-class MoocsPage extends Component {
+class Online LearningPage extends Component {
     async render(params) {
-        const moocs = await DataManager.getMOOCs();
+        const Online Learning = await DataManager.getOnline Learning();
         const vendorParam = params && params[0];
 
         // =========================================================
@@ -118,7 +118,7 @@ class MoocsPage extends Component {
         if (!vendorParam) {
 
             return `
-                <div class="moocs-page">
+                <div class="Online Learning-page">
 
                     <section class="fade-in">
 
@@ -143,7 +143,7 @@ class MoocsPage extends Component {
 
                         <div class="cards-grid">
 
-                            ${moocs.categories.map((cat) => {
+                            ${Online Learning.categories.map((cat) => {
 
                                 const brand =
                                     brandProfiles[cat.id] ||
@@ -154,7 +154,7 @@ class MoocsPage extends Component {
                                         class="card fade-in"
                                         onclick="
                                             navigateTo(
-                                                '#/moocs/${cat.id}'
+                                                '#/Online Learning/${cat.id}'
                                             )
                                         "
                                         style="
@@ -227,12 +227,12 @@ class MoocsPage extends Component {
         // =========================================================
 
         const categoryIndex =
-            moocs.categories.findIndex(
+            Online Learning.categories.findIndex(
                 c => c.id === vendorParam
             );
 
         const currentVendor =
-            moocs.categories[categoryIndex];
+            Online Learning.categories[categoryIndex];
 
         // =========================================================
         // CATEGORY NOT FOUND
@@ -241,7 +241,7 @@ class MoocsPage extends Component {
         if (!currentVendor) {
 
             return `
-                <div class="moocs-page">
+                <div class="Online Learning-page">
 
                     <section class="fade-in">
 
@@ -250,7 +250,7 @@ class MoocsPage extends Component {
                         </h2>
 
                         <a
-                            href="#/moocs"
+                            href="#/Online Learning"
                             class="btn btn-outline"
                         >
                             Return to Directory
@@ -271,19 +271,19 @@ class MoocsPage extends Component {
         // =========================================================
 
         const vendorCertificates =
-            moocs.moocCertifications.filter(
+            Online Learning.moocCertifications.filter(
                 cert => cert.vendor === vendorParam
             );
 
         return `
-            <div class="moocs-page">
+            <div class="Online Learning-page">
 
                 <section class="fade-in">
 
                     <div style="margin-bottom:2rem;">
 
                         <a
-                            href="#/moocs"
+                            href="#/Online Learning"
                             class="btn btn-outline"
                             style="margin-bottom:1.5rem;"
                         >
