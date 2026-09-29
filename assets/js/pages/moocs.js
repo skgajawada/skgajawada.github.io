@@ -2,7 +2,7 @@
 
 class MoocsPage extends Component {
     async render(params) {
-        const Online Learning = await DataManager.getOnline Learning();
+        const moocs = await DataManager.getMOOCs();
         const vendorParam = params && params[0];
 
         // =========================================================
@@ -143,7 +143,7 @@ class MoocsPage extends Component {
 
                         <div class="cards-grid">
 
-                            ${Online Learning.categories.map((cat) => {
+                            ${moocs.categories.map((cat) => {
 
                                 const brand =
                                     brandProfiles[cat.id] ||
@@ -154,7 +154,7 @@ class MoocsPage extends Component {
                                         class="card fade-in"
                                         onclick="
                                             navigateTo(
-                                                '#/Online Learning/${cat.id}'
+                                                '#/Oonline-learning/${cat.id}'
                                             )
                                         "
                                         style="
@@ -227,12 +227,12 @@ class MoocsPage extends Component {
         // =========================================================
 
         const categoryIndex =
-            Online Learning.categories.findIndex(
+            moocs.categories.findIndex(
                 c => c.id === vendorParam
             );
 
         const currentVendor =
-            Online Learning.categories[categoryIndex];
+            moocs.categories[categoryIndex];
 
         // =========================================================
         // CATEGORY NOT FOUND
@@ -250,7 +250,7 @@ class MoocsPage extends Component {
                         </h2>
 
                         <a
-                            href="#/Online Learning"
+                            href="#/online-learning"
                             class="btn btn-outline"
                         >
                             Return to Directory
@@ -271,7 +271,7 @@ class MoocsPage extends Component {
         // =========================================================
 
         const vendorCertificates =
-            Online Learning.moocCertifications.filter(
+            moocs.moocCertifications.filter(
                 cert => cert.vendor === vendorParam
             );
 
