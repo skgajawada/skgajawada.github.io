@@ -129,7 +129,7 @@ class MoocsPage extends Component {
                             </span>
 
                             <h1 class="section-title">
-                                MOOC Certifications
+                                Online Learning Certifications
                             </h1>
 
                             <p class="lead">
