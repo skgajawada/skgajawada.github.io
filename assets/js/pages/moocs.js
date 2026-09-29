@@ -118,7 +118,7 @@ class MoocsPage extends Component {
         if (!vendorParam) {
 
             return `
-                <div class="Online Learning-page">
+                <div class="moocs-page">
 
                     <section class="fade-in">
 
@@ -283,7 +283,7 @@ class MoocsPage extends Component {
                     <div style="margin-bottom:2rem;">
 
                         <a
-                            href="#/Online Learning"
+                            href="#/online-learning"
                             class="btn btn-outline"
                             style="margin-bottom:1.5rem;"
                         >
