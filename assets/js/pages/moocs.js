@@ -386,7 +386,9 @@ class MoocsPage extends Component {
                                 >
 
                                     <a
-                                        href="assets/${cert.certificatePath}"
+                                        href="${cert.certificatePath.startsWith('assets/')
+                                            ? cert.certificatePath
+                                            : 'assets/' + cert.certificatePath}"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         class="btn btn-primary"
