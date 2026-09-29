@@ -241,7 +241,7 @@ class MoocsPage extends Component {
         if (!currentVendor) {
 
             return `
-                <div class="Online Learning-page">
+                <div class="moocs-page">
 
                     <section class="fade-in">
 
@@ -276,7 +276,7 @@ class MoocsPage extends Component {
             );
 
         return `
-            <div class="Online Learning-page">
+            <div class="moocs-page">
 
                 <section class="fade-in">
 
