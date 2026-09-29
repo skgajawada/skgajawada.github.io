@@ -74,7 +74,7 @@ router.register('/teaching',new TeachingPage());
 router.register('/education', new EducationPage());
 router.register('/projects', new ProjectsPage());
 router.register('/engagements', new EngagementsPage());
-router.register('/moocs', new MoocsPage());
+router.register('/online-learning', new MoocsPage());
 router.register('/skills', new SkillsPage());
 router.register('/analytics', new AnalyticsDashboard());
 router.register('/social-responsibility', new SocialResponsibilityPage());
