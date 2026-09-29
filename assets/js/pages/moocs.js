@@ -154,7 +154,7 @@ class MoocsPage extends Component {
                                         class="card fade-in"
                                         onclick="
                                             navigateTo(
-                                                '#/Oonline-learning/${cat.id}'
+                                                '#/online-learning/${cat.id}'
                                             )
                                         "
                                         style="
