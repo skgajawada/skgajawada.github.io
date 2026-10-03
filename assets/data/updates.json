@@ -5,8 +5,9 @@
         "category": "Online Learning",
         "title": "Project Management Fundamentals",
         "description": "Completed the Project Management Fundamentals course through IBM SkillsBuild and earned the associated Credly badge.",
+        "internalRoute": "#/online-learning/ibm/project-management-fundamentals",
         "link": "https://www.credly.com/go/VjpYpekO",
-        "linkText": "Verify Credly Badge",
+        "linkText": "More Details",
         "external": true
     },
     {
