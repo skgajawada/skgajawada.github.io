@@ -24,8 +24,15 @@ class DataManager {
     static async getEngagements() {
         return await this.loadData("assets/data/engagements.json");
     }
+
     static async getMOOCs() {
         return await this.loadData("assets/data/mooc-certifications.json");
+    }
+
+    // Latest Updates
+    static async getLatestUpdates() {
+        const data = await this.loadData("assets/data/updates.json");
+        return Array.isArray(data) ? data : [];
     }
 
     static async getTeaching() {
