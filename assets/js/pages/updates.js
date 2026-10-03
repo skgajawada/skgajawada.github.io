@@ -5,6 +5,7 @@ class UpdatesPage extends Component {
 
         const updates = await DataManager.getLatestUpdates();
 
+
         // =====================================================
         // SORT ALL UPDATES - LATEST TO OLDEST
         // =====================================================
@@ -31,25 +32,123 @@ class UpdatesPage extends Component {
 
 
         // =====================================================
-        // LATEST 5 UPDATES
-        //
-        // Only the 5 newest updates are shown in the
-        // "Latest Updates" section.
-        //
-        // They are grouped according to their actual
-        // month and year.
+        // CURRENT DATE
         // =====================================================
 
-        const activeUpdates = sortedUpdates.slice(0, 5);
+        const now = new Date();
+
+        const currentYear = now.getFullYear();
+        const currentMonth = now.getMonth();
+
+
+        // =====================================================
+        // CURRENT MONTH UPDATES
+        // =====================================================
+
+        const currentMonthUpdates = sortedUpdates.filter(update => {
+
+            const date = new Date(
+                update.date + "T00:00:00"
+            );
+
+            return (
+                date.getFullYear() === currentYear &&
+                date.getMonth() === currentMonth
+            );
+
+        });
+
+
+        // =====================================================
+        // ACTIVE / LATEST UPDATES
+        //
+        // RULE:
+        //
+        // If current month has 5 or more:
+        //     Show ALL current-month updates.
+        //
+        // If current month has fewer than 5:
+        //     Show all current-month updates
+        //     plus the newest previous updates until
+        //     there are 5 active updates.
+        // =====================================================
+
+        let activeUpdates = [];
+
+
+        if (currentMonthUpdates.length >= 5) {
+
+            // Current month already has 5 or more.
+            // Show ALL current-month updates.
+
+            activeUpdates = [
+                ...currentMonthUpdates
+            ];
+
+        } else {
+
+            // Current month has fewer than 5.
+            // Fill the remaining positions with
+            // the newest updates from previous months.
+
+            const requiredPreviousUpdates =
+                5 - currentMonthUpdates.length;
+
+
+            const previousUpdates =
+                sortedUpdates
+                    .filter(update => {
+
+                        const date = new Date(
+                            update.date + "T00:00:00"
+                        );
+
+                        return !(
+                            date.getFullYear() === currentYear &&
+                            date.getMonth() === currentMonth
+                        );
+
+                    })
+                    .slice(
+                        0,
+                        requiredPreviousUpdates
+                    );
+
+
+            activeUpdates = [
+                ...currentMonthUpdates,
+                ...previousUpdates
+            ];
+
+
+            // Make sure the final active list is always
+            // newest to oldest.
+
+            activeUpdates.sort(
+                (a, b) =>
+                    new Date(b.date) -
+                    new Date(a.date)
+            );
+
+        }
 
 
         // =====================================================
         // ARCHIVED UPDATES
         //
-        // Everything after the latest 5 is archived.
+        // Everything NOT included in activeUpdates
+        // goes into Archive.
         // =====================================================
 
-        const archivedUpdates = sortedUpdates.slice(5);
+        const activeUpdateSet =
+            new Set(activeUpdates);
+
+
+        const archivedUpdates =
+            sortedUpdates.filter(
+                update =>
+                    !activeUpdateSet.has(update)
+            );
 
 
         // =====================================================
@@ -112,6 +211,7 @@ class UpdatesPage extends Component {
         const groupByMonthYear = (updateList) => {
 
             const groups = {};
+
 
             updateList.forEach(update => {
 
@@ -247,28 +347,34 @@ class UpdatesPage extends Component {
         const createMonthSection = (
             monthYear,
             monthUpdates,
-            sectionType,
-            groupIndex
+            sectionType
         ) => {
 
-            const cards = monthUpdates
-                .map(
-                    (update, index) =>
-                        createUpdateCard(
-                            update,
-                            index
-                        )
-                )
-                .join("");
+            const cards =
+                monthUpdates
+                    .map(
+                        (update, index) =>
+                            createUpdateCard(
+                                update,
+                                index
+                            )
+                    )
+                    .join("");
+
+
+            const isArchive =
+                sectionType === "archive";
 
 
             return `
                 <section
                     class="
                         updates-month-group
-                        ${sectionType === "archive"
+                        ${
+                            isArchive
                             ? "updates-archive-group"
-                            : "updates-latest-group"}
+                            : "updates-latest-group"
+                        }
                     "
                     data-month="${monthYear}"
                     data-section="${sectionType}"
@@ -278,18 +384,20 @@ class UpdatesPage extends Component {
 
                         <div>
 
-                            <span class="updates-section-label">
+                            <span
+                                class="updates-section-label"
+                            >
 
                                 <i
                                     class="${
-                                        sectionType === "archive"
+                                        isArchive
                                         ? "fas fa-calendar"
                                         : "fas fa-clock"
                                     }"
                                 ></i>
 
                                 ${
-                                    sectionType === "archive"
+                                    isArchive
                                     ? "Archive"
                                     : "Latest"
                                 }
@@ -304,7 +412,9 @@ class UpdatesPage extends Component {
                         </div>
 
 
-                        <span class="updates-count">
+                        <span
+                            class="updates-count"
+                        >
 
                             ${monthUpdates.length}
 
@@ -333,31 +443,18 @@ class UpdatesPage extends Component {
 
         // =====================================================
         // LATEST UPDATES HTML
-        //
-        // Example:
-        //
-        // October 2026
-        //   Update 1
-        //   Update 2
-        //
-        // September 2026
-        //   Update 3
-        //   Update 4
-        //   Update 5
         // =====================================================
 
         const latestHTML =
             Object.entries(latestGroups)
                 .map(
                     (
-                        [monthYear, monthUpdates],
-                        groupIndex
+                        [monthYear, monthUpdates]
                     ) =>
                         createMonthSection(
                             monthYear,
                             monthUpdates,
-                            "latest",
-                            groupIndex
+                            "latest"
                         )
                 )
                 .join("");
@@ -371,14 +468,12 @@ class UpdatesPage extends Component {
             Object.entries(archiveGroups)
                 .map(
                     (
-                        [monthYear, monthUpdates],
-                        groupIndex
+                        [monthYear, monthUpdates]
                     ) =>
                         createMonthSection(
                             monthYear,
                             monthUpdates,
-                            "archive",
-                            groupIndex
+                            "archive"
                         )
                 )
                 .join("");
@@ -447,30 +542,32 @@ class UpdatesPage extends Component {
 
                 <div class="update-filters">
 
-                    ${categories.map(
-                        (category, index) => `
+                    ${categories
+                        .map(
+                            (category, index) => `
 
-                            <button
-                                class="update-filter ${
-                                    index === 0
-                                    ? "active"
-                                    : ""
-                                }"
-                                data-filter="${category}"
-                            >
+                                <button
+                                    class="update-filter ${
+                                        index === 0
+                                        ? "active"
+                                        : ""
+                                    }"
+                                    data-filter="${category}"
+                                >
 
-                                ${category}
+                                    ${category}
 
-                            </button>
+                                </button>
 
-                        `
-                    ).join("")}
+                            `
+                        )
+                        .join("")}
 
                 </div>
 
 
                 <!-- =================================================
-                     LATEST 5
+                     LATEST / ACTIVE UPDATES
                 ================================================== -->
 
                 <section
@@ -487,9 +584,13 @@ class UpdatesPage extends Component {
 
                         <div>
 
-                            <span class="updates-section-label">
+                            <span
+                                class="updates-section-label"
+                            >
 
-                                <i class="fas fa-clock"></i>
+                                <i
+                                    class="fas fa-clock"
+                                ></i>
 
                                 Latest Updates
 
@@ -503,7 +604,9 @@ class UpdatesPage extends Component {
                         </div>
 
 
-                        <span class="updates-count">
+                        <span
+                            class="updates-count"
+                        >
 
                             ${activeUpdates.length}
 
@@ -518,7 +621,9 @@ class UpdatesPage extends Component {
                     </div>
 
 
-                    <div class="updates-latest-list">
+                    <div
+                        class="updates-latest-list"
+                    >
 
                         ${
                             activeUpdates.length
@@ -554,7 +659,9 @@ class UpdatesPage extends Component {
                                 <div>
 
                                     <span
-                                        class="updates-section-label"
+                                        class="
+                                            updates-section-label
+                                        "
                                     >
 
                                         <i
@@ -576,7 +683,9 @@ class UpdatesPage extends Component {
                                 </div>
 
 
-                                <span class="updates-count">
+                                <span
+                                    class="updates-count"
+                                >
 
                                     ${archivedUpdates.length}
 
