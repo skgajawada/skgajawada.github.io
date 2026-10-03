@@ -7,7 +7,7 @@ class UpdatesPage extends Component {
 
 
         // =====================================================
-        // SORT ALL UPDATES - LATEST TO OLDEST
+        // SORT - NEWEST TO OLDEST
         // =====================================================
 
         const sortedUpdates = [...updates].sort(
@@ -16,7 +16,7 @@ class UpdatesPage extends Component {
 
 
         // =====================================================
-        // ICON MAP
+        // ICONS
         // =====================================================
 
         const iconMap = {
@@ -32,7 +32,7 @@ class UpdatesPage extends Component {
 
 
         // =====================================================
-        // CURRENT DATE
+        // CURRENT MONTH
         // =====================================================
 
         const now = new Date();
@@ -43,43 +43,34 @@ class UpdatesPage extends Component {
 
         // =====================================================
         // CURRENT MONTH UPDATES
-        // =====================================================
-
-        const currentMonthUpdates = sortedUpdates.filter(update => {
-
-            const date = new Date(
-                update.date + "T00:00:00"
-            );
-
-            return (
-                date.getFullYear() === currentYear &&
-                date.getMonth() === currentMonth
-            );
-
-        });
-
-
-        // =====================================================
-        // ACTIVE / LATEST UPDATES
-        //
-        // RULE:
         //
         // If current month has 5 or more:
-        //     Show ALL current-month updates.
+        //     show ALL current-month updates.
         //
         // If current month has fewer than 5:
-        //     Show all current-month updates
-        //     plus the newest previous updates until
-        //     there are 5 active updates.
+        //     show current-month updates +
+        //     latest previous updates until 5.
         // =====================================================
+
+        const currentMonthUpdates =
+            sortedUpdates.filter(update => {
+
+                const date = new Date(
+                    update.date + "T00:00:00"
+                );
+
+                return (
+                    date.getFullYear() === currentYear &&
+                    date.getMonth() === currentMonth
+                );
+
+            });
+
 
         let activeUpdates = [];
 
 
         if (currentMonthUpdates.length >= 5) {
-
-            // Current month already has 5 or more.
-            // Show ALL current-month updates.
 
             activeUpdates = [
                 ...currentMonthUpdates
@@ -87,11 +78,7 @@ class UpdatesPage extends Component {
 
         } else {
 
-            // Current month has fewer than 5.
-            // Fill the remaining positions with
-            // the newest updates from previous months.
-
-            const requiredPreviousUpdates =
+            const requiredPrevious =
                 5 - currentMonthUpdates.length;
 
 
@@ -109,20 +96,13 @@ class UpdatesPage extends Component {
                         );
 
                     })
-                    .slice(
-                        0,
-                        requiredPreviousUpdates
-                    );
+                    .slice(0, requiredPrevious);
 
 
             activeUpdates = [
                 ...currentMonthUpdates,
                 ...previousUpdates
             ];
-
-
-            // Make sure the final active list is always
-            // newest to oldest.
 
             activeUpdates.sort(
                 (a, b) =>
@@ -134,25 +114,21 @@ class UpdatesPage extends Component {
 
 
         // =====================================================
-        // ARCHIVED UPDATES
-        //
-        // Everything NOT included in activeUpdates
-        // goes into Archive.
+        // ARCHIVE
         // =====================================================
 
-        const activeUpdateSet =
+        const activeSet =
             new Set(activeUpdates);
 
 
         const archivedUpdates =
             sortedUpdates.filter(
-                update =>
-                    !activeUpdateSet.has(update)
+                update => !activeSet.has(update)
             );
 
 
         // =====================================================
-        // CATEGORY FILTERS
+        // CATEGORIES
         // =====================================================
 
         const categories = [
@@ -166,14 +142,17 @@ class UpdatesPage extends Component {
 
 
         // =====================================================
-        // MONTH + YEAR FORMATTER
+        // DATE HELPERS
         // =====================================================
 
-        const getMonthYear = (dateString) => {
-
-            return new Date(
+        const getDate = dateString =>
+            new Date(
                 dateString + "T00:00:00"
-            ).toLocaleDateString(
+            );
+
+
+        const getMonthYear = dateString =>
+            getDate(dateString).toLocaleDateString(
                 "en-GB",
                 {
                     month: "long",
@@ -181,18 +160,9 @@ class UpdatesPage extends Component {
                 }
             );
 
-        };
 
-
-        // =====================================================
-        // DATE FORMATTER
-        // =====================================================
-
-        const getFormattedDate = (dateString) => {
-
-            return new Date(
-                dateString + "T00:00:00"
-            ).toLocaleDateString(
+        const getFormattedDate = dateString =>
+            getDate(dateString).toLocaleDateString(
                 "en-GB",
                 {
                     day: "2-digit",
@@ -201,59 +171,101 @@ class UpdatesPage extends Component {
                 }
             );
 
-        };
-
 
         // =====================================================
-        // GROUP UPDATES BY MONTH + YEAR
+        // GROUP BY MONTH + YEAR
         // =====================================================
 
-        const groupByMonthYear = (updateList) => {
+        const groupByMonthYear = list => {
 
             const groups = {};
 
+            list.forEach(update => {
 
-            updateList.forEach(update => {
-
-                const monthYear =
+                const key =
                     getMonthYear(update.date);
 
 
-                if (!groups[monthYear]) {
-
-                    groups[monthYear] = [];
-
+                if (!groups[key]) {
+                    groups[key] = [];
                 }
 
 
-                groups[monthYear].push(update);
+                groups[key].push(update);
 
             });
 
 
             return groups;
-
         };
 
-
-        // =====================================================
-        // LATEST GROUPS
-        // =====================================================
 
         const latestGroups =
             groupByMonthYear(activeUpdates);
 
-
-        // =====================================================
-        // ARCHIVE GROUPS
-        // =====================================================
 
         const archiveGroups =
             groupByMonthYear(archivedUpdates);
 
 
         // =====================================================
-        // UPDATE CARD GENERATOR
+        // INTERNAL / EXTERNAL ACTION
+        // =====================================================
+
+        const createAction = update => {
+
+            /*
+             * internalRoute:
+             *     Used for links inside the portfolio.
+             *
+             * Example:
+             *     #/online-learning/ibm
+             *
+             * external link:
+             *     Credly / LinkedIn / external website.
+             */
+
+            const destination =
+                update.internalRoute ||
+                update.link;
+
+
+            if (!destination) {
+                return "";
+            }
+
+
+            const isInternal =
+                Boolean(update.internalRoute);
+
+
+            return `
+                <a
+                    href="${destination}"
+                    class="update-action btn btn-primary"
+
+                    ${
+                        !isInternal &&
+                        update.external !== false
+                        ? 'target="_blank" rel="noopener noreferrer"'
+                        : ''
+                    }
+                >
+
+                    ${
+                        update.linkText ||
+                        "More Details"
+                    }
+
+                    <i class="fas fa-arrow-right"></i>
+
+                </a>
+            `;
+        };
+
+
+        // =====================================================
+        // UPDATE CARD
         // =====================================================
 
         const createUpdateCard = (
@@ -265,6 +277,9 @@ class UpdatesPage extends Component {
                 <article
                     class="full-update-card reveal"
                     data-category="${update.category}"
+                    data-date="${update.date}"
+                    data-month="${getDate(update.date).getMonth()}"
+                    data-year="${getDate(update.date).getFullYear()}"
                     style="animation-delay:${index * 0.05}s;"
                 >
 
@@ -286,7 +301,6 @@ class UpdatesPage extends Component {
                                 ${update.category}
                             </span>
 
-
                             <time datetime="${update.date}">
                                 ${getFormattedDate(update.date)}
                             </time>
@@ -304,44 +318,17 @@ class UpdatesPage extends Component {
                         </p>
 
 
-                        ${
-                            update.link
-                            ? `
-                                <a
-                                    href="${update.link}"
-                                    class="btn btn-primary update-action"
-
-                                    ${
-                                        update.external !== false
-                                        ? 'target="_blank" rel="noopener noreferrer"'
-                                        : ''
-                                    }
-                                >
-
-                                    ${
-                                        update.linkText ||
-                                        "View Details"
-                                    }
-
-                                    <i
-                                        class="fas fa-arrow-right"
-                                    ></i>
-
-                                </a>
-                            `
-                            : ""
-                        }
+                        ${createAction(update)}
 
                     </div>
 
                 </article>
             `;
-
         };
 
 
         // =====================================================
-        // CREATE MONTH SECTION
+        // MONTH SECTION
         // =====================================================
 
         const createMonthSection = (
@@ -362,69 +349,18 @@ class UpdatesPage extends Component {
                     .join("");
 
 
-            const isArchive =
-                sectionType === "archive";
-
-
             return `
                 <section
-                    class="
-                        updates-month-group
-                        ${
-                            isArchive
-                            ? "updates-archive-group"
-                            : "updates-latest-group"
-                        }
-                    "
-                    data-month="${monthYear}"
+                    class="updates-month-group"
                     data-section="${sectionType}"
+                    data-month="${monthYear}"
                 >
 
-                    <div class="archive-month-header">
+                    <div class="month-heading">
 
-                        <div>
-
-                            <span
-                                class="updates-section-label"
-                            >
-
-                                <i
-                                    class="${
-                                        isArchive
-                                        ? "fas fa-calendar"
-                                        : "fas fa-clock"
-                                    }"
-                                ></i>
-
-                                ${
-                                    isArchive
-                                    ? "Archive"
-                                    : "Latest"
-                                }
-
-                            </span>
-
-
-                            <h2>
-                                ${monthYear}
-                            </h2>
-
-                        </div>
-
-
-                        <span
-                            class="updates-count"
-                        >
-
-                            ${monthUpdates.length}
-
-                            ${
-                                monthUpdates.length === 1
-                                ? "update"
-                                : "updates"
-                            }
-
-                        </span>
+                        <h2>
+                            ${monthYear}
+                        </h2>
 
                     </div>
 
@@ -437,20 +373,17 @@ class UpdatesPage extends Component {
 
                 </section>
             `;
-
         };
 
 
         // =====================================================
-        // LATEST UPDATES HTML
+        // LATEST HTML
         // =====================================================
 
         const latestHTML =
             Object.entries(latestGroups)
                 .map(
-                    (
-                        [monthYear, monthUpdates]
-                    ) =>
+                    ([monthYear, monthUpdates]) =>
                         createMonthSection(
                             monthYear,
                             monthUpdates,
@@ -467,9 +400,7 @@ class UpdatesPage extends Component {
         const archiveHTML =
             Object.entries(archiveGroups)
                 .map(
-                    (
-                        [monthYear, monthUpdates]
-                    ) =>
+                    ([monthYear, monthUpdates]) =>
                         createMonthSection(
                             monthYear,
                             monthUpdates,
@@ -477,23 +408,6 @@ class UpdatesPage extends Component {
                         )
                 )
                 .join("");
-
-
-        // =====================================================
-        // EMPTY STATE
-        // =====================================================
-
-        const latestEmptyHTML = `
-            <div class="updates-empty">
-
-                <i class="fas fa-bell"></i>
-
-                <p>
-                    No updates have been added yet.
-                </p>
-
-            </div>
-        `;
 
 
         // =====================================================
@@ -506,68 +420,123 @@ class UpdatesPage extends Component {
 
 
                 <!-- =================================================
-                     PAGE HEADER
+                     HEADER
                 ================================================== -->
 
                 <div class="updates-page-header">
-
-                    <span class="updates-eyebrow">
-
-                        <i class="fas fa-bolt"></i>
-
-                        Recent Activity
-
-                    </span>
-
 
                     <h1 class="page-title">
                         Latest Updates
                     </h1>
 
-
                     <p class="page-intro">
-
-                        Recent achievements, learning activities,
-                        professional updates, research activities,
-                        projects, events, and selected LinkedIn posts.
-
+                        Achievements, learning activities,
+                        professional updates, research,
+                        projects, events and selected LinkedIn posts.
                     </p>
 
                 </div>
 
 
                 <!-- =================================================
-                     CATEGORY FILTERS
+                     FILTER BAR
                 ================================================== -->
 
-                <div class="update-filters">
+                <div class="updates-toolbar">
 
-                    ${categories
-                        .map(
-                            (category, index) => `
 
-                                <button
-                                    class="update-filter ${
-                                        index === 0
-                                        ? "active"
-                                        : ""
-                                    }"
-                                    data-filter="${category}"
-                                >
+                    <!-- CATEGORY -->
 
-                                    ${category}
+                    <div class="update-filter-group">
 
-                                </button>
+                        <label for="updateCategoryFilter">
+                            Category
+                        </label>
 
-                            `
-                        )
-                        .join("")}
+                        <select
+                            id="updateCategoryFilter"
+                            class="update-select"
+                        >
+
+                            ${categories.map(
+                                category => `
+                                    <option
+                                        value="${category}"
+                                    >
+                                        ${category}
+                                    </option>
+                                `
+                            ).join("")}
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- MONTH -->
+
+                    <div class="update-filter-group">
+
+                        <label for="updateMonthFilter">
+                            Month
+                        </label>
+
+                        <select
+                            id="updateMonthFilter"
+                            class="update-select"
+                        >
+
+                            <option value="all">
+                                All Months
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- YEAR -->
+
+                    <div class="update-filter-group">
+
+                        <label for="updateYearFilter">
+                            Year
+                        </label>
+
+                        <select
+                            id="updateYearFilter"
+                            class="update-select"
+                        >
+
+                            <option value="all">
+                                All Years
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- RESET -->
+
+                    <button
+                        type="button"
+                        id="resetUpdateFilters"
+                        class="update-reset"
+                    >
+
+                        <i class="fas fa-rotate-left"></i>
+
+                        Reset
+
+                    </button>
+
 
                 </div>
 
 
                 <!-- =================================================
-                     LATEST / ACTIVE UPDATES
+                     LATEST
                 ================================================== -->
 
                 <section
@@ -575,63 +544,7 @@ class UpdatesPage extends Component {
                     data-section="latest"
                 >
 
-                    <div
-                        class="
-                            updates-section-heading
-                            latest-heading
-                        "
-                    >
-
-                        <div>
-
-                            <span
-                                class="updates-section-label"
-                            >
-
-                                <i
-                                    class="fas fa-clock"
-                                ></i>
-
-                                Latest Updates
-
-                            </span>
-
-
-                            <h2>
-                                Most Recent
-                            </h2>
-
-                        </div>
-
-
-                        <span
-                            class="updates-count"
-                        >
-
-                            ${activeUpdates.length}
-
-                            ${
-                                activeUpdates.length === 1
-                                ? "update"
-                                : "updates"
-                            }
-
-                        </span>
-
-                    </div>
-
-
-                    <div
-                        class="updates-latest-list"
-                    >
-
-                        ${
-                            activeUpdates.length
-                            ? latestHTML
-                            : latestEmptyHTML
-                        }
-
-                    </div>
+                    ${latestHTML}
 
                 </section>
 
@@ -649,60 +562,16 @@ class UpdatesPage extends Component {
                             data-section="archive"
                         >
 
-                            <div
-                                class="
-                                    updates-section-heading
-                                    archive-heading
-                                "
-                            >
+                            <div class="archive-title">
 
-                                <div>
-
-                                    <span
-                                        class="
-                                            updates-section-label
-                                        "
-                                    >
-
-                                        <i
-                                            class="
-                                                fas
-                                                fa-box-archive
-                                            "
-                                        ></i>
-
-                                        Archive
-
-                                    </span>
-
-
-                                    <h2>
-                                        Previous Updates
-                                    </h2>
-
-                                </div>
-
-
-                                <span
-                                    class="updates-count"
-                                >
-
-                                    ${archivedUpdates.length}
-
-                                    ${
-                                        archivedUpdates.length === 1
-                                        ? "update"
-                                        : "updates"
-                                    }
-
-                                </span>
+                                <h2>
+                                    Archive
+                                </h2>
 
                             </div>
 
 
-                            <div
-                                class="updates-archive-list"
-                            >
+                            <div class="updates-archive-list">
 
                                 ${archiveHTML}
 
@@ -727,175 +596,252 @@ class UpdatesPage extends Component {
 
     afterRender() {
 
-        const filterButtons =
-            document.querySelectorAll(
-                ".update-filter"
+        const categoryFilter =
+            document.getElementById(
+                "updateCategoryFilter"
             );
 
 
-        filterButtons.forEach(button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    // =============================================
-                    // ACTIVE FILTER BUTTON
-                    // =============================================
-
-                    filterButtons.forEach(item => {
-
-                        item.classList.remove(
-                            "active"
-                        );
-
-                    });
+        const monthFilter =
+            document.getElementById(
+                "updateMonthFilter"
+            );
 
 
-                    button.classList.add(
-                        "active"
-                    );
+        const yearFilter =
+            document.getElementById(
+                "updateYearFilter"
+            );
 
 
-                    const selected =
-                        button.dataset.filter;
+        const resetButton =
+            document.getElementById(
+                "resetUpdateFilters"
+            );
 
 
-                    // =============================================
-                    // FILTER ALL UPDATE CARDS
-                    // =============================================
-
-                    const cards =
-                        document.querySelectorAll(
-                            ".full-update-card"
-                        );
+        const cards =
+            document.querySelectorAll(
+                ".full-update-card"
+            );
 
 
-                    cards.forEach(card => {
-
-                        const visible =
-                            selected === "All" ||
-                            card.dataset.category ===
-                                selected;
+        const groups =
+            document.querySelectorAll(
+                ".updates-month-group"
+            );
 
 
-                        card.style.display =
-                            visible
-                            ? ""
-                            : "none";
+        // =====================================================
+        // BUILD MONTH / YEAR OPTIONS
+        // =====================================================
 
-                    });
-
-
-                    // =============================================
-                    // HIDE EMPTY MONTH GROUPS
-                    // =============================================
-
-                    document
-                        .querySelectorAll(
-                            ".updates-month-group"
-                        )
-                        .forEach(group => {
-
-                            const cards =
-                                group.querySelectorAll(
-                                    ".full-update-card"
-                                );
+        const monthNames = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ];
 
 
-                            const hasVisibleCards =
-                                Array.from(
-                                    cards
-                                ).some(
-                                    card =>
-                                        card.style.display !==
-                                        "none"
-                                );
+        const months = new Set();
+        const years = new Set();
 
 
-                            group.style.display =
-                                hasVisibleCards
-                                ? ""
-                                : "none";
+        cards.forEach(card => {
 
-                        });
-
-
-                    // =============================================
-                    // HIDE EMPTY LATEST SECTION
-                    // =============================================
-
-                    const latestSection =
-                        document.querySelector(
-                            ".updates-latest-section"
-                        );
+            const date =
+                new Date(
+                    card.dataset.date +
+                    "T00:00:00"
+                );
 
 
-                    if (latestSection) {
-
-                        const latestCards =
-                            latestSection.querySelectorAll(
-                                ".full-update-card"
-                            );
+            months.add(
+                date.getMonth()
+            );
 
 
-                        const hasVisibleLatestCards =
-                            Array.from(
-                                latestCards
-                            ).some(
-                                card =>
-                                    card.style.display !==
-                                    "none"
-                            );
-
-
-                        latestSection.style.display =
-                            hasVisibleLatestCards
-                            ? ""
-                            : "none";
-
-                    }
-
-
-                    // =============================================
-                    // HIDE EMPTY ARCHIVE SECTION
-                    // =============================================
-
-                    const archiveSection =
-                        document.querySelector(
-                            ".updates-archive-section"
-                        );
-
-
-                    if (archiveSection) {
-
-                        const archiveCards =
-                            archiveSection.querySelectorAll(
-                                ".full-update-card"
-                            );
-
-
-                        const hasVisibleArchiveCards =
-                            Array.from(
-                                archiveCards
-                            ).some(
-                                card =>
-                                    card.style.display !==
-                                    "none"
-                            );
-
-
-                        archiveSection.style.display =
-                            hasVisibleArchiveCards
-                            ? ""
-                            : "none";
-
-                    }
-
-                }
+            years.add(
+                date.getFullYear()
             );
 
         });
+
+
+        [...months]
+            .sort((a, b) => a - b)
+            .forEach(month => {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+                option.value = month;
+
+                option.textContent =
+                    monthNames[month];
+
+                monthFilter.appendChild(
+                    option
+                );
+
+            });
+
+
+        [...years]
+            .sort((a, b) => b - a)
+            .forEach(year => {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+                option.value = year;
+
+                option.textContent = year;
+
+                yearFilter.appendChild(
+                    option
+                );
+
+            });
+
+
+        // =====================================================
+        // FILTER FUNCTION
+        // =====================================================
+
+        const applyFilters = () => {
+
+            const selectedCategory =
+                categoryFilter.value;
+
+
+            const selectedMonth =
+                monthFilter.value;
+
+
+            const selectedYear =
+                yearFilter.value;
+
+
+            cards.forEach(card => {
+
+                const date =
+                    new Date(
+                        card.dataset.date +
+                        "T00:00:00"
+                    );
+
+
+                const categoryMatch =
+                    selectedCategory === "All" ||
+                    card.dataset.category ===
+                        selectedCategory;
+
+
+                const monthMatch =
+                    selectedMonth === "all" ||
+                    date.getMonth().toString() ===
+                        selectedMonth;
+
+
+                const yearMatch =
+                    selectedYear === "all" ||
+                    date.getFullYear().toString() ===
+                        selectedYear;
+
+
+                card.style.display =
+                    categoryMatch &&
+                    monthMatch &&
+                    yearMatch
+                    ? ""
+                    : "none";
+
+            });
+
+
+            // Hide empty month sections
+
+            groups.forEach(group => {
+
+                const visibleCards =
+                    group.querySelectorAll(
+                        ".full-update-card"
+                    );
+
+
+                const hasVisible =
+                    Array.from(
+                        visibleCards
+                    ).some(
+                        card =>
+                            card.style.display !==
+                            "none"
+                    );
+
+
+                group.style.display =
+                    hasVisible
+                    ? ""
+                    : "none";
+
+            });
+
+        };
+
+
+        // =====================================================
+        // EVENTS
+        // =====================================================
+
+        categoryFilter.addEventListener(
+            "change",
+            applyFilters
+        );
+
+
+        monthFilter.addEventListener(
+            "change",
+            applyFilters
+        );
+
+
+        yearFilter.addEventListener(
+            "change",
+            applyFilters
+        );
+
+
+        resetButton.addEventListener(
+            "click",
+            () => {
+
+                categoryFilter.value =
+                    "All";
+
+                monthFilter.value =
+                    "all";
+
+                yearFilter.value =
+                    "all";
+
+                applyFilters();
+
+            }
+        );
 
     }
 
