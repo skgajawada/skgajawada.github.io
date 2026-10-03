@@ -355,6 +355,15 @@
       "verifyUrl": "https://www.credly.com/badges/9fa664e5-7bb0-43c8-b93d-5f85a9a10ee7/public_url"
     },
     {
+        "id": 40,
+        "vendor": "ibm",
+        "issuer": "IBM SkillsBuild",
+        "name": "Project Management Fundamentals",
+        "certificatePath": "certificates/moocs/IBM/pm_IBMSkillsBuild.pdf",
+        "verifyUrl": "https://www.credly.com/go/VjpYpekO",
+        "date": "02 October 2026"
+    },
+    {
         "id": 36,
         "vendor": "elsevier",
         "issuer": "Elsevier Researcher Academy",
