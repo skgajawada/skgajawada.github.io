@@ -421,3 +421,238 @@
     }
 
 }
+/* ==========================================================
+   CLEAN UPDATES PAGE
+========================================================== */
+
+.updates-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+}
+
+.updates-page-header {
+    margin-bottom: 2rem;
+}
+
+.updates-page-header .page-title {
+    margin-bottom: 0.6rem;
+}
+
+.updates-page-header .page-intro {
+    max-width: 850px;
+    margin: 0;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+
+/* ==========================================================
+   FILTER TOOLBAR
+========================================================== */
+
+.updates-toolbar {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    margin-bottom: 2.5rem;
+    padding: 1rem;
+
+    background: var(--card-bg, #fff);
+    border: 1px solid var(--border, #e5e7eb);
+    border-radius: 14px;
+
+    box-shadow: var(--shadow);
+}
+
+.update-filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.update-filter-group label {
+    color: var(--text-light);
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.update-select {
+    min-width: 145px;
+
+    padding: 0.65rem 2rem 0.65rem 0.8rem;
+
+    border: 1px solid var(--border, #d1d5db);
+    border-radius: 8px;
+
+    background: var(--card-bg, #fff);
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 0.88rem;
+
+    cursor: pointer;
+}
+
+.update-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.update-reset {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    padding: 0.65rem 0.9rem;
+
+    border: 1px solid var(--border, #d1d5db);
+    border-radius: 8px;
+
+    background: transparent;
+    color: var(--text-light);
+
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.update-reset:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+
+/* ==========================================================
+   MONTH HEADINGS
+========================================================== */
+
+.updates-month-group {
+    margin-bottom: 2.5rem;
+}
+
+.month-heading {
+    margin-bottom: 1rem;
+    padding-bottom: 0.7rem;
+
+    border-bottom: 1px solid var(--border, #e5e7eb);
+}
+
+.month-heading h2 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 1.3rem;
+}
+
+
+/* ==========================================================
+   ARCHIVE
+========================================================== */
+
+.updates-archive-section {
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+
+    border-top: 1px solid var(--border, #e5e7eb);
+}
+
+.archive-title {
+    margin-bottom: 2rem;
+}
+
+.archive-title h2 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 1.7rem;
+}
+
+
+/* ==========================================================
+   REMOVE OLD DUPLICATE LABEL STYLING
+========================================================== */
+
+.updates-page .updates-section-label,
+.updates-page .updates-count {
+    display: none;
+}
+
+
+/* ==========================================================
+   CARD
+========================================================== */
+
+.full-update-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+
+    padding: 1.35rem 1.5rem;
+
+    background: var(--card-bg, #fff);
+
+    border: 1px solid var(--border, #e5e7eb);
+    border-left: 4px solid var(--primary);
+
+    border-radius: 14px;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.full-update-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+
+/* ==========================================================
+   PREVENT REFRESH / REVEAL ISSUE
+========================================================== */
+
+.updates-page .full-update-card.reveal {
+    opacity: 1;
+    transform: none;
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 700px) {
+
+    .updates-page {
+        padding: 2rem 1rem 4rem;
+    }
+
+    .updates-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .update-select {
+        width: 100%;
+    }
+
+    .update-reset {
+        justify-content: center;
+    }
+
+    .full-update-card {
+        padding: 1.1rem;
+        gap: 0.9rem;
+    }
+
+}
