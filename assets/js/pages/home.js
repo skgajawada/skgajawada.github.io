@@ -10,6 +10,63 @@ class HomePage extends Component {
         const moocs = await DataManager.getMOOCs();
         const totalMoocs = moocs.moocCertifications.length;
         const roundedMoocs = DataManager.getRoundedCount(totalMoocs, 10);
+
+        const allUpdates = await DataManager.getLatestUpdates();
+        const latestUpdates = [...allUpdates]
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .slice(0, 4);
+
+        const updateIcon = (type) => {
+            const icons = {
+                linkedin: "fab fa-linkedin",
+                achievement: "fas fa-trophy",
+                certification: "fas fa-certificate",
+                learning: "fas fa-graduation-cap",
+                research: "fas fa-flask",
+                project: "fas fa-project-diagram",
+                event: "fas fa-calendar-check",
+                professional: "fas fa-briefcase"
+            };
+            return icons[type] || "fas fa-bell";
+        };
+
+        const updateCards = latestUpdates.length
+            ? latestUpdates.map(update => `
+                <article class="update-card reveal">
+                    <div class="update-icon">
+                        <i class="${updateIcon(update.type)}"></i>
+                    </div>
+                    <div class="update-content">
+                        <div class="update-meta">
+                            <span class="update-category">${update.category}</span>
+                            <time datetime="${update.date}">
+                                ${new Date(update.date + "T00:00:00").toLocaleDateString("en-GB", {
+                                    day: "2-digit",
+                                    month: "short",
+                                    year: "numeric"
+                                })}
+                            </time>
+                        </div>
+                        <h3>${update.title}</h3>
+                        <p>${update.description}</p>
+                        ${update.link ? `
+                            <a href="${update.link}"
+                               class="update-link"
+                               ${update.external !== false ? 'target="_blank" rel="noopener noreferrer"' : ''}>
+                                ${update.linkText || "View Details"}
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        ` : ""}
+                    </div>
+                </article>
+            `).join("")
+            : `
+                <div class="updates-empty">
+                    <i class="fas fa-bell"></i>
+                    <p>No updates have been added yet.</p>
+                </div>
+            `;
+
         return `
             <section class="hero fade-in">
                 <div class="hero-content">
@@ -149,14 +206,14 @@ class HomePage extends Component {
     <div class="card-content">
 
         <h3 class="card-title">
-            MOOCs
+            Online Learning
         </h3>
 
         <p class="card-description">
-            Explore online certifications earned through MATLAB Academy, LinkedIn Learning, Coursera, Dataiku Academy, IBM SkillsBuild and Cognitive Class.
+            Explore courses, certifications, badges, and online learning activities completed through MATLAB Academy, LinkedIn Learning, Coursera, Dataiku Academy, IBM SkillsBuild, and Cognitive Class.
         </p>
 
-        <a href="#/moocs" class="card-link">
+        <a href="#/online-learning" class="card-link">
             View Details
             <i class="fas fa-arrow-right"></i>
         </a>
