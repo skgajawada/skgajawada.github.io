@@ -21,13 +21,19 @@ class UpdatesPage extends Component {
 
         const iconMap = {
             linkedin: "fab fa-linkedin",
+            youtube: "fab fa-youtube",
             achievement: "fas fa-trophy",
             certification: "fas fa-certificate",
             learning: "fas fa-graduation-cap",
             research: "fas fa-flask",
             project: "fas fa-project-diagram",
             event: "fas fa-calendar-check",
-            professional: "fas fa-briefcase"
+            professional: "fas fa-briefcase",
+            experience: "fas fa-briefcase",
+            engagement: "fas fa-users",
+            teaching: "fas fa-chalkboard-teacher",
+            education: "fas fa-graduation-cap",
+            github: "fab fa-github"
         };
 
 
@@ -103,6 +109,7 @@ class UpdatesPage extends Component {
                 ...currentMonthUpdates,
                 ...previousUpdates
             ];
+
 
             activeUpdates.sort(
                 (a, b) =>
@@ -210,20 +217,25 @@ class UpdatesPage extends Component {
 
         // =====================================================
         // INTERNAL / EXTERNAL ACTION
+        //
+        // internalRoute:
+        //     Portfolio pages
+        //     Projects
+        //     Experience
+        //     Engagements
+        //     Online Learning
+        //     Teaching
+        //     etc.
+        //
+        // link:
+        //     LinkedIn
+        //     YouTube
+        //     GitHub
+        //     Credly
+        //     External websites
         // =====================================================
 
         const createAction = update => {
-
-            /*
-             * internalRoute:
-             *     Used for links inside the portfolio.
-             *
-             * Example:
-             *     #/online-learning/ibm
-             *
-             * external link:
-             *     Credly / LinkedIn / external website.
-             */
 
             const destination =
                 update.internalRoute ||
@@ -243,22 +255,15 @@ class UpdatesPage extends Component {
                 <a
                     href="${destination}"
                     class="update-action btn btn-primary"
-
                     ${
                         !isInternal &&
                         update.external !== false
-                        ? 'target="_blank" rel="noopener noreferrer"'
-                        : ''
+                            ? 'target="_blank" rel="noopener noreferrer"'
+                            : ''
                     }
                 >
-
-                    ${
-                        update.linkText ||
-                        "More Details"
-                    }
-
+                    More Details
                     <i class="fas fa-arrow-right"></i>
-
                 </a>
             `;
         };
