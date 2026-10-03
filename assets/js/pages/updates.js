@@ -31,62 +31,25 @@ class UpdatesPage extends Component {
 
 
         // =====================================================
-        // CURRENT DATE
-        // =====================================================
-
-        const now = new Date();
-
-        const currentYear = now.getFullYear();
-        const currentMonth = now.getMonth();
-
-
-        // =====================================================
-        // CURRENT MONTH UPDATES
-        // =====================================================
-
-        const currentMonthUpdates = sortedUpdates.filter(update => {
-
-            const date = new Date(
-                update.date + "T00:00:00"
-            );
-
-            return (
-                date.getFullYear() === currentYear &&
-                date.getMonth() === currentMonth
-            );
-
-        });
-
-
-        // =====================================================
-        // ACTIVE / RECENT UPDATES
+        // LATEST 5 UPDATES
         //
-        // Keep at least 5 latest updates.
-        // If the current month contains more than 5,
-        // keep all current-month updates visible.
+        // Only the 5 newest updates are shown in the
+        // "Latest Updates" section.
+        //
+        // They are grouped according to their actual
+        // month and year.
         // =====================================================
 
-        const activeCount = Math.max(
-            5,
-            currentMonthUpdates.length
-        );
-
-
-        const activeUpdates = sortedUpdates.slice(
-            0,
-            activeCount
-        );
+        const activeUpdates = sortedUpdates.slice(0, 5);
 
 
         // =====================================================
         // ARCHIVED UPDATES
         //
-        // Everything after the active section is archived.
+        // Everything after the latest 5 is archived.
         // =====================================================
 
-        const archivedUpdates = sortedUpdates.slice(
-            activeCount
-        );
+        const archivedUpdates = sortedUpdates.slice(5);
 
 
         // =====================================================
@@ -143,10 +106,60 @@ class UpdatesPage extends Component {
 
 
         // =====================================================
+        // GROUP UPDATES BY MONTH + YEAR
+        // =====================================================
+
+        const groupByMonthYear = (updateList) => {
+
+            const groups = {};
+
+            updateList.forEach(update => {
+
+                const monthYear =
+                    getMonthYear(update.date);
+
+
+                if (!groups[monthYear]) {
+
+                    groups[monthYear] = [];
+
+                }
+
+
+                groups[monthYear].push(update);
+
+            });
+
+
+            return groups;
+
+        };
+
+
+        // =====================================================
+        // LATEST GROUPS
+        // =====================================================
+
+        const latestGroups =
+            groupByMonthYear(activeUpdates);
+
+
+        // =====================================================
+        // ARCHIVE GROUPS
+        // =====================================================
+
+        const archiveGroups =
+            groupByMonthYear(archivedUpdates);
+
+
+        // =====================================================
         // UPDATE CARD GENERATOR
         // =====================================================
 
-        const createUpdateCard = (update, index) => {
+        const createUpdateCard = (
+            update,
+            index
+        ) => {
 
             return `
                 <article
@@ -172,6 +185,7 @@ class UpdatesPage extends Component {
                             <span class="update-category">
                                 ${update.category}
                             </span>
+
 
                             <time datetime="${update.date}">
                                 ${getFormattedDate(update.date)}
@@ -209,7 +223,9 @@ class UpdatesPage extends Component {
                                         "View Details"
                                     }
 
-                                    <i class="fas fa-arrow-right"></i>
+                                    <i
+                                        class="fas fa-arrow-right"
+                                    ></i>
 
                                 </a>
                             `
@@ -225,57 +241,126 @@ class UpdatesPage extends Component {
 
 
         // =====================================================
-        // ACTIVE UPDATES HTML
+        // CREATE MONTH SECTION
         // =====================================================
 
-        const activeUpdatesHTML = activeUpdates.length
+        const createMonthSection = (
+            monthYear,
+            monthUpdates,
+            sectionType,
+            groupIndex
+        ) => {
 
-            ? activeUpdates
-                .map((update, index) =>
-                    createUpdateCard(
-                        update,
-                        index
-                    )
+            const cards = monthUpdates
+                .map(
+                    (update, index) =>
+                        createUpdateCard(
+                            update,
+                            index
+                        )
                 )
-                .join("")
+                .join("");
 
-            : `
-                <div class="updates-empty">
 
-                    <i class="fas fa-bell"></i>
+            return `
+                <section
+                    class="
+                        updates-month-group
+                        ${sectionType === "archive"
+                            ? "updates-archive-group"
+                            : "updates-latest-group"}
+                    "
+                    data-month="${monthYear}"
+                    data-section="${sectionType}"
+                >
 
-                    <p>
-                        No updates have been added yet.
-                    </p>
+                    <div class="archive-month-header">
 
-                </div>
+                        <div>
+
+                            <span class="updates-section-label">
+
+                                <i
+                                    class="${
+                                        sectionType === "archive"
+                                        ? "fas fa-calendar"
+                                        : "fas fa-clock"
+                                    }"
+                                ></i>
+
+                                ${
+                                    sectionType === "archive"
+                                    ? "Archive"
+                                    : "Latest"
+                                }
+
+                            </span>
+
+
+                            <h2>
+                                ${monthYear}
+                            </h2>
+
+                        </div>
+
+
+                        <span class="updates-count">
+
+                            ${monthUpdates.length}
+
+                            ${
+                                monthUpdates.length === 1
+                                ? "update"
+                                : "updates"
+                            }
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="full-updates-list">
+
+                        ${cards}
+
+                    </div>
+
+                </section>
             `;
 
+        };
+
 
         // =====================================================
-        // GROUP ARCHIVED UPDATES
-        // BY MONTH + YEAR
+        // LATEST UPDATES HTML
+        //
+        // Example:
+        //
+        // October 2026
+        //   Update 1
+        //   Update 2
+        //
+        // September 2026
+        //   Update 3
+        //   Update 4
+        //   Update 5
         // =====================================================
 
-        const archiveGroups = {};
-
-
-        archivedUpdates.forEach(update => {
-
-            const monthYear =
-                getMonthYear(update.date);
-
-
-            if (!archiveGroups[monthYear]) {
-
-                archiveGroups[monthYear] = [];
-
-            }
-
-
-            archiveGroups[monthYear].push(update);
-
-        });
+        const latestHTML =
+            Object.entries(latestGroups)
+                .map(
+                    (
+                        [monthYear, monthUpdates],
+                        groupIndex
+                    ) =>
+                        createMonthSection(
+                            monthYear,
+                            monthUpdates,
+                            "latest",
+                            groupIndex
+                        )
+                )
+                .join("");
 
 
         // =====================================================
@@ -288,87 +373,32 @@ class UpdatesPage extends Component {
                     (
                         [monthYear, monthUpdates],
                         groupIndex
-                    ) => {
-
-                        const cards =
-                            monthUpdates
-                                .map(
-                                    (update, index) =>
-                                        createUpdateCard(
-                                            update,
-                                            index
-                                        )
-                                )
-                                .join("");
-
-
-                        return `
-                            <section
-                                class="updates-archive-group"
-                                data-month="${monthYear}"
-                            >
-
-                                <div class="archive-month-header">
-
-                                    <div>
-
-                                        <span class="updates-section-label">
-
-                                            <i class="fas fa-calendar"></i>
-
-                                            Archive
-
-                                        </span>
-
-
-                                        <h2>
-                                            ${monthYear}
-                                        </h2>
-
-                                    </div>
-
-
-                                    <span class="updates-count">
-
-                                        ${monthUpdates.length}
-
-                                        ${
-                                            monthUpdates.length === 1
-                                            ? "update"
-                                            : "updates"
-                                        }
-
-                                    </span>
-
-                                </div>
-
-
-                                <div class="full-updates-list">
-
-                                    ${cards}
-
-                                </div>
-
-                            </section>
-                        `;
-
-                    }
+                    ) =>
+                        createMonthSection(
+                            monthYear,
+                            monthUpdates,
+                            "archive",
+                            groupIndex
+                        )
                 )
                 .join("");
 
 
         // =====================================================
-        // CURRENT PERIOD LABEL
+        // EMPTY STATE
         // =====================================================
 
-        const currentMonthTitle =
-            now.toLocaleDateString(
-                "en-GB",
-                {
-                    month: "long",
-                    year: "numeric"
-                }
-            );
+        const latestEmptyHTML = `
+            <div class="updates-empty">
+
+                <i class="fas fa-bell"></i>
+
+                <p>
+                    No updates have been added yet.
+                </p>
+
+            </div>
+        `;
 
 
         // =====================================================
@@ -440,15 +470,20 @@ class UpdatesPage extends Component {
 
 
                 <!-- =================================================
-                     ACTIVE / RECENT UPDATES
+                     LATEST 5
                 ================================================== -->
 
                 <section
-                    class="updates-current-section"
-                    data-section="active"
+                    class="updates-latest-section"
+                    data-section="latest"
                 >
 
-                    <div class="updates-section-heading">
+                    <div
+                        class="
+                            updates-section-heading
+                            latest-heading
+                        "
+                    >
 
                         <div>
 
@@ -456,13 +491,13 @@ class UpdatesPage extends Component {
 
                                 <i class="fas fa-clock"></i>
 
-                                Latest
+                                Latest Updates
 
                             </span>
 
 
                             <h2>
-                                ${currentMonthTitle}
+                                Most Recent
                             </h2>
 
                         </div>
@@ -483,9 +518,13 @@ class UpdatesPage extends Component {
                     </div>
 
 
-                    <div class="full-updates-list">
+                    <div class="updates-latest-list">
 
-                        ${activeUpdatesHTML}
+                        ${
+                            activeUpdates.length
+                            ? latestHTML
+                            : latestEmptyHTML
+                        }
 
                     </div>
 
@@ -498,16 +537,18 @@ class UpdatesPage extends Component {
 
                 ${
                     archivedUpdates.length
-
                     ? `
 
                         <section
                             class="updates-archive-section"
+                            data-section="archive"
                         >
 
                             <div
-                                class="updates-section-heading
-                                       archive-heading"
+                                class="
+                                    updates-section-heading
+                                    archive-heading
+                                "
                             >
 
                                 <div>
@@ -517,7 +558,10 @@ class UpdatesPage extends Component {
                                     >
 
                                         <i
-                                            class="fas fa-box-archive"
+                                            class="
+                                                fas
+                                                fa-box-archive
+                                            "
                                         ></i>
 
                                         Archive
@@ -530,6 +574,19 @@ class UpdatesPage extends Component {
                                     </h2>
 
                                 </div>
+
+
+                                <span class="updates-count">
+
+                                    ${archivedUpdates.length}
+
+                                    ${
+                                        archivedUpdates.length === 1
+                                        ? "update"
+                                        : "updates"
+                                    }
+
+                                </span>
 
                             </div>
 
@@ -545,7 +602,6 @@ class UpdatesPage extends Component {
                         </section>
 
                     `
-
                     : ""
                 }
 
@@ -623,16 +679,16 @@ class UpdatesPage extends Component {
 
 
                     // =============================================
-                    // HIDE EMPTY ARCHIVE MONTHS
+                    // HIDE EMPTY MONTH GROUPS
                     // =============================================
 
                     document
                         .querySelectorAll(
-                            ".updates-archive-group"
+                            ".updates-month-group"
                         )
                         .forEach(group => {
 
-                            const visibleCards =
+                            const cards =
                                 group.querySelectorAll(
                                     ".full-update-card"
                                 );
@@ -640,7 +696,7 @@ class UpdatesPage extends Component {
 
                             const hasVisibleCards =
                                 Array.from(
-                                    visibleCards
+                                    cards
                                 ).some(
                                     card =>
                                         card.style.display !==
@@ -657,26 +713,26 @@ class UpdatesPage extends Component {
 
 
                     // =============================================
-                    // HIDE ACTIVE SECTION IF EMPTY
+                    // HIDE EMPTY LATEST SECTION
                     // =============================================
 
-                    const activeSection =
+                    const latestSection =
                         document.querySelector(
-                            ".updates-current-section"
+                            ".updates-latest-section"
                         );
 
 
-                    if (activeSection) {
+                    if (latestSection) {
 
-                        const activeCards =
-                            activeSection.querySelectorAll(
+                        const latestCards =
+                            latestSection.querySelectorAll(
                                 ".full-update-card"
                             );
 
 
-                        const hasVisibleActiveCards =
+                        const hasVisibleLatestCards =
                             Array.from(
-                                activeCards
+                                latestCards
                             ).some(
                                 card =>
                                     card.style.display !==
@@ -684,8 +740,44 @@ class UpdatesPage extends Component {
                             );
 
 
-                        activeSection.style.display =
-                            hasVisibleActiveCards
+                        latestSection.style.display =
+                            hasVisibleLatestCards
+                            ? ""
+                            : "none";
+
+                    }
+
+
+                    // =============================================
+                    // HIDE EMPTY ARCHIVE SECTION
+                    // =============================================
+
+                    const archiveSection =
+                        document.querySelector(
+                            ".updates-archive-section"
+                        );
+
+
+                    if (archiveSection) {
+
+                        const archiveCards =
+                            archiveSection.querySelectorAll(
+                                ".full-update-card"
+                            );
+
+
+                        const hasVisibleArchiveCards =
+                            Array.from(
+                                archiveCards
+                            ).some(
+                                card =>
+                                    card.style.display !==
+                                    "none"
+                            );
+
+
+                        archiveSection.style.display =
+                            hasVisibleArchiveCards
                             ? ""
                             : "none";
 
