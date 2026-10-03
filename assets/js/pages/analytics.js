@@ -19,7 +19,7 @@ class AnalyticsDashboard extends Component {
 
 
         // -----------------------------------------------------
-        // Load MOOCs separately
+        // Load Online Learning separately
         // -----------------------------------------------------
 
         this.moocs =
@@ -33,7 +33,7 @@ class AnalyticsDashboard extends Component {
         // This is the TOTAL shown as
         // "Professional Engagements & Certifications".
         //
-        // MOOCs are NOT included here.
+        // Online Learning is NOT included here.
         // -----------------------------------------------------
 
         const professionalCertificates =
@@ -49,10 +49,27 @@ class AnalyticsDashboard extends Component {
 
 
         // -----------------------------------------------------
-        // MOOC CERTIFICATES
+        // ROUNDED PROFESSIONAL DISPLAY COUNT
+        //
+        // Examples:
+        // 41 -> 40+
+        // 44 -> 40+
+        // 45 -> 45+
+        // 49 -> 45+
+        // 50 -> 50+
         // -----------------------------------------------------
 
-        const moocCertificates =
+        const roundedProfessionalCount =
+            Math.floor(
+                professionalCount / 5
+            ) * 5;
+
+
+        // -----------------------------------------------------
+        // ONLINE LEARNING
+        // -----------------------------------------------------
+
+        const onlineLearningCertificates =
             Array.isArray(
                 this.moocs?.moocCertifications
             )
@@ -60,8 +77,25 @@ class AnalyticsDashboard extends Component {
                 : [];
 
 
-        const moocCount =
-            moocCertificates.length;
+        const onlineLearningCount =
+            onlineLearningCertificates.length;
+
+
+        // -----------------------------------------------------
+        // ROUNDED ONLINE LEARNING DISPLAY COUNT
+        //
+        // Examples:
+        // 41 -> 40+
+        // 44 -> 40+
+        // 45 -> 45+
+        // 49 -> 45+
+        // 50 -> 50+
+        // -----------------------------------------------------
+
+        const roundedOnlineLearningCount =
+            Math.floor(
+                onlineLearningCount / 5
+            ) * 5;
 
 
         // -----------------------------------------------------
@@ -70,7 +104,8 @@ class AnalyticsDashboard extends Component {
         // ONLY PROFESSIONAL ENGAGEMENTS/CERTIFICATIONS
         // are included here.
         //
-        // MOOCs are deliberately NOT added as a category.
+        // Online Learning is deliberately NOT added
+        // as a professional category.
         // -----------------------------------------------------
 
         this.certsByCategory = {};
@@ -229,7 +264,7 @@ class AnalyticsDashboard extends Component {
 
                     <div class="metric-number blue">
 
-                        ${professionalCount}+
+                        ${roundedProfessionalCount}+
 
                     </div>
 
@@ -272,7 +307,7 @@ class AnalyticsDashboard extends Component {
 
 
                 <!-- =========================================
-                     MOOC CERTIFICATIONS
+                     ONLINE LEARNING
                 ========================================== -->
 
                 <div class="metric-box">
@@ -284,14 +319,14 @@ class AnalyticsDashboard extends Component {
 
                     <div class="metric-number purple">
 
-                        ${moocCount}+
+                        ${roundedOnlineLearningCount}+
 
                     </div>
 
 
                     <div class="metric-title">
 
-                        MOOC Certifications
+                        Online Learning
 
                     </div>
 
@@ -329,12 +364,12 @@ class AnalyticsDashboard extends Component {
 
         </div>
 
+
     </div>
 
 </section>
 
 `;
-
     }
 
 
@@ -541,7 +576,7 @@ class AnalyticsDashboard extends Component {
         // PROFESSIONAL GROWTH
         //
         // IMPORTANT:
-        // MOOCs are NOT included.
+        // Online Learning is NOT included.
         // =====================================================
 
         const years = {};
