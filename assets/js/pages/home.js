@@ -64,21 +64,6 @@ class HomePage extends Component {
 
                         <p>${update.description}</p>
 
-                        ${
-                            update.link
-                            ? `
-                                <a href="${update.link}"
-                                   class="update-link"
-                                   ${update.external !== false
-                                       ? 'target="_blank" rel="noopener noreferrer"'
-                                       : ''}>
-                                    ${update.linkText || "View Details"}
-                                    <i class="fas fa-arrow-right"></i>
-                                </a>
-                            `
-                            : ""
-                        }
-
                     </div>
 
                 </article>
