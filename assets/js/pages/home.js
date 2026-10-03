@@ -10,7 +10,79 @@ class HomePage extends Component {
         const moocs = await DataManager.getMOOCs();
         const totalMoocs = moocs.moocCertifications.length;
         const roundedMoocs = DataManager.getRoundedCount(totalMoocs, 10);
+        const allUpdates = await DataManager.getLatestUpdates();
 
+        const latestUpdates = [...allUpdates]
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .slice(0, 4);
+        
+        const updateIcon = (type) => {
+            const icons = {
+                linkedin: "fab fa-linkedin",
+                achievement: "fas fa-trophy",
+                certification: "fas fa-certificate",
+                learning: "fas fa-graduation-cap",
+                research: "fas fa-flask",
+                project: "fas fa-project-diagram",
+                event: "fas fa-calendar-check",
+                professional: "fas fa-briefcase"
+            };
+        
+            return icons[type] || "fas fa-bell";
+        };
+        
+        const updateCards = latestUpdates.length
+            ? latestUpdates.map(update => `
+                <article class="update-card reveal">
+        
+                    <div class="update-icon">
+                        <i class="${updateIcon(update.type)}"></i>
+                    </div>
+        
+                    <div class="update-content">
+        
+                        <div class="update-meta">
+                            <span class="update-category">
+                                ${update.category}
+                            </span>
+        
+                            <time datetime="${update.date}">
+                                ${new Date(update.date + "T00:00:00").toLocaleDateString("en-GB", {
+                                    day: "2-digit",
+                                    month: "short",
+                                    year: "numeric"
+                                })}
+                            </time>
+                        </div>
+        
+                        <h3>${update.title}</h3>
+        
+                        <p>${update.description}</p>
+        
+                        ${
+                            update.link
+                            ? `
+                                <a href="${update.link}"
+                                   class="update-link"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
+                                    ${update.linkText || "View Details"}
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            `
+                            : ""
+                        }
+        
+                    </div>
+        
+                </article>
+            `).join("")
+            : `
+                <div class="updates-empty">
+                    <i class="fas fa-bell"></i>
+                    <p>No updates available.</p>
+                </div>
+            `;
         const allUpdates = await DataManager.getLatestUpdates();
         const latestUpdates = [...allUpdates]
             .sort((a, b) => new Date(b.date) - new Date(a.date))
@@ -120,10 +192,43 @@ class HomePage extends Component {
                 
                 </section>
 
+                <!-- =====================================================
+                     LATEST UPDATES
+                ====================================================== -->
+                
+                <section class="latest-updates-section">
+                
+                    <div class="section-heading-row">
+                
+                        <h2 class="section-title">
+                            Latest Updates
+                        </h2>
+                
+                        <a href="#/updates" class="section-view-all">
+                            View All
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                
+                    </div>
+                
+                    <div class="latest-updates-list">
+                
+                        ${updateCards}
+                
+                    </div>
+                
+                </section>
+                
+                
+                <!-- =====================================================
+                     RESEARCH INTERESTS
+                ====================================================== -->
+                
                 <section>
                 
-                <h2 class="section-title">
-                Research Interests</h2>
+                    <h2 class="section-title">
+                        Research Interests
+                    </h2>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 4rem;">
                     ${data.researchInterests.map((interest, i) => `
                         <div class="reveal" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 1.5rem; border-radius: 10px; text-align: center; animation-delay: ${i * 0.1}s;">
