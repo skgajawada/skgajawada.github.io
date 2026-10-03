@@ -19,7 +19,7 @@ class HomePage extends Component {
 
         const latestUpdates = [...allUpdates]
             .sort((a, b) => new Date(b.date) - new Date(a.date))
-            .slice(0, 4);
+            .slice(0, 5);
 
         const updateIcon = (type) => {
             const icons = {
