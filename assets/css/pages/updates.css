@@ -1,0 +1,119 @@
+/* ==========================================================
+   LATEST UPDATES PAGE
+========================================================== */
+
+.updates-page {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.updates-page-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.updates-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.page-title {
+    margin-bottom: 0.75rem;
+}
+
+.page-intro {
+    max-width: 760px;
+    margin: 0 auto;
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+.update-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.65rem;
+    margin-bottom: 2rem;
+}
+
+.update-filter {
+    border: 1px solid var(--primary);
+    background: transparent;
+    color: var(--primary);
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.update-filter:hover,
+.update-filter.active {
+    background: var(--primary);
+    color: #fff;
+}
+
+.full-updates-list {
+    display: grid;
+    gap: 1.25rem;
+}
+
+.full-update-card {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.75rem;
+    background: var(--card-bg, #fff);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    border-left: 5px solid var(--primary);
+}
+
+.full-update-icon {
+    flex: 0 0 58px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: rgba(37, 99, 235, 0.10);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.45rem;
+}
+
+.full-update-body {
+    flex: 1;
+}
+
+.full-update-body h2 {
+    margin: 0 0 0.6rem;
+    color: var(--text);
+    font-size: 1.35rem;
+}
+
+.full-update-body p {
+    margin: 0 0 1rem;
+    color: var(--text-light);
+    line-height: 1.75;
+}
+
+.update-action {
+    margin-top: 0.25rem;
+}
+
+@media (max-width: 600px) {
+    .full-update-card {
+        flex-direction: column;
+        padding: 1.25rem;
+    }
+
+    .full-update-icon {
+        width: 48px;
+        height: 48px;
+        flex-basis: 48px;
+    }
+}
