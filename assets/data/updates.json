@@ -1,5 +1,16 @@
 [
     {
+        "date": "2026-10-05",
+        "type": "learning",
+        "category": "Online Learning",
+        "title": "Explore Emerging Tech",
+        "description": "Completed the Explore Emerging Tech course through IBM SkillsBuild and earned the associated Credly badge.",
+        "internalRoute": "#/online-learning/ibm/explore-emerging-tech",
+        "link": "https://www.credly.com/go/PUpDYE84",
+        "linkText": "More Details",
+        "external": true
+    },
+    {
         "date": "2026-10-02",
         "type": "learning",
         "category": "Online Learning",
