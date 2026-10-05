@@ -339,6 +339,15 @@
       "verifyUrl": "https://verify.skilljar.com/c/du4fm2yw9yvp"
     },
     {
+        "id": 42,
+        "vendor": "ibm",
+        "issuer": "IBM SkillsBuild",
+        "name": "Getting Started with Data",
+        "certificatePath": "certificates/moocs/IBM/Getting Started with Data.pdf",
+        "verifyUrl": "https://www.credly.com/badges/aa5807ac-6e71-483e-b9d9-8c2b7ca98f75",
+        "date": "05 October 2026"
+    },
+    {
         "id": 41,
         "vendor": "ibm",
         "issuer": "IBM SkillsBuild",
