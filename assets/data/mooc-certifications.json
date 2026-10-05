@@ -339,6 +339,15 @@
       "verifyUrl": "https://verify.skilljar.com/c/du4fm2yw9yvp"
     },
     {
+        "id": 41,
+        "vendor": "ibm",
+        "issuer": "IBM SkillsBuild",
+        "name": "Explore Emerging Tech",
+        "certificatePath": "certificates/moocs/IBM/Explore Emerging Tech.pdf",
+        "verifyUrl": "https://www.credly.com/go/PUpDYE84",
+        "date": "05 October 2026"
+    },
+    {
         "id": 40,
         "vendor": "ibm",
         "issuer": "IBM SkillsBuild",
