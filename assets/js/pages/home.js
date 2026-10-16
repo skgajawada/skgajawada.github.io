@@ -60,6 +60,12 @@ class HomePage extends Component {
                             </time>
                         </div>
 
+                        ${update.organization ? `
+                            <div class="update-organization">
+                                ${update.organization}
+                            </div>
+                        ` : ""}
+                        
                         <h3>${update.title}</h3>
 
                         <p>${update.description}</p>
