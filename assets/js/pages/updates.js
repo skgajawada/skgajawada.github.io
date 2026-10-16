@@ -313,22 +313,22 @@ class UpdatesPage extends Component {
                         </div>
 
 
-                        
-                        ${update.platform ? `
-                            <div class="update-platform" style="
+                        ${update.organization ? `
+                            <div class="update-organization" style="
                                 margin: 10px 0 6px;
                                 color: #2563eb;
                                 font-size: 0.92rem;
                                 font-weight: 700;
                                 letter-spacing: 0.01em;
                             ">
-                                ${update.platform}
+                                ${update.organization}
                             </div>
                         ` : ""}
-                        
+
                         <h2>
                             ${update.title}
                         </h2>
+
 
                         <p>
                             ${update.description}
