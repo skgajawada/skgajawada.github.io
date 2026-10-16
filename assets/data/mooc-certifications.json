@@ -289,7 +289,7 @@
       "vendor": "coursera",
       "issuer": "Coursera",
       "name": "Getting Started with Microsoft Excel",
-      "certificatePath": "certificates/moocs/coursera/Getting Started with Microsoft Excel.pdf",
+      "certificatePath": "certificates/moocs/coursera/microsoft-excel.pdf",
       "verifyUrl": "https://coursera.org/share/83e9392356f9aa97a222bfe62fbb039b"
     },
     {
@@ -297,7 +297,7 @@
       "vendor": "coursera",
       "issuer": "Coursera",
       "name": "Business Analytics with Excel: Elementary to Advanced",
-      "certificatePath": "certificates/moocs/coursera/Business Analytics with Excel.pdf",
+      "certificatePath": "certificates/moocs/coursera/business-analytics-excel.pdf",
       "verifyUrl": "https://coursera.org/share/f82f7108b083f969f9c6a50671ed7d2a"
     },
     {
@@ -305,7 +305,7 @@
       "vendor": "coursera",
       "issuer": "Coursera",
       "name": "From Excel to Power BI",
-      "certificatePath": "certificates/moocs/coursera/From Excel to Power BI.pdf",
+      "certificatePath": "certificates/moocs/coursera/From-Excel-to-Power-BI.pdf.pdf",
       "verifyUrl": "https://coursera.org/share/6cc187da98a920ba45d9dc31eb9433cf"
     },
     {
