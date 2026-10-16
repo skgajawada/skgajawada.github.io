@@ -415,7 +415,7 @@
       "vendor": "isro-iirs",
       "issuer": "Indian Institute of Remote Sensing (IIRS), ISRO",
       "name": "AIML for Geodata Analytics",
-      "certificatePath": "assets/certificates/moocs/ISRO-IIRS/Geodata_IIRS_Certificate.pdf",
+      "certificatePath": "assets/certificates/moocs/ISRO–IIRS/Geodata_IIRS_Certificate.pdf",
       "verifyUrl": "https://isrolms.iirs.gov.in/mod/customcert/verify_certificate.php",
       "date": "16 September 2026"
     },
