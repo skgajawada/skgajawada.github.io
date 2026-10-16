@@ -61,7 +61,13 @@ class HomePage extends Component {
                         </div>
 
                         ${update.organization ? `
-                            <div class="update-organization">
+                            <div class="update-organization" style="
+                                margin: 10px 0 6px;
+                                color: #2563eb;
+                                font-size: 0.92rem;
+                                font-weight: 700;
+                                letter-spacing: 0.01em;
+                            ">
                                 ${update.organization}
                             </div>
                         ` : ""}
