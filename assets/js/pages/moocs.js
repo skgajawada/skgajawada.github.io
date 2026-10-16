@@ -132,6 +132,40 @@ class MoocsPage extends Component {
                                 Online Learning Certifications
                             </h1>
 
+                            <!-- Learning platform links directly below the heading -->
+                            <div style="
+                                display:flex;
+                                flex-wrap:wrap;
+                                gap:16px;
+                                margin:20px 0;
+                            ">
+                                <a
+                                    href="https://skillsbuild.org/?ngo-id=0302&utm_source=other&utm_medium=organic&utm_campaign=stdamb_NIIT_63"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style="
+                                        color:#2563eb;
+                                        font-weight:600;
+                                        text-decoration:none;
+                                    "
+                                >
+                                    IBM SkillsBuild ↗
+                                </a>
+
+                                <a
+                                    href="https://learn.microsoft.com/?wt.mc_id=studentamb_663795"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style="
+                                        color:#0284c7;
+                                        font-weight:600;
+                                        text-decoration:none;
+                                    "
+                                >
+                                    Microsoft Learn ↗
+                                </a>
+                            </div>
+
                             <p class="lead">
                                 Verified certifications and specialized
                                 coursework completed across leading global
