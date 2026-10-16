@@ -1,3 +1,4 @@
+
 // Online Learning PAGE - DISTINCT PASTEL PALETTES & LOGOS
 
 class MoocsPage extends Component {
@@ -10,7 +11,6 @@ class MoocsPage extends Component {
         // =========================================================
 
         const brandProfiles = {
-
             "matlab": {
                 name: "MATLAB",
                 primary: "#E06A3B",
@@ -59,37 +59,21 @@ class MoocsPage extends Component {
                 logo: "/assets/images/logo/cognitive_classai.jpg"
             },
 
-            // =====================================================
-            // ELSEVIER RESEARCHER ACADEMY
-            // =====================================================
-
             "elsevier": {
                 name: "Elsevier Researcher Academy",
                 primary: "#F15A29",
                 bg: "#FFF3ED",
                 text: "#B93815",
-
-                // SVG logo - no local file required
                 logo: "https://cdn.jsdelivr.net/npm/simple-icons@v15/icons/elsevier.svg"
             },
-
-            // =====================================================
-            // ISRO - IIRS
-            // =====================================================
 
             "isro-iirs": {
                 name: "ISRO–IIRS",
                 primary: "#F97316",
                 bg: "#FFF7ED",
                 text: "#C2410C",
-
-                // ISRO logo from Wikimedia Commons
                 logo: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Indian%20Space%20Research%20Organisation%20Logo.svg"
             },
-
-            // =====================================================
-            // KAGGLE
-            // =====================================================
 
             "kaggle": {
                 name: "Kaggle",
@@ -116,7 +100,6 @@ class MoocsPage extends Component {
         // =========================================================
 
         if (!vendorParam) {
-
             return `
                 <div class="moocs-page">
 
@@ -141,10 +124,11 @@ class MoocsPage extends Component {
 
                         </header>
 
+                        <!-- EXISTING CERTIFICATION CATEGORIES -->
+
                         <div class="cards-grid">
 
                             ${moocs.categories.map((cat) => {
-
                                 const brand =
                                     brandProfiles[cat.id] ||
                                     fallbackBrand;
@@ -152,11 +136,7 @@ class MoocsPage extends Component {
                                 return `
                                     <div
                                         class="card fade-in"
-                                        onclick="
-                                            navigateTo(
-                                                '#/online-learning/${cat.id}'
-                                            )
-                                        "
+                                        onclick="navigateTo('#/online-learning/${cat.id}')"
                                         style="
                                             --accent-color:${brand.primary};
                                             --badge-bg:${brand.bg};
@@ -200,21 +180,70 @@ class MoocsPage extends Component {
                                         </p>
 
                                         <div class="card-link">
-
                                             <span>
                                                 Explore Certifications
                                             </span>
 
                                             <i class="fas fa-arrow-right"></i>
-
                                         </div>
 
                                     </div>
                                 `;
-
                             }).join("")}
 
                         </div>
+
+                        <!-- LEARNING RESOURCES -->
+
+                        <section style="margin-top: 3rem;">
+
+                            <span class="academic-kicker">
+                                Learning Resources
+                            </span>
+
+                            <h2 class="section-title">
+                                Explore Learning Platforms
+                            </h2>
+
+                            <p class="lead">
+                                Discover additional learning opportunities
+                                in AI, data science, cybersecurity,
+                                cloud computing and emerging technologies.
+                            </p>
+
+                            <div class="cards-grid">
+
+                                ${(moocs.learningResources || []).map(resource => `
+                                    <div class="card fade-in">
+
+                                        <h3 class="card-title">
+                                            ${resource.name}
+                                        </h3>
+
+                                        <p class="card-description">
+                                            ${resource.description}
+                                        </p>
+
+                                        <div class="card-link">
+
+                                            <a
+                                                href="${resource.url}"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="btn btn-primary"
+                                            >
+                                                Explore Courses
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                `).join("")}
+
+                            </div>
+
+                        </section>
 
                     </section>
 
@@ -226,20 +255,17 @@ class MoocsPage extends Component {
         // CATEGORY DETAIL VIEW
         // =========================================================
 
-        const categoryIndex =
-            moocs.categories.findIndex(
-                c => c.id === vendorParam
-            );
+        const categoryIndex = moocs.categories.findIndex(
+            c => c.id === vendorParam
+        );
 
-        const currentVendor =
-            moocs.categories[categoryIndex];
+        const currentVendor = moocs.categories[categoryIndex];
 
         // =========================================================
         // CATEGORY NOT FOUND
         // =========================================================
 
         if (!currentVendor) {
-
             return `
                 <div class="moocs-page">
 
@@ -275,6 +301,10 @@ class MoocsPage extends Component {
                 cert => cert.vendor === vendorParam
             );
 
+        // =========================================================
+        // CERTIFICATE CATEGORY DETAILS
+        // =========================================================
+
         return `
             <div class="moocs-page">
 
@@ -287,11 +317,8 @@ class MoocsPage extends Component {
                             class="btn btn-outline"
                             style="margin-bottom:1.5rem;"
                         >
-
                             <i class="fas fa-arrow-left"></i>
-
                             Back to Categories
-
                         </a>
 
                         <span class="academic-kicker">
@@ -311,7 +338,6 @@ class MoocsPage extends Component {
                     <div class="cards-grid">
 
                         ${vendorCertificates.map(cert => `
-
                             <div
                                 class="card"
                                 style="
@@ -394,16 +420,8 @@ class MoocsPage extends Component {
                                         class="btn btn-primary"
                                         style="flex:1;"
                                     >
-
-                                        <i
-                                            class="
-                                                fas
-                                                fa-certificate
-                                            "
-                                        ></i>
-
+                                        <i class="fas fa-certificate"></i>
                                         Certificate
-
                                     </a>
 
                                     ${
@@ -416,16 +434,8 @@ class MoocsPage extends Component {
                                                 class="btn btn-outline"
                                                 style="flex:1;"
                                             >
-
-                                                <i
-                                                    class="
-                                                        fas
-                                                        fa-external-link-alt
-                                                    "
-                                                ></i>
-
+                                                <i class="fas fa-external-link-alt"></i>
                                                 Verify
-
                                             </a>
                                         `
                                         : ""
@@ -434,7 +444,6 @@ class MoocsPage extends Component {
                                 </div>
 
                             </div>
-
                         `).join("")}
 
                     </div>
@@ -449,7 +458,6 @@ class MoocsPage extends Component {
                                     color:#64748b;
                                 "
                             >
-
                                 <i
                                     class="fas fa-certificate"
                                     style="
