@@ -43,29 +43,46 @@
       "color": "#8E44AD"
     },
     {
-        "id": "elsevier",
-        "name": "Elsevier Researcher Academy",
-        "description": "Research methodology, academic publishing, proposal writing and scholarly development",
-        "icon": "fa-book-open",
-        "color": "#F15A29"
+      "id": "elsevier",
+      "name": "Elsevier Researcher Academy",
+      "description": "Research methodology, academic publishing, proposal writing and scholarly development",
+      "icon": "fa-book-open",
+      "color": "#F15A29"
     },
     {
-        "id": "isro-iirs",
-        "name": "ISRO–IIRS",
-        "description": "Remote sensing, geospatial technologies, AI/ML and space applications",
-        "icon": "fa-satellite",
-        "color": "#F97316"
+      "id": "isro-iirs",
+      "name": "ISRO–IIRS",
+      "description": "Remote sensing, geospatial technologies, AI/ML and space applications",
+      "icon": "fa-satellite",
+      "color": "#F97316"
     },
     {
-        "id": "kaggle",
-        "name": "Kaggle",
-        "description": "Data Science, Python, Machine Learning and community achievement badges",
-        "icon": "fa-k",
-        "color": "#20BEFF"
+      "id": "kaggle",
+      "name": "Kaggle",
+      "description": "Data Science, Python, Machine Learning and community achievement badges",
+      "icon": "fa-k",
+      "color": "#20BEFF"
     }
-],
-  
+  ],
   "moocCertifications": [
+    {
+      "id": 44,
+      "vendor": "ibm",
+      "issuer": "IBM SkillsBuild",
+      "name": "Cybersecurity Fundamentals",
+      "certificatePath": "certificates/moocs/IBM/Cybersecurity Fundamentals.pdf",
+      "verifyUrl": "https://www.credly.com/badges/e7c604ce-2a1f-4dee-aeb8-140c0fcde079/public_url",
+      "date": "16 October 2026"
+    },
+    {
+      "id": 43,
+      "vendor": "ibm",
+      "issuer": "IBM SkillsBuild",
+      "name": "Getting Started with Cybersecurity",
+      "certificatePath": "certificates/moocs/IBM/Getting Started with Cybersecurity.pdf",
+      "verifyUrl": "https://www.credly.com/badges/d8acdb3f-19ec-4abe-90ce-d8c414aa5fa2/public_url",
+      "date": "10 October 2026"
+    },
     {
       "id": 125,
       "vendor": "matlab",
@@ -339,31 +356,31 @@
       "verifyUrl": "https://verify.skilljar.com/c/du4fm2yw9yvp"
     },
     {
-        "id": 42,
-        "vendor": "ibm",
-        "issuer": "IBM SkillsBuild",
-        "name": "Getting Started with Data",
-        "certificatePath": "certificates/moocs/IBM/IBM_GettingStartedwithData.pdf",
-        "verifyUrl": "https://www.credly.com/badges/aa5807ac-6e71-483e-b9d9-8c2b7ca98f75",
-        "date": "05 October 2026"
+      "id": 42,
+      "vendor": "ibm",
+      "issuer": "IBM SkillsBuild",
+      "name": "Getting Started with Data",
+      "certificatePath": "certificates/moocs/IBM/IBM_GettingStartedwithData.pdf",
+      "verifyUrl": "https://www.credly.com/badges/aa5807ac-6e71-483e-b9d9-8c2b7ca98f75",
+      "date": "05 October 2026"
     },
     {
-        "id": 41,
-        "vendor": "ibm",
-        "issuer": "IBM SkillsBuild",
-        "name": "Explore Emerging Tech",
-        "certificatePath": "certificates/moocs/IBM/Explore Emerging Tech.pdf",
-        "verifyUrl": "https://www.credly.com/go/PUpDYE84",
-        "date": "05 October 2026"
+      "id": 41,
+      "vendor": "ibm",
+      "issuer": "IBM SkillsBuild",
+      "name": "Explore Emerging Tech",
+      "certificatePath": "certificates/moocs/IBM/Explore Emerging Tech.pdf",
+      "verifyUrl": "https://www.credly.com/go/PUpDYE84",
+      "date": "05 October 2026"
     },
     {
-        "id": 40,
-        "vendor": "ibm",
-        "issuer": "IBM SkillsBuild",
-        "name": "Project Management Fundamentals",
-        "certificatePath": "certificates/moocs/IBM/pm_IBMSkillsBuild.pdf",
-        "verifyUrl": "https://www.credly.com/go/VjpYpekO",
-        "date": "02 October 2026"
+      "id": 40,
+      "vendor": "ibm",
+      "issuer": "IBM SkillsBuild",
+      "name": "Project Management Fundamentals",
+      "certificatePath": "certificates/moocs/IBM/pm_IBMSkillsBuild.pdf",
+      "verifyUrl": "https://www.credly.com/go/VjpYpekO",
+      "date": "02 October 2026"
     },
     {
       "id": 34,
@@ -382,42 +399,40 @@
       "verifyUrl": "https://www.credly.com/badges/9fa664e5-7bb0-43c8-b93d-5f85a9a10ee7/public_url"
     },
     {
-        "id": 36,
-        "vendor": "elsevier",
-        "issuer": "Elsevier Researcher Academy",
-        "name": "Unlocking Opportunities: Crafting Award-Winning Proposals – Insights for Early Career Researchers",
-        "certificatePath": "certificates/moocs/Elsevier Researcher Academy/elsvr_crafting.pdf",
-        "verifyUrl": "",
-        "date": "25 July 2026"
+      "id": 36,
+      "vendor": "elsevier",
+      "issuer": "Elsevier Researcher Academy",
+      "name": "Unlocking Opportunities: Crafting Award-Winning Proposals – Insights for Early Career Researchers",
+      "certificatePath": "certificates/moocs/Elsevier Researcher Academy/elsvr_crafting.pdf",
+      "verifyUrl": "",
+      "date": "25 July 2026"
     },
     {
-        "id": 37,
-        "vendor": "isro-iirs",
-        "issuer": "Indian Institute of Remote Sensing (IIRS), ISRO",
-        "name": "AIML for Geodata Analytics",
-        "certificatePath": "certificates/moocs/ISRO-IIRS/Geodata_IIRS_Certificate.pdf",
-        "verifyUrl": "https://isrolms.iirs.gov.in/mod/customcert/verify_certificate.php",
-        "date": "03–14 August 2026"
+      "id": 37,
+      "vendor": "isro-iirs",
+      "issuer": "Indian Institute of Remote Sensing (IIRS), ISRO",
+      "name": "AIML for Geodata Analytics",
+      "certificatePath": "certificates/moocs/ISRO-IIRS/Geodata_IIRS_Certificate.pdf",
+      "verifyUrl": "https://isrolms.iirs.gov.in/mod/customcert/verify_certificate.php",
+      "date": "03–14 August 2026"
     },
-    
     {
-        "id": 38,
-        "vendor": "kaggle",
-        "issuer": "Kaggle",
-        "name": "Kaggle Community Member",
-        "certificatePath": "certificates/moocs/Kaggle/Kaggle Community Member.png",
-        "verifyUrl": "https://www.kaggle.com/certification/badges/gajavadasanjeevkumar/101",
-        "date": "10 March 2026"
+      "id": 38,
+      "vendor": "kaggle",
+      "issuer": "Kaggle",
+      "name": "Kaggle Community Member",
+      "certificatePath": "certificates/moocs/Kaggle/Kaggle Community Member.png",
+      "verifyUrl": "https://www.kaggle.com/certification/badges/gajavadasanjeevkumar/101",
+      "date": "10 March 2026"
     },
-    
     {
-        "id": 39,
-        "vendor": "kaggle",
-        "issuer": "Kaggle",
-        "name": "Python Coder",
-        "certificatePath": "certificates/moocs/Kaggle/Python Coder.png",
-        "verifyUrl": "https://www.kaggle.com/certification/badges/gajavadasanjeevkumar/30",
-        "date": "26 June 2026"
+      "id": 39,
+      "vendor": "kaggle",
+      "issuer": "Kaggle",
+      "name": "Python Coder",
+      "certificatePath": "certificates/moocs/Kaggle/Python Coder.png",
+      "verifyUrl": "https://www.kaggle.com/certification/badges/gajavadasanjeevkumar/30",
+      "date": "26 June 2026"
     }
   ]
 }
