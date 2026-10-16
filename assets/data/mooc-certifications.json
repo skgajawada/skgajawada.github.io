@@ -1,4 +1,20 @@
 {
+  "learningResources": [
+    {
+      "id": "ibm-skillsbuild",
+      "name": "IBM SkillsBuild",
+      "description": "Explore courses in AI, data science, cybersecurity, and emerging technologies.",
+      "url": "https://skillsbuild.org/?ngo-id=0302&utm_source=other&utm_medium=organic&utm_campaign=stdamb_NIIT_63",
+      "category": "Learning Resources"
+    },
+    {
+      "id": "microsoft-learn",
+      "name": "Microsoft Learn",
+      "description": "Explore learning paths in AI, Azure, data analytics, and cloud technologies.",
+      "url": "https://learn.microsoft.com/?wt.mc_id=studentamb_663795",
+      "category": "Learning Resources"
+    }
+  ],
   "categories": [
     {
       "id": "matlab",
