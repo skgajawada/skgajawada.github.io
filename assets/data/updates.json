@@ -1,441 +1,64 @@
-{
-  "categories": [
+[
     {
-      "id": "matlab",
-      "name": "MATLAB",
-      "description": "MathWorks Training and MATLAB Academy courses",
-      "icon": "fa-square-root-variable",
-      "color": "#F58220"
+        "date": "2026-10-16",
+        "type": "learning",
+        "category": "Online Learning",
+        "title": "Cybersecurity Fundamentals",
+        "description": "Completed the Cybersecurity Fundamentals learning program through IBM SkillsBuild and earned the associated Credly badge.",
+        "internalRoute": "#/online-learning/ibm/cybersecurity-fundamentals",
+        "link": "https://www.credly.com/badges/e7c604ce-2a1f-4dee-aeb8-140c0fcde079/public_url",
+        "linkText": "More Details",
+        "external": true
     },
     {
-      "id": "linkedin",
-      "name": "LinkedIn Learning",
-      "description": "Professional development and technical courses",
-      "icon": "fa-linkedin",
-      "color": "#0A66C2"
+        "date": "2026-10-10",
+        "type": "learning",
+        "category": "Online Learning",
+        "title": "Getting Started with Cybersecurity",
+        "description": "Completed the Getting Started with Cybersecurity learning program through IBM SkillsBuild and earned the associated Credly badge.",
+        "internalRoute": "#/online-learning/ibm/getting-started-with-cybersecurity",
+        "link": "https://www.credly.com/badges/d8acdb3f-19ec-4abe-90ce-d8c414aa5fa2/public_url",
+        "linkText": "More Details",
+        "external": true
     },
     {
-      "id": "coursera",
-      "name": "Coursera",
-      "description": "University and industry certification courses",
-      "icon": "fa-graduation-cap",
-      "color": "#0056D2"
+        "date": "2026-10-05",
+        "type": "learning",
+        "category": "Online Learning",
+        "title": "Getting Started with Data",
+        "description": "Completed the Getting Started with Data learning program through IBM SkillsBuild and earned the associated Credly badge.",
+        "internalRoute": "#/online-learning/ibm/getting-started-with-data",
+        "link": "https://www.credly.com/badges/aa5807ac-6e71-483e-b9d9-8c2b7ca98f75",
+        "linkText": "More Details",
+        "external": true
     },
     {
-      "id": "dataiku",
-      "name": "Dataiku Academy",
-      "description": "Data Science and Machine Learning certifications",
-      "icon": "fa-chart-line",
-      "color": "#00BFA5"
+        "date": "2026-10-05",
+        "type": "learning",
+        "category": "Online Learning",
+        "title": "Explore Emerging Tech",
+        "description": "Completed the Explore Emerging Tech course through IBM SkillsBuild and earned the associated Credly badge.",
+        "internalRoute": "#/online-learning/ibm/explore-emerging-tech",
+        "link": "https://www.credly.com/go/PUpDYE84",
+        "linkText": "More Details",
+        "external": true
     },
     {
-      "id": "ibm",
-      "name": "IBM SkillsBuild",
-      "description": "IBM professional certifications",
-      "icon": "fa-ibm",
-      "color": "#1261FE"
+        "date": "2026-10-02",
+        "type": "learning",
+        "category": "Online Learning",
+        "title": "Project Management Fundamentals",
+        "description": "Completed the Project Management Fundamentals course through IBM SkillsBuild and earned the associated Credly badge.",
+        "internalRoute": "#/online-learning/ibm/project-management-fundamentals",
+        "link": "https://www.credly.com/go/VjpYpekO",
+        "linkText": "More Details",
+        "external": true
     },
     {
-      "id": "cognitiveai",
-      "name": "Cognitive Class",
-      "description": "Cognitive AI certifications",
-      "icon": "fa-brain",
-      "color": "#8E44AD"
-    },
-    {
-      "id": "elsevier",
-      "name": "Elsevier Researcher Academy",
-      "description": "Research methodology, academic publishing, proposal writing and scholarly development",
-      "icon": "fa-book-open",
-      "color": "#F15A29"
-    },
-    {
-      "id": "isro-iirs",
-      "name": "ISRO–IIRS",
-      "description": "Remote sensing, geospatial technologies, AI/ML and space applications",
-      "icon": "fa-satellite",
-      "color": "#F97316"
-    },
-    {
-      "id": "kaggle",
-      "name": "Kaggle",
-      "description": "Data Science, Python, Machine Learning and community achievement badges",
-      "icon": "fa-k",
-      "color": "#20BEFF"
+        "date": "2026-09-23",
+        "type": "achievement",
+        "category": "Achievement",
+        "title": "IBM SkillsBuild Student Ambassador",
+        "description": "Selected as an IBM SkillsBuild Student Ambassador and joined the ambassador community."
     }
-  ],
-  "moocCertifications": [
-    {
-      "id": 44,
-      "vendor": "ibm",
-      "issuer": "IBM SkillsBuild",
-      "name": "Cybersecurity Fundamentals",
-      "certificatePath": "certificates/moocs/IBM/Cybersecurity Fundamentals.pdf",
-      "verifyUrl": "https://www.credly.com/badges/e7c604ce-2a1f-4dee-aeb8-140c0fcde079/public_url",
-      "date": "16 October 2026"
-    },
-    {
-      "id": 43,
-      "vendor": "ibm",
-      "issuer": "IBM SkillsBuild",
-      "name": "Getting Started with Cybersecurity",
-      "certificatePath": "certificates/moocs/IBM/Getting Started with Cybersecurity.pdf",
-      "verifyUrl": "https://www.credly.com/badges/d8acdb3f-19ec-4abe-90ce-d8c414aa5fa2/public_url",
-      "date": "10 October 2026"
-    },
-    {
-      "id": 125,
-      "vendor": "matlab",
-      "issuer": "MathWorks",
-      "name": "Learn and Challenge in MATLAB Image Processing",
-      "certificatePath": "certificates/moocs/MATLAB/125.pdf",
-      "verifyUrl": ""
-    },
-    {
-      "id": 1,
-      "vendor": "matlab",
-      "issuer": "MathWorks Training",
-      "name": "MATLAB Onramp",
-      "certificatePath": "certificates/moocs/MATLAB/MATLAB Onramp.pdf",
-      "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=98447788-27ba-43f7-a438-54a4c4b1df5a"
-    },
-    {
-      "id": 2,
-      "vendor": "matlab",
-      "issuer": "MathWorks Training",
-      "name": "Simulink Onramp",
-      "certificatePath": "certificates/moocs/MATLAB/Simulink Onramp.pdf",
-      "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=d6887cfb-feb5-49dd-a406-fbf7b5e4d1b8"
-    },
-    {
-      "id": 3,
-      "vendor": "matlab",
-      "issuer": "MathWorks Training",
-      "name": "Control System Modeling Essentials",
-      "certificatePath": "certificates/moocs/MATLAB/Control System Modeling Essentials.pdf",
-      "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=e8d11305-c798-4b87-940e-8300139337ea"
-    },
-    {
-      "id": 4,
-      "vendor": "matlab",
-      "issuer": "MathWorks Training",
-      "name": "Linearization of Nonlinear Systems",
-      "certificatePath": "certificates/moocs/MATLAB/Linearization of Nonlinear Systems.pdf",
-      "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=c17a101d-2a44-44e0-a914-ee7f78719c34"
-    },
-    {
-      "id": 5,
-      "vendor": "matlab",
-      "issuer": "MathWorks Training",
-      "name": "Control System Analysis Techniques",
-      "certificatePath": "certificates/moocs/MATLAB/Control System Analysis Techniques.pdf",
-      "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=0d6e6247-8d07-481d-9aff-816283c9a363"
-    },
-    {
-      "id": 6,
-      "vendor": "matlab",
-      "issuer": "MathWorks Training",
-      "name": "PID Control Techniques",
-      "certificatePath": "certificates/moocs/MATLAB/PID Control Techniques.pdf",
-      "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=26974935-40fb-4cbe-ac80-9e258664f207"
-    },
-    {
-      "id": 7,
-      "vendor": "matlab",
-      "issuer": "MathWorks Training",
-      "name": "Control System Design with MATLAB and Simulink",
-      "certificatePath": "certificates/moocs/MATLAB/Control System Design with MATLAB and Simulink.pdf",
-      "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/learningpath/certificate.html?id=",
-      "date": "21 June 2026"
-    },
-    {
-      "id": 8,
-      "vendor": "matlab",
-      "issuer": "MathWorks Training",
-      "name": "Classical Controller Design Techniques",
-      "certificatePath": "certificates/moocs/MATLAB/Classical Controller Design Techniques.pdf",
-      "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=3df3ce64-b72a-45fb-83c3-dc73f27434e6"
-    },
-    {
-      "id": 9,
-      "vendor": "matlab",
-      "issuer": "MathWorks Training",
-      "name": "Control Design Onramp with Simulink",
-      "certificatePath": "certificates/moocs/MATLAB/Control Design Onramp with Simulink.pdf",
-      "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=9cccfad1-7baf-4f8f-91a7-254111620c35"
-    },
-    {
-      "id": 10,
-      "vendor": "matlab",
-      "issuer": "MathWorks Training",
-      "name": "MATLAB Desktop Tools and Troubleshooting Scripts",
-      "certificatePath": "certificates/moocs/MATLAB/MATLAB Desktop Tools and Troubleshooting Scripts.pdf",
-      "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=fe00993d-b666-4320-9ff4-ba3eed1f1b66"
-    },
-    {
-      "id": 11,
-      "vendor": "cognitiveai",
-      "issuer": "Cognitive Class",
-      "name": "IBM PY0101EN Python Certificate",
-      "certificatePath": "certificates/moocs/CognitiveAI/IBM PY0101EN Certificate _ Cognitive Class.pdf",
-      "verifyUrl": "https://courses.cognitiveclass.ai/certificates/0d19f10b76a34e86aa3565abb86d317b"
-    },
-    {
-      "id": 12,
-      "vendor": "linkedin",
-      "issuer": "LinkedIn Learning",
-      "name": "Learning Data Analytics: 1 Foundations",
-      "certificatePath": "certificates/moocs/LinkedIn/Learning Data Analytics 1 Foundations.pdf",
-      "verifyUrl": "https://www.linkedin.com/learning/certificates/c722240aaf5d8f69a7cea04f45036ae283ef7a13f23b0da378ae92ee5ada0206"
-    },
-    {
-      "id": 13,
-      "vendor": "linkedin",
-      "issuer": "LinkedIn Learning",
-      "name": "MySQL for Non-Programmers",
-      "certificatePath": "certificates/moocs/LinkedIn/MySQL for NonProgrammers.pdf",
-      "verifyUrl": "https://www.linkedin.com/learning/certificates/16190e5fd82451db63fc9fb16831d52eecd35dcc6d3ea4f432fe5dca10d12c49"
-    },
-    {
-      "id": 14,
-      "vendor": "linkedin",
-      "issuer": "LinkedIn Learning",
-      "name": "Learning SQL Programming",
-      "certificatePath": "certificates/moocs/LinkedIn/Learning SQL Programming.pdf",
-      "verifyUrl": "https://www.linkedin.com/learning/certificates/1c83f7f99d799579f0115cda9d0120df230372a6a248149c302b245c504fe0a0"
-    },
-    {
-      "id": 15,
-      "vendor": "linkedin",
-      "issuer": "LinkedIn Learning",
-      "name": "Python for Data Science and Machine Learning Essential Training Part 1",
-      "certificatePath": "certificates/moocs/LinkedIn/Python for Data Science and Machine Learning Essential Training Part 1.pdf",
-      "verifyUrl": "https://www.linkedin.com/learning/certificates/d0a4940b9ada1be26c358dd29fba3c2b3a99a3811b38d31218e2dcb0b763b14f"
-    },
-    {
-      "id": 16,
-      "vendor": "linkedin",
-      "issuer": "LinkedIn Learning",
-      "name": "MATLAB Essential Training",
-      "certificatePath": "certificates/moocs/LinkedIn/MATLAB Essential Training.pdf",
-      "verifyUrl": "https://www.linkedin.com/learning/certificates/d709fe8ed6ea0cecddee637f5817e3f6c6c24d5bc44102cc6ee809a98a12b6ee"
-    },
-    {
-      "id": 17,
-      "vendor": "linkedin",
-      "issuer": "LinkedIn Learning",
-      "name": "Six Sigma Foundations",
-      "certificatePath": "certificates/moocs/LinkedIn/Six Sigma Foundations.pdf",
-      "verifyUrl": "https://www.linkedin.com/learning/certificates/ac0993075d80ece8d4985e0d8956cffb8c3a6fd0cbd550a4a0eb27feff62ec75"
-    },
-    {
-      "id": 18,
-      "vendor": "linkedin",
-      "issuer": "LinkedIn Learning",
-      "name": "Statistics Foundations 3: Using Data Sets",
-      "certificatePath": "certificates/moocs/LinkedIn/Statistics Foundations 3.pdf",
-      "verifyUrl": "https://www.linkedin.com/learning/certificates/1f26017e1ac6db7dd1ceee67e504713d51d897b94e74d4cd861205aa04e902e5"
-    },
-    {
-      "id": 19,
-      "vendor": "linkedin",
-      "issuer": "LinkedIn Learning",
-      "name": "Operational Excellence Foundations",
-      "certificatePath": "certificates/moocs/LinkedIn/Operational Excellence Foundations.pdf",
-      "verifyUrl": "https://www.linkedin.com/learning/certificates/52d52362acda852e0bb9cd82f14c236347b5b25bfce957cad0081d2725b26408"
-    },
-    {
-      "id": 20,
-      "vendor": "linkedin",
-      "issuer": "LinkedIn Learning",
-      "name": "Six Sigma: Green Belt",
-      "certificatePath": "certificates/moocs/LinkedIn/Six Sigma Green Belt.pdf",
-      "verifyUrl": "https://www.linkedin.com/learning/certificates/29a40ae378a0f0dddc6f66aea714be8be75826348175b0aba9d91c530237fc05"
-    },
-    {
-      "id": 21,
-      "vendor": "linkedin",
-      "issuer": "LinkedIn Learning",
-      "name": "Additive Manufacturing: Tips, Tricks, and Techniques",
-      "certificatePath": "certificates/moocs/LinkedIn/Additive Manufacturing.pdf",
-      "verifyUrl": "https://www.linkedin.com/learning/certificates/44c37fa2479a143dae3cf23058bef10a9aa4d552f07eac1cb6e5b9a166ff73a0"
-    },
-    {
-      "id": 22,
-      "vendor": "linkedin",
-      "issuer": "LinkedIn Learning",
-      "name": "Accelerated MATLAB",
-      "certificatePath": "certificates/moocs/LinkedIn/Accelerated MATLAB.pdf",
-      "verifyUrl": "https://www.linkedin.com/learning/certificates/688edcc956ef29c6da8c22fb42e3f52c6782dbc68f90e53af367d76f615f0f02"
-    },
-    {
-      "id": 23,
-      "vendor": "linkedin",
-      "issuer": "LinkedIn Learning",
-      "name": "Learning MATLAB",
-      "certificatePath": "certificates/moocs/LinkedIn/Learning MATLAB.pdf",
-      "verifyUrl": "https://www.linkedin.com/learning/certificates/00827e7e19b6fa7e65f2d175caca08e91da5d4fb2b60b76e68b1dd3fdc03131f"
-    },
-    {
-      "id": 24,
-      "vendor": "linkedin",
-      "issuer": "LinkedIn Learning",
-      "name": "Python Essential Training",
-      "certificatePath": "certificates/moocs/LinkedIn/Python Essential Training.pdf",
-      "verifyUrl": "https://www.linkedin.com/learning/certificates/b5920cb8058b6ce223edeafcccce74c1f44427f4cb9f6d0e2b248f8a613f5329"
-    },
-    {
-      "id": 25,
-      "vendor": "coursera",
-      "issuer": "Coursera",
-      "name": "Getting Started with Microsoft Excel",
-      "certificatePath": "certificates/moocs/coursera/Getting Started with Microsoft Excel.pdf",
-      "verifyUrl": "https://coursera.org/share/83e9392356f9aa97a222bfe62fbb039b"
-    },
-    {
-      "id": 26,
-      "vendor": "coursera",
-      "issuer": "Coursera",
-      "name": "Business Analytics with Excel: Elementary to Advanced",
-      "certificatePath": "certificates/moocs/coursera/Business Analytics with Excel.pdf",
-      "verifyUrl": "https://coursera.org/share/f82f7108b083f969f9c6a50671ed7d2a"
-    },
-    {
-      "id": 27,
-      "vendor": "coursera",
-      "issuer": "Coursera",
-      "name": "From Excel to Power BI",
-      "certificatePath": "certificates/moocs/coursera/From Excel to Power BI.pdf",
-      "verifyUrl": "https://coursera.org/share/6cc187da98a920ba45d9dc31eb9433cf"
-    },
-    {
-      "id": 28,
-      "vendor": "dataiku",
-      "issuer": "Dataiku Academy",
-      "name": "Core Designer Certificate",
-      "certificatePath": "certificates/moocs/Dataiku/Core Designer Certificate.pdf",
-      "verifyUrl": "https://verify.skilljar.com/c/bkwyituhoj6v"
-    },
-    {
-      "id": 29,
-      "vendor": "dataiku",
-      "issuer": "Dataiku Academy",
-      "name": "Advanced Designer Certificate",
-      "certificatePath": "certificates/moocs/Dataiku/Advanced Designer Certificate.pdf",
-      "verifyUrl": "https://verify.skilljar.com/c/7xkwmrk5fmpw"
-    },
-    {
-      "id": 30,
-      "vendor": "dataiku",
-      "issuer": "Dataiku Academy",
-      "name": "ML Practitioner Certificate",
-      "certificatePath": "certificates/moocs/Dataiku/ML Practitioner Certificate.pdf",
-      "verifyUrl": "https://verify.skilljar.com/c/vsmffgguetxw"
-    },
-    {
-      "id": 31,
-      "vendor": "dataiku",
-      "issuer": "Dataiku Academy",
-      "name": "Generative AI Practitioner Certificate",
-      "certificatePath": "certificates/moocs/Dataiku/Generative AI Practitioner Certificate.pdf",
-      "verifyUrl": "https://verify.skilljar.com/c/cxub5wdwadud"
-    },
-    {
-      "id": 32,
-      "vendor": "dataiku",
-      "issuer": "Dataiku Academy",
-      "name": "Developer Certificate",
-      "certificatePath": "certificates/moocs/Dataiku/Developer Certificate.pdf",
-      "verifyUrl": "https://verify.skilljar.com/c/qjka8bpmmvat"
-    },
-    {
-      "id": 33,
-      "vendor": "dataiku",
-      "issuer": "Dataiku Academy",
-      "name": "MLOps Practitioner Certificate",
-      "certificatePath": "certificates/moocs/Dataiku/MLOps Practitioner Certificate.pdf",
-      "verifyUrl": "https://verify.skilljar.com/c/du4fm2yw9yvp"
-    },
-    {
-      "id": 42,
-      "vendor": "ibm",
-      "issuer": "IBM SkillsBuild",
-      "name": "Getting Started with Data",
-      "certificatePath": "certificates/moocs/IBM/IBM_GettingStartedwithData.pdf",
-      "verifyUrl": "https://www.credly.com/badges/aa5807ac-6e71-483e-b9d9-8c2b7ca98f75",
-      "date": "05 October 2026"
-    },
-    {
-      "id": 41,
-      "vendor": "ibm",
-      "issuer": "IBM SkillsBuild",
-      "name": "Explore Emerging Tech",
-      "certificatePath": "certificates/moocs/IBM/Explore Emerging Tech.pdf",
-      "verifyUrl": "https://www.credly.com/go/PUpDYE84",
-      "date": "05 October 2026"
-    },
-    {
-      "id": 40,
-      "vendor": "ibm",
-      "issuer": "IBM SkillsBuild",
-      "name": "Project Management Fundamentals",
-      "certificatePath": "certificates/moocs/IBM/pm_IBMSkillsBuild.pdf",
-      "verifyUrl": "https://www.credly.com/go/VjpYpekO",
-      "date": "02 October 2026"
-    },
-    {
-      "id": 34,
-      "vendor": "ibm",
-      "issuer": "IBM SkillsBuild",
-      "name": "Data Literacy",
-      "certificatePath": "certificates/moocs/IBM/Data Literacy.pdf",
-      "verifyUrl": "https://www.credly.com/badges/10ffb570-bdb3-43fa-b7c5-5a0c8e3226b4/public_url",
-      "date": "28 June 2026"
-    },
-    {
-      "id": 35,
-      "vendor": "ibm",
-      "issuer": "IBM SkillsBuild",
-      "name": "Data Fundamentals",
-      "certificatePath": "certificates/moocs/IBM/Data Fundamentals.pdf",
-      "verifyUrl": "https://www.credly.com/badges/9fa664e5-7bb0-43c8-b93d-5f85a9a10ee7/public_url",
-      "date": "27 June 2026"
-    },
-    {
-      "id": 36,
-      "vendor": "elsevier",
-      "issuer": "Elsevier Researcher Academy",
-      "name": "Unlocking Opportunities: Crafting Award-Winning Proposals – Insights for Early Career Researchers",
-      "certificatePath": "certificates/moocs/Elsevier Researcher Academy/elsvr_crafting.pdf",
-      "verifyUrl": "",
-      "date": "25 July 2026"
-    },
-    {
-      "id": 37,
-      "vendor": "isro-iirs",
-      "issuer": "Indian Institute of Remote Sensing (IIRS), ISRO",
-      "name": "AIML for Geodata Analytics",
-      "certificatePath": "certificates/moocs/ISRO-IIRS/Geodata_IIRS_Certificate.pdf",
-      "verifyUrl": "https://isrolms.iirs.gov.in/mod/customcert/verify_certificate.php",
-      "date": "16 September 2026"
-    },
-    {
-      "id": 38,
-      "vendor": "kaggle",
-      "issuer": "Kaggle",
-      "name": "Kaggle Community Member",
-      "certificatePath": "certificates/moocs/Kaggle/Kaggle Community Member.png",
-      "verifyUrl": "https://www.kaggle.com/certification/badges/gajavadasanjeevkumar/101",
-      "date": "10 March 2026"
-    },
-    {
-      "id": 39,
-      "vendor": "kaggle",
-      "issuer": "Kaggle",
-      "name": "Python Coder",
-      "certificatePath": "certificates/moocs/Kaggle/Python Coder.png",
-      "verifyUrl": "https://www.kaggle.com/certification/badges/gajavadasanjeevkumar/30",
-      "date": "26 June 2026"
-    }
-  ]
-}
+]
