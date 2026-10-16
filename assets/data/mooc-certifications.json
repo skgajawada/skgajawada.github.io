@@ -145,7 +145,8 @@
       "issuer": "MathWorks Training",
       "name": "Control System Design with MATLAB and Simulink",
       "certificatePath": "certificates/moocs/MATLAB/Control System Design with MATLAB and Simulink.pdf",
-      "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/learningpath/certificate.html?id="
+      "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/learningpath/certificate.html?id=",
+      "date": "21 June 2026"
     },
     {
       "id": 8,
@@ -388,7 +389,8 @@
       "issuer": "IBM SkillsBuild",
       "name": "Data Literacy",
       "certificatePath": "certificates/moocs/IBM/Data Literacy.pdf",
-      "verifyUrl": "https://www.credly.com/badges/10ffb570-bdb3-43fa-b7c5-5a0c8e3226b4/public_url"
+      "verifyUrl": "https://www.credly.com/badges/10ffb570-bdb3-43fa-b7c5-5a0c8e3226b4/public_url",
+      "date": "28 June 2026"
     },
     {
       "id": 35,
@@ -396,7 +398,8 @@
       "issuer": "IBM SkillsBuild",
       "name": "Data Fundamentals",
       "certificatePath": "certificates/moocs/IBM/Data Fundamentals.pdf",
-      "verifyUrl": "https://www.credly.com/badges/9fa664e5-7bb0-43c8-b93d-5f85a9a10ee7/public_url"
+      "verifyUrl": "https://www.credly.com/badges/9fa664e5-7bb0-43c8-b93d-5f85a9a10ee7/public_url",
+      "date": "27 June 2026"
     },
     {
       "id": 36,
@@ -412,9 +415,9 @@
       "vendor": "isro-iirs",
       "issuer": "Indian Institute of Remote Sensing (IIRS), ISRO",
       "name": "AIML for Geodata Analytics",
-      "certificatePath": "certificates/moocs/ISRO-IIRS/Geodata_IIRS_Certificate.pdf",
+      "certificatePath": "assets/certificates/moocs/ISRO-IIRS/Geodata_IIRS_Certificate.pdf",
       "verifyUrl": "https://isrolms.iirs.gov.in/mod/customcert/verify_certificate.php",
-      "date": "03–14 August 2026"
+      "date": "16 September 2026"
     },
     {
       "id": 38,
