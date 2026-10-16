@@ -1,64 +1,70 @@
 [
-    {
-        "date": "2026-10-16",
-        "type": "learning",
-        "category": "Online Learning",
-        "title": "Cybersecurity Fundamentals",
-        "description": "Completed the Cybersecurity Fundamentals learning program through IBM SkillsBuild and earned the associated Credly badge.",
-        "internalRoute": "#/online-learning/ibm/cybersecurity-fundamentals",
-        "link": "https://www.credly.com/badges/e7c604ce-2a1f-4dee-aeb8-140c0fcde079/public_url",
-        "linkText": "More Details",
-        "external": true
-    },
-    {
-        "date": "2026-10-10",
-        "type": "learning",
-        "category": "Online Learning",
-        "title": "Getting Started with Cybersecurity",
-        "description": "Completed the Getting Started with Cybersecurity learning program through IBM SkillsBuild and earned the associated Credly badge.",
-        "internalRoute": "#/online-learning/ibm/getting-started-with-cybersecurity",
-        "link": "https://www.credly.com/badges/d8acdb3f-19ec-4abe-90ce-d8c414aa5fa2/public_url",
-        "linkText": "More Details",
-        "external": true
-    },
-    {
-        "date": "2026-10-05",
-        "type": "learning",
-        "category": "Online Learning",
-        "title": "Getting Started with Data",
-        "description": "Completed the Getting Started with Data learning program through IBM SkillsBuild and earned the associated Credly badge.",
-        "internalRoute": "#/online-learning/ibm/getting-started-with-data",
-        "link": "https://www.credly.com/badges/aa5807ac-6e71-483e-b9d9-8c2b7ca98f75",
-        "linkText": "More Details",
-        "external": true
-    },
-    {
-        "date": "2026-10-05",
-        "type": "learning",
-        "category": "Online Learning",
-        "title": "Explore Emerging Tech",
-        "description": "Completed the Explore Emerging Tech course through IBM SkillsBuild and earned the associated Credly badge.",
-        "internalRoute": "#/online-learning/ibm/explore-emerging-tech",
-        "link": "https://www.credly.com/go/PUpDYE84",
-        "linkText": "More Details",
-        "external": true
-    },
-    {
-        "date": "2026-10-02",
-        "type": "learning",
-        "category": "Online Learning",
-        "title": "Project Management Fundamentals",
-        "description": "Completed the Project Management Fundamentals course through IBM SkillsBuild and earned the associated Credly badge.",
-        "internalRoute": "#/online-learning/ibm/project-management-fundamentals",
-        "link": "https://www.credly.com/go/VjpYpekO",
-        "linkText": "More Details",
-        "external": true
-    },
-    {
-        "date": "2026-09-23",
-        "type": "achievement",
-        "category": "Achievement",
-        "title": "IBM SkillsBuild Student Ambassador",
-        "description": "Selected as an IBM SkillsBuild Student Ambassador and joined the ambassador community."
-    }
+  {
+    "date": "2026-10-16",
+    "type": "learning",
+    "category": "Online Learning",
+    "title": "Cybersecurity Fundamentals",
+    "description": "Completed the Cybersecurity Fundamentals learning program through IBM SkillsBuild and earned the associated Credly badge.",
+    "internalRoute": "#/online-learning/ibm/cybersecurity-fundamentals",
+    "link": "https://www.credly.com/badges/e7c604ce-2a1f-4dee-aeb8-140c0fcde079/public_url",
+    "linkText": "More Details",
+    "external": true,
+    "organization": "IBM SkillsBuild"
+  },
+  {
+    "date": "2026-10-10",
+    "type": "learning",
+    "category": "Online Learning",
+    "title": "Getting Started with Cybersecurity",
+    "description": "Completed the Getting Started with Cybersecurity learning program through IBM SkillsBuild and earned the associated Credly badge.",
+    "internalRoute": "#/online-learning/ibm/getting-started-with-cybersecurity",
+    "link": "https://www.credly.com/badges/d8acdb3f-19ec-4abe-90ce-d8c414aa5fa2/public_url",
+    "linkText": "More Details",
+    "external": true,
+    "organization": "IBM SkillsBuild"
+  },
+  {
+    "date": "2026-10-05",
+    "type": "learning",
+    "category": "Online Learning",
+    "title": "Getting Started with Data",
+    "description": "Completed the Getting Started with Data learning program through IBM SkillsBuild and earned the associated Credly badge.",
+    "internalRoute": "#/online-learning/ibm/getting-started-with-data",
+    "link": "https://www.credly.com/badges/aa5807ac-6e71-483e-b9d9-8c2b7ca98f75",
+    "linkText": "More Details",
+    "external": true,
+    "organization": "IBM SkillsBuild"
+  },
+  {
+    "date": "2026-10-05",
+    "type": "learning",
+    "category": "Online Learning",
+    "title": "Explore Emerging Tech",
+    "description": "Completed the Explore Emerging Tech course through IBM SkillsBuild and earned the associated Credly badge.",
+    "internalRoute": "#/online-learning/ibm/explore-emerging-tech",
+    "link": "https://www.credly.com/go/PUpDYE84",
+    "linkText": "More Details",
+    "external": true,
+    "organization": "IBM SkillsBuild"
+  },
+  {
+    "date": "2026-10-02",
+    "type": "learning",
+    "category": "Online Learning",
+    "title": "Project Management Fundamentals",
+    "description": "Completed the Project Management Fundamentals course through IBM SkillsBuild and earned the associated Credly badge.",
+    "internalRoute": "#/online-learning/ibm/project-management-fundamentals",
+    "link": "https://www.credly.com/go/VjpYpekO",
+    "linkText": "More Details",
+    "external": true,
+    "organization": "IBM SkillsBuild"
+  },
+  {
+    "date": "2026-09-23",
+    "type": "achievement",
+    "category": "Achievement",
+    "title": "IBM SkillsBuild Student Ambassador",
+    "description": "Selected as an IBM SkillsBuild Student Ambassador and joined the ambassador community.",
+    "organization": "IBM SkillsBuild"
+  }
 ]
