@@ -8,7 +8,8 @@
     "link": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=041f2a15-1ebc-4746-9af0-07163f5c8846&",
     "linkText": "More Details",
     "external": true,
-    "organization": "MathWorks Training"
+    "organization": "MathWorks Training",
+    "internalRoute": "#/online-learning/matlab"
   },
   {
     "date": "2026-10-16",
