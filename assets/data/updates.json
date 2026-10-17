@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-10-17",
+    "type": "learning",
+    "category": "Online Learning",
+    "title": "Explore Data with MATLAB Plots",
+    "description": "Completed the Explore Data with MATLAB Plots course through MathWorks Training and received a course completion certificate.",
+    "link": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=041f2a15-1ebc-4746-9af0-07163f5c8846&",
+    "linkText": "More Details",
+    "external": true,
+    "organization": "MathWorks Training"
+  },
+  {
     "date": "2026-10-16",
     "type": "learning",
     "category": "Online Learning",
