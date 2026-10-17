@@ -66,6 +66,15 @@
   ],
   "moocCertifications": [
     {
+      "id": 126,
+      "vendor": "matlab",
+      "issuer": "MathWorks Training",
+      "name": "Explore Data with MATLAB Plots",
+      "certificatePath": "certificates/moocs/MATLAB/Explore Data with MATLAB Plots.pdf",
+      "verifyUrl": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=041f2a15-1ebc-4746-9af0-07163f5c8846&",
+      "date": "17 October 2026"
+    },
+    {
       "id": 44,
       "vendor": "ibm",
       "issuer": "IBM SkillsBuild",
